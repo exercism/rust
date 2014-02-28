@@ -1,0 +1,7 @@
+language: c
+install:
+  - './_test/bootstrap.sh'
+script:
+  - './_test/check-exercises.sh'
+cache:
+  - apt
