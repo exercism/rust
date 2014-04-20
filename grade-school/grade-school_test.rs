@@ -1,5 +1,7 @@
-#[crate_id = "grade-school_test#1.0"];
-#[crate_type = "lib"];
+#![crate_id = "grade-school_test#1.0"]
+#![crate_type = "lib"]
+
+extern crate collections;
 
 mod school;
 

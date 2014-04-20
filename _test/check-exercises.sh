@@ -17,8 +17,19 @@ check_assignment () {
     rm -rf "${workdir}"
     return $status
 }
+
 failures=()
-for fn in */*_test.rs; do
+
+if [ "$#" -eq 1 ]; then
+    dirs=$1
+elif [ "$#" -eq 0 ]; then
+    dirs=*
+else
+    echo "Usage: check-exercises.sh [dirname]"
+    exit 1
+fi
+
+for fn in $dirs/*_test.rs; do
     (check_assignment "${fn}")
     if [ $? -ne 0 ]; then
         echo "check failed"

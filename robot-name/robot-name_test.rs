@@ -1,5 +1,7 @@
-#[crate_id = "robot-name_test#1.0"];
-#[crate_type = "lib"];
+#![crate_id = "robot-name_test#1.0"]
+#![crate_type = "lib"]
+
+extern crate rand;
 
 mod robot;
 

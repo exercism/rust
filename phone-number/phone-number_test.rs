@@ -1,5 +1,5 @@
-#[crate_id = "phone-number_test#1.0"];
-#[crate_type = "lib"];
+#![crate_id = "phone-number_test#1.0"]
+#![crate_type = "lib"]
 
 mod phone;
 

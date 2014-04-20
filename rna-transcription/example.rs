@@ -1,3 +1,5 @@
+use std::fmt;
+
 #[deriving(Eq)]
 pub struct RibonucleicAcid {
     nucleotides: ~str
@@ -9,9 +11,9 @@ impl RibonucleicAcid {
     }
 }
 
-impl ToStr for RibonucleicAcid {
-    fn to_str(&self) -> ~str {
-        self.nucleotides.to_str()
+impl fmt::Show for RibonucleicAcid {
+    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+        self.nucleotides.fmt(formatter)
     }
 }
 
