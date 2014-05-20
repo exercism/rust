@@ -6,6 +6,9 @@
   "problems": [
 
   ],
+  "deprecated": [
+
+  ],
   "ignore": [
     "_test"
   ]
