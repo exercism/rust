@@ -5,5 +5,8 @@
   "active": false,
   "problems": [
 
+    ],
+  "ignore": [
+    "_test"
   ]
 }
