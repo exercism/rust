@@ -9,7 +9,7 @@
   "deprecated": [
 
   ],
-  "ignore": [
+  "ignored": [
     "_test"
   ]
 }
