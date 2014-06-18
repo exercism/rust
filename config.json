@@ -11,5 +11,8 @@
   ],
   "ignored": [
     "_test"
+  ],
+  "foregone": [
+
   ]
 }
