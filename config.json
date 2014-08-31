@@ -4,7 +4,17 @@
   "repository": "https://github.com/exercism/xrust",
   "active": false,
   "problems": [
-
+    "leap",
+    "anagram",
+    "word-count",
+    "point-mutations",
+    "rna-transcription",
+    "nucleotide-count",
+    "robot-name",
+    "bob",
+    "grade-school",
+    "phone-number",
+    "beer-song"
   ],
   "deprecated": [
 
