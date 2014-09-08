@@ -1,5 +1,4 @@
 #![crate_name = "nucleotide-count_test"]
-#![crate_type = "lib"]
 
 use std::collections::HashMap;
 
@@ -35,17 +34,6 @@ fn test_count_repetitive_cytidine() {
 fn test_count_only_thymidine() {
     assert_eq!(dna::count('T', "GGGGGTAACCCGG"), 1);
 }
-
-#[test]
-#[ignore]
-fn test_count_dna_has_no_no_uracil() {
-    assert_eq!(dna::count('U', "GATTACA"), 0);
-}
-
-/*
-testCase "validates nucleotides" $
-assertError "invalid nucleotide 'X'" $ count 'X' "GACT"
-*/
 
 #[test]
 #[ignore]
