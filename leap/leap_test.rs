@@ -1,5 +1,5 @@
-#[crate_id = "leap_test#1.0"];
-#[crate_type = "lib"];
+#![crate_name = "leap_test"]
+#![crate_type = "lib"]
 
 mod leap_year;
 

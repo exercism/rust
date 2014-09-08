@@ -1,22 +1,23 @@
-#[deriving(Eq)]
+#[deriving(PartialEq, Eq, Show)]
 pub struct RibonucleicAcid {
-    nucleotides: ~str
+    nucleotides: String
 }
 
 impl RibonucleicAcid {
-    pub fn new(nucleotides: ~str) -> RibonucleicAcid {
-        RibonucleicAcid { nucleotides: nucleotides }
+    pub fn new(nucleotides: &str) -> RibonucleicAcid {
+        RibonucleicAcid { nucleotides: nucleotides.to_string() }
     }
 }
 
-impl ToStr for RibonucleicAcid {
-    fn to_str(&self) -> ~str {
-        self.nucleotides.to_str()
+impl Str for RibonucleicAcid {
+    fn as_slice(&self) -> &str {
+        self.nucleotides.as_slice()
     }
 }
 
+#[deriving(PartialEq, Eq, Show)]
 pub struct DeoxyribonucleicAcid {
-    nucleotides: ~str
+    nucleotides: String
 }
 
 fn transcribe_dna_rna(c: char) -> char {
@@ -30,13 +31,12 @@ fn transcribe_dna_rna(c: char) -> char {
 }
 
 impl DeoxyribonucleicAcid {
-    pub fn new(nucleotides: ~str) -> DeoxyribonucleicAcid {
-        DeoxyribonucleicAcid { nucleotides: nucleotides }
+    pub fn new(nucleotides: &str) -> DeoxyribonucleicAcid {
+        DeoxyribonucleicAcid { nucleotides: nucleotides.to_string() }
     }
 
     pub fn to_rna(&self) -> RibonucleicAcid {
-        let rna_nucleotides = self.nucleotides.chars().map(transcribe_dna_rna).collect();
+        let rna_nucleotides = self.nucleotides.as_slice().chars().map(transcribe_dna_rna).collect();
         RibonucleicAcid { nucleotides: rna_nucleotides }
     }
 }
-

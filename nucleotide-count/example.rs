@@ -1,7 +1,7 @@
-use std::hashmap::HashMap;
+use std::collections::HashMap;
 
 pub fn count(nucleotide: char, input: &str) -> uint {
-    input.chars().count(|c| c == nucleotide)
+    input.chars().filter(|&c| c == nucleotide).count()
 }
 
 pub fn nucleotide_counts(input: &str) -> HashMap<char, uint> {

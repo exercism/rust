@@ -1,5 +1,5 @@
-#[crate_id = "robot-name_test#1.0"];
-#[crate_type = "lib"];
+#![crate_name = "robot-name_test"]
+#![crate_type = "lib"]
 
 mod robot;
 
@@ -9,7 +9,7 @@ These are the expected signatures:
 impl Robot {
     pub fn new() -> Robot { ... }
     pub fn name<'a>(&'a self) -> &'a str { ... }
-    pub fn resetName(&mut self) { ... }
+    pub fn reset_name(&mut self) { ... }
 }
 */
 
@@ -53,7 +53,7 @@ fn test_different_robots_have_different_names() {
 fn test_new_name_should_match_expected_pattern() {
     let mut r = robot::Robot::new();
     assert_name_matches_pattern(r.name());
-    r.resetName();
+    r.reset_name();
     assert_name_matches_pattern(r.name());
 }
 
@@ -61,7 +61,7 @@ fn test_new_name_should_match_expected_pattern() {
 #[ignore]
 fn test_new_name_is_persistent() {
     let mut r = robot::Robot::new();
-    r.resetName();
+    r.reset_name();
     assert_name_is_persistent(&r);
 }
 
@@ -69,8 +69,8 @@ fn test_new_name_is_persistent() {
 #[ignore]
 fn test_new_name_is_different_from_old_name() {
     let mut r = robot::Robot::new();
-    let n1 = r.name().to_owned();
-    r.resetName();
-    let n2 = r.name().to_owned();
+    let n1 = r.name().as_slice().to_string();
+    r.reset_name();
+    let n2 = r.name().as_slice().to_string();
     assert!(n1 != n2, "Robot name should change when reset");
 }
