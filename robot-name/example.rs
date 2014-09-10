@@ -1,4 +1,4 @@
-use std::rand::{task_rng, Rng};
+use rand::{task_rng, Rng};
 use std::str;
 
 pub struct Robot {

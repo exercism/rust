@@ -1,20 +1,23 @@
-// Rust 0.9 does not have proper unicode support :(
-use std::ascii::StrAsciiExt; 
+use std::char;
 
-pub fn anagrams_for<'a>(word: &str, inputs: &[&'a str]) -> ~[&'a str] {
-    let lower_word = word.to_ascii_lower();
+pub fn anagrams_for(word: &str, inputs: &[&str]) -> ~[&str] {
+    let lower_word = lowercase(word);
     let norm_word = alphagram(lower_word);
     inputs.iter()
-        .filter(|other| {
-            let lower_other = other.to_ascii_lower();
+        .filter(|&other| {
+            let lower_other = lowercase(*other);
             lower_other != lower_word && norm_word == alphagram(lower_other)
         })
         .map(|s| *s)
-        .to_owned_vec()
+        .collect()
 }
 
-fn alphagram(str: &str) -> ~[char] {
-    let mut chars: ~[char] = str.chars().collect();
+fn lowercase(s: &str) -> ~str {
+    s.chars().map(char::to_lowercase).collect::<~str>()
+}
+
+fn alphagram(s: &str) -> ~[char] {
+    let mut chars: ~[char] = s.chars().collect();
     chars.sort();
     chars
 }

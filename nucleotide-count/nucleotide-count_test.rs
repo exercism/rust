@@ -1,7 +1,9 @@
-#[crate_id="nucleotide-count_test#1.0"];
-#[crate_type = "lib"];
+#![crate_id="nucleotide-count_test#1.0"]
+#![crate_type = "lib"]
 
-use std::hashmap::HashMap;
+extern crate collections;
+
+use collections::hashmap::HashMap;
 
 mod dna;
 
@@ -15,7 +17,8 @@ fn check_dna(s: &str, pairs: &[(char, uint)]) {
         assert_eq!((k, m.pop(&k).unwrap()), (k, v));
     }
     // may fail with a message that clearly shows all extra pairs in the map
-    assert_eq!(m.iter().to_owned_vec(), ~[]);
+    let pairs: ~[(&char, &uint)] = m.iter().collect();
+    assert_eq!(pairs, ~[]);
 }
 
 #[test]

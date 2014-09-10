@@ -23,11 +23,11 @@ pub fn verse(n: int) -> ~str {
 }
 
 pub fn sing(start: int, end: int) -> ~str {
-    let mut s = iter::range_inclusive(end, start)
-        .invert()
+    let ss: Vec<~str> = iter::range_inclusive(end, start)
+        .rev()
         .map(verse)
-        .to_owned_vec()
-        .connect("\n");
+        .collect();
+    let mut s = ss.connect("\n");
     s.push_char('\n');
     s
 }

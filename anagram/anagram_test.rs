@@ -1,7 +1,7 @@
-#[crate_id = "anagram_test#1.0"];
-#[crate_type = "lib"];
+#![crate_id = "anagram_test#1.0"]
+#![crate_type = "lib"]
 
-extern mod std;
+extern crate std;
 
 mod anagram;
 

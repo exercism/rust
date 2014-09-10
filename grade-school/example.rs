@@ -1,13 +1,9 @@
-use std::hashmap::HashMap;
+
+use collections::dlist::DList;
+use collections::hashmap::HashMap;
 
 pub struct School {
-    priv grades: HashMap<uint, ~[~str]>
-}
-
-fn sorted<T: Clone + TotalOrd>(array: &[T]) -> ~[T] {
-    let mut res = array.iter().map(|v| v.clone()).to_owned_vec();
-    res.sort();
-    res
+    priv grades: HashMap<uint, DList<~str>>
 }
 
 impl School {
@@ -15,23 +11,27 @@ impl School {
         School { grades: HashMap::new() }
     }
 
-    pub fn add(self, grade: uint, student: &str) -> School {
-        let mut s = self;
-        s.grades.mangle(
-            grade,
-            student,
-            |_, x| ~[x.into_owned()],
-            |_, xs, x| xs.push(x.into_owned()));
-        s
+    pub fn add(mut self, grade: uint, student: &str) -> School {
+        // Keep the list sorted during insert.
+        self.grades
+            .find_or_insert(grade, DList::new())
+            .insert_when(student.into_owned(), |old, new| old > new);
+        self
     }
 
-    pub fn sorted(self) -> ~[(uint, ~[~str])] {
-        sorted(self.grades.iter().map(|(&grade, students)| {
-            (grade, sorted(students.clone()))
-        }).to_owned_vec())
+    pub fn sorted(&self) -> ~[(uint, ~[~str])] {
+        let mut lst: ~[(uint, ~[~str])] =
+            self.grades.iter().map(|(&grade, students)| {
+                (grade, students.iter().map(|s| s.clone()).collect())
+            }).collect();
+        lst.sort();
+        lst
     }
 
-    pub fn grade(self, grade: uint) -> ~[~str] {
-        self.grades.find(&grade).map(|v| sorted(v.to_owned())).unwrap_or(~[])
+    pub fn grade(&self, grade: uint) -> ~[~str] {
+        self.grades.find(&grade).map(|students| {
+            let ss: ~[~str] = students.iter().map(|s| s.clone()).collect();
+            ss
+        }).unwrap_or(~[])
     }
 }
