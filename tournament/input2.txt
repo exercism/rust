@@ -1,0 +1,11 @@
+Allegoric Alaskians;Blithering Badgers;win
+Devastating Donkeys_Courageous Californians;draw
+Devastating Donkeys;Allegoric Alaskians;win
+
+Courageous Californians;Blithering Badgers;loss
+Bla;Bla;Bla
+Blithering Badgers;Devastating Donkeys;loss
+# Yackity yackity yack
+Allegoric Alaskians;Courageous Californians;win
+Devastating Donkeys;Courageous Californians;draw
+Devastating Donkeys@Courageous Californians;draw
