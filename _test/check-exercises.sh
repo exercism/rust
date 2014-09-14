@@ -8,6 +8,9 @@ check_assignment () {
     workdir=$(mktemp -d "${tmp}${assignment}.XXXXXXXXXX")
     modname=$(awk '/^mod / { sub(";", ""); print $2 }' "${intest}")
     cp "${intest%/*}/example.rs" "${workdir}/${modname}.rs"
+    if [ -x "_test/${assignment}_setup.sh" ]; then
+        _test/${assignment}_setup.sh $workdir; # These scripts can copy needed files and such
+    fi;
     grep -v '^#\[ignore\]' "${intest}" > "${workdir}/${testfn}"
     (
         cd "${workdir}"

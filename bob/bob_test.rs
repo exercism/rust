@@ -1,7 +1,5 @@
-#[crate_id = "bob_test#1.0"];
-#[crate_type = "lib"];
-
-extern mod std;
+#![crate_name = "bob_test"]
+#![crate_type = "lib"]
 
 mod bob;
 

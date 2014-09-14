@@ -1,7 +1,5 @@
-#[crate_id = "point-mutations_test#1.0"];
-#[crate_type = "lib"];
-
-extern mod std;
+#![crate_name = "point-mutations_test"]
+#![crate_type = "lib"]
 
 mod dna;
 

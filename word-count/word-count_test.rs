@@ -1,7 +1,7 @@
-#[crate_id = "word-count_test#1.0"];
-#[crate_type = "lib"];
+#![crate_name = "word-count_test"]
+#![crate_type = "lib"]
 
-use std::hashmap::HashMap;
+use std::collections::HashMap;
 
 mod word_count;
 
@@ -10,12 +10,12 @@ fn check_word_count(s: &str, pairs: &[(&str, uint)]) {
     // message for assert_eq! is as informative as possible. A simpler
     // solution would simply check the length of the map, and then
     // check for the presence and value of each key in the given pairs vector.
-    let mut m: HashMap<~str, uint> = word_count::word_count(s);
+    let mut m: HashMap<String, uint> = word_count::word_count(s);
     for &(k, v) in pairs.iter() {
         assert_eq!((k, m.pop(&k.to_owned()).unwrap()), (k, v));
     }
     // may fail with a message that clearly shows all extra pairs in the map
-    assert_eq!(m.iter().to_owned_vec(), ~[]);
+    assert_eq!(m.iter().collect::<Vec<(&String,&uint)>>(), vec!());
 }
 
 #[test]

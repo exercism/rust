@@ -1,37 +1,33 @@
-use std::hashmap::HashMap;
+use std::collections::TreeMap;
 
 pub struct School {
-    priv grades: HashMap<uint, ~[~str]>
-}
-
-fn sorted<T: Clone + TotalOrd>(array: &[T]) -> ~[T] {
-    let mut res = array.iter().map(|v| v.clone()).to_owned_vec();
-    res.sort();
-    res
+    grades: TreeMap<uint, Vec<String>>
 }
 
 impl School {
     pub fn new() -> School {
-        School { grades: HashMap::new() }
+        School { grades: TreeMap::new() }
     }
 
-    pub fn add(self, grade: uint, student: &str) -> School {
-        let mut s = self;
-        s.grades.mangle(
-            grade,
-            student,
-            |_, x| ~[x.into_owned()],
-            |_, xs, x| xs.push(x.into_owned()));
+    pub fn add(&mut self, grade: uint, student: &str) {
+        let mut insert = false;
+        match self.grades.find_mut(&grade) {
+            None => { insert = true },
+            Some(l) => { l.push(student.into_string()); l.sort() },
+        };
+        if insert {
+            self.grades.insert(grade, vec!(student.into_string()));
+            ()
+        }
+    }
+    
+    pub fn grades(&self) -> Vec<uint> {
+        let mut s = self.grades.keys().map(|k| k.clone()).collect::<Vec<uint>>();
+        s.sort();
         s
     }
 
-    pub fn sorted(self) -> ~[(uint, ~[~str])] {
-        sorted(self.grades.iter().map(|(&grade, students)| {
-            (grade, sorted(students.clone()))
-        }).to_owned_vec())
-    }
-
-    pub fn grade(self, grade: uint) -> ~[~str] {
-        self.grades.find(&grade).map(|v| sorted(v.to_owned())).unwrap_or(~[])
+    pub fn grade(&self, grade: uint) -> Option<&Vec<String>> {
+        self.grades.find(&grade)
     }
 }
