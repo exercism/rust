@@ -12,7 +12,7 @@ fn test_statement() {
 #[test]
 #[ignore]
 fn test_shouting() {
-    assert_eq!("Woah, chill out!", bob::reply("WATCH OUT!"));
+    assert_eq!("Whoa, chill out!", bob::reply("WATCH OUT!"));
 }
 
 #[test]
@@ -30,19 +30,19 @@ fn test_asking() {
 #[test]
 #[ignore]
 fn test_shout_numbers() {
-    assert_eq!("Woah, chill out!", bob::reply("1, 2, 3 GO!"));
+    assert_eq!("Whoa, chill out!", bob::reply("1, 2, 3 GO!"));
 }
 
 #[test]
 #[ignore]
 fn test_shout_weird_characters() {
-    assert_eq!("Woah, chill out!", bob::reply("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"));
+    assert_eq!("Whoa, chill out!", bob::reply("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"));
 }
 
 #[test]
 #[ignore]
 fn test_shout_without_punctuation() {
-    assert_eq!("Woah, chill out!", bob::reply("I HATE YOU"));
+    assert_eq!("Whoa, chill out!", bob::reply("I HATE YOU"));
 }
 
 #[test]
