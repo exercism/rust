@@ -1,5 +1,12 @@
 use std::collections::HashMap;
+use std::collections::hashmap::{Occupied, Vacant};
 use std::io::{BufferedReader, EndOfFile, File, IoResult};
+
+enum GameResult {
+    Win,
+    Draw,
+    Loss
+}
 
 #[deriving(Copy, Clone)]
 struct TeamResult {
@@ -9,17 +16,15 @@ struct TeamResult {
 }
 
 impl TeamResult {
-    fn new(w: uint, t: uint, l: uint) -> TeamResult {
-        TeamResult { wins: w, draws: t, losses: l }
+    fn new() -> TeamResult {
+        TeamResult { wins: 0, draws: 0, losses: 0 }
     }
-    fn add_win(&mut self) {
-        self.wins += 1;
-    }
-    fn add_draw(&mut self) {
-        self.draws += 1;
-    }
-    fn add_loss(&mut self) {
-        self.losses += 1;
+    fn add_game_result(&mut self, result: GameResult) {
+        match result {
+            Win => self.wins += 1,
+            Draw => self.draws += 1,
+            Loss => self.losses += 1,
+        }
     }
 }
 
@@ -37,18 +42,18 @@ pub fn tally(input_filename: &Path, output_filename: &Path) -> IoResult<uint> {
             [team1, team2, outcome] => {
                 match outcome {
                     "win" => {
-                        add_win(&mut results, team1.to_string());
-                        add_loss(&mut results, team2.to_string());
+                        add_game_result(&mut results, team1.to_string(), Win);
+                        add_game_result(&mut results, team2.to_string(), Loss);
                         count += 1;
                     },
                     "draw" => {
-                        add_draw(&mut results, team1.to_string());
-                        add_draw(&mut results, team2.to_string());
+                        add_game_result(&mut results, team1.to_string(), Draw);
+                        add_game_result(&mut results, team2.to_string(), Draw);
                         count += 1;
                     },
                     "loss" => {
-                        add_loss(&mut results, team1.to_string());
-                        add_win(&mut results, team2.to_string());
+                        add_game_result(&mut results, team1.to_string(), Loss);
+                        add_game_result(&mut results, team2.to_string(), Win);
                         count += 1;
                     },
                     _ => () // Ignore bad lines
@@ -83,14 +88,16 @@ fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) ->
     Ok(())
 }
 
-fn add_win(results: &mut HashMap<String, TeamResult>, team: String) {
-    results.insert_or_update_with(team, TeamResult::new(1, 0, 0), |_, tr| tr.add_win());
-}
-
-fn add_draw(results: &mut HashMap<String, TeamResult>, team: String) {
-    results.insert_or_update_with(team, TeamResult::new(0, 1, 0), |_, tr| tr.add_draw());
-}
-
-fn add_loss(results: &mut HashMap<String, TeamResult>, team: String) {
-    results.insert_or_update_with(team, TeamResult::new(0, 0, 1), |_, tr| tr.add_loss());
+fn add_game_result(results: &mut HashMap<String, TeamResult>, team: String, result: GameResult) {
+    match results.entry(team) {
+        Vacant(entry) => {
+            let mut tr = TeamResult::new();
+            tr.add_game_result(result);
+            entry.set(tr)
+        }
+        Occupied(mut entry) => {
+            (*entry.get_mut()).add_game_result(result);
+            entry.into_mut()
+        }
+    };
 }

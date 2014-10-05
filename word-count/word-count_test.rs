@@ -12,7 +12,7 @@ fn check_word_count(s: &str, pairs: &[(&str, uint)]) {
     // check for the presence and value of each key in the given pairs vector.
     let mut m: HashMap<String, uint> = word_count::word_count(s);
     for &(k, v) in pairs.iter() {
-        assert_eq!((k, m.pop(&k.to_owned()).unwrap()), (k, v));
+        assert_eq!((k, m.pop(&k.to_string()).unwrap()), (k, v));
     }
     // may fail with a message that clearly shows all extra pairs in the map
     assert_eq!(m.iter().collect::<Vec<(&String,&uint)>>(), vec!());

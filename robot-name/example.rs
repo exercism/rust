@@ -10,10 +10,10 @@ fn generate_name() -> String {
     static LETTERS: &'static [u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static NUMBERS: &'static [u8] = b"0123456789";
     for _ in range(0u, 3) {
-        s.push_char(rng.choose(LETTERS).unwrap().clone() as char);
+        s.push(rng.choose(LETTERS).unwrap().clone() as char);
     }
     for _ in range(0u, 3) {
-        s.push_char(rng.choose(NUMBERS).unwrap().clone() as char);
+        s.push(rng.choose(NUMBERS).unwrap().clone() as char);
     }
     s
 }
