@@ -4,6 +4,7 @@
   "repository": "https://github.com/exercism/xrust",
   "active": false,
   "problems": [
+    "dominoes",
     "leap",
     "anagram",
     "word-count",
