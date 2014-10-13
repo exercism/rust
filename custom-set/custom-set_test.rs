@@ -63,7 +63,9 @@ fn test_is_superset() {
 }
 
 fn difference(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    make_set(a).difference(&make_set(b)).map(|n| n.clone()).collect()
+    let mut v = make_set(a).difference(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+    v.sort();
+    v
 }
 
 #[test]
@@ -76,7 +78,9 @@ fn test_difference() {
 }
 
 fn intersection(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    make_set(a).intersection(&make_set(b)).map(|n| n.clone()).collect()
+    let mut v = make_set(a).intersection(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+    v.sort();
+    v
 }
 
 #[test]
@@ -89,7 +93,9 @@ fn test_intersection() {
 }
 
 fn union(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    make_set(a).union(&make_set(b)).map(|n| n.clone()).collect()
+    let mut v = make_set(a).union(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+    v.sort();
+    v
 }
 
 #[test]
@@ -146,14 +152,15 @@ impl Ord for Modulo3 {
 fn test_insert_no_double() {
     // This test abuses the ord and eq mechanisms a bit to check that a set doesn't replace
     // existing elements with new elements, which could lead to interesting bugs if the programmer
-    // is stupid enough to trigger that behaviour.
+    // triggers that behaviour.
     let mut set = vec!(Modulo3(1)).into_iter().collect::<set::CustomSet<Modulo3>>();
     assert!(set.contains(&Modulo3(1)));
     assert!(set.contains(&Modulo3(4)));
     assert!(set.insert(Modulo3(2)));
     assert!(set.contains(&Modulo3(5)));
     assert!(!set.insert(Modulo3(8)));
-    let v = set.iter().collect::<Vec<&Modulo3>>();
+    let mut v = set.iter().collect::<Vec<&Modulo3>>();
+    v.sort();
     let &Modulo3(ref v0) = v[0];
     let &Modulo3(ref v1) = v[1];
     assert_eq!(v0, &1);
