@@ -1,9 +1,5 @@
-language: c
-install:
-  - './_test/bootstrap.sh'
+language: rust
 script:
   - './_test/check-exercises.sh'
   - './bin/fetch-configlet'
   - './bin/configlet .'
-cache:
-  - apt
