@@ -6,65 +6,66 @@ mod anagram;
 #[test]
 #[ignore]
 fn test_no_matches() {
-    assert_eq!(
-        anagram::anagrams_for("diaper", ["hello", "world", "zombies", "pants"]),
-        vec!());
+    let inputs = ["hello", "world", "zombies", "pants"];
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for("diaper", &inputs), outputs);
 }
 
 #[test]
 #[ignore]
 fn test_detect_simple_anagram() {
-    assert_eq!(anagram::anagrams_for("ant", ["tan", "stand", "at"]), vec!("tan"));
+    let inputs = ["tan", "stand", "at"];
+    let outputs: Vec<&str> = vec!["tan"];
+    assert_eq!(anagram::anagrams_for("ant", &inputs), outputs);
 }
 
 #[test]
 #[ignore]
 fn test_does_not_confuse_different_duplicates() {
-    assert_eq!(anagram::anagrams_for("galea", ["eagle"]), vec!());
+    let inputs = ["eagle"];
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for("galea", &inputs), outputs);
 }
 
 #[test]
 #[ignore]
 fn test_eliminate_anagram_subsets() {
-    assert_eq!(anagram::anagrams_for("good", ["dog", "goody"]), vec!());
+    let inputs = ["dog", "goody"];
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for("good", &inputs), outputs);
 }
 
 #[test]
 #[ignore]
 fn test_detect_anagram() {
-    assert_eq!(
-        anagram::anagrams_for("listen",
-                              ["enlists", "google", "inlets", "banana"]),
-        vec!("inlets"))
+    let inputs = ["enlists", "google", "inlets", "banana"];
+    let outputs: Vec<&str> = vec!["inlets"];
+    assert_eq!(anagram::anagrams_for("listen", &inputs), outputs);
 }
 
 #[test]
 #[ignore]
 fn test_multiple_anagrams() {
-    assert_eq!(
-        anagram::anagrams_for("allergy",
-                              ["gallery", "ballerina", "regally",
-                               "clergy", "largely", "leading"]),
-        vec!("gallery", "regally", "largely"));
+    let inputs = ["gallery", "ballerina", "regally", "clergy", "largely", "leading"];
+    let outputs: Vec<&str> = vec!["gallery", "regally", "largely"];
+    assert_eq!(anagram::anagrams_for("allergy", &inputs), outputs); 
 }
 
 #[test]
 #[ignore]
 fn test_case_insensitive_anagrams() {
-    assert_eq!(
-        anagram::anagrams_for("Orchestra",
-                              ["cashregister", "Carthorse", "radishes"]),
-        vec!("Carthorse"));
+    let inputs = ["cashregister", "Carthorse", "radishes"];
+    let outputs: Vec<&str> = vec!["Carthorse"];
+    assert_eq!(anagram::anagrams_for("Orchestra", &inputs), outputs); 
 }
 
 #[test]
 #[ignore]
 fn test_unicode_anagrams() {
     // These words don't make sense, they're just greek letters cobbled together.
-    assert_eq!(
-        anagram::anagrams_for("ΑΒΓ",
-                              ["ΒΓΑ", "ΒΓΔ", "γβα"]),
-        vec!("ΒΓΑ", "γβα"));
+    let inputs = ["ΒΓΑ", "ΒΓΔ", "γβα"];
+    let outputs: Vec<&str> = vec!["ΒΓΑ", "γβα"];
+    assert_eq!(anagram::anagrams_for("ΑΒΓ", &inputs), outputs);
 }
 
 #[test]
@@ -72,13 +73,15 @@ fn test_unicode_anagrams() {
 fn test_misleading_unicode_anagrams() {
     // Despite what a human might think these words different letters, the input uses Greek A and B
     // while the list of potential anagrams uses Latin A and B.
-    assert_eq!(
-        anagram::anagrams_for("ΑΒΓ", ["ABΓ"]),
-        vec!());
+    let inputs = ["ABΓ"];
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for("ΑΒΓ", &inputs), outputs);
 }
 
 #[test]
 #[ignore]
 fn test_does_not_detect_a_word_as_its_own_anagram() {
-    assert_eq!(anagram::anagrams_for("banana", ["banana"]), vec!());
+    let inputs = ["banana"];
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for("banana", &inputs), outputs);
 }
