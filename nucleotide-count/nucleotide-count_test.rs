@@ -1,7 +1,7 @@
 #![crate_name = "nucleotide-count_test"]
 #![crate_type = "lib"]
 
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 mod dna;
 
@@ -10,7 +10,7 @@ fn check_dna(s: &str, pairs: &[(char, usize)]) {
     // message for assert_eq! is as informative as possible. A simpler
     // solution would simply check the length of the map, and then
     // check for the presence and value of each key in the given pairs vector.
-    let mut m: BTreeMap<char, usize> = dna::nucleotide_counts(s);
+    let mut m: HashMap<char, usize> = dna::nucleotide_counts(s);
     for &(k, v) in pairs.iter() {
         assert_eq!((k, m.remove(&k).unwrap()), (k, v));
     }

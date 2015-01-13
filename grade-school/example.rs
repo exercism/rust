@@ -1,15 +1,15 @@
 #![allow(unstable)] // entry, to_string
 
-use std::collections::BTreeMap;
-use std::collections::btree_map::Entry;
+use std::collections::HashMap;
+use std::collections::hash_map::Entry;
 
 pub struct School {
-    grades: BTreeMap<u32, Vec<String>>
+    grades: HashMap<u32, Vec<String>>
 }
 
 impl School {
     pub fn new() -> School {
-        School { grades: BTreeMap::new() }
+        School { grades: HashMap::new() }
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
