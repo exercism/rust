@@ -1,33 +1,35 @@
-use std::collections::TreeMap;
+#![allow(unstable)] // entry, to_string
+
+use std::collections::BTreeMap;
+use std::collections::btree_map::Entry;
 
 pub struct School {
-    grades: TreeMap<uint, Vec<String>>
+    grades: BTreeMap<u32, Vec<String>>
 }
 
 impl School {
     pub fn new() -> School {
-        School { grades: TreeMap::new() }
+        School { grades: BTreeMap::new() }
     }
 
-    pub fn add(&mut self, grade: uint, student: &str) {
-        let mut insert = false;
-        match self.grades.find_mut(&grade) {
-            None => { insert = true },
-            Some(l) => { l.push(student.into_string()); l.sort() },
+    pub fn add(&mut self, grade: u32, student: &str) {
+        match self.grades.entry(grade) {
+            Entry::Vacant(view) => { view.insert(vec![student.to_string()]); }
+            Entry::Occupied(mut view) => {
+                let l = view.get_mut();
+                l.push(student.to_string());
+                l.sort();
+            },
         };
-        if insert {
-            self.grades.insert(grade, vec!(student.into_string()));
-            ()
-        }
     }
     
-    pub fn grades(&self) -> Vec<uint> {
-        let mut s = self.grades.keys().map(|k| k.clone()).collect::<Vec<uint>>();
+    pub fn grades(&self) -> Vec<u32> {
+        let mut s = self.grades.keys().map(|k| k.clone()).collect::<Vec<u32>>();
         s.sort();
         s
     }
 
-    pub fn grade(&self, grade: uint) -> Option<&Vec<String>> {
-        self.grades.find(&grade)
+    pub fn grade(&self, grade: u32) -> Option<&Vec<String>> {
+        self.grades.get(&grade)
     }
 }

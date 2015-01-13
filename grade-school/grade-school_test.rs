@@ -1,6 +1,8 @@
 #![crate_name = "grade-school_test"]
 #![crate_type = "lib"]
 
+#![allow(unstable)] // as_slice
+
 mod school;
 
 fn stringvec_to_strvec(v: &Vec<String>) -> Vec<&str> {
