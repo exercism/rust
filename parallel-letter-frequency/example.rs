@@ -1,5 +1,8 @@
+#![allow(unstable)] // for entry, as_slice, etc
+
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
+use std::sync::Future;
 
 /// Compute the frequency of each letter (technically of each unicode codepoint) using the given
 /// number of worker threads.
@@ -9,33 +12,25 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
     let rem = texts.len() % num_workers;
     let part_size = if rem > 0 { part_size_floor + 1 } else { part_size_floor };
     let mut parts: Vec<Vec<String>> = Vec::with_capacity(part_size);
-    for _ in range(0, num_workers) {
+    for _ in (0..num_workers) {
         parts.push(Vec::with_capacity(part_size));
     }
     let mut i = 0;
     for line in texts.iter() {
         // We'll need to clone those strings in order to satisfy some lifetime guarantees. Basically
-        // it's hard for the system to be sure that the threads spawned don't outlive the srings.
-        parts.get_mut(i).push(line.into_string());
+        // it's hard for the system to be sure that the threads spawned don't outlive the strings.
+        parts[i].push(line.to_string());
         i = (i + 1) % num_workers;
     }
-    let (tx, rx) = channel();
-    for part in parts.into_iter() {
-        let tx = tx.clone();
-        spawn(move || {
-            let part_results = count(part);
-            tx.send(part_results);
-        });
-    }
+    let mut futures = parts.into_iter().map(|part| Future::spawn(move || { count(part) }));
     let mut results: HashMap<char, usize> = HashMap::new();
-    for _ in range(0, num_workers) {
-        let part_results = rx.recv();
+    for mut fut in futures {
+        let part_results = fut.get();
         for (c, n) in part_results.into_iter() {
             match results.entry(c) {
-                Vacant(view) => { view.set(n); },
-                Occupied(mut view) => {
+                Entry::Vacant(view) => { view.insert(n); },
+                Entry::Occupied(mut view) => {
                     *view.get_mut() += n;
-                    view.into_mut();
                 }
             }
         }
