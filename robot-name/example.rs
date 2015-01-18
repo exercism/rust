@@ -1,19 +1,20 @@
-use std::rand::{task_rng, Rng};
+#![allow(unstable)] // choose()
+
+use std::rand::{thread_rng, Rng};
 
 pub struct Robot {
     name: String
 }
 
 fn generate_name() -> String {
-    let mut rng = task_rng();
     let mut s = String::with_capacity(6);
     static LETTERS: &'static [u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static NUMBERS: &'static [u8] = b"0123456789";
-    for _ in range(0u, 3) {
-        s.push(rng.choose(LETTERS).unwrap().clone() as char);
+    for _ in 0..3 {
+        s.push(thread_rng().choose(LETTERS).unwrap().clone() as char);
     }
-    for _ in range(0u, 3) {
-        s.push(rng.choose(NUMBERS).unwrap().clone() as char);
+    for _ in 0..3 {
+        s.push(thread_rng().choose(NUMBERS).unwrap().clone() as char);
     }
     s
 }

@@ -1,6 +1,8 @@
 #![crate_name = "robot-name_test"]
 #![crate_type = "lib"]
 
+#![allow(unstable)] // as_slice
+
 mod robot;
 
 /*
@@ -14,8 +16,8 @@ impl Robot {
 */
 
 fn assert_name_matches_pattern(n: &str) {
-    assert!(n.slice_to(3).chars().all(|c| c >= 'A' && c <= 'Z'), "name starts with 3 letters");
-    assert!(n.slice_from(3).chars().all(|c| c >= '0' && c <= '9'), "name ends with 3 numbers");
+    assert!(n[0..3].chars().all(|c| c >= 'A' && c <= 'Z'), "name starts with 3 letters");
+    assert!(n[3..].chars().all(|c| c >= '0' && c <= '9'), "name ends with 3 numbers");
 }
 
 fn assert_name_is_persistent(r: &robot::Robot) {
