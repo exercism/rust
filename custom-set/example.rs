@@ -1,7 +1,7 @@
 use std::collections::{Collection, Set, MutableSet};
 use std::slice;
 
-#[deriving(Show)]
+#[derive(Show)]
 pub struct CustomSet<T>(Vec<T>);
 
 /// Create an empty set.
@@ -221,7 +221,7 @@ impl<'a, T> CachingWrapper<'a, T> {
     }
 }
 
-#[deriving(PartialEq, Eq)]
+#[derive(PartialEq, Eq)]
 enum Diff {
     OnlyA,
     OnlyB,

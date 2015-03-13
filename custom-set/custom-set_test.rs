@@ -120,7 +120,7 @@ fn test_insert() {
 }
 
 // Equality on this is modulo 3.
-#[deriving(Eq, Show)]
+#[derive(Eq, Show)]
 struct Modulo3(uint);
 
 impl PartialEq for Modulo3 {
