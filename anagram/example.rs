@@ -1,16 +1,26 @@
-#![allow(unstable)] // For to_lowercase
+use std::slice::SliceExt;
+
+fn sort(word: &String) -> String {
+    let mut sorted: Vec<char> = word.chars().collect();
+    sorted.sort();
+    let mut output = String::with_capacity(sorted.len());
+    for c in sorted.drain() {
+        output.push(c);
+    }
+    output
+}
 
 pub fn anagrams_for<'a>(word: &str, inputs: &[&'a str]) -> Vec<&'a str> {
-    let lower_word: Vec<char> = word.chars().map(|c| c.to_lowercase()).collect();
-    let mut norm_word = lower_word.clone();
-    norm_word.sort();
-    inputs.iter()
-        .filter(|other| {
-            let lower_other: Vec<char> = other.chars().map(|c| c.to_lowercase()).collect();
-            let mut norm_other = lower_other.clone();
-            norm_other.sort();
-            lower_other != lower_word && norm_other == norm_word
-        })
-        .map(|s| *s)
-        .collect()
+    let lower = word.to_lowercase();
+    let sorted = sort(&lower);
+    let mut anagrams = Vec::new();
+    for input in inputs.iter() {
+        let input_lower = input.to_lowercase();
+        if lower != input_lower {
+            if sorted == sort(&input_lower) {
+                anagrams.push(*input);
+            }
+        }
+    }
+    anagrams
 }
