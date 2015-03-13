@@ -26,7 +26,7 @@ impl<'a, T> Iterator<&'a T> for Items<'a, T> {
 }
 
 impl<T: Eq> CustomSet<T> {
-    fn find_index(&self, value: &T) -> Option<uint> {
+    fn find_index(&self, value: &T) -> Option<usize> {
         let &CustomSet(ref v) = self;
         for (idx, x) in v.iter().enumerate() {
             if x == value {
@@ -101,7 +101,7 @@ impl<'a, T> Iterator<&'a T> for UnionItems<'a, T> {
 }
 
 impl<T> Collection for CustomSet<T> {
-    fn len(&self) -> uint {
+    fn len(&self) -> usize {
         let &CustomSet(ref v) = self;
         v.len()
     }
@@ -153,7 +153,7 @@ impl<T> Mutable for CustomSet<T> {
 
 enum InsertPos {
     Begin,
-    Before(uint),
+    Before(usize),
     End,
 }
 

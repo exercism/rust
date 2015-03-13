@@ -5,7 +5,7 @@ use std::collections::{Collection, Set, MutableSet};
 
 mod set;
 
-fn make_set(vec: Vec<uint>) -> set::CustomSet<uint> {
+fn make_set(vec: Vec<usize>) -> set::CustomSet<usize> {
     vec.into_iter().collect()
 }
 
@@ -62,8 +62,8 @@ fn test_is_superset() {
     assert!(make_set(vec!(1, 2, 3)).is_superset(&make_set(vec!(1, 2))));
 }
 
-fn difference(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    let mut v = make_set(a).difference(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+fn difference(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
+    let mut v = make_set(a).difference(&make_set(b)).map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -77,8 +77,8 @@ fn test_difference() {
     assert_eq!(difference(vec!(1, 2, 3, 4), vec!(3, 2, 5)), vec!(1, 4));
 }
 
-fn intersection(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    let mut v = make_set(a).intersection(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+fn intersection(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
+    let mut v = make_set(a).intersection(&make_set(b)).map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -92,8 +92,8 @@ fn test_intersection() {
     assert_eq!(intersection(vec!(1, 2, 3, 4), vec!(3, 2, 5)), vec!(2, 3));
 }
 
-fn union(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    let mut v = make_set(a).union(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+fn union(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
+    let mut v = make_set(a).union(&make_set(b)).map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -121,7 +121,7 @@ fn test_insert() {
 
 // Equality on this is modulo 3.
 #[derive(Eq, Debug)]
-struct Modulo3(uint);
+struct Modulo3(usize);
 
 impl PartialEq for Modulo3 {
     fn eq(&self, other: &Modulo3) -> bool {
