@@ -1,7 +1,7 @@
 use std::collections::{Collection, Set, MutableSet};
 use std::slice;
 
-#[derive(Show)]
+#[derive(Debug)]
 pub struct CustomSet<T>(Vec<T>);
 
 /// Create an empty set.
