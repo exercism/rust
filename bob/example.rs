@@ -6,7 +6,7 @@ pub fn reply(message: &str) -> &str {
 }
 
 fn is_silence(message: &str) -> bool {
-    message.is_empty()
+    message == ""
 }
 
 fn is_yelling(message: &str) -> bool {
