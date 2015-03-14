@@ -1,5 +1,4 @@
-#![allow(unstable)] // for entry, as_slice, etc
-
+use std::ascii::AsciiExt;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
 use std::sync::Future;
@@ -12,7 +11,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
     let rem = texts.len() % num_workers;
     let part_size = if rem > 0 { part_size_floor + 1 } else { part_size_floor };
     let mut parts: Vec<Vec<String>> = Vec::with_capacity(part_size);
-    for _ in (0..num_workers) {
+    for _ in 0 .. num_workers {
         parts.push(Vec::with_capacity(part_size));
     }
     let mut i = 0;
@@ -22,7 +21,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
         parts[i].push(line.to_string());
         i = (i + 1) % num_workers;
     }
-    let mut futures = parts.into_iter().map(|part| Future::spawn(move || { count(part) }));
+    let futures = parts.into_iter().map(|part| Future::spawn(move || { count(part) }));
     let mut results: HashMap<char, usize> = HashMap::new();
     for mut fut in futures {
         let part_results = fut.get();
@@ -43,7 +42,7 @@ fn count(lines: Vec<String>) -> HashMap<char, usize> {
     for line in lines.iter() {
         for c in line.as_slice().chars() {
             if c.is_alphabetic() {
-                match results.entry(c.to_lowercase()) {
+                match results.entry(c.to_ascii_lowercase()) {
                     Entry::Vacant(view) => { view.insert(1); },
                     Entry::Occupied(mut view) => {
                         *view.get_mut() += 1;

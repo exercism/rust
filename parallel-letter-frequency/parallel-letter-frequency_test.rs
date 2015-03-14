@@ -1,6 +1,9 @@
 #![crate_name = "parallel-letter-frequency_test"]
 #![crate_type = "lib"]
 
+#![feature(std_misc)]
+#![feature(core)]
+
 use std::collections::HashMap;
 
 mod frequency;
@@ -63,7 +66,7 @@ fn test_many_empty_lines() {
     for _ in 0..1000 {
         v.push("");
     }
-    assert_eq!(frequency::frequency(v[..], 4), HashMap::new());
+    assert_eq!(frequency::frequency(&v[..], 4), HashMap::new());
 }
 
 #[test]
@@ -76,7 +79,7 @@ fn test_many_times_same_text() {
     hm.insert('a', 1000);
     hm.insert('b', 1000);
     hm.insert('c', 1000);
-    assert_eq!(frequency::frequency(v[..], 4), hm);
+    assert_eq!(frequency::frequency(&v[..], 4), hm);
 }
 
 #[test]
@@ -97,7 +100,7 @@ fn test_all_three_anthems_1_worker() {
             v.push(*line);
         }
     }
-    let freqs = frequency::frequency(v[..], 1);
+    let freqs = frequency::frequency(&v[..], 1);
     assert_eq!(freqs.get(&'a'), Some(&49));
     assert_eq!(freqs.get(&'t'), Some(&56));
     assert_eq!(freqs.get(&'ü'), Some(&2));
@@ -111,7 +114,7 @@ fn test_all_three_anthems_3_workers() {
             v.push(*line);
         }
     }
-    let freqs = frequency::frequency(v[..], 3);
+    let freqs = frequency::frequency(&v[..], 3);
     assert_eq!(freqs.get(&'a'), Some(&49));
     assert_eq!(freqs.get(&'t'), Some(&56));
     assert_eq!(freqs.get(&'ü'), Some(&2));
