@@ -1,18 +1,23 @@
 #![crate_name = "custom-set_test"]
 #![crate_type = "lib"]
 
-use std::collections::{Collection, Set, MutableSet};
-
 mod set;
 
-fn make_set(vec: Vec<usize>) -> set::CustomSet<usize> {
-    vec.into_iter().collect()
+use std::iter::IteratorExt;
+use set::CustomSet;
+
+fn make_set(vec: Vec<usize>) -> CustomSet<usize> {
+    let set = CustomSet::new();
+    for element in vec {
+        set.insert(element);
+    }
+    set
 }
 
 #[test]
 #[ignore]
 fn test_empty_set() {
-    let set = set::CustomSet::<()>::new();
+    let set: CustomSet<()> = CustomSet::new();
     assert_eq!(set.len(), 0);
     assert_eq!(set.is_empty(), true);
 }
@@ -35,7 +40,7 @@ fn test_is_disjoint() {
     assert!(make_set(vec!(1)).is_disjoint(&make_set(vec!())));
     assert!(make_set(vec!()).is_disjoint(&make_set(vec!(1))));
     assert!(make_set(vec!(1, 2)).is_disjoint(&make_set(vec!(3, 4))));
-    assert!(!make_set(vec!(1, 2)).is_disjoint(&make_set(vec!(2, 4))));
+    assert!(!(make_set(vec!(1, 2)).is_disjoint(&make_set(vec!(2, 4)))));
 }
 
 #[test]
@@ -120,32 +125,8 @@ fn test_insert() {
 }
 
 // Equality on this is modulo 3.
-#[derive(Eq, Debug)]
+#[derive(PartialEq, Eq, Debug)]
 struct Modulo3(usize);
-
-impl PartialEq for Modulo3 {
-    fn eq(&self, other: &Modulo3) -> bool {
-        let &Modulo3(ref a) = self;
-        let &Modulo3(ref b) = other;
-        a % 3 == b % 3
-    }
-}
-
-impl PartialOrd for Modulo3 {
-    fn partial_cmp(&self, other: &Modulo3) -> Option<Ordering> {
-        let &Modulo3(ref a) = self;
-        let &Modulo3(ref b) = other;
-        (a % 3).partial_cmp(&(b % 3))
-    }
-}
-
-impl Ord for Modulo3 {
-    fn cmp(&self, other: &Modulo3) -> Ordering {
-        let &Modulo3(ref a) = self;
-        let &Modulo3(ref b) = other;
-        (a % 3).cmp(&(b % 3))
-    }
-}
 
 #[test]
 #[ignore]
@@ -191,11 +172,3 @@ fn test_clear() {
     assert!(set.is_empty());
 }
 
-#[test]
-#[ignore]
-fn test_traits() {
-    let s: set::CustomSet<()> = set::CustomSet::<()>::new();
-    let _ = &s as &Collection;
-    let _ = &s as &Set<()>;
-    let _ = &s as &MutableSet<()>;
-}
