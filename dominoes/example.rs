@@ -58,7 +58,7 @@ impl AvailabilityTable {
     }
     
     fn pop_first(&mut self, x: usize) -> Option<usize> {
-        for y in iter::range_inclusive(1, 6) {
+        for y in 1 .. 7 {
             if self.get(x, y) > 0 {
                 self.remove(x, y);
                 return Some(y)
@@ -75,7 +75,7 @@ pub fn chain(dominoes: &Vec<Domino>) -> Option<Vec<Domino>> {
         _ => {
             // First check if the total number of each amount of dots is even, if not it's not
             // possible to complete a cycle. This follows from that it's an Eulerian path.
-            let mut v = vec!(0u, 0, 0, 0, 0, 0);
+            let mut v: Vec<usize> = vec!(0, 0, 0, 0, 0, 0);
             // Keep the mutable borrow in a small scope here to allow v.iter().
             {
                 let vs = v.as_mut_slice();

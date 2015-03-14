@@ -7,7 +7,7 @@ use CheckResult::*;
 
 type Domino = (usize, usize);
 
-#[derive(Show)]
+#[derive(Debug)]
 enum CheckResult {
     GotInvalid,             // chain returned None
     Correct,
@@ -49,8 +49,8 @@ fn check(input: &Vec<Domino>) -> CheckResult {
     // easy to check whether the domino chains "wraps around".
     let mut fail = false;
     {
-        let mut n = output[0].0;
-        let mut iter = output.iter().skip(1).chain(output.iter().take(1));
+        let mut n = output[0].1;
+        let iter = output.iter().skip(1).chain(output.iter().take(1));
         for &(first, second) in iter {
             if n != first {
                 fail = true;
