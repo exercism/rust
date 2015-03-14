@@ -1,4 +1,6 @@
-#[deriving(PartialEq, Eq, Show)]
+use std::str::Str;
+
+#[derive(PartialEq, Eq, Debug)]
 pub struct RibonucleicAcid {
     nucleotides: String
 }
@@ -15,7 +17,7 @@ impl Str for RibonucleicAcid {
     }
 }
 
-#[deriving(PartialEq, Eq, Show)]
+#[derive(PartialEq, Eq, Debug)]
 pub struct DeoxyribonucleicAcid {
     nucleotides: String
 }
@@ -36,7 +38,7 @@ impl DeoxyribonucleicAcid {
     }
 
     pub fn to_rna(&self) -> RibonucleicAcid {
-        let rna_nucleotides = self.nucleotides.as_slice().chars().map(transcribe_dna_rna).collect();
+        let rna_nucleotides = self.nucleotides.chars().map(transcribe_dna_rna).collect();
         RibonucleicAcid { nucleotides: rna_nucleotides }
     }
 }

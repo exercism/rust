@@ -1,6 +1,8 @@
 #![crate_name = "rna-transcription_test"]
 #![crate_type = "lib"]
 
+#![feature(core)]
+
 mod dna;
 
 #[test]
