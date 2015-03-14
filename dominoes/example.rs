@@ -1,6 +1,6 @@
 use std::iter;
 
-pub type Domino = (uint, uint);
+pub type Domino = (usize, usize);
 
 /// A table keeping track of available dominoes.
 ///
@@ -8,24 +8,24 @@ pub type Domino = (uint, uint);
 /// dots and row dots. Positions are mirrored ((3,4) == (4,3)), except for positions with equal row
 /// and column numbers.
 struct AvailabilityTable {
-    m: Vec<uint>
+    m: Vec<usize>
 }
 
 impl AvailabilityTable {
     fn new() -> AvailabilityTable {
-        AvailabilityTable { m: Vec::from_fn(6*6, |_| 0) }
+        AvailabilityTable { m: iter::repeat(0).take(6 * 6).collect() }
     }
 
-    fn get(&self, x: uint, y: uint) -> uint {
+    fn get(&self, x: usize, y: usize) -> usize {
         self.m[(x-1) * 6 + (y-1)]
     }
 
-    fn set(&mut self, x: uint, y: uint, v: uint) {
+    fn set(&mut self, x: usize, y: usize, v: usize) {
         let m = self.m.as_mut_slice();
         m[(x-1) * 6 + (y-1)] = v;
     }
 
-    fn add(&mut self, x: uint, y: uint) {
+    fn add(&mut self, x: usize, y: usize) {
         if x == y {
             let n = self.get(x, y);
             self.set(x, y, n + 1) // Along the diagonal
@@ -38,7 +38,7 @@ impl AvailabilityTable {
         }
     }
 
-    fn remove(&mut self, x: uint, y: uint) {
+    fn remove(&mut self, x: usize, y: usize) {
         if self.get(x, y) > 0 {
             if x == y {
                 let n = self.get(x, y);
@@ -53,11 +53,11 @@ impl AvailabilityTable {
         }
         else {
             // For this toy code hard explicit fail is best
-            fail!("remove for 0 stones: ({}, {})", x, y)
+            panic!("remove for 0 stones: ({:?}, {:?})", x, y)
         }
     }
     
-    fn pop_first(&mut self, x: uint) -> Option<uint> {
+    fn pop_first(&mut self, x: usize) -> Option<usize> {
         for y in iter::range_inclusive(1, 6) {
             if self.get(x, y) > 0 {
                 self.remove(x, y);
@@ -80,8 +80,8 @@ pub fn chain(dominoes: &Vec<Domino>) -> Option<Vec<Domino>> {
             {
                 let vs = v.as_mut_slice();
                 for dom in dominoes.iter() {
-                    vs[dom.val0()-1] += 1;
-                    vs[dom.val1()-1] += 1;
+                    vs[dom.0 - 1] += 1;
+                    vs[dom.1 - 1] += 1;
                 }
             }
             for n in v.iter() {
@@ -99,11 +99,12 @@ fn chain_worker(dominoes: &Vec<Domino>) -> Vec<Domino> {
     let first = doms.pop().unwrap();
     let mut t = AvailabilityTable::new();
     for dom in doms.iter() {
-        t.add(dom.val0(), dom.val1())
+        t.add(dom.0, dom.1)
+
     }
     let mut v: Vec<Domino> = Vec::new();
     v.push(first);
-    let mut n = first.val1(); // Number to connect to
+    let mut n = first.1; // Number to connect to
     loop {
         match t.pop_first(n) {
             None => break,
