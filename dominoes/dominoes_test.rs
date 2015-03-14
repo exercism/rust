@@ -78,10 +78,10 @@ fn singleton_input_singleton_output() {
     let input = vec!((1, 1));
     match check(&input) {
         Correct => (),
-        GotInvalid => fail!("Unexpectedly got invalid on input {}", input),
-        ChainingFailure(output) => fail!("Chaining failure for input {}, output {}", input, output),
-        LengthMismatch(output) => fail!("Length mismatch for input {}, output {}", input, output),
-        DominoMismatch(output) => fail!("Domino mistmatch for input {}, output {}", input, output),
+        GotInvalid => panic!("Unexpectedly got invalid on input {}", input),
+        ChainingFailure(output) => panic!("Chaining failure for input {}, output {}", input, output),
+        LengthMismatch(output) => panic!("Length mismatch for input {}, output {}", input, output),
+        DominoMismatch(output) => panic!("Domino mistmatch for input {}, output {}", input, output),
     }
 }
 
@@ -91,10 +91,10 @@ fn no_repeat_numbers() {
     let input = vec!((1, 2), (3, 1), (2, 3));
     match check(&input) {
         Correct => (),
-        GotInvalid => fail!("Unexpectedly got invalid on input {}", input),
-        ChainingFailure(output) => fail!("Chaining failure for input {}, output {}", input, output),
-        LengthMismatch(output) => fail!("Length mismatch for input {}, output {}", input, output),
-        DominoMismatch(output) => fail!("Domino mistmatch for input {}, output {}", input, output),
+        GotInvalid => panic!("Unexpectedly got invalid on input {}", input),
+        ChainingFailure(output) => panic!("Chaining failure for input {}, output {}", input, output),
+        LengthMismatch(output) => panic!("Length mismatch for input {}, output {}", input, output),
+        DominoMismatch(output) => panic!("Domino mistmatch for input {}, output {}", input, output),
     }
 }
 
@@ -111,9 +111,9 @@ fn ten_elements() {
     let input = vec!((1, 2), (5, 3), (3, 1), (1, 2), (2, 4), (1, 6), (2, 3), (3, 4), (5, 6));
     match check(&input) {
         Correct => (),
-        GotInvalid => fail!("Unexpectedly got invalid on input {}", input),
-        ChainingFailure(output) => fail!("Chaining failure for input {}, output {}", input, output),
-        LengthMismatch(output) => fail!("Length mismatch for input {}, output {}", input, output),
-        DominoMismatch(output) => fail!("Domino mistmatch for input {}, output {}", input, output),
+        GotInvalid => panic!("Unexpectedly got invalid on input {}", input),
+        ChainingFailure(output) => panic!("Chaining failure for input {}, output {}", input, output),
+        LengthMismatch(output) => panic!("Length mismatch for input {}, output {}", input, output),
+        DominoMismatch(output) => panic!("Domino mistmatch for input {}, output {}", input, output),
     }
 }
