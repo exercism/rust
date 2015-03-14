@@ -1,7 +1,8 @@
 #![crate_name = "grade-school_test"]
 #![crate_type = "lib"]
 
-#![allow(unstable)] // as_slice
+#![feature(core)] // as_slice
+#![feature(std_misc)] 
 
 mod school;
 
