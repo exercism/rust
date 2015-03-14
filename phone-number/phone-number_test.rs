@@ -1,6 +1,8 @@
 #![crate_name = "phone-number_test"]
 #![crate_type = "lib"]
 
+#![feature(collections)]
+
 mod phone;
 
 #[test]
