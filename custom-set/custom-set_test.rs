@@ -3,11 +3,12 @@
 
 mod set;
 
-use std::iter::IteratorExt;
+use std::cmp::Ordering;
+
 use set::CustomSet;
 
 fn make_set(vec: Vec<usize>) -> CustomSet<usize> {
-    let set = CustomSet::new();
+    let mut set = CustomSet::new();
     for element in vec {
         set.insert(element);
     }
@@ -68,7 +69,7 @@ fn test_is_superset() {
 }
 
 fn difference(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
-    let mut v = make_set(a).difference(&make_set(b)).map(|n| n.clone()).collect::<Vec<usize>>();
+    let mut v = make_set(a).difference(&make_set(b)).iter().map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -83,7 +84,7 @@ fn test_difference() {
 }
 
 fn intersection(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
-    let mut v = make_set(a).intersection(&make_set(b)).map(|n| n.clone()).collect::<Vec<usize>>();
+    let mut v = make_set(a).intersection(&make_set(b)).iter().map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -98,7 +99,7 @@ fn test_intersection() {
 }
 
 fn union(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
-    let mut v = make_set(a).union(&make_set(b)).map(|n| n.clone()).collect::<Vec<usize>>();
+    let mut v = make_set(a).union(&make_set(b)).iter().map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -125,8 +126,33 @@ fn test_insert() {
 }
 
 // Equality on this is modulo 3.
-#[derive(PartialEq, Eq, Debug)]
+#[derive(Eq, Debug, Clone)]
 struct Modulo3(usize);
+
+impl PartialEq for Modulo3 {
+    fn eq(&self, other: &Modulo3) -> bool {
+        let &Modulo3(ref a) = self;
+        let &Modulo3(ref b) = other;
+        a % 3 == b % 3
+    }
+}
+impl PartialOrd for Modulo3 {
+    fn partial_cmp(&self, other: &Modulo3) -> Option<Ordering> {
+        let &Modulo3(ref a) = self;
+        let &Modulo3(ref b) = other;
+        (a % 3).partial_cmp(&(b % 3))
+    }
+}
+impl Ord for Modulo3 {
+    fn cmp(&self, other: &Modulo3) -> Ordering {
+        let &Modulo3(ref a) = self;
+        let &Modulo3(ref b) = other;
+        (a % 3).cmp(&(b % 3))
+    }
+}
+
+
+
 
 #[test]
 #[ignore]
@@ -134,7 +160,7 @@ fn test_insert_no_double() {
     // This test abuses the ord and eq mechanisms a bit to check that a set doesn't replace
     // existing elements with new elements, which could lead to interesting bugs if the programmer
     // triggers that behaviour.
-    let mut set = vec!(Modulo3(1)).into_iter().collect::<set::CustomSet<Modulo3>>();
+    let mut set: CustomSet<Modulo3> = vec!(Modulo3(1)).into_iter().collect();
     assert!(set.contains(&Modulo3(1)));
     assert!(set.contains(&Modulo3(4)));
     assert!(set.insert(Modulo3(2)));

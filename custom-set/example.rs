@@ -1,6 +1,7 @@
-use std::iter::IntoIterator;
+use std::iter::{IntoIterator, FromIterator};
 use std::slice;
 use std::option::Option;
+use std::vec::Vec;
 
 #[derive(Debug)]
 pub struct CustomSet<T> {
@@ -136,5 +137,13 @@ impl<'a, T> Iterator for Iter<'a, T> {
 
     fn size_hint(&self) -> (usize, Option<usize>) {
         self.iter.size_hint()
+    }
+}
+
+impl<T> FromIterator<T> for CustomSet<T> where T: Eq + Clone {
+    fn from_iter<I: IntoIterator<Item=T>>(iterable: I) -> CustomSet<T> {
+        let mut set = CustomSet::new();
+        set.elements = Vec::from_iter(iterable);
+        set
     }
 }
