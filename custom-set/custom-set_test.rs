@@ -1,4 +1,3 @@
-#![crate_name = "custom-set_test"]
 #![crate_type = "lib"]
 
 mod set;
