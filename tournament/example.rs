@@ -1,3 +1,6 @@
+#![feature(convert)]
+#![feature(slice_patterns)]
+
 use std::cmp::Ordering::Equal;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;

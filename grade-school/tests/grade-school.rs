@@ -1,6 +1,6 @@
-#![crate_type = "lib"]
+#![feature(convert)] // as_ref
 
-mod school;
+extern crate school;
 
 fn stringvec_to_strvec(v: &Vec<String>) -> Vec<&str> {
     v.iter().map(|s| s.as_ref()).collect()

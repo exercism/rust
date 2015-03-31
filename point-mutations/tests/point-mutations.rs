@@ -1,6 +1,4 @@
-#![crate_type = "lib"]
-
-mod dna;
+extern crate dna;
 
 #[test]
 #[ignore]

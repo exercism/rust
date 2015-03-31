@@ -1,11 +1,4 @@
-#![crate_type = "lib"]
-
-#![feature(rand)] 
-
-// XXX: start building and testing with cargo
-#![allow(deprecated)]
-
-mod robot;
+extern crate robot;
 
 /*
 These are the expected signatures:

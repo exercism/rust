@@ -1,9 +1,6 @@
-#![crate_type = "lib"]
+extern crate dna;
 
 use std::collections::HashMap;
-
-
-mod dna;
 
 fn check_dna(s: &str, pairs: &[(char, usize)]) {
     // The reason for the awkward code in here is to ensure that the failure

@@ -1,6 +1,6 @@
-#![crate_type = "lib"]
+#![feature(convert)]
 
-mod dna;
+extern crate dna;
 
 #[test]
 #[ignore]

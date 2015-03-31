@@ -1,13 +1,10 @@
-#![crate_name = "tournament_test"]
-#![crate_type = "lib"]
-
 #![feature(slice_patterns)]
 
 use std::fs::File;
 use std::path::Path;
 use std::io::Read;
 
-mod tournament;
+extern crate tournament;
 
 fn file_equal(output_file: &str, expected_file: &str) {
     let output = match File::open(&Path::new(output_file)) {
@@ -38,20 +35,20 @@ fn file_equal(output_file: &str, expected_file: &str) {
 #[test]
 #[ignore]
 fn test_good() {
-    assert_eq!(tournament::tally(&Path::new("input1.txt"), &Path::new("output1.txt")).unwrap(), 6);
-    file_equal("output1.txt", "expected1.txt");
+    assert_eq!(tournament::tally(&Path::new("tests/input1.txt"), &Path::new("tests/output1.txt")), Ok(6));
+    file_equal("tests/output1.txt", "tests/expected1.txt");
 }
 
 #[test]
 #[ignore]
 fn test_ignore_bad_lines() {
-    assert_eq!(tournament::tally(&Path::new("input2.txt"), &Path::new("output2.txt")).unwrap(), 6);
-    file_equal("output2.txt", "expected2.txt");
+    assert_eq!(tournament::tally(&Path::new("tests/input2.txt"), &Path::new("tests/output2.txt")), Ok(6));
+    file_equal("tests/output2.txt", "tests/expected2.txt");
 }
 
 #[test]
 #[ignore]
 fn test_incomplete_competition() {
-    assert_eq!(tournament::tally(&Path::new("input3.txt"), &Path::new("output3.txt")).unwrap(), 4);
-    file_equal("output3.txt", "expected3.txt");
+    assert_eq!(tournament::tally(&Path::new("tests/input3.txt"), &Path::new("tests/output3.txt")), Ok(4));
+    file_equal("tests/output3.txt", "tests/expected3.txt");
 }
