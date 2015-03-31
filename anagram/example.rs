@@ -1,5 +1,3 @@
-use std::slice::SliceExt;
-
 fn sort(word: &String) -> String {
     let mut sorted: Vec<char> = word.chars().collect();
     sorted.sort();
