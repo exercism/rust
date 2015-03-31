@@ -1,4 +1,4 @@
-use std::str::Str;
+use std::convert::AsRef;
 
 #[derive(PartialEq, Eq, Debug)]
 pub struct RibonucleicAcid {
@@ -11,9 +11,9 @@ impl RibonucleicAcid {
     }
 }
 
-impl Str for RibonucleicAcid {
-    fn as_slice(&self) -> &str {
-        self.nucleotides.as_slice()
+impl AsRef<str> for RibonucleicAcid {
+    fn as_ref(&self) -> &str {
+        self.nucleotides.as_ref()
     }
 }
 
