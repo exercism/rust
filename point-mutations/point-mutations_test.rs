@@ -1,4 +1,3 @@
-#![crate_name = "point-mutations_test"]
 #![crate_type = "lib"]
 
 mod dna;
