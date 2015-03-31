@@ -1,5 +1,3 @@
-use std::char::CharExt;
-
 pub fn number(s: &str) -> String {
     let digits: String = s
         .chars()
@@ -7,8 +5,8 @@ pub fn number(s: &str) -> String {
         .collect();
     match digits.len() {
         10 => Some(digits),
-        11 => match digits[..].char_at(0) {
-            '1' => Some(digits[1..].to_string()),
+        11 => match digits.chars().nth(0) {
+            Some('1') => Some(digits[1..].to_string()),
             _   => None
         },
         _  => None
