@@ -1,3 +1,5 @@
+#![feature(std_misc)]
+
 use std::ascii::AsciiExt;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;

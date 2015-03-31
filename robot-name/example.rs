@@ -1,4 +1,5 @@
-use std::rand::{thread_rng, Rng};
+extern crate rand;
+use rand::{thread_rng, Rng};
 
 pub struct Robot {
     name: String

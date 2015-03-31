@@ -1,7 +1,4 @@
-#![crate_name = "leap_test"]
-#![crate_type = "lib"]
-
-mod leap_year;
+extern crate leap_year;
 
 #[test]
 #[ignore]

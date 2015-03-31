@@ -1,6 +1,4 @@
-#![crate_type = "lib"]
-
-mod phone;
+extern crate phone;
 
 #[test]
 #[ignore]
