@@ -1,3 +1,5 @@
+#![feature(collections)]
+
 fn sort(word: &String) -> String {
     let mut sorted: Vec<char> = word.chars().collect();
     sorted.sort();
