@@ -1,8 +1,6 @@
-#![crate_name = "parallel-letter-frequency_test"]
 #![crate_type = "lib"]
 
 #![feature(std_misc)]
-#![feature(core)]
 
 use std::collections::HashMap;
 

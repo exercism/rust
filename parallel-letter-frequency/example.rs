@@ -40,7 +40,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
 fn count(lines: Vec<String>) -> HashMap<char, usize> {
     let mut results: HashMap<char, usize> = HashMap::new();
     for line in lines.iter() {
-        for c in line.as_slice().chars() {
+        for c in line.chars() {
             if c.is_alphabetic() {
                 match results.entry(c.to_ascii_lowercase()) {
                     Entry::Vacant(view) => { view.insert(1); },

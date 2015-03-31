@@ -1,7 +1,5 @@
-#![crate_name = "nucleotide-count_test"]
 #![crate_type = "lib"]
 
-#![feature(std_misc)] // for entry
 use std::collections::HashMap;
 
 
