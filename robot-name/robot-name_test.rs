@@ -1,4 +1,3 @@
-#![crate_name = "robot-name_test"]
 #![crate_type = "lib"]
 
 #![feature(rand)] 

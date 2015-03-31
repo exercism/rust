@@ -2,9 +2,8 @@ use std::cmp::Ordering::Equal;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
 use std::fs::File;
-use std::io::{BufReader, Result};
-use std::io::BufReadExt;
-use std::io::Write;
+use std::io::{BufRead, BufReader, Write, Result};
+use std::path::Path;
 
 enum GameResult {
     Win,
@@ -37,7 +36,7 @@ pub fn tally(input_filename: &Path, output_filename: &Path) -> Result<u32> {
     let mut results: HashMap<String, TeamResult> = HashMap::new();
     for line in reader.lines() {    
         
-        match line.unwrap().trim_right().split(';').collect::<Vec<&str>>().as_slice() {
+        match line.unwrap().trim_right().split(';').collect::<Vec<&str>>().as_ref() {
             [team1, team2, outcome] => {
                 match outcome {
                     "win" => {
@@ -82,7 +81,7 @@ fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) ->
     try!(writeln!(&mut f, "{:30} | MP |  W |  D |  L |  P", "Team"));
     for &(ref team, games, r, points) in v.iter() {
         try!(writeln!(&mut f, "{:30} | {:2} | {:2} | {:2} | {:2} | {:2}",
-                      team.as_slice(), games, r.wins, r.draws, r.losses, points));
+                      team, games, r.wins, r.draws, r.losses, points));
     }
     Ok(())
 }
