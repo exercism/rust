@@ -1,7 +1,4 @@
-#![crate_name = "bob_test"]
-#![crate_type = "lib"]
-
-mod bob;
+extern crate bob;
 
 #[test]
 #[ignore]
