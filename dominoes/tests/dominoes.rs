@@ -1,7 +1,4 @@
-#![ crate_name = "dominoes_test" ]
-#![ crate_type = "lib" ]
-
-mod dominoes;
+extern crate dominoes;
 
 use CheckResult::*;
 
