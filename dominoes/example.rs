@@ -21,7 +21,7 @@ impl AvailabilityTable {
     }
 
     fn set(&mut self, x: usize, y: usize, v: usize) {
-        let m = self.m.as_mut_slice();
+        let m = &mut self.m[..];
         m[(x-1) * 6 + (y-1)] = v;
     }
 
@@ -78,7 +78,7 @@ pub fn chain(dominoes: &Vec<Domino>) -> Option<Vec<Domino>> {
             let mut v: Vec<usize> = vec!(0, 0, 0, 0, 0, 0);
             // Keep the mutable borrow in a small scope here to allow v.iter().
             {
-                let vs = v.as_mut_slice();
+                let vs = &mut v[..];
                 for dom in dominoes.iter() {
                     vs[dom.0 - 1] += 1;
                     vs[dom.1 - 1] += 1;
