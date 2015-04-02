@@ -1,4 +1,3 @@
-use std::ascii::AsciiExt;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
 use std::sync::Future;
@@ -42,7 +41,7 @@ fn count(lines: Vec<String>) -> HashMap<char, usize> {
     for line in lines.iter() {
         for c in line.chars() {
             if c.is_alphabetic() {
-                match results.entry(c.to_ascii_lowercase()) {
+                match results.entry(c.to_lowercase().next().unwrap()) {
                     Entry::Vacant(view) => { view.insert(1); },
                     Entry::Occupied(mut view) => {
                         *view.get_mut() += 1;
