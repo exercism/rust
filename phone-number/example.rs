@@ -11,6 +11,7 @@ pub fn number(s: &str) -> String {
         },
         _  => None
     }.unwrap_or("0000000000".to_string())
+
 }
 
 pub fn area_code(s: &str) -> String {

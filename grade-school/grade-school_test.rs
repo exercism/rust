@@ -1,7 +1,5 @@
 #![crate_type = "lib"]
 
-#![feature(convert)] // as_ref
-
 mod school;
 
 fn stringvec_to_strvec(v: &Vec<String>) -> Vec<&str> {

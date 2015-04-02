@@ -1,7 +1,5 @@
 #![crate_type = "lib"]
 
-#![feature(convert)]
-
 mod dna;
 
 #[test]

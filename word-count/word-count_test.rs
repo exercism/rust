@@ -1,5 +1,4 @@
 #![crate_type = "lib"]
-#![feature(convert)]
 #![feature(collections)]
 
 
