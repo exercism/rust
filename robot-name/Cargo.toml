@@ -7,4 +7,5 @@ name = "robot"
 path = "robot-name.rs"
 
 [dependencies]
-rand = "^0.3.0"
+libc = "0.1.5"
+rand = "0.3.7"
