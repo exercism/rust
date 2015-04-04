@@ -1,6 +1,3 @@
-#![feature(convert)]
-#![feature(slice_patterns)]
-
 use std::cmp::Ordering::Equal;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
@@ -38,27 +35,27 @@ pub fn tally(input_filename: &Path, output_filename: &Path) -> Result<u32> {
     let mut count = 0;
     let mut results: HashMap<String, TeamResult> = HashMap::new();
     for line in reader.lines() {    
-        
-        match line.unwrap().trim_right().split(';').collect::<Vec<&str>>().as_ref() {
-            [team1, team2, outcome] => {
-                match outcome {
-                    "win" => {
-                        add_game_result(&mut results, team1.to_string(), GameResult::Win);
-                        add_game_result(&mut results, team2.to_string(), GameResult::Loss);
-                        count += 1;
-                    },
-                    "draw" => {
-                        add_game_result(&mut results, team1.to_string(), GameResult::Draw);
-                        add_game_result(&mut results, team2.to_string(), GameResult::Draw);
-                        count += 1;
-                    },
-                    "loss" => {
-                        add_game_result(&mut results, team1.to_string(), GameResult::Loss);
-                        add_game_result(&mut results, team2.to_string(), GameResult::Win);
-                        count += 1;
-                    },
-                    _ => () // Ignore bad lines
-                }
+        let line = line.unwrap();
+        let parts: Vec<&str> = line.trim_right().split(';').collect(); 
+        if parts.len() != 3 { continue; }
+        let team1 = parts[0];
+        let team2 = parts[1];
+        let outcome = parts[2];
+        match outcome {
+            "win" => {
+                add_game_result(&mut results, team1.to_string(), GameResult::Win);
+                add_game_result(&mut results, team2.to_string(), GameResult::Loss);
+                count += 1;
+            },
+            "draw" => {
+                add_game_result(&mut results, team1.to_string(), GameResult::Draw);
+                add_game_result(&mut results, team2.to_string(), GameResult::Draw);
+                count += 1;
+            },
+            "loss" => {
+                add_game_result(&mut results, team1.to_string(), GameResult::Loss);
+                add_game_result(&mut results, team2.to_string(), GameResult::Win);
+                count += 1;
             },
             _ => () // Ignore bad lines
         }
