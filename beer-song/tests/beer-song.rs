@@ -1,6 +1,4 @@
-#![crate_type = "lib"]
-
-mod beer;
+extern crate beer;
 
 #[test]
 #[ignore]

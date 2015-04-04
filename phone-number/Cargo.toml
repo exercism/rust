@@ -1,0 +1,8 @@
+[package]
+name = "phone-number"
+version = "0.0.0"
+
+[lib]
+name = "phone"
+path = "phone-number.rs"
+

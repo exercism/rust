@@ -1,13 +1,10 @@
-#![crate_name = "tournament_test"]
-#![crate_type = "lib"]
-
 #![feature(slice_patterns)]
 
 use std::fs::File;
 use std::path::Path;
 use std::io::Read;
 
-mod tournament;
+extern crate tournament;
 
 fn file_equal(output_file: &str, expected_file: &str) {
     let output = match File::open(&Path::new(output_file)) {

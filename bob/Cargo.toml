@@ -1,0 +1,8 @@
+[package]
+name = "bob"
+version = "0.0.0"
+
+[lib]
+name = "bob"
+path = "bob.rs"
+

@@ -1,6 +1,4 @@
-#![crate_type = "lib"]
-
-mod set;
+extern crate set;
 
 use std::cmp::Ordering;
 

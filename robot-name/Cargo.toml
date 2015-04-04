@@ -1,0 +1,10 @@
+[package]
+name = "robot-name"
+version = "0.0.0"
+
+[lib]
+name = "robot"
+path = "robot-name.rs"
+
+[dependencies]
+rand = "^0.3.0"
