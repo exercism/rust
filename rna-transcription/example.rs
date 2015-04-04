@@ -1,7 +1,4 @@
-#![feature(convert)]
-
 use std::convert::AsRef;
-
 
 #[derive(PartialEq, Eq, Debug)]
 pub struct RibonucleicAcid {
