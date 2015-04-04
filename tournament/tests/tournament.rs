@@ -1,5 +1,3 @@
-#![feature(slice_patterns)]
-
 use std::fs::File;
 use std::path::Path;
 use std::io::Read;
