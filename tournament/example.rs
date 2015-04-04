@@ -1,9 +1,9 @@
-#![allow(unstable)]
-
 use std::cmp::Ordering::Equal;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
-use std::io::{BufferedReader, EndOfFile, File, IoResult};
+use std::fs::File;
+use std::io::{BufRead, BufReader, Write, Result};
+use std::path::Path;
 
 enum GameResult {
     Win,
@@ -30,17 +30,13 @@ impl TeamResult {
     }
 }
 
-pub fn tally(input_filename: &Path, output_filename: &Path) -> IoResult<u32> {
-    let mut reader = BufferedReader::new(File::open(input_filename));
+pub fn tally(input_filename: &Path, output_filename: &Path) -> Result<u32> {
+    let reader = BufReader::with_capacity(2048, File::open(input_filename).unwrap());
     let mut count = 0;
     let mut results: HashMap<String, TeamResult> = HashMap::new();
-    loop {
-        let line = match reader.read_line() {
-            Err(ref e) if e.kind == EndOfFile => break,
-            Err(e) => return Err(e),
-            Ok(l) => l
-        };
-        match line.as_slice().trim_right().split(';').collect::<Vec<&str>>().as_slice() {
+    for line in reader.lines() {    
+        
+        match line.unwrap().trim_right().split(';').collect::<Vec<&str>>().as_ref() {
             [team1, team2, outcome] => {
                 match outcome {
                     "win" => {
@@ -68,7 +64,7 @@ pub fn tally(input_filename: &Path, output_filename: &Path) -> IoResult<u32> {
     Ok(count)
 }
 
-fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) -> IoResult<()> {
+fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) -> Result<()> {
     let mut v: Vec<(&String, u32, &TeamResult, u32)> = Vec::new();
     for (team, r) in results.iter() {
         let games = r.wins + r.draws + r.losses;
@@ -81,11 +77,11 @@ fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) ->
                   Equal => a.1.cmp(&(b.1)).reverse(),
                   other => other
               });
-    let mut f = File::create(output_filename);
+    let mut f = try!(File::create(output_filename));
     try!(writeln!(&mut f, "{:30} | MP |  W |  D |  L |  P", "Team"));
     for &(ref team, games, r, points) in v.iter() {
         try!(writeln!(&mut f, "{:30} | {:2} | {:2} | {:2} | {:2} | {:2}",
-                      team.as_slice(), games, r.wins, r.draws, r.losses, points));
+                      team, games, r.wins, r.draws, r.losses, points));
     }
     Ok(())
 }

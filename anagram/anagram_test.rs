@@ -1,5 +1,6 @@
 #![crate_name = "anagram_test"]
 #![crate_type = "lib"]
+#![feature(collections)]
 
 mod anagram;
 

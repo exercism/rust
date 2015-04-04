@@ -1,18 +1,23 @@
-#![crate_name = "custom-set_test"]
 #![crate_type = "lib"]
-
-use std::collections::{Collection, Set, MutableSet};
 
 mod set;
 
-fn make_set(vec: Vec<uint>) -> set::CustomSet<uint> {
-    vec.into_iter().collect()
+use std::cmp::Ordering;
+
+use set::CustomSet;
+
+fn make_set(vec: Vec<usize>) -> CustomSet<usize> {
+    let mut set = CustomSet::new();
+    for element in vec {
+        set.insert(element);
+    }
+    set
 }
 
 #[test]
 #[ignore]
 fn test_empty_set() {
-    let set = set::CustomSet::<()>::new();
+    let set: CustomSet<()> = CustomSet::new();
     assert_eq!(set.len(), 0);
     assert_eq!(set.is_empty(), true);
 }
@@ -35,7 +40,7 @@ fn test_is_disjoint() {
     assert!(make_set(vec!(1)).is_disjoint(&make_set(vec!())));
     assert!(make_set(vec!()).is_disjoint(&make_set(vec!(1))));
     assert!(make_set(vec!(1, 2)).is_disjoint(&make_set(vec!(3, 4))));
-    assert!(!make_set(vec!(1, 2)).is_disjoint(&make_set(vec!(2, 4))));
+    assert!(!(make_set(vec!(1, 2)).is_disjoint(&make_set(vec!(2, 4)))));
 }
 
 #[test]
@@ -62,8 +67,8 @@ fn test_is_superset() {
     assert!(make_set(vec!(1, 2, 3)).is_superset(&make_set(vec!(1, 2))));
 }
 
-fn difference(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    let mut v = make_set(a).difference(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+fn difference(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
+    let mut v = make_set(a).difference(&make_set(b)).iter().map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -77,8 +82,8 @@ fn test_difference() {
     assert_eq!(difference(vec!(1, 2, 3, 4), vec!(3, 2, 5)), vec!(1, 4));
 }
 
-fn intersection(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    let mut v = make_set(a).intersection(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+fn intersection(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
+    let mut v = make_set(a).intersection(&make_set(b)).iter().map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -92,8 +97,8 @@ fn test_intersection() {
     assert_eq!(intersection(vec!(1, 2, 3, 4), vec!(3, 2, 5)), vec!(2, 3));
 }
 
-fn union(a: Vec<uint>, b: Vec<uint>) -> Vec<uint> {
-    let mut v = make_set(a).union(&make_set(b)).map(|n| n.clone()).collect::<Vec<uint>>();
+fn union(a: Vec<usize>, b: Vec<usize>) -> Vec<usize> {
+    let mut v = make_set(a).union(&make_set(b)).iter().map(|n| n.clone()).collect::<Vec<usize>>();
     v.sort();
     v
 }
@@ -120,8 +125,8 @@ fn test_insert() {
 }
 
 // Equality on this is modulo 3.
-#[deriving(Eq, Show)]
-struct Modulo3(uint);
+#[derive(Eq, Debug, Clone)]
+struct Modulo3(usize);
 
 impl PartialEq for Modulo3 {
     fn eq(&self, other: &Modulo3) -> bool {
@@ -130,7 +135,6 @@ impl PartialEq for Modulo3 {
         a % 3 == b % 3
     }
 }
-
 impl PartialOrd for Modulo3 {
     fn partial_cmp(&self, other: &Modulo3) -> Option<Ordering> {
         let &Modulo3(ref a) = self;
@@ -138,7 +142,6 @@ impl PartialOrd for Modulo3 {
         (a % 3).partial_cmp(&(b % 3))
     }
 }
-
 impl Ord for Modulo3 {
     fn cmp(&self, other: &Modulo3) -> Ordering {
         let &Modulo3(ref a) = self;
@@ -147,13 +150,16 @@ impl Ord for Modulo3 {
     }
 }
 
+
+
+
 #[test]
 #[ignore]
 fn test_insert_no_double() {
     // This test abuses the ord and eq mechanisms a bit to check that a set doesn't replace
     // existing elements with new elements, which could lead to interesting bugs if the programmer
     // triggers that behaviour.
-    let mut set = vec!(Modulo3(1)).into_iter().collect::<set::CustomSet<Modulo3>>();
+    let mut set: CustomSet<Modulo3> = vec!(Modulo3(1)).into_iter().collect();
     assert!(set.contains(&Modulo3(1)));
     assert!(set.contains(&Modulo3(4)));
     assert!(set.insert(Modulo3(2)));
@@ -191,11 +197,3 @@ fn test_clear() {
     assert!(set.is_empty());
 }
 
-#[test]
-#[ignore]
-fn test_traits() {
-    let s: set::CustomSet<()> = set::CustomSet::<()>::new();
-    let _ = &s as &Collection;
-    let _ = &s as &Set<()>;
-    let _ = &s as &MutableSet<()>;
-}

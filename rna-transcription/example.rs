@@ -1,4 +1,6 @@
-#[deriving(PartialEq, Eq, Show)]
+use std::convert::AsRef;
+
+#[derive(PartialEq, Eq, Debug)]
 pub struct RibonucleicAcid {
     nucleotides: String
 }
@@ -9,13 +11,13 @@ impl RibonucleicAcid {
     }
 }
 
-impl Str for RibonucleicAcid {
-    fn as_slice(&self) -> &str {
-        self.nucleotides.as_slice()
+impl AsRef<str> for RibonucleicAcid {
+    fn as_ref(&self) -> &str {
+        self.nucleotides.as_ref()
     }
 }
 
-#[deriving(PartialEq, Eq, Show)]
+#[derive(PartialEq, Eq, Debug)]
 pub struct DeoxyribonucleicAcid {
     nucleotides: String
 }
@@ -36,7 +38,7 @@ impl DeoxyribonucleicAcid {
     }
 
     pub fn to_rna(&self) -> RibonucleicAcid {
-        let rna_nucleotides = self.nucleotides.as_slice().chars().map(transcribe_dna_rna).collect();
+        let rna_nucleotides = self.nucleotides.chars().map(transcribe_dna_rna).collect();
         RibonucleicAcid { nucleotides: rna_nucleotides }
     }
 }

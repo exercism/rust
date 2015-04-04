@@ -1,7 +1,9 @@
-#![crate_name = "robot-name_test"]
 #![crate_type = "lib"]
 
-#![allow(unstable)] // as_slice
+#![feature(rand)] 
+
+// XXX: start building and testing with cargo
+#![allow(deprecated)]
 
 mod robot;
 
@@ -71,8 +73,8 @@ fn test_new_name_is_persistent() {
 #[ignore]
 fn test_new_name_is_different_from_old_name() {
     let mut r = robot::Robot::new();
-    let n1 = r.name().as_slice().to_string();
+    let n1 = r.name().to_string();
     r.reset_name();
-    let n2 = r.name().as_slice().to_string();
+    let n2 = r.name().to_string();
     assert!(n1 != n2, "Robot name should change when reset");
 }

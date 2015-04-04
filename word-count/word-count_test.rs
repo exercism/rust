@@ -1,7 +1,6 @@
-#![crate_name = "word-count_test"]
 #![crate_type = "lib"]
+#![feature(collections)]
 
-#![allow(unstable)] // to_string
 
 use std::collections::HashMap;
 

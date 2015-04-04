@@ -1,4 +1,3 @@
-#![crate_name = "rna-transcription_test"]
 #![crate_type = "lib"]
 
 mod dna;
@@ -43,6 +42,6 @@ fn test_transcribes_all_dna_to_rna() {
 #[test]
 #[ignore]
 fn test_acid_converts_to_string() {
-    assert_eq!(dna::RibonucleicAcid::new("AGC").as_slice(), "AGC");
-    assert_eq!(dna::RibonucleicAcid::new("CGA").as_slice(), "CGA");
+    assert_eq!(dna::RibonucleicAcid::new("AGC").as_ref(), "AGC");
+    assert_eq!(dna::RibonucleicAcid::new("CGA").as_ref(), "CGA");
 }

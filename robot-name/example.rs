@@ -1,5 +1,3 @@
-#![allow(unstable)] // choose()
-
 use std::rand::{thread_rng, Rng};
 
 pub struct Robot {
@@ -25,7 +23,7 @@ impl Robot {
     }
 
     pub fn name<'a>(&'a self) -> &'a str {
-        self.name.as_slice()
+        &self.name[..]
     }
 
     pub fn reset_name(&mut self) {

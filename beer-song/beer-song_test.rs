@@ -1,4 +1,3 @@
-#![crate_name = "beer-song_test"]
 #![crate_type = "lib"]
 
 mod beer;

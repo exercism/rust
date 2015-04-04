@@ -1,4 +1,3 @@
-#![crate_name = "phone-number_test"]
 #![crate_type = "lib"]
 
 mod phone;

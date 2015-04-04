@@ -1,7 +1,7 @@
-#![crate_name = "nucleotide-count_test"]
 #![crate_type = "lib"]
 
 use std::collections::HashMap;
+
 
 mod dna;
 

@@ -1,7 +1,3 @@
-#![allow(unstable)] // for to_string
-
-use std::iter;
-
 pub fn verse(n: i32) -> String { 
     match n {
         0 => "No more bottles of beer on the wall, no more bottles of beer.\n\
@@ -22,9 +18,9 @@ pub fn verse(n: i32) -> String {
 }
 
 pub fn sing(start: i32, end: i32) -> String {
-    iter::range_inclusive(end, start)
-        .rev()
-        .map(verse)
-        .collect::<Vec<String>>()
-        .connect("\n")
+    let mut song = Vec::new();
+    for n in (end .. start + 1).rev() {
+        song.push(verse(n))
+    }
+    song.connect("\n")
 }

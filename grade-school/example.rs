@@ -1,5 +1,3 @@
-#![allow(unstable)] // entry, to_string
-
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
 
