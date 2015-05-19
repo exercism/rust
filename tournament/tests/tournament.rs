@@ -33,20 +33,20 @@ fn file_equal(output_file: &str, expected_file: &str) {
 #[test]
 #[ignore]
 fn test_good() {
-    assert_eq!(tournament::tally(&Path::new("tests/input1.txt"), &Path::new("tests/output1.txt")), Ok(6));
+    assert_eq!(tournament::tally(&Path::new("tests/input1.txt"), &Path::new("tests/output1.txt")).unwrap(), 6);
     file_equal("tests/output1.txt", "tests/expected1.txt");
 }
 
 #[test]
 #[ignore]
 fn test_ignore_bad_lines() {
-    assert_eq!(tournament::tally(&Path::new("tests/input2.txt"), &Path::new("tests/output2.txt")), Ok(6));
+    assert_eq!(tournament::tally(&Path::new("tests/input2.txt"), &Path::new("tests/output2.txt")).unwrap(), 6);
     file_equal("tests/output2.txt", "tests/expected2.txt");
 }
 
 #[test]
 #[ignore]
 fn test_incomplete_competition() {
-    assert_eq!(tournament::tally(&Path::new("tests/input3.txt"), &Path::new("tests/output3.txt")), Ok(4));
+    assert_eq!(tournament::tally(&Path::new("tests/input3.txt"), &Path::new("tests/output3.txt")).unwrap(), 4);
     file_equal("tests/output3.txt", "tests/expected3.txt");
 }
