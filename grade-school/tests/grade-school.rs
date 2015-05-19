@@ -1,5 +1,3 @@
-#![feature(convert)] // as_ref
-
 extern crate school;
 
 fn stringvec_to_strvec(v: &Vec<String>) -> Vec<&str> {
