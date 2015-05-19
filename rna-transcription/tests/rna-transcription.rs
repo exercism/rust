@@ -1,7 +1,6 @@
 extern crate dna;
 
 #[test]
-#[ignore]
 fn test_acid_equals_acid() {
     assert_eq!(dna::RibonucleicAcid::new("CGA"), dna::RibonucleicAcid::new("CGA"));
     assert!(dna::RibonucleicAcid::new("CGA") != dna::RibonucleicAcid::new("AGC"));

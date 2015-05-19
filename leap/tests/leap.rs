@@ -1,7 +1,6 @@
 extern crate leap_year;
 
 #[test]
-#[ignore]
 fn test_vanilla_leap_year() {
     assert_eq!(leap_year::is_leap_year(1996), true);
 }

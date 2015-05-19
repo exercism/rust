@@ -16,7 +16,6 @@ fn check_word_count(s: &str, pairs: Vec<(&str, u32)>) {
 }
 
 #[test]
-#[ignore]
 fn test_no_words() {
     check_word_count("", vec![]);
     check_word_count("-!@#$ $#() @@@", vec![]);

@@ -31,7 +31,6 @@ fn file_equal(output_file: &str, expected_file: &str) {
 
 
 #[test]
-#[ignore]
 fn test_good() {
     assert_eq!(tournament::tally(&Path::new("tests/input1.txt"), &Path::new("tests/output1.txt")).unwrap(), 6);
     file_equal("tests/output1.txt", "tests/expected1.txt");

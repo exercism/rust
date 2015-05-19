@@ -16,7 +16,6 @@ fn check_dna(s: &str, pairs: &[(char, usize)]) {
 }
 
 #[test]
-#[ignore]
 fn test_count_empty() {
     assert_eq!(dna::count('A', ""), 0);
 }

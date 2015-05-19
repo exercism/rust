@@ -1,7 +1,6 @@
 extern crate phone;
 
 #[test]
-#[ignore]
 fn test_number_cleans() {
     assert_eq!(phone::number("(123) 456-7890"), "1234567890".to_string());
 }
