@@ -8,4 +8,4 @@ path = "robot-name.rs"
 
 [dependencies]
 libc = "0.1.5"
-rand = "0.3.7"
+rand = "0.3.8"
