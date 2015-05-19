@@ -1,0 +1,8 @@
+[package]
+name = "nucleotide-count"
+version = "0.0.0"
+
+[lib]
+name = "dna"
+path = "nucleotide-count.rs"
+

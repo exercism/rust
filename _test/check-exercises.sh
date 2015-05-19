@@ -1,39 +1,38 @@
 #!/bin/bash
+
 set -e
 tmp=${TMPDIR:-/tmp/}
-check_assignment () {
-    intest="$1"
-    testfn=${intest##*/}
-    assignment=${testfn%_test.rs}
-    workdir=$(mktemp -d "${tmp}${assignment}.XXXXXXXXXX")
-    modname=$(awk '/^mod / { sub(";", ""); print $2 }' "${intest}")
-    cp "${intest%/*}/example.rs" "${workdir}/${modname}.rs"
-    if [ -x "_test/${assignment}_setup.sh" ]; then
-        _test/${assignment}_setup.sh $workdir; # These scripts can copy needed files and such
-    fi;
-    grep -v '^#\[ignore\]' "${intest}" > "${workdir}/${testfn}"
+
+# An exercise worth testing is defined here as any top level directory with
+# a 'tests' directory
+for exercise in */tests; do
+    # This assumes that exercises are only one directory deep
+    # and that the primary module is named the same as the directory
+    directory=$(dirname "${exercise}");
+
+    workdir=$(mktemp -d "${tmp}${directory}.XXXXXXXXXX")
+
+    cp -R -T $directory $workdir
+
+    # Run in subshell to change workdir without affecting current workdir.
     (
-        cd "${workdir}"
-        rustc --test -F warnings "${testfn}" && "./${testfn%%.*}"
+        cd $workdir
+        cp example.rs "${directory}.rs"
+
+        # Forcibly strip all "ignore" statements from the testing files
+        for test in tests/*.rs; do
+            sed -i '/\[ignore\]/d' $test
+        done
+
+        # Run the test and get the status
+        cargo test
     )
+
     status=$?
-    rm -rf "${workdir}"
-    return $status
-}
-failures=()
-for fn in */*_test.rs; do
-    (check_assignment "${fn}")
-    if [ $? -ne 0 ]; then
-        echo "check failed"
-        testfn=${fn##*/}
-        assignment=${testfn%_test.rs}
-        failures=(${failures[@]} "${testfn%_test.rs}")
+
+    if [ $status -ne 0 ]
+    then
+        echo "Failed";
+        return 1;
     fi
 done
-if [ "${#failures[*]}" -eq "0" ]; then
-    echo "SUCCESS!"
-else
-    output=$(printf ", %s" "${failures[@]}")
-    echo "FAILURES: ${output:2}"
-    exit 1
-fi

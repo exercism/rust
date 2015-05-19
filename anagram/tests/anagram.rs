@@ -1,11 +1,6 @@
-#![crate_name = "anagram_test"]
-#![crate_type = "lib"]
-#![feature(collections)]
-
-mod anagram;
+extern crate anagram;
 
 #[test]
-#[ignore]
 fn test_no_matches() {
     let inputs = ["hello", "world", "zombies", "pants"];
     let outputs: Vec<&str> = vec![];

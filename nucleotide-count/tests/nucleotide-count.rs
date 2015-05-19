@@ -1,9 +1,6 @@
-#![crate_type = "lib"]
+extern crate dna;
 
 use std::collections::HashMap;
-
-
-mod dna;
 
 fn check_dna(s: &str, pairs: &[(char, usize)]) {
     // The reason for the awkward code in here is to ensure that the failure
@@ -19,7 +16,6 @@ fn check_dna(s: &str, pairs: &[(char, usize)]) {
 }
 
 #[test]
-#[ignore]
 fn test_count_empty() {
     assert_eq!(dna::count('A', ""), 0);
 }

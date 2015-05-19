@@ -1,7 +1,4 @@
-#![ crate_name = "dominoes_test" ]
-#![ crate_type = "lib" ]
-
-mod dominoes;
+extern crate dominoes;
 
 use CheckResult::*;
 
@@ -68,7 +65,6 @@ fn check(input: &Vec<Domino>) -> CheckResult {
 }
 
 #[test]
-#[ignore]
 fn empty_input_empty_output() {
     let input = vec!();
     assert_eq!(dominoes::chain(&input), Some(vec!()));

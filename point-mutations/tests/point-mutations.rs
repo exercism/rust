@@ -1,9 +1,6 @@
-#![crate_type = "lib"]
-
-mod dna;
+extern crate dna;
 
 #[test]
-#[ignore]
 fn test_no_difference_between_empty_strands() {
     assert_eq!(dna::hamming_distance("", ""), 0);
 }

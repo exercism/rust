@@ -1,6 +1,4 @@
-#![crate_type = "lib"]
-
-mod set;
+extern crate set;
 
 use std::cmp::Ordering;
 
@@ -15,7 +13,6 @@ fn make_set(vec: Vec<usize>) -> CustomSet<usize> {
 }
 
 #[test]
-#[ignore]
 fn test_empty_set() {
     let set: CustomSet<()> = CustomSet::new();
     assert_eq!(set.len(), 0);

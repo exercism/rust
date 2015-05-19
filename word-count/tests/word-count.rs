@@ -1,10 +1,6 @@
-#![crate_type = "lib"]
-#![feature(collections)]
-
-
 use std::collections::HashMap;
 
-mod word_count;
+extern crate word_count;
 
 fn check_word_count(s: &str, pairs: Vec<(&str, u32)>) {
     // The reason for the awkward code in here is to ensure that the failure
@@ -20,7 +16,6 @@ fn check_word_count(s: &str, pairs: Vec<(&str, u32)>) {
 }
 
 #[test]
-#[ignore]
 fn test_no_words() {
     check_word_count("", vec![]);
     check_word_count("-!@#$ $#() @@@", vec![]);

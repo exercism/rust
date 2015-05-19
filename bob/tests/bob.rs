@@ -1,10 +1,6 @@
-#![crate_name = "bob_test"]
-#![crate_type = "lib"]
-
-mod bob;
+extern crate bob;
 
 #[test]
-#[ignore]
 fn test_statement() {
     assert_eq!("Whatever.", bob::reply("Tom-ay-to, tom-aaaah-to."));
 }

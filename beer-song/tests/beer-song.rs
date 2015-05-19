@@ -1,9 +1,6 @@
-#![crate_type = "lib"]
-
-mod beer;
+extern crate beer;
 
 #[test]
-#[ignore]
 fn test_verse_0() {
     assert_eq!(beer::verse(0), "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 }

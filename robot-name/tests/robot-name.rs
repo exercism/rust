@@ -1,11 +1,4 @@
-#![crate_type = "lib"]
-
-#![feature(rand)] 
-
-// XXX: start building and testing with cargo
-#![allow(deprecated)]
-
-mod robot;
+extern crate robot;
 
 /*
 These are the expected signatures:
@@ -32,7 +25,6 @@ fn assert_name_is_persistent(r: &robot::Robot) {
 }
 
 #[test]
-#[ignore]
 fn test_name_should_match_expected_pattern() {
     let r = robot::Robot::new();
     assert_name_matches_pattern(r.name());

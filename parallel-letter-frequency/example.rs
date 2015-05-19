@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
-use std::sync::Future;
+use std::thread;
+use std::sync::mpsc::channel;
+
 
 /// Compute the frequency of each letter (technically of each unicode codepoint) using the given
 /// number of worker threads.
@@ -20,10 +22,19 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
         parts[i].push(line.to_string());
         i = (i + 1) % num_workers;
     }
-    let futures = parts.into_iter().map(|part| Future::spawn(move || { count(part) }));
+
+    let (tx, rx) = channel();
+
+    for part in parts {
+        let tx = tx.clone();
+        thread::spawn(move || { 
+            tx.send(count(part)).unwrap();
+        });
+    }
+
     let mut results: HashMap<char, usize> = HashMap::new();
-    for mut fut in futures {
-        let part_results = fut.get();
+    for _ in 0..num_workers {
+        let part_results = rx.recv().unwrap();
         for (c, n) in part_results.into_iter() {
             match results.entry(c) {
                 Entry::Vacant(view) => { view.insert(n); },

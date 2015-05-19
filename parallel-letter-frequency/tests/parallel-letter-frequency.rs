@@ -1,10 +1,6 @@
-#![crate_type = "lib"]
-
-#![feature(std_misc)]
-
 use std::collections::HashMap;
 
-mod frequency;
+extern crate frequency;
 
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
 const ODE_AN_DIE_FREUDE: [&'static str; 8] = [
@@ -45,6 +41,7 @@ fn test_no_texts() {
 }
 
 #[test]
+#[ignore]
 fn test_one_letter() {
     let mut hm = HashMap::new();
     hm.insert('a', 1);
@@ -52,6 +49,7 @@ fn test_one_letter() {
 }
 
 #[test]
+#[ignore]
 fn test_case_insensitivity() {
     let mut hm = HashMap::new();
     hm.insert('a', 2);
@@ -59,6 +57,7 @@ fn test_case_insensitivity() {
 }
 
 #[test]
+#[ignore]
 fn test_many_empty_lines() {
     let mut v = Vec::with_capacity(1000);
     for _ in 0..1000 {
@@ -68,6 +67,7 @@ fn test_many_empty_lines() {
 }
 
 #[test]
+#[ignore]
 fn test_many_times_same_text() {
     let mut v = Vec::with_capacity(1000);
     for _ in 0..1000 {
@@ -81,16 +81,19 @@ fn test_many_times_same_text() {
 }
 
 #[test]
+#[ignore]
 fn test_punctuation_doesnt_count() {
     assert!(!frequency::frequency(&WILHELMUS, 4).contains_key(&','));
 }
 
 #[test]
+#[ignore]
 fn test_numbers_dont_count() {
     assert!(!frequency::frequency(&["Testing, 1, 2, 3"], 4).contains_key(&'1'));
 }
 
 #[test]
+#[ignore]
 fn test_all_three_anthems_1_worker() {
     let mut v = Vec::new();
     for anthem in [ODE_AN_DIE_FREUDE, WILHELMUS, STAR_SPANGLED_BANNER].iter() {
@@ -105,6 +108,7 @@ fn test_all_three_anthems_1_worker() {
 }
 
 #[test]
+#[ignore]
 fn test_all_three_anthems_3_workers() {
     let mut v = Vec::new();
     for anthem in [ODE_AN_DIE_FREUDE, WILHELMUS, STAR_SPANGLED_BANNER].iter() {
