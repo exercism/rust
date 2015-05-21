@@ -1,8 +1,3 @@
 [package]
 name = "word-count"
 version = "0.0.0"
-
-[lib]
-name = "word_count"
-path = "word-count.rs"
-
