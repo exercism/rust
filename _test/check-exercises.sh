@@ -17,7 +17,8 @@ for exercise in */tests; do
     # Run in subshell to change workdir without affecting current workdir.
     (
         cd $workdir
-        cp example.rs "${directory}.rs"
+        mkdir src
+        cp example.rs src/lib.rs
 
         # Forcibly strip all "ignore" statements from the testing files
         for test in tests/*.rs; do
