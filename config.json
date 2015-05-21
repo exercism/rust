@@ -2,7 +2,7 @@
   "slug": "rust",
   "language": "Rust",
   "repository": "https://github.com/exercism/xrust",
-  "active": false,
+  "active": true,
   "problems": [
     "dominoes",
     "leap",
