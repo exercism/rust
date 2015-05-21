@@ -1,4 +1,4 @@
-extern crate set;
+extern crate custom_set as set;
 
 use std::cmp::Ordering;
 

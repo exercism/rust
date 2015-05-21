@@ -1,4 +1,4 @@
-extern crate dna;
+extern crate rna_transcription as dna;
 
 #[test]
 fn test_acid_equals_acid() {
