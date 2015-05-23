@@ -1,4 +1,4 @@
-extern crate phone;
+extern crate phone_number as phone;
 
 #[test]
 fn test_number_cleans() {

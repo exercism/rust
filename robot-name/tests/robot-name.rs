@@ -1,4 +1,4 @@
-extern crate robot;
+extern crate robot_name as robot;
 
 /*
 These are the expected signatures:

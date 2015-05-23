@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-extern crate frequency;
+extern crate parallel_letter_frequency as frequency;
 
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
 const ODE_AN_DIE_FREUDE: [&'static str; 8] = [

@@ -1,4 +1,4 @@
-extern crate school;
+extern crate grade_school as school;
 
 fn stringvec_to_strvec(v: &Vec<String>) -> Vec<&str> {
     v.iter().map(|s| s.as_ref()).collect()
