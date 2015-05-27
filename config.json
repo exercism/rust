@@ -4,7 +4,6 @@
   "repository": "https://github.com/exercism/xrust",
   "active": true,
   "problems": [
-    "dominoes",
     "leap",
     "anagram",
     "word-count",
@@ -16,6 +15,7 @@
     "grade-school",
     "phone-number",
     "beer-song",
+    "dominoes",
     "parallel-letter-frequency",
     "custom-set",
     "tournament"
