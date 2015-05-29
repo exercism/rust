@@ -6,6 +6,7 @@
   "problems": [
     "leap",
     "anagram",
+    "allergies",
     "word-count",
     "point-mutations",
     "rna-transcription",
