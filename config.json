@@ -12,6 +12,7 @@
     "point-mutations",
     "rna-transcription",
     "nucleotide-count",
+    "nucleotide-codons",
     "robot-name",
     "etl",
     "raindrops",
