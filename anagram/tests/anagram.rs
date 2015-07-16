@@ -44,7 +44,7 @@ fn test_detect_anagram() {
 fn test_multiple_anagrams() {
     let inputs = ["gallery", "ballerina", "regally", "clergy", "largely", "leading"];
     let outputs: Vec<&str> = vec!["gallery", "regally", "largely"];
-    assert_eq!(anagram::anagrams_for("allergy", &inputs), outputs); 
+    assert_eq!(anagram::anagrams_for("allergy", &inputs), outputs);
 }
 
 #[test]
@@ -52,7 +52,7 @@ fn test_multiple_anagrams() {
 fn test_case_insensitive_anagrams() {
     let inputs = ["cashregister", "Carthorse", "radishes"];
     let outputs: Vec<&str> = vec!["Carthorse"];
-    assert_eq!(anagram::anagrams_for("Orchestra", &inputs), outputs); 
+    assert_eq!(anagram::anagrams_for("Orchestra", &inputs), outputs);
 }
 
 #[test]
@@ -78,6 +78,14 @@ fn test_misleading_unicode_anagrams() {
 #[ignore]
 fn test_does_not_detect_a_word_as_its_own_anagram() {
     let inputs = ["banana"];
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for("banana", &inputs), outputs);
+}
+
+
+#[test]
+fn test_does_not_detect_a_differently_cased_word_as_its_own_anagram() {
+    let inputs = ["bAnana"];
     let outputs: Vec<&str> = vec![];
     assert_eq!(anagram::anagrams_for("banana", &inputs), outputs);
 }
