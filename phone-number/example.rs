@@ -1,4 +1,4 @@
-pub fn number(s: &str) -> String {
+pub fn number(s: &str) -> Option<String> {
     let digits: String = s
         .chars()
         .filter(|&c| c.is_digit(10))
@@ -10,19 +10,18 @@ pub fn number(s: &str) -> String {
             _   => None
         },
         _  => None
-    }.unwrap_or("0000000000".to_string())
-
+    }
 }
 
-pub fn area_code(s: &str) -> String {
-    let n = number(s);
-    n[..3].to_string()
+pub fn area_code(s: &str) -> Option<String> {
+    number(s).map(|n| n[..3].to_string())
 }
 
 pub fn pretty_print(s: &str) -> String {
-    let n = number(s);
-    format!("({area}) {prefix}-{exchange}",
-            area=&n[..3],
-            prefix=&n[3..6],
-            exchange=&n[6..])
+    number(s).map(|n| 
+        format!("({area}) {prefix}-{exchange}",
+                area=&n[..3],
+                prefix=&n[3..6],
+                exchange=&n[6..])
+    ).unwrap_or("invalid".to_string())
 }
