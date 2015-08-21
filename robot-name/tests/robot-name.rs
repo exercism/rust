@@ -11,7 +11,7 @@ impl Robot {
 */
 
 fn assert_name_matches_pattern(n: &str) {
-    assert!(n[0..3].chars().all(|c| c >= 'A' && c <= 'Z'), "name starts with 3 letters");
+    assert!(n[0..2].chars().all(|c| c >= 'A' && c <= 'Z'), "name starts with 2 letters");
     assert!(n[3..].chars().all(|c| c >= '0' && c <= '9'), "name ends with 3 numbers");
 }
 
