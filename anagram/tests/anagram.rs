@@ -43,8 +43,11 @@ fn test_detect_anagram() {
 #[ignore]
 fn test_multiple_anagrams() {
     let inputs = ["gallery", "ballerina", "regally", "clergy", "largely", "leading"];
-    let outputs: Vec<&str> = vec!["gallery", "regally", "largely"];
-    assert_eq!(anagram::anagrams_for("allergy", &inputs), outputs);
+    let mut outputs: Vec<&str> = vec!["gallery", "regally", "largely"];
+    outputs.sort();
+    let mut result = anagram::anagrams_for("allergy", &inputs);
+    result.sort();
+    assert_eq!(result, outputs);
 }
 
 #[test]
