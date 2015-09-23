@@ -96,9 +96,51 @@ fn no_repeat_numbers() {
 
 #[test]
 #[ignore]
+fn can_reverse_dominoes() {
+    let input = vec![(1, 2), (1, 3), (2, 3)];
+    assert_correct(&input);
+}
+
+#[test]
+#[ignore]
 fn invalid_input() {
     let input = vec!((1, 2), (4, 1), (2, 3));
     assert_eq!(dominoes::chain(&input), None);
+}
+
+#[test]
+#[ignore]
+fn disconnected_simple() {
+    let input = vec![(1, 1), (2, 2)];
+    assert_eq!(dominoes::chain(&input), None);
+}
+
+#[test]
+#[ignore]
+fn disconnected_double_loop() {
+    let input = vec![(1, 2), (2, 1), (3, 4), (4, 3)];
+    assert_eq!(dominoes::chain(&input), None);
+}
+
+#[test]
+#[ignore]
+fn disconnected_single_isolated() {
+    let input = vec![(1, 2), (2, 3), (3, 1), (4, 4)];
+    assert_eq!(dominoes::chain(&input), None);
+}
+
+#[test]
+#[ignore]
+fn need_backtrack() {
+    let input = vec![(1, 2), (2, 3), (3, 1), (2, 4), (2, 4)];
+    assert_correct(&input);
+}
+
+#[test]
+#[ignore]
+fn separate_loops() {
+    let input = vec![(1, 2), (2, 3), (3, 1), (1, 1), (2, 2), (3, 3)];
+    assert_correct(&input);
 }
 
 #[test]
