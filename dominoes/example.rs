@@ -89,7 +89,13 @@ pub fn chain(dominoes: &Vec<Domino>) -> Option<Vec<Domino>> {
                     return None
                 }
             }
-            Some(chain_worker(dominoes))
+            let chain = chain_worker(dominoes);
+            if chain.len() == dominoes.len() {
+                Some(chain)
+            }
+            else {
+                None
+            }
         }
     }
 }
