@@ -149,3 +149,10 @@ fn ten_elements() {
     let input = vec!((1, 2), (5, 3), (3, 1), (1, 2), (2, 4), (1, 6), (2, 3), (3, 4), (5, 6));
     assert_correct(&input);
 }
+
+#[test]
+#[ignore]
+fn two_disjoint_chains() {
+    let input = &vec!((1, 2), (2, 1), (3, 4), (4, 3));
+    assert_eq!(dominoes::chain(&input), None);
+}
