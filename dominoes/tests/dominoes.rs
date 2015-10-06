@@ -115,3 +115,10 @@ fn ten_elements() {
         DominoMismatch(output) => panic!("Domino mistmatch for input {:?}, output {:?}", input, output),
     }
 }
+
+#[test]
+#[ignore]
+fn two_disjoint_chains() {
+    let input = &vec!((1, 2), (2, 1), (3, 4), (4, 3));
+    assert_eq!(dominoes::chain(&input), None);
+}
