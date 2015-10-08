@@ -27,7 +27,8 @@
     "custom-set",
     "tournament",
     "rectangles",
-    "forth"
+    "forth",
+    "circular-buffer"
   ],
   "deprecated": [
 
