@@ -19,6 +19,7 @@ fn test_century() {
 
 #[test]
 #[ignore]
-fn test_exceptional_century() {
+fn test_exceptional_centuries() {
     assert_eq!(leap::is_leap_year(2000), true);
+    assert_eq!(leap::is_leap_year(2400), true);
 }
