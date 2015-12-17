@@ -92,3 +92,11 @@ fn test_does_not_detect_a_differently_cased_word_as_its_own_anagram() {
     let outputs: Vec<&str> = vec![];
     assert_eq!(anagram::anagrams_for("banana", &inputs), outputs);
 }
+
+#[test]
+#[ignore]
+fn test_does_not_detect_a_differently_cased_unicode_word_as_its_own_anagram() {
+    let inputs = ["ΑΒγ"];
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for("ΑΒΓ", &inputs), outputs);
+}
