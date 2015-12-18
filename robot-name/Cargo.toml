@@ -3,5 +3,4 @@ name = "robot-name"
 version = "0.0.0"
 
 [dependencies]
-libc = "0.1.5"
-rand = "0.3.8"
+rand = "0.3.12"
