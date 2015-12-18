@@ -22,5 +22,5 @@ pub fn sing(start: i32, end: i32) -> String {
     for n in (end .. start + 1).rev() {
         song.push(verse(n))
     }
-    song.connect("\n")
+    song.join("\n")
 }
