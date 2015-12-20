@@ -4,3 +4,4 @@ script:
 - "./_test/check-exercises.sh"
 - "./bin/fetch-configlet"
 - "./bin/configlet ."
+sudo: false
