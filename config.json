@@ -4,6 +4,7 @@
   "repository": "https://github.com/exercism/xrust",
   "active": true,
   "problems": [
+    "hello-world",
     "leap",
     "anagram",
     "difference-of-squares",
