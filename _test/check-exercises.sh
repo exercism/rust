@@ -2,10 +2,11 @@
 
 set -e
 tmp=${TMPDIR:-/tmp/}
+mkdir "${tmp}exercises"
 
 # An exercise worth testing is defined here as any top level directory with
 # a 'tests' directory
-for exercise in */tests; do
+for exercise in exercises/*/tests; do
     # This assumes that exercises are only one directory deep
     # and that the primary module is named the same as the directory
     directory=$(dirname "${exercise}");
