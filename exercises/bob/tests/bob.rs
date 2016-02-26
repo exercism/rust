@@ -43,7 +43,7 @@ fn test_shout_without_punctuation() {
 
 #[test]
 #[ignore]
-fn test_shout_without_question_mark() {
+fn test_non_question_with_question_mark() {
     assert_eq!("Whatever.", bob::reply("Ending with ? means a question."));
 }
 
