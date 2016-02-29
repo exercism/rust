@@ -1,4 +1,4 @@
-extern crate point_mutations as dna;
+extern crate hamming as dna;
 
 #[test]
 fn test_no_difference_between_empty_strands() {

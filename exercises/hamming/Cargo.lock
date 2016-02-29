@@ -1,4 +1,4 @@
 [root]
-name = "point-mutations"
+name = "hamming"
 version = "0.0.0"
 
