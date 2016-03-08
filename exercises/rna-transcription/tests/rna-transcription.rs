@@ -35,10 +35,3 @@ fn test_transcribes_thymine_to_adenine() {
 fn test_transcribes_all_dna_to_rna() {
     assert_eq!(dna::RibonucleicAcid::new("UGCACCAGAAUU"), dna::DeoxyribonucleicAcid::new("ACGTGGTCTTAA").to_rna())
 }
-
-#[test]
-#[ignore]
-fn test_acid_converts_to_string() {
-    assert_eq!(dna::RibonucleicAcid::new("AGC").as_ref(), "AGC");
-    assert_eq!(dna::RibonucleicAcid::new("CGA").as_ref(), "CGA");
-}
