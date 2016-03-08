@@ -11,12 +11,6 @@ impl RibonucleicAcid {
     }
 }
 
-impl AsRef<str> for RibonucleicAcid {
-    fn as_ref(&self) -> &str {
-        self.nucleotides.as_ref()
-    }
-}
-
 #[derive(PartialEq, Eq, Debug)]
 pub struct DeoxyribonucleicAcid {
     nucleotides: String
