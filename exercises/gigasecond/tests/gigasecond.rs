@@ -1,6 +1,17 @@
 extern crate gigasecond;
 
-//Note: Your code must also start with the following two lines.
+/*
+ * Students,
+ *
+ * Rust does not currently have a library for handling Time. To solve this exercise
+ * you'll need to use the Chrono 'crate' (which is Rust's term for an external library).
+ *
+ * The first time you run `cargo test`, the Chrono crate will automatically be downloaded
+ * and installed. More information on crates can be found at
+ * https://doc.rust-lang.org/book/guessing-game.html#generating-a-secret-number
+ *
+ * In order to use the crate, your solution will need to start with the two following lines
+*/
 extern crate chrono;
 use chrono::*;
 
