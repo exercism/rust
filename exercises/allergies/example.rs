@@ -4,6 +4,10 @@ pub struct Allergies(pub usize);
 pub enum Allergen { Eggs, Peanuts, Shellfish, Strawberries, Tomatoes, Chocolate, Pollen, Cats }
 
 impl Allergies {
+    pub fn new(score: usize) -> Allergies {
+        Allergies(score)
+    }
+
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
         let allergens = Allergies::allergens();
         let index = allergens.iter().position(|x: &Allergen| x == allergen).unwrap();
