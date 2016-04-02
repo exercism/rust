@@ -11,7 +11,7 @@ impl Queen {
         }
     }
 
-    pub fn can_attack(&self, piece: Queen) -> bool {
+    pub fn can_attack(&self, piece: &Queen) -> bool {
         self.horizontal_from(&piece) ||
             self.vertical_from(&piece) ||
             self.diagonal_from(&piece)
