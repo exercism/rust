@@ -7,7 +7,7 @@ The following steps assume that you are in the same directory as the exercise.
 
 You must have rust installed.
 Follow the [Installing Rust chapter in the Rust book](http://doc.rust-lang.org/stable/book/installing-rust.html).
-The [getting started with rust](http://help.exercism.io/getting-started-with-rust.html)
+The [Rust language section](http://exercism.io/languages/rust)
 section from exercism is also useful.
 
 ## Step 1
