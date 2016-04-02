@@ -20,5 +20,5 @@ if you wish.
 Make sure to read the [Crates and Modules](crates-and-modules) chapter if you
 haven't already, it will help you with organizing your files.
 
-[help-page]: http://help.exercism.io/getting-started-with-rust.html
+[help-page]: http://exercism.io/languages/rust
 [crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
