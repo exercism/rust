@@ -110,7 +110,7 @@ fn can_reverse_dominoes() {
 
 #[test]
 #[ignore]
-fn invalid_input() {
+fn no_chains() {
     let input = vec!((1, 2), (4, 1), (2, 3));
     assert_eq!(dominoes::chain(&input), None);
 }
