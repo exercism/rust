@@ -4,26 +4,26 @@ use sieve::*;
 
 #[test]
 fn limit_lower_than_the_first_prime() {
-    assert_eq!(Sieve::primes_up_to(1), []);
+    assert_eq!(sieve::primes_up_to(1), []);
 }
 
 #[test]
 #[ignore]
 fn limit_is_the_first_prime() {
-    assert_eq!(Sieve::primes_up_to(2), [2]);
+    assert_eq!(sieve::primes_up_to(2), [2]);
 }
 
 #[test]
 #[ignore]
 fn primes_up_to_10() {
-    assert_eq!(Sieve::primes_up_to(10), [2, 3, 5, 7]);
+    assert_eq!(sieve::primes_up_to(10), [2, 3, 5, 7]);
 }
 
 
 #[test]
 #[ignore]
 fn limit_is_prime() {
-    assert_eq!(Sieve::primes_up_to(13), [2, 3, 5, 7, 11, 13]);
+    assert_eq!(sieve::primes_up_to(13), [2, 3, 5, 7, 11, 13]);
 }
 
 #[test]
@@ -40,5 +40,5 @@ fn limit_of_1000() {
                         701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809,
                         811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907,
                         911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997];
-    assert_eq!(Sieve::primes_up_to(1000), expected);
+    assert_eq!(sieve::primes_up_to(1000), expected);
 }
