@@ -18,12 +18,14 @@ pub struct Roman {
     num: usize
 }
 
-impl Roman {
-    pub fn from(source: usize) -> String {
-        Roman::new(source).convert()
+impl From<usize> for Roman {
+    fn from(i: usize) -> Self {
+        Roman::new(i)
     }
+}
 
-    fn convert(&self) -> String {
+impl ToString for Roman {
+    fn to_string(&self) -> String {
         let mut start = self.num.clone();
         let mut result = String::new();
         for &(numeric, roman_string) in ROMAN_MAP.into_iter().rev() {
@@ -34,7 +36,9 @@ impl Roman {
         }
         result
     }
+}
 
+impl Roman {
     fn new(num: usize) -> Roman {
         Roman {
             num: num,
