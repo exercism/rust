@@ -19,12 +19,17 @@ for exercise in exercises/*/tests; do
     (
         cd $workdir
         [ -d src ] || mkdir src
+
         cp example.rs src/lib.rs
 
         # Forcibly strip all "ignore" statements from the testing files
         for test in tests/*.rs; do
             sed -i '/\[ignore\]/d' $test
         done
+
+        if [ -n "$DENYWARNINGS" ]; then
+            sed -i -e '1i #![deny(warnings)]' src/lib.rs
+        fi
 
         # Run the test and get the status
         cargo test

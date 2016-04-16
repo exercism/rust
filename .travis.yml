@@ -10,5 +10,9 @@ rust:
   - beta
   - nightly
 matrix:
+  include:
+    - rust: stable
+      env: DENYWARNINGS=1
   allow_failures:
+    - env: DENYWARNINGS=1
     - rust: nightly
