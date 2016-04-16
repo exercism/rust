@@ -35,10 +35,17 @@ for exercise in exercises/*/tests; do
 
         if [ -n "$DENYWARNINGS" ]; then
             sed -i -e '1i #![deny(warnings)]' src/lib.rs
-        fi
 
-        # Run the test and get the status
-        cargo test
+            # No-run mode so we see no test output.
+            # Quiet mode so we see no compile output
+            # (such as "Compiling"/"Downloading").
+            # Compiler errors will still be shown though.
+            # Both flags are necessary to keep things quiet.
+            cargo test --quiet --no-run
+        else
+            # Run the test and get the status
+            cargo test
+        fi
     )
 
     status=$?
