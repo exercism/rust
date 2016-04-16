@@ -26,6 +26,10 @@ for exercise in exercises/*/tests; do
             sed -i '/\[ignore\]/d' $test
         done
 
+        if [ -n "$DENYWARNINGS" ]; then
+            sed -i -e '1i #![deny(warnings)]' src/lib.rs
+        fi
+
         # Run the test and get the status
         cargo test
     )
