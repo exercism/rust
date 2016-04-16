@@ -1,8 +1,15 @@
 #!/bin/bash
 
-set -e
+# In DENYWARNINGS mode, do not set -e so that we run all tests.
+# This allows us to see all warnings.
+if [ -z "$DENYWARNINGS" ]; then
+    set -e
+fi
+
 tmp=${TMPDIR:-/tmp/}
 mkdir "${tmp}exercises"
+
+exitcode=0
 
 # An exercise worth testing is defined here as any top level directory with
 # a 'tests' directory
@@ -39,7 +46,8 @@ for exercise in exercises/*/tests; do
 
     if [ $status -ne 0 ]
     then
-        echo "Failed";
-        return 1;
+        exitcode=1
     fi
 done
+
+exit $exitcode
