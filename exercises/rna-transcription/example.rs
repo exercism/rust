@@ -1,5 +1,3 @@
-use std::convert::AsRef;
-
 #[derive(PartialEq, Eq, Debug)]
 pub struct RibonucleicAcid {
     nucleotides: String
