@@ -9,9 +9,11 @@ rust:
   - stable
   - beta
   - nightly
+env:
+  - DENYWARNINGS=
+  - DENYWARNINGS=1
 matrix:
-  include:
-    - rust: stable
-      env: DENYWARNINGS=1
   allow_failures:
     - rust: nightly
+    - rust: beta
+      env: DENYWARNINGS=1
