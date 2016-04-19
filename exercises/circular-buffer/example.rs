@@ -4,14 +4,14 @@ pub enum Error {
     FullBuffer,
 }
 
-pub struct CircularBuffer<T: Default> {
+pub struct CircularBuffer<T: Default + Clone> {
     buffer: Vec<T>,
     size: usize,
     start: usize,
     end: usize,
 }
 
-impl<T: Default> CircularBuffer<T> {
+impl<T: Default + Clone> CircularBuffer<T> {
     // this circular buffer keeps an unallocated slot between the start and the end
     // when the buffer is full. 
     pub fn new(size: usize) -> CircularBuffer<T> {
@@ -28,7 +28,7 @@ impl<T: Default> CircularBuffer<T> {
             return Err(Error::EmptyBuffer);
         }
 
-        let v = *self.buffer.get(self.start).unwrap();
+        let v = self.buffer.get(self.start).unwrap().clone();
         self.advance_start();
         Ok(v)
     }
