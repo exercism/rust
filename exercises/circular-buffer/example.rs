@@ -16,7 +16,7 @@ impl<T: Default> CircularBuffer<T> {
     // when the buffer is full. 
     pub fn new(size: usize) -> CircularBuffer<T> {
         CircularBuffer { 
-            buffer: vec![T::Default; size + 1], 
+            buffer: vec![T::default(); size + 1], 
             size: size + 1, 
             start: 0, 
             end: 0 
