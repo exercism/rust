@@ -4,36 +4,36 @@ pub enum Error {
     FullBuffer,
 }
 
-pub struct CircularBuffer {
-    buffer: Vec<char>,
+pub struct CircularBuffer<T: Default + Clone> {
+    buffer: Vec<T>,
     size: usize,
     start: usize,
     end: usize,
 }
 
-impl CircularBuffer {
+impl<T: Default + Clone> CircularBuffer<T> {
     // this circular buffer keeps an unallocated slot between the start and the end
     // when the buffer is full. 
-    pub fn new(size: usize) -> CircularBuffer {
+    pub fn new(size: usize) -> CircularBuffer<T> {
         CircularBuffer { 
-            buffer: vec!['0'; size + 1], 
+            buffer: vec![T::default(); size + 1], 
             size: size + 1, 
             start: 0, 
             end: 0 
         }
     }
 
-    pub fn read(&mut self) -> Result<char, Error> {
+    pub fn read(&mut self) -> Result<T, Error> {
         if self.is_empty() {
             return Err(Error::EmptyBuffer);
         }
 
-        let v = *self.buffer.get(self.start).unwrap();
+        let v = self.buffer.get(self.start).unwrap().clone();
         self.advance_start();
         Ok(v)
     }
 
-    pub fn write(&mut self, byte: char) -> Result<(), Error> {
+    pub fn write(&mut self, byte: T) -> Result<(), Error> {
         if self.is_full() {
             return Err(Error::FullBuffer);
         } 
@@ -44,7 +44,7 @@ impl CircularBuffer {
         
     }
 
-    pub fn overwrite(&mut self, byte: char) {
+    pub fn overwrite(&mut self, byte: T) {
         if self.is_full() {
             self.advance_start();
         }
