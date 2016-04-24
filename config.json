@@ -5,6 +5,7 @@
   "active": true,
   "problems": [
     "hello-world",
+    "gigasecond",
     "leap",
     "anagram",
     "difference-of-squares",
@@ -12,7 +13,6 @@
     "allergies",
     "word-count",
     "hamming",
-    "gigasecond",
     "rna-transcription",
     "nucleotide-count",
     "nucleotide-codons",
