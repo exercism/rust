@@ -1,8 +1,15 @@
 #!/bin/bash
 
-set -e
+# In DENYWARNINGS mode, do not set -e so that we run all tests.
+# This allows us to see all warnings.
+if [ -z "$DENYWARNINGS" ]; then
+    set -e
+fi
+
 tmp=${TMPDIR:-/tmp/}
 mkdir "${tmp}exercises"
+
+exitcode=0
 
 # An exercise worth testing is defined here as any top level directory with
 # a 'tests' directory
@@ -26,15 +33,27 @@ for exercise in exercises/*/tests; do
             sed -i '/\[ignore\]/d' $test
         done
 
-        # Run the test and get the status
-        cargo test
+        if [ -n "$DENYWARNINGS" ]; then
+            sed -i -e '1i #![deny(warnings)]' src/lib.rs
+
+            # No-run mode so we see no test output.
+            # Quiet mode so we see no compile output
+            # (such as "Compiling"/"Downloading").
+            # Compiler errors will still be shown though.
+            # Both flags are necessary to keep things quiet.
+            cargo test --quiet --no-run
+        else
+            # Run the test and get the status
+            cargo test
+        fi
     )
 
     status=$?
 
     if [ $status -ne 0 ]
     then
-        echo "Failed";
-        return 1;
+        exitcode=1
     fi
 done
+
+exit $exitcode
