@@ -1,78 +1,69 @@
-#[derive(Debug, PartialEq)]
-pub struct Queen { position: ChessPosition }
+pub struct Queen {
+    position: ChessPosition,
+}
+pub trait ChessPiece {
+    fn position(&self) -> &ChessPosition;
+    fn can_attack<T: ChessPiece>(&self, other: &T) -> bool;
+}
 
-impl Queen {
-    pub fn new(position: (i8, i8)) -> Result<Queen, ()> {
-        let position = ChessPosition::new(position);
-        if position.valid() {
-            Ok(Queen { position: position })
-        } else {
-            Err(())
-        }
+impl ChessPiece for Queen {
+    fn position(&self) -> &ChessPosition {
+        &self.position
     }
 
-    pub fn can_attack(&self, piece: &Queen) -> bool {
-        self.horizontal_from(&piece) ||
-            self.vertical_from(&piece) ||
-            self.diagonal_from(&piece)
-    }
-
-    fn horizontal_from(&self, piece: &Queen) -> bool {
-        self.rank() == piece.rank()
-    }
-
-    fn vertical_from(&self, piece: &Queen) -> bool {
-        self.file() == piece.file()
-    }
-
-    fn diagonal_from(&self, piece: &Queen) -> bool {
-        self.sum() == piece.sum() ||
-            self.difference() == piece.difference()
-    }
-
-    fn rank(&self) -> i8 {
-        self.position.rank()
-    }
-
-    fn file(&self) -> i8 {
-        self.position.file()
-    }
-
-    fn sum(&self) -> i8 {
-        self.position.sum()
-    }
-
-    fn difference(&self) -> i8 {
-        self.position.difference()
+    fn can_attack<T: ChessPiece>(&self, piece: &T) -> bool {
+        self.position.horizontal_from(&piece.position()) ||
+        self.position.vertical_from(&piece.position()) ||
+        self.position.diagonal_from(&piece.position())
     }
 }
 
-#[derive(Debug, PartialEq)]
-struct ChessPosition { coordinates: (i8, i8) }
+impl Queen {
+    pub fn new(position: ChessPosition) -> Queen {
+        Queen { position: position }
+    }
+}
+
+pub struct ChessPosition {
+    pub rank: i8,
+    pub file: i8,
+}
 
 impl ChessPosition {
-    fn new(coordinates: (i8, i8)) -> ChessPosition {
-        ChessPosition {coordinates: coordinates}
+    pub fn new(rank: i8, file: i8) -> Result<ChessPosition, String> {
+        let position = ChessPosition {
+            rank: rank,
+            file: file,
+        };
+
+        if position.is_valid() {
+            Ok(position)
+        } else {
+            Err(String::from("Invalid Position"))
+        }
     }
 
-    fn valid(&self) -> bool {
-        (self.rank() >= 0 && self.rank() <= 7) &&
-        (self.file() >= 0 && self.file() <= 7)
+    fn is_valid(&self) -> bool {
+        self.rank >= 0 && self.rank <= 7 && self.file >= 0 && self.file <= 7
     }
 
-    fn rank(&self) -> i8 {
-        self.coordinates.0
+    fn horizontal_from(&self, other: &ChessPosition) -> bool {
+        self.rank == other.rank
     }
 
-    fn file(&self) -> i8 {
-        self.coordinates.1
+    fn vertical_from(&self, other: &ChessPosition) -> bool {
+        self.file == other.file
+    }
+
+    fn diagonal_from(&self, other: &ChessPosition) -> bool {
+        self.sum() == other.sum() || self.difference() == other.difference()
     }
 
     fn sum(&self) -> i8 {
-        self.rank() + self.file()
+        self.rank + self.file
     }
 
     fn difference(&self) -> i8 {
-        self.rank() - self.file()
+        self.rank - self.file
     }
 }
