@@ -17,7 +17,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](crates-and-modules) chapter if you
+Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 [help-page]: http://exercism.io/languages/rust
