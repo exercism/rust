@@ -25,20 +25,12 @@ impl<T: Ord + Clone> CustomSet<T> {
         }
     }
 
-    pub fn delete(&mut self, element: &T) {
-        self.collection.retain(|x| x != element)
-    }
-
     pub fn contains(&self, other: &T) -> bool {
         self.collection.contains(other)
     }
 
     pub fn is_empty(&self) -> bool {
         self.collection.is_empty()
-    }
-
-    pub fn size(&self) -> usize {
-        self.collection.len()
     }
 
     pub fn is_subset(&self, other: &Self) -> bool {
@@ -70,15 +62,6 @@ impl<T: Ord + Clone> CustomSet<T> {
                            .iter()
                            .cloned()
                            .filter(|c| !other.contains(c))
-                           .collect())
-    }
-
-    pub fn symmetric_difference(&self, other: &Self) -> CustomSet<T> {
-        CustomSet::new(self.difference(other)
-                           .collection
-                           .iter()
-                           .cloned()
-                           .chain(other.difference(self).collection.iter().cloned())
                            .collect())
     }
 }
