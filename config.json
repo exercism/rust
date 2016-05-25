@@ -15,6 +15,7 @@
     "rna-transcription",
     "nucleotide-count",
     "nucleotide-codons",
+    "scrabble-score",
     "roman-numerals",
     "robot-name",
     "etl",
