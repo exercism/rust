@@ -13,6 +13,7 @@
     "difference-of-squares",
     "hamming",
     "scrabble-score",
+    "pangram",
     "nucleotide-count",
     "word-count",
     "etl",
