@@ -1,5 +1,4 @@
 *.swp
-*.beam
 *.bk
 .DS_Store
 **/src
