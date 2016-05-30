@@ -45,6 +45,8 @@ fn test_allergic_to_everything() {
                    Allergen::Chocolate, Allergen::Pollen, Allergen::Cats];
     let allergies = Allergies::new(255).allergies();
 
+    assert_eq!(allergies.len(), all.len());
+
     for allergy in &all {
         assert!(allergies.contains(&allergy));
     }
