@@ -40,10 +40,16 @@ fn test_just_to_peanuts() {
 #[test]
 #[ignore]
 fn test_allergic_to_everything() {
-    assert_eq!(vec![Allergen::Eggs, Allergen::Peanuts, Allergen::Shellfish,
-                    Allergen::Strawberries, Allergen::Tomatoes, Allergen::Chocolate,
-                    Allergen::Pollen, Allergen::Cats],
-        Allergies::new(255).allergies());
+    let all = vec![Allergen::Eggs, Allergen::Peanuts, Allergen::Shellfish,
+                   Allergen::Strawberries, Allergen::Tomatoes,
+                   Allergen::Chocolate, Allergen::Pollen, Allergen::Cats];
+    let allergies = Allergies::new(255).allergies();
+
+    assert_eq!(allergies.len(), all.len());
+
+    for allergy in &all {
+        assert!(allergies.contains(&allergy));
+    }
 }
 
 #[test]
