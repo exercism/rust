@@ -1,6 +1,8 @@
 *.swp
-*.beam
+*.bk
 .DS_Store
+**/src
+**/target
 tmp
 bin/configlet
 bin/configlet.exe
