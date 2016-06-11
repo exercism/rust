@@ -3,10 +3,8 @@ extern crate allergies;
 use allergies::*;
 
 fn compare_allergy_vectors(expected: &Vec<Allergen>, actual: &Vec<Allergen>) {
-    assert_eq!(actual.len(), expected.len());
-
-    for allergy in expected {
-        assert!(actual.contains(&allergy));
+    if !expected.iter().eq(actual.iter()) {
+        panic!("Expected {:?}, got {:?}", expected, actual);
     }
 }
 
