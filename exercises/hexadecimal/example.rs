@@ -16,21 +16,18 @@ fn parse_hex_digit(c: char) -> Option<i64> {
         'd' => Some(13),
         'e' => Some(14),
         'f' => Some(15),
-        _   => None,
+        _ => None,
     }
 }
 
 pub fn hex_to_int(string: &str) -> Option<i64> {
     let base: i64 = 16;
-    let positions = 0 .. string.len() as u32;
+    let positions = 0..string.len() as u32;
 
-    string
-        .chars()
-        .rev()
-        .zip(positions)
-        .fold(Some(0), |acc, (c, pos)| {
-            parse_hex_digit(c).and_then(|n| {
-                acc.map(|acc| acc + n * base.pow(pos))
-            })
-        })
+    string.chars()
+          .rev()
+          .zip(positions)
+          .fold(Some(0), |acc, (c, pos)| {
+              parse_hex_digit(c).and_then(|n| acc.map(|acc| acc + n * base.pow(pos)))
+          })
 }

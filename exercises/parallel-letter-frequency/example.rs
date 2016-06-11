@@ -10,9 +10,13 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
     assert!(num_workers > 0);
     let part_size_floor = texts.len() / num_workers;
     let rem = texts.len() % num_workers;
-    let part_size = if rem > 0 { part_size_floor + 1 } else { part_size_floor };
+    let part_size = if rem > 0 {
+        part_size_floor + 1
+    } else {
+        part_size_floor
+    };
     let mut parts: Vec<Vec<String>> = Vec::with_capacity(part_size);
-    for _ in 0 .. num_workers {
+    for _ in 0..num_workers {
         parts.push(Vec::with_capacity(part_size));
     }
     let mut i = 0;
@@ -27,7 +31,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
 
     for part in parts {
         let tx = tx.clone();
-        thread::spawn(move || { 
+        thread::spawn(move || {
             tx.send(count(part)).unwrap();
         });
     }
@@ -37,7 +41,9 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
         let part_results = rx.recv().unwrap();
         for (c, n) in part_results.into_iter() {
             match results.entry(c) {
-                Entry::Vacant(view) => { view.insert(n); },
+                Entry::Vacant(view) => {
+                    view.insert(n);
+                }
                 Entry::Occupied(mut view) => {
                     *view.get_mut() += n;
                 }
@@ -53,7 +59,9 @@ fn count(lines: Vec<String>) -> HashMap<char, usize> {
         for c in line.chars() {
             if c.is_alphabetic() {
                 match results.entry(c.to_lowercase().next().unwrap()) {
-                    Entry::Vacant(view) => { view.insert(1); },
+                    Entry::Vacant(view) => {
+                        view.insert(1);
+                    }
                     Entry::Occupied(mut view) => {
                         *view.get_mut() += 1;
                     }

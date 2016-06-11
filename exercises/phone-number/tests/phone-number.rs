@@ -6,7 +6,8 @@ fn to_some_string(s: &str) -> Option<String> {
 
 #[test]
 fn test_number_cleans() {
-    assert_eq!(phone::number("(123) 456-7890"), to_some_string("1234567890"));
+    assert_eq!(phone::number("(123) 456-7890"),
+               to_some_string("1234567890"));
 }
 
 #[test]
@@ -48,13 +49,15 @@ fn test_invalid_when_no_digits_present() {
 #[test]
 #[ignore]
 fn test_valid_with_leading_characters() {
-    assert_eq!(phone::number("my number is 123 456 7890"), to_some_string("1234567890"));
+    assert_eq!(phone::number("my number is 123 456 7890"),
+               to_some_string("1234567890"));
 }
 
 #[test]
 #[ignore]
 fn test_valid_with_trailing_characters() {
-    assert_eq!(phone::number("123 456 7890 - bob"), to_some_string("1234567890"));
+    assert_eq!(phone::number("123 456 7890 - bob"),
+               to_some_string("1234567890"));
 }
 
 #[test]

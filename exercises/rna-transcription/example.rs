@@ -1,6 +1,6 @@
 #[derive(PartialEq, Eq, Debug)]
 pub struct RibonucleicAcid {
-    nucleotides: String
+    nucleotides: String,
 }
 
 impl RibonucleicAcid {
@@ -11,7 +11,7 @@ impl RibonucleicAcid {
 
 #[derive(PartialEq, Eq, Debug)]
 pub struct DeoxyribonucleicAcid {
-    nucleotides: String
+    nucleotides: String,
 }
 
 fn transcribe_dna_rna(c: char) -> char {
@@ -20,7 +20,7 @@ fn transcribe_dna_rna(c: char) -> char {
         'G' => 'C',
         'A' => 'U',
         'T' => 'A',
-        _   => c
+        _ => c,
     }
 }
 
