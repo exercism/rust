@@ -8,8 +8,8 @@ type Domino = (usize, usize);
 enum CheckResult {
     GotInvalid, // chain returned None
     Correct,
-    ChainingFailure(Vec<Domino>), /* failure to match the dots at the right side of one domino with */
-    // the one on the left side of the next
+    ChainingFailure(Vec<Domino>), /* failure to match the dots at the right side of one domino with
+                                   * the one on the left side of the next */
     LengthMismatch(Vec<Domino>),
     DominoMismatch(Vec<Domino>), // different dominoes are used in input and output
 }
