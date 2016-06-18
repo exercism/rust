@@ -44,7 +44,8 @@
   ],
   "ignored": [
     "_test",
-    "docs"
+    "docs",
+    "img"
   ],
   "foregone": [
 
