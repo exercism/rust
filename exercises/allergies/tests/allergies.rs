@@ -3,8 +3,18 @@ extern crate allergies;
 use allergies::*;
 
 fn compare_allergy_vectors(expected: &Vec<Allergen>, actual: &Vec<Allergen>) {
-    if !expected.iter().eq(actual.iter()) {
-        panic!("Expected {:?}, got {:?}", expected, actual);
+    for element in expected {
+        if !actual.contains(element) {
+            panic!("Allergen missing\n  {:?} should be in {:?}",
+                   element,
+                   actual);
+        }
+    }
+
+    if actual.len() != expected.len() {
+        panic!("Allergy vectors are of different lengths\n  expected {:?}\n  got {:?}",
+               expected,
+               actual);
     }
 }
 
