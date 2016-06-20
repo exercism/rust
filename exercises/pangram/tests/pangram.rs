@@ -45,7 +45,7 @@ fn numbers_do_not_affect_pangrams() {
 
 #[test]
 #[ignore]
-fn numbers_can_not_replace_numbers() {
+fn numbers_can_not_replace_letters() {
     let sentence = "7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog";
     assert!(!is_pangram(&sentence));
 }
