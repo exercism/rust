@@ -12,6 +12,7 @@
     "beer-song",
     "difference-of-squares",
     "hamming",
+    "transpose",
     "scrabble-score",
     "pangram",
     "nucleotide-count",
@@ -37,8 +38,7 @@
     "tournament",
     "rectangles",
     "forth",
-    "circular-buffer",
-    "transpose"
+    "circular-buffer"
   ],
   "deprecated": [
 
