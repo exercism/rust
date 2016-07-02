@@ -1,8 +1,5 @@
 use std::cmp::Ordering::Equal;
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::{BufRead, BufReader, Write, Result};
-use std::path::Path;
 
 enum GameResult {
     Win,
@@ -29,12 +26,9 @@ impl TeamResult {
     }
 }
 
-pub fn tally(input_filename: &Path, output_filename: &Path) -> Result<u32> {
-    let reader = BufReader::with_capacity(2048, File::open(input_filename).unwrap());
-    let mut count = 0;
+pub fn tally(input: &str) -> String {
     let mut results: HashMap<String, TeamResult> = HashMap::new();
-    for line in reader.lines() {    
-        let line = line.unwrap();
+    for line in input.to_string().lines() {
         let parts: Vec<&str> = line.trim_right().split(';').collect(); 
         if parts.len() != 3 { continue; }
         let team1 = parts[0];
@@ -44,26 +38,22 @@ pub fn tally(input_filename: &Path, output_filename: &Path) -> Result<u32> {
             "win" => {
                 add_game_result(&mut results, team1.to_string(), GameResult::Win);
                 add_game_result(&mut results, team2.to_string(), GameResult::Loss);
-                count += 1;
             },
             "draw" => {
                 add_game_result(&mut results, team1.to_string(), GameResult::Draw);
                 add_game_result(&mut results, team2.to_string(), GameResult::Draw);
-                count += 1;
             },
             "loss" => {
                 add_game_result(&mut results, team1.to_string(), GameResult::Loss);
                 add_game_result(&mut results, team2.to_string(), GameResult::Win);
-                count += 1;
             },
             _ => () // Ignore bad lines
         }
     }
-    try!(write_tally(&results, output_filename));
-    Ok(count)
+    write_tally(&results)
 }
 
-fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) -> Result<()> {
+fn write_tally(results: &HashMap<String, TeamResult>) -> String {
     let mut v: Vec<_> = results.iter().map(|(team, r)| {
         let games = r.wins + r.draws + r.losses;
         let points = r.wins * 3 + r.draws;
@@ -75,13 +65,12 @@ fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) ->
                   Equal => a.1.cmp(&(b.1)).reverse(),
                   other => other
               });
-    let mut f = try!(File::create(output_filename));
-    try!(writeln!(&mut f, "{:30} | MP |  W |  D |  L |  P", "Team"));
-    for &(ref team, games, r, points) in v.iter() {
-        try!(writeln!(&mut f, "{:30} | {:2} | {:2} | {:2} | {:2} | {:2}",
-                      team, games, r.wins, r.draws, r.losses, points));
-    }
-    Ok(())
+    let header = format!("{:30} | MP |  W |  D |  L |  P\n", "Team");
+    let lines: Vec<_> = v.iter().map(|&(ref team, games, r, points)| {
+        format!("{:30} | {:2} | {:2} | {:2} | {:2} | {:2}",
+                team, games, r.wins, r.draws, r.losses, points)
+    }).collect();
+    header + &lines.join("\n")
 }
 
 fn add_game_result(results: &mut HashMap<String, TeamResult>, team: String, result: GameResult) {
