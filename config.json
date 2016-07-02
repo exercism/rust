@@ -37,7 +37,8 @@
     "tournament",
     "rectangles",
     "forth",
-    "circular-buffer"
+    "circular-buffer",
+    "transpose"
   ],
   "deprecated": [
 
