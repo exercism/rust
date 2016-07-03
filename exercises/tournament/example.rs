@@ -1,6 +1,5 @@
 use std::cmp::Ordering::Equal;
 use std::collections::HashMap;
-use std::collections::hash_map::Entry;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write, Result};
 use std::path::Path;
@@ -87,14 +86,5 @@ fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) ->
 }
 
 fn add_game_result(results: &mut HashMap<String, TeamResult>, team: String, result: GameResult) {
-    match results.entry(team) {
-        Entry::Vacant(entry) => {
-            let mut tr = TeamResult::new();
-            tr.add_game_result(result);
-            entry.insert(tr);
-        }
-        Entry::Occupied(mut entry) => {
-            (*entry.get_mut()).add_game_result(result);
-        }
-    };
+    results.entry(team).or_insert(TeamResult::new()).add_game_result(result);
 }
