@@ -111,14 +111,9 @@ fn chain_worker(dominoes: &Vec<Domino>) -> Vec<Domino> {
     let mut v: Vec<Domino> = Vec::new();
     v.push(first);
     let mut n = first.1; // Number to connect to
-    loop {
-        match t.pop_first(n) {
-            None => break,
-            Some(m) => {
-                v.push((n, m));
-                n = m;
-            }
-        }
+    while let Some(m) = t.pop_first(n) {
+        v.push((n, m));
+        n = m;
     }
     v
 }
