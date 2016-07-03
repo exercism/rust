@@ -73,11 +73,8 @@ impl Forth {
     }
 
     fn run(&mut self) -> ForthResult {
-        loop {
-            match self.code.pop_front() {
-                Some(term) => try!(self.step_term(term)),
-                None       => break,
-            }
+        while let Some(term) = self.code.pop_front() {
+            try!(self.step_term(term))
         }
 
         Forth::ok()
