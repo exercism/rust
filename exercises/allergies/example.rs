@@ -11,7 +11,7 @@ impl Allergies {
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
         let allergens = Allergies::allergens();
         let index = allergens.iter().position(|x: &Allergen| x == allergen).unwrap();
-        match self.0 & 1 << index { 0 => false, _ => true }
+        (self.0 & (1 << index)) != 0
     }
 
     pub fn allergies(&self) -> Vec<Allergen> {
