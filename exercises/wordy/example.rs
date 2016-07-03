@@ -64,8 +64,7 @@ impl WordProblem {
     }
 
     fn operand(&self, t: &Token) -> isize {
-        let x: isize = t.value.parse().unwrap();
-        x
+        t.value.parse().unwrap()
     }
 
     fn operator(&self, t: &Token) -> String {
