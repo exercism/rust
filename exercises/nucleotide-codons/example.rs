@@ -5,15 +5,9 @@ pub struct CodonInfo<'a> {
 }
 
 pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonInfo<'a> {
-    let mut info = CodonInfo{
-        // Allocate once for the worst case, shrink later.
-        actual_codons: HashMap::with_capacity(pairs.len())
-    };
-    for (codon, name) in pairs.into_iter() {
-        info.actual_codons.insert(codon, name);
-    };
-    info.actual_codons.shrink_to_fit();
-    info
+    CodonInfo{
+        actual_codons: pairs.into_iter().collect()
+    }
 }
 
 impl<'a> CodonInfo<'a> {

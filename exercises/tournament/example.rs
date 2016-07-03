@@ -64,12 +64,11 @@ pub fn tally(input_filename: &Path, output_filename: &Path) -> Result<u32> {
 }
 
 fn write_tally(results: &HashMap<String, TeamResult>, output_filename: &Path) -> Result<()> {
-    let mut v: Vec<(&String, u32, &TeamResult, u32)> = Vec::new();
-    for (team, r) in results.iter() {
+    let mut v: Vec<_> = results.iter().map(|(team, r)| {
         let games = r.wins + r.draws + r.losses;
         let points = r.wins * 3 + r.draws;
-        v.push((team, games, r, points));
-    }
+        (team, games, r, points)
+    }).collect();
     // Sort by points, then games played, in reverse order.
     v.sort_by(|a, b| 
               match a.3.cmp(&(b.3)).reverse() {
