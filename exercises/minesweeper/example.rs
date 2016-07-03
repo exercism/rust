@@ -1,7 +1,7 @@
 struct Board {
     pieces: Vec<Vec<char>>,
     num_rows: usize,
-    num_cols: usize
+    num_cols: usize,
 }
 
 impl Board {
@@ -11,10 +11,16 @@ impl Board {
 
     fn annotated_row(&self, y: usize) -> String {
         self.pieces[y]
-                  .iter()
-                  .enumerate()
-                  .map(|(x,&c)| if c == ' ' {self.count_neighbouring_mines_char(x, y)} else {c})
-                  .collect::<String>()
+            .iter()
+            .enumerate()
+            .map(|(x, &c)| {
+                if c == ' ' {
+                    self.count_neighbouring_mines_char(x, y)
+                } else {
+                    c
+                }
+            })
+            .collect::<String>()
     }
 
     fn count_neighbouring_mines_char(&self, x: usize, y: usize) -> char {
@@ -37,16 +43,21 @@ impl Board {
 
 pub fn annotate(pieces: &[&str]) -> Vec<String> {
     let pieces_vec = pieces.iter().map(|&r| r.chars().collect()).collect();
-    Board {pieces: pieces_vec, num_rows: pieces.len(), num_cols: pieces[0].len()}.annotated()
+    Board {
+        pieces: pieces_vec,
+        num_rows: pieces.len(),
+        num_cols: pieces[0].len(),
+    }
+    .annotated()
 }
 
 fn neighbouring_points(x: usize, limit: usize) -> Vec<usize> {
     let mut offsets = vec![x];
     if x >= 1 {
-        offsets.push(x-1);
+        offsets.push(x - 1);
     }
-    if x+2 <= limit {
-        offsets.push(x+1);
+    if x + 2 <= limit {
+        offsets.push(x + 1);
     }
     offsets
 }

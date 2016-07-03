@@ -1,8 +1,13 @@
 pub fn reply(message: &str) -> &str {
-    if is_silence(message) { "Fine. Be that way!" }
-    else if is_yelling(message) { "Whoa, chill out!" }
-    else if is_question(message) { "Sure." }
-    else { "Whatever." }
+    if is_silence(message) {
+        "Fine. Be that way!"
+    } else if is_yelling(message) {
+        "Whoa, chill out!"
+    } else if is_question(message) {
+        "Sure."
+    } else {
+        "Whatever."
+    }
 }
 
 fn is_silence(message: &str) -> bool {

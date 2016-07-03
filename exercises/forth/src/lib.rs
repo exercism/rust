@@ -12,12 +12,9 @@ pub enum Error {
 }
 
 impl Forth {
-    pub fn new() -> Forth {
-    }
+    pub fn new() -> Forth {}
 
-    pub fn format_stack(&self) -> String {
-    }
+    pub fn format_stack(&self) -> String {}
 
-    pub fn eval(&mut self, input: &str) -> ForthResult {
-    }
+    pub fn eval(&mut self, input: &str) -> ForthResult {}
 }

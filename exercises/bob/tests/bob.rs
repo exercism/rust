@@ -20,7 +20,8 @@ fn test_exclaiming() {
 #[test]
 #[ignore]
 fn test_asking() {
-    assert_eq!("Sure.", bob::reply("Does this cryogenic chamber make me look fat?"));
+    assert_eq!("Sure.",
+               bob::reply("Does this cryogenic chamber make me look fat?"));
 }
 
 #[test]
@@ -32,7 +33,8 @@ fn test_shout_numbers() {
 #[test]
 #[ignore]
 fn test_shout_weird_characters() {
-    assert_eq!("Whoa, chill out!", bob::reply("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"));
+    assert_eq!("Whoa, chill out!",
+               bob::reply("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"));
 }
 
 #[test]
@@ -52,4 +54,3 @@ fn test_non_question_with_question_mark() {
 fn test_silent_treatment() {
     assert_eq!("Fine. Be that way!", bob::reply(""));
 }
-

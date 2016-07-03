@@ -65,7 +65,7 @@ mod tests {
         buffer.write('2');
         assert_eq!(Err(Error::FullBuffer), buffer.write('3'));
     }
-    
+
     #[test]
     #[ignore]
     fn overwrite_item_in_non_full_buffer() {
@@ -94,20 +94,20 @@ mod tests {
         let mut buffer = CircularBuffer::new(2);
         buffer.write(1);
         buffer.write(2);
-        assert_eq!(1,buffer.read().unwrap());
+        assert_eq!(1, buffer.read().unwrap());
         buffer.write(-1);
-        assert_eq!(2,buffer.read().unwrap());
-        assert_eq!(-1,buffer.read().unwrap());
+        assert_eq!(2, buffer.read().unwrap());
+        assert_eq!(-1, buffer.read().unwrap());
         assert_eq!(Err(Error::EmptyBuffer), buffer.read());
     }
-    
+
     #[test]
     #[ignore]
     fn string_buffer() {
         let mut buffer = CircularBuffer::new(2);
         buffer.write("".to_string());
         buffer.write("Testing".to_string());
-        assert_eq!(0,buffer.read().unwrap().len());
-        assert_eq!("Testing",buffer.read().unwrap());
+        assert_eq!(0, buffer.read().unwrap().len());
+        assert_eq!("Testing", buffer.read().unwrap());
     }
 }

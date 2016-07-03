@@ -1,19 +1,20 @@
 extern crate robot_name as robot;
 
-/*
-These are the expected signatures:
-
-impl Robot {
-    pub fn new() -> Robot { ... }
-    pub fn name<'a>(&'a self) -> &'a str { ... }
-    pub fn reset_name(&mut self) { ... }
-}
-*/
+// These are the expected signatures:
+//
+// impl Robot {
+// pub fn new() -> Robot { ... }
+// pub fn name<'a>(&'a self) -> &'a str { ... }
+// pub fn reset_name(&mut self) { ... }
+// }
+//
 
 fn assert_name_matches_pattern(n: &str) {
     assert!(n.len() == 5, "name is exactly 5 characters long");
-    assert!(n[0..2].chars().all(|c| c >= 'A' && c <= 'Z'), "name starts with 2 uppercase letters");
-    assert!(n[2..].chars().all(|c| c >= '0' && c <= '9'), "name ends with 3 numbers");
+    assert!(n[0..2].chars().all(|c| c >= 'A' && c <= 'Z'),
+            "name starts with 2 uppercase letters");
+    assert!(n[2..].chars().all(|c| c >= '0' && c <= '9'),
+            "name ends with 3 numbers");
 }
 
 fn assert_name_is_persistent(r: &robot::Robot) {

@@ -2,7 +2,7 @@ extern crate rand;
 use rand::{thread_rng, Rng};
 
 pub struct Robot {
-    name: String
+    name: String,
 }
 
 fn generate_name() -> String {
@@ -30,5 +30,4 @@ impl Robot {
     pub fn reset_name(&mut self) {
         self.name = generate_name();
     }
-
 }

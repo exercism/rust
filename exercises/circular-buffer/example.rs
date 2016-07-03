@@ -13,13 +13,13 @@ pub struct CircularBuffer<T: Default + Clone> {
 
 impl<T: Default + Clone> CircularBuffer<T> {
     // this circular buffer keeps an unallocated slot between the start and the end
-    // when the buffer is full. 
+    // when the buffer is full.
     pub fn new(size: usize) -> CircularBuffer<T> {
-        CircularBuffer { 
-            buffer: vec![T::default(); size + 1], 
-            size: size + 1, 
-            start: 0, 
-            end: 0 
+        CircularBuffer {
+            buffer: vec![T::default(); size + 1],
+            size: size + 1,
+            start: 0,
+            end: 0,
         }
     }
 
@@ -36,12 +36,12 @@ impl<T: Default + Clone> CircularBuffer<T> {
     pub fn write(&mut self, byte: T) -> Result<(), Error> {
         if self.is_full() {
             return Err(Error::FullBuffer);
-        } 
-        
+        }
+
         self.buffer[self.end] = byte;
         self.advance_end();
         Ok(())
-        
+
     }
 
     pub fn overwrite(&mut self, byte: T) {
@@ -73,5 +73,4 @@ impl<T: Default + Clone> CircularBuffer<T> {
     fn advance_end(&mut self) {
         self.end = (self.end + 1) % self.size;
     }
-
 }
