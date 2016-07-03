@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::collections::hash_map::Entry;
 use std::thread;
 use std::sync::mpsc::channel;
 
@@ -36,12 +35,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
     for _ in 0..num_workers {
         let part_results = rx.recv().unwrap();
         for (c, n) in part_results.into_iter() {
-            match results.entry(c) {
-                Entry::Vacant(view) => { view.insert(n); },
-                Entry::Occupied(mut view) => {
-                    *view.get_mut() += n;
-                }
-            }
+            *results.entry(c).or_insert(0) += n;
         }
     }
     results
@@ -52,12 +46,7 @@ fn count(lines: Vec<String>) -> HashMap<char, usize> {
     for line in lines.iter() {
         for c in line.chars() {
             if c.is_alphabetic() {
-                match results.entry(c.to_lowercase().next().unwrap()) {
-                    Entry::Vacant(view) => { view.insert(1); },
-                    Entry::Occupied(mut view) => {
-                        *view.get_mut() += 1;
-                    }
-                }
+                *results.entry(c.to_lowercase().next().unwrap()).or_insert(0) += 1;
             }
         }
     }
