@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::collections::hash_map::Entry;
 
 pub struct School {
     grades: HashMap<u32, Vec<String>>
@@ -11,14 +10,9 @@ impl School {
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
-        match self.grades.entry(grade) {
-            Entry::Vacant(view) => { view.insert(vec![student.to_string()]); }
-            Entry::Occupied(mut view) => {
-                let l = view.get_mut();
-                l.push(student.to_string());
-                l.sort();
-            },
-        };
+        let mut entry = self.grades.entry(grade).or_insert(Vec::new());
+        entry.push(student.to_string());
+        entry.sort();
     }
     
     pub fn grades(&self) -> Vec<u32> {
