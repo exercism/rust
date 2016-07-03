@@ -11,14 +11,8 @@ fn sort(word: &String) -> String {
 pub fn anagrams_for<'a>(word: &str, inputs: &[&'a str]) -> Vec<&'a str> {
     let lower = word.to_lowercase();
     let sorted = sort(&lower);
-    let mut anagrams = Vec::new();
-    for input in inputs.iter() {
+    inputs.iter().filter(|input| {
         let input_lower = input.to_lowercase();
-        if lower != input_lower {
-            if sorted == sort(&input_lower) {
-                anagrams.push(*input);
-            }
-        }
-    }
-    anagrams
+        lower != input_lower && sorted == sort(&input_lower)
+    }).cloned().collect()
 }
