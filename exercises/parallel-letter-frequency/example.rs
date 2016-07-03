@@ -5,20 +5,18 @@ use std::sync::mpsc::channel;
 
 /// Compute the frequency of each letter (technically of each unicode codepoint) using the given
 /// number of worker threads.
-pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
+pub fn frequency(texts: &[&'static str], num_workers: usize) -> HashMap<char, usize> {
     assert!(num_workers > 0);
     let part_size_floor = texts.len() / num_workers;
     let rem = texts.len() % num_workers;
     let part_size = if rem > 0 { part_size_floor + 1 } else { part_size_floor };
-    let mut parts: Vec<Vec<String>> = Vec::with_capacity(part_size);
+    let mut parts: Vec<Vec<&str>> = Vec::with_capacity(part_size);
     for _ in 0 .. num_workers {
         parts.push(Vec::with_capacity(part_size));
     }
     let mut i = 0;
-    for line in texts.iter() {
-        // We'll need to clone those strings in order to satisfy some lifetime guarantees. Basically
-        // it's hard for the system to be sure that the threads spawned don't outlive the strings.
-        parts[i].push(line.to_string());
+    for &line in texts.iter() {
+        parts[i].push(line);
         i = (i + 1) % num_workers;
     }
 
@@ -41,7 +39,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
     results
 }
 
-fn count(lines: Vec<String>) -> HashMap<char, usize> {
+fn count(lines: Vec<&str>) -> HashMap<char, usize> {
     let mut results: HashMap<char, usize> = HashMap::new();
     for line in lines.iter() {
         for c in line.chars() {
