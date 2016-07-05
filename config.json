@@ -22,6 +22,7 @@
     "roman-numerals",
     "hexadecimal",
     "grade-school",
+    "tournament",
     "robot-simulator",
     "queen-attack",
     "sublist",
@@ -35,7 +36,6 @@
     "minesweeper",
     "dominoes",
     "parallel-letter-frequency",
-    "tournament",
     "rectangles",
     "forth",
     "circular-buffer"
