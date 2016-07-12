@@ -32,11 +32,11 @@ fn test_larger_distance() {
 #[test]
 #[ignore]
 fn test_first_string_is_longer() {
-    assert_eq!(dna::hamming_distance("AAA", "AA"), Result::Err("inputs of different length"));
+    assert!(dna::hamming_distance("AAA", "AA").is_err());
 }
 
 #[test]
 #[ignore]
 fn test_second_string_is_longer() {
-    assert_eq!(dna::hamming_distance("A", "AA"), Result::Err("inputs of different length"));
+    assert!(dna::hamming_distance("A", "AA").is_err());
 }
