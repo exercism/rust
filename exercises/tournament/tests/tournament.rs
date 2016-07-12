@@ -1,51 +1,57 @@
-use std::fs::File;
-use std::path::Path;
-use std::io::Read;
-
 extern crate tournament;
-
-fn file_equal(output_file: &str, expected_file: &str) {
-    let output = match File::open(&Path::new(output_file)) {
-        Err(e) => panic!("Couldn't open {}: {}", output_file, e),
-        Ok(mut f) => {
-            let mut buf = String::new();
-            match f.read_to_string(&mut buf) {
-                Err(e) => panic!("Couldn't read {}: {}", output_file, e),
-                Ok(_) => buf
-            }
-        }
-    };
-    let expected = match File::open(&Path::new(expected_file)) {
-        Err(e) => panic!("Couldn't open {}: {}", expected_file, e),
-        Ok(mut f) => {
-            let mut buf = String::new();
-            match f.read_to_string(&mut buf) {
-                Err(e) => panic!("Couldn't read {}: {}", expected_file, e),
-                Ok(_) => buf
-            }
-        }
-    };
-    assert_eq!("\n".to_string() + output.as_ref(), "\n".to_string() + expected.as_ref());
-    
-}
-
 
 #[test]
 fn test_good() {
-    assert_eq!(tournament::tally(&Path::new("tests/input1.txt"), &Path::new("tests/output1.txt")).unwrap(), 6);
-    file_equal("tests/output1.txt", "tests/expected1.txt");
+    let input = "Allegoric Alaskians;Blithering Badgers;win\n".to_string() +
+        "Devastating Donkeys;Courageous Californians;draw\n" +
+        "Devastating Donkeys;Allegoric Alaskians;win\n" +
+        "Courageous Californians;Blithering Badgers;loss\n" +
+        "Blithering Badgers;Devastating Donkeys;loss\n" +
+        "Allegoric Alaskians;Courageous Californians;win";
+    let expected = "Team                           | MP |  W |  D |  L |  P\n".to_string() +
+        "Devastating Donkeys            |  3 |  2 |  1 |  0 |  7\n" +
+        "Allegoric Alaskians            |  3 |  2 |  0 |  1 |  6\n" +
+        "Blithering Badgers             |  3 |  1 |  0 |  2 |  3\n" +
+        "Courageous Californians        |  3 |  0 |  1 |  2 |  1";
+
+    assert_eq!(tournament::tally(&input), expected);
 }
 
 #[test]
 #[ignore]
 fn test_ignore_bad_lines() {
-    assert_eq!(tournament::tally(&Path::new("tests/input2.txt"), &Path::new("tests/output2.txt")).unwrap(), 6);
-    file_equal("tests/output2.txt", "tests/expected2.txt");
+    let input = "Allegoric Alaskians;Blithering Badgers;win\n".to_string() +
+        "Devastating Donkeys_Courageous Californians;draw\n" +
+        "Devastating Donkeys;Allegoric Alaskians;win\n" +
+        "\n" +
+        "Courageous Californians;Blithering Badgers;loss\n" +
+        "Bla;Bla;Bla\n" +
+        "Blithering Badgers;Devastating Donkeys;loss\n" +
+        "# Yackity yackity yack\n" +
+        "Allegoric Alaskians;Courageous Californians;win\n" +
+        "Devastating Donkeys;Courageous Californians;draw\n" +
+        "Devastating Donkeys@Courageous Californians;draw";
+    let expected = "Team                           | MP |  W |  D |  L |  P\n".to_string() +
+        "Devastating Donkeys            |  3 |  2 |  1 |  0 |  7\n" +
+        "Allegoric Alaskians            |  3 |  2 |  0 |  1 |  6\n" +
+        "Blithering Badgers             |  3 |  1 |  0 |  2 |  3\n" +
+        "Courageous Californians        |  3 |  0 |  1 |  2 |  1";
+
+    assert_eq!(tournament::tally(&input), expected);
 }
 
 #[test]
 #[ignore]
 fn test_incomplete_competition() {
-    assert_eq!(tournament::tally(&Path::new("tests/input3.txt"), &Path::new("tests/output3.txt")).unwrap(), 4);
-    file_equal("tests/output3.txt", "tests/expected3.txt");
+    let input = "Allegoric Alaskians;Blithering Badgers;win\n".to_string() +
+        "Devastating Donkeys;Allegoric Alaskians;win\n" +
+        "Courageous Californians;Blithering Badgers;loss\n" +
+        "Allegoric Alaskians;Courageous Californians;win";
+    let expected = "Team                           | MP |  W |  D |  L |  P\n".to_string() +
+        "Allegoric Alaskians            |  3 |  2 |  0 |  1 |  6\n" +
+        "Blithering Badgers             |  2 |  1 |  0 |  1 |  3\n" +
+        "Devastating Donkeys            |  1 |  1 |  0 |  0 |  3\n" +
+        "Courageous Californians        |  2 |  0 |  0 |  2 |  0";
+
+    assert_eq!(tournament::tally(&input), expected);
 }
