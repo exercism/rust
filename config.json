@@ -20,7 +20,7 @@
     "sieve",
     "rna-transcription",
     "roman-numerals",
-    "hexadecimal",
+    "all-your-base",
     "grade-school",
     "tournament",
     "robot-simulator",
@@ -45,7 +45,7 @@
     "circular-buffer"
   ],
   "deprecated": [
-
+    "hexadecimal"
   ],
   "ignored": [
     "_test",
@@ -53,6 +53,8 @@
     "img"
   ],
   "foregone": [
-
+    "binary",
+    "octal",
+    "trinary"
   ]
 }

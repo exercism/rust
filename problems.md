@@ -39,7 +39,7 @@ etl |  btree
 sieve |  vector, map, while let (optional)
 rna-transcription |  match, struct, str vs string
 roman-numerals |  mutable, results, loops, struct, traits
-hexadecimal |  Option, zip/fold/chars, map
+all-your-base |  Result, enumerate, fold, map
 grade-school |  struct, entry api, Vec, Option
 tournament |  enum, sorting, hashmap, structs
 robot-simulator | Immutability, enum
