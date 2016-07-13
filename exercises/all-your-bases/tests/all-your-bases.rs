@@ -151,7 +151,7 @@ fn invalid_positive_digit() {
 
 #[test]
 #[ignore]
-fn first_base_is_one() {
+fn input_base_is_one() {
     let input_base = 1;
     let input_digits = &[];
     let output_base = 10;
@@ -160,7 +160,7 @@ fn first_base_is_one() {
 
 #[test]
 #[ignore]
-fn second_base_is_one() {
+fn output_base_is_one() {
     let input_base = 2;
     let input_digits = &[1, 0, 1, 0, 1, 0];
     let output_base = 1;
@@ -169,7 +169,7 @@ fn second_base_is_one() {
 
 #[test]
 #[ignore]
-fn first_base_is_zero() {
+fn input_base_is_zero() {
     let input_base = 0;
     let input_digits = &[];
     let output_base = 10;
@@ -178,7 +178,7 @@ fn first_base_is_zero() {
 
 #[test]
 #[ignore]
-fn second_base_is_zero() {
+fn output_base_is_zero() {
     let input_base = 10;
     let input_digits = &[7];
     let output_base = 0;
@@ -187,7 +187,7 @@ fn second_base_is_zero() {
 
 #[test]
 #[ignore]
-fn fist_base_is_negative() {
+fn input_base_is_negative() {
     let input_base = -2;
     let input_digits = &[1];
     let output_base = 10;
@@ -196,7 +196,7 @@ fn fist_base_is_negative() {
 
 #[test]
 #[ignore]
-fn second_base_is_negative() {
+fn output_base_is_negative() {
     let input_base = 2;
     let input_digits = &[1];
     let output_base = -7;
@@ -205,7 +205,7 @@ fn second_base_is_negative() {
 
 #[test]
 #[ignore]
-fn both_base_is_negative() {
+fn both_bases_are_negative() {
     let input_base = -2;
     let input_digits = &[1];
     let output_base = -7;
