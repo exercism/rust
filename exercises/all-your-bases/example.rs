@@ -10,6 +10,10 @@ pub type Digit = i64;
 /// Return an `Err(.)` if the conversion is impossible.
 /// The tests do not test for specific values inside the `Err(.)`.
 ///
+///
+/// You are allowed to change the function signature as long as all test still pass.
+///
+///
 /// Example:
 /// Input
 ///   number: &[4, 2]
