@@ -31,6 +31,13 @@ fn pangrams_must_have_all_letters_two() {
 
 #[test]
 #[ignore]
+fn pangrams_must_include_z() {
+    let sentence = "the quick brown fox jumps over the lay dog";
+    assert!(!is_pangram(&sentence));
+}
+
+#[test]
+#[ignore]
 fn underscores_do_not_affect_pangrams() {
     let sentence = "the_quick_brown_fox_jumps_over_the_lazy_dog";
     assert!(is_pangram(&sentence));
