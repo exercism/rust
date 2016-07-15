@@ -41,7 +41,7 @@
     "circular-buffer"
   ],
   "deprecated": [
-. . "hexadecimal"
+    "hexadecimal"
   ],
   "ignored": [
     "_test",
