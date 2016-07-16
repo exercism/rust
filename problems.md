@@ -67,6 +67,7 @@ These problems don’t necessarily require additional Rust knowledge, but they d
 
 problem | topics
 ----- | -----
+ocr-numbers | Lines, Chunks, slices
 minesweeper |  Board state
 dominoes |  Graph theory, searching
 parallel-letter-frequency | multi-threading
