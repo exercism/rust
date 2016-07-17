@@ -97,3 +97,19 @@ fn test_not_so_complicated() {
         ];
     assert_eq!(2, count(&lines))
 }
+
+#[test]
+#[ignore]
+fn test_large_input_with_many_rectangles() {
+    let lines = vec![
+        "+---+--+----+",
+        "|   +--+----+",
+        "+---+--+    |",
+        "|   +--+----+",
+        "+---+--+--+-+",
+        "+---+--+--+-+",
+        "+------+  | |",
+        "          +-+"
+        ];
+    assert_eq!(60, count(&lines))
+}
