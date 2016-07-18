@@ -2,8 +2,8 @@
 /// Convert a number between two bases.
 ///
 /// A number is any slice of digits.
-/// A digit is any signed integer (e.g. i8, i16, i32, or i64).
-/// Bases are specified as signed integers.
+/// A digit is any unsigned integer (e.g. u8, u16, u32, u64, or usize).
+/// Bases are specified as unsigned integers.
 ///
 /// Return an `Err(.)` if the conversion is impossible.
 /// The tests do not test for specific values inside the `Err(.)`.
@@ -30,6 +30,6 @@
 ///     process input with leading 0 digits.
 ///
 #[allow(unused_variables)]
-pub fn convert(number: &[i32], from_base: i32, to_base: i32) -> Result<Vec<i32>, ()> {
+pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, ()> {
     unimplemented!()
 }

@@ -1,11 +1,11 @@
-pub type Digit = i64;
+pub type Digit = u32;
 
 ///
 /// Convert a number between two bases.
 ///
 /// A number is any slice of digits.
-/// A digit is any signed integer (e.g. i8, i16, i32, or i64).
-/// Bases are specified as signed integers.
+/// A digit is any unsigned integer (e.g. u8, u16, u32, u64, or usize).
+/// Bases are specified as unsigned integers.
 ///
 /// Return an `Err(.)` if the conversion is impossible.
 /// The tests do not test for specific values inside the `Err(.)`.
@@ -38,7 +38,7 @@ pub fn convert<P: AsRef<[Digit]>>(digits: P, from_base: Digit, to_base: Digit) -
     }
 
     // check that all digits are in the correct range specified by the base
-    if digits.as_ref().iter().any(|&num| num < 0 || num >= from_base) {
+    if digits.as_ref().iter().any(|&num| num >= from_base) {
         return Err("Digits invalid for input base");
     }
 

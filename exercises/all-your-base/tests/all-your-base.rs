@@ -133,15 +133,6 @@ fn leading_zeros() {
 
 #[test]
 #[ignore]
-fn negative_digit() {
-    let input_base = 2;
-    let input_digits = &[1, -1, 1, 0, 1, 0];
-    let output_base = 10;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
-}
-
-#[test]
-#[ignore]
 fn invalid_positive_digit() {
     let input_base = 2;
     let input_digits = &[1, 2, 1, 0, 1, 0];
@@ -182,32 +173,5 @@ fn output_base_is_zero() {
     let input_base = 10;
     let input_digits = &[7];
     let output_base = 0;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
-}
-
-#[test]
-#[ignore]
-fn input_base_is_negative() {
-    let input_base = -2;
-    let input_digits = &[1];
-    let output_base = 10;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
-}
-
-#[test]
-#[ignore]
-fn output_base_is_negative() {
-    let input_base = 2;
-    let input_digits = &[1];
-    let output_base = -7;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
-}
-
-#[test]
-#[ignore]
-fn both_bases_are_negative() {
-    let input_base = -2;
-    let input_digits = &[1];
-    let output_base = -7;
     assert!(ayb::convert(input_digits, input_base, output_base).is_err());
 }
