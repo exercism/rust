@@ -89,6 +89,12 @@ fn incomplete_byte_sequence() {
 
 #[test]
 #[ignore]
+fn zero_incomplete_byte_sequence() {
+    assert!(vlq::from_bytes(&[0x80]).is_err());
+}
+
+#[test]
+#[ignore]
 fn overflow_u32() {
     assert!(vlq::from_bytes(&[0xff, 0xff, 0xff, 0xff, 0x7f]).is_err());
 }
