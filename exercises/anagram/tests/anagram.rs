@@ -100,3 +100,13 @@ fn test_does_not_detect_a_differently_cased_unicode_word_as_its_own_anagram() {
     let outputs: Vec<&str> = vec![];
     assert_eq!(anagram::anagrams_for("ΑΒΓ", &inputs), outputs);
 }
+
+#[test]
+#[ignore]
+fn test_same_bytes_different_chars() {
+    let inputs = ["€a"]; // E2 82 AC 61
+    let outputs: Vec<&str> = vec![];
+    assert_eq!(anagram::anagrams_for(
+        "a⬂", // 61 E2 AC 82
+        &inputs), outputs);
+}
