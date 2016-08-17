@@ -43,6 +43,7 @@ hexadecimal |  Option, zip/fold/chars, map
 grade-school |  struct, entry api, Vec, Option
 tournament |  enum, sorting, hashmap, structs
 robot-simulator | Immutability, enum
+bracket-push | From trait, stack or recursion
 queen-attack |  struct, trait (optional), Result
 sublist |  enum, generic over type
 space-age | Custom Trait, From Trait, Default Trait implementation
