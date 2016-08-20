@@ -45,6 +45,7 @@ tournament |  enum, sorting, hashmap, structs
 robot-simulator | Immutability, enum
 queen-attack |  struct, trait (optional), Result
 sublist |  enum, generic over type
+space-age | Custom Trait, From Trait, Default Trait implementation
 allergies |  struct, enum, bitwise (probably), vectors, filter
 variable-length-quantity | Encodings, slices, bitwise, Result
 phone-number |  option, format, unwrap_or, iters, match
