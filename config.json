@@ -41,7 +41,8 @@
     "parallel-letter-frequency",
     "rectangles",
     "forth",
-    "circular-buffer"
+    "circular-buffer",
+    "react"
   ],
   "deprecated": [
 
