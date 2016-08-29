@@ -5,7 +5,13 @@ pub trait Cell<T> {
     fn value(&self) -> &T;
 }
 
-pub struct Reactor;
+trait Propagatable {
+    fn propagate(&mut self);
+}
+
+pub struct Reactor {
+    cells: Vec<Box<Propagatable>>,
+}
 
 pub struct InputCell<T> {
     val: T,
@@ -19,7 +25,9 @@ pub struct Compute1Cell<'a, T: 'a, U, F: Fn(&T) -> U> {
 
 impl Reactor {
     pub fn new() -> Reactor {
-        Reactor{}
+        Reactor{
+            cells: Vec::new(),
+        }
     }
 
     pub fn create_input<T>(&self, initial: T) -> InputCell<T> {
@@ -28,13 +36,15 @@ impl Reactor {
         }
     }
 
-    pub fn create_compute1<'a, T, U, F>(&self, cell: &'a Cell<T>, compute: F) -> Compute1Cell<'a, T, U, F>
+    pub fn create_compute1<'a, T, U, F>(&mut self, cell: &'a Cell<T>, compute: F) -> Compute1Cell<'a, T, U, F>
         where F: Fn(&T) -> U {
-        Compute1Cell {
+        let cell = Compute1Cell {
             val: compute(cell.value()),
             cell: cell,
             compute: compute,
-        }
+        };
+        self.cells.push(Box::new(cell));
+        cell
     }
 }
 
@@ -53,5 +63,11 @@ impl <T> InputCell<T> {
 impl <'a, T, U, F: Fn(&T) -> U> Cell<U> for Compute1Cell<'a, T, U, F> {
     fn value(&self) -> &U {
         &self.val
+    }
+}
+
+impl <'a, T, U, F: Fn(&T) -> U> Propagatable for Compute1Cell<'a, T, U, F> {
+    fn propagate(&mut self) {
+        self.val = (self.compute)(self.cell.value());
     }
 }
