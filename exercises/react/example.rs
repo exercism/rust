@@ -52,6 +52,6 @@ impl <T> InputCell<T> {
 
 impl <'a, T, U, F: Fn(&T) -> U> Cell<U> for Compute1Cell<'a, T, U, F> {
     fn value(&self) -> &U {
-        &(self.compute)(self.cell.value())
+        &self.val
     }
 }
