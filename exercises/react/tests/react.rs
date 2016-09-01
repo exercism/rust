@@ -1,34 +1,172 @@
 extern crate react;
 
-use std::fmt::Debug;
-
-#[allow(unused_mut)]
-
-// TODO: [ignore] tests
-
 use react::*;
 
-fn assert_cell_value<'a, T: Copy + PartialEq + Debug>(reactor: &Reactor<'a, T>, id: CellID, expected: T) {
-    let cell = reactor.get(id).unwrap();
-    assert_eq!(cell.value(), expected);
+#[test]
+fn input_cells_have_a_value() {
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(10);
+    assert_eq!(reactor.value(input).unwrap(), 10);
 }
 
 #[test]
-fn set_value_of_input() {
+#[ignore]
+fn an_input_cells_value_can_be_set() {
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(4);
+    assert!(reactor.set_value(input, 20).is_ok());
+    assert_eq!(reactor.value(input).unwrap(), 20);
+}
+
+#[test]
+#[ignore]
+fn compute_cells_calculate_initial_value() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    assert_cell_value(&reactor, input, 1);
+    let output = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
+    assert_eq!(reactor.value(output).unwrap(), 2);
+}
+
+#[test]
+#[ignore]
+fn compute_cells_take_inputs_in_the_right_order() {
+    let mut reactor = Reactor::new();
+    let one = reactor.create_input(1);
+    let two = reactor.create_input(2);
+    let output = reactor.create_compute(&vec![one, two], |v| v[0] + v[1] * 10).unwrap();
+    assert_eq!(reactor.value(output).unwrap(), 21);
+}
+
+#[test]
+#[ignore]
+fn compute_cells_update_value_when_dependencies_are_changed() {
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let output = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
+    assert_eq!(reactor.value(output).unwrap(), 2);
+    assert!(reactor.set_value(input, 3).is_ok());
+    assert_eq!(reactor.value(output).unwrap(), 4);
+}
+
+#[test]
+#[ignore]
+fn compute_cells_can_depend_on_other_compute_cells() {
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let times_two = reactor.create_compute(&vec![input], |v| v[0] * 2).unwrap();
+    let times_thirty = reactor.create_compute(&vec![input], |v| v[0] * 30).unwrap();
+    let output = reactor.create_compute(&vec![times_two, times_thirty], |v| v[0] + v[1]).unwrap();
+    assert_eq!(reactor.value(output).unwrap(), 32);
+    assert!(reactor.set_value(input, 3).is_ok());
+    assert_eq!(reactor.value(output).unwrap(), 96);
+}
+
+#[test]
+#[ignore]
+fn compute_cells_fire_callbacks() {
+    // This is a bit awkward, but the closure mutably borrows `values`.
+    // So we have to end its borrow by taking reactor out of scope.
+    let mut values = Vec::new();
     {
-        let mut cell = reactor.get_mut(input).unwrap();
-        cell.set_value(2);
+        let mut reactor = Reactor::new();
+        let input = reactor.create_input(1);
+        let output = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
+        assert!(reactor.add_callback(output, |v| values.push(v)).is_ok());
+        assert!(reactor.set_value(input, 3).is_ok());
     }
-    assert_cell_value(&reactor, input, 2);
+    assert_eq!(values, vec![4]);
 }
 
 #[test]
-fn compute1_depending_on_input() {
-    let mut reactor = Reactor::new();
-    let input = reactor.create_input(1);
-    let output = reactor.create_compute(&vec![input], |v| v[0] + 1);
-    assert_cell_value(&reactor, output, 2);
+#[ignore]
+fn callbacks_only_fire_on_change() {
+    let mut values = Vec::new();
+    {
+        let mut reactor = Reactor::new();
+        let input = reactor.create_input(1);
+        let output = reactor.create_compute(&vec![input], |v| if v[0] < 3 { 111 } else { 222 }).unwrap();
+        assert!(reactor.add_callback(output, |v| values.push(v)).is_ok());
+        assert!(reactor.set_value(input, 2).is_ok());
+        assert!(reactor.set_value(input, 4).is_ok());
+    }
+    assert_eq!(values, vec![222]);
+}
+
+#[test]
+#[ignore]
+fn callbacks_can_be_added_and_removed() {
+    let mut values1 = Vec::new();
+    let mut values2 = Vec::new();
+    let mut values3 = Vec::new();
+    {
+        let mut reactor = Reactor::new();
+        let input = reactor.create_input(11);
+        let output = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
+        let callback = reactor.add_callback(output, |v| values1.push(v)).unwrap();
+        assert!(reactor.add_callback(output, |v| values2.push(v)).is_ok());
+        assert!(reactor.set_value(input, 31).is_ok());
+        assert!(reactor.remove_callback(output, callback).is_ok());
+        assert!(reactor.add_callback(output, |v| values3.push(v)).is_ok());
+        assert!(reactor.set_value(input, 41).is_ok());
+    }
+    assert_eq!(values1, vec![32]);
+    assert_eq!(values2, vec![32, 42]);
+    assert_eq!(values3, vec![42]);
+}
+
+#[test]
+#[ignore]
+fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
+    let mut values1 = Vec::new();
+    let mut values2 = Vec::new();
+    {
+        let mut reactor = Reactor::new();
+        let input = reactor.create_input(1);
+        let output = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
+        let callback = reactor.add_callback(output, |v| values1.push(v)).unwrap();
+        assert!(reactor.add_callback(output, |v| values2.push(v)).is_ok());
+        // We want the first remove to be Ok, but we don't care about the others.
+        assert!(reactor.remove_callback(output, callback).is_ok());
+        for _ in 1..5 {
+            let _ = reactor.remove_callback(output, callback);
+        }
+        assert!(reactor.set_value(input, 2).is_ok());
+    }
+    assert_eq!(values1, Vec::new());
+    assert_eq!(values2, vec![3]);
+}
+
+#[test]
+#[ignore]
+fn callbacks_should_only_be_called_once_even_if_multiple_dependencies_change() {
+    let mut values = Vec::new();
+    {
+        let mut reactor = Reactor::new();
+        let input = reactor.create_input(1);
+        let plus_one = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
+        let minus_one1 = reactor.create_compute(&vec![input], |v| v[0] - 1).unwrap();
+        let minus_one2 = reactor.create_compute(&vec![minus_one1], |v| v[0] - 1).unwrap();
+        let output = reactor.create_compute(&vec![plus_one, minus_one2], |v| v[0] * v[1]).unwrap();
+        assert!(reactor.add_callback(output, |v| values.push(v)).is_ok());
+        assert!(reactor.set_value(input, 4).is_ok());
+    }
+    assert_eq!(values, vec![10]);
+}
+
+#[test]
+#[ignore]
+fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt_change() {
+    let mut values = Vec::new();
+    {
+        let mut reactor = Reactor::new();
+        let input = reactor.create_input(1);
+        let plus_one = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
+        let minus_one = reactor.create_compute(&vec![input], |v| v[0] - 1).unwrap();
+        let always_two = reactor.create_compute(&vec![plus_one, minus_one], |v| v[0] - v[1]).unwrap();
+        assert!(reactor.add_callback(always_two, |v| values.push(v)).is_ok());
+        for i in 2..5 {
+            assert!(reactor.set_value(input, i).is_ok());
+        }
+    }
+    assert_eq!(values, Vec::new());
 }
