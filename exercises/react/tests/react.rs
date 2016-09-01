@@ -20,6 +20,14 @@ fn an_input_cells_value_can_be_set() {
 
 #[test]
 #[ignore]
+fn error_setting_a_nonexistent_input_cell() {
+    let mut dummy_reactor = Reactor::new();
+    let input = dummy_reactor.create_input(1);
+    assert!(Reactor::new().set_value(input, 0).is_err());
+}
+
+#[test]
+#[ignore]
 fn compute_cells_calculate_initial_value() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
@@ -35,6 +43,14 @@ fn compute_cells_take_inputs_in_the_right_order() {
     let two = reactor.create_input(2);
     let output = reactor.create_compute(&vec![one, two], |v| v[0] + v[1] * 10).unwrap();
     assert_eq!(reactor.value(output).unwrap(), 21);
+}
+
+#[test]
+#[ignore]
+fn error_creating_compute_cell_if_input_doesnt_exist() {
+    let mut dummy_reactor = Reactor::new();
+    let input = dummy_reactor.create_input(1);
+    assert!(Reactor::new().create_compute(&vec![input], |_| 0).is_err());
 }
 
 #[test]
@@ -63,6 +79,15 @@ fn compute_cells_can_depend_on_other_compute_cells() {
 
 #[test]
 #[ignore]
+fn error_setting_a_compute_cell() {
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let output = reactor.create_compute(&vec![input], |_| 0).unwrap();
+    assert!(reactor.set_value(output, 3).is_err());
+}
+
+#[test]
+#[ignore]
 fn compute_cells_fire_callbacks() {
     // This is a bit awkward, but the closure mutably borrows `values`.
     // So we have to end its borrow by taking reactor out of scope.
@@ -75,6 +100,15 @@ fn compute_cells_fire_callbacks() {
         assert!(reactor.set_value(input, 3).is_ok());
     }
     assert_eq!(values, vec![4]);
+}
+
+#[test]
+#[ignore]
+fn error_adding_callback_to_nonexistent_cell() {
+    let mut dummy_reactor = Reactor::new();
+    let input = dummy_reactor.create_input(1);
+    let output = dummy_reactor.create_compute(&vec![input], |_| 0).unwrap();
+    assert!(Reactor::new().add_callback(output, |_: usize| println!("hi")).is_err());
 }
 
 #[test]
