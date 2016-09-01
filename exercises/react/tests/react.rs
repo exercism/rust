@@ -1,26 +1,34 @@
 extern crate react;
 
+use std::fmt::Debug;
+
 #[allow(unused_mut)]
 
 // TODO: [ignore] tests
 
 use react::*;
 
+fn assert_cell_value<'a, T: Copy + PartialEq + Debug>(reactor: &Reactor<'a, T>, id: CellID, expected: T) {
+    let cell = reactor.get(id).unwrap();
+    assert_eq!(cell.value(), expected);
+}
+
 #[test]
 fn set_value_of_input() {
     let mut reactor = Reactor::new();
-    let mut input = reactor.create_input(1);
-    assert_eq!(*input.value(), 1);
-    input.set_value(2);
-    assert_eq!(*input.value(), 2);
+    let input = reactor.create_input(1);
+    assert_cell_value(&reactor, input, 1);
+    {
+        let mut cell = reactor.get_mut(input).unwrap();
+        cell.set_value(2);
+    }
+    assert_cell_value(&reactor, input, 2);
 }
 
 #[test]
 fn compute1_depending_on_input() {
     let mut reactor = Reactor::new();
-    let mut input = reactor.create_input(1);
-    let output = reactor.create_compute1(&input, |v| v + 1);
-    assert_eq!(*output.value(), 2);
-    //input.set_value(2);
-    //assert_eq!(*output.value(), 3);
+    let input = reactor.create_input(1);
+    let output = reactor.create_compute(&vec![input], |v| v[0] + 1);
+    assert_cell_value(&reactor, output, 2);
 }
