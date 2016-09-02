@@ -3,6 +3,259 @@
   "language": "Rust",
   "repository": "https://github.com/exercism/xrust",
   "active": true,
+  "exercises": [
+    {
+      "slug": "hello-world",
+      "difficulty": ,
+      "topics": [
+        "Optional values",
+        "Strings"
+      ]
+    },
+    {
+      "slug": "gigasecond",
+      "difficulty": ,
+      "topics": [
+        "Dates",
+        "Time",
+        "External libraries"
+      ]
+    },
+    {
+      "slug": "leap",
+      "difficulty": ,
+      "topics": [
+        "Mathematics",
+        "Booleans"
+      ]
+    },
+    {
+      "slug": "raindrops",
+      "difficulty": ,
+      "topics": [
+        "Mathematics",
+        "Mutability",
+        "Control-flow (if-else statements)"
+      ]
+    },
+    {
+      "slug": "bob",
+      "difficulty": ,
+      "topics": [
+        "Strings",
+        "Char",
+        "Higher-order functions"
+      ]
+    },
+    {
+      "slug": "beer-song",
+      "difficulty": ,
+      "topics": [
+        "Control-flow (if-else statements)",
+        "Strings"
+      ]
+    },
+    {
+      "slug": "difference-of-squares",
+      "difficulty": ,
+      "topics": [
+        "Mathematics",
+        "Higher-order functions"
+      ]
+    },
+    {
+      "slug": "hamming",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "scrabble-score",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "pangram",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "nucleotide-count",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "word-count",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "etl",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "sieve",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "rna-transcription",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "roman-numerals",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "hexadecimal",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "grade-school",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "tournament",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "robot-simulator",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "bracket-push",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "queen-attack",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "sublist",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "space-age",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "allergies",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "variable-length-quantity",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "phone-number",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "wordy",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "custom-set",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "anagram",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "nucleotide-codons",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "robot-name",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "ocr-numbers",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "minesweeper",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "dominoes",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "parallel-letter-frequency",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "rectangles",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "forth",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+    {
+      "slug": "circular-buffer",
+      "difficulty": ,
+      "topics": [
+      ]
+    },
+  ],
   "problems": [
     "hello-world",
     "gigasecond",
