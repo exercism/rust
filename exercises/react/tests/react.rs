@@ -204,3 +204,41 @@ fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt
     }
     assert_eq!(values, Vec::new());
 }
+
+#[test]
+#[ignore]
+fn test_adder_with_boolean_values() {
+    // This is a digital logic circuit called an adder:
+    // https://en.wikipedia.org/wiki/Adder_(electronics)
+    let mut reactor = Reactor::new();
+    let a = reactor.create_input(false);
+    let b = reactor.create_input(false);
+    let carry_in = reactor.create_input(false);
+
+    let a_xor_b = reactor.create_compute(&vec![a, b], |v| v[0] ^ v[1]).unwrap();
+    let sum = reactor.create_compute(&vec![a_xor_b, carry_in], |v| v[0] ^ v[1]).unwrap();
+
+    let a_xor_b_and_cin = reactor.create_compute(&vec![a_xor_b, carry_in], |v| v[0] && v[1]).unwrap();
+    let a_and_b = reactor.create_compute(&vec![a, b], |v| v[0] && v[1]).unwrap();
+    let carry_out = reactor.create_compute(&vec![a_xor_b_and_cin, a_and_b], |v| v[0] || v[1]).unwrap();
+
+    let tests = vec![
+        (false, false, false, false, false),
+        (false, false, true, false, true),
+        (false, true, false, false, true),
+        (false, true, true, true, false),
+        (true, false, false, false, true),
+        (true, false, true, true, false),
+        (true, true, false, true, false),
+        (true, true, true, true, true),
+    ];
+
+    for (aval, bval, cinval, expected_cout, expected_sum) in tests {
+        assert!(reactor.set_value(a, aval).is_ok());
+        assert!(reactor.set_value(b, bval).is_ok());
+        assert!(reactor.set_value(carry_in, cinval).is_ok());
+
+        assert_eq!(reactor.value(sum).unwrap(), expected_sum);
+        assert_eq!(reactor.value(carry_out).unwrap(), expected_cout);
+    }
+}
