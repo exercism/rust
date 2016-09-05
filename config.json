@@ -67,126 +67,189 @@
       "slug": "hamming",
       "difficulty": ,
       "topics": [
+        "Exception handling",
+        "Result",
+        "Higher-orderfunctions",
+        "Char"
       ]
     },
     {
       "slug": "scrabble-score",
       "difficulty": ,
       "topics": [
+        "Char",
+        "Higher-order functions",
+        "Maps"
       ]
     },
     {
       "slug": "pangram",
       "difficulty": ,
       "topics": [
+        "Char",
+        "Higher-order functions",
+        "ascii"
       ]
     },
     {
       "slug": "nucleotide-count",
       "difficulty": ,
       "topics": [
+        "Maps",
+        "Entry API",
+        "Char"
       ]
     },
     {
       "slug": "word-count",
       "difficulty": ,
       "topics": [
+        "Maps",
+        "Entry API",
+        "Char"
       ]
     },
     {
       "slug": "etl",
       "difficulty": ,
       "topics": [
+        "Maps",
+        "BTreeMap",
+        "Higher-order functions",
+        "Optional values"
       ]
     },
     {
       "slug": "sieve",
       "difficulty": ,
       "topics": [
+        "Mathematics",
+        "Control-flow (loops)",
+        "Ranges",
+        "Higher-order functions"
       ]
     },
     {
       "slug": "rna-transcription",
       "difficulty": ,
       "topics": [
+        "Structs",
+        "Char"
       ]
     },
     {
       "slug": "roman-numerals",
       "difficulty": ,
       "topics": [
+        "From trait",
+        "Display trait",
+        "Maps"
       ]
     },
     {
       "slug": "hexadecimal",
       "difficulty": ,
       "topics": [
+        "Mathematics",
+        "Higher-order functions"
+        "Type conversion"
       ]
     },
     {
       "slug": "grade-school",
       "difficulty": ,
       "topics": [
+        "Maps",
+        "Optional values",
+        "Entry API"
       ]
     },
     {
       "slug": "tournament",
       "difficulty": ,
       "topics": [
+        "Enumerations",
+        "Structs",
+        "Parsing",
+        "Sorting"
       ]
     },
     {
       "slug": "robot-simulator",
       "difficulty": ,
       "topics": [
+        "Enumerations",
+        "Immutability"
       ]
     },
     {
       "slug": "bracket-push",
       "difficulty": ,
       "topics": [
+        "From trait"
+        "Lifetimes"
       ]
     },
     {
       "slug": "queen-attack",
       "difficulty": ,
       "topics": [
+        "Exception handling",
+        "Mathematics",
+        "Structs"
       ]
     },
     {
       "slug": "sublist",
       "difficulty": ,
       "topics": [
+        "Slices",
+        "Generics",
+        "Mathematics",
+        "Enumerations"
       ]
     },
     {
       "slug": "space-age",
       "difficulty": ,
       "topics": [
+        "Type conversion",
+        "Traits"
       ]
     },
     {
       "slug": "allergies",
       "difficulty": ,
       "topics": [
+        "Enumerations",
+        "Bitwise operations",
+        "Higher-order functions"
       ]
     },
     {
       "slug": "variable-length-quantity",
       "difficulty": ,
       "topics": [
+        "Slices",
+        "Exception handling",
+        "Bitwise operations"
       ]
     },
     {
       "slug": "phone-number",
       "difficulty": ,
       "topics": [
+        "Optional values",
+        "Display",
+        "Higher-order functions"
       ]
     },
     {
       "slug": "wordy",
       "difficulty": ,
       "topics": [
+        "Parsing",
+
       ]
     },
     {
