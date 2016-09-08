@@ -162,7 +162,7 @@ fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
         // We want the first remove to be Ok, but we don't care about the others.
         assert!(reactor.remove_callback(output, callback).is_ok());
         for _ in 1..5 {
-            let _ = reactor.remove_callback(output, callback);
+            assert!(reactor.remove_callback(output, callback).is_err());
         }
         assert!(reactor.set_value(input, 2).is_ok());
     }

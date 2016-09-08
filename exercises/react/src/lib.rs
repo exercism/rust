@@ -79,10 +79,8 @@ impl <T: Copy + PartialEq> Reactor<T> {
 
     // Removes the specified callback, using an ID returned from add_callback.
     //
-    // Return an Err (and you can change the error type) if the cell does not exist.
-    //
-    // If the callback does not exist (or has already been removed), it is up to you whether to
-    // return Ok(()) or an error. This should not interfere with other callbacks.
+    // Return an Err (and you can change the error type) if either the cell or callback
+    // does not exist.
     //
     // A removed callback should no longer be called.
     pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), ()> {
