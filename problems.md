@@ -41,7 +41,6 @@ rna-transcription |  match, struct, str vs string
 roman-numerals |  mutable, results, loops, struct, traits
 all-your-base |  Result, enumerate, fold, map
 grade-school |  struct, entry api, Vec, Option
-tournament |  enum, sorting, hashmap, structs
 robot-simulator | Immutability, enum
 bracket-push | From trait, stack or recursion
 queen-attack |  struct, trait (optional), Result
@@ -51,6 +50,7 @@ allergies |  struct, enum, bitwise (probably), vectors, filter
 variable-length-quantity | Encodings, slices, bitwise, Result
 phone-number |  option, format, unwrap_or, iters, match
 wordy | Result, string parsing, operators (optional)
+tournament |  enum, sorting, hashmap, structs
 custom-set |  generic over type, vector, equality, struct
 
 ## Rust Gets Strange
