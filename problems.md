@@ -38,6 +38,7 @@ word-count |  hashmap, str vs string, chars, entry api
 etl |  btree
 sieve |  vector, map, while let (optional)
 rna-transcription |  match, struct, str vs string
+triangle | Math, Struct. Enum, Trait, Box -- depending on implementation
 roman-numerals |  mutable, results, loops, struct, traits
 all-your-base |  Result, enumerate, fold, map
 grade-school |  struct, entry api, Vec, Option
