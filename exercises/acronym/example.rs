@@ -17,7 +17,8 @@ fn split_camel(phrase: &str) -> Vec<String> {
     let mut words: Vec<String> = Vec::new();
     let mut prev_ind: usize = 0;
     for (i, c) in chars.iter().enumerate() {
-        if i > 0 && i == chars.len() - 1 || i > 0 && c.is_lowercase() && chars[i + 1].is_uppercase() {
+        if i > 0 && i == chars.len() - 1 ||
+           i > 0 && c.is_lowercase() && chars[i + 1].is_uppercase() {
             words.push(chars[prev_ind..i + 1].iter().cloned().collect());
             prev_ind = i + 1;
         }
