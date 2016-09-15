@@ -6,7 +6,7 @@ fn basic() {
 }
 
 #[test]
-// #[ignore]
+#[ignore]
 fn lowercase_words() {
   assert_eq!(acronym::abbreviate("Ruby on Rails"), "ROR");
 }
