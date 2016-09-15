@@ -36,6 +36,7 @@ pangram | filter, ascii (optional)
 nucleotide-count |  filter, entry api, mutablity, match
 word-count |  hashmap, str vs string, chars, entry api
 etl |  btree
+acronym |  map, flat_map, filter, loops, Vec
 sieve |  vector, map, while let (optional)
 rna-transcription |  match, struct, str vs string
 triangle | Math, Struct. Enum, Trait, Box -- depending on implementation
