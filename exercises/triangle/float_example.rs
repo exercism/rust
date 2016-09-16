@@ -1,6 +1,3 @@
-use std::iter::FromIterator;
-use std::collections::BTreeSet;
-
 extern crate num;
 
 use num::Num;
