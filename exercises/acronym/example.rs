@@ -1,9 +1,9 @@
 pub fn abbreviate(phrase: &str) -> String {
     phrase.split(|c: char| c.is_whitespace() || !c.is_alphanumeric())
           .flat_map(|word| split_camel(word))
-          .filter(|word| !word.is_empty())
-          .map(|word| word.split_at(1).0.to_uppercase())
-          .collect()
+          .filter_map(|word| word.chars().next())
+          .collect::<String>()
+          .to_uppercase()
 }
 
 fn split_camel(phrase: &str) -> Vec<String> {
