@@ -47,12 +47,14 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
     }
 
     pub fn create_compute<F: Fn(&[T]) -> T + 'a>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, &'static str> {
+        // Check all dependencies' validity before modifying any of them,
+        // so that we don't perform an incorrect partial write.
+        if !dependencies.iter().all(|&id| id < self.cells.len()) {
+            return Err("Nonexistent input");
+        }
         let new_id = self.cells.len();
         for &id in dependencies {
-            match self.cells.get_mut(id) {
-                Some(c) => c.dependents.push(new_id),
-                None => return Err("Nonexistent input"),
-            }
+            self.cells.get_mut(id).unwrap().dependents.push(new_id);
         }
         let inputs: Vec<_> = dependencies.iter().map(|&id| self.value(id).unwrap()).collect();
         let initial = compute_func(&inputs);

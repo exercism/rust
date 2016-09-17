@@ -55,6 +55,19 @@ fn error_creating_compute_cell_if_input_doesnt_exist() {
 
 #[test]
 #[ignore]
+fn do_not_break_cell_if_creating_compute_cell_with_valid_and_invalid_input() {
+    let mut dummy_reactor = Reactor::new();
+    let _ = dummy_reactor.create_input(1);
+    let dummy_cell = dummy_reactor.create_input(2);
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    assert!(reactor.create_compute(&vec![input, dummy_cell], |_| 0).is_err());
+    assert!(reactor.set_value(input, 5).is_ok());
+    assert_eq!(reactor.value(input).unwrap(), 5);
+}
+
+#[test]
+#[ignore]
 fn compute_cells_update_value_when_dependencies_are_changed() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
