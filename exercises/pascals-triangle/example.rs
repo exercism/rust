@@ -1,34 +1,25 @@
-struct PascalsTriangle {
+pub struct PascalsTriangle {
     row_count: u32,
 }
 
 impl PascalsTriangle {
-    fn with_rows(row_count: u32) -> Self {
+    pub fn new(row_count: u32) -> Self {
         PascalsTriangle { row_count: row_count }
     }
 
-    fn rows(&self) -> Vec<Vec<u32>> {
-        let mut r: Vec<Vec<u32>> = Vec::new();
-        if self.row_count == 1 {
-            r.push(vec![1]);
-        }
+    pub fn rows(&self) -> Vec<Vec<u32>> {
+        (0..self.row_count).map(|row| PascalsTriangle::row(row)).collect()
+    }
 
-        if self.row_count == 2 {
-            r.push(vec![1]);
-            r.push(vec![1, 1]);
-        }
+    pub fn row(number: u32) -> Vec<u32> {
+        let mut r = vec![1];
 
-        if self.row_count == 3 {
-            r.push(vec![1]);
-            r.push(vec![1, 1]);
-            r.push(vec![1, 2, 1]);
-        }
+        for p in 1..(number + 1) {
+            let last = r.pop().unwrap();
+            let next = last as f32 * ((number as f32 + 1f32 - p as f32) / p as f32);
 
-        if self.row_count == 4 {
-            r.push(vec![1]);
-            r.push(vec![1, 1]);
-            r.push(vec![1, 2, 1]);
-            r.push(vec![1, 3, 3, 1]);
+            r.push(last);
+            r.push(next as u32);
         }
         r
     }
