@@ -17,6 +17,7 @@
     "nucleotide-count",
     "word-count",
     "etl",
+    "acronym",
     "sieve",
     "rna-transcription",
     "triangle",
