@@ -16,8 +16,8 @@ impl PascalsTriangle {
 
         for p in 1..(number + 1) {
             if let Some(last) = r.pop() {
-                let next = last as f32 * ((number as f32 + 1f32 - p as f32) / p as f32);
-                r.extend(&[last, next as u32])
+                let next = (last * (number + 1 - p)) / p;
+                r.extend(&[last, next])
             }
         }
         r
