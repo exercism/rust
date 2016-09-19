@@ -15,9 +15,8 @@ impl PascalsTriangle {
         let mut r = vec![1];
 
         for p in 1..(number + 1) {
-            if let Some(last) = r.pop() {
-                let next = (last * (number + 1 - p)) / p;
-                r.extend(&[last, next])
+            if let Some(&last) = r.last() {
+                r.push((last * (number + 1 - p)) / p)
             }
         }
         r
