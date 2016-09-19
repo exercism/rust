@@ -31,6 +31,7 @@ Problems begin to use more Rust-specific features. Try to only introduce one new
 problem | topics
 ----- | -----
 hamming |  Result
+pascals-triangle | Math, Vec, Index (optional)
 scrabble-score |  chaining higher-order functions, HashMap (optional)
 pangram | filter, ascii (optional)
 nucleotide-count |  filter, entry api, mutablity, match
