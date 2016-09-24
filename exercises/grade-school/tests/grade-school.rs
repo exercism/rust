@@ -58,7 +58,7 @@ fn test_grade_when_no_students_have_that_grade() {
 fn test_grade_for_one_student() {
     let mut s = school::School::new();
     s.add(2, "Aimee");
-    assert_eq!(s.grade(2).map(|v| stringvec_to_strvec(v)),
+    assert_eq!(s.grade(2).map(stringvec_to_strvec),
                 Some(vec!["Aimee"]))
 }
 
@@ -69,7 +69,7 @@ fn test_grade_returns_students_sorted_by_name() {
     s.add(2, "James");
     s.add(2, "Blair");
     s.add(2, "Paul");
-    assert_eq!(s.grade(2).map(|v| stringvec_to_strvec(v)),
+    assert_eq!(s.grade(2).map(stringvec_to_strvec),
                Some(vec!["Blair", "James", "Paul"]));
 }
 
@@ -80,8 +80,8 @@ fn test_add_students_to_different_grades() {
     s.add(3, "Chelsea");
     s.add(7, "Logan");
     assert_eq!(s.grades(), vec!(3, 7));
-    assert_eq!(s.grade(3).map(|v| stringvec_to_strvec(v)),
+    assert_eq!(s.grade(3).map(stringvec_to_strvec),
                Some(vec!["Chelsea"]));
-    assert_eq!(s.grade(7).map(|v| stringvec_to_strvec(v)),
+    assert_eq!(s.grade(7).map(stringvec_to_strvec),
                Some(vec!["Logan"]));
 }
