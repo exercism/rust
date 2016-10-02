@@ -16,13 +16,6 @@ fn check_word_count(s: &str, pairs: Vec<(&str, u32)>) {
 }
 
 #[test]
-fn test_no_words() {
-    check_word_count("", vec![]);
-    check_word_count("-!@#$ $#() @@@", vec![]);
-}
-
-#[test]
-#[ignore]
 fn test_count_one_word() {
     check_word_count("word", vec![("word", 1)]);
 }
@@ -75,28 +68,7 @@ fn test_include_numbers() {
 #[ignore]
 fn test_normalize_case() {
     check_word_count(
-        "go Go GO",
-        vec![("go", 3)]);
-}
-
-#[test]
-#[ignore]
-fn test_prefix_punctuation() {
-    check_word_count(
-        "!%%#testing, 1, 2 testing",
-        vec![("testing", 2),
-             ("1", 1),
-             ("2", 1)]);
-}
-
-#[test]
-#[ignore]
-fn test_symbols_are_separators() {
-    check_word_count(
-        "hey,my_spacebar_is_broken.",
-        vec![("hey", 1),
-             ("my", 1),
-             ("spacebar", 1),
-             ("is", 1),
-             ("broken", 1)]);
+        "go Go GO Stop stop",
+        vec![("go", 3),
+             ("stop", 2)]);
 }
