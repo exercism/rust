@@ -93,9 +93,9 @@ fn division_error() {
 
 #[test]
 #[ignore]
-fn division_by_zero() {
+fn errors_if_dividing_by_zero() {
     let mut f = Forth::new();
-    assert_eq!(Err(Error::DivisionByZero), f.eval("4 2 2 - /"));
+    assert_eq!(Err(Error::DivisionByZero), f.eval("4 0 /"));
 }
 
 #[test]
