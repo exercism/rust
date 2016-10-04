@@ -11,8 +11,8 @@ fn no_input_no_stack() {
 #[ignore]
 fn numbers_just_get_pushed_onto_the_stack() {
     let mut f = Forth::new();
-    assert!(f.eval("1 2 3 4 5 -1").is_ok());
-    assert_eq!(vec![1, 2, 3, 4, 5, -1], f.stack());
+    assert!(f.eval("1 2 3 4 5").is_ok());
+    assert_eq!(vec![1, 2, 3, 4, 5], f.stack());
 }
 
 #[test]
