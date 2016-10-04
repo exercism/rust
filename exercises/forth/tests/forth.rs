@@ -212,9 +212,20 @@ fn over_error() {
     assert_eq!(Err(Error::StackUnderflow), f.eval("over"));
 }
 
+// User-defined words
+
 #[test]
 #[ignore]
-fn defining_a_new_word() {
+fn can_consist_of_built_in_words() {
+    let mut f = Forth::new();
+    assert!(f.eval(": dup-twice dup dup ;").is_ok());
+    assert!(f.eval("1 dup-twice").is_ok());
+    assert_eq!(vec![1, 1, 1], f.stack());
+}
+
+#[test]
+#[ignore]
+fn definitions_are_case_insensitive() {
     let mut f = Forth::new();
     assert!(f.eval(": CoUnT 1 2 3 ;").is_ok());
     assert!(f.eval("count COUNT").is_ok());
