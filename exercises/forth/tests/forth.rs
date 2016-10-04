@@ -25,18 +25,10 @@ fn non_word_characters_are_separators() {
 
 #[test]
 #[ignore]
-fn basic_arithmetic_1() {
+fn can_add_two_numbers() {
     let mut f = Forth::new();
-    assert!(f.eval("1 2 + 4 -").is_ok());
-    assert_eq!(vec![-1], f.stack());
-}
-
-#[test]
-#[ignore]
-fn basic_arithmetic_2() {
-    let mut f = Forth::new();
-    assert!(f.eval("2 4 * 3 /").is_ok());
-    assert_eq!(vec![2], f.stack());
+    assert!(f.eval("1 2 +").is_ok());
+    assert_eq!(vec![3], f.stack());
 }
 
 #[test]
@@ -48,6 +40,14 @@ fn addition_error() {
 
 #[test]
 #[ignore]
+fn can_subtract_two_numbers() {
+    let mut f = Forth::new();
+    assert!(f.eval("3 4 -").is_ok());
+    assert_eq!(vec![-1], f.stack());
+}
+
+#[test]
+#[ignore]
 fn subtraction_error() {
     let mut f = Forth::new();
     assert_eq!(Err(Error::StackUnderflow), f.eval("-"));
@@ -55,9 +55,33 @@ fn subtraction_error() {
 
 #[test]
 #[ignore]
+fn can_multiply_two_numbers() {
+    let mut f = Forth::new();
+    assert!(f.eval("2 4 *").is_ok());
+    assert_eq!(vec![8], f.stack());
+}
+
+#[test]
+#[ignore]
 fn multiplication_error() {
     let mut f = Forth::new();
     assert_eq!(Err(Error::StackUnderflow), f.eval("*"));
+}
+
+#[test]
+#[ignore]
+fn can_divide_two_numbers() {
+    let mut f = Forth::new();
+    assert!(f.eval("12 3 /").is_ok());
+    assert_eq!(vec![4], f.stack());
+}
+
+#[test]
+#[ignore]
+fn performs_integer_division() {
+    let mut f = Forth::new();
+    assert!(f.eval("8 3 /").is_ok());
+    assert_eq!(vec![2], f.stack());
 }
 
 #[test]
@@ -72,6 +96,22 @@ fn division_error() {
 fn division_by_zero() {
     let mut f = Forth::new();
     assert_eq!(Err(Error::DivisionByZero), f.eval("4 2 2 - /"));
+}
+
+#[test]
+#[ignore]
+fn addition_and_subtraction() {
+    let mut f = Forth::new();
+    assert!(f.eval("1 2 + 4 -").is_ok());
+    assert_eq!(vec![-1], f.stack());
+}
+
+#[test]
+#[ignore]
+fn multiplication_and_division() {
+    let mut f = Forth::new();
+    assert!(f.eval("2 4 * 3 /").is_ok());
+    assert_eq!(vec![2], f.stack());
 }
 
 #[test]
