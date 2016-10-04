@@ -130,8 +130,8 @@ fn dup() {
 #[ignore]
 fn dup_case_insensitive() {
     let mut f = Forth::new();
-    assert!(f.eval("1 Dup").is_ok());
-    assert_eq!(vec![1, 1], f.stack());
+    assert!(f.eval("1 2 Dup").is_ok());
+    assert_eq!(vec![1, 2, 2], f.stack());
 }
 
 #[test]
