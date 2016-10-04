@@ -225,6 +225,15 @@ fn can_consist_of_built_in_words() {
 
 #[test]
 #[ignore]
+fn execute_in_the_right_order() {
+    let mut f = Forth::new();
+    assert!(f.eval(": countup 1 2 3 ;").is_ok());
+    assert!(f.eval("countup").is_ok());
+    assert_eq!(vec![1, 2, 3], f.stack());
+}
+
+#[test]
+#[ignore]
 fn definitions_are_case_insensitive() {
     let mut f = Forth::new();
     assert!(f.eval(": CoUnT 1 2 3 ;").is_ok());
