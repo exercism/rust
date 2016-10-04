@@ -35,6 +35,7 @@ fn can_add_two_numbers() {
 #[ignore]
 fn addition_error() {
     let mut f = Forth::new();
+    assert_eq!(Err(Error::StackUnderflow), f.eval("1 +"));
     assert_eq!(Err(Error::StackUnderflow), f.eval("+"));
 }
 
@@ -50,6 +51,7 @@ fn can_subtract_two_numbers() {
 #[ignore]
 fn subtraction_error() {
     let mut f = Forth::new();
+    assert_eq!(Err(Error::StackUnderflow), f.eval("1 -"));
     assert_eq!(Err(Error::StackUnderflow), f.eval("-"));
 }
 
@@ -65,6 +67,7 @@ fn can_multiply_two_numbers() {
 #[ignore]
 fn multiplication_error() {
     let mut f = Forth::new();
+    assert_eq!(Err(Error::StackUnderflow), f.eval("1 *"));
     assert_eq!(Err(Error::StackUnderflow), f.eval("*"));
 }
 
@@ -88,6 +91,7 @@ fn performs_integer_division() {
 #[ignore]
 fn division_error() {
     let mut f = Forth::new();
+    assert_eq!(Err(Error::StackUnderflow), f.eval("1 /"));
     assert_eq!(Err(Error::StackUnderflow), f.eval("/"));
 }
 
