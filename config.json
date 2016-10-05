@@ -17,6 +17,7 @@
     "pangram",
     "nucleotide-count",
     "word-count",
+    "atbash-cipher",
     "etl",
     "acronym",
     "sieve",

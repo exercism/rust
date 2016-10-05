@@ -36,6 +36,7 @@ scrabble-score |  chaining higher-order functions, HashMap (optional)
 pangram | filter, ascii (optional)
 nucleotide-count |  filter, entry api, mutablity, match
 word-count |  hashmap, str vs string, chars, entry api
+atbash-cipher | str vs string, primitive types, iterators, chars, ascii
 etl |  btree
 acronym |  map, flat_map, filter, loops, Vec
 sieve |  vector, map, while let (optional)
