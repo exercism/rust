@@ -3,52 +3,6 @@
   "language": "Rust",
   "repository": "https://github.com/exercism/xrust",
   "active": true,
-  "problems": [
-    "hello-world",
-    "gigasecond",
-    "leap",
-    "raindrops",
-    "bob",
-    "beer-song",
-    "difference-of-squares",
-    "hamming",
-    "pascals-triangle",
-    "scrabble-score",
-    "pangram",
-    "nucleotide-count",
-    "word-count",
-    "atbash-cipher",
-    "etl",
-    "acronym",
-    "sieve",
-    "rna-transcription",
-    "triangle",
-    "roman-numerals",
-    "all-your-base",
-    "grade-school",
-    "robot-simulator",
-    "bracket-push",
-    "queen-attack",
-    "sublist",
-    "space-age",
-    "allergies",
-    "variable-length-quantity",
-    "phone-number",
-    "wordy",
-    "tournament",
-    "custom-set",
-    "anagram",
-    "nucleotide-codons",
-    "robot-name",
-    "ocr-numbers",
-    "minesweeper",
-    "dominoes",
-    "parallel-letter-frequency",
-    "rectangles",
-    "forth",
-    "circular-buffer",
-    "react"
-  ],
   "deprecated": [
     "hexadecimal"
   ],
@@ -61,5 +15,227 @@
     "binary",
     "octal",
     "trinary"
+  ],
+  "exercises": [
+    {
+      "difficulty": 1,
+      "slug": "hello-world",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "gigasecond",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "leap",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "raindrops",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "bob",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "beer-song",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "difference-of-squares",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "hamming",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "pascals-triangle",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "scrabble-score",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "pangram",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "nucleotide-count",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "word-count",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "atbash-cipher",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "etl",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "acronym",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "sieve",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "rna-transcription",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "triangle",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "roman-numerals",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "all-your-base",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "grade-school",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "robot-simulator",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "bracket-push",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "queen-attack",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "sublist",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "space-age",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "allergies",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "variable-length-quantity",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "phone-number",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "wordy",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "tournament",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "custom-set",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "anagram",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "nucleotide-codons",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "robot-name",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "ocr-numbers",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "minesweeper",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "dominoes",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "parallel-letter-frequency",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "rectangles",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "forth",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "circular-buffer",
+      "topics": []
+    },
+    {
+      "difficulty": 1,
+      "slug": "react",
+      "topics": []
+    }
   ]
 }
