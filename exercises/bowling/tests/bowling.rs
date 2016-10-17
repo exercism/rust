@@ -52,7 +52,7 @@ fn a_game_score_is_err_if_fewer_than_ten_frames_have_been_rolled() {
 
 #[test]
 #[ignore]
-fn a_game_score_is_err_if_more_than_ten_frames_have_been_rolled() {
+fn a_roll_is_err_if_the_game_is_done() {
     let mut game = BowlingGame::new();
 
     for _ in 0..10 {
