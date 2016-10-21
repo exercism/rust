@@ -332,6 +332,7 @@ fn the_two_balls_after_a_final_strike_can_not_be_a_non_strike_followed_by_a_stri
 }
 
 #[test]
+#[ignore]
 fn if_the_last_frame_is_a_strike_you_can_not_score_before_the_extra_rolls_are_taken() {
     let mut game = BowlingGame::new();
 
