@@ -49,6 +49,7 @@ grade-school |  struct, entry api, Vec, Option
 robot-simulator | Immutability, enum
 bracket-push | From trait, stack or recursion
 queen-attack |  struct, trait (optional), Result
+bowling | struct, Result, goofy bowling logic
 sublist |  enum, generic over type
 space-age | Custom Trait, From Trait, Default Trait implementation
 allergies |  struct, enum, bitwise (probably), vectors, filter
