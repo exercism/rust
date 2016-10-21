@@ -1,3 +1,4 @@
+
 pub struct BowlingGame {
     frames: Vec<Frame>,
 }
@@ -20,18 +21,50 @@ impl Frame {
         self.bonus.iter().fold(0, |acc, r| acc + r)
     }
 
-    fn is_complete(&self) -> bool {
-        if self.is_spare() {
-            self.bonus.len() == 1
-        } else if self.is_strike() {
-            self.bonus.len() == 2
+    fn is_valid(&self) -> bool {
+        self.rolls_valid() && self.bonus_valid()
+    }
+
+    fn rolls_valid(&self) -> bool {
+        self.roll_score() <= 10
+    }
+
+    fn bonus_valid(&self) -> bool {
+        if self.bonus_done() {
+            if self.is_spare() {
+                self.bonus_score() <= 10
+            } else if self.is_strike() {
+                if let Some(first) = self.bonus.iter().rev().last() {
+                    if *first == 10 {
+                        self.bonus_score() <= 20
+                    } else {
+                        self.bonus_score() <= 10
+                    }
+                } else {
+                    true
+                }
+            } else {
+                true
+            }
         } else {
-            self.rolls_done()
+            true
         }
     }
 
+    fn is_complete(&self) -> bool {
+        self.is_open() || self.bonus_done()
+    }
+
     fn rolls_done(&self) -> bool {
-        self.is_spare() || self.is_strike() || self.rolls.len() == 2
+        self.rolls.len() == 2 || self.is_strike()
+    }
+
+    fn bonus_done(&self) -> bool {
+        (self.is_spare() && self.bonus.len() == 1) || (self.is_strike() && self.bonus.len() == 2)
+    }
+
+    fn is_open(&self) -> bool {
+        self.rolls.len() == 2 && self.roll_score() < 10
     }
 
     fn is_spare(&self) -> bool {
@@ -43,16 +76,10 @@ impl Frame {
     }
 
     fn add_roll(&mut self, roll: u16) {
-        if self.is_spare() {
-            if self.bonus.len() < 1 {
+        if !self.is_complete() {
+            if self.is_spare() || self.is_strike() {
                 self.bonus.push(roll)
-            }
-        } else if self.is_strike() {
-            if self.bonus.len() < 2 {
-                self.bonus.push(roll)
-            }
-        } else {
-            if !self.rolls_done() {
+            } else {
                 self.rolls.push(roll)
             }
         }
@@ -73,7 +100,7 @@ impl BowlingGame {
 
     pub fn roll(&mut self, pins: u16) -> Result<(), &'static str> {
         if pins > 10 {
-            Err("Greate than 10")
+            Err("Greater than 10 pins")
         } else {
             if self.score().is_ok() {
                 return Err("Game Finished. No more rolls.");
@@ -83,11 +110,7 @@ impl BowlingGame {
                 frame.add_roll(pins)
             }
 
-            if self.frames.iter().last().unwrap().roll_score() > 10 {
-                return Err("Invalid Roll");
-            }
-
-            if self.frames.iter().last().unwrap().bonus_score() > 10 {
+            if self.frames.iter().any(|f| !f.is_valid()) {
                 return Err("Invalid Roll");
             }
 
@@ -100,10 +123,14 @@ impl BowlingGame {
     }
 
     pub fn score(&self) -> Result<u16, &'static str> {
-        if self.frames.len() != 10 || self.frames.iter().any(|f| !f.is_complete()) {
+        if !self.is_done() {
             Err("Game Incomplete")
         } else {
             Ok(self.frames.iter().fold(0, |acc, r| acc + r.score()))
         }
+    }
+
+    fn is_done(&self) -> bool {
+        self.frames.len() == 10 && self.frames.iter().all(|f| f.is_complete())
     }
 }
