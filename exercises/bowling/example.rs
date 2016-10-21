@@ -14,11 +14,11 @@ impl Frame {
     }
 
     fn roll_score(&self) -> u16 {
-        self.rolls.iter().fold(0, |acc, r| acc + r)
+        self.rolls.iter().sum()
     }
 
     fn bonus_score(&self) -> u16 {
-        self.bonus.iter().fold(0, |acc, r| acc + r)
+        self.bonus.iter().sum()
     }
 
     fn is_valid(&self) -> bool {
