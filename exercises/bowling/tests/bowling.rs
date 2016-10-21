@@ -288,7 +288,7 @@ fn you_can_not_roll_more_than_ten_pins_in_a_single_frame() {
 
 #[test]
 #[ignore]
-fn you_can_not_roll_more_than_ten_pins_with_the_two_bonus_rolls_after_a_final_strike() {
+fn the_two_balls_after_a_final_strike_can_not_score_an_invalid_number_of_pins() {
     let mut game = BowlingGame::new();
 
     for _ in 0..18 {
@@ -303,6 +303,35 @@ fn you_can_not_roll_more_than_ten_pins_with_the_two_bonus_rolls_after_a_final_st
 
 #[test]
 #[ignore]
+fn the_two_balls_after_a_final_strike_can_be_a_strike_and_non_strike() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..18 {
+        let _ = game.roll(0);
+    }
+
+    let _ = game.roll(10);
+
+    assert!(game.roll(10).is_ok());
+    assert!(game.roll(6).is_ok());
+}
+
+#[test]
+#[ignore]
+fn the_two_balls_after_a_final_strike_can_not_be_a_non_strike_followed_by_a_strike() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..18 {
+        let _ = game.roll(0);
+    }
+
+    let _ = game.roll(10);
+
+    assert!(game.roll(6).is_ok());
+    assert!(game.roll(10).is_err());
+}
+
+#[test]
 fn if_the_last_frame_is_a_strike_you_can_not_score_before_the_extra_rolls_are_taken() {
     let mut game = BowlingGame::new();
 
