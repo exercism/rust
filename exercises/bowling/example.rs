@@ -30,24 +30,22 @@ impl Frame {
     }
 
     fn bonus_valid(&self) -> bool {
-        if self.bonus_done() {
-            if self.is_spare() {
-                self.bonus_score() <= 10
-            } else if self.is_strike() {
-                if let Some(first) = self.bonus.iter().rev().last() {
-                    if *first == 10 {
-                        self.bonus_score() <= 20
-                    } else {
-                        self.bonus_score() <= 10
-                    }
-                } else {
-                    true
-                }
+        if self.is_open() || !self.bonus_done() {
+            return true;
+        }
+
+        if self.is_spare() {
+            return self.bonus_score() <= 10;
+        }
+
+        if let Some(first) = self.bonus.iter().next() {
+            if *first == 10 {
+                self.bonus_score() <= 20
             } else {
-                true
+                self.bonus_score() <= 10
             }
         } else {
-            true
+            unreachable!();
         }
     }
 
