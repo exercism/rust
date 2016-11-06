@@ -31,6 +31,12 @@ fn all_caps_words() {
 
 #[test]
 #[ignore]
+fn non_acronym_all_caps_word() {
+    assert_eq!(acronym::abbreviate("GNU Image Manipulation Program"), "GIMP");
+}
+
+#[test]
+#[ignore]
 fn hyphenated() {
     assert_eq!(acronym::abbreviate("Complementary metal-oxide semiconductor"), 
                "CMOS");
