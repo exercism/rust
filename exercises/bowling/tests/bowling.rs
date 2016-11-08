@@ -90,6 +90,38 @@ fn ten_frames_without_a_strike_or_spare() {
 
 #[test]
 #[ignore]
+fn too_many_pins_in_single_roll_does_not_prevent_future_ok_rolls() {
+    let mut game = BowlingGame::new();
+
+    assert!(game.roll(11).is_err());
+    assert!(game.roll(5).is_ok());
+
+    for _ in 0..19 {
+        let _ = game.roll(0);
+    }
+
+    assert_eq!(game.score().unwrap(), 5);
+}
+
+#[test]
+#[ignore]
+fn too_many_pins_in_consecutive_rolls_does_not_prevent_future_ok_rolls() {
+    let mut game = BowlingGame::new();
+
+    assert!(game.roll(5).is_ok());
+    assert!(game.roll(6).is_err());
+    assert!(game.roll(4).is_ok());
+
+    for _ in 0..9 {
+        let _ = game.roll(0);
+        let _ = game.roll(0);
+    }
+
+    assert_eq!(game.score().unwrap(), 9);
+}
+
+#[test]
+#[ignore]
 fn spare_in_the_first_frame_followed_by_zeros() {
     let mut game = BowlingGame::new();
 
