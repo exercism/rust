@@ -288,6 +288,20 @@ fn you_can_not_roll_more_than_ten_pins_in_a_single_frame() {
 
 #[test]
 #[ignore]
+fn first_bonus_ball_after_a_final_strike_can_not_score_an_invalid_number_of_pins() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..18 {
+        let _ = game.roll(0);
+    }
+
+    let _ = game.roll(10);
+
+    assert!(game.roll(11).is_err());
+}
+
+#[test]
+#[ignore]
 fn the_two_balls_after_a_final_strike_can_not_score_an_invalid_number_of_pins() {
     let mut game = BowlingGame::new();
 
@@ -329,6 +343,21 @@ fn the_two_balls_after_a_final_strike_can_not_be_a_non_strike_followed_by_a_stri
 
     assert!(game.roll(6).is_ok());
     assert!(game.roll(10).is_err());
+}
+
+#[test]
+#[ignore]
+fn second_bonus_ball_after_a_final_strike_can_not_score_an_invalid_number_of_pins_even_if_first_is_strike() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..18 {
+        let _ = game.roll(0);
+    }
+
+    let _ = game.roll(10);
+
+    assert!(game.roll(10).is_ok());
+    assert!(game.roll(11).is_err());
 }
 
 #[test]
