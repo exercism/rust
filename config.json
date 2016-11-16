@@ -49,7 +49,8 @@
     "rectangles",
     "forth",
     "circular-buffer",
-    "react"
+    "react",
+    "alphametics"
   ],
   "deprecated": [
     "hexadecimal"
