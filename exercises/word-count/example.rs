@@ -1,3 +1,5 @@
+use std::convert::AsRef;
+
 use std::collections::HashMap;
 
 pub fn word_count(input: &str) -> HashMap<String, u32> {

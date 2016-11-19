@@ -1,3 +1,5 @@
+use std::convert::AsRef;
+
 use std::cmp::Ordering::Equal;
 use std::collections::HashMap;
 

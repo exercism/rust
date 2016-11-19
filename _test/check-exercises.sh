@@ -26,6 +26,7 @@ for exercise in exercises/*/tests; do
     (
         cd $workdir
         [ -d src ] || mkdir src
+
         cp example.rs src/lib.rs
 
         # Forcibly strip all "ignore" statements from the testing files
