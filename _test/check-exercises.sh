@@ -28,6 +28,11 @@ for exercise in exercises/*/tests; do
         [ -d src ] || mkdir src
         cp example.rs src/lib.rs
 
+        # Overwrite empty Cargo.toml if an example specific file exists
+        if [ -f Cargo-example.toml ]; then
+            cp Cargo-example.toml Cargo.toml
+        fi
+
         # Forcibly strip all "ignore" statements from the testing files
         for test in tests/*.rs; do
             sed -i '/\[ignore\]/d' $test
