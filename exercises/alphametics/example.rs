@@ -1,12 +1,5 @@
 // This is a brute-force solution, use `cargo test --release` for faster testing
 
-// Use these dependencies in Cargo.toml
-//
-// [dependencies]
-// itertools = "0.5"
-// permutohedron = "0.2"
-
-
 extern crate itertools;
 extern crate permutohedron;
 
