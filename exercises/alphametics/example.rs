@@ -52,7 +52,7 @@ pub fn solve(puzzle: &str) -> Option<HashMap<char, u8>> {
     // All available numbers for substitution
     let numbers: &[u8] = &[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    // Iterate every combination with the length of uniqe letters in the puzzle
+    // Iterate every combination with the length of unique letters in the puzzle
     for combinations in numbers.iter().combinations(letters.len()) {
         let mut c = combinations;
         let permutations = Permutations::new(&mut c);
