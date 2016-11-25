@@ -39,6 +39,7 @@
     "wordy",
     "tournament",
     "custom-set",
+    "alphametics",
     "anagram",
     "nucleotide-codons",
     "robot-name",
@@ -49,8 +50,7 @@
     "rectangles",
     "forth",
     "circular-buffer",
-    "react",
-    "alphametics"
+    "react"
   ],
   "deprecated": [
     "hexadecimal"

@@ -58,6 +58,7 @@ phone-number |  option, format, unwrap_or, iters, match
 wordy | Result, string parsing, operators (optional)
 tournament |  enum, sorting, hashmap, structs
 custom-set |  generic over type, vector, equality, struct
+alphametics | string parsing, combinations, math, external crates (optional)
 
 ## Rust Gets Strange
 
