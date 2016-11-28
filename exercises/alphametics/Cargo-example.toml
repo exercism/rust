@@ -1,0 +1,7 @@
+[package]
+name = "alphametics"
+version = "0.0.0"
+
+[dependencies]
+itertools = "0.5"
+permutohedron = "0.2"
