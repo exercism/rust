@@ -8,7 +8,7 @@ pub fn lsp(string_digits: &str, span: usize) -> Result<u64, String> {
     }
 
     let products: Vec<u64> = string_digits.chars()
-        .map(|c| u64::from_str(&c.to_string()).unwrap())
+        .map(|c| c.to_digit(10).unwrap() as u64)
         .collect::<Vec<u64>>()
         .windows(span)
         .map(|w| w.into_iter().product())
