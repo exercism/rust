@@ -14,8 +14,8 @@ pub fn lsp(string_digits: &str, span: usize) -> Result<u64, String> {
         .map(|w| w.into_iter().product())
         .collect();
 
-    if let Some(x) = products.iter().max() {
-        Ok(x.clone())
+    if let Some(&x) = products.iter().max() {
+        Ok(x)
     } else {
         Err(String::from("Span longer than string"))
     }
