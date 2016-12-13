@@ -1,11 +1,9 @@
-use std::str::FromStr;
-
 pub fn lsp(string_digits: &str, span: usize) -> Result<u64, String> {
     if span == 0 {
         return Ok(1);
     }
 
-    if string_digits.chars().any(|c| !c.is_numeric()) {
+    if string_digits.chars().any(|c| !c.is_digit(10)) {
         return Err(String::from("All characters must be numbers"));
     }
 
