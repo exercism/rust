@@ -17,6 +17,7 @@
     "scrabble-score",
     "pangram",
     "nucleotide-count",
+    "largest-series-product",
     "word-count",
     "atbash-cipher",
     "etl",

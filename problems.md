@@ -36,6 +36,7 @@ pascals-triangle | Math, Vec, Index (optional)
 scrabble-score |  chaining higher-order functions, HashMap (optional)
 pangram | filter, ascii (optional)
 nucleotide-count |  filter, entry api, mutablity, match
+largest-series-product | Result, windows, higher-order functions, char
 word-count |  hashmap, str vs string, chars, entry api
 atbash-cipher | str vs string, primitive types, iterators, chars, ascii
 etl |  btree
