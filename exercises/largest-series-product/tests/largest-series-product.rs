@@ -64,7 +64,7 @@ fn returns_zero_if_all_products_are_zero() {
 
 #[test]
 #[ignore]
-fn returns_an_error_if_span_is_longer_than_number() {
+fn a_span_is_longer_than_number_is_an_error() {
     assert!(lsp("123", 4).is_err());
 }
 
@@ -100,6 +100,6 @@ fn empty_string_and_non_zero_span_is_an_error() {
 
 #[test]
 #[ignore]
-fn panics_if_string_contains_non_digits() {
+fn a_string_with_non_digits_is_an_error() {
     assert!(lsp("1234a5", 2).is_err());
 }
