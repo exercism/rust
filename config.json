@@ -51,6 +51,7 @@
     "rectangles",
     "forth",
     "circular-buffer",
+    "exercise-doesnt-exist",
     "react"
   ],
   "deprecated": [
