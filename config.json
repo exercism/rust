@@ -64,6 +64,14 @@
       ]
     },
     {
+      "slug": "sum-of-multiples",
+      "difficulty": 1,
+      "topics": [
+        "algorithm",
+        "borrowing"
+      ]
+    },
+    {
       "slug": "grains",
       "difficulty": 1,
       "topics": [

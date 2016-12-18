@@ -23,6 +23,7 @@ raindrops |  case (or `format`). Mutable string
 bob |  chars, string functions
 beer-song |  case, string concatenation, vector (optional), loop
 difference-of-squares |  fold & map
+sum-of-multiples | algorithm, borrowing
 grains | math, panic
 
 ## Getting Rusty
