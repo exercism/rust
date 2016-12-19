@@ -3,55 +3,441 @@
   "language": "Rust",
   "repository": "https://github.com/exercism/xrust",
   "active": true,
-  "problems": [
-    "hello-world",
-    "gigasecond",
-    "leap",
-    "raindrops",
-    "bob",
-    "beer-song",
-    "difference-of-squares",
-    "grains",
-    "hamming",
-    "pascals-triangle",
-    "scrabble-score",
-    "pangram",
-    "nucleotide-count",
-    "largest-series-product",
-    "word-count",
-    "atbash-cipher",
-    "etl",
-    "acronym",
-    "sieve",
-    "rna-transcription",
-    "triangle",
-    "roman-numerals",
-    "all-your-base",
-    "grade-school",
-    "robot-simulator",
-    "bracket-push",
-    "queen-attack",
-    "bowling",
-    "sublist",
-    "space-age",
-    "allergies",
-    "variable-length-quantity",
-    "phone-number",
-    "wordy",
-    "tournament",
-    "custom-set",
-    "alphametics",
-    "anagram",
-    "nucleotide-codons",
-    "robot-name",
-    "ocr-numbers",
-    "minesweeper",
-    "dominoes",
-    "parallel-letter-frequency",
-    "rectangles",
-    "forth",
-    "circular-buffer",
-    "react"
+  "exercises": [
+    {
+      "slug": "hello-world",
+      "difficulty": 1,
+      "topics": [
+        "Some/None",
+        "println!"
+      ]
+    },
+    {
+      "slug": "gigasecond",
+      "difficulty": 1,
+      "topics": [
+        "crates",
+        "math"
+      ]
+    },
+    {
+      "slug": "leap",
+      "difficulty": 1,
+      "topics": [
+        "math",
+        "booleans",
+        "conditionals"
+      ]
+    },
+    {
+      "slug": "raindrops",
+      "difficulty": 1,
+      "topics": [
+        "case (or `format`)",
+        "Mutable string"
+      ]
+    },
+    {
+      "slug": "bob",
+      "difficulty": 1,
+      "topics": [
+        "chars",
+        "string functions"
+      ]
+    },
+    {
+      "slug": "beer-song",
+      "difficulty": 1,
+      "topics": [
+        "case",
+        "string concatenation",
+        "vector (optional)",
+        "loop"
+      ]
+    },
+    {
+      "slug": "difference-of-squares",
+      "difficulty": 1,
+      "topics": [
+        "fold",
+        "map"
+      ]
+    },
+    {
+      "slug": "grains",
+      "difficulty": 1,
+      "topics": [
+        "math",
+        "panic"
+      ]
+    },
+    {
+      "slug": "hamming",
+      "difficulty": 1,
+      "topics": [
+        "Result"
+      ]
+    },
+    {
+      "slug": "pascals-triangle",
+      "difficulty": 1,
+      "topics": [
+        "Math",
+        "Vec",
+        "Index (optional)"
+      ]
+    },
+    {
+      "slug": "scrabble-score",
+      "difficulty": 1,
+      "topics": [
+        "chaining higher-order functions",
+        "HashMap (optional)"
+      ]
+    },
+    {
+      "slug": "pangram",
+      "difficulty": 1,
+      "topics": [
+        "filter",
+        "ascii (optional)"
+      ]
+    },
+    {
+      "slug": "nucleotide-count",
+      "difficulty": 1,
+      "topics": [
+        "filter",
+        "entry api",
+        "mutablity",
+        "match"
+      ]
+    },
+    {
+      "slug": "largest-series-product",
+      "difficulty": 1,
+      "topics": [
+        "Result",
+        "windows",
+        "higher-order functions",
+        "char"
+      ]
+    },
+    {
+      "slug": "word-count",
+      "difficulty": 1,
+      "topics": [
+        "hashmap",
+        "str vs string",
+        "chars",
+        "entry api"
+      ]
+    },
+    {
+      "slug": "atbash-cipher",
+      "difficulty": 1,
+      "topics": [
+        "str vs string",
+        "primitive types",
+        "iterators",
+        "chars",
+        "ascii"
+      ]
+    },
+    {
+      "slug": "etl",
+      "difficulty": 1,
+      "topics": [
+        "btree"
+      ]
+    },
+    {
+      "slug": "acronym",
+      "difficulty": 1,
+      "topics": [
+        "map",
+        "flat_map",
+        "filter",
+        "loops",
+        "Vec"
+      ]
+    },
+    {
+      "slug": "sieve",
+      "difficulty": 1,
+      "topics": [
+        "vector",
+        "map",
+        "while let (optional)"
+      ]
+    },
+    {
+      "slug": "rna-transcription",
+      "difficulty": 1,
+      "topics": [
+        "match",
+        "struct",
+        "str vs string"
+      ]
+    },
+    {
+      "slug": "triangle",
+      "difficulty": 1,
+      "topics": [
+        "Math",
+        "Struct"
+      ]
+    },
+    {
+      "slug": "roman-numerals",
+      "difficulty": 1,
+      "topics": [
+        "mutable",
+        "results",
+        "loops",
+        "struct",
+        "traits"
+      ]
+    },
+    {
+      "slug": "all-your-base",
+      "difficulty": 1,
+      "topics": [
+        "Result",
+        "enumerate",
+        "fold",
+        "map"
+      ]
+    },
+    {
+      "slug": "grade-school",
+      "difficulty": 1,
+      "topics": [
+        "struct",
+        "entry api",
+        "Vec",
+        "Option"
+      ]
+    },
+    {
+      "slug": "robot-simulator",
+      "difficulty": 1,
+      "topics": [
+        "Immutability",
+        "enum"
+      ]
+    },
+    {
+      "slug": "bracket-push",
+      "difficulty": 1,
+      "topics": [
+        "From trait",
+        "stack or recursion"
+      ]
+    },
+    {
+      "slug": "queen-attack",
+      "difficulty": 1,
+      "topics": [
+        "struct",
+        "trait (optional)",
+        "Result"
+      ]
+    },
+    {
+      "slug": "bowling",
+      "difficulty": 1,
+      "topics": [
+        "struct",
+        "Result",
+        "goofy bowling logic"
+      ]
+    },
+    {
+      "slug": "sublist",
+      "difficulty": 1,
+      "topics": [
+        "enum",
+        "generic over type"
+      ]
+    },
+    {
+      "slug": "space-age",
+      "difficulty": 1,
+      "topics": [
+        "Custom Trait",
+        "From Trait",
+        "Default Trait implementation"
+      ]
+    },
+    {
+      "slug": "allergies",
+      "difficulty": 1,
+      "topics": [
+        "struct",
+        "enum",
+        "bitwise (probably)",
+        "vectors",
+        "filter"
+      ]
+    },
+    {
+      "slug": "variable-length-quantity",
+      "difficulty": 1,
+      "topics": [
+        "Encodings",
+        "slices",
+        "bitwise",
+        "Result"
+      ]
+    },
+    {
+      "slug": "phone-number",
+      "difficulty": 1,
+      "topics": [
+        "option",
+        "format",
+        "unwrap_or",
+        "iters",
+        "match"
+      ]
+    },
+    {
+      "slug": "wordy",
+      "difficulty": 1,
+      "topics": [
+        "Result",
+        "string parsing",
+        "operators (optional)"
+      ]
+    },
+    {
+      "slug": "tournament",
+      "difficulty": 1,
+      "topics": [
+        "enum",
+        "sorting",
+        "hashmap",
+        "structs"
+      ]
+    },
+    {
+      "slug": "custom-set",
+      "difficulty": 1,
+      "topics": [
+        "generic over type",
+        "vector",
+        "equality",
+        "struct"
+      ]
+    },
+    {
+      "slug": "alphametics",
+      "difficulty": 1,
+      "topics": [
+        "string parsing",
+        "combinations",
+        "math",
+        "external crates (optional)"
+      ]
+    },
+    {
+      "slug": "anagram",
+      "difficulty": 1,
+      "topics": [
+        "lifetimes",
+        "str vs string",
+        "loops",
+        "iter",
+        "vector"
+      ]
+    },
+    {
+      "slug": "nucleotide-codons",
+      "difficulty": 1,
+      "topics": [
+        "struct",
+        "hash map",
+        "lifetimes",
+        "Result"
+      ]
+    },
+    {
+      "slug": "robot-name",
+      "difficulty": 1,
+      "topics": [
+        "struct",
+        "slices",
+        "randomness",
+        "lifetimes",
+        "self mut"
+      ]
+    },
+    {
+      "slug": "ocr-numbers",
+      "difficulty": 1,
+      "topics": [
+        "Lines",
+        "Chunks",
+        "slices"
+      ]
+    },
+    {
+      "slug": "minesweeper",
+      "difficulty": 1,
+      "topics": [
+        "Board state"
+      ]
+    },
+    {
+      "slug": "dominoes",
+      "difficulty": 1,
+      "topics": [
+        "Graph theory",
+        "searching"
+      ]
+    },
+    {
+      "slug": "parallel-letter-frequency",
+      "difficulty": 1,
+      "topics": [
+        "multi-threading"
+      ]
+    },
+    {
+      "slug": "rectangles",
+      "difficulty": 1,
+      "topics": [
+        "Enum",
+        "structs",
+        "traits",
+        "Lifetimes"
+      ]
+    },
+    {
+      "slug": "forth",
+      "difficulty": 1,
+      "topics": [
+        "Parser reimplementation"
+      ]
+    },
+    {
+      "slug": "circular-buffer",
+      "difficulty": 1,
+      "topics": [
+        "Buffer reimplementation",
+        "Generics"
+      ]
+    },
+    {
+      "slug": "react",
+      "difficulty": 1,
+      "topics": [
+        "Lifetimes",
+        "generics",
+        "closures"
+      ]
+    }
   ],
   "deprecated": [
     "hexadecimal"
