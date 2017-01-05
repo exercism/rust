@@ -115,6 +115,7 @@
       "slug": "nucleotide-count",
       "difficulty": 1,
       "topics": [
+        "Result",
         "filter",
         "entry api",
         "mutablity",
