@@ -16,6 +16,12 @@ fn check_dna(s: &str, pairs: &[(char, usize)]) {
 }
 
 #[test]
+fn count_returns_result() {
+    assert!(dna::count('A', "").is_ok());
+}
+
+#[test]
+#[ignore]
 fn test_count_empty() {
     assert_eq!(dna::count('A', "").unwrap(), 0);
 }
@@ -42,6 +48,12 @@ fn test_count_repetitive_cytosine() {
 #[ignore]
 fn test_count_only_thymine() {
     assert_eq!(dna::count('T', "GGGGGTAACCCGG").unwrap(), 1);
+}
+
+#[test]
+#[ignore]
+fn counts_returns_result() {
+    assert!(dna::nucleotide_counts("ACGT").is_ok());
 }
 
 #[test]
