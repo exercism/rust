@@ -42,6 +42,13 @@ fn test_no_texts() {
 
 #[test]
 #[ignore]
+fn test_hello_world() {
+    let hi = format!("Hello, {}!", "world");
+    frequency::frequency(&[&hi], 4);
+}
+
+#[test]
+#[ignore]
 fn test_one_letter() {
     let mut hm = HashMap::new();
     hm.insert('a', 1);
