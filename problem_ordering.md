@@ -38,4 +38,4 @@ Through the middle section of the track students should gain familiarity with a 
 Problems late in the track should do one of two things:
 
 1. Introduce advanced concepts -- Lifetimes, Concurrency, Unsafety
-2. Require a complex solution that synthesizes all the knowlegde students have gained to date
+2. Require a complex solution that synthesizes all the knowledge students have gained to date
