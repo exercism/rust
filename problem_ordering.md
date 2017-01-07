@@ -8,28 +8,34 @@ The actual source of truth of problem order and topics is [config.json](config.j
 - https://github.com/exercism/xrust/issues/127
 - http://designisrefactoring.com/2016/07/09/exercism-shouldnt-make-you-cry/
 
-# The Problems, By Section
+## Our Approach
 
-## Introduction
+We order our problems for students who are learning Rust. With that audience in mind, we follow two rules when adding new problems.
 
-The first section contains the sort of stuff you expect when learning any programming languages: conditionals, booleans, looping and some higher-order functions.
+- A exercise should introduce one new concept
+- Exercises should progress from Rust basics to advanced Rust concepts
 
-This section starts at `hello-world` and ends at `grains`.
+### One New Concept
 
-## Getting Rusty
+If a problem solution requires students to use both `Result` and `HashMap`, then at least one of these concepts should be introduced by an earlier problem.
 
-Problems begin to use more Rust-specific features. Try to only introduce one new language feature at a time. And if several problems rely on a feature, try to group them so as to reinforce its usage.
+If the track has several problems that rely on a concept, group them together to reinforce learning.
 
-This section starts at `hamming` and ends at `alphametics`.
+### Progress Through Rust
 
-## Rust Gets Strange
+#### Early Problems
 
-Exercises that pay the cost of Rust's [strangeness budget](http://words.steveklabnik.com/the-language-strangeness-budget). Features that are very specific to Rust.
+Early problems should focus on Rust syntax and concepts that are present in many programming languages: conditionals, looping, higher-order-functions.
 
-This section starts at `anagram` and ends at `robot-name`.
+#### Middle Problems
 
-## Putting it all Together
+Problems in the middle of the of the track should introduce concepts that are less common. `Result` and `Option` and Traits, for example. Or syntax such as `while let`.
 
-These problems don’t necessarily require additional Rust knowledge, but they do require complex solutions.
+Through the middle section of the track students should gain familiarity with a wide range of Rust concepts.
 
-This section starts at `ocr-numbers` and extends to the end of the track.
+#### Later Problems
+
+Problems late in the track should do one of two things:
+
+1. Introduce advanced concepts -- Lifetimes, Concurrency, Unsafety
+2. Require a complex solution that synthesizes all the knowlegde students have gained to date
