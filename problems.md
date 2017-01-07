@@ -14,67 +14,22 @@ The actual source of truth of problem order and topics is [config.json](config.j
 
 The first section contains the sort of stuff you expect when learning any programming languages: conditionals, booleans, looping and some higher-order functions.
 
-* hello-world
-* gigasecond
-* leap
-* raindrops
-* bob
-* beer-song
-* difference-of-squares
-* sum-of-multiples
-* grains
+This section starts at `hello-world` and ends at `grains`.
 
 ## Getting Rusty
 
 Problems begin to use more Rust-specific features. Try to only introduce one new language feature at a time. And if several problems rely on a feature, try to group them so as to reinforce its usage.
 
-* hamming
-* pascals-triangle
-* scrabble-score
-* pangram
-* nucleotide-count
-* largest-series-product
-* word-count
-* atbash-cipher
-* etl
-* acronym
-* sieve
-* rna-transcription
-* triangle
-* roman-numerals
-* all-your-base
-* grade-school
-* robot-simulator
-* bracket-push
-* queen-attack
-* bowling
-* sublist
-* space-age
-* allergies
-* variable-length-quantity
-* phone-number
-* wordy
-* tournament
-* custom-set
-* alphametics
+This section starts at `hamming` and ends at `alphametics`.
 
 ## Rust Gets Strange
 
 Exercises that pay the cost of Rust's [strangeness budget](http://words.steveklabnik.com/the-language-strangeness-budget). Features that are very specific to Rust.
 
-* anagram
-* nucleotide-codons
-* robot-name
+This section starts at `anagram` and ends at `robot-name`.
 
 ## Putting it all Together
 
 These problems don’t necessarily require additional Rust knowledge, but they do require complex solutions.
 
-* ocr-numbers
-* minesweeper
-* dominoes
-* parallel-letter-frequency
-* rectangles
-* forth
-* circular-buffer
-* react
+This section starts at `ocr-numbers` and extends to the end of the track.
