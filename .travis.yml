@@ -13,6 +13,10 @@ env:
   - DENYWARNINGS=
   - DENYWARNINGS=1
 matrix:
+  include:
+    - rust: nightly
+      env: BENCHMARK=1
+      script: "./_test/check-exercises.sh"
   allow_failures:
     - rust: nightly
     - rust: beta
