@@ -4,8 +4,7 @@ pub fn is_valid(candidate: &str) -> bool {
     }
 
     candidate.chars()
-        .filter(|c| c.is_numeric())
-        .map(|c| c.to_digit(10).unwrap())
+        .filter_map(|c| c.to_digit(10))
         .rev()
         .enumerate()
         .map(|(index, digit)| if index % 2 == 0 { digit } else { digit * 2 })
