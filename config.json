@@ -123,6 +123,15 @@
       ]
     },
     {
+      "slug": "luhn",
+      "difficulty": 1,
+      "topics": [
+        "str to digits",
+        "iterators",
+        "higher-order functions"
+      ]
+    },
+    {
       "slug": "largest-series-product",
       "difficulty": 1,
       "topics": [
