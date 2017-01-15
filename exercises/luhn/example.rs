@@ -8,6 +8,6 @@ pub fn is_valid(candidate: &str) -> bool {
         .rev()
         .enumerate()
         .map(|(index, digit)| if index % 2 == 0 { digit } else { digit * 2 })
-        .map(|digit| if digit > 10 { digit - 9 } else { digit })
+        .map(|digit| if digit > 9 { digit - 9 } else { digit })
         .sum::<u32>() % 10 == 0
 }
