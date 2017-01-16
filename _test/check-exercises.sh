@@ -6,6 +6,12 @@ if [ -z "$DENYWARNINGS" ]; then
     set -e
 fi
 
+if [ -n "$BENCHMARK" ]; then
+    files=exercises/*/benches
+else
+    files=exercises/*/tests
+fi
+
 tmp=${TMPDIR:-/tmp/}
 mkdir "${tmp}exercises"
 
@@ -13,7 +19,7 @@ exitcode=0
 
 # An exercise worth testing is defined here as any top level directory with
 # a 'tests' directory
-for exercise in exercises/*/tests; do
+for exercise in $files; do
     # This assumes that exercises are only one directory deep
     # and that the primary module is named the same as the directory
     directory=$(dirname "${exercise}");
@@ -38,7 +44,10 @@ for exercise in exercises/*/tests; do
             sed -i '/\[ignore\]/d' $test
         done
 
-        if [ -n "$DENYWARNINGS" ]; then
+        # Run benchmarks instead of tests when enabled.
+        if [ -n "$BENCHMARK" ]; then
+            cargo bench
+        elif [ -n "$DENYWARNINGS" ]; then
             sed -i -e '1i #![deny(warnings)]' src/lib.rs
 
             # No-run mode so we see no test output.
