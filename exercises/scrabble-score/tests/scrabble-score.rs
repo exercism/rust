@@ -123,7 +123,7 @@ fn triple_letters_at_word_boundary() {
 
 #[test]
 #[ignore]
-fn zero_scoring_letters_ignored() {
+fn zero_scoring_letters_not_multiplied() {
     assert_eq!(score("pinata"), 8);
     assert_eq!(score("piñata"), 7);
     assert_eq!(score("piñ:doubleata"), 7);
