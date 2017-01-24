@@ -70,21 +70,25 @@ fn empty_words_are_worth_zero() {
 // =============================================
 
 #[test]
+#[ignore]
 fn single_letter_double_score() {
     assert_eq!(score("a:double"), 2);
 }
 
 #[test]
+#[ignore]
 fn other_single_letter_double_score() {
     assert_eq!(score("g:double"), 4);
 }
 
 #[test]
+#[ignore]
 fn double_scoring_letter_in_a_word() {
     assert_eq!(score("zo:doubleo"), 13);
 }
 
 #[test]
+#[ignore]
 fn double_letters_at_word_boundary() {
     assert_eq!(score("fabulous"), 13);
     assert_eq!(score("f:doubleabulous"), 17);
@@ -92,21 +96,25 @@ fn double_letters_at_word_boundary() {
 }
 
 #[test]
+#[ignore]
 fn single_letter_triple_score() {
     assert_eq!(score("a:triple"), 3);
 }
 
 #[test]
+#[ignore]
 fn other_single_letter_triple_score() {
     assert_eq!(score("g:triple"), 6);
 }
 
 #[test]
+#[ignore]
 fn triple_scoring_letter_in_a_word() {
     assert_eq!(score("zo:tripleo"), 14);
 }
 
 #[test]
+#[ignore]
 fn triple_letters_at_word_boundary() {
     assert_eq!(score("fabulous"), 13);
     assert_eq!(score("f:tripleabulous"), 21);
@@ -114,6 +122,7 @@ fn triple_letters_at_word_boundary() {
 }
 
 #[test]
+#[ignore]
 fn zero_scoring_letters_ignored() {
     assert_eq!(score("pinata"), 8);
     assert_eq!(score("piñata"), 7);
