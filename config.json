@@ -81,14 +81,14 @@
     },
     {
       "slug": "hamming",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Result"
       ]
     },
     {
       "slug": "pascals-triangle",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Math",
         "Vec",
@@ -97,7 +97,7 @@
     },
     {
       "slug": "scrabble-score",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "chaining higher-order functions",
         "HashMap (optional)"
@@ -105,7 +105,7 @@
     },
     {
       "slug": "pangram",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "filter",
         "ascii (optional)"
@@ -113,7 +113,7 @@
     },
     {
       "slug": "nucleotide-count",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Result",
         "filter",
@@ -124,7 +124,7 @@
     },
     {
       "slug": "luhn",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "str to digits",
         "iterators",
@@ -133,7 +133,7 @@
     },
     {
       "slug": "largest-series-product",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Result",
         "windows",
@@ -143,7 +143,7 @@
     },
     {
       "slug": "word-count",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "hashmap",
         "str vs string",
@@ -153,7 +153,7 @@
     },
     {
       "slug": "atbash-cipher",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "str vs string",
         "primitive types",
@@ -164,14 +164,14 @@
     },
     {
       "slug": "etl",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "btree"
       ]
     },
     {
       "slug": "acronym",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "map",
         "flat_map",
@@ -182,7 +182,7 @@
     },
     {
       "slug": "sieve",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "vector",
         "map",
@@ -191,7 +191,7 @@
     },
     {
       "slug": "rna-transcription",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "match",
         "struct",
@@ -200,7 +200,7 @@
     },
     {
       "slug": "triangle",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Math",
         "Struct"
@@ -208,7 +208,7 @@
     },
     {
       "slug": "roman-numerals",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "mutable",
         "results",
@@ -219,7 +219,7 @@
     },
     {
       "slug": "all-your-base",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Result",
         "enumerate",
@@ -229,7 +229,7 @@
     },
     {
       "slug": "grade-school",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "struct",
         "entry api",
@@ -239,7 +239,7 @@
     },
     {
       "slug": "robot-simulator",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Immutability",
         "enum"
@@ -247,7 +247,7 @@
     },
     {
       "slug": "bracket-push",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "From trait",
         "stack or recursion"
@@ -255,7 +255,7 @@
     },
     {
       "slug": "queen-attack",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "struct",
         "trait (optional)",
@@ -264,7 +264,7 @@
     },
     {
       "slug": "bowling",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "struct",
         "Result",
@@ -273,7 +273,7 @@
     },
     {
       "slug": "sublist",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "enum",
         "generic over type"
@@ -281,7 +281,7 @@
     },
     {
       "slug": "space-age",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Custom Trait",
         "From Trait",
@@ -290,7 +290,7 @@
     },
     {
       "slug": "allergies",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "struct",
         "enum",
@@ -301,7 +301,7 @@
     },
     {
       "slug": "variable-length-quantity",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Encodings",
         "slices",
@@ -311,7 +311,7 @@
     },
     {
       "slug": "phone-number",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "option",
         "format",
@@ -322,7 +322,7 @@
     },
     {
       "slug": "wordy",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "Result",
         "string parsing",
@@ -331,7 +331,7 @@
     },
     {
       "slug": "tournament",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "enum",
         "sorting",
@@ -341,7 +341,7 @@
     },
     {
       "slug": "custom-set",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "generic over type",
         "vector",
@@ -351,7 +351,7 @@
     },
     {
       "slug": "alphametics",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "string parsing",
         "combinations",
@@ -361,7 +361,7 @@
     },
     {
       "slug": "anagram",
-      "difficulty": 1,
+      "difficulty": 7,
       "topics": [
         "lifetimes",
         "str vs string",
@@ -372,7 +372,7 @@
     },
     {
       "slug": "nucleotide-codons",
-      "difficulty": 1,
+      "difficulty": 7,
       "topics": [
         "struct",
         "hash map",
@@ -382,7 +382,7 @@
     },
     {
       "slug": "robot-name",
-      "difficulty": 1,
+      "difficulty": 7,
       "topics": [
         "struct",
         "slices",
@@ -393,7 +393,7 @@
     },
     {
       "slug": "ocr-numbers",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "Lines",
         "Chunks",
@@ -402,14 +402,14 @@
     },
     {
       "slug": "minesweeper",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "Board state"
       ]
     },
     {
       "slug": "dominoes",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "Graph theory",
         "searching"
@@ -417,14 +417,14 @@
     },
     {
       "slug": "parallel-letter-frequency",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "multi-threading"
       ]
     },
     {
       "slug": "rectangles",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "Enum",
         "structs",
@@ -434,14 +434,14 @@
     },
     {
       "slug": "forth",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "Parser reimplementation"
       ]
     },
     {
       "slug": "circular-buffer",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "Buffer reimplementation",
         "Generics"
@@ -449,7 +449,7 @@
     },
     {
       "slug": "react",
-      "difficulty": 1,
+      "difficulty": 10,
       "topics": [
         "Lifetimes",
         "generics",
