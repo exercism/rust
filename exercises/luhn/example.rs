@@ -1,5 +1,6 @@
 pub fn is_valid(candidate: &str) -> bool {
-    if candidate.chars().any(|c| c.is_alphabetic()) || candidate.chars().count() == 1 {
+    if candidate.chars().filter(|c| c.is_digit(10)).take(2).count() <= 1 ||
+       candidate.chars().any(|c| !c.is_digit(10) && c != ' ') {
         return false;
     }
 
