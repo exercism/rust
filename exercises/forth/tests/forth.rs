@@ -262,14 +262,6 @@ fn redefining_an_existing_built_in_word() {
 
 #[test]
 #[ignore]
-fn defining_words_with_odd_characters() {
-    let mut f = Forth::new();
-    assert!(f.eval(": € 220371 ; €").is_ok());
-    assert_eq!(vec![220371], f.stack());
-}
-
-#[test]
-#[ignore]
 fn defining_a_number() {
     let mut f = Forth::new();
     assert_eq!(Err(Error::InvalidWord), f.eval(": 1 2 ;"));
