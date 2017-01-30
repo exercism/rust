@@ -61,3 +61,71 @@ fn non_english_scrabble_letters_do_not_score() {
 fn empty_words_are_worth_zero() {
     assert_eq!(score(""), 0);
 }
+
+// =============================================
+//  Extensions
+//
+//  The tests below correspond to the optional
+//  extensions described in the README
+// =============================================
+
+#[test]
+#[ignore]
+fn single_letter_double_score() {
+    assert_eq!(score("a:double"), 2);
+}
+
+#[test]
+#[ignore]
+fn other_single_letter_double_score() {
+    assert_eq!(score("g:double"), 4);
+}
+
+#[test]
+#[ignore]
+fn double_scoring_letter_in_a_word() {
+    assert_eq!(score("zo:doubleo"), 13);
+}
+
+#[test]
+#[ignore]
+fn double_letters_at_word_boundary() {
+    assert_eq!(score("fabulous"), 13);
+    assert_eq!(score("f:doubleabulous"), 17);
+    assert_eq!(score("fabulous:double"), 14);
+}
+
+#[test]
+#[ignore]
+fn single_letter_triple_score() {
+    assert_eq!(score("a:triple"), 3);
+}
+
+#[test]
+#[ignore]
+fn other_single_letter_triple_score() {
+    assert_eq!(score("g:triple"), 6);
+}
+
+#[test]
+#[ignore]
+fn triple_scoring_letter_in_a_word() {
+    assert_eq!(score("zo:tripleo"), 14);
+}
+
+#[test]
+#[ignore]
+fn triple_letters_at_word_boundary() {
+    assert_eq!(score("fabulous"), 13);
+    assert_eq!(score("f:tripleabulous"), 21);
+    assert_eq!(score("fabulous:triple"), 15);
+}
+
+#[test]
+#[ignore]
+fn zero_scoring_letters_not_multiplied() {
+    assert_eq!(score("pinata"), 8);
+    assert_eq!(score("piñata"), 7);
+    assert_eq!(score("piñ:doubleata"), 7);
+    assert_eq!(score("piñ:tripleata"), 7);
+}
