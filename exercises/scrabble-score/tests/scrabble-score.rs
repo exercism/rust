@@ -61,3 +61,9 @@ fn non_english_scrabble_letters_do_not_score() {
 fn empty_words_are_worth_zero() {
     assert_eq!(score(""), 0);
 }
+
+#[test]
+#[ignore]
+fn all_letters_work() {
+    assert_eq!(score("abcdefghijklmnopqrstuvwxyz"), 87);
+}
