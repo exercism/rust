@@ -8,7 +8,6 @@
       "slug": "hello-world",
       "difficulty": 1,
       "topics": [
-        "Some/None",
         "println!"
       ]
     },
