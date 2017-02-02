@@ -1,7 +1,7 @@
 extern crate grade_school as school;
 
-fn stringvec_to_strvec(v: &Vec<String>) -> Vec<&str> {
-    v.iter().map(|s| s.as_ref()).collect()
+fn some_strings(v: Vec<&str>) -> Option<Vec<String>> {
+    Some(v.iter().map(|s| s.to_string()).collect())
 }
 
 #[test]
@@ -58,8 +58,8 @@ fn test_grade_when_no_students_have_that_grade() {
 fn test_grade_for_one_student() {
     let mut s = school::School::new();
     s.add(2, "Aimee");
-    assert_eq!(s.grade(2).map(|v| stringvec_to_strvec(v)),
-                Some(vec!["Aimee"]))
+    assert_eq!(s.grade(2),
+                some_strings(vec!["Aimee"]));
 }
 
 #[test]
@@ -69,8 +69,8 @@ fn test_grade_returns_students_sorted_by_name() {
     s.add(2, "James");
     s.add(2, "Blair");
     s.add(2, "Paul");
-    assert_eq!(s.grade(2).map(|v| stringvec_to_strvec(v)),
-               Some(vec!["Blair", "James", "Paul"]));
+    assert_eq!(s.grade(2),
+               some_strings(vec!["Blair", "James", "Paul"]));
 }
 
 #[test]
@@ -80,8 +80,8 @@ fn test_add_students_to_different_grades() {
     s.add(3, "Chelsea");
     s.add(7, "Logan");
     assert_eq!(s.grades(), vec!(3, 7));
-    assert_eq!(s.grade(3).map(|v| stringvec_to_strvec(v)),
-               Some(vec!["Chelsea"]));
-    assert_eq!(s.grade(7).map(|v| stringvec_to_strvec(v)),
-               Some(vec!["Logan"]));
+    assert_eq!(s.grade(3),
+               some_strings(vec!["Chelsea"]));
+    assert_eq!(s.grade(7),
+               some_strings(vec!["Logan"]));
 }
