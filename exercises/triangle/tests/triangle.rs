@@ -23,7 +23,7 @@ fn equilateral_triangles_have_equal_sides() {
     let sides = [2, 2, 2];
     let triangle = Triangle::build(sides).unwrap();
     assert!(triangle.is_equilateral());
-    assert!(!triangle.is_isosceles());
+    assert!(triangle.is_isosceles());
     assert!(!triangle.is_scalene());
 }
 
@@ -33,7 +33,7 @@ fn larger_equilateral_triangles_have_equal_sides() {
     let sides = [10, 10, 10];
     let triangle = Triangle::build(sides).unwrap();
     assert!(triangle.is_equilateral());
-    assert!(!triangle.is_isosceles());
+    assert!(triangle.is_isosceles());
     assert!(!triangle.is_scalene());
 }
 
