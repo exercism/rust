@@ -163,6 +163,17 @@
       ]
     },
     {
+      "slug": "rotational-cipher",
+      "difficulty": 4,
+      "topics": [
+        "str vs string",
+        "primitive types",
+        "iterators",
+        "chars",
+        "ascii"
+      ]
+    },
+    {
       "slug": "etl",
       "difficulty": 4,
       "topics": [
