@@ -15,20 +15,26 @@ fn single_zero_string_is_invalid() {
 
 #[test]
 #[ignore]
-fn simple_valid_sin() {
-    assert!(is_valid(" 5 9 "));
+fn simple_valid_sin_that_remains_valid_if_reversed() {
+    assert!(is_valid("059"));
+}
+
+#[test]
+#[ignore]
+fn simple_valid_sin_that_becomes_invalid_if_reversed() {
+    assert!(is_valid("59"));
 }
 
 #[test]
 #[ignore]
 fn valid_canadian_sin_is_valid() {
-    assert!(is_valid("046 454 286"));
+    assert!(is_valid("055 444 285"));
 }
 
 #[test]
 #[ignore]
 fn invalid_canadian_sin_is_invalid() {
-    assert!(!is_valid("046 454 287"));
+    assert!(!is_valid("055 444 286"));
 }
 
 #[test]
@@ -40,7 +46,7 @@ fn invalid_credit_card_is_invalid() {
 #[test]
 #[ignore]
 fn strings_that_contain_non_digits_are_invalid() {
-    assert!(!is_valid("046a 454 286"));
+    assert!(!is_valid("055a 444 285"));
 }
 
 #[test]
@@ -63,18 +69,12 @@ fn single_digit_with_space_is_invalid() {
 
 #[test]
 #[ignore]
-fn lots_of_zeros_are_valid() {
-    assert!(is_valid(" 00000"));
+fn more_than_a_single_zero_is_valid() {
+    assert!(is_valid("0000 0"));
 }
 
 #[test]
 #[ignore]
-fn another_valid_sin() {
-    assert!(is_valid("055 444 285"));
-}
-
-#[test]
-#[ignore]
-fn nine_doubled_is_nine() {
+fn input_digit_9_is_correctly_converted_to_output_digit_9() {
     assert!(is_valid("091"));
 }
