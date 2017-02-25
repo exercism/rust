@@ -1,22 +1,22 @@
-extern crate nucleotide_codons as codons;
+extern crate protein_translation as proteins;
 
 #[test]
 fn test_methionine() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("ATG"), Ok("methionine"));
 }
 
 #[test]
 #[ignore]
 fn test_cysteine_tgt() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("TGT"), Ok("cysteine"));
 }
 
 #[test]
 #[ignore]
 fn test_cysteine_tgy() { // "compressed" name for TGT and TGC
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("TGT"), info.name_for("TGY"));
     assert_eq!(info.name_for("TGC"), info.name_for("TGY"));
 }
@@ -24,14 +24,14 @@ fn test_cysteine_tgy() { // "compressed" name for TGT and TGC
 #[test]
 #[ignore]
 fn test_stop() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("TAA"), Ok("stop codon"));
 }
 
 #[test]
 #[ignore]
 fn test_valine() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("GTN"), Ok("valine"));
 }
 
@@ -39,7 +39,7 @@ fn test_valine() {
 #[test]
 #[ignore]
 fn test_isoleucine() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("ATH"), Ok("isoleucine"));
 }
 
@@ -47,7 +47,7 @@ fn test_isoleucine() {
 #[ignore]
 fn test_arginine_name() {
     // In arginine CGA can be "compresed" both as CGN and as MGR
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("CGA"), Ok("arginine"));
     assert_eq!(info.name_for("CGN"), Ok("arginine"));
     assert_eq!(info.name_for("MGR"), Ok("arginine"));
@@ -56,28 +56,28 @@ fn test_arginine_name() {
 #[test]
 #[ignore]
 fn empty_is_invalid() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert!(info.name_for("").is_err());
 }
 
 #[test]
 #[ignore]
 fn x_is_not_shorthand_so_is_invalid() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert!(info.name_for("VWX").is_err());
 }
 
 #[test]
 #[ignore]
 fn too_short_is_invalid() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert!(info.name_for("AT").is_err());
 }
 
 #[test]
 #[ignore]
 fn too_long_is_invalid() {
-    let info = codons::parse(make_pairs());
+    let info = proteins::parse(make_pairs());
     assert!(info.name_for("ATTA").is_err());
 }
 
