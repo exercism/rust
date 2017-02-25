@@ -55,12 +55,30 @@ fn test_arginine_name() {
 
 #[test]
 #[ignore]
-fn test_invalid() {
+fn empty_is_invalid() {
     let info = codons::parse(make_pairs());
     assert!(info.name_for("").is_err());
-    assert!(info.name_for("VWX").is_err()); // X is not a shorthand
-    assert!(info.name_for("AB").is_err()); // too short
-    assert!(info.name_for("ABCD").is_err()); // too long
+}
+
+#[test]
+#[ignore]
+fn x_is_not_shorthand_so_is_invalid() {
+    let info = codons::parse(make_pairs());
+    assert!(info.name_for("VWX").is_err());
+}
+
+#[test]
+#[ignore]
+fn too_short_is_invalid() {
+    let info = codons::parse(make_pairs());
+    assert!(info.name_for("AT").is_err());
+}
+
+#[test]
+#[ignore]
+fn too_long_is_invalid() {
+    let info = codons::parse(make_pairs());
+    assert!(info.name_for("ATTA").is_err());
 }
 
 // The input data constructor. Returns a list of codon, name pairs.
