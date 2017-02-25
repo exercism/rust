@@ -24,7 +24,7 @@ fn queen_is_created_with_a_ok_position() {
 
 #[test]
 #[ignore]
-#[should_panic(expected = "Invalid Position")]
+#[should_panic]
 fn queen_panics_with_err_position() {
     Queen::new(ChessPosition::new(-1, 4).unwrap());
 }
