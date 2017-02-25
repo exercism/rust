@@ -17,7 +17,8 @@ fn test_cysteine_tgt() {
 #[ignore]
 fn test_cysteine_tgy() { // "compressed" name for TGT and TGC
     let info = codons::parse(make_pairs());
-    assert_eq!(info.name_for("TGY"), Ok("cysteine"));
+    assert_eq!(info.name_for("TGT"), info.name_for("TGY"));
+    assert_eq!(info.name_for("TGC"), info.name_for("TGY"));
 }
 
 #[test]
