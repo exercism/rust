@@ -24,13 +24,6 @@ fn queen_is_created_with_a_ok_position() {
 
 #[test]
 #[ignore]
-#[should_panic(expected = "Invalid Position")]
-fn queen_panics_with_err_position() {
-    Queen::new(ChessPosition::new(-1, 4).unwrap());
-}
-
-#[test]
-#[ignore]
 fn queens_that_can_not_attack() {
     let white_queen = Queen::new(ChessPosition::new(2, 4).unwrap());
     let black_queen = Queen::new(ChessPosition::new(6, 6).unwrap());
