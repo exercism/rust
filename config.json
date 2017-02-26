@@ -264,6 +264,16 @@
       ]
     },
     {
+      "slug": "luhn-from",
+      "difficulty": 4,
+      "topics": [
+        "from trait",
+        "str to digits",
+        "iterators",
+        "higher-order functions"
+      ]
+    },
+    {
       "slug": "queen-attack",
       "difficulty": 4,
       "topics": [
@@ -296,6 +306,16 @@
         "Custom Trait",
         "From Trait",
         "Default Trait implementation"
+      ]
+    },
+    {
+      "slug": "luhn-trait",
+      "difficulty": 4,
+      "topics": [
+        "Custom Trait",
+        "str to digits",
+        "iterators",
+        "higher-order functions"
       ]
     },
     {
