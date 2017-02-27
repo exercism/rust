@@ -401,7 +401,7 @@
       ]
     },
     {
-      "slug": "nucleotide-codons",
+      "slug": "protein-translation",
       "difficulty": 7,
       "topics": [
         "struct",
@@ -488,6 +488,7 @@
     }
   ],
   "deprecated": [
+    "nucleotide-codons",
     "hexadecimal"
   ],
   "ignored": [
