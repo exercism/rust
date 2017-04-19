@@ -53,3 +53,8 @@ fn test_silent_treatment() {
     assert_eq!("Fine. Be that way!", bob::reply(""));
 }
 
+#[test]
+#[ignore]
+fn test_shouting_in_russian() {
+    assert_eq!("Whoa, chill out!", bob::reply("УХОДИ"));
+}
