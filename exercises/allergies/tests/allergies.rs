@@ -128,6 +128,7 @@ fn allergic_to_everything() {
 #[ignore]
 fn scores_over_255_do_not_trigger_false_positives() {
     let expected = vec![Allergen::Eggs,
+                        Allergen::Peanuts,
                         Allergen::Shellfish,
                         Allergen::Strawberries,
                         Allergen::Tomatoes,
