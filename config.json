@@ -79,6 +79,16 @@
       ]
     },
     {
+      "slug": "run-length-encoding",
+      "difficulty": 4,
+      "topics": [
+        "string concatenation",
+        "conversion between string and int",
+        "use of primitive char",
+        "loop"
+      ]
+    },
+    {
       "slug": "hamming",
       "difficulty": 4,
       "topics": [
