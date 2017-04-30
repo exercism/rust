@@ -58,7 +58,7 @@ for exercise in $files; do
             cargo test --quiet --no-run
         else
             # Run the test and get the status
-            cargo test
+            cargo test --release
         fi
     )
 
