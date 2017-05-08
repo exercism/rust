@@ -1,6 +1,6 @@
 [root]
 name = "gigasecond"
-version = "0.0.0"
+version = "1.0.0"
 dependencies = [
  "chrono 0.2.19 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
