@@ -152,7 +152,7 @@ fn separate_loops() {
 
 #[test]
 #[ignore]
-fn ten_elements() {
+fn nine_elements() {
     let input = vec!((1, 2), (5, 3), (3, 1), (1, 2), (2, 4), (1, 6), (2, 3), (3, 4), (5, 6));
     assert_correct(&input);
 }
