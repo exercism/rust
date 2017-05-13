@@ -27,6 +27,12 @@ fn wrong_ordered_brackets() {
 
 #[test]
 #[ignore]
+fn wrong_closing_bracket() {
+    assert!(!Brackets::from("{]").are_balanced());
+}
+
+#[test]
+#[ignore]
 fn paired_with_whitespace() {
     assert!(Brackets::from("{ }").are_balanced());
 }
