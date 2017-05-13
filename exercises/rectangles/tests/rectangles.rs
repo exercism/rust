@@ -61,6 +61,37 @@ fn test_five_rectangles_three_regions() {
 
 #[test]
 #[ignore]
+fn rectangle_of_height_1() {
+    let lines = vec![
+        "+--+",
+        "+--+"
+        ];
+    assert_eq!(1, count(&lines))
+}
+
+#[test]
+#[ignore]
+fn rectangle_of_width_1() {
+    let lines = vec![
+        "++",
+        "||",
+        "++"
+        ];
+    assert_eq!(1, count(&lines))
+}
+
+#[test]
+#[ignore]
+fn unit_equare() {
+    let lines = vec![
+        "++",
+        "++"
+        ];
+    assert_eq!(1, count(&lines))
+}
+
+#[test]
+#[ignore]
 fn test_incomplete_rectangles() {
     let lines = vec![
         "  +-+",
