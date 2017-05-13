@@ -59,10 +59,10 @@ fn write_tally(results: &HashMap<String, TeamResult>) -> String {
         let points = r.wins * 3 + r.draws;
         (team, games, r, points)
     }).collect();
-    // Sort by points, then games played, in reverse order.
+    // Sort by points descending, then name A-Z.
     v.sort_by(|a, b| 
               match a.3.cmp(&(b.3)).reverse() {
-                  Equal => a.1.cmp(&(b.1)).reverse(),
+                  Equal => a.0.cmp(&(b.0)),
                   other => other
               });
     let mut lines = vec![format!("{:30} | MP |  W |  D |  L |  P", "Team")];
