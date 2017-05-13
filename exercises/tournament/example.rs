@@ -59,18 +59,18 @@ fn write_tally(results: &HashMap<String, TeamResult>) -> String {
         let points = r.wins * 3 + r.draws;
         (team, games, r, points)
     }).collect();
-    // Sort by points, then games played, in reverse order.
+    // Sort by points descending, then name A-Z.
     v.sort_by(|a, b| 
               match a.3.cmp(&(b.3)).reverse() {
-                  Equal => a.1.cmp(&(b.1)).reverse(),
+                  Equal => a.0.cmp(&(b.0)),
                   other => other
               });
-    let header = format!("{:30} | MP |  W |  D |  L |  P\n", "Team");
-    let lines: Vec<_> = v.iter().map(|&(ref team, games, r, points)| {
+    let mut lines = vec![format!("{:30} | MP |  W |  D |  L |  P", "Team")];
+    lines.extend(v.iter().map(|&(ref team, games, r, points)| {
         format!("{:30} | {:2} | {:2} | {:2} | {:2} | {:2}",
                 team, games, r.wins, r.draws, r.losses, points)
-    }).collect();
-    header + &lines.join("\n")
+    }));
+    lines.join("\n")
 }
 
 fn add_game_result(results: &mut HashMap<String, TeamResult>, team: String, result: GameResult) {
