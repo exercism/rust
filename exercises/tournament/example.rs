@@ -65,12 +65,12 @@ fn write_tally(results: &HashMap<String, TeamResult>) -> String {
                   Equal => a.1.cmp(&(b.1)).reverse(),
                   other => other
               });
-    let header = format!("{:30} | MP |  W |  D |  L |  P\n", "Team");
-    let lines: Vec<_> = v.iter().map(|&(ref team, games, r, points)| {
+    let mut lines = vec![format!("{:30} | MP |  W |  D |  L |  P", "Team")];
+    lines.extend(v.iter().map(|&(ref team, games, r, points)| {
         format!("{:30} | {:2} | {:2} | {:2} | {:2} | {:2}",
                 team, games, r.wins, r.draws, r.losses, points)
-    }).collect();
-    header + &lines.join("\n")
+    }));
+    lines.join("\n")
 }
 
 fn add_game_result(results: &mut HashMap<String, TeamResult>, team: String, result: GameResult) {
