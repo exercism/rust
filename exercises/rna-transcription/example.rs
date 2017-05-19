@@ -29,8 +29,8 @@ impl DeoxyribonucleicAcid {
         DeoxyribonucleicAcid { nucleotides: nucleotides.to_string() }
     }
 
-    pub fn to_rna(&self) -> RibonucleicAcid {
+    pub fn to_rna(&self) -> Result<RibonucleicAcid, ()> {
         let rna_nucleotides = self.nucleotides.chars().map(transcribe_dna_rna).collect();
-        RibonucleicAcid { nucleotides: rna_nucleotides }
+        Ok(RibonucleicAcid { nucleotides: rna_nucleotides })
     }
 }
