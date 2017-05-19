@@ -21,98 +21,93 @@ fn run_test(test_case: &[&str]) {
 }
 
 #[test]
-fn empty_board_has_no_annotations() {
+fn no_rows() {
+    run_test(&[
+    ]);
+}
+
+#[test]
+#[ignore]
+fn no_columns() {
+    run_test(&[
+        "",
+    ]);
+}
+
+#[test]
+#[ignore]
+fn no_mines() {
     run_test(&[
         "   ",
         "   ",
-        "   "
+        "   ",
     ]);
 }
 
 #[test]
 #[ignore]
-fn board_full_of_mines_has_no_annotations() {
+fn board_with_only_mines() {
     run_test(&[
         "***",
         "***",
-        "***"
+        "***",
     ]);
 }
 
 #[test]
 #[ignore]
-fn one_horizontal_row_with_one_mine() {
+fn mine_surrounded_by_spaces() {
     run_test(&[
-        "   1*1 "
+        "111",
+        "1*1",
+        "111",
     ]);
 }
 
 #[test]
 #[ignore]
-fn one_horizontal_row_with_two_mines() {
+fn space_surrounded_by_mines() {
     run_test(&[
-        " 1*2*1 "
+        "***",
+        "*8*",
+        "***",
     ]);
 }
 
 #[test]
 #[ignore]
-fn one_horizontal_row_with_one_mine_at_the_left_end() {
+fn horizontal_line() {
     run_test(&[
-        "*1  "
+        "1*2*1",
     ]);
 }
 
 #[test]
 #[ignore]
-fn one_horizontal_row_with_one_mine_at_the_right_end() {
+fn horizontal_line_mines_at_edges() {
     run_test(&[
-        "  1*"
+        "*1 1*",
     ]);
 }
 
 #[test]
 #[ignore]
-fn one_vertical_row_with_one_mine() {
+fn vertical_line() {
     run_test(&[
-        " ",
-        "1",
-        "*",
-        "1",
-        " ",
-    ]);
-}
-
-#[test]
-#[ignore]
-fn one_vertical_row_with_two_mines() {
-    run_test(&[
-        " ",
         "1",
         "*",
         "2",
         "*",
         "1",
-        " ",
     ]);
 }
 
 #[test]
 #[ignore]
-fn one_vertical_row_with_one_mine_at_the_top() {
+fn vertical_line_mines_at_edges() {
     run_test(&[
         "*",
         "1",
-        " ",
-        " ",
-    ]);
-}
-
-#[test]
-#[ignore]
-fn one_vertical_row_with_one_mine_at_the_bottom() {
-    run_test(&[
-        " ",
         " ",
         "1",
         "*",
@@ -121,22 +116,25 @@ fn one_vertical_row_with_one_mine_at_the_bottom() {
 
 #[test]
 #[ignore]
-fn one_mine_in_the_middle() {
-    run_test(&[
-        "***",
-        "*8*",
-        "***"
-    ]);
-}
-
-#[test]
-#[ignore]
-fn complex_case() {
+fn cross() {
     run_test(&[
         " 2*2 ",
         "25*52",
         "*****",
         "25*52",
         " 2*2 ",
+    ]);
+}
+
+#[test]
+#[ignore]
+fn large_board() {
+    run_test(&[
+        "1*22*1",
+        "12*322",
+        " 123*2",
+        "112*4*",
+        "1*22*2",
+        "111111",
     ]);
 }
