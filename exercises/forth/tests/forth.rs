@@ -1,10 +1,10 @@
 extern crate forth;
 
-use forth::{Forth, Error};
+use forth::{Forth, Error, Value};
 
 #[test]
 fn no_input_no_stack() {
-    assert_eq!("", Forth::new().format_stack());
+    assert_eq!(Vec::<Value>::new(), Forth::new().stack());
 }
 
 #[test]
@@ -12,7 +12,7 @@ fn no_input_no_stack() {
 fn numbers_just_get_pushed_onto_the_stack() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 3 4 5 -1").is_ok());
-    assert_eq!("1 2 3 4 5 -1", f.format_stack());
+    assert_eq!(vec![1, 2, 3, 4, 5, -1], f.stack());
 }
 
 #[test]
@@ -21,7 +21,7 @@ fn non_word_characters_are_separators() {
     let mut f = Forth::new();
     // Note the Ogham Space Mark ( ), this is a spacing character.
     assert!(f.eval("1\u{0000}2\u{0001}3\n4\r5 6\t7").is_ok());
-    assert_eq!("1 2 3 4 5 6 7", f.format_stack());
+    assert_eq!(vec![1, 2, 3, 4, 5, 6, 7], f.stack());
 }
 
 #[test]
@@ -29,7 +29,7 @@ fn non_word_characters_are_separators() {
 fn basic_arithmetic_1() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 + 4 -").is_ok());
-    assert_eq!("-1", f.format_stack());
+    assert_eq!(vec![-1], f.stack());
 }
 
 #[test]
@@ -37,7 +37,7 @@ fn basic_arithmetic_1() {
 fn basic_arithmetic_2() {
     let mut f = Forth::new();
     assert!(f.eval("2 4 * 3 /").is_ok());
-    assert_eq!("2", f.format_stack());
+    assert_eq!(vec![2], f.stack());
 }
 
 #[test]
@@ -95,7 +95,7 @@ fn division_by_zero() {
 fn dup() {
     let mut f = Forth::new();
     assert!(f.eval("1 DUP").is_ok());
-    assert_eq!("1 1", f.format_stack());
+    assert_eq!(vec![1, 1], f.stack());
 }
 
 #[test]
@@ -103,7 +103,7 @@ fn dup() {
 fn dup_case_insensitive() {
     let mut f = Forth::new();
     assert!(f.eval("1 Dup").is_ok());
-    assert_eq!("1 1", f.format_stack());
+    assert_eq!(vec![1, 1], f.stack());
 }
 
 #[test]
@@ -121,7 +121,7 @@ fn dup_error() {
 fn drop() {
     let mut f = Forth::new();
     assert!(f.eval("1 drop").is_ok());
-    assert_eq!("", f.format_stack());
+    assert_eq!(Vec::<Value>::new(), f.stack());
 }
 
 #[test]
@@ -129,7 +129,7 @@ fn drop() {
 fn drop_with_two() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 drop").is_ok());
-    assert_eq!("1", f.format_stack());
+    assert_eq!(vec![1], f.stack());
 }
 
 #[test]
@@ -147,7 +147,7 @@ fn drop_error() {
 fn swap() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 swap").is_ok());
-    assert_eq!("2 1", f.format_stack());
+    assert_eq!(vec![2, 1], f.stack());
 }
 
 #[test]
@@ -155,7 +155,7 @@ fn swap() {
 fn swap_with_three() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 3 swap").is_ok());
-    assert_eq!("1 3 2", f.format_stack());
+    assert_eq!(vec![1, 3, 2], f.stack());
 }
 
 #[test]
@@ -177,7 +177,7 @@ fn swap_error() {
 fn over() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 over").is_ok());
-    assert_eq!("1 2 1", f.format_stack());
+    assert_eq!(vec![1, 2, 1], f.stack());
 }
 
 #[test]
@@ -185,7 +185,7 @@ fn over() {
 fn over_with_three() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 3 over").is_ok());
-    assert_eq!("1 2 3 2", f.format_stack());
+    assert_eq!(vec![1, 2, 3, 2], f.stack());
 }
 
 #[test]
@@ -208,7 +208,7 @@ fn defining_a_new_word() {
     let mut f = Forth::new();
     assert!(f.eval(": CoUnT 1 2 3 ;").is_ok());
     assert!(f.eval("count COUNT").is_ok());
-    assert_eq!("1 2 3 1 2 3", f.format_stack());
+    assert_eq!(vec![1, 2, 3, 1, 2, 3], f.stack());
 }
 
 #[test]
@@ -218,7 +218,7 @@ fn redefining_an_existing_word() {
     assert!(f.eval(": foo dup ;").is_ok());
     assert!(f.eval(": foo dup dup ;").is_ok());
     assert!(f.eval("1 foo").is_ok());
-    assert_eq!("1 1 1", f.format_stack());
+    assert_eq!(vec![1, 1, 1], f.stack());
 }
 
 #[test]
@@ -227,7 +227,7 @@ fn redefining_an_existing_built_in_word() {
     let mut f = Forth::new();
     assert!(f.eval(": swap dup ;").is_ok());
     assert!(f.eval("1 swap").is_ok());
-    assert_eq!("1 1", f.format_stack());
+    assert_eq!(vec![1, 1], f.stack());
 }
 
 #[test]
@@ -235,7 +235,7 @@ fn redefining_an_existing_built_in_word() {
 fn defining_words_with_odd_characters() {
     let mut f = Forth::new();
     assert!(f.eval(": € 220371 ; €").is_ok());
-    assert_eq!("220371", f.format_stack());
+    assert_eq!(vec![220371], f.stack());
 }
 
 #[test]
