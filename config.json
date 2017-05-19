@@ -1,7 +1,6 @@
 {
   "slug": "rust",
   "language": "Rust",
-  "ignore_pattern": "example|description.md|metadata.yml",
   "repository": "https://github.com/exercism/xrust",
   "active": true,
   "exercises": [
