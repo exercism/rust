@@ -1,5 +1,3 @@
-#![allow(unused_must_use)]
-
 extern crate forth;
 
 use forth::{Forth, Error};
@@ -13,7 +11,7 @@ fn no_input_no_stack() {
 #[ignore]
 fn numbers_just_get_pushed_onto_the_stack() {
     let mut f = Forth::new();
-    f.eval("1 2 3 4 5 -1");
+    assert!(f.eval("1 2 3 4 5 -1").is_ok());
     assert_eq!("1 2 3 4 5 -1", f.format_stack());
 }
 
@@ -22,7 +20,7 @@ fn numbers_just_get_pushed_onto_the_stack() {
 fn non_word_characters_are_separators() {
     let mut f = Forth::new();
     // Note the Ogham Space Mark ( ), this is a spacing character.
-    f.eval("1\u{0000}2\u{0001}3\n4\r5 6\t7");
+    assert!(f.eval("1\u{0000}2\u{0001}3\n4\r5 6\t7").is_ok());
     assert_eq!("1 2 3 4 5 6 7", f.format_stack());
 }
 
@@ -30,7 +28,7 @@ fn non_word_characters_are_separators() {
 #[ignore]
 fn basic_arithmetic_1() {
     let mut f = Forth::new();
-    f.eval("1 2 + 4 -");
+    assert!(f.eval("1 2 + 4 -").is_ok());
     assert_eq!("-1", f.format_stack());
 }
 
@@ -38,7 +36,7 @@ fn basic_arithmetic_1() {
 #[ignore]
 fn basic_arithmetic_2() {
     let mut f = Forth::new();
-    f.eval("2 4 * 3 /");
+    assert!(f.eval("2 4 * 3 /").is_ok());
     assert_eq!("2", f.format_stack());
 }
 
@@ -96,7 +94,7 @@ fn division_by_zero() {
 #[ignore]
 fn dup() {
     let mut f = Forth::new();
-    f.eval("1 DUP");
+    assert!(f.eval("1 DUP").is_ok());
     assert_eq!("1 1", f.format_stack());
 }
 
@@ -104,7 +102,7 @@ fn dup() {
 #[ignore]
 fn dup_case_insensitive() {
     let mut f = Forth::new();
-    f.eval("1 Dup");
+    assert!(f.eval("1 Dup").is_ok());
     assert_eq!("1 1", f.format_stack());
 }
 
@@ -122,7 +120,7 @@ fn dup_error() {
 #[ignore]
 fn drop() {
     let mut f = Forth::new();
-    f.eval("1 drop");
+    assert!(f.eval("1 drop").is_ok());
     assert_eq!("", f.format_stack());
 }
 
@@ -130,7 +128,7 @@ fn drop() {
 #[ignore]
 fn drop_with_two() {
     let mut f = Forth::new();
-    f.eval("1 2 drop");
+    assert!(f.eval("1 2 drop").is_ok());
     assert_eq!("1", f.format_stack());
 }
 
@@ -148,7 +146,7 @@ fn drop_error() {
 #[ignore]
 fn swap() {
     let mut f = Forth::new();
-    f.eval("1 2 swap");
+    assert!(f.eval("1 2 swap").is_ok());
     assert_eq!("2 1", f.format_stack());
 }
 
@@ -156,7 +154,7 @@ fn swap() {
 #[ignore]
 fn swap_with_three() {
     let mut f = Forth::new();
-    f.eval("1 2 3 swap");
+    assert!(f.eval("1 2 3 swap").is_ok());
     assert_eq!("1 3 2", f.format_stack());
 }
 
@@ -178,7 +176,7 @@ fn swap_error() {
 #[ignore]
 fn over() {
     let mut f = Forth::new();
-    f.eval("1 2 over");
+    assert!(f.eval("1 2 over").is_ok());
     assert_eq!("1 2 1", f.format_stack());
 }
 
@@ -186,7 +184,7 @@ fn over() {
 #[ignore]
 fn over_with_three() {
     let mut f = Forth::new();
-    f.eval("1 2 3 over");
+    assert!(f.eval("1 2 3 over").is_ok());
     assert_eq!("1 2 3 2", f.format_stack());
 }
 
@@ -208,8 +206,8 @@ fn over_error() {
 #[ignore]
 fn defining_a_new_word() {
     let mut f = Forth::new();
-    f.eval(": CoUnT 1 2 3 ;");
-    f.eval("count COUNT");
+    assert!(f.eval(": CoUnT 1 2 3 ;").is_ok());
+    assert!(f.eval("count COUNT").is_ok());
     assert_eq!("1 2 3 1 2 3", f.format_stack());
 }
 
@@ -217,9 +215,9 @@ fn defining_a_new_word() {
 #[ignore]
 fn redefining_an_existing_word() {
     let mut f = Forth::new();
-    f.eval(": foo dup ;");
-    f.eval(": foo dup dup ;");
-    f.eval("1 foo");
+    assert!(f.eval(": foo dup ;").is_ok());
+    assert!(f.eval(": foo dup dup ;").is_ok());
+    assert!(f.eval("1 foo").is_ok());
     assert_eq!("1 1 1", f.format_stack());
 }
 
@@ -227,8 +225,8 @@ fn redefining_an_existing_word() {
 #[ignore]
 fn redefining_an_existing_built_in_word() {
     let mut f = Forth::new();
-    f.eval(": swap dup ;");
-    f.eval("1 swap");
+    assert!(f.eval(": swap dup ;").is_ok());
+    assert!(f.eval("1 swap").is_ok());
     assert_eq!("1 1", f.format_stack());
 }
 
@@ -236,7 +234,7 @@ fn redefining_an_existing_built_in_word() {
 #[ignore]
 fn defining_words_with_odd_characters() {
     let mut f = Forth::new();
-    f.eval(": € 220371 ; €");
+    assert!(f.eval(": € 220371 ; €").is_ok());
     assert_eq!("220371", f.format_stack());
 }
 
