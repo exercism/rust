@@ -9,11 +9,6 @@ Exercism exercises in Rust
 
 Please see the [contributing guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md)
 
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Katrina Owen, _@kytrinyx.com
 
 ## Rust icon
 The Rust Logo is created by the Mozilla Corporation, and has been released under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).
