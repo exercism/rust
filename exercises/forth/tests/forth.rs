@@ -17,14 +17,6 @@ fn numbers_just_get_pushed_onto_the_stack() {
 
 #[test]
 #[ignore]
-fn non_word_characters_are_separators() {
-    let mut f = Forth::new();
-    assert!(f.eval("1\u{0000}2\u{0001}3\n4\r5 6\t7").is_ok());
-    assert_eq!(vec![1, 2, 3, 4, 5, 6, 7], f.stack());
-}
-
-#[test]
-#[ignore]
 fn can_add_two_numbers() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 +").is_ok());
