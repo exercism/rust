@@ -7,7 +7,7 @@ Exercism exercises in Rust
 
 ## Contributing Guide
 
-Please see the [contributing guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md)
+Please see the [contributing guide](https://github.com/exercism/docs/tree/master/contributing-to-language-tracks)
 
 
 ## Rust icon
