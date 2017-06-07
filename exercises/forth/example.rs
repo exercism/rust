@@ -58,12 +58,8 @@ impl Forth {
         }
     }
 
-    pub fn format_stack(&self) -> String {
-        let mut s = self.stack.iter().fold(String::new(), |s, v| {
-            s + &v.to_string() + " "
-        });
-        s.pop();
-        s
+    pub fn stack(&self) -> Vec<Value> {
+        self.stack.iter().cloned().collect()
     }
 
     pub fn eval(&mut self, input: &str) -> ForthResult {
