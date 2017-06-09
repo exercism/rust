@@ -3,5 +3,5 @@ name = "gigasecond"
 version = "1.0.0"
 
 [dependencies]
-chrono = "0.2"
+chrono = "0.3"
 
