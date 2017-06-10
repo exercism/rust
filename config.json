@@ -502,11 +502,6 @@
     "nucleotide-codons",
     "hexadecimal"
   ],
-  "ignored": [
-    "_test",
-    "docs",
-    "img"
-  ],
   "foregone": [
     "binary",
     "octal",
