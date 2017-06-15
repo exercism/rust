@@ -17,4 +17,13 @@ impl<'a> CodonInfo<'a> {
             None => Err("Invalid")
         }
     }
+
+    pub fn of_rna(&self, strand: &str) -> Result<Vec<&'a str>, &'static str> {
+        strand.chars()
+            .collect::<Vec<char>>()
+            .chunks(3)
+            .map(|chars| self.name_for(&chars.iter().collect::<String>()))
+            .take_while(|result| result.is_err() || result.unwrap() != "stop codon")
+            .collect()
+    }
 }

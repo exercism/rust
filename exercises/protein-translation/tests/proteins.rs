@@ -71,22 +71,53 @@ fn too_long_is_invalid() {
     assert!(info.name_for("ATTA").is_err());
 }
 
+#[test]
+#[ignore]
+fn test_translates_rna_strand_into_correct_protein() {
+    let info = proteins::parse(make_pairs());
+    assert_eq!(info.of_rna("AUGUUUUGG").unwrap(),
+               vec!["methionine", "phenylalanine", "tryptophan"]);
+}
+
+#[test]
+#[ignore]
+fn test_stops_translation_if_stop_codon_present() {
+    let info = proteins::parse(make_pairs());
+    assert_eq!(info.of_rna("AUGUUUUAA").unwrap(),
+               vec!["methionine", "phenylalanine"]);
+}
+
+#[test]
+#[ignore]
+fn test_stops_translation_of_longer_strand() {
+    let info = proteins::parse(make_pairs());
+    assert_eq!(info.of_rna("UGGUGUUAUUAAUGGUUU").unwrap(),
+               vec!["tryptophan", "cysteine", "tyrosine"]);
+}
+
+#[test]
+#[ignore]
+fn test_invalid_codons() {
+    let info = proteins::parse(make_pairs());
+    assert!(info.of_rna("CARROT").is_err());
+}
+
 // The input data constructor. Returns a list of codon, name pairs.
 fn make_pairs() -> Vec<(&'static str, &'static str)> {
     let grouped = vec![
         ("isoleucine", vec!["ATT", "ATC", "ATA"]),
         ("leucine", vec!["CTT", "CTC", "CTA", "CTG", "TTA", "TTG"]),
         ("valine", vec!["GTT", "GTC", "GTA", "GTG"]),
-        ("phenylalanine", vec!["TTT", "TTC"]),
-        ("methionine", vec!["ATG"]),
-        ("cysteine", vec!["TGT", "TGC"]),
+        ("phenylalanine", vec!["UUU", "TTT", "TTC"]),
+        ("methionine", vec!["AUG", "ATG"]),
+        ("cysteine", vec!["UGU", "TGT", "TGC"]),
         ("alanine", vec!["GCT", "GCC", "GCA", "GCG"]),
         ("glycine", vec!["GGT", "GGC", "GGA", "GGG"]),
         ("proline", vec!["CCT", "CCC", "CCA", "CCG"]),
         ("threonine", vec!["ACT", "ACC", "ACA", "ACG"]),
         ("serine", vec!["TCT", "TCC", "TCA", "TCG", "AGT", "AGC"]),
-        ("tyrosine", vec!["TAT", "TAC"]),
-        ("tryptophan", vec!["TGG"]),
+        ("tyrosine", vec!["UAU", "TAT", "TAC"]),
+        ("tryptophan", vec!["UGG", "TGG"]),
         ("glutamine", vec!["CAA", "CAG"]),
         ("asparagine", vec!["AAT", "AAC"]),
         ("histidine", vec!["CAT", "CAC"]),
@@ -94,7 +125,7 @@ fn make_pairs() -> Vec<(&'static str, &'static str)> {
         ("aspartic acid", vec!["GAT", "GAC"]),
         ("lysine", vec!["AAA", "AAG"]),
         ("arginine", vec!["CGT", "CGC", "CGA", "CGG", "AGA", "AGG"]),
-        ("stop codon", vec!["TAA", "TAG", "TGA"])];
+        ("stop codon", vec!["UAA", "TAA", "TAG", "TGA"])];
     let mut pairs = Vec::<(&'static str, &'static str)>::new();
     for (name, codons) in grouped.into_iter() {
         for codon in codons {
