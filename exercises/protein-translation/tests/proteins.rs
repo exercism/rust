@@ -15,14 +15,6 @@ fn test_cysteine_tgt() {
 
 #[test]
 #[ignore]
-fn test_cysteine_tgy() { // "compressed" name for TGT and TGC
-    let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("TGT"), info.name_for("TGY"));
-    assert_eq!(info.name_for("TGC"), info.name_for("TGY"));
-}
-
-#[test]
-#[ignore]
 fn test_stop() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("TAA"), Ok("stop codon"));
@@ -32,25 +24,23 @@ fn test_stop() {
 #[ignore]
 fn test_valine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("GTN"), Ok("valine"));
+    assert_eq!(info.name_for("GTT"), Ok("valine"));
 }
-
 
 #[test]
 #[ignore]
 fn test_isoleucine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("ATH"), Ok("isoleucine"));
+    assert_eq!(info.name_for("ATT"), Ok("isoleucine"));
 }
 
 #[test]
 #[ignore]
 fn test_arginine_name() {
-    // In arginine CGA can be "compresed" both as CGN and as MGR
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("CGA"), Ok("arginine"));
-    assert_eq!(info.name_for("CGN"), Ok("arginine"));
-    assert_eq!(info.name_for("MGR"), Ok("arginine"));
+    assert_eq!(info.name_for("AGA"), Ok("arginine"));
+    assert_eq!(info.name_for("AGG"), Ok("arginine"));
 }
 
 #[test]
