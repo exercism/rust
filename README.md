@@ -1,7 +1,7 @@
-# xRust
+# Exercism Rust Track
 
-[![Build Status](https://travis-ci.org/exercism/xrust.svg?branch=master)](https://travis-ci.org/exercism/xrust)
-[![Join the chat at https://gitter.im/exercism/xrust](https://badges.gitter.im/exercism/xrust.svg)](https://gitter.im/exercism/xrust?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/exercism/rust.svg?branch=master)](https://travis-ci.org/exercism/rust)
+[![Join the chat at https://gitter.im/exercism/rust](https://badges.gitter.im/exercism/rust.svg)](https://gitter.im/exercism/rust?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Exercism exercises in Rust
 

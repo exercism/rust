@@ -4,8 +4,8 @@ The actual source of truth of problem order and topics is [config.json](config.j
 
 ## Background
 
-- https://github.com/exercism/xrust/issues/126
-- https://github.com/exercism/xrust/issues/127
+- https://github.com/exercism/rust/issues/126
+- https://github.com/exercism/rust/issues/127
 - http://designisrefactoring.com/2016/07/09/exercism-shouldnt-make-you-cry/
 
 ## Our Approach
