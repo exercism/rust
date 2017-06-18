@@ -1,7 +1,7 @@
 {
   "slug": "rust",
   "language": "Rust",
-  "repository": "https://github.com/exercism/xrust",
+  "repository": "https://github.com/exercism/rust",
   "active": true,
   "exercises": [
     {
