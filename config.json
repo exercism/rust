@@ -470,7 +470,7 @@
         "Enum",
         "structs",
         "traits",
-        "Lifetimes"
+        "algorithm"
       ]
     },
     {
