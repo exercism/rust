@@ -254,6 +254,15 @@ fn redefining_an_existing_built_in_word() {
 
 #[test]
 #[ignore]
+fn redefining_a_built_in_operator() {
+    let mut f = Forth::new();
+    assert!(f.eval(": + * ;").is_ok());
+    assert!(f.eval("3 4 +").is_ok());
+    assert_eq!(vec![12], f.stack());
+}
+
+#[test]
+#[ignore]
 fn defining_a_number() {
     let mut f = Forth::new();
     assert_eq!(Err(Error::InvalidWord), f.eval(": 1 2 ;"));
