@@ -6,13 +6,14 @@ pub fn reply(message: &str) -> &str {
 }
 
 fn is_silence(message: &str) -> bool {
-    message == ""
+    message.trim().is_empty()
 }
 
 fn is_yelling(message: &str) -> bool {
-    message.chars().all(|char| !char.is_lowercase())
+    let s = message.trim_matches(|c: char| !c.is_alphabetic());
+    !s.is_empty() && s.to_uppercase() == s
 }
 
 fn is_question(message: &str) -> bool {
-    message.ends_with("?")
+    message.trim_right().ends_with("?")
 }
