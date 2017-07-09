@@ -3,7 +3,7 @@ language: rust
 script:
 - "./_test/check-exercises.sh"
 - "./bin/fetch-configlet"
-- "./bin/configlet ."
+- "./bin/configlet lint ."
 sudo: false
 rust:
   - stable
