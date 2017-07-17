@@ -1,3 +1,19 @@
+# Pascals Triangle
+
+Compute Pascal's triangle up to a given number of rows.
+
+In Pascal's Triangle each number is computed by adding the numbers to
+the right and left of the current position in the previous row.
+
+```plain
+    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1
+# ... etc
+```
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
@@ -22,9 +38,16 @@ haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
 
-The [exercism/xrust](https://github.com/exercism/xrust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
+The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
 
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
 [crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+
+## Source
+
+Pascal's Triangle at Wolfram Math World [http://mathworld.wolfram.com/PascalsTriangle.html](http://mathworld.wolfram.com/PascalsTriangle.html)
+
+## Submitting Incomplete Solutions
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
