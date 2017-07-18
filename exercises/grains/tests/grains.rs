@@ -59,5 +59,4 @@ fn square_sixty_five_panics() {
 #[ignore]
 fn total_sums_all_squares() {
     assert_eq!(grains::total(), 18_446_744_073_709_551_615);
-    grains::total();
 }
