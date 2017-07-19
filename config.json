@@ -530,6 +530,15 @@
       ]
     },
     {
+      "uuid": "c21c379b-fb23-449b-809a-3c6ef1c31221",
+      "slug": "pig-latin",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+      ]
+    },
+    {
       "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
       "slug": "anagram",
       "core": false,

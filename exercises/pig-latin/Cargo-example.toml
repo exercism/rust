@@ -1,0 +1,8 @@
+[package]
+name = "pig-latin"
+version = "1.0.0"
+authors = ["sacherjj <sacherjj@gmail.com>"]
+
+[dependencies]
+regex = "0.2"
+lazy_static = "0.2"
