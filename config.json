@@ -106,6 +106,17 @@
       ]
     },
     {
+      "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
+      "slug": "say",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "string concatenation",
+        "modulus"
+      ]
+    },    
+    {
       "uuid": "4dc9b165-792a-4438-be80-df9aab6f6a9c",
       "slug": "run-length-encoding",
       "core": false,
