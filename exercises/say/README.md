@@ -1,3 +1,5 @@
+# Say
+
 Given a number from 0 to 999,999,999,999, spell out that number in English.
 
 ## Step 1
@@ -59,6 +61,27 @@ Use _and_ (correctly) when spelling out the number in English:
 - 120 becomes "one hundred and twenty".
 - 1002 becomes "one thousand and two".
 - 1323 becomes "one thousand three hundred and twenty-three".
+
+
+## Rust Specific Exercise Notes
+
+This is slightly changed in the Rust version, compared to other
+language versions of this exercise.  Instead of requiring you to return
+errors for out of range, we are using Rust's strong type system to limit
+input.  It is much easier to make a function deal with all valid inputs,
+rather than requiring the user of your module to handle errors.
+
+There is a -1 version of a test case, but it is commented out.
+If your function is implemented properly, the -1 test case should not compile.
+
+Adding 'and' into number text has not been implemented in test cases.
+
+### Extension
+
+Add capability of converting up to the max value for u64: 9,223,372,036,854,775,807.
+
+For hints at the output this should have, look at the last test case.
+
 
 ## Rust Installation
 
