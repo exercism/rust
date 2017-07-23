@@ -1,7 +1,6 @@
 *.swp
 *.bk
 .DS_Store
-**/src
 **/target
 tmp
 bin/configlet
