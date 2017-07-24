@@ -167,6 +167,18 @@
       ]
     },
     {
+      "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
+      "slug": "clock",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "traits",
+        "derive",
+        "struct"
+      ]
+    },
+    {
       "uuid": "2874216a-0822-4ec2-892e-d451fd89646a",
       "slug": "hamming",
       "core": false,
