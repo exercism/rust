@@ -104,6 +104,16 @@
       ]
     },
     {
+      "uuid": "9f649818-0c82-4b79-b912-4d65b9f60e10",
+      "slug": "prime-factors",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "math"
+      ]
+    },
+    {
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "slug": "say",
       "core": false,
