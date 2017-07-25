@@ -104,6 +104,16 @@
       ]
     },
     {
+      "uuid": "6e7cac84-99d1-4f9f-b7d6-48ea43024bc0",
+      "slug": "pythagorean-triplet",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "option"
+      ]
+    },
+    {
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "slug": "say",
       "core": false,
