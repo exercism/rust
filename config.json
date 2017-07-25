@@ -262,6 +262,16 @@
       ]
     },
     {
+      "uuid": "ddc45979-8a92-4313-a4f8-878562d5a483",
+      "slug": "accumulate",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "function pointer"
+      ]
+    },
+    {
       "uuid": "26a9102f-26f6-4238-858e-ba20db66f1a9",
       "slug": "acronym",
       "core": false,
