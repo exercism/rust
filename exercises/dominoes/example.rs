@@ -56,7 +56,7 @@ impl AvailabilityTable {
             panic!("remove for 0 stones: ({:?}, {:?})", x, y)
         }
     }
-    
+
     fn pop_first(&mut self, x: usize) -> Option<usize> {
         for y in 1 .. 7 {
             if self.get(x, y) > 0 {

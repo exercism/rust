@@ -14,7 +14,7 @@ impl School {
         entry.push(student.to_string());
         entry.sort();
     }
-    
+
     pub fn grades(&self) -> Vec<u32> {
         let mut s = self.grades.keys().cloned().collect::<Vec<u32>>();
         s.sort();

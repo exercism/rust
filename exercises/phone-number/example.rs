@@ -18,7 +18,7 @@ pub fn area_code(s: &str) -> Option<String> {
 }
 
 pub fn pretty_print(s: &str) -> String {
-    number(s).map(|n| 
+    number(s).map(|n|
         format!("({area}) {prefix}-{exchange}",
                 area=&n[..3],
                 prefix=&n[3..6],

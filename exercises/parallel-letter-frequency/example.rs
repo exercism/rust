@@ -26,7 +26,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
 
     for part in parts {
         let tx = tx.clone();
-        thread::spawn(move || { 
+        thread::spawn(move || {
             tx.send(count(part)).unwrap();
         });
     }

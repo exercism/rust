@@ -65,7 +65,7 @@ mod tests {
         buffer.write('2');
         assert_eq!(Err(Error::FullBuffer), buffer.write('3'));
     }
-    
+
     #[test]
     #[ignore]
     fn overwrite_item_in_non_full_buffer() {
@@ -100,7 +100,7 @@ mod tests {
         assert_eq!(-1,buffer.read().unwrap());
         assert_eq!(Err(Error::EmptyBuffer), buffer.read());
     }
-    
+
     #[test]
     #[ignore]
     fn string_buffer() {
