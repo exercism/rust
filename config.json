@@ -71,6 +71,16 @@
       ]
     },
     {
+      "uuid": "504f9033-6433-4508-aebb-60ee77b800b9",
+      "slug": "proverb",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "format"
+      ]
+    },
+    {
       "uuid": "aee49878-f727-400b-8fb5-eaf83447cf87",
       "slug": "difference-of-squares",
       "core": false,
@@ -111,6 +121,16 @@
       "difficulty": 1,
       "topics": [
         "option"
+       ]
+    },
+    {
+      "uuid": "9f649818-0c82-4b79-b912-4d65b9f60e10",
+      "slug": "prime-factors",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "math"
       ]
     },
     {
