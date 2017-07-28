@@ -47,6 +47,17 @@
       ]
     },
     {
+      "uuid": "e4f7a1d3-4baf-4314-be3f-66be3be017a6",
+      "slug": "error-handling",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "Option",
+        "Result"
+      ]
+    },
+    {
       "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
       "slug": "bob",
       "core": false,
