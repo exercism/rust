@@ -71,6 +71,16 @@
       ]
     },
     {
+      "uuid": "504f9033-6433-4508-aebb-60ee77b800b9",
+      "slug": "proverb",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "format"
+      ]
+    },
+    {
       "uuid": "aee49878-f727-400b-8fb5-eaf83447cf87",
       "slug": "difference-of-squares",
       "core": false,
