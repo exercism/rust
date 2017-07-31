@@ -47,6 +47,15 @@
       ]
     },
     {
+      "uuid": "ee5048a7-c625-434d-a0a2-4fd54757ee02",
+      "slug": "nth-prime",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+      ]
+    },
+    {
       "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
       "slug": "bob",
       "core": false,
