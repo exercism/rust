@@ -13,12 +13,7 @@
     {
       "github_username": "etrepum",
       "show_on_website": false,
-      "alumnus": false,
-      "name": null,
-      "bio": null,
-      "link_text": null,
-      "link_url": null,
-      "avatar_url": null
+      "alumnus": true
     },
     {
       "github_username": "ijanos",
