@@ -38,6 +38,6 @@ fn non_acronym_all_caps_word() {
 #[test]
 #[ignore]
 fn hyphenated() {
-    assert_eq!(acronym::abbreviate("Complementary metal-oxide semiconductor"), 
+    assert_eq!(acronym::abbreviate("Complementary metal-oxide semiconductor"),
                "CMOS");
 }

@@ -133,7 +133,7 @@
         "string concatenation",
         "modulus"
       ]
-    },    
+    },
     {
       "uuid": "4dc9b165-792a-4438-be80-df9aab6f6a9c",
       "slug": "run-length-encoding",

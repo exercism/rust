@@ -29,7 +29,7 @@ impl TeamResult {
 pub fn tally(input: &str) -> String {
     let mut results: HashMap<String, TeamResult> = HashMap::new();
     for line in input.to_string().lines() {
-        let parts: Vec<&str> = line.trim_right().split(';').collect(); 
+        let parts: Vec<&str> = line.trim_right().split(';').collect();
         if parts.len() != 3 { continue; }
         let team1 = parts[0];
         let team2 = parts[1];
@@ -60,7 +60,7 @@ fn write_tally(results: &HashMap<String, TeamResult>) -> String {
         (team, games, r, points)
     }).collect();
     // Sort by points descending, then name A-Z.
-    v.sort_by(|a, b| 
+    v.sort_by(|a, b|
               match a.3.cmp(&(b.3)).reverse() {
                   Equal => a.0.cmp(&(b.0)),
                   other => other

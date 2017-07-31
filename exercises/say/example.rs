@@ -1,6 +1,6 @@
-const SMALL: &'static [&'static str] = &["zero", "one", "two", "three", "four", "five", 
-                                         "six", "seven", "eight", "nine", "ten", 
-                                         "eleven", "twelve", "thirteen", "fourteen", "fifteen", 
+const SMALL: &'static [&'static str] = &["zero", "one", "two", "three", "four", "five",
+                                         "six", "seven", "eight", "nine", "ten",
+                                         "eleven", "twelve", "thirteen", "fourteen", "fifteen",
                                          "sixteen", "seventeen", "eighteen", "nineteen"];
 
 const TENS: &'static [&'static str] = &["ones", "ten", "twenty", "thirty", "forty",
@@ -28,7 +28,7 @@ pub fn encode(n: u64) -> String {
             out.push(' ');
             out.push_str(&encode(ones));
         }
-        out     
+        out
     } else {
         let mut sets: Vec<u64> = Vec::new();
         let mut val = n;

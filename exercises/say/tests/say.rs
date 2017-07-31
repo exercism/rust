@@ -1,6 +1,6 @@
 extern crate say;
 
-// Note: No tests created using 'and' with numbers.  
+// Note: No tests created using 'and' with numbers.
 // Aparently Most American English does not use the 'and' with numbers,
 // where it is common in British English to use the 'and'.
 
@@ -9,9 +9,9 @@ fn test_zero() {
     assert_eq!(say::encode(0), String::from("zero"));
 }
 
-// 
+//
 // If the below test is uncommented, it should not compile.
-// 
+//
 /*
 #[test]
 fn test_negative() {
@@ -109,7 +109,7 @@ fn test_one_billion() {
 #[test]
 #[ignore]
 fn test_987654321123() {
-    assert_eq!(say::encode(987_654_321_123), 
+    assert_eq!(say::encode(987_654_321_123),
                String::from("nine hundred eighty-seven billion \
                              six hundred fifty-four million \
                              three hundred twenty-one thousand \
