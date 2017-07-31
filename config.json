@@ -123,6 +123,16 @@
       ]
     },
     {
+      "uuid": "6e7cac84-99d1-4f9f-b7d6-48ea43024bc0",
+      "slug": "pythagorean-triplet",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "option"
+       ]
+    },
+    {
       "uuid": "9f649818-0c82-4b79-b912-4d65b9f60e10",
       "slug": "prime-factors",
       "core": false,
