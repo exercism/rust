@@ -42,7 +42,7 @@ fn test_name_is_persistent() {
 fn test_different_robots_have_different_names() {
     let r1 = robot::Robot::new();
     let r2 = robot::Robot::new();
-    assert!(r1.name() != r2.name(), "Robot names should be different");
+    assert_ne!(r1.name(), r2.name(), "Robot names should be different");
 }
 
 #[test]
@@ -69,5 +69,5 @@ fn test_new_name_is_different_from_old_name() {
     let n1 = r.name().to_string();
     r.reset_name();
     let n2 = r.name().to_string();
-    assert!(n1 != n2, "Robot name should change when reset");
+    assert_ne!(n1, n2, "Robot name should change when reset");
 }

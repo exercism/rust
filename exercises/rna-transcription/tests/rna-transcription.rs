@@ -3,7 +3,7 @@ extern crate rna_transcription as dna;
 #[test]
 fn test_acid_equals_acid() {
     assert_eq!(dna::RibonucleicAcid::new("CGA"), dna::RibonucleicAcid::new("CGA"));
-    assert!(dna::RibonucleicAcid::new("CGA") != dna::RibonucleicAcid::new("AGC"));
+    assert_ne!(dna::RibonucleicAcid::new("CGA"), dna::RibonucleicAcid::new("AGC"));
 }
 
 #[test]

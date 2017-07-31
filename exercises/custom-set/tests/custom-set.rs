@@ -142,7 +142,7 @@ fn empty_sets_are_equal() {
 fn empty_set_is_not_equal_to_a_non_empty_set() {
     let set1 = CustomSet::new(vec![]);
     let set2 = CustomSet::new(vec![1, 2, 3]);
-    assert!(set1 != set2);
+    assert_ne!(set1, set2);
 }
 
 #[test]
@@ -150,7 +150,7 @@ fn empty_set_is_not_equal_to_a_non_empty_set() {
 fn non_empty_set_is_not_equal_to_an_empty_set() {
     let set1 = CustomSet::new(vec![1, 2, 3]);
     let set2 = CustomSet::new(vec![]);
-    assert!(set1 != set2);
+    assert_ne!(set1, set2);
 }
 
 #[test]
@@ -166,7 +166,7 @@ fn sets_with_the_same_elements_are_equal() {
 fn sets_with_different_elements_are_not_equal() {
     let set1 = CustomSet::new(vec![1, 2, 3]);
     let set2 = CustomSet::new(vec![2, 1, 4]);
-    assert!(set1 != set2);
+    assert_ne!(set1, set2);
 }
 
 #[test]
