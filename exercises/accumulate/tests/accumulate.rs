@@ -7,7 +7,7 @@ fn square(x: i32) -> i32 {
 }
 
 fn abs_val(x: i32) -> i32 {
-    if x > 0 { 
+    if x > 0 {
         x
     } else {
         -x
