@@ -6,5 +6,5 @@ the other is a closure.
 It may help to look at the [Fn trait](https://doc.rust-lang.org/std/ops/trait.Fn.html).
 
 Help with passing a closure into a function may be found in
-[this section](https://rustbyexample.com/fn/closures/input_parameters.html) of
+the ["closures as input parameters" section](https://rustbyexample.com/fn/closures/input_parameters.html) of
 [Rust by Example](https://rustbyexample.com/).
