@@ -28,6 +28,18 @@ Solve this one yourself using other basic tools instead.
 Lisp specific: it's perfectly fine to use `MAPCAR` or the equivalent,
 as this is idiomatic Lisp, not a library function.
 
+## Hints
+
+We are dealing with two types of situations.  One is a function pointer and
+the other is a closure.
+
+It may help to look at the [Fn trait](https://doc.rust-lang.org/std/ops/trait.Fn.html).
+
+Help with passing a closure into a function may be found in
+the ["closures as input parameters" section](https://rustbyexample.com/fn/closures/input_parameters.html) of
+[Rust by Example](https://rustbyexample.com/).
+
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
@@ -61,8 +73,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-Conversation with James Edward Gray II
-[https://twitter.com/jeg2](https://twitter.com/jeg2)
+Conversation with James Edward Gray II [https://twitter.com/jeg2](https://twitter.com/jeg2)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
