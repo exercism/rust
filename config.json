@@ -1,5 +1,6 @@
 {
   "language": "Rust",
+  "blurb": "Rust is a compiled programming language designed for speed, concurrency, and memory safety. Rust programs can run almost anywhere, from low-power embedded devices to web servers.",
   "active": true,
   "exercises": [
     {
