@@ -1,7 +1,5 @@
 use std::ascii::AsciiExt;
 
-// Don't forget to add the dependency line to Cargo.toml:
-// itertools = "0.6.1"
 extern crate itertools;
 use itertools::Itertools;
 
