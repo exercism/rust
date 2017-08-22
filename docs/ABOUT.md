@@ -1,4 +1,4 @@
-Rust is a systems programming language focused on three goals: safety, speed, and concurrency. Rust does not use a garbage collector, but instead ensures safety and optimizes code at compile time. The concept of [ownership](https://doc.rust-lang.org/book/ownership.html) is how Rust achieves its largest goal, memory safety.
+Rust aims to bring modern language design and an advanced type system to systems programming. Rust does not use a garbage collector, but instead ensures safety and optimizes code at compile time. The concept of [ownership](https://doc.rust-lang.org/book/ownership.html) is how Rust achieves its largest goal, memory safety.
 
 Rust core and the standard library contain a minimal set of functionality. Rustaceans are encouraged to add features, in the form of libraries called _crates_, to the language and then share them on [crates.io](https://crates.io/).
 
