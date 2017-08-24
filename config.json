@@ -290,6 +290,20 @@
       ]
     },
     {
+      "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
+      "slug": "crypto-square",
+      "difficulty": 4,
+      "topics": [
+        "str vs string",
+        "primitive types",
+        "iterators",
+        "chars",
+        "arrays",
+        "ascii",
+        "transforming"
+      ]
+    },
+    {
       "uuid": "5dbecc83-2c8d-467d-be05-f28a08f7abcf",
       "slug": "rotational-cipher",
       "core": false,
