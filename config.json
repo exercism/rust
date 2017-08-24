@@ -1,5 +1,6 @@
 {
   "language": "Rust",
+  "blurb": "Rust is a compiled programming language designed for speed, concurrency, and memory safety. Rust programs can run almost anywhere, from low-power embedded devices to web servers.",
   "active": true,
   "exercises": [
     {
@@ -286,6 +287,20 @@
         "iterators",
         "chars",
         "ascii"
+      ]
+    },
+    {
+      "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
+      "slug": "crypto-square",
+      "difficulty": 4,
+      "topics": [
+        "str vs string",
+        "primitive types",
+        "iterators",
+        "chars",
+        "arrays",
+        "ascii",
+        "transforming"
       ]
     },
     {
