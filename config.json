@@ -624,6 +624,20 @@
       ]
     },
     {
+      "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
+      "slug": "poker",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 6,
+      "topics": [
+         "lifetimes",
+         "struct",
+         "string parsing",
+         "enum",
+         "traits"
+      ]
+    },
+    {
       "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
       "slug": "anagram",
       "core": false,
