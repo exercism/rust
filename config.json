@@ -21,7 +21,7 @@
       "difficulty": 1,
       "topics": [
         "crates",
-        "math"
+        "mathematics"
       ]
     },
     {
@@ -31,7 +31,7 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "math",
+        "mathematics",
         "booleans",
         "conditionals"
       ]
@@ -119,7 +119,7 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "math",
+        "mathematics",
         "panic"
       ]
     },
@@ -140,7 +140,7 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "math"
+        "mathematics"
       ]
     },
     {
@@ -196,7 +196,7 @@
       "unlocked_by": null,
       "difficulty": 4,
       "topics": [
-        "Math",
+        "Mathematics",
         "Vec",
         "Index (optional)"
       ]
@@ -383,7 +383,7 @@
       "unlocked_by": null,
       "difficulty": 4,
       "topics": [
-        "Math",
+        "Mathematics",
         "Struct"
       ]
     },
@@ -610,7 +610,7 @@
       "topics": [
         "string parsing",
         "combinations",
-        "math",
+        "mathematics",
         "external crates (optional)"
       ]
     },
