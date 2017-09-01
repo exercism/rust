@@ -104,7 +104,7 @@ impl BowlingGame {
                 return Err("Game Finished. No more rolls.");
             }
 
-            for mut frame in self.frames.iter_mut() {
+            for frame in self.frames.iter_mut() {
                 frame.add_roll(pins)
             }
 
