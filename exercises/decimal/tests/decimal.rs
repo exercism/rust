@@ -67,13 +67,6 @@ fn test_mul() {
 }
 
 #[test]
-fn test_div() {
-    for big in BIGS.iter() {
-        assert_eq!((decimal(big) + decimal(big)) / decimal("2"), decimal(big));
-    }
-}
-
-#[test]
 fn test_eq_vary_sig_digits() {
     assert!(decimal("0") == decimal("0000000000000.0000000000000000000000"));
     assert!(decimal("1") == decimal("00000000000000001.000000000000000000"));
@@ -86,4 +79,30 @@ fn test_add_vary_precision() {
             decimal("0.00000000000000000000000000000000000000001"),
         decimal(BIGS[0])
     )
+}
+
+#[test]
+fn test_cleanup_precision() {
+    assert_eq!(
+        decimal(
+            "10000000000000000000000000000000000000000000000.999999999999999999999999998",
+        ) +
+            decimal(
+                "10000000000000000000000000000000000000000000000.000000000000000000000000002",
+            ),
+        decimal("20000000000000000000000000000000000000000000001")
+    )
+}
+
+#[test]
+fn test_negatives() {
+    assert!(Decimal::try_from("-1").is_some());
+    assert_eq!(decimal("0") - decimal("1"), decimal("-1"));
+    assert_eq!(decimal("5.5") + decimal("-6.5"), decimal("-1"));
+}
+
+#[test]
+fn test_explicit_positive() {
+    assert_eq!(decimal("+1"), decimal("1"));
+    assert_eq!(decimal("+2.0") - decimal("-0002.0"), decimal("4"));
 }
