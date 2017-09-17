@@ -624,6 +624,20 @@
       ]
     },
     {
+      "uuid": "7cefed7c-37f4-46c5-9a45-68fe4d0fb326",
+      "slug": "decimal",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 6,
+      "topics": [
+        "struct",
+        "traits",
+        "string parsing",
+        "bigint",
+        "external crates (optional)"
+      ]
+    },
+    {
       "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
       "slug": "anagram",
       "core": false,

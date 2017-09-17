@@ -1,5 +1,7 @@
 # Decimal
 
+# Decimal
+
 Implement an arbitrary-precision `Decimal` class.
 
 Floating point numbers are the most common representation of non-integer real numbers in computing, and they're a common standard defined by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754). They're very flexible and versatile, but they do have some limitations. Famously, in floating point arithmetic, [`0.1 + 0.2 != 0.3`](http://0.30000000000000004.com/).
@@ -22,7 +24,8 @@ It would be very easy to implement this exercise by using the [bigdecimal](https
 
 ## Rust Installation
 
-Refer to the [exercism help page][help-page] for Rust installation and learning resources.
+Refer to the [exercism help page][help-page] for Rust installation and learning
+resources.
 
 ## Writing the Code
 
@@ -32,9 +35,14 @@ Execute the tests with:
 $ cargo test
 ```
 
-All but the first test have been ignored. After you get the first test to pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests to pass again. The test file is located in the `tests` directory. You can also remove the ignore flag from all the tests to get them to run all at once if you wish.
+All but the first test have been ignored.  After you get the first test to
+pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
+to pass again.  The test file is located in the `tests` directory.   You can
+also remove the ignore flag from all the tests to get them to run all at once
+if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you haven't already, it will help you with organizing your files.
+Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
 
@@ -42,9 +50,12 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
-## Submitting Incomplete Solutions
-
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
-
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
 [help-page]: http://exercism.io/languages/rust
+[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+
+## Source
+
+Peter Goodspeed-Niklaus
+
+## Submitting Incomplete Solutions
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
