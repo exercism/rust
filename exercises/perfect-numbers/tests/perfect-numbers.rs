@@ -15,13 +15,18 @@ fn test_all() {
         result: perfect_numbers::Classification
     }
     let test_table: Vec<TestClassification> = vec![
-        TestClassification { num: 1, result: Classification::Deficient },
-        TestClassification { num: 13, result: Classification::Deficient },
-        TestClassification { num: 12, result: Classification::Abundant },
         TestClassification { num: 6, result: Classification::Perfect },
         TestClassification { num: 28, result: Classification::Perfect },
-        TestClassification { num: 496, result: Classification::Perfect },
-        TestClassification { num: 8128, result: Classification::Perfect }
+        TestClassification { num: 33550336, result: Classification::Perfect },
+        TestClassification { num: 33550336, result: Classification::Perfect },
+        TestClassification { num: 12, result: Classification::Abundant },
+        TestClassification { num: 30, result: Classification::Abundant },
+        TestClassification { num: 33550335, result: Classification::Abundant },
+        TestClassification { num: 2, result: Classification::Deficient },
+        TestClassification { num: 4, result: Classification::Deficient },
+        TestClassification { num: 32, result: Classification::Deficient },
+        TestClassification { num: 33550337, result: Classification::Deficient },
+        TestClassification { num: 1, result: Classification::Deficient },
     ];
     for t in test_table {
         assert_eq!(classify(t.num).unwrap(), t.result);
