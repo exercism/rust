@@ -37,7 +37,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-J Dalbey's Programming Practice problems <http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html>
+Inspired by the training course from Udacity. [https://www.udacity.com/course/viewer#!/c-cs212/](https://www.udacity.com/course/viewer#!/c-cs212/)
 
 ## Submitting Incomplete Solutions
 
