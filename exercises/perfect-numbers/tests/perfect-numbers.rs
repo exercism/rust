@@ -31,4 +31,3 @@ fn test_all() {
         assert_eq!(classify(t.num), Ok(t.result));
     }
 }
-
