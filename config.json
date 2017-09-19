@@ -168,6 +168,16 @@
       ]
     },
     {
+      "uuid": "20e7d347-b80a-4656-ac34-0825126939ff",
+      "slug": "perfect-numbers",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "Mathematics"
+      ]
+    },
+    {
       "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
       "slug": "clock",
       "core": false,
