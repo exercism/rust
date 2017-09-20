@@ -10,10 +10,6 @@ Exercism exercises in Rust
 Please see the [contributing guide](https://github.com/exercism/docs/tree/master/contributing-to-language-tracks)
 
 
-## Rust icon
-The Rust Logo is created by the Mozilla Corporation, and has been released under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).
-We tweaked the color from black to charcoal (#212121).
-
 ## Contributing
 
 Thank you so much for contributing! :tada:
@@ -105,3 +101,7 @@ and can be installed with `cargo install rustfmt`.
 - `README.md` may be regenerated from exercism data.  The top section above `## Rust Installation` should contain `description.md` from the exercise directory in the [problem-specifications repository.](https://github.com/exercism/problem-specifications/tree/master/exercises)  The `## Source` section comes from the `metadata.yml` in the same directory.  Convention is that the description of the source remains text and the link is both name and hyperlink of the markdown link.
 
 - Be sure to add the exercise to an appropriate place in the `config.json` file.  The position in the file determines the order exercises are sent.   Generate a unique UUID for the exercise.  Current difficuly levels in use are 1, 4, 7 and 10.
+
+## Rust icon
+The Rust Logo is created by the Mozilla Corporation, and has been released under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).
+We tweaked the color from black to charcoal (#212121).
