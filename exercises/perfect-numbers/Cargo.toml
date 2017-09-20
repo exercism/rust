@@ -1,0 +1,5 @@
+[package]
+name = "perfect_numbers"
+version = "1.0.1"
+
+[dependencies]
