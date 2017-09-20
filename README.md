@@ -15,7 +15,7 @@ We welcome pull requests of all kinds. No contribution is too small.
 
 We encourage contributions that provide fixes and improvements to existing exercises. Please note that this track's exercises must conform to the Exercism-wide standards described in the [documentation](https://github.com/exercism/docs/tree/master/language-tracks/exercises). If you're unsure about how to make a change, then go ahead and open a GitHub issue, and we'll discuss it.
 
-## Exercise Tests ##
+## Exercise Tests
 
 At the most basic level, Exercism is all about the tests. They drive the user's implementation forward and tell them when the exercise is complete.
 
@@ -45,7 +45,7 @@ fn test_second_and_past_tests_ignored() {
 }
 ```
 
-## Submitting a Pull Request ##
+## Submitting a Pull Request
 
 Please keep the following in mind:
 
@@ -64,7 +64,7 @@ and can be installed with `cargo install rustfmt`.
 
 - The Rust repository uses [Travis CI](https://travis-ci.org/exercism/rust/) to validate the build and automatically runs `bin/fetch-configlet && bin/configlet` to ensure the exercises are configured correctly.  The status of this testing will be indicated in your pull request.
 
-## Contributing a New Exercise ##
+## Contributing a New Exercise
 
 - If a new exercise would potentially be suitable for a track other than the Rust track, it should be defined in [problem-specifications](https://github.com/exercism/problem-specifications/tree/master/exercises) so that other tracks may benefit from it.
 
