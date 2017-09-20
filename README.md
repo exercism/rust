@@ -46,7 +46,7 @@ If you plan to make significant or breaking changes, please open an issue so we 
 
 Pull requests should be focused on a single exercise, issue, or conceptually cohesive change. Please refer to Exercism's [pull request guidelines](https://github.com/exercism/docs/blob/master/contributing/pull-request-guidelines.md).
 
-- Follow the coding standards for Rust.  [rustfmt](https://github.com/nrc/rustfmt) may help with this
+Please follow the coding standards for Rust.  [rustfmt](https://github.com/nrc/rustfmt) may help with this
 and can be installed with `cargo install rustfmt`.
 
 ### Verifying your Change
