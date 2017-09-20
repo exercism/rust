@@ -74,6 +74,7 @@ Note that:
 
 - Each exercise should have:
 
+```
     exercises/exercise-name/
                             tests/exercise-name.rs  <- a test suite
                             src/lib.rs              <- an empty file or with exercise stubs
@@ -81,6 +82,7 @@ Note that:
                             Cargo.toml              <- with version equal to exercise defintion
                             Cargo.lock              <- Auto generated
                             README.md               <- Instructions for the exercise (see notes below)
+```
 
 - If porting an existing exercise from problem-specifications that has a `canonical-data.json` file, use the version in `canonical-data.json` for that exercise as your `Cargo.toml` version.  Otherwise, use "0.0.0".
 
