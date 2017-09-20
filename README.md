@@ -80,7 +80,7 @@ Note that:
                             src/lib.rs              <- an empty file or with exercise stubs
                             example.rs              <- example solution that satisfies tests
                             Cargo.toml              <- with version equal to exercise defintion
-                            Cargo.lock              <- Auto generated 
+                            Cargo.lock              <- Auto generated
                             README.md               <- Instructions for the exercise (see notes below)
 ---
 
