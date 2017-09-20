@@ -17,14 +17,7 @@ We encourage contributions that provide fixes and improvements to existing exerc
 
 ## Exercise Tests
 
-At the most basic level, Exercism is all about the tests. They drive the user's implementation forward and tell them when the exercise is complete.
-
-The utmost care and attention should be used when adding or making changes to the tests for an exercise. When implementing an exercise test suite, we want to provide a good user experience for the people writing a solution to the exercise. People should not be confused or overwhelmed.
-
-We simulate Test-Driven Development (TDD) by implementing the tests in order of increasing complexity. We try to ensure that each test either
-
-- helps triangulate a solution to be more generic, or
-- requires new functionality incrementally.
+At the most basic level, Exercism is all about the tests. You can read more about how we think about test suites in [the Exercism documentation](https://github.com/exercism/docs/blob/master/language-tracks/exercises/anatomy/test-suites.md).
 
 Test files should use the following format:
 
