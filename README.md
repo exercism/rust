@@ -62,13 +62,15 @@ For the Exercism-specific linting, please see [the documentation](https://github
 
 ## Contributing a New Exercise
 
-- If a new exercise would potentially be suitable for a track other than the Rust track, it should be defined in [problem-specifications](https://github.com/exercism/problem-specifications/tree/master/exercises) so that other tracks may benefit from it.
+Please see the documentation about [adding new exercises](https://github.com/exercism/docs/blob/master/you-can-help/make-up-new-exercises.md).
 
-- If the exercise is commonly defined, please make sure the exercise conforms to specifications in the [exercism/problem-specifications](https://github.com/exercism/problem-specifications) repo.  (Note if slight changes are needed for Rust specific issues, see `.meta/hints.md` below.)
+Note that:
 
 - Each exercise must stand on its own. Do not reference files outside the exercise directory. They will not be included when the user fetches the exercise.
 
 - Exercises should use only the Rust core libraries.  If you must use an external crate, see note below about `Cargo-example.toml`.  `Cargo.toml` should not have external dependencies as we don't want to make the user assume required crates.
+
+- Exercises must conform to the Exercism-wide standards described in [the documentation](https://github.com/exercism/docs/tree/master/language-tracks/exercises).
 
 - Each exercise should have:
 
