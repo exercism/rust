@@ -84,7 +84,7 @@ Note that:
                             README.md               <- Instructions for the exercise (see notes below)
 ---
 
-- Note: If publishing an existing exercise from problem-specifications, use the version `canonical-data.json` for that exercise as your `Cargo.toml` version.  Otherwise, use "0.0.0"
+- If porting an existing exercise from problem-specifications that has a `canonical-data.json` file, use the version in `canonical-data.json` for that exercise as your `Cargo.toml` version.  Otherwise, use "0.0.0".
 
 - An exercise may contain `.meta/hints.md`.  This is optional and will appear after the normal exercise
   instructions if present.  Rust is different in many ways from other languages.  This is a place where the differences required for Rust are explained.  If it is a large change, you may want to call this out as a comment at the top of `src/lib.rs`, so the user recognises to read this section before starting.
