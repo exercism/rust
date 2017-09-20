@@ -38,24 +38,27 @@ fn test_second_and_past_tests_ignored() {
 }
 ```
 
+## Opening an Issue
+
+If you plan to make significant or breaking changes, please open an issue so we can discuss it first. If this is a discussion that is relevant to more than just the Rust track, please open an issue in [exercism/discussions](https://github.com/exercism/discussions/issues).
+
 ## Submitting a Pull Request
 
-Please keep the following in mind:
-
-- Pull requests should be focused on a single exercise, issue, or change.
-
-- We welcome changes to code style, and wording. Please open a separate PR for these changes if possible.
-
-- Please open an issue before creating a PR that makes significant (breaking) changes to an existing exercise or makes changes across many exercises. It is best to discuss these changes before doing the work. Discussions related to exercises that are not track specific can be found in [exercism/discussions](https://github.com/exercism/discussions/issues).
+Pull requests should be focused on a single exercise, issue, or conceptually cohesive change. Please refer to Exercism's [pull request guidelines](https://github.com/exercism/docs/blob/master/contributing/pull-request-guidelines.md).
 
 - Follow the coding standards for Rust.  [rustfmt](https://github.com/nrc/rustfmt) may help with this
 and can be installed with `cargo install rustfmt`.
 
-- Watch out for trailing spaces, extra blank lines, and spaces in blank lines.
+### Verifying your Change
 
-- All the tests for Rust exercises can be run from the top level of the repo with `_test/check-exercises.sh` Please run this command before submitting your PR.  See [Windows Specific instructions](_test/WINDOWS_README.md) for running this.
+Before submitting your pull request, you'll want to verify the changes in two ways:
 
-- The Rust repository uses [Travis CI](https://travis-ci.org/exercism/rust/) to validate the build and automatically runs `bin/fetch-configlet && bin/configlet` to ensure the exercises are configured correctly.  The status of this testing will be indicated in your pull request.
+* Run all the tests for the Rust exercises
+* Run an Exercism-specific linter to verify the track
+
+All the tests for Rust exercises can be run from the top level of the repo with `_test/check-exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
+
+For the Exercism-specific linting, please see [the documentation](https://github.com/exercism/docs/blob/master/language-tracks/configuration/linting.md).
 
 ## Contributing a New Exercise
 
