@@ -5,11 +5,6 @@
 
 Exercism exercises in Rust
 
-## Contributing Guide
-
-Please see the [contributing guide](https://github.com/exercism/docs/tree/master/contributing-to-language-tracks)
-
-
 ## Contributing
 
 Thank you so much for contributing! :tada:
