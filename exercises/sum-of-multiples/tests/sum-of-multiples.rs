@@ -15,6 +15,12 @@ fn multiples_two() {
 
 #[test]
 #[ignore]
+fn more_than_one_multiple_within_limit() {
+    assert_eq!(9, sum_of_multiples(7, &[3]))
+}
+
+#[test]
+#[ignore]
 fn multiples_three() {
     assert_eq!(23, sum_of_multiples(10, &[3, 5]))
 }
