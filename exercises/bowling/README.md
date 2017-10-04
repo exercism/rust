@@ -2,7 +2,7 @@
 
 Score a bowling game.
 
-Bowling is game where players roll a heavy ball to knock down pins
+Bowling is a game where players roll a heavy ball to knock down pins
 arranged in a triangle. Write code to keep track of the score
 of a game of bowling.
 
@@ -16,15 +16,15 @@ cases for the tabulation of a frame.
   frame. In this case the score for the frame is the number of pins
   knocked down.
 
-* A spare is where all ten pins are knocked down after the second
+* A spare is where all ten pins are knocked down by the second
   throw. The total value of a spare is 10 plus the number of pins
   knocked down in their next throw.
 
-* A strike is where all ten pins are knocked down after the first
+* A strike is where all ten pins are knocked down by the first
   throw. The total value of a strike is 10 plus the number of pins
-  knocked down in their next two throws. If a strike is immediately
-  followed by a second strike, then we can not total the value of the
-  first strike until they throw the ball one more time.
+  knocked down in the next two throws. If a strike is immediately
+  followed by a second strike, then the value of the first strike
+  cannot be determined until the ball is thrown one more time.
 
 Here is a three frame example:
 
