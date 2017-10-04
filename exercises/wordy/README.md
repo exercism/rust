@@ -55,7 +55,6 @@ If you'd like, handle exponentials.
 
 32
 
-
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning

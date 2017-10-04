@@ -11,7 +11,6 @@ come: 1
 free: 1
 ```
 
-
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning

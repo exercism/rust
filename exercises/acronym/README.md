@@ -7,7 +7,6 @@ Techies love their TLA (Three Letter Acronyms)!
 Help generate some jargon by writing a program that converts a long name
 like Portable Network Graphics to its acronym (PNG).
 
-
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
