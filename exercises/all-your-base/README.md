@@ -28,7 +28,6 @@ The number 1120, *in base 3*, means:
 
 I think you got the idea!
 
-
 *Yes. Those three numbers above are exactly the same. Congratulations!*
 
 ## Rust Installation

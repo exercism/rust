@@ -15,7 +15,6 @@ Write code that shows:
 - how many grains were on each square, and
 - the total number of grains
 
-
 ## For bonus points
 
 Did you get the tests passing and the code clean? If you want to, these
