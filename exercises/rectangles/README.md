@@ -2,7 +2,7 @@
 
 Count the rectangles in an ASCII diagram like the one below.
 
-```
+```text
    +--+
   ++  |
 +-++--+
@@ -12,7 +12,7 @@ Count the rectangles in an ASCII diagram like the one below.
 
 The above diagram contains 6 rectangles:
 
-```
+```text
 
 
 +-----+
@@ -20,7 +20,7 @@ The above diagram contains 6 rectangles:
 +-----+
 ```
 
-```
+```text
    +--+
    |  |
    |  |
@@ -28,7 +28,7 @@ The above diagram contains 6 rectangles:
    +--+
 ```
 
-```
+```text
    +--+
    |  |
    +--+
@@ -36,7 +36,7 @@ The above diagram contains 6 rectangles:
 
 ```
 
-```
+```text
        
        
    +--+
@@ -44,7 +44,7 @@ The above diagram contains 6 rectangles:
    +--+
 ```
 
-```
+```text
        
        
 +--+
@@ -52,7 +52,7 @@ The above diagram contains 6 rectangles:
 +--+
 ```
 
-```
+```text
        
   ++   
   ++   

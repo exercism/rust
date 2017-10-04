@@ -8,7 +8,7 @@ NANP numbers are ten-digit numbers consisting of a three-digit Numbering Plan Ar
 
 
 The format is usually represented as
-```
+```text
 (NXX)-NXX-XXXX
 ```
 where `N` is any digit from 2 through 9 and `X` is any digit from 0 through 9.

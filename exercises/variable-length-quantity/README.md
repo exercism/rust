@@ -15,7 +15,7 @@ So, if an integer is between `0-127`, it can be represented as one byte.
 Although VLQ can deal with numbers of arbitrary sizes, for this exercise we will restrict ourselves to only numbers that fit in a 32-bit unsigned integer.
 Here are examples of integers as 32-bit values, and the variable length quantities that they translate to:
 
-```
+```text
  NUMBER        VARIABLE QUANTITY
 00000000              00
 00000040              40
