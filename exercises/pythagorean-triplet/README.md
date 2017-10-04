@@ -7,7 +7,7 @@ which,
 a**2 + b**2 = c**2
 ```
 
-For example, 
+For example,
 
 ```
 3**2 + 4**2 = 9 + 16 = 25 = 5**2.
