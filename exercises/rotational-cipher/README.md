@@ -23,6 +23,7 @@ It is stronger than the Atbash cipher because it has 27 possible keys, and 25 us
 Ciphertext is written out in the same formatting as the input including spaces and punctuation.
 
 ## Examples
+
 - ROT5  `omg` gives `trl`
 - ROT0  `c` gives `c`
 - ROT26 `Cool` gives `Cool`

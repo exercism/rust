@@ -6,6 +6,7 @@ Implement general base conversion. Given a number in base **a**,
 represented as a sequence of digits, convert it to base **b**.
 
 ## Note
+
 - Try to implement the conversion yourself.
   Do not use something else to perform the conversion for you.
 

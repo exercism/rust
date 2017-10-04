@@ -23,6 +23,7 @@ being 5 letters, and punctuation is excluded. This is to make it harder to guess
 things based on word boundaries.
 
 ## Examples
+
 - Encoding `test` gives `gvhg`
 - Decoding `gvhg` gives `test`
 - Decoding `gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt` gives `thequickbrownfoxjumpsoverthelazydog`
