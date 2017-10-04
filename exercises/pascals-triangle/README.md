@@ -1,4 +1,4 @@
-# Pascals Triangle
+# Pascal's Triangle
 
 Compute Pascal's triangle up to a given number of rows.
 
