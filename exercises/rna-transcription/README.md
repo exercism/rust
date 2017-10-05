@@ -1,4 +1,4 @@
-# Rna Transcription
+# RNA Transcription
 
 Given a DNA strand, return its RNA complement (per RNA transcription).
 
