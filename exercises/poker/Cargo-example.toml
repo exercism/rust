@@ -1,0 +1,8 @@
+[package]
+name = "poker"
+version = "1.0.0"
+authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
+
+[dependencies]
+try_opt = "0.1.1"
+counter = "0.1.0"

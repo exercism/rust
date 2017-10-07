@@ -1,41 +1,21 @@
-# Accumulate
+# Perfect Numbers
 
-Implement the `accumulate` operation, which, given a collection and an
-operation to perform on each element of the collection, returns a new
-collection containing the result of applying that operation to each element of
-the input collection.
+Determine if a number is perfect, abundant, or deficient based on
+Nicomachus' (60 - 120 CE) classification scheme for natural numbers.
 
-Given the collection of numbers:
+The Greek mathematician [Nicomachus](https://en.wikipedia.org/wiki/Nicomachus) devised a classification scheme for natural numbers, identifying each as belonging uniquely to the categories of **perfect**, **abundant**, or **deficient** based on their [aliquot sum](https://en.wikipedia.org/wiki/Aliquot_sum). The aliquot sum is defined as the sum of the factors of a number not including the number itself. For example, the aliquot sum of 15 is (1 + 3 + 5) = 9
 
-- 1, 2, 3, 4, 5
-
-And the operation:
-
-- square a number (`x => x * x`)
-
-Your code should be able to produce the collection of squares:
-
-- 1, 4, 9, 16, 25
-
-Check out the test suite to see the expected function signature.
-
-## Restrictions
-
-Keep your hands off that collect/map/fmap/whatchamacallit functionality
-provided by your standard library!
-Solve this one yourself using other basic tools instead.
-
-## Hints
-
-We are dealing with two types of situations.  One is a function pointer and
-the other is a closure.
-
-It may help to look at the [Fn trait](https://doc.rust-lang.org/std/ops/trait.Fn.html).
-
-Help with passing a closure into a function may be found in
-the ["closures as input parameters" section](https://rustbyexample.com/fn/closures/input_parameters.html) of
-[Rust by Example](https://rustbyexample.com/).
-
+- **Perfect**: aliquot sum = number 
+  - 6 is a perfect number because (1 + 2 + 3) = 6
+  - 28 is a perfect number because (1 + 2 + 4 + 7 + 14) = 28
+- **Abundant**: aliquot sum > number
+  - 12 is an abundant number because (1 + 2 + 3 + 4 + 6) = 16
+  - 24 is an abundant number because (1 + 2 + 3 + 4 + 6 + 8 + 12) = 36
+- **Deficient**: aliquot sum < number
+  - 8 is a deficient number because (1 + 2 + 4) = 7
+  - Prime numbers are deficient
+  
+Implement a way to determine whether a given number is **perfect**. Depending on your language track, you may also need to implement a way to determine whether a given number is **abundant** or **deficient**.
 
 ## Rust Installation
 
@@ -70,7 +50,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-Conversation with James Edward Gray II [https://twitter.com/jeg2](https://twitter.com/jeg2)
+Taken from Chapter 2 of Functional Thinking by Neal Ford. [http://shop.oreilly.com/product/0636920029687.do](http://shop.oreilly.com/product/0636920029687.do)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

@@ -1,40 +1,18 @@
-# Accumulate
+# Poker
 
-Implement the `accumulate` operation, which, given a collection and an
-operation to perform on each element of the collection, returns a new
-collection containing the result of applying that operation to each element of
-the input collection.
+Pick the best hand(s) from a list of poker hands.
 
-Given the collection of numbers:
-
-- 1, 2, 3, 4, 5
-
-And the operation:
-
-- square a number (`x => x * x`)
-
-Your code should be able to produce the collection of squares:
-
-- 1, 4, 9, 16, 25
-
-Check out the test suite to see the expected function signature.
-
-## Restrictions
-
-Keep your hands off that collect/map/fmap/whatchamacallit functionality
-provided by your standard library!
-Solve this one yourself using other basic tools instead.
+See [wikipedia](https://en.wikipedia.org/wiki/List_of_poker_hands) for an
+overview of poker hands.
 
 ## Hints
 
-We are dealing with two types of situations.  One is a function pointer and
-the other is a closure.
-
-It may help to look at the [Fn trait](https://doc.rust-lang.org/std/ops/trait.Fn.html).
-
-Help with passing a closure into a function may be found in
-the ["closures as input parameters" section](https://rustbyexample.com/fn/closures/input_parameters.html) of
-[Rust by Example](https://rustbyexample.com/).
+- Ranking a list of poker hands can be considered a sorting problem.
+- Rust provides the [sort](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.sort) method for `Vec<T> where T: Ord`.
+- [`Ord` types](https://doc.rust-lang.org/std/cmp/trait.Ord.html) are form a [total order](https://en.wikipedia.org/wiki/Total_order): exactly one of `a < b`, `a == b`, or `a > b` must be true.
+- Poker hands do not conform to a total order: it is possible for two hands to be non-equal but have equal sort order. Example: `3S 4S 5D 6H JH"`, `"3H 4H 5C 6C JD"`.
+- Rust provides the [`PartialOrd` trait](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html) to handle the case of sortable things which do not have a total order. However, it doesn't provide a standard `sort` method for `Vec<T> where T: PartialOrd`. The standard idiom to sort a vector in this case is `your_vec.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::{Less|Equal|Greater}));`, depending on your needs. `
+- You might consider implementing a type representing a poker hand which implements `PartialOrd`.
 
 
 ## Rust Installation
@@ -70,7 +48,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-Conversation with James Edward Gray II [https://twitter.com/jeg2](https://twitter.com/jeg2)
+Inspired by the training course from Udacity. [https://www.udacity.com/course/viewer#!/c-cs212/](https://www.udacity.com/course/viewer#!/c-cs212/)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
