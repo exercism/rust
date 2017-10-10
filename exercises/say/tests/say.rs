@@ -15,8 +15,6 @@ fn test_zero() {
 /*
 
  #[test]
- #[ignore]
- #[should_panic]
  fn test_negative() {
      assert_eq!(say::encode(-1), String::from("won't compile"));
  }
