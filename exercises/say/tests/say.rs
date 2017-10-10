@@ -13,10 +13,14 @@ fn test_zero() {
 // If the below test is uncommented, it should not compile.
 //
 /*
-#[test]
-fn test_negative() {
-    assert_eq!(say::encode(-1), String::from("won't compile"));
-}
+
+ #[test]
+ #[ignore]
+ #[should_panic]
+ fn test_negative() {
+     assert_eq!(say::encode(-1), String::from("won't compile"));
+ }
+
 */
 
 #[test]
