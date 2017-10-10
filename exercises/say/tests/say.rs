@@ -15,6 +15,7 @@ fn test_zero() {
 /*
 
  #[test]
+ #[ignoe]
  fn test_negative() {
      assert_eq!(say::encode(-1), String::from("won't compile"));
  }
