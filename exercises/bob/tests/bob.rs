@@ -63,6 +63,7 @@ fn test_shouting_numbers() {
 }
 
 #[test]
+#[ignore]
 fn test_only_numbers() {
     assert_eq!("Whatever.", bob::reply("1, 2, 3"));
 }

@@ -14,12 +14,14 @@ fn test_zero() {
 //
 /*
 #[test]
+#[ignore]
 fn test_negative() {
     assert_eq!(say::encode(-1), String::from("won't compile"));
 }
 */
 
 #[test]
+#[ignore]
 fn test_one() {
     assert_eq!(say::encode(1), String::from("one"));
 }
