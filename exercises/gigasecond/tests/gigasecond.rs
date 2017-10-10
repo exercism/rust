@@ -8,7 +8,7 @@ extern crate gigasecond;
  *
  * The first time you run `cargo test`, the Chrono crate will automatically be downloaded
  * and installed. More information on crates can be found at
- * https://doc.rust-lang.org/book/guessing-game.html#generating-a-secret-number
+ * https://doc.rust-lang.org/book/second-edition/ch02-00-guessing-game-tutorial.html#generating-a-random-number
  *
  * In order to use the crate, your solution will need to start with the two following lines
 */
