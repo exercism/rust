@@ -20,6 +20,7 @@ fn test_negative() {
 */
 
 #[test]
+#[ignore]
 fn test_one() {
     assert_eq!(say::encode(1), String::from("one"));
 }
