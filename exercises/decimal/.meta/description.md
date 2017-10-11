@@ -15,5 +15,5 @@ It would be very easy to implement this exercise by using the [bigdecimal](https
 # Hints
 
 - Instead of implementing arbitrary-precision arithmetic from scratch, consider building your type on top of the [num_bigint](https://crates.io/crates/num-bigint) crate.
-- You might be able to [derive](https://doc.rust-lang.org/1.8.0/book/traits.html#deriving) some of the required traits.
+- You might be able to [derive](https://doc.rust-lang.org/book/first-edition/traits.html#deriving) some of the required traits.
 - `Decimal` is assumed to be a signed type. You do not have to create a separate unsigned type, though you may do so as an implementation detail if you so choose.
