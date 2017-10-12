@@ -1,0 +1,9 @@
+[package]
+name = "decimal"
+version = "0.1.0"
+authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
+
+[dependencies]
+try_opt = "0.1.1"
+num-bigint = "0.1.40"
+num-traits = "0.1.40"
