@@ -106,7 +106,7 @@ macro_rules! auto_impl_decimal_ops {
             fn $func_name(mut self, mut rhs: Self) -> Self {
                 Decimal::equalize_precision(&mut self, &mut rhs);
                 Decimal::new(
-                    $digits_operation(self.digits, rhs.digits,),
+                    $digits_operation(self.digits, rhs.digits),
                     $index_operation(self.decimal_index, rhs.decimal_index),
                 )
             }
