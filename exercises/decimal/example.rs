@@ -174,12 +174,12 @@ mod tests {
             println!(
                 "Decimal representation of \"{}\": {}",
                 test_str,
-                Decimal::try_from(test_str).expect("This should alwaye become a decimal")
+                Decimal::try_from(test_str).expect("This should always become a decimal")
             );
             assert_eq!(
                 test_str,
                 Decimal::try_from(test_str)
-                    .expect("This should alwaye become a decimal")
+                    .expect("This should always become a decimal")
                     .to_string()
             )
         }
