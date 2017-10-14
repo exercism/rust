@@ -1,0 +1,4 @@
+[root]
+name = "collatz_conjecture"
+version = "1.1.1"
+
