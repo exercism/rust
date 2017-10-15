@@ -150,7 +150,7 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-       "error handling with Result<T, E>"
+        "error handling with Result<T, E>"
       ]
     },
     {
