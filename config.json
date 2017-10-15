@@ -144,6 +144,16 @@
       ]
     },
     {
+      "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
+      "slug": "collatz-conjecture",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "error handling with Result<T, E>"
+      ]
+    },
+    {
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "slug": "say",
       "core": false,
