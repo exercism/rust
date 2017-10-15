@@ -32,7 +32,7 @@ fn unrecognized_chararcters_return_question_mark() {
                 "  |\n" +
                 "   ";
 
-    assert_eq!("?", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("?".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -44,7 +44,7 @@ fn recognizes_0() {
                 "|_|\n" +
                 "   ";
 
-    assert_eq!("0", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("0".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -56,7 +56,7 @@ fn recognizes_1() {
                 "  |\n" +
                 "   ";
 
-    assert_eq!("1", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("1".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -68,7 +68,7 @@ fn recognizes_2() {
                 "|_ \n" +
                 "   ";
 
-    assert_eq!("2", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("2".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -80,7 +80,7 @@ fn recognizes_3() {
                 " _|\n" +
                 "   ";
 
-    assert_eq!("3", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("3".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -92,7 +92,7 @@ fn recognizes_4() {
                 "  |\n" +
                 "   ";
 
-    assert_eq!("4", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("4".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -104,7 +104,7 @@ fn recognizes_5() {
                 " _|\n" +
                 "   ";
 
-    assert_eq!("5", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("5".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -116,7 +116,7 @@ fn recognizes_6() {
                 "|_|\n" +
                 "   ";
 
-    assert_eq!("6", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("6".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -128,7 +128,7 @@ fn recognizes_7() {
                 "  |\n" +
                 "   ";
 
-    assert_eq!("7", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("7".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -140,7 +140,7 @@ fn recognizes_8() {
                 "|_|\n" +
                 "   ";
 
-    assert_eq!("8", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("8".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -152,7 +152,7 @@ fn recognizes_9() {
                 " _|\n" +
                 "   ";
 
-    assert_eq!("9", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("9".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -164,7 +164,7 @@ fn recognizes_110101100() {
                 "  |  ||_|  ||_|  |  ||_||_|\n" +
                 "                           ";
 
-    assert_eq!("110101100", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("110101100".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -176,7 +176,7 @@ fn replaces_only_garbled_numbers_with_question_mark() {
                 "  |  | _|  ||_|  |  ||_||_|\n" +
                 "                           ";
 
-    assert_eq!("11?10?1?0", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("11?10?1?0".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -188,7 +188,7 @@ fn recognizes_string_of_decimal_numbers() {
                 "  ||_  _|  | _||_|  ||_| _||_|\n" +
                 "                              ";
 
-    assert_eq!("1234567890", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("1234567890".to_string()), ocr::convert(&input));
 }
 
 #[test]
@@ -207,5 +207,5 @@ fn numbers_across_multiple_lines_are_joined_by_commas() {
                 "  ||_||_|\n" +
                 "  ||_| _|\n" +
                 "         ";
-    assert_eq!("123,456,789", ocr::convert(&input).unwrap());
+    assert_eq!(Ok("123,456,789".to_string()), ocr::convert(&input));
 }
