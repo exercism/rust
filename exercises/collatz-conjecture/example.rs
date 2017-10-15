@@ -13,8 +13,6 @@ pub fn collatz_positive(n: u64) -> u64 {
 pub fn collatz(n: u64) -> Result<u64, &'static str> {
     if n < 1 {
         Err("Only positive numbers are allowed")
-    } else if n == 1 {
-        Ok(0)
     } else {
         Ok(collatz_positive(n))
     }
