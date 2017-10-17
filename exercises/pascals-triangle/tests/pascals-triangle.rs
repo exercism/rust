@@ -92,6 +92,7 @@ fn ten_rows() {
 #[test]
 #[ignore]
 #[should_panic]
+#![deny(warnings)]
 fn middle_numbers_getting_to_big_for_u32() {
     PascalsTriangle::new(36);
 }
