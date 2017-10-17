@@ -2,6 +2,8 @@ extern crate pascals_triangle;
 
 use pascals_triangle::*;
 
+#![deny(warnings)]
+
 #[test]
 fn no_rows() {
     let pt = PascalsTriangle::new(0);
@@ -92,7 +94,6 @@ fn ten_rows() {
 #[test]
 #[ignore]
 #[should_panic]
-#![deny(warnings)]
 fn middle_numbers_getting_to_big_for_u32() {
     PascalsTriangle::new(36);
 }
