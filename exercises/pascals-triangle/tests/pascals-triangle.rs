@@ -35,14 +35,6 @@ fn three_rows() {
 
 #[test]
 #[ignore]
-fn last_of_four_rows() {
-    let pt = PascalsTriangle::new(4);
-    let expected: Vec<u32> = vec![1, 3, 3, 1];
-    assert_eq!(expected, pt.rows().pop().unwrap());
-}
-
-#[test]
-#[ignore]
 fn five_rows() {
     let pt = PascalsTriangle::new(5);
     let expected: Vec<Vec<u32>> = vec![vec![1],
