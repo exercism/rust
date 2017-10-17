@@ -2,8 +2,6 @@ extern crate pascals_triangle;
 
 use pascals_triangle::*;
 
-#![deny(warnings)]
-
 #[test]
 fn no_rows() {
     let pt = PascalsTriangle::new(0);
@@ -89,25 +87,6 @@ fn ten_rows() {
                                        vec![1, 8, 28, 56, 70, 56, 28, 8, 1],
                                        vec![1, 9, 36, 84, 126, 126, 84, 36, 9, 1]];
     assert_eq!(expected, pt.rows());
-}
-
-#[test]
-#[ignore]
-#[should_panic]
-fn middle_numbers_getting_to_big_for_u32() {
-    PascalsTriangle::new(36);
-}
-
-#[test]
-#[ignore]
-fn last_of_35_rows() {
-    let pt = PascalsTriangle::new(35);
-    let expected: Vec<u32> =
-        vec![1, 34, 561, 5984, 46376, 278256, 1344904, 5379616, 18156204, 52451256, 131128140,
-             286097760, 548354040, 927983760, 1391975640, 1855967520, 2203961430, 2333606220,
-             2203961430, 1855967520, 1391975640, 927983760, 548354040, 286097760, 131128140,
-             52451256, 18156204, 5379616, 1344904, 278256, 46376, 5984, 561, 34, 1];
-    assert_eq!(expected, pt.rows().pop().unwrap());
 }
 
 #[test]
