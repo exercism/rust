@@ -1,6 +1,6 @@
 # Binary Search
 
-Write a program that implements a binary search algorithm.
+Implement a binary search algorithm.
 
 Searching a sorted collection is a common task. A dictionary is a sorted
 list of word definitions. Given a word, one can find its definition. A
