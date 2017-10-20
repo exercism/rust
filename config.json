@@ -432,7 +432,7 @@
       "slug": "binary-search",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "slices",
         "trait (optional)",
