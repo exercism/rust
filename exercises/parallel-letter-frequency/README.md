@@ -11,7 +11,7 @@ list of texts and that employs parallelism.
 
 Learn more about concurrency in Rust here:
 
-- [Concurrency](https://doc.rust-lang.org/book/concurrency.html)
+- [Concurrency](https://doc.rust-lang.org/book/second-edition/ch16-00-concurrency.html)
 
 ## Bonus
 

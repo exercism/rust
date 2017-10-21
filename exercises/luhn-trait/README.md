@@ -14,9 +14,9 @@ In "Luhn: Using the From Trait" you implemented a From trait, which also require
 
 Instead of creating a Struct just to perform the validation, what if you you validated the primitives (i.e, String, u8, etc.) themselves?
 
-In this exercise you'll create and implement a custom [trait](https://doc.rust-lang.org/book/traits.html) that performs the validation.
+In this exercise you'll create and implement a custom [trait](https://doc.rust-lang.org/book/second-edition/ch10-02-traits.html) that performs the validation.
 
-Note: It is [not idiomatic Rust to implement traits on on primitives](https://doc.rust-lang.org/book/traits.html#rules-for-implementing-traits). In this exercise we're showing something that you _can_ do, not something you _should_ do. If you find yourself implementing traits on primitives, perhaps you have a case of [Primitive Obsession](http://wiki.c2.com/?PrimitiveObsession).
+Note: It is [not idiomatic Rust to implement traits on on primitives](https://doc.rust-lang.org/book/second-edition/ch10-02-traits.html#implementing-a-trait-on-a-type). In this exercise we're showing something that you _can_ do, not something you _should_ do. If you find yourself implementing traits on primitives, perhaps you have a case of [Primitive Obsession](http://wiki.c2.com/?PrimitiveObsession).
 
 ## Rust Installation
 
