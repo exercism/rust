@@ -94,4 +94,3 @@ fn nothing_is_included_in_an_empty_array() {
 //    assert_eq!(find(["a"], "a"), Some(0));
 //    assert_eq!(find(["a", "b"], "b"), Some(1));
 //}
-
