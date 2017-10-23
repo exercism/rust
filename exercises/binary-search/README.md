@@ -36,7 +36,7 @@ A binary search is a dichotomic divide and conquer search algorithm.
 
 ## Restrictions
 
-Rust provides in it's standard library already a
+Rust provides in its standard library already a
 [binary search function](https://doc.rust-lang.org/std/primitive.slice.html#method.binary_search).
 For this exercise you should not use this function but just other basic tools instead.
 
