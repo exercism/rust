@@ -154,6 +154,18 @@
       ]
     },
     {
+      "uuid": "357d63b9-002e-2680-561c-8aa540f6a4ea7181b64",
+      "slug": "isogram",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "chars",
+        "iterators",
+        "strings"
+      ]
+  },
+    {
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "slug": "say",
       "core": false,
@@ -810,18 +822,6 @@
       "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
       "slug": "hexadecimal",
       "deprecated": true
-    },
-    {
-      "uuid": "357d63b9-002e-2680-561c-8aa540f6a4ea7181b64",
-      "slug": "isogram",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "chars",
-        "iterators",
-        "strings"
-      ]
     }
   ],
   "foregone": [
@@ -830,4 +830,3 @@
     "trinary"
   ]
 }
-
