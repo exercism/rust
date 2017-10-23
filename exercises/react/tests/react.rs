@@ -6,7 +6,7 @@ use react::*;
 fn input_cells_have_a_value() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(10);
-    assert_eq!(reactor.value(input).unwrap(), 10);
+    assert_eq!(reactor.value(input), Some(10));
 }
 
 #[test]
@@ -15,7 +15,7 @@ fn an_input_cells_value_can_be_set() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(4);
     assert!(reactor.set_value(input, 20).is_ok());
-    assert_eq!(reactor.value(input).unwrap(), 20);
+    assert_eq!(reactor.value(input), Some(20));
 }
 
 #[test]
@@ -32,7 +32,7 @@ fn compute_cells_calculate_initial_value() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
-    assert_eq!(reactor.value(output).unwrap(), 2);
+    assert_eq!(reactor.value(output), Some(2));
 }
 
 #[test]
@@ -42,7 +42,7 @@ fn compute_cells_take_inputs_in_the_right_order() {
     let one = reactor.create_input(1);
     let two = reactor.create_input(2);
     let output = reactor.create_compute(&vec![one, two], |v| v[0] + v[1] * 10).unwrap();
-    assert_eq!(reactor.value(output).unwrap(), 21);
+    assert_eq!(reactor.value(output), Some(21));
 }
 
 #[test]
@@ -63,7 +63,7 @@ fn do_not_break_cell_if_creating_compute_cell_with_valid_and_invalid_input() {
     let input = reactor.create_input(1);
     assert!(reactor.create_compute(&vec![input, dummy_cell], |_| 0).is_err());
     assert!(reactor.set_value(input, 5).is_ok());
-    assert_eq!(reactor.value(input).unwrap(), 5);
+    assert_eq!(reactor.value(input), Some(5));
 }
 
 #[test]
@@ -72,9 +72,9 @@ fn compute_cells_update_value_when_dependencies_are_changed() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&vec![input], |v| v[0] + 1).unwrap();
-    assert_eq!(reactor.value(output).unwrap(), 2);
+    assert_eq!(reactor.value(output), Some(2));
     assert!(reactor.set_value(input, 3).is_ok());
-    assert_eq!(reactor.value(output).unwrap(), 4);
+    assert_eq!(reactor.value(output), Some(4));
 }
 
 #[test]
@@ -85,9 +85,9 @@ fn compute_cells_can_depend_on_other_compute_cells() {
     let times_two = reactor.create_compute(&vec![input], |v| v[0] * 2).unwrap();
     let times_thirty = reactor.create_compute(&vec![input], |v| v[0] * 30).unwrap();
     let output = reactor.create_compute(&vec![times_two, times_thirty], |v| v[0] + v[1]).unwrap();
-    assert_eq!(reactor.value(output).unwrap(), 32);
+    assert_eq!(reactor.value(output), Some(32));
     assert!(reactor.set_value(input, 3).is_ok());
-    assert_eq!(reactor.value(output).unwrap(), 96);
+    assert_eq!(reactor.value(output), Some(96));
 }
 
 #[test]
@@ -251,7 +251,7 @@ fn test_adder_with_boolean_values() {
         assert!(reactor.set_value(b, bval).is_ok());
         assert!(reactor.set_value(carry_in, cinval).is_ok());
 
-        assert_eq!(reactor.value(sum).unwrap(), expected_sum);
-        assert_eq!(reactor.value(carry_out).unwrap(), expected_cout);
+        assert_eq!(reactor.value(sum), Some(expected_sum));
+        assert_eq!(reactor.value(carry_out), Some(expected_cout));
     }
 }

@@ -10,56 +10,56 @@ fn return_is_a_result() {
 #[test]
 #[ignore]
 fn find_the_largest_product_when_span_equals_length() {
-    assert_eq!(18, lsp("29", 2).unwrap());
+    assert_eq!(Ok(18), lsp("29", 2));
 }
 
 #[test]
 #[ignore]
 fn find_the_largest_product_of_two_with_numbers_in_order() {
-    assert_eq!(72, lsp("0123456789", 2).unwrap());
+    assert_eq!(Ok(72), lsp("0123456789", 2));
 }
 
 #[test]
 #[ignore]
 fn find_the_largest_product_of_two_with_numbers_not_in_order() {
-    assert_eq!(48, lsp("576802143", 2).unwrap());
+    assert_eq!(Ok(48), lsp("576802143", 2));
 }
 
 #[test]
 #[ignore]
 fn find_the_largest_product_of_three_with_numbers_in_order() {
-    assert_eq!(504, lsp("0123456789", 3).unwrap());
+    assert_eq!(Ok(504), lsp("0123456789", 3));
 }
 
 #[test]
 #[ignore]
 fn find_the_largest_product_of_three_with_numbers_not_in_order() {
-    assert_eq!(270, lsp("1027839564", 3).unwrap());
+    assert_eq!(Ok(270), lsp("1027839564", 3));
 }
 
 #[test]
 #[ignore]
 fn find_the_largest_product_of_five_with_numbers_in_order() {
-    assert_eq!(15120, lsp("0123456789", 5).unwrap());
+    assert_eq!(Ok(15120), lsp("0123456789", 5));
 }
 
 #[test]
 #[ignore]
 fn span_of_six_in_a_large_number() {
-    assert_eq!(23520,
-               lsp("73167176531330624919225119674426574742355349194934", 6).unwrap());
+    assert_eq!(Ok(23520),
+               lsp("73167176531330624919225119674426574742355349194934", 6));
 }
 
 #[test]
 #[ignore]
 fn returns_zero_if_number_is_zeros() {
-    assert_eq!(0, lsp("0000", 2).unwrap());
+    assert_eq!(Ok(0), lsp("0000", 2));
 }
 
 #[test]
 #[ignore]
 fn returns_zero_if_all_products_are_zero() {
-    assert_eq!(0, lsp("99099", 3).unwrap());
+    assert_eq!(Ok(0), lsp("99099", 3));
 }
 
 #[test]
@@ -83,13 +83,13 @@ fn a_span_is_longer_than_number_is_an_error() {
 #[test]
 #[ignore]
 fn an_empty_string_and_no_span_returns_one() {
-    assert_eq!(1, lsp("", 0).unwrap());
+    assert_eq!(Ok(1), lsp("", 0));
 }
 
 #[test]
 #[ignore]
 fn a_non_empty_string_and_no_span_returns_one() {
-    assert_eq!(1, lsp("123", 0).unwrap());
+    assert_eq!(Ok(1), lsp("123", 0));
 }
 
 #[test]

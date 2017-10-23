@@ -16,7 +16,7 @@ mod tests {
     fn write_and_read_back_item() {
         let mut buffer = CircularBuffer::new(1);
         buffer.write('1');
-        assert_eq!('1', buffer.read().unwrap());
+        assert_eq!(Ok('1'), buffer.read());
         assert_eq!(Err(Error::EmptyBuffer), buffer.read());
     }
 
@@ -26,8 +26,8 @@ mod tests {
         let mut buffer = CircularBuffer::new(2);
         buffer.write('1');
         buffer.write('2');
-        assert_eq!('1', buffer.read().unwrap());
-        assert_eq!('2', buffer.read().unwrap());
+        assert_eq!(Ok('1'), buffer.read());
+        assert_eq!(Ok('2'), buffer.read());
         assert_eq!(Err(Error::EmptyBuffer), buffer.read());
     }
 
@@ -36,9 +36,9 @@ mod tests {
     fn alternate_write_and_read() {
         let mut buffer = CircularBuffer::new(2);
         buffer.write('1');
-        assert_eq!('1', buffer.read().unwrap());
+        assert_eq!(Ok('1'), buffer.read());
         buffer.write('2');
-        assert_eq!('2', buffer.read().unwrap());
+        assert_eq!(Ok('2'), buffer.read());
     }
 
     #[test]
@@ -52,9 +52,9 @@ mod tests {
         assert_eq!(Err(Error::EmptyBuffer), buffer.read());
         buffer.write('1');
         buffer.write('2');
-        assert_eq!('1', buffer.read().unwrap());
+        assert_eq!(Ok('1'), buffer.read());
         buffer.write('3');
-        assert_eq!('2', buffer.read().unwrap());
+        assert_eq!(Ok('2'), buffer.read());
     }
 
     #[test]
@@ -72,8 +72,8 @@ mod tests {
         let mut buffer = CircularBuffer::new(2);
         buffer.write('1');
         buffer.overwrite('2');
-        assert_eq!('1', buffer.read().unwrap());
-        assert_eq!('2', buffer.read().unwrap());
+        assert_eq!(Ok('1'), buffer.read());
+        assert_eq!(Ok('2'), buffer.read());
         assert_eq!(Err(Error::EmptyBuffer), buffer.read());
     }
 
@@ -84,8 +84,8 @@ mod tests {
         buffer.write('1');
         buffer.write('2');
         buffer.overwrite('A');
-        assert_eq!('2', buffer.read().unwrap());
-        assert_eq!('A', buffer.read().unwrap());
+        assert_eq!(Ok('2'), buffer.read());
+        assert_eq!(Ok('A'), buffer.read());
     }
 
     #[test]
@@ -94,10 +94,10 @@ mod tests {
         let mut buffer = CircularBuffer::new(2);
         buffer.write(1);
         buffer.write(2);
-        assert_eq!(1,buffer.read().unwrap());
+        assert_eq!(Ok(1), buffer.read());
         buffer.write(-1);
-        assert_eq!(2,buffer.read().unwrap());
-        assert_eq!(-1,buffer.read().unwrap());
+        assert_eq!(Ok(2), buffer.read());
+        assert_eq!(Ok(-1), buffer.read());
         assert_eq!(Err(Error::EmptyBuffer), buffer.read());
     }
 
@@ -107,7 +107,7 @@ mod tests {
         let mut buffer = CircularBuffer::new(2);
         buffer.write("".to_string());
         buffer.write("Testing".to_string());
-        assert_eq!(0,buffer.read().unwrap().len());
-        assert_eq!("Testing",buffer.read().unwrap());
+        assert_eq!(0, buffer.read().unwrap().len());
+        assert_eq!(Ok("Testing".to_string()), buffer.read());
     }
 }

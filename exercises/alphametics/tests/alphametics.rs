@@ -2,9 +2,9 @@ extern crate alphametics;
 use std::collections::HashMap;
 
 fn assert_alphametic_solution_eq(puzzle: &str, solution: &[(char, u8)]) {
-    let answer = alphametics::solve(puzzle).unwrap();
+    let answer = alphametics::solve(puzzle);
     let solution: HashMap<char, u8> = solution.iter().cloned().collect();
-    assert_eq!(answer, solution);
+    assert_eq!(answer, Some(solution));
 }
 
 #[test]
