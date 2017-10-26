@@ -448,6 +448,18 @@
       ]
     },
     {
+      "uuid": "dd74b65c-0d26-4821-9add-064e32e3a5bd",
+      "slug": "binary-search",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "slices",
+        "trait (optional)",
+        "Option"
+      ]
+    },
+    {
       "uuid": "1beb8b0c-d06d-4569-80e5-866ed01a7a66",
       "slug": "robot-simulator",
       "core": false,
