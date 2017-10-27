@@ -1,9 +1,9 @@
 #!/bin/sh
 
-dir=$(dirname $(dirname $0))
+repo=$(cd "$(dirname "$0")/.." && pwd)
 exitcode=0
 
-for t in $dir/exercises/*/tests/*.rs; do
+for t in $repo/exercises/*/tests/*.rs; do
   tests=$(grep "^\s*\#\[test\]" $t | wc -l | tr -d '[:space:]')
   ignores=$(grep "^\s*\#\[ignore\]" $t | wc -l | tr -d '[:space:]')
   want_ignores=$(expr $tests - 1)
