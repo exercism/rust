@@ -3,6 +3,7 @@ language: rust
 script:
 - "./_test/check-exercises.sh"
 - "sh ./_test/ensure-lib-src-rs-exist.sh"
+- "sh ./_test/ensure-stubs-compile.sh"
 - "sh ./_test/count-ignores.sh"
 - "./bin/fetch-configlet"
 - "./bin/configlet lint ."
