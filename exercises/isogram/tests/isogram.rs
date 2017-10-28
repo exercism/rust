@@ -12,7 +12,7 @@ fn empty_string() {
 fn only_lower_case_characters() {
     assert_eq!(check("isogram"),
                true,
-               "An \"isogram\" should be an isogram.")
+               "\"isogram\" should be an isogram.")
 }
 
 #[test]
