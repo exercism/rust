@@ -647,6 +647,18 @@
       ]
     },
     {
+      "uuid": "1850fb3f-9dad-449a-90b6-9d90038cf34d",
+      "slug": "two-bucket",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "algorithm",
+        "loops",
+        "mathematics"
+      ]
+    },
+    {
       "uuid": "c21c379b-fb23-449b-809a-3c6ef1c31221",
       "slug": "pig-latin",
       "core": false,
