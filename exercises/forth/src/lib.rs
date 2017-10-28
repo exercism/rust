@@ -13,11 +13,14 @@ pub enum Error {
 
 impl Forth {
     pub fn new() -> Forth {
+        unimplemented!()
     }
 
     pub fn stack(&self) -> Vec<Value> {
+        unimplemented!()
     }
 
     pub fn eval(&mut self, input: &str) -> ForthResult {
+        unimplemented!()
     }
 }

@@ -82,6 +82,11 @@ Note that:
 
 - The stub file and test suite should use only the Rust core libraries. `Cargo.toml` should not list any external dependencies as we don't want to make the student assume required crates. If an `example.rs` uses external crates, include `Cargo-example.toml` so that `_tests/check-exercises.sh` can compile with these when testing.
 
+- Except in extraordinary circumstances, the stub file should compile under `cargo test --no-run`.
+  This allows us to check that the signatures in the stub file match the signatures expected by the tests.
+  Use `unimplemented!()` as the body of each function to achieve this.
+  If there is a justified reason why this is not possible, instead include a `.meta/ALLOWED_TO_NOT_COMPILE` containing the reason.
+
 - If porting an existing exercise from problem-specifications that has a `canonical-data.json` file, use the version in `canonical-data.json` for that exercise as your `Cargo.toml` version.  Otherwise, use "0.0.0".
 
 - An exercise may contain `.meta/hints.md`.  This is optional and will appear after the normal exercise
