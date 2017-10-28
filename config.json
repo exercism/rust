@@ -154,6 +154,18 @@
       ]
     },
     {
+      "uuid": "79613fd8-b7da-11e7-abc4-cec278b6b50a",
+      "slug": "isogram",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "chars",
+        "iterators",
+        "strings"
+      ]
+    },
+    {
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "slug": "say",
       "core": false,
