@@ -32,12 +32,6 @@ for exercise in $files; do
     (
         cd $workdir
 
-        if [ ! -f src/lib.rs ]; then
-            # https://github.com/exercism/rust/pull/270
-            echo "$exercise is missing a src/lib.rs; please create one (an empty file is acceptable)"
-            exitcode=1
-        fi
-
         cp example.rs src/lib.rs
 
         # Overwrite empty Cargo.toml if an example specific file exists
