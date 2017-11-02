@@ -1,17 +1,16 @@
-pub fn build_proverb(list: Vec<&str>) -> String {
-    if list.len() == 0 {
-        return String::new();
+
+pub fn build_proverb(items: Vec<&str>) -> String {
+    let mut stanzas = Vec::with_capacity(items.len());
+    for index in 0..items.len() {
+        if index == items.len() - 1 {
+            stanzas.push(format!("And all for the want of a {}.", items[0]));
+        } else {
+            stanzas.push(format!(
+                "For want of a {} the {} was lost.",
+                items[index],
+                items[index + 1]
+            ));
+        }
     }
-    let mut out: Vec<String> = vec![];
-    for i in 1..list.len() {
-        out.push(format!("For want of a {} the {} was lost.", list[i-1], list[i]));
-    }
-    let end: String;
-    if list.len() > 2 {
-        end = format!("{}{} {}", list[2], list[1], list[0]);
-    } else {
-        end = format!("{}", list[0]);
-    }
-    out.push(format!("And all for the want of a {}.", end));
-    out.join("\n")
+    stanzas.join("\n")
 }
