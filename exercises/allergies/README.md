@@ -29,7 +29,6 @@ allergens that score 256, 512, 1024, etc.).  Your program should
 ignore those components of the score.  For example, if the allergy
 score is 257, your program should only report the eggs (1) allergy.
 
-
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning

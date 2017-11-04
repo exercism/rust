@@ -4,7 +4,7 @@ Produce the lyrics to that beloved classic, that field-trip favorite: 99 Bottles
 
 Note that not all verses are identical.
 
-```plain
+```text
 99 bottles of beer on the wall, 99 bottles of beer.
 Take one down and pass it around, 98 bottles of beer on the wall.
 
