@@ -190,6 +190,18 @@
       ]
     },
     {
+      "uuid": "c986c240-46de-419c-8ed6-700eb68f8db6",
+      "slug": "isbn-verifier",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "conversion between string and int",
+        "loop",
+        "mathematics"
+      ]
+    },
+    {
       "uuid": "20e7d347-b80a-4656-ac34-0825126939ff",
       "slug": "perfect-numbers",
       "core": false,
