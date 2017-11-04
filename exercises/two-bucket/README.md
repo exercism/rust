@@ -7,15 +7,15 @@ Since this mathematical problem is fairly subject to interpretation / individual
 To help, the tests provide you with which bucket to fill first. That means, when starting with the larger bucket full, you are NOT allowed at any point to have the smaller bucket full and the larger bucket empty (aka, the opposite starting point); that would defeat the purpose of comparing both approaches!
 
 Your program will take as input:
-- the size of bucket one, passed as a numeric value
-- the size of bucket two, passed as a numeric value
-- the desired number of liters to reach, passed as a numeric value
-- which bucket to fill first, passed as a Bucket (either Bucket::One or Bucket::Two)
+- the size of bucket one
+- the size of bucket two
+- the desired number of liters to reach
+- which bucket to fill first, either bucket one or bucket two
 
 Your program should determine:
-- the total number of "moves" it should take to reach the desired number of liters, including the first fill - expects a numeric value
-- which bucket should end up with the desired number of liters (let's say this is bucket A) - expects a Bucket (either Bucket::One or Bucket::Two)
-- how many liters are left in the other bucket (bucket B) - expects a numeric value
+- the total number of "moves" it should take to reach the desired number of liters, including the first fill
+- which bucket should end up with the desired number of liters (let's say this is bucket A) - either bucket one or bucket two
+- how many liters are left in the other bucket (bucket B)
 
 Note: any time a change is made to either or both buckets counts as one (1) move.
 
