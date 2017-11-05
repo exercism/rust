@@ -7,20 +7,20 @@ Run-length encoding (RLE) is a simple form of data compression, where runs
 
 For example we can represent the original 53 characters with only 13.
 
-```
+```text
 "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"  ->  "12WB12W3B24WB"
 ```
 
 RLE allows the original data to be perfectly reconstructed from
 the compressed data, which makes it a lossless data compression.
 
-```
+```text
 "AABCCCDEEEE"  ->  "2AB3CD4E"  ->  "AABCCCDEEEE"
 ```
 
 For simplicity, you can assume that the unencoded string will only contain
-the letters A through Z (either lower or upper case) and whitespace. This way 
-data to be encoded will never contain any numbers and numbers inside data to 
+the letters A through Z (either lower or upper case) and whitespace. This way
+data to be encoded will never contain any numbers and numbers inside data to
 be decoded always represent the count for the following character.
 
 ## Rust Installation
@@ -42,7 +42,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -52,7 +52,8 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
 ## Source
 

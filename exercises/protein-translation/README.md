@@ -10,17 +10,17 @@ Codons: `"AUG", "UUU", "UCU"`
 => which become a polypeptide with the following sequence =>
 
 Protein: `"Methionine", "Phenylalanine", "Serine"`
- 
-There are 64 codons which in turn correspond to 20 amino acids; however, all of the codon sequences and resulting amino acids are not important in this exercise.  If it works for one codon, the program should work for all of them.
-However, feel free to expand the list in the test suite to include them all.  
 
-There are also four terminating codons (also known as 'STOP' codons); if any of these codons are encountered (by the ribosome), all translation ends and the protein is terminated.
+There are 64 codons which in turn correspond to 20 amino acids; however, all of the codon sequences and resulting amino acids are not important in this exercise.  If it works for one codon, the program should work for all of them.
+However, feel free to expand the list in the test suite to include them all.
+
+There are also three terminating codons (also known as 'STOP' codons); if any of these codons are encountered (by the ribosome), all translation ends and the protein is terminated.
 
 All subsequent codons after are ignored, like this:
 
 RNA: `"AUGUUUUCUUAAAUG"` =>
 
-Codons: `"AUG", "UUU", "UCU", "UAG", "AUG"` => 
+Codons: `"AUG", "UUU", "UCU", "UAG", "AUG"` =>
 
 Protein: `"Methionine", "Phenylalanine", "Serine"`
 
@@ -38,7 +38,6 @@ UAU, UAC              | Tyrosine
 UGU, UGC              | Cysteine
 UGG                   | Tryptophan
 UAA, UAG, UGA         | STOP
-
 
 Learn more about [protein translation on Wikipedia](http://en.wikipedia.org/wiki/Translation_(biology))
 
@@ -61,7 +60,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -71,7 +70,8 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
 ## Source
 

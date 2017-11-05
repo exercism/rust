@@ -1,30 +1,16 @@
 # Nucleotide Count
 
-Given a DNA string, compute how many times each nucleotide occurs in the string.
+Given a single stranded DNA string, compute how many times each nucleotide occurs in the string.
 
-DNA is represented by an alphabet of the following symbols: 'A', 'C',
-'G', and 'T'.
+The genetic language of every living thing on the planet is DNA. 
+DNA is a large molecule that is built from an extremely long sequence of individual elements called nucleotides. 
+4 types exist in DNA and these differ only slightly and can be represented as the following symbols: 'A' for adenine, 'C' for cytosine, 'G' for guanine, and 'T' thymine.
 
-Each symbol represents a nucleotide, which is a fancy name for the
-particular molecules that happen to make up a large part of DNA.
-
-Shortest intro to biochemistry EVAR:
-
+Here is an analogy:
 - twigs are to birds nests as
-- nucleotides are to DNA and RNA as
-- amino acids are to proteins as
-- sugar is to starch as
-- oh crap lipids
-
-I'm not going to talk about lipids because they're crazy complex.
-
-So back to nucleotides.
-
-DNA contains four types of them: adenine (`A`), cytosine (`C`), guanine
-(`G`), and thymine (`T`).
-
-RNA contains a slightly different set of nucleotides, but we don't care
-about that for now.
+- nucleotides are to DNA as
+- legos are to lego houses as
+- words are to sentences as...
 
 ## Rust Installation
 
@@ -45,7 +31,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -55,7 +41,8 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
 ## Source
 

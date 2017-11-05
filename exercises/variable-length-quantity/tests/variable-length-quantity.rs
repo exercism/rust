@@ -48,15 +48,15 @@ fn to_quintuple_byte() {
 #[test]
 #[ignore]
 fn from_bytes() {
-    assert_eq!(&[0x7f], vlq::from_bytes(&[0x7f]).unwrap().as_slice());
-    assert_eq!(&[0x2000],
-               vlq::from_bytes(&[0xc0, 0x00]).unwrap().as_slice());
-    assert_eq!(&[0x1f_ffff],
-               vlq::from_bytes(&[0xff, 0xff, 0x7f]).unwrap().as_slice());
-    assert_eq!(&[0x20_0000],
-               vlq::from_bytes(&[0x81, 0x80, 0x80, 0x00]).unwrap().as_slice());
-    assert_eq!(&[0xffff_ffff],
-               vlq::from_bytes(&[0x8f, 0xff, 0xff, 0xff, 0x7f]).unwrap().as_slice());
+    assert_eq!(Ok(vec![0x7f]), vlq::from_bytes(&[0x7f]));
+    assert_eq!(Ok(vec![0x2000]),
+               vlq::from_bytes(&[0xc0, 0x00]));
+    assert_eq!(Ok(vec![0x1f_ffff]),
+               vlq::from_bytes(&[0xff, 0xff, 0x7f]));
+    assert_eq!(Ok(vec![0x20_0000]),
+               vlq::from_bytes(&[0x81, 0x80, 0x80, 0x00]));
+    assert_eq!(Ok(vec![0xffff_ffff]),
+               vlq::from_bytes(&[0x8f, 0xff, 0xff, 0xff, 0x7f]));
 }
 
 
@@ -74,11 +74,9 @@ fn to_bytes_multiple_values() {
 #[test]
 #[ignore]
 fn from_bytes_multiple_values() {
-    assert_eq!(&[0x2000, 0x12_3456, 0x0fff_ffff, 0x00, 0x3fff, 0x4000],
+    assert_eq!(Ok(vec![0x2000, 0x12_3456, 0x0fff_ffff, 0x00, 0x3fff, 0x4000]),
                vlq::from_bytes(&[0xc0, 0x00, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0x00,
-                                 0xff, 0x7f, 0x81, 0x80, 0x00])
-                   .unwrap()
-                   .as_slice());
+                                 0xff, 0x7f, 0x81, 0x80, 0x00]));
 }
 
 #[test]
@@ -103,6 +101,6 @@ fn overflow_u32() {
 #[ignore]
 fn chained_execution_is_identity() {
     let test = &[0xf2, 0xf6, 0x96, 0x9c, 0x3b, 0x39, 0x2e, 0x30, 0xb3, 0x24];
-    assert_eq!(test,
-               vlq::from_bytes(&vlq::to_bytes(test)).unwrap().as_slice());
+    assert_eq!(Ok(Vec::from(&test[..])),
+               vlq::from_bytes(&vlq::to_bytes(test)));
 }

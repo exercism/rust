@@ -9,7 +9,7 @@ fn check_dna(s: &str, pairs: &[(char, usize)]) {
     // check for the presence and value of each key in the given pairs vector.
     let mut m: HashMap<char, usize> = dna::nucleotide_counts(s).unwrap();
     for &(k, v) in pairs.iter() {
-        assert_eq!((k, m.remove(&k).unwrap()), (k, v));
+        assert_eq!((k, m.remove(&k)), (k, Some(v)));
     }
     // may fail with a message that clearly shows all extra pairs in the map
     assert_eq!(m.iter().collect::<Vec<(&char,&usize)>>(), vec!());
@@ -23,7 +23,7 @@ fn count_returns_result() {
 #[test]
 #[ignore]
 fn test_count_empty() {
-    assert_eq!(dna::count('A', "").unwrap(), 0);
+    assert_eq!(dna::count('A', ""), Ok(0));
 }
 
 #[test]
@@ -41,13 +41,13 @@ fn count_invalid_dna() {
 #[test]
 #[ignore]
 fn test_count_repetitive_cytosine() {
-    assert_eq!(dna::count('C', "CCCCC").unwrap(), 5);
+    assert_eq!(dna::count('C', "CCCCC"), Ok(5));
 }
 
 #[test]
 #[ignore]
 fn test_count_only_thymine() {
-    assert_eq!(dna::count('T', "GGGGGTAACCCGG").unwrap(), 1);
+    assert_eq!(dna::count('T', "GGGGGTAACCCGG"), Ok(1));
 }
 
 #[test]

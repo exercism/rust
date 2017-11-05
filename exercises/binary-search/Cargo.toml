@@ -1,0 +1,6 @@
+[package]
+name = "binary-search"
+version = "1.0.0"
+authors = ["<marco.stahl@mailbox.org>"]
+
+[dependencies]

@@ -26,7 +26,7 @@ and `r` is the number of rows.
 Our normalized text is 54 characters long, dictating a rectangle with
 `c = 8` and `r = 7`:
 
-```plain
+```text
 ifmanwas
 meanttos
 tayonthe
@@ -41,22 +41,24 @@ right.
 
 The message above is coded as:
 
-```plain
+```text
 imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau
 ```
 
-Output the encoded text in chunks.  Phrases that fill perfect squares
-`(r X r)` should be output in `r`-length chunks separated by spaces.
-Imperfect squares will have `n` empty spaces.  Those spaces should be distributed evenly across the last `n` rows.
+Output the encoded text in chunks.  Phrases that fill perfect rectangles
+`(r X c)` should be output `c` chunks of `r` length, separated by spaces.
+Phrases that do not fill perfect rectangles will have `n` empty spaces.
+Those spaces should be distributed evenly, added to the end of the last
+`n` chunks.
 
-```plain
-imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn sseoau
+```text
+imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau 
 ```
 
 Notice that were we to stack these, we could visually decode the
 cyphertext back in to the original message:
 
-```plain
+```text
 imtgdvs
 fearwer
 mayoogo
@@ -86,7 +88,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -96,7 +98,8 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
 ## Source
 
