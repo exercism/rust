@@ -1,6 +1,6 @@
 ## Learning Rust
 
-* [The Rust Programming Language](http://doc.rust-lang.org/stable/book/) is a great resource for getting started with Rust as well as diving deeper into specific features of Rust.
+* [The Rust Programming Language](https://doc.rust-lang.org/book/second-edition/) is a great resource for getting started with Rust as well as diving deeper into specific features of Rust.
 * [Rust by Example](http://rustbyexample.com) shows you examples of the most common things you will be writing in Rust.
 * [Into_rust()](http://intorust.com/) "Screencasts for learning Rust."
 * [Rustlings](https://github.com/carols10cents/rustlings) "Small exercises to get you used to reading and writing Rust code."

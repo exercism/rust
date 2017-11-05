@@ -18,27 +18,27 @@ are disallowed.
 
 ## Example 1: valid credit card number
 
-```
+```text
 4539 1488 0343 6467
 ```
 
 The first step of the Luhn algorithm is to double every second digit,
 starting from the right. We will be doubling
 
-```
+```text
 4_3_ 1_8_ 0_4_ 6_6_
 ```
 
 If doubling the number results in a number greater than 9 then subtract 9
 from the product. The results of our doubling:
 
-```
+```text
 8569 2478 0383 3437
 ```
 
 Then sum all of the digits:
 
-```
+```text
 8+5+6+9+2+4+7+8+0+3+8+3+3+4+3+7 = 80
 ```
 
@@ -46,19 +46,19 @@ If the sum is evenly divisible by 10, then the number is valid. This number is v
 
 ## Example 2: invalid credit card number
 
-```
+```text
 8273 1232 7352 0569
 ```
 
 Double the second digits, starting from the right
 
-```
+```text
 7253 2262 5312 0539
 ```
 
 Sum the digits
 
-```
+```text
 7+2+5+3+2+2+6+2+5+3+1+2+0+5+3+9 = 57
 ```
 
@@ -83,7 +83,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -93,7 +93,8 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
 ## Source
 

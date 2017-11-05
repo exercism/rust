@@ -154,6 +154,18 @@
       ]
     },
     {
+      "uuid": "79613fd8-b7da-11e7-abc4-cec278b6b50a",
+      "slug": "isogram",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "chars",
+        "iterators",
+        "strings"
+      ]
+    },
+    {
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "slug": "say",
       "core": false,
@@ -175,6 +187,18 @@
         "conversion between string and int",
         "use of primitive char",
         "loop"
+      ]
+    },
+    {
+      "uuid": "c986c240-46de-419c-8ed6-700eb68f8db6",
+      "slug": "isbn-verifier",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "conversion between string and int",
+        "loop",
+        "mathematics"
       ]
     },
     {
@@ -448,6 +472,18 @@
       ]
     },
     {
+      "uuid": "dd74b65c-0d26-4821-9add-064e32e3a5bd",
+      "slug": "binary-search",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "slices",
+        "trait (optional)",
+        "Option"
+      ]
+    },
+    {
       "uuid": "1beb8b0c-d06d-4569-80e5-866ed01a7a66",
       "slug": "robot-simulator",
       "core": false,
@@ -632,6 +668,18 @@
         "combinations",
         "mathematics",
         "external crates (optional)"
+      ]
+    },
+    {
+      "uuid": "1850fb3f-9dad-449a-90b6-9d90038cf34d",
+      "slug": "two-bucket",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "algorithm",
+        "loops",
+        "mathematics"
       ]
     },
     {

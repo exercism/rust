@@ -6,7 +6,7 @@ an exact match.
 The following steps assume that you are in the same directory as the exercise.
 
 You must have rust installed.
-Follow the [Getting Started chapter in the Rust book](https://doc.rust-lang.org/stable/book/getting-started.html).
+Follow the [Installation chapter in the Rust book](https://doc.rust-lang.org/book/second-edition/ch01-01-installation.html).
 The [Rust language section](http://exercism.io/languages/rust)
 section from exercism is also useful.
 

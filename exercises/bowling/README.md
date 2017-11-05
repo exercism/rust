@@ -2,19 +2,29 @@
 
 Score a bowling game.
 
-Bowling is game where players roll a heavy ball to knock down pins
+Bowling is a game where players roll a heavy ball to knock down pins
 arranged in a triangle. Write code to keep track of the score
 of a game of bowling.
 
 ## Scoring Bowling
 
-The game consists of 10 frames. A frame is composed of one or two ball throws with 10 pins standing at frame initialization. There are three cases for the tabulation of a frame.
+The game consists of 10 frames. A frame is composed of one or two ball
+throws with 10 pins standing at frame initialization. There are three
+cases for the tabulation of a frame.
 
-* An open frame is where a score of less than 10 is recorded for the frame. In this case the score for the frame is the number of pins knocked down.
+* An open frame is where a score of less than 10 is recorded for the
+  frame. In this case the score for the frame is the number of pins
+  knocked down.
 
-* A spare is where all ten pins are knocked down after the second throw. The total value of a spare is 10 plus the number of pins knocked down in their next throw.
+* A spare is where all ten pins are knocked down by the second
+  throw. The total value of a spare is 10 plus the number of pins
+  knocked down in their next throw.
 
-* A strike is where all ten pins are knocked down after the first throw. The total value of a strike is 10 plus the number of pins knocked down in their next two throws. If a strike is immediately followed by a second strike, then we can not total the value of first strike until they throw the ball one more time.
+* A strike is where all ten pins are knocked down by the first
+  throw. The total value of a strike is 10 plus the number of pins
+  knocked down in the next two throws. If a strike is immediately
+  followed by a second strike, then the value of the first strike
+  cannot be determined until the ball is thrown one more time.
 
 Here is a three frame example:
 
@@ -30,7 +40,11 @@ Frame 3 is (9 + 0) = 9
 
 This means the current running total is 48.
 
-The tenth frame in the game is a special case. If someone throws a strike or a spare then they get a fill ball. Fill balls exist to calculate the total of the 10th frame. Scoring a strike or spare on the fill ball does not give the player more fill balls. The total value of the 10th frame is the total number of pins knocked down.
+The tenth frame in the game is a special case. If someone throws a
+strike or a spare then they get a fill ball. Fill balls exist to
+calculate the total of the 10th frame. Scoring a strike or spare on
+the fill ball does not give the player more fill balls. The total
+value of the 10th frame is the total number of pins knocked down.
 
 For a tenth frame of X1/ (strike and a spare), the total value is 20.
 
@@ -65,7 +79,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -75,7 +89,8 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
 ## Source
 

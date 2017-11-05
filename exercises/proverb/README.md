@@ -1,16 +1,18 @@
 # Proverb
 
-For want of a horseshoe nail, a kingdom was lost, or so the saying goes. Output
-the full text of this proverbial rhyme:
+For want of a horseshoe nail, a kingdom was lost, or so the saying goes.
 
-> For want of a nail the shoe was lost.  
-> For want of a shoe the horse was lost.  
-> For want of a horse the rider was lost.  
-> For want of a rider the message was lost.  
-> For want of a message the battle was lost.  
-> For want of a battle the kingdom was lost.  
-> And all for the want of a horseshoe nail.
+Output the full text of this proverbial rhyme:
 
+```text
+For want of a nail the shoe was lost.
+For want of a shoe the horse was lost.
+For want of a horse the rider was lost.
+For want of a rider the message was lost.
+For want of a message the battle was lost.
+For want of a battle the kingdom was lost.
+And all for the want of a horseshoe nail.
+```
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
@@ -30,7 +32,7 @@ to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -40,7 +42,8 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
 ## Source
 
