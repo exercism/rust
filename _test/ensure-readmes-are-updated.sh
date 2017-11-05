@@ -5,7 +5,7 @@ if [ ! -x bin/configlet ]; then
 fi
 
 if [ ! -d "problem-specifications" ]; then
-   git clone git@github.com:exercism/problem-specifications.git problem-specifications
+   git clone https://github.com/exercism/problem-specifications.git problem-specifications
 fi
 
 newline=$'\n  '
