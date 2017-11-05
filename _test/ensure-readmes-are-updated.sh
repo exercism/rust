@@ -4,13 +4,10 @@ if [ ! -x bin/configlet ]; then
    exit 1
 fi
 
-<<<<<<< HEAD
 if [ ! -d "problem-specifications" ]; then
    git clone git@github.com:exercism/problem-specifications.git problem-specifications
 fi
 
-=======
->>>>>>> 28d4a17e7c424b47d9c6649c05cdd127c1a2ef59
 newline=$'\n  '
 
 missing_readmes=""
@@ -23,11 +20,7 @@ for exercise in $(git diff --name-only master..$(git rev-parse --abbrev-ref HEAD
    else
       existing_readme_checksum=$(md5sum $readme_path | cut -d' ' -f1)
       # generate the new README
-<<<<<<< HEAD
       bin/configlet generate . --only "$exercise" --spec-path "problem-specifications"
-=======
-      bin/configlet generate . --only "$exercise"
->>>>>>> 28d4a17e7c424b47d9c6649c05cdd127c1a2ef59
       generated_readme_checksum=$(md5sum $readme_path | cut -d' ' -f1)
 
       if [ $existing_readme_checksum != $generated_readme_checksum ]; then
