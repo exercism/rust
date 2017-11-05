@@ -6,6 +6,7 @@ script:
 - "sh ./_test/ensure-stubs-compile.sh"
 - "sh ./_test/count-ignores.sh"
 - "./bin/fetch-configlet"
+- "sh ./_test/ensure-readmes-are-updated.sh"
 - "./bin/configlet lint ."
 sudo: false
 rust:
