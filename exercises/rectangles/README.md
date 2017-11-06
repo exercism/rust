@@ -37,27 +37,27 @@ The above diagram contains 6 rectangles:
 ```
 
 ```text
-       
-       
+
+
    +--+
    |  |
    +--+
 ```
 
 ```text
-       
-       
+
+
 +--+
 |  |
 +--+
 ```
 
 ```text
-       
-  ++   
-  ++   
-       
-       
+
+  ++
+  ++
+
+
 ```
 
 You may assume that the input is always a proper rectangle (i.e. the length of
