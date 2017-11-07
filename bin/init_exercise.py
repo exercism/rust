@@ -132,6 +132,8 @@ def make_new_exercise(name, exercise_dir):
         with inside('.meta'):
             with open('description.md', 'w') as description:
                 print("Describe your exercise here", file=description)
+                print(file=description)
+                print("Don't forget that `README.md` is automatically generated; update this within `.meta\description.md`.", file=description)
             with open('metadata.yml', 'w') as metadata:
                 print("---", file=metadata)
                 print("blurb: \"{} (created {})\"".format(
