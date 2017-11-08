@@ -33,6 +33,11 @@ for exercise in $files; do
    # and that the primary module is named the same as the directory
    directory=$(dirname "${exercise}");
 
+   release=""
+   if [ -z "$BENCHMARK" -a -f "$directory/.meta/test-in-release-mode" ]; then
+      release="--release"
+   fi
+
    if [ -n "$DENYWARNINGS" ]; then
       # No-run mode so we see no test output.
       # Quiet mode so we see no compile output
@@ -47,7 +52,7 @@ for exercise in $files; do
       # the compile time for all exercises, it substantially improves
       # the runtime for certain exercises such as alphametics.
       # Overall this should be an improvement.
-      ./bin/test-exercise $directory
+      ./bin/test-exercise $directory $release
       return_code=$(($return_code | $?))
    fi
 done
