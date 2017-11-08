@@ -64,6 +64,10 @@ def to_item_name(description):
     return ''.join(item)
 
 
+def to_crate_name(name):
+    return name.replace('-', '_')
+
+
 def url_for(name, file):
     return (
         "https://raw.githubusercontent.com/exercism/problem-specifications"
@@ -119,7 +123,8 @@ def make_exercise(name, use_maplit):
             with open(f'{name}.rs', 'w') as tests_rs:
                 if use_maplit:
                     print("#[macro_use] extern crate maplit;", file=tests_rs)
-                print(f"use {name}::*;", file=tests_rs)
+                print(f"extern crate {to_crate_name(name)};", file=tests_rs)
+                print(f"use {to_crate_name(name)}::*;", file=tests_rs)
                 print(file=tests_rs)
         with open('example.rs', 'w') as example_rs:
             print(f"//! Example implementation for {name}", file=example_rs)
@@ -172,6 +177,8 @@ def make_exercise_with_specifications(name, exercise_dir, canonical_data, use_ma
             for line in cargo_data.splitlines():
                 if line.lower().startswith('version'):
                     print(f"version = \"{canonical_data['version']}\"", file=cargo_toml)
+                elif line.lower().startswith('name'):
+                    print(f"name = \"{to_crate_name(name)}\"", file=cargo_toml)
                 else:
                     print(line.strip(), file=cargo_toml)
 
