@@ -31,7 +31,7 @@ return_code=0
 for exercise in $files; do
    # This assumes that exercises are only one directory deep
    # and that the primary module is named the same as the directory
-   directory=$(dirname "${exercise}");
+   directory=$(dirname "${exercise}")
 
    release=""
    if [ -z "$BENCHMARK" -a -f "$directory/.meta/test-in-release-mode" ]; then
