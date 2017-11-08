@@ -50,7 +50,7 @@ def output_of(cmd, check_returncode=True):
 REPO_ROOT = output_of('git rev-parse --show-toplevel')
 EXERCISES = os.path.join(REPO_ROOT, 'exercises')
 ITEM_NAME_CHARS = {c for c in string.ascii_lowercase + string.digits + '_'}
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 
 def to_item_name(description):
