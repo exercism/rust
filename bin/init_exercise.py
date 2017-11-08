@@ -24,7 +24,6 @@ try:
     import urllib.request
 
     from contextlib import contextmanager
-    from datetime import datetime
     from uuid import uuid4
 except ImportError:
     print("This script requires Python 3.5 or higher", file=sys.stderr)
@@ -62,12 +61,13 @@ def to_item_name(description):
         item = item[1:]
     if len(item) == 0:
         raise ValueError("Could not produce an item name from " + description)
-    return item
+    return ''.join(item)
 
 
 def url_for(name, file):
-    return "https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{name}/{file}".format(
-        name=name, file=file,
+    return (
+        "https://raw.githubusercontent.com/exercism/problem-specifications"
+        f"/master/exercises/{name}/{file}"
     )
 
 
@@ -75,7 +75,8 @@ def get_problem_specification(name):
     """
     Try to get problem specifications for the exercise of the given name.
 
-    If the problem specifications repo doesn't exist, returns None.
+    If the problem specifications repo doesn't exist or the exercise does not
+    exist within the specifications repo, returns None.
     Otherwise, returns a dict, of which the values might be None or str.
     """
     try:
@@ -95,34 +96,51 @@ def inside(path):
         os.chdir(cwd)
 
 
-def make_exercise(name):
+def make_exercise(name, use_maplit):
     "Make a new exercise with the specified name"
     with inside(EXERCISES):
         if os.path.exists(name):
-            print("{} already exists; aborting".format(name), file=sys.stderr)
+            print(f"{name} already exists; aborting", file=sys.stderr)
             sys.exit(1)
         subprocess.run(['cargo', 'new', name])
     exercise_dir = os.path.join(EXERCISES, name)
     # blank out the default lib.rs
     with inside(exercise_dir):
+        with open('.gitignore', 'w') as gitignore:
+            print("Cargo.lock  # We're building a library, not a binary", file=gitignore)
+            print("            # http://doc.crates.io/faq.html#why-do-binaries-have-cargolock-in-version-control-but-not-libraries", file=gitignore)
         with open(os.path.join('src', 'lib.rs'), 'w') as lib_rs:
-            lib_rs.write('')
+            lib_rs.truncate()
+        if use_maplit:
+            with open('Cargo.toml', 'a') as cargo_toml:
+                print("maplit = \"1.0.0\"", file=cargo_toml)
         os.mkdir('tests')
         with inside('tests'):
-            with open('{}.rs'.format(name), 'w') as tests_rs:
-                print("use {}::*;".format(name), file=tests_rs)
+            with open(f'{name}.rs', 'w') as tests_rs:
+                if use_maplit:
+                    print("#[macro_use] extern crate maplit;", file=tests_rs)
+                print(f"use {name}::*;", file=tests_rs)
                 print(file=tests_rs)
+        with open('example.rs', 'w') as example_rs:
+            print(f"//! Example implementation for {name}", file=example_rs)
+            print('//!', file=example_rs)
+            print("//! - Implement the solution to your exercise here.", file=example_rs)
+            print("//! - Put the stubs for any tested functions in `src/lib.rs`,", file=example_rs)
+            print("//!   whose variable names are `_` and", file=example_rs)
+            print("//!   whose contents are `unimplemented!()`.", file=example_rs)
+            print("//! - If your example implementation has dependencies, copy", file=example_rs)
+            print("//!   `Cargo.toml` into `Cargo-example.toml` and then make", file=example_rs)
+            print("//!   any modifications necessary to the latter so your example will run.", file=example_rs)
+            print("//! - Test your example by running `../../bin/test-exercise`", file=example_rs)
 
-    cd = get_problem_specification(name)
-    if cd is None:
-        print("No problem specification for {} found".format(name))
-        make_new_exercise(name, exercise_dir)
-        with inside(exercise_dir):
-            generate_readme(name, False)
-    else:
-        make_exercise_with_specifications(name, exercise_dir, cd)
-        with inside(exercise_dir):
-            generate_readme(name, True)
+        cd = get_problem_specification(name)
+        if cd is None:
+            print(f"No problem specification for {name} found")
+            make_new_exercise(name, exercise_dir)
+            generate_readme(name, get_problem_specification=False)
+        else:
+            make_exercise_with_specifications(name, exercise_dir, cd, use_maplit)
+            generate_readme(name, get_problem_specification=True)
 
 
 def make_new_exercise(name, exercise_dir):
@@ -136,42 +154,144 @@ def make_new_exercise(name, exercise_dir):
                 print("Don't forget that `README.md` is automatically generated; update this within `.meta\description.md`.", file=description)
             with open('metadata.yml', 'w') as metadata:
                 print("---", file=metadata)
-                print("blurb: \"{} (created {})\"".format(
-                    name, datetime.now().isoformat()), file=metadata)
+                print(f"blurb: \"{name}\"", file=metadata)
                 print("source: \"\"", file=metadata)
                 print("source_url: \"\"", file=metadata)
         with inside('tests'):
-            with open('{}.rs'.format(name), 'a') as tests_rs:
+            with open(f'{name}.rs', 'a') as tests_rs:
                 print("// Add your tests here", file=tests_rs)
 
 
-def make_exercise_with_specifications(name, exercise_dir, canonical_data):
+def make_exercise_with_specifications(name, exercise_dir, canonical_data, use_maplit):
     print("Creating exercise from specification...")
-    with open(os.path.join(exercise_dir, 'tests', '{}.rs'.format(name)), 'a') as tests_rs:
-        print("fn process_case(input: ???, expected: ???) {", file=tests_rs)
-        print("    unimplemented!()", file=tests_rs)
-        print("}", file=tests_rs)
+    # Specify problem version
+    if 'version' in canonical_data:
+        with open('Cargo.toml', 'r') as cargo_toml:
+            cargo_data = cargo_toml.read()
+        with open('Cargo.toml', 'w') as cargo_toml:
+            for line in cargo_data.splitlines():
+                if line.lower().startswith('version'):
+                    print(f"version = \"{canonical_data['version']}\"", file=cargo_toml)
+                else:
+                    print(line.strip(), file=cargo_toml)
+
+    tests_filename = os.path.join(exercise_dir, 'tests', f'{name}.rs')
+    # prepend doc comment about the nature of this file
+    with open(tests_filename, 'r') as tests_rs:
+        existing = tests_rs.read()
+    with open(tests_filename, 'w') as tests_rs:
+        print(f'//! Tests for {name}', file=tests_rs)
+        print('//!', file=tests_rs)
+        print('//! Generated by [script][script] using [canonical data][canonical-data]',
+              file=tests_rs)
+        print("//!", file=tests_rs)
+        print("//! [script]: https://github.com/exercism/rust/blob/master/bin/init_exercise.py",
+              file=tests_rs)
+        print("//! [canonical-data]: {}".format(url_for(name, 'canonical_data.json')),
+              file=tests_rs)
+        if 'comments' in canonical_data:
+            c = canonical_data['comments']
+            print('//!', file=tests_rs)
+            if isinstance(c, list) or isinstance(c, tuple):
+                for l in c:
+                    print(f'//! {l}', file=tests_rs)
+            else:
+                print(f'//! {c}', file=tests_rs)
+
         print(file=tests_rs)
+        print(file=tests_rs)
+        tests_rs.write(existing)
+
+    # now add test data
+    with open(tests_filename, 'a') as tests_rs:
         first_case = True
+
+        # {property : {(input key names), ...}}
+        PIK_MAP = {}
+
+        def generate_pik_map(cases):
+            nonlocal PIK_MAP
+            for case in cases:
+                if 'property' in case:
+                    ikeys = get_input_keys(case)
+                    if ikeys is not None:
+                        pkeys = PIK_MAP.get(case['property'], set())
+                        pkeys.add(ikeys)
+                    PIK_MAP[case['property']] = pkeys
+                if 'cases' in case:
+                    generate_pik_map(case['cases'])
+
+        def collect_properties(cases):
+            properties = set()
+            for case in cases:
+                if 'expected' in case and 'property' in case:
+                    properties.add(case['property'])
+                if 'cases' in case:
+                    properties |= collect_properties(case['cases'])
+            return properties
+
+        def property_processor(property):
+            print(f"/// Process a single test case for the property `{property}`", file=tests_rs)
+            print("///", file=tests_rs)
+            print(f"/// All cases for the `{property}` property are implemented",
+                  file=tests_rs)
+            print("/// in terms of this function.", file=tests_rs)
+            print('///', file=tests_rs)
+            print("/// Note that you'll need to both name the expected transform which",
+                  file=tests_rs)
+            print("/// the student needs to write, and name the types of the inputs and outputs.",
+                  file=tests_rs)
+            print("/// While rustc _may_ be able to handle things properly given a working example,",
+                  file=tests_rs)
+            print("/// students will face confusing errors if the `I` and `O` types are not concrete.",
+                  file=tests_rs)
+            if property in PIK_MAP:
+                print('///', file=tests_rs)
+                if len(PIK_MAP[property]) == 1:
+                    print(f"/// Expected input format: {next(iter(PIK_MAP[property]))}",
+                          file=tests_rs)
+                else:
+                    print("/// CAUTION: Multiple input formats were detected in this test's cases:",
+                          file=tests_rs)
+                    for ifmt in PIK_MAP[property]:
+                        print(f"///    {ifmt}")
+            print(
+                f"fn process_{property.lower()}_case<I, O>(input: I, expected: O) {{", file=tests_rs)
+            print("    // typical implementation:", file=tests_rs)
+            print("    // assert_eq!(", file=tests_rs)
+            print(f"    //     student_{property}_func(input),", file=tests_rs)
+            print("    //     expected", file=tests_rs)
+            print("    // )", file=tests_rs)
+            print("    unimplemented!()", file=tests_rs)
+            print("}", file=tests_rs)
+            print(file=tests_rs)
 
         def literal(item):
             if isinstance(item, str):
-                return '"{}"'.format(item)
+                return f'"{item}"'
+            elif isinstance(item, tuple):
+                return "({})".format(
+                    ', '.join((literal(i) for i in item))
+                )
             elif isinstance(item, list):
                 return "vec![{}]".format(
                     ', '.join((literal(i) for i in item))
                 )
             elif isinstance(item, dict):
-                return """
-                    {
-                        let mut hm = ::std::collections::HashMap::new();
-                        {}
-                        hm
-                    }
-                """.strip().format('\n                        '.join((
-                    "hm.insert({}, {});".format(literal(k), literal(v))
-                    for k, v in item.items()))
-                )
+                if use_maplit:
+                    return "hashmap!{{{}}}".format(
+                        ','.join((
+                            "{}=>{}".format(literal(k), literal(v))
+                            for k, v in item.items()
+                        ))
+                    )
+                else:
+                    return "{{let mut hm=::std::collections::HashMap::new();{}hm}}".format(
+                        ''.join((
+                            "hm.insert({}, {});".format(literal(k), literal(v))
+                            for k, v in item.items()
+                        ))
+                    )
             else:
                 return str(item)
 
@@ -183,18 +303,63 @@ def make_exercise_with_specifications(name, exercise_dir, canonical_data):
                 first_case = False
             else:
                 print("#[ignore]", file=tests_rs)
-            print("fn test_{}() {".format(to_item_name(case['description'])), file=tests_rs)
-            print("    process_case({}, {});".format(literal(case['input']), literal(case['expected'])),
-                  file=tests_rs)
+            print(f"/// {case['description']}", file=tests_rs)
+            if 'comments' in case:
+                print('///', file=tests_rs)
+                if isinstance(case['comments'], list):
+                    for line in case['comments']:
+                        print(f"/// {line}", file=tests_rs)
+                else:
+                    print(f"/// {case['comments']}", file=tests_rs)
+            print("fn test_{}() {{".format(to_item_name(case['description'])), file=tests_rs)
+            print("    process_{}_case({}, {});".format(
+                case['property'].lower(),
+                literal(case['input']),
+                literal(case['expected'])),
+                file=tests_rs)
             print("}", file=tests_rs)
             print(file=tests_rs)
 
+        def get_input_keys(item):
+            if 'description' in item and 'expected' in item:
+                return tuple(sorted(set(item.keys()) -
+                                    {'comments',
+                                     'description',
+                                     'expected',
+                                     'property'}
+                                    ))
+            # else None
+
         def write_cases(cases):
             for item in cases:
+                if 'description' in item and 'expected' not in item:
+                    if isinstance(item['description'], list):
+                        for line in item['description']:
+                            print(f"// {line}", file=tests_rs)
+                    else:
+                        print(f"// {item['description']}", file=tests_rs)
+                if 'comments' in item and 'expected' not in item:
+                    if isinstance(item['comments'], list):
+                        for line in item['comments']:
+                            print(f"// {line}", file=tests_rs)
+                    else:
+                        print(f"// {item['comments']}", file=tests_rs)
+                if 'expected' not in item and 'comments' in item or 'description' in item:
+                    print(file=tests_rs)
+                if 'property' not in item:
+                    item['property'] = ''
                 if all(key in item for key in ('description', 'input', 'expected')):
+                    write_case(item)
+                elif 'description' in item and 'expected' in item:
+                    item['input'] = tuple((item[k] for k in get_input_keys(item)))
                     write_case(item)
                 if 'cases' in item:
                     write_cases(item['cases'])
+
+        generate_pik_map(canonical_data['cases'])
+
+        for ppty in collect_properties(canonical_data['cases']):
+            property_processor(ppty)
 
         write_cases(canonical_data['cases'])
 
@@ -211,7 +376,7 @@ def prompt(prompt, validator):
         try:
             return validator(input(prompt).strip())
         except Exception as e:
-            print("Problem: {}".format(e))
+            print(f"Problem: {e}")
 
 
 def update_config(name):
@@ -230,7 +395,7 @@ def update_config(name):
             if len(v) == 0:
                 return None
             if not any(v == ex['slug'] for ex in config['exercises']):
-                raise ValueError("{} is not an existing exercise slug".format(v))
+                raise ValueError(f"{v} is not an existing exercise slug")
             return v
         conf_values['unlocked_by'] = prompt(
             "Exercise slug which unlocks this (blank for None): ", unlock_validator)
@@ -284,9 +449,7 @@ def update_config(name):
                     raise ValueError("must enter 'easier' or 'harder' or a substring")
                 return v
             relative_difficulty = prompt(
-                "Is {} easier or harder than {}: ".format(
-                    name, config['exercises'][mid_idx]['slug']
-                ),
+                f"Is {name} easier or harder than {config['exercises'][mid_idx]['slug']}: ",
                 easy_hard_validator
             )
 
@@ -298,16 +461,16 @@ def update_config(name):
         while True:
             insert_idx = binary_search(first_idx, last_idx)
             if insert_idx == 0:
-                ptext = "{} is the easiest exercise in the track.".format(name)
+                ptext = f"{name} is the easiest exercise in the track."
             elif insert_idx == len(config['exercises']):
-                ptext = "{} is the hardest exercise in the track.".format(name)
+                ptext = f"{name} is the hardest exercise in the track."
             else:
                 ptext = "{} fits between {} and {} in difficulty.".format(
                     name,
                     config['exercises'][insert_idx - 1]['slug'],
                     config['exercises'][insert_idx]['slug'],
                 )
-            print("You have indicated that {}".format(ptext))
+            print(f"You have indicated that {ptext}")
             yn = input('Is this correct? (y/N): ').strip().lower()
             if len(yn) > 0 and yn[0] == 'y':
                 break
@@ -401,11 +564,13 @@ if __name__ == '__main__':
                         help='Don\'t update config.json. Useful when you don\'t yet '
                         'have a sense of exercise difficulty.')
     parser.add_argument('--version', action='version', version=VERSION)
+    parser.add_argument('--use-maplit', action='store_true',
+                        help='Use the maplit crate to improve readability of tests with lots of map literals')
 
     args = parser.parse_args()
 
     if not args.dont_create_exercise:
-        make_exercise(args.name)
+        make_exercise(args.name, args.use_maplit)
 
     if not args.dont_update_config:
         update_config(args.name)
