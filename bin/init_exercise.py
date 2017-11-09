@@ -111,8 +111,9 @@ def make_exercise(name, use_maplit):
     # blank out the default lib.rs
     with inside(exercise_dir):
         with open('.gitignore', 'w') as gitignore:
-            print("Cargo.lock  # We're building a library, not a binary", file=gitignore)
-            print("            # http://doc.crates.io/faq.html#why-do-binaries-have-cargolock-in-version-control-but-not-libraries", file=gitignore)
+            print("# Remove Cargo.lock from gitignore if creating an executable, leave it for libraries", file=gitignore)
+            print("# More information here http://doc.crates.io/guide.html#cargotoml-vs-cargolock", file=gitignore)
+            print("Cargo.lock")
         with open(os.path.join('src', 'lib.rs'), 'w') as lib_rs:
             lib_rs.truncate()
         if use_maplit:
