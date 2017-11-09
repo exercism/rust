@@ -53,8 +53,7 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": [
-      ]
+      "topics": []
     },
     {
       "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
@@ -131,7 +130,7 @@
       "difficulty": 1,
       "topics": [
         "option"
-       ]
+      ]
     },
     {
       "uuid": "9f649818-0c82-4b79-b912-4d65b9f60e10",
@@ -688,8 +687,7 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 4,
-      "topics": [
-      ]
+      "topics": []
     },
     {
       "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
@@ -698,11 +696,11 @@
       "unlocked_by": null,
       "difficulty": 6,
       "topics": [
-         "lifetimes",
-         "struct",
-         "string parsing",
-         "enum",
-         "traits"
+        "lifetimes",
+        "struct",
+        "string parsing",
+        "enum",
+        "traits"
       ]
     },
     {
@@ -814,6 +812,18 @@
         "structs",
         "traits",
         "algorithm"
+      ]
+    },
+    {
+      "uuid": "a78ed17a-b2c0-485c-814b-e13ccd1f4153",
+      "slug": "book-store",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 7,
+      "topics": [
+        "algorithms",
+        "groups",
+        "set theory"
       ]
     },
     {
