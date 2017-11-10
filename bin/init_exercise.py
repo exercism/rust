@@ -47,6 +47,7 @@ def output_of(cmd, check_returncode=True):
     return sp.stdout.strip()
 
 
+os.chdir(os.path.dirname(__file__))
 REPO_ROOT = output_of('git rev-parse --show-toplevel')
 EXERCISES = os.path.join(REPO_ROOT, 'exercises')
 ITEM_NAME_CHARS = {c for c in string.ascii_lowercase + string.digits + '_'}
@@ -111,9 +112,9 @@ def make_exercise(name, use_maplit):
     # blank out the default lib.rs
     with inside(exercise_dir):
         with open('.gitignore', 'w') as gitignore:
-            print("# Remove Cargo.lock from gitignore if creating an executable, leave it for libraries", file=gitignore)
+            print("# Ignore Cargo.lock if creating a library", file=gitignore)
             print("# More information here http://doc.crates.io/guide.html#cargotoml-vs-cargolock", file=gitignore)
-            print("Cargo.lock")
+            print("Cargo.lock", file=gitignore)
         with open(os.path.join('src', 'lib.rs'), 'w') as lib_rs:
             lib_rs.truncate()
         if use_maplit:
