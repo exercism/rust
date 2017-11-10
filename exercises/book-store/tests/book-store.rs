@@ -13,11 +13,6 @@ use book_store::*;
 /// All cases for the `total` property are implemented
 /// in terms of this function.
 ///
-/// Note that you'll need to both name the expected transform which
-/// the student needs to write, and name the types of the inputs and outputs.
-/// While rustc _may_ be able to handle things properly given a working example,
-/// students will face confusing errors if the `I` and `O` types are not concrete.
-///
 /// Expected input format: ('basket', 'targetgrouping')
 fn process_total_case(input: (Vec<usize>, Vec<Vec<usize>>), expected: f64) {
     assert_eq!(

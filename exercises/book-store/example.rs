@@ -123,7 +123,6 @@ impl Iterator for DecomposeGroups {
         //  - If no item from the most populous group can be added to any smaller group,
         //    then move the last item from the most populous group into a new group, alone,
         //    and return
-        println!("DecomposeGroups.next() --> {:?}", self.next);
         let return_value = self.next.clone();
         if let Some(groups) = mem::replace(&mut self.next, None) {
             if !(groups.is_empty() || groups.iter().all(|g| g.0.borrow().len() == 1)) {
@@ -179,7 +178,6 @@ impl DecomposeGroups {
             book_groups.push(Group::new_containing(*book));
         }
         book_groups.sort();
-        println!("DecomposeGroups::new() --> {:?}", book_groups);
 
         DecomposeGroups {
             next: Some(book_groups),
