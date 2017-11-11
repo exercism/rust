@@ -66,6 +66,8 @@ Please see the documentation about [adding new exercises](https://github.com/exe
 
 Note that:
 
+- The simplest way to generate a project template is to run `bin/init_exercise.py`. You'll need a Python installation >= 3.5 in order to run this script, but it will automate most of the following points for you.
+
 - Each exercise must stand on its own. Do not reference files outside the exercise directory. They will not be included when the user fetches the exercise.
 
 - Exercises must conform to the Exercism-wide standards described in [the documentation](https://github.com/exercism/docs/tree/master/language-tracks/exercises).
