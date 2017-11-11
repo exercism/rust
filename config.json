@@ -761,6 +761,18 @@
       ]
     },
     {
+      "uuid": "a78ed17a-b2c0-485c-814b-e13ccd1f4153",
+      "slug": "book-store",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 7,
+      "topics": [
+        "algorithms",
+        "groups",
+        "set theory"
+      ]
+    },
+    {
       "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
       "slug": "ocr-numbers",
       "core": false,
