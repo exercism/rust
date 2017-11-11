@@ -171,18 +171,17 @@ def make_new_exercise(name, exercise_dir):
 
 def make_exercise_with_specifications(name, exercise_dir, canonical_data, use_maplit):
     print("Creating exercise from specification...")
-    # Specify problem version
-    if 'version' in canonical_data:
-        with open('Cargo.toml', 'r') as cargo_toml:
-            cargo_data = cargo_toml.read()
-        with open('Cargo.toml', 'w') as cargo_toml:
-            for line in cargo_data.splitlines():
-                if line.lower().startswith('version'):
-                    print(f"version = \"{canonical_data['version']}\"", file=cargo_toml)
-                elif line.lower().startswith('name'):
-                    print(f"name = \"{to_crate_name(name)}\"", file=cargo_toml)
-                else:
-                    print(line.strip(), file=cargo_toml)
+    # Update Cargo.toml
+    with open('Cargo.toml', 'r') as cargo_toml:
+        cargo_data = cargo_toml.read()
+    with open('Cargo.toml', 'w') as cargo_toml:
+        for line in cargo_data.splitlines():
+            if 'version' in canonical_data and line.lower().startswith('version'):
+                print(f"version = \"{canonical_data['version']}\"", file=cargo_toml)
+            elif line.lower().startswith('name'):
+                print(f"name = \"{to_crate_name(name)}\"", file=cargo_toml)
+            else:
+                print(line.strip(), file=cargo_toml)
 
     tests_filename = os.path.join(exercise_dir, 'tests', f'{name}.rs')
     # prepend doc comment about the nature of this file
