@@ -493,6 +493,8 @@ def update_config(name):
                 sort_keys=False,
                 indent=2,
             )
+            # end the config file with a newline
+            print(file=config_json)
 
 
 @contextmanager
