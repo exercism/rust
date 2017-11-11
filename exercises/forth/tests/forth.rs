@@ -114,16 +114,24 @@ fn multiplication_and_division() {
 #[ignore]
 fn dup() {
     let mut f = Forth::new();
-    assert!(f.eval("1 DUP").is_ok());
+    assert!(f.eval("1 dup").is_ok());
     assert_eq!(vec![1, 1], f.stack());
+}
+
+#[test]
+#[ignore]
+fn dup_top_value_only() {
+    let mut f = Forth::new();
+    assert!(f.eval("1 2 dup").is_ok());
+    assert_eq!(vec![1, 2, 2], f.stack());
 }
 
 #[test]
 #[ignore]
 fn dup_case_insensitive() {
     let mut f = Forth::new();
-    assert!(f.eval("1 2 Dup").is_ok());
-    assert_eq!(vec![1, 2, 2], f.stack());
+    assert!(f.eval("1 DUP Dup dup").is_ok());
+    assert_eq!(vec![1, 1, 1, 1], f.stack());
 }
 
 #[test]
@@ -146,6 +154,14 @@ fn drop() {
 fn drop_with_two() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 drop").is_ok());
+    assert_eq!(vec![1], f.stack());
+}
+
+#[test]
+#[ignore]
+fn drop_case_insensitive() {
+    let mut f = Forth::new();
+    assert!(f.eval("1 2 3 4 DROP Drop drop").is_ok());
     assert_eq!(vec![1], f.stack());
 }
 
@@ -174,6 +190,14 @@ fn swap_with_three() {
 
 #[test]
 #[ignore]
+fn swap_case_insensitive() {
+    let mut f = Forth::new();
+    assert!(f.eval("1 2 SWAP 3 Swap 4 swap").is_ok());
+    assert_eq!(vec![2, 3, 4, 1], f.stack());
+}
+
+#[test]
+#[ignore]
 fn swap_error() {
     let mut f = Forth::new();
     assert_eq!(Err(Error::StackUnderflow), f.eval("1 swap"));
@@ -194,6 +218,14 @@ fn over_with_three() {
     let mut f = Forth::new();
     assert!(f.eval("1 2 3 over").is_ok());
     assert_eq!(vec![1, 2, 3, 2], f.stack());
+}
+
+#[test]
+#[ignore]
+fn over_case_insensitive() {
+    let mut f = Forth::new();
+    assert!(f.eval("1 2 OVER Over over").is_ok());
+    assert_eq!(vec![1, 2, 1, 2, 1], f.stack());
 }
 
 #[test]
@@ -226,15 +258,6 @@ fn execute_in_the_right_order() {
 
 #[test]
 #[ignore]
-fn definitions_are_case_insensitive() {
-    let mut f = Forth::new();
-    assert!(f.eval(": CoUnT 1 2 3 ;").is_ok());
-    assert!(f.eval("count COUNT").is_ok());
-    assert_eq!(vec![1, 2, 3, 1, 2, 3], f.stack());
-}
-
-#[test]
-#[ignore]
 fn redefining_an_existing_word() {
     let mut f = Forth::new();
     assert!(f.eval(": foo dup ;").is_ok());
@@ -250,6 +273,24 @@ fn redefining_an_existing_built_in_word() {
     assert!(f.eval(": swap dup ;").is_ok());
     assert!(f.eval("1 swap").is_ok());
     assert_eq!(vec![1, 1], f.stack());
+}
+
+#[test]
+#[ignore]
+fn user_defined_words_are_case_insensitive() {
+    let mut f = Forth::new();
+    assert!(f.eval(": foo dup ;").is_ok());
+    assert!(f.eval("1 FOO Foo foo").is_ok());
+    assert_eq!(vec![1, 1, 1, 1], f.stack());
+}
+
+#[test]
+#[ignore]
+fn definitions_are_case_insensitive() {
+    let mut f = Forth::new();
+    assert!(f.eval(": SWAP DUP Dup dup ;").is_ok());
+    assert!(f.eval("1 swap").is_ok());
+    assert_eq!(vec![1, 1, 1, 1], f.stack());
 }
 
 #[test]
