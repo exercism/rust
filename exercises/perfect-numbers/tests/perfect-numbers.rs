@@ -2,32 +2,53 @@ extern crate perfect_numbers;
 
 use perfect_numbers::{Classification, classify};
 
+macro_rules! tests {
+    ($property_test_func:ident {
+        $( $(#[$attr:meta])* $test_name:ident( $( $param:expr ),* ); )+
+    }) => {
+        $(
+            $(#[$attr])*
+            #[test]
+            fn $test_name() {
+                $property_test_func($( $param ),* )
+            }
+        )+
+    }
+}
+
+fn test_classification(num: u64, result: Classification) {
+    assert_eq!(classify(num), Ok(result));
+}
+
 #[test]
 fn basic() {
     assert_eq!(classify(0), Err("Number must be positive"));
 }
 
-#[test]
-#[ignore]
-fn test_all() {
-    struct TestClassification {
-        num: u64,
-        result: perfect_numbers::Classification
-    }
-    let test_table: Vec<TestClassification> = vec![
-        TestClassification { num: 6, result: Classification::Perfect },
-        TestClassification { num: 28, result: Classification::Perfect },
-        TestClassification { num: 33550336, result: Classification::Perfect },
-        TestClassification { num: 12, result: Classification::Abundant },
-        TestClassification { num: 30, result: Classification::Abundant },
-        TestClassification { num: 33550335, result: Classification::Abundant },
-        TestClassification { num: 2, result: Classification::Deficient },
-        TestClassification { num: 4, result: Classification::Deficient },
-        TestClassification { num: 32, result: Classification::Deficient },
-        TestClassification { num: 33550337, result: Classification::Deficient },
-        TestClassification { num: 1, result: Classification::Deficient },
-    ];
-    for t in test_table {
-        assert_eq!(classify(t.num), Ok(t.result));
+
+tests! {
+    test_classification {
+        #[ignore]
+        test_1(1, Classification::Deficient);
+        #[ignore]
+        test_2(2, Classification::Deficient);
+        #[ignore]
+        test_4(4, Classification::Deficient);
+        #[ignore]
+        test_6(6, Classification::Perfect);
+        #[ignore]
+        test_12(12, Classification::Abundant);
+        #[ignore]
+        test_28(28, Classification::Perfect);
+        #[ignore]
+        test_30(30, Classification::Abundant);
+        #[ignore]
+        test_32(32, Classification::Deficient);
+        #[ignore]
+        test_33550335(33550335, Classification::Abundant);
+        #[ignore]
+        test_33550336(33550336, Classification::Perfect);
+        #[ignore]
+        test_33550337(33550337, Classification::Deficient);
     }
 }
