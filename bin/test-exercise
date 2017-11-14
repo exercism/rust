@@ -73,7 +73,7 @@ fi
 # eliminate #[ignore] lines from tests
 for test in "$exercise/tests/*.rs"; do
    sed -i -e '/#\[ignore\]/{
-      s/#\[ignore\]\s*\(.*\)$/\1/
+      s/#\[ignore\]\s*//
       /^\s*$/d
    }' $test
 done
