@@ -1,0 +1,6 @@
+[package]
+name = "book_store"
+version = "1.0.1"
+authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
+
+[dependencies]

@@ -66,6 +66,8 @@ Please see the documentation about [adding new exercises](https://github.com/exe
 
 Note that:
 
+- The simplest way to generate a project template is to run `bin/init_exercise.py`. You'll need a Python installation >= 3.5 in order to run this script, but it will automate most of the following points for you.
+
 - Each exercise must stand on its own. Do not reference files outside the exercise directory. They will not be included when the user fetches the exercise.
 
 - Exercises must conform to the Exercism-wide standards described in [the documentation](https://github.com/exercism/docs/tree/master/language-tracks/exercises).
@@ -91,6 +93,10 @@ Note that:
 
 - An exercise may contain `.meta/hints.md`.  This is optional and will appear after the normal exercise
   instructions if present.  Rust is different in many ways from other languages.  This is a place where the differences required for Rust are explained.  If it is a large change, you may want to call this out as a comment at the top of `src/lib.rs`, so the user recognises to read this section before starting.
+
+- If the test suite is appreciably sped up by running in release mode, and there is reason to be confident that the example implementation does not contain any overflow errors, consider adding a file `.meta/test-in-release-mode`. This should contain brief comments explaining the situation.
+
+- If your exercise implements macro-based testing (see [#392](https://github.com/exercism/rust/issues/392#issuecomment-343865993) and [`perfect-numbers.rs`](https://github.com/exercism/rust/blob/master/exercises/perfect-numbers/tests/perfect-numbers.rs)), you will likely run afoul of a CI check which counts the `#[ignore]` lines and compares the result to the number of `#[test]` lines. To fix this, add a file `.meta/ignore-count-ignores` to disable that check for your exercise.
 
 - `README.md` may be [regenerated](https://github.com/exercism/docs/blob/master/maintaining-a-track/regenerating-exercise-readmes.md) from Exercism data. The generator will use the `description.md` from the exercise directory in the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises), then any hints in `.meta/hints.md`, then the [Rust-specific instructions](https://github.com/exercism/rust/blob/master/config/exercise-readme-insert.md). The `## Source` section comes from the `metadata.yml` in the same directory.  Convention is that the description of the source remains text and the link is both name and hyperlink of the markdown link.
 
