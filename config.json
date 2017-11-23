@@ -165,6 +165,17 @@
       ]
     },
     {
+      "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
+      "slug": "diffie-hellman",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "mathematics",
+	"simple references"
+      ]
+    },
+    {
       "uuid": "79613fd8-b7da-11e7-abc4-cec278b6b50a",
       "slug": "isogram",
       "core": false,

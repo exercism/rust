@@ -1,0 +1,6 @@
+[package]
+name = "diffie-hellman"
+version = "0.1.0"
+authors = ["hekrause <hekrause@htwg-konstanz.de>"]
+
+[dependencies]
