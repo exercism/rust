@@ -3,6 +3,7 @@ extern crate rand;
 use rand::distributions::{IndependentSample, Range};
 
 pub fn private_key(p: &u64) -> u64 {
+    assert!(*p < u64::max_value());
     Range::new(2, *p).ind_sample(&mut rand::thread_rng())
 }
 
