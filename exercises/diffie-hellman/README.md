@@ -1,3 +1,5 @@
+# Diffie Hellman
+
 Diffie-Hellman key exchange.
 
 Alice and Bob use Diffie-Hellman key exchange to share secrets.  They
@@ -69,7 +71,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
+Wikipedia, 1024 bit key from www.cryptopp.com/wiki. [http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange](http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
