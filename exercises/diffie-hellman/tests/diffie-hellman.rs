@@ -22,7 +22,7 @@ fn test_public_key_correct() {
     let private_key: u64 = 6;
     let expected: u64 = 7;
 
-    assert_eq!(public_key(&p, &g, &private_key), expected);
+    assert_eq!(public_key(p, g, private_key), expected);
 }
 
 #[test]
@@ -32,8 +32,8 @@ fn test_secret_key_correct() {
     let g: u64 = 5371081;
 
     let private_key = 75233987;
-    let public_key = public_key(&p, &g, &private_key);
-    let secret = secret(&p, &public_key, &private_key);
+    let public_key = public_key(p, g, private_key);
+    let secret = secret(p, public_key, private_key);
     let expected = 76945309;
 
     assert_eq!(secret, expected);
@@ -45,14 +45,14 @@ fn test_changed_secret_key() {
     let p: u64 = 92233987;
     let g: u64 = 5371081;
 
-    let private_key_a = private_key(&p);
-    let private_key_b = private_key(&p);
+    let private_key_a = private_key(p);
+    let private_key_b = private_key(p);
 
-    let public_key_a = public_key(&p, &g, &private_key_a);
-    let public_key_b = public_key(&p, &g, &private_key_b);
+    let public_key_a = public_key(p, g, private_key_a);
+    let public_key_b = public_key(p, g, private_key_b);
 
-    let secret_a = secret(&p, &public_key_b, &private_key_a);
-    let secret_b = secret(&p, &public_key_a, &private_key_b);
+    let secret_a = secret(p, public_key_b, private_key_a);
+    let secret_b = secret(p, public_key_a, private_key_b);
 
     assert_eq!(secret_a, secret_b);
 }
