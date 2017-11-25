@@ -165,6 +165,17 @@
       ]
     },
     {
+      "uuid": "ccebfa12-d224-11e7-8941-cec278b6b50a",
+      "slug": "saddle-points",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "vectors",
+        "iterators"
+      ]
+    },
+    {
       "uuid": "79613fd8-b7da-11e7-abc4-cec278b6b50a",
       "slug": "isogram",
       "core": false,
