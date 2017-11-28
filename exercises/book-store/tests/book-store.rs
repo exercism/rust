@@ -128,3 +128,10 @@ fn test_three_copies_of_first_book_and_2_each_of_remaining() {
 fn test_three_each_of_first_2_books_and_2_each_of_remaining_books() {
     process_total_case((vec![1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 1, 2], vec![vec![1, 2, 3, 4, 5], vec![1, 2, 3, 4, 5], vec![1, 2]]), 75.2);
 }
+
+#[test]
+#[ignore]
+/// Four groups of four are cheaper than two groups each of five and three
+fn test_four_groups_of_four_are_cheaper_than_two_groups_each_of_five_and_three() {
+    process_total_case((vec![1,1,2,2,3,3,4,5,1,1,2,2,3,3,4,5], vec![vec![1,2,3,4],vec![1,2,3,5],vec![1,2,3,4],vec![1,2,3,5]]), 102.4);
+}
