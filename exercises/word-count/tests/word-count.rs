@@ -113,3 +113,12 @@ fn with_quotations() {
         ],
     );
 }
+
+#[test]
+#[ignore]
+fn multiple_spaces_not_detected_as_a_word() {
+    check_word_count(
+        " multiple   whitespaces",
+        &[("multiple", 1), ("whitespaces", 1)]
+    );
+}
