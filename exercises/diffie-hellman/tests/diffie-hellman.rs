@@ -9,7 +9,7 @@ fn test_private_key_in_range_key() {
     let private_keys: Vec<u64> = primes.iter().map(|x| private_key(*x)).collect();
 
     for i in 0..primes.len() {
-        assert!(1 <= private_keys[i] && private_keys[i] < primes[i]);
+        assert!(1 < private_keys[i] && private_keys[i] < primes[i]);
     }
 }
 
@@ -32,10 +32,10 @@ fn test_secret_key_correct() {
     let p: u64 = 11;
     let g: u64 = 7;
 
-    let private_key = 7;
-    let public_key = public_key(p, g, private_key);
-    let secret = secret(p, public_key, private_key);
-    let expected = 8;
+    let private_key_a = 7;
+    let public_key_b = 8;
+    let secret = secret(p, public_key_b, private_key_a);
+    let expected = 2;
 
     assert_eq!(secret, expected);
 }
