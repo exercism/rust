@@ -602,6 +602,18 @@
       ]
     },
     {
+      "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
+      "slug": "macros",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "macros",
+        "macros-by-example",
+        "hashmap"
+      ]
+    },
+    {
       "uuid": "94f040d6-3f41-4950-8fe6-acf0945ac83d",
       "slug": "allergies",
       "core": false,
