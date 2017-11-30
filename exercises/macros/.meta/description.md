@@ -1,4 +1,3 @@
-
 Macros are a powerful part of a Rust programmer's toolkit, and [macros by example](https://doc.rust-lang.org/reference/macros-by-example.html) are a relatively simple way to access this power. Let's write one!
 
 ## Context
