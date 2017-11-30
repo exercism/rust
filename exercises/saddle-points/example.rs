@@ -1,4 +1,3 @@
-
 pub fn find_saddle_points(input: &[&[u64]]) -> Vec<(u64, u64)>{
     let mut saddle_points: Vec<(u64, u64)> = Vec::new();
 
@@ -10,6 +9,7 @@ pub fn find_saddle_points(input: &[&[u64]]) -> Vec<(u64, u64)>{
 
             let column = input.iter().map(|x| x[j]).collect::<Vec<u64>>();
             let row = &input[i];
+
             let max = row.iter().max().unwrap();
             let min = column.iter().min().unwrap();
 
