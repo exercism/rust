@@ -30,7 +30,6 @@ fn test_public_key_correct() {
 #[ignore]
 fn test_secret_key_correct() {
     let p: u64 = 11;
-    let g: u64 = 7;
 
     let private_key_a = 7;
     let public_key_b = 8;
