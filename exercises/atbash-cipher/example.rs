@@ -1,5 +1,3 @@
-use std::ascii::AsciiExt;
-
 fn ascii(ch: char) -> u8 {
     ch as u8
 }

@@ -1,5 +1,3 @@
-use std::ascii::AsciiExt;
-
 extern crate itertools;
 use itertools::Itertools;
 
