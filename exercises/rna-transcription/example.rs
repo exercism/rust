@@ -20,7 +20,7 @@ fn transcribe_dna_rna(c: char) -> Option<char> {
         'G' => Some('C'),
         'A' => Some('U'),
         'T' => Some('A'),
-        _  => None,
+        _   => None
     }
 }
 
