@@ -33,10 +33,7 @@ fn test_transcribes_thymine_to_adenine() {
 #[test]
 #[ignore]
 fn test_transcribes_all_dna_to_rna() {
-    assert_eq!(
-        Ok(dna::RNA::new("UGCACCAGAAUU")),
-        dna::DNA::new("ACGTGGTCTTAA").to_rna()
-    )
+    assert_eq!(Ok(dna::RNA::new("UGCACCAGAAUU")), dna::DNA::new("ACGTGGTCTTAA").to_rna())
 }
 
 #[test]
