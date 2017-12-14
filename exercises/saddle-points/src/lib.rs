@@ -1,1 +1,3 @@
-pub fn find_saddle_points(input: &[&[u64]]) -> Vec<(u64, u64)>{ unimplemented!() }
+pub fn find_saddle_points(input: &[Vec<u64>]) -> Vec<(usize, usize)> {
+    unimplemented!()
+}
