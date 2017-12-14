@@ -277,6 +277,18 @@
       ]
     },
     {
+      "uuid": "10923b0b-c726-44a7-9e02-b775e7b8b237",
+      "slug": "simple-linked-list",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "lists",
+        "type_conversion",
+        "struct"
+      ]
+    },
+    {
       "uuid": "ddc0c1da-6b65-4ed1-8bdc-5e71cd05f720",
       "slug": "pascals-triangle",
       "core": false,
@@ -619,6 +631,18 @@
         "str to digits",
         "iterators",
         "higher-order functions"
+      ]
+    },
+    {
+      "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
+      "slug": "macros",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "macros",
+        "macros-by-example",
+        "hashmap"
       ]
     },
     {

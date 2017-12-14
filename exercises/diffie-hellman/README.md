@@ -1,45 +1,41 @@
-# Parallel Letter Frequency
+# Diffie Hellman
 
-Count the frequency of letters in texts using parallel computation.
+Diffie-Hellman key exchange.
 
-Parallelism is about doing things in parallel that can also be done
-sequentially. A common example is counting the frequency of letters.
-Create a function that returns the total frequency of each letter in a
-list of texts and that employs parallelism.
+Alice and Bob use Diffie-Hellman key exchange to share secrets.  They
+start with prime numbers, pick private keys, generate and share public
+keys, and then generate a shared secret key.
 
-# Parallel Letter Frequency in Rust
+## Step 0
 
-Learn more about concurrency in Rust here:
+The test program supplies prime numbers p and g.
 
-- [Concurrency](https://doc.rust-lang.org/book/second-edition/ch16-00-concurrency.html)
+## Step 1
 
-## Bonus
+Alice picks a private key, a, greater than 1 and less than p.  Bob does
+the same to pick a private key b.
 
-This exercise also includes a benchmark, with a sequential implementation as a
-baseline. You can compare your solution to the benchmark. Observe the
-effect different size inputs have on the performance of each. Can you
-surpass the benchmark using concurrent programming techniques?
+## Step 2
 
-As of this writing, test::Bencher is unstable and only available on
-*nightly* Rust. Run the benchmarks with Cargo:
+Alice calculates a public key A.
 
-```
-cargo bench
-```
+    A = g**a mod p
 
-If you are using rustup.rs:
+Using the same p and g, Bob similarly calculates a public key B from his
+private key b.
 
-```
-rustup run nightly cargo bench
-```
+## Step 3
 
-- [Benchmark tests](https://doc.rust-lang.org/stable/unstable-book/library-features/test.html)
+Alice and Bob exchange public keys.  Alice calculates secret key s.
 
-Learn more about nightly Rust:
+    s = B**a mod p
 
-- [Nightly Rust](https://doc.rust-lang.org/book/first-edition/release-channels.html)
-- [Rustup: Working with nightly](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust)
+Bob calculates
 
+    s = A**b mod p
+
+The calculations produce the same result!  Alice and Bob now share
+secret s.
 
 ## Rust Installation
 
@@ -73,6 +69,9 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
+## Source
+
+Wikipedia, 1024 bit key from www.cryptopp.com/wiki. [http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange](http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

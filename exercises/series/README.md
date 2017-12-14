@@ -1,45 +1,24 @@
-# Parallel Letter Frequency
+# Series
 
-Count the frequency of letters in texts using parallel computation.
+Given a string of digits, output all the contiguous substrings of length `n` in
+that string.
 
-Parallelism is about doing things in parallel that can also be done
-sequentially. A common example is counting the frequency of letters.
-Create a function that returns the total frequency of each letter in a
-list of texts and that employs parallelism.
+For example, the string "49142" has the following 3-digit series:
 
-# Parallel Letter Frequency in Rust
+- 491
+- 914
+- 142
 
-Learn more about concurrency in Rust here:
+And the following 4-digit series:
 
-- [Concurrency](https://doc.rust-lang.org/book/second-edition/ch16-00-concurrency.html)
+- 4914
+- 9142
 
-## Bonus
+And if you ask for a 6-digit series from a 5-digit string, you deserve
+whatever you get.
 
-This exercise also includes a benchmark, with a sequential implementation as a
-baseline. You can compare your solution to the benchmark. Observe the
-effect different size inputs have on the performance of each. Can you
-surpass the benchmark using concurrent programming techniques?
-
-As of this writing, test::Bencher is unstable and only available on
-*nightly* Rust. Run the benchmarks with Cargo:
-
-```
-cargo bench
-```
-
-If you are using rustup.rs:
-
-```
-rustup run nightly cargo bench
-```
-
-- [Benchmark tests](https://doc.rust-lang.org/stable/unstable-book/library-features/test.html)
-
-Learn more about nightly Rust:
-
-- [Nightly Rust](https://doc.rust-lang.org/book/first-edition/release-channels.html)
-- [Rustup: Working with nightly](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust)
-
+Note that these series are only required to occupy *adjacent positions*
+in the input; the digits need not be *numerically consecutive*.
 
 ## Rust Installation
 
@@ -73,6 +52,9 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
+## Source
+
+A subset of the Problem 8 at Project Euler [http://projecteuler.net/problem=8](http://projecteuler.net/problem=8)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

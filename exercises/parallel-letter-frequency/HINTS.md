@@ -24,9 +24,9 @@ If you are using rustup.rs:
 rustup run nightly cargo bench
 ```
 
-- [Benchmark tests](https://doc.rust-lang.org/book/benchmark-tests.html)
+- [Benchmark tests](https://doc.rust-lang.org/stable/unstable-book/library-features/test.html)
 
 Learn more about nightly Rust:
 
-- [Nightly Rust](https://doc.rust-lang.org/book/nightly-rust.html)
+- [Nightly Rust](https://doc.rust-lang.org/book/first-edition/release-channels.html)
 - [Rustup: Working with nightly](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust)
