@@ -47,7 +47,7 @@ fn test_non_square_matrix_high() {
 
 #[test]
 #[ignore]
-fn test_non_quadratic_matrix_wide() {
+fn test_non_square_matrix_wide() {
     let input = vec![vec![8, 7, 10, 7, 9], vec![8, 7, 13, 7, 9]];
     assert_eq!(vec![(0, 2)], find_saddle_points(&input));
 }
