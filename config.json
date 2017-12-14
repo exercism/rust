@@ -155,6 +155,17 @@
       ]
     },
     {
+      "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
+      "slug": "series",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "vectors",
+        "strings"
+      ]
+    },
+    {
       "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
       "slug": "collatz-conjecture",
       "core": false,
@@ -162,6 +173,16 @@
       "difficulty": 1,
       "topics": [
         "error handling with Result<T, E>"
+      ]
+    },
+    {
+      "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
+      "slug": "diffie-hellman",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "mathematics"
       ]
     },
     {
