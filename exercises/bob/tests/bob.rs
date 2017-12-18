@@ -52,7 +52,7 @@ fn test_using_acronyms_in_regular_speech() {
 #[test]
 #[ignore]
 fn test_forceful_question() {
-    assert_eq!("Whoa, chill out!",
+    assert_eq!("Calm down, I know what I'm doing!",
                bob::reply("WHAT THE HELL WERE YOU THINKING?"));
 }
 
