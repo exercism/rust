@@ -7,3 +7,4 @@
 * [Stack Overflow](http://stackoverflow.com/questions/tagged/rust) can be used to search for your problem and see if it has been answered already.  You can also ask and answer questions.
 * The [Rust User Forum](http://users.rust-lang.org) is for general discussion about Rust.
 * [/r/rust](http://www.reddit.com/r/rust/) is the official Rust subreddit.
+* [rust-learning](https://github.com/ctjhoa/rust-learning) a community-maintained collection of resources for learning Rust.
