@@ -10,15 +10,15 @@ use std::char;
 use std::collections::HashMap;
 use std::collections::HashSet;
 
-fn test_equation(coefficients: &HashMap<char, i32>, cant_be_zero: &HashSet<char>, substitutions: &HashMap<char, u8>) -> bool {
+fn test_equation(coefficients: &HashMap<char, i64>, cant_be_zero: &HashSet<char>, substitutions: &HashMap<char, u8>) -> bool {
     if cant_be_zero.iter().any(|d| substitutions[d] == 0) {
         return false;
     }
 
-    coefficients.iter().map(|(d, &coeff)| i32::from(substitutions[d]) * coeff).sum::<i32>() == 0
+    coefficients.iter().map(|(d, &coeff)| i64::from(substitutions[d]) * coeff).sum::<i64>() == 0
 }
 
-fn letter_coefficients(puzzle: &str) -> (HashMap<char, i32>, HashSet<char>) {
+fn letter_coefficients(puzzle: &str) -> (HashMap<char, i64>, HashSet<char>) {
     let mut coefficients = HashMap::new();
     let mut cant_be_zero = HashSet::new();
 
@@ -26,7 +26,7 @@ fn letter_coefficients(puzzle: &str) -> (HashMap<char, i32>, HashSet<char>) {
     let equation: Vec<&str> = puzzle.split("==").collect();
 
     {
-        let mut insert_term = |term: &str, polarity: i32| {
+        let mut insert_term = |term: &str, polarity: i64| {
             cant_be_zero.insert(term.chars().next().unwrap());
             let mut power_of_ten = polarity;
             for letter in term.chars().rev() {
