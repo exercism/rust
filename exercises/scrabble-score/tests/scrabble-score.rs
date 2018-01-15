@@ -71,6 +71,6 @@ fn all_letters_work() {
 #[test]
 #[ignore]
 fn german_letters_do_not_score() {
-    assert_eq!(score("STRASSE"), 7, "\"SS\" should score 2.");
+    assert_eq!(score("STRASSE"), 7, "\"SS\" should score 2");
     assert_eq!(score("STRAßE"), 5, "'ß' should score 0");
 }
