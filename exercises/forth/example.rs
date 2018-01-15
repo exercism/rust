@@ -1,4 +1,3 @@
-use std::ascii::AsciiExt;
 use std::collections::HashMap;
 use std::collections::LinkedList;
 use std::str::FromStr;

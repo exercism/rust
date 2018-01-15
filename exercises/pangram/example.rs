@@ -1,5 +1,4 @@
 use std::collections::BTreeSet;
-use std::ascii::AsciiExt;
 use std::iter::FromIterator;
 
 pub fn is_pangram(sentence: &str) -> bool {
