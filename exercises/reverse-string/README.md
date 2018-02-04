@@ -1,4 +1,4 @@
-# reverse-string
+# Reverse String
 
 Reverse a string
 
