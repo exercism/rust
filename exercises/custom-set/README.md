@@ -39,6 +39,5 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 
-
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
