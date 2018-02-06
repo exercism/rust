@@ -6,6 +6,11 @@ For example:
 input: "cool"
 output: "looc"
 
+## Bonus
+Test your function on this string: `uüu` and see what happens. Try to write a function that properly
+reverses this string. Hint: grapheme clusters
+
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
