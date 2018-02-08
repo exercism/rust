@@ -55,3 +55,10 @@ fn test_a_sentence_with_punctuation() {
 fn test_a_palindrome() {
     process_reverse_case("racecar", "racecar");
 }
+
+#[test]
+#[ignore]
+/// wide characters
+fn test_wide_characters() {
+    process_reverse_case("子猫", "猫子");
+}
