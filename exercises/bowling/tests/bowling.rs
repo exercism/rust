@@ -401,3 +401,35 @@ fn if_the_last_frame_is_a_spare_you_cannot_create_a_score_before_extra_roll_is_t
 
     assert!(game.score().is_some());
 }
+
+#[test]
+#[ignore]
+fn cannot_roll_after_bonus_roll_for_spare() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..9 {
+        let _ = game.roll(0);
+        let _ = game.roll(0);
+    }
+    let _ = game.roll(7);
+    let _ = game.roll(3);
+    assert!(game.roll(2).is_ok());
+
+    assert_eq!(game.roll(2), Err(Error::GameComplete));
+}
+
+#[test]
+#[ignore]
+fn cannot_roll_after_bonus_roll_for_strike() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..9 {
+        let _ = game.roll(0);
+        let _ = game.roll(0);
+    }
+    let _ = game.roll(10);
+    let _ = game.roll(3);
+    assert!(game.roll(2).is_ok());
+
+    assert_eq!(game.roll(2), Err(Error::GameComplete));
+}
