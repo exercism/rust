@@ -27,7 +27,7 @@ To conclude, the only valid moves are:
 - emptying one bucket and doing nothing to the other
 - filling one bucket and doing nothing to the other
 
-Written with <3 at [Fullstack Academy](http://www.fullstackacademy.com/) by [Lindsay](http://lindsaylevine.com).
+Written with <3 at [Fullstack Academy](http://www.fullstackacademy.com/) by Lindsay Levine.
 
 ## Rust Installation
 
