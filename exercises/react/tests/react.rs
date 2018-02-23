@@ -2,6 +2,39 @@ extern crate react;
 
 use react::*;
 
+struct CallbackRecorder {
+    // Note that this `Cell` is https://doc.rust-lang.org/std/cell/
+    // a mechanism to allow internal mutability,
+    // distinct from the cells (input cells, compute cells) in the reactor
+    value: std::cell::Cell<Option<isize>>,
+}
+
+/// A CallbackRecorder helps tests whether callbacks get called correctly.
+/// You'll see it used in tests that deal with callbacks.
+/// The names should be descriptive enough so that the tests make sense,
+/// so it's not necessary to fully understand the implementation,
+/// though you are welcome to.
+impl CallbackRecorder {
+    fn new() -> Self {
+        CallbackRecorder {
+            value: std::cell::Cell::new(None),
+        }
+    }
+
+    fn expect_to_have_been_called_with(&self, v: isize) {
+        assert_ne!(self.value.get(), None, "Callback was not called, but should have been");
+        assert_eq!(self.value.replace(None), Some(v), "Callback was called with incorrect value");
+    }
+
+    fn expect_not_to_have_been_called(&self) {
+        assert_eq!(self.value.get(), None, "Callback was called, but should not have been");
+    }
+
+    fn callback_called(&self, v: isize) {
+        assert_eq!(self.value.replace(Some(v)), None, "Callback was called too many times; can't be called with {}", v);
+    }
+}
+
 #[test]
 fn input_cells_have_a_value() {
     let mut reactor = Reactor::new();
@@ -102,17 +135,13 @@ fn error_setting_a_compute_cell() {
 #[test]
 #[ignore]
 fn compute_cells_fire_callbacks() {
-    // This is a bit awkward, but the closure mutably borrows `values`.
-    // So we have to end its borrow by taking reactor out of scope.
-    let mut values = Vec::new();
-    {
-        let mut reactor = Reactor::new();
-        let input = reactor.create_input(1);
-        let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-        assert!(reactor.add_callback(output, |v| values.push(v)).is_ok());
-        assert!(reactor.set_value(input, 3).is_ok());
-    }
-    assert_eq!(values, vec![4]);
+    let cb = CallbackRecorder::new();
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_ok());
+    assert!(reactor.set_value(input, 3).is_ok());
+    cb.expect_to_have_been_called_with(4);
 }
 
 #[test]
@@ -127,95 +156,96 @@ fn error_adding_callback_to_nonexistent_cell() {
 #[test]
 #[ignore]
 fn callbacks_only_fire_on_change() {
-    let mut values = Vec::new();
-    {
-        let mut reactor = Reactor::new();
-        let input = reactor.create_input(1);
-        let output = reactor.create_compute(&[input], |v| if v[0] < 3 { 111 } else { 222 }).unwrap();
-        assert!(reactor.add_callback(output, |v| values.push(v)).is_ok());
-        assert!(reactor.set_value(input, 2).is_ok());
-        assert!(reactor.set_value(input, 4).is_ok());
-    }
-    assert_eq!(values, vec![222]);
+    let cb = CallbackRecorder::new();
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let output = reactor.create_compute(&[input], |v| if v[0] < 3 { 111 } else { 222 }).unwrap();
+    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_ok());
+
+    assert!(reactor.set_value(input, 2).is_ok());
+    cb.expect_not_to_have_been_called();
+    assert!(reactor.set_value(input, 4).is_ok());
+    cb.expect_to_have_been_called_with(222);
 }
 
 #[test]
 #[ignore]
 fn callbacks_can_be_added_and_removed() {
-    let mut values1 = Vec::new();
-    let mut values2 = Vec::new();
-    let mut values3 = Vec::new();
-    {
-        let mut reactor = Reactor::new();
-        let input = reactor.create_input(11);
-        let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-        let callback = reactor.add_callback(output, |v| values1.push(v)).unwrap();
-        assert!(reactor.add_callback(output, |v| values2.push(v)).is_ok());
-        assert!(reactor.set_value(input, 31).is_ok());
-        assert!(reactor.remove_callback(output, callback).is_ok());
-        assert!(reactor.add_callback(output, |v| values3.push(v)).is_ok());
-        assert!(reactor.set_value(input, 41).is_ok());
-    }
-    assert_eq!(values1, vec![32]);
-    assert_eq!(values2, vec![32, 42]);
-    assert_eq!(values3, vec![42]);
+    let cb1 = CallbackRecorder::new();
+    let cb2 = CallbackRecorder::new();
+    let cb3 = CallbackRecorder::new();
+
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(11);
+    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+
+    let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
+    assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_ok());
+
+    assert!(reactor.set_value(input, 31).is_ok());
+    cb1.expect_to_have_been_called_with(32);
+    cb2.expect_to_have_been_called_with(32);
+
+    assert!(reactor.remove_callback(output, callback).is_ok());
+    assert!(reactor.add_callback(output, |v| cb3.callback_called(v)).is_ok());
+
+    assert!(reactor.set_value(input, 41).is_ok());
+    cb1.expect_not_to_have_been_called();
+    cb2.expect_to_have_been_called_with(42);
+    cb3.expect_to_have_been_called_with(42);
 }
 
 #[test]
 #[ignore]
 fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
-    let mut values1 = Vec::new();
-    let mut values2 = Vec::new();
-    {
-        let mut reactor = Reactor::new();
-        let input = reactor.create_input(1);
-        let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-        let callback = reactor.add_callback(output, |v| values1.push(v)).unwrap();
-        assert!(reactor.add_callback(output, |v| values2.push(v)).is_ok());
-        // We want the first remove to be Ok, but we don't care about the others.
-        assert!(reactor.remove_callback(output, callback).is_ok());
-        for _ in 1..5 {
-            assert!(reactor.remove_callback(output, callback).is_err());
-        }
-        assert!(reactor.set_value(input, 2).is_ok());
+    let cb1 = CallbackRecorder::new();
+    let cb2 = CallbackRecorder::new();
+
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+    let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
+    assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_ok());
+    // We want the first remove to be Ok, but we don't care about the others.
+    assert!(reactor.remove_callback(output, callback).is_ok());
+    for _ in 1..5 {
+        assert!(reactor.remove_callback(output, callback).is_err());
     }
-    assert_eq!(values1, Vec::new());
-    assert_eq!(values2, vec![3]);
+
+    assert!(reactor.set_value(input, 2).is_ok());
+    cb1.expect_not_to_have_been_called();
+    cb2.expect_to_have_been_called_with(3);
 }
 
 #[test]
 #[ignore]
 fn callbacks_should_only_be_called_once_even_if_multiple_dependencies_change() {
-    let mut values = Vec::new();
-    {
-        let mut reactor = Reactor::new();
-        let input = reactor.create_input(1);
-        let plus_one = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-        let minus_one1 = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
-        let minus_one2 = reactor.create_compute(&[minus_one1], |v| v[0] - 1).unwrap();
-        let output = reactor.create_compute(&[plus_one, minus_one2], |v| v[0] * v[1]).unwrap();
-        assert!(reactor.add_callback(output, |v| values.push(v)).is_ok());
-        assert!(reactor.set_value(input, 4).is_ok());
-    }
-    assert_eq!(values, vec![10]);
+    let cb = CallbackRecorder::new();
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let plus_one = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+    let minus_one1 = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
+    let minus_one2 = reactor.create_compute(&[minus_one1], |v| v[0] - 1).unwrap();
+    let output = reactor.create_compute(&[plus_one, minus_one2], |v| v[0] * v[1]).unwrap();
+    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_ok());
+    assert!(reactor.set_value(input, 4).is_ok());
+    cb.expect_to_have_been_called_with(10);
 }
 
 #[test]
 #[ignore]
 fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt_change() {
-    let mut values = Vec::new();
-    {
-        let mut reactor = Reactor::new();
-        let input = reactor.create_input(1);
-        let plus_one = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-        let minus_one = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
-        let always_two = reactor.create_compute(&[plus_one, minus_one], |v| v[0] - v[1]).unwrap();
-        assert!(reactor.add_callback(always_two, |v| values.push(v)).is_ok());
-        for i in 2..5 {
-            assert!(reactor.set_value(input, i).is_ok());
-        }
+    let cb = CallbackRecorder::new();
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let plus_one = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+    let minus_one = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
+    let always_two = reactor.create_compute(&[plus_one, minus_one], |v| v[0] - v[1]).unwrap();
+    assert!(reactor.add_callback(always_two, |v| cb.callback_called(v)).is_ok());
+    for i in 2..5 {
+        assert!(reactor.set_value(input, i).is_ok());
+        cb.expect_not_to_have_been_called();
     }
-    assert_eq!(values, Vec::new());
 }
 
 #[test]
