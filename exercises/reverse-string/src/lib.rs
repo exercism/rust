@@ -1,3 +1,3 @@
-pub fn reverse(_: &str) -> String {
+pub fn reverse(input: &str) -> String {
     unimplemented!()
 }
