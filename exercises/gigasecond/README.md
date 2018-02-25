@@ -4,6 +4,9 @@ Calculate the moment when someone has lived for 10^9 seconds.
 
 A gigasecond is 10^9 (1,000,000,000) seconds.
 
+If you're unsure what operations you can perform on `DateTime<Utc>` take a look at the [chrono crate](https://docs.rs/chrono/0.4.0/chrono/) which is listed as a dependency in the `Cargo.toml` file for this exercise.
+
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
