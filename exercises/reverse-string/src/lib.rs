@@ -1,3 +1,3 @@
 pub fn reverse(input: &str) -> String {
-    unimplemented!()
+    unimplemented!("Write a function to reverse {}", input);
 }
