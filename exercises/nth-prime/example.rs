@@ -9,10 +9,10 @@ fn is_prime(n: u32) -> bool {
    return true;
 }
 
-pub fn nth(n: u32) -> Result<u32, ()> {
+pub fn nth(n: u32) -> Option<u32> {
     match n {
-        0 => Err(()),
-        1 => Ok(2),
+        0 => None,
+        1 => Some(2),
         _ => {
             let mut count: u32 = 1;
             let mut candidate: u32 = 1;
@@ -22,7 +22,7 @@ pub fn nth(n: u32) -> Result<u32, ()> {
                     count += 1;
                 }
             }
-            Ok(candidate)
+            Some(candidate)
         }
     }
 }
