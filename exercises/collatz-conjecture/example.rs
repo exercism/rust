@@ -10,10 +10,10 @@ pub fn collatz_positive(n: u64) -> u64 {
 }
 
 // return Ok(x) where x is the number of steps required to reach 1
-pub fn collatz(n: u64) -> Result<u64, &'static str> {
+pub fn collatz(n: u64) -> Option<u64> {
     if n < 1 {
-        Err("Only positive numbers are allowed")
+        None
     } else {
-        Ok(collatz_positive(n))
+        Some(collatz_positive(n))
     }
 }
