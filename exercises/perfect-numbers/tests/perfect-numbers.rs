@@ -17,12 +17,12 @@ macro_rules! tests {
 }
 
 fn test_classification(num: u64, result: Classification) {
-    assert_eq!(classify(num), Ok(result));
+    assert_eq!(classify(num), Some(result));
 }
 
 #[test]
 fn basic() {
-    assert_eq!(classify(0), Err("Number must be positive"));
+    assert_eq!(classify(0), None);
 }
 
 

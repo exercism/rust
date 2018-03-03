@@ -1,14 +1,14 @@
-pub fn classify(num: u64) -> Result<Classification, & 'static str> {
+pub fn classify(num: u64) -> Option<Classification> {
     if num == 0 {
-        return Err("Number must be positive");
+        return None;
     }
     let sum: u64 = (1..num).filter(|i| num%i == 0).sum();
     if sum == num {
-        Ok(Classification::Perfect)
+        Some(Classification::Perfect)
     } else if sum < num {
-        Ok(Classification::Deficient)
+        Some(Classification::Deficient)
     } else {
-        Ok(Classification::Abundant)
+        Some(Classification::Abundant)
     }
 }
 
