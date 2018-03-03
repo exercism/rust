@@ -5,6 +5,6 @@ pub enum Classification {
     Deficient
 }
 
-pub fn classify(num: u64) -> Result<Classification, & 'static str> {
+pub fn classify(num: u64) -> Option<Classification> {
     unimplemented!();
 }
