@@ -45,6 +45,9 @@ for exercise in $files; do
       # Compiler errors will still be shown though.
       # Both flags are necessary to keep things quiet.
       ./bin/test-exercise $directory --quiet --no-run
+      # Output a progress dot; otherwise Travis may assume we're hung,
+      # if we don't produce output in > 10 mins.
+      echo -n '.'
       return_code=$(($return_code | $?))
    else
       # Run the test and get the status
