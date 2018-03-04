@@ -99,6 +99,9 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: echo "TRAVIS_PULL_REQUEST=${PR_NUMBER:-false}" >> $GITHUB_ENV
 
+      - name: Install Clippy
+        run: rustup component add clippy
+
       # run scripts as steps
       # TODO: the TRAVIS_PULL_REQUEST variable is a holdover from before the
       # migration to GitHub Actions. The scripts that use it do so in order to
@@ -121,6 +124,17 @@ jobs:
         run: sh ./_test/check-exercise-crate.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
+      - name: Clippy tests
+        env:
+          CLIPPY: tests/
+        run: ./_test/check-exercises.sh
+
+      # Our examples currently have too much Clippy output to consider this.
+      # But maybe in the future.
+      #- name: Clippy examples
+      #  env:
+      #    CLIPPY: src/lib.rs
+      #  run: ./_test/check-exercises.sh
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
     runs-on: ubuntu-latest
