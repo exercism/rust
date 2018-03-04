@@ -22,6 +22,8 @@ fi
 # what cargo command will we use?
 if [ -n "$BENCHMARK" ]; then
    command="bench"
+elif [ -n "$CLIPPY" ]; then
+   command="clippy --$CLIPPY"
 else
    command="test"
 fi
