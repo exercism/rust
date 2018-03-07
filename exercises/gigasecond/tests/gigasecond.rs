@@ -13,7 +13,7 @@ extern crate gigasecond;
  * In order to use the crate, your solution will need to start with the two following lines
 */
 extern crate chrono;
-use chrono::*;
+use chrono::{TimeZone, Utc};
 
 #[test]
 fn test_date() {
