@@ -166,6 +166,16 @@
       ]
     },
     {
+      "uuid": "e652139e-ff3f-4e03-9810-d21f8b0c9e60",
+      "slug": "armstrong-numbers",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "mathematics"
+      ]
+    },
+    {
       "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
       "slug": "collatz-conjecture",
       "core": false,

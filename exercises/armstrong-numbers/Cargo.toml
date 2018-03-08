@@ -1,0 +1,6 @@
+[package]
+name = "armstrong_numbers"
+version = "1.0.0"
+authors = ["Shing Tak Lam <shingtaklam1324@gmail.com>"]
+
+[dependencies]
