@@ -214,6 +214,7 @@ fn test_conjugate_of_purely_imaginary_number() {
 }
 
 #[test]
+#[ignore]
 fn test_conjugate_of_complex_number() {
     let cmplx = Complex::new(1.0, 1.0);
     let result = Complex::new(1.0, -1.0);
