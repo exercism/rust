@@ -11,10 +11,10 @@ impl<T: Ord + Clone> PartialEq for CustomSet<T> {
 }
 
 impl<T: Ord + Clone> CustomSet<T> {
-    pub fn new(inputs: Vec<T>) -> CustomSet<T> {
+    pub fn new(inputs: &[T]) -> CustomSet<T> {
         let mut s = CustomSet { collection: Vec::new() };
         for input in inputs {
-            s.add(input);
+            s.add(input.clone());
         }
         s
     }
@@ -42,26 +42,26 @@ impl<T: Ord + Clone> CustomSet<T> {
     }
 
     pub fn intersection(&self, other: &Self) -> CustomSet<T> {
-        CustomSet::new(self.collection
-                           .iter()
-                           .cloned()
-                           .filter(|c| other.contains(c))
-                           .collect())
+        CustomSet::new(&self.collection
+                            .iter()
+                            .cloned()
+                            .filter(|c| other.contains(c))
+                            .collect::<Vec<_>>())
     }
 
     pub fn union(&self, other: &Self) -> CustomSet<T> {
-        CustomSet::new(self.collection
-                           .iter()
-                           .cloned()
-                           .chain(other.collection.iter().cloned())
-                           .collect())
+        CustomSet::new(&self.collection
+                            .iter()
+                            .cloned()
+                            .chain(other.collection.iter().cloned())
+                            .collect::<Vec<_>>())
     }
 
     pub fn difference(&self, other: &Self) -> CustomSet<T> {
-        CustomSet::new(self.collection
-                           .iter()
-                           .cloned()
-                           .filter(|c| !other.contains(c))
-                           .collect())
+        CustomSet::new(&self.collection
+                            .iter()
+                            .cloned()
+                            .filter(|c| !other.contains(c))
+                            .collect::<Vec<_>>())
     }
 }
