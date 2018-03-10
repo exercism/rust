@@ -84,7 +84,7 @@ struct Connections {
     points: HashMap<Point, u8>
 }
 
-pub fn count(lines: &Vec<&str>) -> usize {
+pub fn count(lines: &[&str]) -> usize {
     if lines.len() == 0 {
         return 0
     } else if lines[0].len() == 0 {
