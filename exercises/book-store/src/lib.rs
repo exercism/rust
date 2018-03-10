@@ -1,3 +1,3 @@
-pub fn lowest_price(_: &[usize]) -> f64 {
+pub fn lowest_price(_: &[usize]) -> usize {
     unimplemented!()
 }
