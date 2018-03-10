@@ -8,26 +8,27 @@ impl Complex {
         unimplemented!()
     }
 
+    /// Implement e<sup>a+bi</sup> here.
     pub fn exp(&self) -> Complex {
         unimplemented!()
     }
 
-    // Return the real part
+    /// Return the real part
     pub fn re(&self) -> f64 {
         unimplemented!()
     }
 
-    // Return the imaginary part
+    /// Return the imaginary part
     pub fn im(&self) -> f64 {
         unimplemented!()
     }
 
-    // Return the absolute value
+    /// Return the absolute value
     pub fn abs(&self) -> f64 {
         unimplemented!()
     }
-    
-    // Return the conjugate
+
+    /// Return the conjugate
     pub fn conjugate(&self) -> Complex {
         unimplemented!()
     }

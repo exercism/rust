@@ -1,5 +1,5 @@
-extern crate complex_number;
-use complex_number::Complex;
+extern crate complex_numbers;
+use complex_numbers::Complex;
 
 fn within_range(expected: f64, actual: f64, epsilon: f64) -> bool {
     (expected - actual).abs() < epsilon
