@@ -1,3 +1,9 @@
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    IncompleteNumber,
+    Overflow,
+}
+
 /// Convert a list of numbers to a stream of bytes encoded with variable length encoding.
 pub fn to_bytes(values: &[u32]) -> Vec<u8> {
     let mut res = vec![];
@@ -68,13 +74,13 @@ fn to_bytes_single(mut value: u32) -> Vec<u8> {
 // }
 
 /// Given a stream of bytes, extract all numbers which are encoded in there.
-pub fn from_bytes(bytes: &[u8]) -> Result<Vec<u32>, &'static str> {
+pub fn from_bytes(bytes: &[u8]) -> Result<Vec<u32>, Error> {
     let mut res = vec![];
     let mut tmp = 0;
     for (i,b) in bytes.iter().enumerate() {
         // test if first 7 bit are set, to check for overflow
         if (tmp & 0xfe_00_00_00) > 0 {
-            return Err("Would overflow");
+            return Err(Error::Overflow);
         }
 
         // append bytes of b to tmp
@@ -89,7 +95,7 @@ pub fn from_bytes(bytes: &[u8]) -> Result<Vec<u32>, &'static str> {
             if i+1 == bytes.len() {
                 // the next index would be past the end,
                 // i.e. there are no more bytes.
-                return Err("Incomplete byte sequence");
+                return Err(Error::IncompleteNumber);
             }
         }
     }
