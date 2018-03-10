@@ -1,6 +1,6 @@
 extern crate grade_school as school;
 
-fn some_strings(v: Vec<&str>) -> Option<Vec<String>> {
+fn some_strings(v: &[&str]) -> Option<Vec<String>> {
     Some(v.iter().map(|s| s.to_string()).collect())
 }
 
@@ -59,7 +59,7 @@ fn test_grade_for_one_student() {
     let mut s = school::School::new();
     s.add(2, "Aimee");
     assert_eq!(s.grade(2),
-                some_strings(vec!["Aimee"]));
+                some_strings(&["Aimee"]));
 }
 
 #[test]
@@ -70,7 +70,7 @@ fn test_grade_returns_students_sorted_by_name() {
     s.add(2, "Blair");
     s.add(2, "Paul");
     assert_eq!(s.grade(2),
-               some_strings(vec!["Blair", "James", "Paul"]));
+               some_strings(&["Blair", "James", "Paul"]));
 }
 
 #[test]
@@ -81,7 +81,7 @@ fn test_add_students_to_different_grades() {
     s.add(7, "Logan");
     assert_eq!(s.grades(), vec!(3, 7));
     assert_eq!(s.grade(3),
-               some_strings(vec!["Chelsea"]));
+               some_strings(&["Chelsea"]));
     assert_eq!(s.grade(7),
-               some_strings(vec!["Logan"]));
+               some_strings(&["Logan"]));
 }
