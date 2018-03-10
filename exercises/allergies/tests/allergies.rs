@@ -2,7 +2,7 @@ extern crate allergies;
 
 use allergies::*;
 
-fn compare_allergy_vectors(expected: &Vec<Allergen>, actual: &Vec<Allergen>) {
+fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
     for element in expected {
         if !actual.contains(element) {
             panic!("Allergen missing\n  {:?} should be in {:?}",
