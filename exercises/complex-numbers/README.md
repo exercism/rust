@@ -31,7 +31,7 @@ Implement the following operations:
 
 Assume the programming language you are using does not have an implementation of complex numbers.
 
-- To implement `ops`, take a look ta overloading operators in [Standard Library Documentation for `std::ops`](https://doc.rust-lang.org/std/ops/index.html).
+- To implement `ops`, take a look at overloading operators in [Standard Library Documentation for `std::ops`](https://doc.rust-lang.org/std/ops/index.html).
 - If you are stuck, take a look at the `num-complex` crate for an implementation of this.
 
 ## Rust Installation
