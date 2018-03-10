@@ -235,7 +235,7 @@ fn test_adder_with_boolean_values() {
     let a_and_b = reactor.create_compute(&[a, b], |v| v[0] && v[1]).unwrap();
     let carry_out = reactor.create_compute(&[a_xor_b_and_cin, a_and_b], |v| v[0] || v[1]).unwrap();
 
-    let tests = vec![
+    let tests = &[
         (false, false, false, false, false),
         (false, false, true, false, true),
         (false, true, false, false, true),
@@ -246,7 +246,7 @@ fn test_adder_with_boolean_values() {
         (true, true, true, true, true),
     ];
 
-    for (aval, bval, cinval, expected_cout, expected_sum) in tests {
+    for &(aval, bval, cinval, expected_cout, expected_sum) in tests {
         assert!(reactor.set_value(a, aval).is_ok());
         assert!(reactor.set_value(b, bval).is_ok());
         assert!(reactor.set_value(carry_in, cinval).is_ok());
