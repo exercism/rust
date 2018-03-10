@@ -5,13 +5,10 @@ use std::hash::{Hash, Hasher};
 use std::mem;
 use std::cell::RefCell;
 
-extern crate noisy_float;
-use noisy_float::prelude::*;
-
 type Book = usize;
 type GroupedBasket = Vec<Group>;
-type Price = f64;
-const BOOK_PRICE: Price = 8.0;
+type Price = usize;
+const BOOK_PRICE: Price = 800;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 struct Group(RefCell<BTreeSet<Book>>);
@@ -30,12 +27,12 @@ impl Group {
     fn price(&self) -> Price {
         (self.0.borrow().len() as Price) * BOOK_PRICE *
             match self.0.borrow().len() {
-                2 => 0.95,
-                3 => 0.90,
-                4 => 0.80,
-                5 => 0.75,
-                _ => 1.0,
-            }
+                2 => 95,
+                3 => 90,
+                4 => 80,
+                5 => 75,
+                _ => 100,
+            } / 100
     }
 }
 
@@ -96,10 +93,9 @@ fn hash_of(basket: &GroupedBasket) -> u64 {
 
 pub fn lowest_price(books: &[Book]) -> Price {
     DecomposeGroups::new(books)
-        .map(|gb| r64(basket_price(&gb)))
+        .map(|gb| basket_price(&gb))
         .min()
-        .map(|r| r.raw())
-        .unwrap_or(0.0)
+        .unwrap_or(0)
 }
 
 struct DecomposeGroups {
