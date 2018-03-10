@@ -21,7 +21,7 @@ fn normalize(d: &Domino) -> Domino {
     }
 }
 
-fn check(input: &Vec<Domino>) -> CheckResult {
+fn check(input: &[Domino]) -> CheckResult {
     let output = match dominoes::chain(input) {
         None => return GotInvalid,
         Some(o) => o
@@ -64,7 +64,7 @@ fn check(input: &Vec<Domino>) -> CheckResult {
     }
 }
 
-fn assert_correct(input: &Vec<Domino>) {
+fn assert_correct(input: &[Domino]) {
     match check(&input) {
         Correct => (),
         GotInvalid => panic!("Unexpectedly got invalid on input {:?}", input),

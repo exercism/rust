@@ -68,7 +68,7 @@ impl AvailabilityTable {
     }
 }
 
-pub fn chain(dominoes: &Vec<Domino>) -> Option<Vec<Domino>> {
+pub fn chain(dominoes: &[Domino]) -> Option<Vec<Domino>> {
     match dominoes.len() {
         0 => Some(vec!()),
         1 => if dominoes[0].0 == dominoes[0].1 { Some(vec![dominoes[0]]) } else { None },
@@ -100,8 +100,8 @@ pub fn chain(dominoes: &Vec<Domino>) -> Option<Vec<Domino>> {
     }
 }
 
-fn chain_worker(dominoes: &Vec<Domino>) -> Vec<Domino> {
-    let mut doms = dominoes.clone();
+fn chain_worker(dominoes: &[Domino]) -> Vec<Domino> {
+    let mut doms = dominoes.to_vec();
     let first = doms.pop().unwrap();
     let mut t = AvailabilityTable::new();
     for dom in doms.iter() {
