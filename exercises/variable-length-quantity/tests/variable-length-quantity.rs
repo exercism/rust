@@ -82,19 +82,19 @@ fn from_bytes_multiple_values() {
 #[test]
 #[ignore]
 fn incomplete_byte_sequence() {
-    assert!(vlq::from_bytes(&[0xff]).is_err());
+    assert_eq!(Err(vlq::Error::IncompleteNumber), vlq::from_bytes(&[0xff]));
 }
 
 #[test]
 #[ignore]
 fn zero_incomplete_byte_sequence() {
-    assert!(vlq::from_bytes(&[0x80]).is_err());
+    assert_eq!(Err(vlq::Error::IncompleteNumber), vlq::from_bytes(&[0x80]));
 }
 
 #[test]
 #[ignore]
 fn overflow_u32() {
-    assert!(vlq::from_bytes(&[0xff, 0xff, 0xff, 0xff, 0x7f]).is_err());
+    assert_eq!(Err(vlq::Error::Overflow), vlq::from_bytes(&[0xff, 0xff, 0xff, 0xff, 0x7f]));
 }
 
 #[test]
