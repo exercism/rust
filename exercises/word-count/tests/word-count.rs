@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 extern crate word_count;
 
-fn check_word_count(s: &str, pairs: Vec<(&str, u32)>) {
+fn check_word_count(s: &str, pairs: &[(&str, u32)]) {
     // The reason for the awkward code in here is to ensure that the failure
     // message for assert_eq! is as informative as possible. A simpler
     // solution would simply check the length of the map, and then
@@ -17,7 +17,7 @@ fn check_word_count(s: &str, pairs: Vec<(&str, u32)>) {
 
 #[test]
 fn test_count_one_word() {
-    check_word_count("word", vec![("word", 1)]);
+    check_word_count("word", &[("word", 1)]);
 }
 
 #[test]
@@ -25,9 +25,9 @@ fn test_count_one_word() {
 fn test_count_one_of_each() {
     check_word_count(
         "one of each",
-        vec![("one", 1),
-             ("of", 1),
-             ("each", 1)]);
+        &[("one", 1),
+          ("of", 1),
+          ("each", 1)]);
 }
 
 #[test]
@@ -35,11 +35,11 @@ fn test_count_one_of_each() {
 fn test_count_multiple_occurrences() {
     check_word_count(
         "one fish two fish red fish blue fish",
-        vec![("one", 1),
-             ("fish", 4),
-             ("two", 1),
-             ("red", 1),
-             ("blue", 1)]);
+        &[("one", 1),
+          ("fish", 4),
+          ("two", 1),
+          ("red", 1),
+          ("blue", 1)]);
 }
 
 #[test]
@@ -47,11 +47,11 @@ fn test_count_multiple_occurrences() {
 fn test_ignore_punctuation() {
     check_word_count(
         "car : carpet as java : javascript!!&@$%^&",
-        vec![("car", 1),
-             ("carpet", 1),
-             ("as", 1),
-             ("java", 1),
-             ("javascript", 1)]);
+        &[("car", 1),
+          ("carpet", 1),
+          ("as", 1),
+          ("java", 1),
+          ("javascript", 1)]);
 }
 
 #[test]
@@ -59,9 +59,9 @@ fn test_ignore_punctuation() {
 fn test_include_numbers() {
     check_word_count(
         "testing, 1, 2 testing",
-        vec![("testing", 2),
-             ("1", 1),
-             ("2", 1)]);
+        &[("testing", 2),
+          ("1", 1),
+          ("2", 1)]);
 }
 
 #[test]
@@ -69,6 +69,6 @@ fn test_include_numbers() {
 fn test_normalize_case() {
     check_word_count(
         "go Go GO Stop stop",
-        vec![("go", 3),
-             ("stop", 2)]);
+        &[("go", 3),
+          ("stop", 2)]);
 }

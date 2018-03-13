@@ -82,7 +82,7 @@ fn test_reverse() {
 fn test_into_vector() {
     let mut v = Vec::new();
     let mut s = SimpleLinkedList::new();
-    for i in vec![1, 2, 3] {
+    for i in 1..4 {
         v.push(i);
         s.push(i);
     }

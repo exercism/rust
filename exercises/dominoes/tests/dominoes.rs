@@ -21,7 +21,7 @@ fn normalize(d: &Domino) -> Domino {
     }
 }
 
-fn check(input: &Vec<Domino>) -> CheckResult {
+fn check(input: &[Domino]) -> CheckResult {
     let output = match dominoes::chain(input) {
         None => return GotInvalid,
         Some(o) => o
@@ -64,7 +64,7 @@ fn check(input: &Vec<Domino>) -> CheckResult {
     }
 }
 
-fn assert_correct(input: &Vec<Domino>) {
+fn assert_correct(input: &[Domino]) {
     match check(&input) {
         Correct => (),
         GotInvalid => panic!("Unexpectedly got invalid on input {:?}", input),
@@ -76,83 +76,83 @@ fn assert_correct(input: &Vec<Domino>) {
 
 #[test]
 fn empty_input_empty_output() {
-    let input = vec!();
-    assert_eq!(dominoes::chain(&input), Some(vec!()));
+    let input = &[];
+    assert_eq!(dominoes::chain(input), Some(vec!()));
 }
 
 #[test]
 #[ignore]
 fn singleton_input_singleton_output() {
-    let input = vec!((1, 1));
-    assert_correct(&input);
+    let input = &[(1, 1)];
+    assert_correct(input);
 }
 
 #[test]
 #[ignore]
 fn singleton_that_cant_be_chained() {
-    let input = vec![(1, 2)];
-    assert_eq!(dominoes::chain(&input), None);
+    let input = &[(1, 2)];
+    assert_eq!(dominoes::chain(input), None);
 }
 
 #[test]
 #[ignore]
 fn no_repeat_numbers() {
-    let input = vec!((1, 2), (3, 1), (2, 3));
-    assert_correct(&input);
+    let input = &[(1, 2), (3, 1), (2, 3)];
+    assert_correct(input);
 }
 
 #[test]
 #[ignore]
 fn can_reverse_dominoes() {
-    let input = vec![(1, 2), (1, 3), (2, 3)];
-    assert_correct(&input);
+    let input = &[(1, 2), (1, 3), (2, 3)];
+    assert_correct(input);
 }
 
 #[test]
 #[ignore]
 fn no_chains() {
-    let input = vec!((1, 2), (4, 1), (2, 3));
-    assert_eq!(dominoes::chain(&input), None);
+    let input = &[(1, 2), (4, 1), (2, 3)];
+    assert_eq!(dominoes::chain(input), None);
 }
 
 #[test]
 #[ignore]
 fn disconnected_simple() {
-    let input = vec![(1, 1), (2, 2)];
-    assert_eq!(dominoes::chain(&input), None);
+    let input = &[(1, 1), (2, 2)];
+    assert_eq!(dominoes::chain(input), None);
 }
 
 #[test]
 #[ignore]
 fn disconnected_double_loop() {
-    let input = vec![(1, 2), (2, 1), (3, 4), (4, 3)];
-    assert_eq!(dominoes::chain(&input), None);
+    let input = &[(1, 2), (2, 1), (3, 4), (4, 3)];
+    assert_eq!(dominoes::chain(input), None);
 }
 
 #[test]
 #[ignore]
 fn disconnected_single_isolated() {
-    let input = vec![(1, 2), (2, 3), (3, 1), (4, 4)];
-    assert_eq!(dominoes::chain(&input), None);
+    let input = &[(1, 2), (2, 3), (3, 1), (4, 4)];
+    assert_eq!(dominoes::chain(input), None);
 }
 
 #[test]
 #[ignore]
 fn need_backtrack() {
-    let input = vec![(1, 2), (2, 3), (3, 1), (2, 4), (2, 4)];
-    assert_correct(&input);
+    let input = &[(1, 2), (2, 3), (3, 1), (2, 4), (2, 4)];
+    assert_correct(input);
 }
 
 #[test]
 #[ignore]
 fn separate_loops() {
-    let input = vec![(1, 2), (2, 3), (3, 1), (1, 1), (2, 2), (3, 3)];
-    assert_correct(&input);
+    let input = &[(1, 2), (2, 3), (3, 1), (1, 1), (2, 2), (3, 3)];
+    assert_correct(input);
 }
 
 #[test]
 #[ignore]
 fn nine_elements() {
-    let input = vec!((1, 2), (5, 3), (3, 1), (1, 2), (2, 4), (1, 6), (2, 3), (3, 4), (5, 6));
-    assert_correct(&input);
+    let input = &[(1, 2), (5, 3), (3, 1), (1, 2), (2, 4), (1, 6), (2, 3), (3, 4), (5, 6)];
+    assert_correct(input);
 }
