@@ -83,7 +83,7 @@ fn compute_cells_take_inputs_in_the_right_order() {
 fn error_creating_compute_cell_if_input_doesnt_exist() {
     let mut dummy_reactor = Reactor::new();
     let input = dummy_reactor.create_input(1);
-    assert!(Reactor::new().create_compute(&[input], |_| 0).is_err());
+    assert_eq!(Reactor::new().create_compute(&[input], |_| 0), Err(input));
 }
 
 #[test]
@@ -94,7 +94,7 @@ fn do_not_break_cell_if_creating_compute_cell_with_valid_and_invalid_input() {
     let dummy_cell = dummy_reactor.create_input(2);
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    assert!(reactor.create_compute(&[input, dummy_cell], |_| 0).is_err());
+    assert_eq!(reactor.create_compute(&[input, dummy_cell], |_| 0), Err(dummy_cell));
     assert!(reactor.set_value(input, 5).is_ok());
     assert_eq!(reactor.value(input), Some(5));
 }
