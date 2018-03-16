@@ -89,14 +89,11 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
     }
 
     pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: CellID, callback: F) -> Option<CallbackID> {
-        match self.cells.get_mut(id) {
-            Some(c) => {
-                c.callbacks_issued += 1;
-                c.callbacks.insert(c.callbacks_issued, Box::new(callback));
-                Some(c.callbacks_issued)
-            },
-            None => None,
-        }
+        self.cells.get_mut(id).map(|c| {
+            c.callbacks_issued += 1;
+            c.callbacks.insert(c.callbacks_issued, Box::new(callback));
+            c.callbacks_issued
+        })
     }
 
     pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), &'static str> {
