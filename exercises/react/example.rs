@@ -9,6 +9,12 @@ pub enum SetValueError {
     ComputeCell,
 }
 
+#[derive(Debug, PartialEq)]
+pub enum RemoveCallbackError {
+    NonexistentCell,
+    NonexistentCallback,
+}
+
 struct Cell<'a, T: Copy> {
     value: T,
     last_value: T,
@@ -102,13 +108,13 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         })
     }
 
-    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), &'static str> {
+    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
         match self.cells.get_mut(cell) {
             Some(c) => match c.callbacks.remove(&callback) {
                 Some(_) => Ok(()),
-                None => Err("Can't remove nonexistent callback"),
+                None => Err(RemoveCallbackError::NonexistentCallback),
             },
-            None => Err("Can't remove callback from nonexistent cell"),
+            None => Err(RemoveCallbackError::NonexistentCell),
         }
     }
 

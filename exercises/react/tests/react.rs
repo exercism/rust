@@ -206,10 +206,10 @@ fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
     let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
     let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
     assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_some());
-    // We want the first remove to be Ok, but we don't care about the others.
+    // We want the first remove to be Ok, but the others should be errors.
     assert!(reactor.remove_callback(output, callback).is_ok());
     for _ in 1..5 {
-        assert!(reactor.remove_callback(output, callback).is_err());
+        assert_eq!(reactor.remove_callback(output, callback), Err(RemoveCallbackError::NonexistentCallback));
     }
 
     assert!(reactor.set_value(input, 2).is_ok());

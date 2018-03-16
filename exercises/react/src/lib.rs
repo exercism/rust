@@ -11,6 +11,12 @@ pub enum SetValueError {
     ComputeCell,
 }
 
+#[derive(Debug, PartialEq)]
+pub enum RemoveCallbackError {
+    NonexistentCell,
+    NonexistentCallback,
+}
+
 pub struct Reactor<T> {
     // Just so that the compiler doesn't complain about an unused type parameter.
     // You probably want to delete this field.
@@ -89,11 +95,10 @@ impl <T: Copy + PartialEq> Reactor<T> {
 
     // Removes the specified callback, using an ID returned from add_callback.
     //
-    // Return an Err (and you can change the error type) if either the cell or callback
-    // does not exist.
+    // Returns an Err if either the cell or callback does not exist.
     //
     // A removed callback should no longer be called.
-    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), ()> {
+    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
         unimplemented!()
     }
 }
