@@ -56,7 +56,7 @@ fn an_input_cells_value_can_be_set() {
 fn error_setting_a_nonexistent_input_cell() {
     let mut dummy_reactor = Reactor::new();
     let input = dummy_reactor.create_input(1);
-    assert!(Reactor::new().set_value(input, 0).is_err());
+    assert_eq!(Reactor::new().set_value(input, 0), Err(SetValueError::NonexistentCell));
 }
 
 #[test]
@@ -129,7 +129,7 @@ fn error_setting_a_compute_cell() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&[input], |_| 0).unwrap();
-    assert!(reactor.set_value(output, 3).is_err());
+    assert_eq!(reactor.set_value(output, 3), Err(SetValueError::ComputeCell));
 }
 
 #[test]

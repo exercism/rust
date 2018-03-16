@@ -3,6 +3,12 @@ use std::collections::HashMap;
 pub type CellID = usize;
 pub type CallbackID = usize;
 
+#[derive(Debug, PartialEq)]
+pub enum SetValueError {
+    NonexistentCell,
+    ComputeCell,
+}
+
 struct Cell<'a, T: Copy> {
     value: T,
     last_value: T,
@@ -68,16 +74,16 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         self.cells.get(id).map(|c| c.value)
     }
 
-    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), &'static str> {
+    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), SetValueError> {
         match self.cells.get_mut(id) {
             Some(c) => match c.cell_type {
                 CellType::Input => {
                     c.value = new_value;
                     Ok(c.dependents.clone())
                 },
-                CellType::Compute(_, _) => Err("Can't set compute cell value directly"),
+                CellType::Compute(_, _) => Err(SetValueError::ComputeCell),
             },
-            None => Err("Can't set nonexistent cell"),
+            None => Err(SetValueError::NonexistentCell),
         }.map(|deps| {
             for &d in deps.iter() {
                 self.update_dependent(d);
