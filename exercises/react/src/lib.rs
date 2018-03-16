@@ -65,7 +65,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
 
     // Adds a callback to the specified compute cell.
     //
-    // Return an Err (and you can change the error type) if the cell does not exist.
+    // Returns the ID of the just-added callback, or None if the cell doesn't exist.
     //
     // Callbacks on input cells will not be tested.
     //
@@ -75,7 +75,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // * Exactly once if the compute cell's value changed as a result of the set_value call.
     //   The value passed to the callback should be the final value of the compute cell after the
     //   set_value call.
-    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, id: CellID, callback: F) -> Result<CallbackID, ()> {
+    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, id: CellID, callback: F) -> Option<CallbackID> {
         unimplemented!()
     }
 

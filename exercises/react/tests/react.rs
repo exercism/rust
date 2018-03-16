@@ -139,7 +139,7 @@ fn compute_cells_fire_callbacks() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_ok());
+    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
     assert!(reactor.set_value(input, 3).is_ok());
     cb.expect_to_have_been_called_with(4);
 }
@@ -150,7 +150,7 @@ fn error_adding_callback_to_nonexistent_cell() {
     let mut dummy_reactor = Reactor::new();
     let input = dummy_reactor.create_input(1);
     let output = dummy_reactor.create_compute(&[input], |_| 0).unwrap();
-    assert!(Reactor::new().add_callback(output, |_: usize| println!("hi")).is_err());
+    assert_eq!(Reactor::new().add_callback(output, |_: usize| println!("hi")), None);
 }
 
 #[test]
@@ -160,7 +160,7 @@ fn callbacks_only_fire_on_change() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&[input], |v| if v[0] < 3 { 111 } else { 222 }).unwrap();
-    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_ok());
+    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
 
     assert!(reactor.set_value(input, 2).is_ok());
     cb.expect_not_to_have_been_called();
@@ -180,14 +180,14 @@ fn callbacks_can_be_added_and_removed() {
     let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
 
     let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
-    assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_ok());
+    assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_some());
 
     assert!(reactor.set_value(input, 31).is_ok());
     cb1.expect_to_have_been_called_with(32);
     cb2.expect_to_have_been_called_with(32);
 
     assert!(reactor.remove_callback(output, callback).is_ok());
-    assert!(reactor.add_callback(output, |v| cb3.callback_called(v)).is_ok());
+    assert!(reactor.add_callback(output, |v| cb3.callback_called(v)).is_some());
 
     assert!(reactor.set_value(input, 41).is_ok());
     cb1.expect_not_to_have_been_called();
@@ -205,7 +205,7 @@ fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
     let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
-    assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_ok());
+    assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_some());
     // We want the first remove to be Ok, but we don't care about the others.
     assert!(reactor.remove_callback(output, callback).is_ok());
     for _ in 1..5 {
@@ -227,7 +227,7 @@ fn callbacks_should_only_be_called_once_even_if_multiple_dependencies_change() {
     let minus_one1 = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
     let minus_one2 = reactor.create_compute(&[minus_one1], |v| v[0] - 1).unwrap();
     let output = reactor.create_compute(&[plus_one, minus_one2], |v| v[0] * v[1]).unwrap();
-    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_ok());
+    assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
     assert!(reactor.set_value(input, 4).is_ok());
     cb.expect_to_have_been_called_with(10);
 }
@@ -241,7 +241,7 @@ fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt
     let plus_one = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
     let minus_one = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
     let always_two = reactor.create_compute(&[plus_one, minus_one], |v| v[0] - v[1]).unwrap();
-    assert!(reactor.add_callback(always_two, |v| cb.callback_called(v)).is_ok());
+    assert!(reactor.add_callback(always_two, |v| cb.callback_called(v)).is_some());
     for i in 2..5 {
         assert!(reactor.set_value(input, i).is_ok());
         cb.expect_not_to_have_been_called();
