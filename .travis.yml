@@ -8,7 +8,7 @@ script:
 - "./bin/fetch-configlet"
 - "sh ./_test/ensure-readmes-are-updated.sh"
 - "./bin/configlet lint ."
-sudo: false
+sudo: true
 rust:
   - stable
   - beta
