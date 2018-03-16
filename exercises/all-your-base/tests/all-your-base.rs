@@ -137,7 +137,8 @@ fn invalid_positive_digit() {
     let input_base = 2;
     let input_digits = &[1, 2, 1, 0, 1, 0];
     let output_base = 10;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
+    assert_eq!(ayb::convert(input_digits, input_base, output_base),
+               Err(ayb::Error::InvalidDigit(2)));
 }
 
 #[test]
@@ -146,7 +147,8 @@ fn input_base_is_one() {
     let input_base = 1;
     let input_digits = &[];
     let output_base = 10;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
+    assert_eq!(ayb::convert(input_digits, input_base, output_base),
+               Err(ayb::Error::InvalidInputBase));
 }
 
 #[test]
@@ -155,7 +157,8 @@ fn output_base_is_one() {
     let input_base = 2;
     let input_digits = &[1, 0, 1, 0, 1, 0];
     let output_base = 1;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
+    assert_eq!(ayb::convert(input_digits, input_base, output_base),
+               Err(ayb::Error::InvalidOutputBase));
 }
 
 #[test]
@@ -164,7 +167,8 @@ fn input_base_is_zero() {
     let input_base = 0;
     let input_digits = &[];
     let output_base = 10;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
+    assert_eq!(ayb::convert(input_digits, input_base, output_base),
+               Err(ayb::Error::InvalidInputBase));
 }
 
 #[test]
@@ -173,5 +177,6 @@ fn output_base_is_zero() {
     let input_base = 10;
     let input_digits = &[7];
     let output_base = 0;
-    assert!(ayb::convert(input_digits, input_base, output_base).is_err());
+    assert_eq!(ayb::convert(input_digits, input_base, output_base),
+               Err(ayb::Error::InvalidOutputBase));
 }

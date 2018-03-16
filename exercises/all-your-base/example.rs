@@ -1,5 +1,12 @@
 pub type Digit = u32;
 
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    InvalidInputBase,
+    InvalidOutputBase,
+    InvalidDigit(Digit),
+}
+
 ///
 /// Convert a number between two bases.
 ///
@@ -31,15 +38,18 @@ pub type Digit = u32;
 ///  * Never output leading 0 digits. However, your function must be able to
 ///     process input with leading 0 digits.
 ///
-pub fn convert<P: AsRef<[Digit]>>(digits: P, from_base: Digit, to_base: Digit) -> Result<Vec<Digit>, &'static str> {
+pub fn convert<P: AsRef<[Digit]>>(digits: P, from_base: Digit, to_base: Digit) -> Result<Vec<Digit>, Error> {
     // check that both bases are in the correct range
-    if from_base < 2 || to_base < 2 {
-        return Err("Invalid base");
+    if from_base < 2 {
+        return Err(Error::InvalidInputBase);
+    }
+    if to_base < 2 {
+        return Err(Error::InvalidOutputBase);
     }
 
     // check that all digits are in the correct range specified by the base
-    if digits.as_ref().iter().any(|&num| num >= from_base) {
-        return Err("Digits invalid for input base");
+    if let Some(&invalid) = digits.as_ref().iter().find(|&num| *num >= from_base) {
+        return Err(Error::InvalidDigit(invalid));
     }
 
     // convert all digits into a single large number

@@ -1,3 +1,10 @@
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    InvalidInputBase,
+    InvalidOutputBase,
+    InvalidDigit(u32),
+}
+
 ///
 /// Convert a number between two bases.
 ///
