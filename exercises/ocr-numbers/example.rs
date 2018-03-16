@@ -1,13 +1,17 @@
 use std::collections::BTreeMap;
-use std::str::Lines;
 
-fn lines_valid(lines: &Lines) -> bool {
-    lines.clone().count() % 4 == 0 && lines.clone().all(|line| line.chars().count() % 3 == 0)
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    InvalidRowCount,
+    InvalidColumnCount,
 }
 
-pub fn convert(input: &str) -> Result<String, ()> {
-    if !lines_valid(&input.lines()) {
-        return Err(());
+pub fn convert(input: &str) -> Result<String, Error> {
+    if input.lines().count() % 4 != 0 {
+        return Err(Error::InvalidRowCount);
+    }
+    if input.lines().any(|line| line.chars().count() % 3 != 0) {
+        return Err(Error::InvalidColumnCount);
     }
 
     let y = input.lines().collect::<Vec<_>>();
