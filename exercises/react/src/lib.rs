@@ -5,6 +5,12 @@
 pub type CellID = ();
 pub type CallbackID = ();
 
+#[derive(Debug, PartialEq)]
+pub enum SetValueError {
+    NonexistentCell,
+    ComputeCell,
+}
+
 pub struct Reactor<T> {
     // Just so that the compiler doesn't complain about an unused type parameter.
     // You probably want to delete this field.
@@ -52,14 +58,16 @@ impl <T: Copy + PartialEq> Reactor<T> {
 
     // Sets the value of the specified input cell.
     //
-    // Return an Err (and you can change the error type) if the cell does not exist, or the
-    // specified cell is a compute cell, since compute cells cannot have their values directly set.
+    // Returns an Err if either:
+    // * the cell does not exist
+    // * the specified cell is a compute cell, since compute cells cannot have their values
+    //   directly set.
     //
     // Similarly, you may wonder about `get_mut(&mut self, id: CellID) -> Option<&mut Cell>`, with
     // a `set_value(&mut self, new_value: T)` method on `Cell`.
     //
     // As before, that turned out to add too much extra complexity.
-    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), ()> {
+    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), SetValueError> {
         unimplemented!()
     }
 
