@@ -88,14 +88,14 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         })
     }
 
-    pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: CellID, callback: F) -> Result<CallbackID, &'static str> {
+    pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: CellID, callback: F) -> Option<CallbackID> {
         match self.cells.get_mut(id) {
             Some(c) => {
                 c.callbacks_issued += 1;
                 c.callbacks.insert(c.callbacks_issued, Box::new(callback));
-                Ok(c.callbacks_issued)
+                Some(c.callbacks_issued)
             },
-            None => Err("Can't add callback to nonexistent cell"),
+            None => None,
         }
     }
 
