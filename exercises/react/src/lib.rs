@@ -28,12 +28,14 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // You do not need to reject compute functions that expect more arguments than there are
     // dependencies (how would you check for this, anyway?).
     //
-    // Return an Err (and you can change the error type) if any dependency doesn't exist.
+    // If any dependency doesn't exist, returns an Err with that nonexistent dependency.
+    // (If multiple dependencies do not exist, exactly which one is returned is not defined and
+    // will not be tested)
     //
     // Notice that there is no way to *remove* a cell.
     // This means that you may assume, without checking, that if the dependencies exist at creation
     // time they will continue to exist as long as the Reactor exists.
-    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, ()> {
+    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, CellID> {
         unimplemented!()
     }
 
