@@ -3,6 +3,18 @@ use std::collections::HashMap;
 pub type CellID = usize;
 pub type CallbackID = usize;
 
+#[derive(Debug, PartialEq)]
+pub enum SetValueError {
+    NonexistentCell,
+    ComputeCell,
+}
+
+#[derive(Debug, PartialEq)]
+pub enum RemoveCallbackError {
+    NonexistentCell,
+    NonexistentCallback,
+}
+
 struct Cell<'a, T: Copy> {
     value: T,
     last_value: T,
@@ -46,11 +58,13 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         self.cells.len() - 1
     }
 
-    pub fn create_compute<F: Fn(&[T]) -> T + 'a>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, &'static str> {
+    pub fn create_compute<F: Fn(&[T]) -> T + 'a>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, CellID> {
         // Check all dependencies' validity before modifying any of them,
         // so that we don't perform an incorrect partial write.
-        if !dependencies.iter().all(|&id| id < self.cells.len()) {
-            return Err("Nonexistent input");
+        for &dep in dependencies {
+            if dep >= self.cells.len() {
+                return Err(dep);
+            }
         }
         let new_id = self.cells.len();
         for &id in dependencies {
@@ -66,16 +80,16 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         self.cells.get(id).map(|c| c.value)
     }
 
-    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), &'static str> {
+    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), SetValueError> {
         match self.cells.get_mut(id) {
             Some(c) => match c.cell_type {
                 CellType::Input => {
                     c.value = new_value;
                     Ok(c.dependents.clone())
                 },
-                CellType::Compute(_, _) => Err("Can't set compute cell value directly"),
+                CellType::Compute(_, _) => Err(SetValueError::ComputeCell),
             },
-            None => Err("Can't set nonexistent cell"),
+            None => Err(SetValueError::NonexistentCell),
         }.map(|deps| {
             for &d in deps.iter() {
                 self.update_dependent(d);
@@ -88,24 +102,21 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         })
     }
 
-    pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: CellID, callback: F) -> Result<CallbackID, &'static str> {
-        match self.cells.get_mut(id) {
-            Some(c) => {
-                c.callbacks_issued += 1;
-                c.callbacks.insert(c.callbacks_issued, Box::new(callback));
-                Ok(c.callbacks_issued)
-            },
-            None => Err("Can't add callback to nonexistent cell"),
-        }
+    pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: CellID, callback: F) -> Option<CallbackID> {
+        self.cells.get_mut(id).map(|c| {
+            c.callbacks_issued += 1;
+            c.callbacks.insert(c.callbacks_issued, Box::new(callback));
+            c.callbacks_issued
+        })
     }
 
-    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), &'static str> {
+    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
         match self.cells.get_mut(cell) {
             Some(c) => match c.callbacks.remove(&callback) {
                 Some(_) => Ok(()),
-                None => Err("Can't remove nonexistent callback"),
+                None => Err(RemoveCallbackError::NonexistentCallback),
             },
-            None => Err("Can't remove callback from nonexistent cell"),
+            None => Err(RemoveCallbackError::NonexistentCell),
         }
     }
 
