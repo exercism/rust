@@ -3,8 +3,8 @@
 
 #[derive(Debug, PartialEq)]
 pub enum Error {
-    InvalidRowCount,
-    InvalidColumnCount,
+    InvalidRowCount(usize),
+    InvalidColumnCount(usize),
 }
 
 #[allow(unused_variables)]

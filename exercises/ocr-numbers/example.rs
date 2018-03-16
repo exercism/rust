@@ -2,16 +2,20 @@ use std::collections::BTreeMap;
 
 #[derive(Debug, PartialEq)]
 pub enum Error {
-    InvalidRowCount,
-    InvalidColumnCount,
+    InvalidRowCount(usize),
+    InvalidColumnCount(usize),
 }
 
 pub fn convert(input: &str) -> Result<String, Error> {
-    if input.lines().count() % 4 != 0 {
-        return Err(Error::InvalidRowCount);
+    let line_count = input.lines().count();
+    if line_count % 4 != 0 {
+        return Err(Error::InvalidRowCount(line_count));
     }
-    if input.lines().any(|line| line.chars().count() % 3 != 0) {
-        return Err(Error::InvalidColumnCount);
+    for line in input.lines() {
+        let char_count = line.chars().count();
+        if char_count % 3 != 0 {
+            return Err(Error::InvalidColumnCount(char_count));
+        }
     }
 
     let y = input.lines().collect::<Vec<_>>();
