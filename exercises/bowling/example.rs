@@ -100,7 +100,7 @@ impl BowlingGame {
         if pins > 10 {
             Err("Greater than 10 pins")
         } else {
-            if self.score().is_ok() {
+            if self.score().is_some() {
                 return Err("Game Finished. No more rolls.");
             }
 
@@ -120,11 +120,11 @@ impl BowlingGame {
         }
     }
 
-    pub fn score(&self) -> Result<u16, &'static str> {
+    pub fn score(&self) -> Option<u16> {
         if !self.is_done() {
-            Err("Game Incomplete")
+            None
         } else {
-            Ok(self.frames.iter().fold(0, |acc, r| acc + r.score()))
+            Some(self.frames.iter().fold(0, |acc, r| acc + r.score()))
         }
     }
 
