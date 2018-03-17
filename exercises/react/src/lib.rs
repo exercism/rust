@@ -1,7 +1,29 @@
 // Because these are passed without & to some functions,
-// it will probably be necessary for these two types to be Copy.
-pub type CellID = ();
+// it will probably be necessary for these three types to be Copy.
+/// `InputCellID` is a unique identifier for an input cell.
+pub type InputCellID = ();
+/// `ComputeCellID` is a unique identifier for a compute cell.
+/// Values of type `InputCellID` and `ComputeCellID` should not be mutually assignable,
+/// demonstrated by the following tests:
+///
+/// ```compile_fail
+/// let mut r = react::Reactor::new();
+/// let input: react::ComputeCellID = r.create_input(111);
+/// ```
+///
+/// ```compile_fail
+/// let mut r = react::Reactor::new();
+/// let input = r.create_input(111);
+/// let compute: react::InputCellID = r.create_compute(&[react::CellID::Input(input)], |_| 222).unwrap();
+/// ```
+pub type ComputeCellID = ();
 pub type CallbackID = ();
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CellID {
+    Input(InputCellID),
+    Compute(ComputeCellID),
+}
 
 #[derive(Debug, PartialEq)]
 pub enum SetValueError {
@@ -28,7 +50,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     }
 
     // Creates an input cell with the specified initial value, returning its ID.
-    pub fn create_input(&mut self, _initial: T) -> CellID {
+    pub fn create_input(&mut self, _initial: T) -> InputCellID {
         unimplemented!()
     }
 
@@ -45,7 +67,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // Notice that there is no way to *remove* a cell.
     // This means that you may assume, without checking, that if the dependencies exist at creation
     // time they will continue to exist as long as the Reactor exists.
-    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, _dependencies: &[CellID], _compute_func: F) -> Result<CellID, CellID> {
+    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, _dependencies: &[CellID], _compute_func: F) -> Result<ComputeCellID, CellID> {
         unimplemented!()
     }
 
@@ -71,7 +93,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // a `set_value(&mut self, new_value: T)` method on `Cell`.
     //
     // As before, that turned out to add too much extra complexity.
-    pub fn set_value(&mut self, _id: CellID, _new_value: T) -> Result<(), SetValueError> {
+    pub fn set_value(&mut self, _id: InputCellID, _new_value: T) -> Result<(), SetValueError> {
         unimplemented!()
     }
 
@@ -87,7 +109,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // * Exactly once if the compute cell's value changed as a result of the set_value call.
     //   The value passed to the callback should be the final value of the compute cell after the
     //   set_value call.
-    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, _id: CellID, _callback: F) -> Option<CallbackID> {
+    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, _id: ComputeCellID, _callback: F) -> Option<CallbackID> {
         unimplemented!()
     }
 
@@ -96,7 +118,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // Returns an Err if either the cell or callback does not exist.
     //
     // A removed callback should no longer be called.
-    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
+    pub fn remove_callback(&mut self, cell: ComputeCellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
         unimplemented!(
             "Remove the callback identified by the CallbackID {:?} from the cell {:?}",
             callback,

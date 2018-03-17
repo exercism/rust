@@ -6,7 +6,7 @@ use react::*;
 fn input_cells_have_a_value() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(10);
-    assert_eq!(reactor.value(input), Some(10));
+    assert_eq!(reactor.value(CellID::Input(input)), Some(10));
 }
 
 #[test]
@@ -15,7 +15,7 @@ fn an_input_cells_value_can_be_set() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(4);
     assert!(reactor.set_value(input, 20).is_ok());
-    assert_eq!(reactor.value(input), Some(20));
+    assert_eq!(reactor.value(CellID::Input(input)), Some(20));
 }
 
 #[test]
@@ -31,8 +31,8 @@ fn error_setting_a_nonexistent_input_cell() {
 fn compute_cells_calculate_initial_value() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-    assert_eq!(reactor.value(output), Some(2));
+    let output = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
+    assert_eq!(reactor.value(CellID::Compute(output)), Some(2));
 }
 
 #[test]
@@ -41,8 +41,8 @@ fn compute_cells_take_inputs_in_the_right_order() {
     let mut reactor = Reactor::new();
     let one = reactor.create_input(1);
     let two = reactor.create_input(2);
-    let output = reactor.create_compute(&[one, two], |v| v[0] + v[1] * 10).unwrap();
-    assert_eq!(reactor.value(output), Some(21));
+    let output = reactor.create_compute(&[CellID::Input(one), CellID::Input(two)], |v| v[0] + v[1] * 10).unwrap();
+    assert_eq!(reactor.value(CellID::Compute(output)), Some(21));
 }
 
 #[test]
@@ -50,7 +50,7 @@ fn compute_cells_take_inputs_in_the_right_order() {
 fn error_creating_compute_cell_if_input_doesnt_exist() {
     let mut dummy_reactor = Reactor::new();
     let input = dummy_reactor.create_input(1);
-    assert_eq!(Reactor::new().create_compute(&[input], |_| 0), Err(input));
+    assert_eq!(Reactor::new().create_compute(&[CellID::Input(input)], |_| 0), Err(CellID::Input(input)));
 }
 
 #[test]
@@ -61,9 +61,9 @@ fn do_not_break_cell_if_creating_compute_cell_with_valid_and_invalid_input() {
     let dummy_cell = dummy_reactor.create_input(2);
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    assert_eq!(reactor.create_compute(&[input, dummy_cell], |_| 0), Err(dummy_cell));
+    assert_eq!(reactor.create_compute(&[CellID::Input(input), CellID::Input(dummy_cell)], |_| 0), Err(CellID::Input(dummy_cell)));
     assert!(reactor.set_value(input, 5).is_ok());
-    assert_eq!(reactor.value(input), Some(5));
+    assert_eq!(reactor.value(CellID::Input(input)), Some(5));
 }
 
 #[test]
@@ -71,10 +71,10 @@ fn do_not_break_cell_if_creating_compute_cell_with_valid_and_invalid_input() {
 fn compute_cells_update_value_when_dependencies_are_changed() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-    assert_eq!(reactor.value(output), Some(2));
+    let output = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
+    assert_eq!(reactor.value(CellID::Compute(output)), Some(2));
     assert!(reactor.set_value(input, 3).is_ok());
-    assert_eq!(reactor.value(output), Some(4));
+    assert_eq!(reactor.value(CellID::Compute(output)), Some(4));
 }
 
 #[test]
@@ -82,21 +82,12 @@ fn compute_cells_update_value_when_dependencies_are_changed() {
 fn compute_cells_can_depend_on_other_compute_cells() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let times_two = reactor.create_compute(&[input], |v| v[0] * 2).unwrap();
-    let times_thirty = reactor.create_compute(&[input], |v| v[0] * 30).unwrap();
-    let output = reactor.create_compute(&[times_two, times_thirty], |v| v[0] + v[1]).unwrap();
-    assert_eq!(reactor.value(output), Some(32));
+    let times_two = reactor.create_compute(&[CellID::Input(input)], |v| v[0] * 2).unwrap();
+    let times_thirty = reactor.create_compute(&[CellID::Input(input)], |v| v[0] * 30).unwrap();
+    let output = reactor.create_compute(&[CellID::Compute(times_two), CellID::Compute(times_thirty)], |v| v[0] + v[1]).unwrap();
+    assert_eq!(reactor.value(CellID::Compute(output)), Some(32));
     assert!(reactor.set_value(input, 3).is_ok());
-    assert_eq!(reactor.value(output), Some(96));
-}
-
-#[test]
-#[ignore]
-fn error_setting_a_compute_cell() {
-    let mut reactor = Reactor::new();
-    let input = reactor.create_input(1);
-    let output = reactor.create_compute(&[input], |_| 0).unwrap();
-    assert_eq!(reactor.set_value(output, 3), Err(SetValueError::ComputeCell));
+    assert_eq!(reactor.value(CellID::Compute(output)), Some(96));
 }
 
 /// A CallbackRecorder helps tests whether callbacks get called correctly.
@@ -138,7 +129,7 @@ fn compute_cells_fire_callbacks() {
     let cb = CallbackRecorder::new();
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+    let output = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
     assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
     assert!(reactor.set_value(input, 3).is_ok());
     cb.expect_to_have_been_called_with(4);
@@ -149,7 +140,7 @@ fn compute_cells_fire_callbacks() {
 fn error_adding_callback_to_nonexistent_cell() {
     let mut dummy_reactor = Reactor::new();
     let input = dummy_reactor.create_input(1);
-    let output = dummy_reactor.create_compute(&[input], |_| 0).unwrap();
+    let output = dummy_reactor.create_compute(&[CellID::Input(input)], |_| 0).unwrap();
     assert_eq!(Reactor::new().add_callback(output, |_: usize| println!("hi")), None);
 }
 
@@ -159,7 +150,7 @@ fn callbacks_only_fire_on_change() {
     let cb = CallbackRecorder::new();
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let output = reactor.create_compute(&[input], |v| if v[0] < 3 { 111 } else { 222 }).unwrap();
+    let output = reactor.create_compute(&[CellID::Input(input)], |v| if v[0] < 3 { 111 } else { 222 }).unwrap();
     assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
 
     assert!(reactor.set_value(input, 2).is_ok());
@@ -177,7 +168,7 @@ fn callbacks_can_be_added_and_removed() {
 
     let mut reactor = Reactor::new();
     let input = reactor.create_input(11);
-    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+    let output = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
 
     let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
     assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_some());
@@ -203,7 +194,7 @@ fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
 
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let output = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
+    let output = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
     let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
     assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_some());
     // We want the first remove to be Ok, but the others should be errors.
@@ -223,10 +214,10 @@ fn callbacks_should_only_be_called_once_even_if_multiple_dependencies_change() {
     let cb = CallbackRecorder::new();
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let plus_one = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-    let minus_one1 = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
-    let minus_one2 = reactor.create_compute(&[minus_one1], |v| v[0] - 1).unwrap();
-    let output = reactor.create_compute(&[plus_one, minus_one2], |v| v[0] * v[1]).unwrap();
+    let plus_one = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
+    let minus_one1 = reactor.create_compute(&[CellID::Input(input)], |v| v[0] - 1).unwrap();
+    let minus_one2 = reactor.create_compute(&[CellID::Compute(minus_one1)], |v| v[0] - 1).unwrap();
+    let output = reactor.create_compute(&[CellID::Compute(plus_one), CellID::Compute(minus_one2)], |v| v[0] * v[1]).unwrap();
     assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
     assert!(reactor.set_value(input, 4).is_ok());
     cb.expect_to_have_been_called_with(10);
@@ -238,9 +229,9 @@ fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt
     let cb = CallbackRecorder::new();
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
-    let plus_one = reactor.create_compute(&[input], |v| v[0] + 1).unwrap();
-    let minus_one = reactor.create_compute(&[input], |v| v[0] - 1).unwrap();
-    let always_two = reactor.create_compute(&[plus_one, minus_one], |v| v[0] - v[1]).unwrap();
+    let plus_one = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
+    let minus_one = reactor.create_compute(&[CellID::Input(input)], |v| v[0] - 1).unwrap();
+    let always_two = reactor.create_compute(&[CellID::Compute(plus_one), CellID::Compute(minus_one)], |v| v[0] - v[1]).unwrap();
     assert!(reactor.add_callback(always_two, |v| cb.callback_called(v)).is_some());
     for i in 2..5 {
         assert!(reactor.set_value(input, i).is_ok());
@@ -258,12 +249,12 @@ fn test_adder_with_boolean_values() {
     let b = reactor.create_input(false);
     let carry_in = reactor.create_input(false);
 
-    let a_xor_b = reactor.create_compute(&[a, b], |v| v[0] ^ v[1]).unwrap();
-    let sum = reactor.create_compute(&[a_xor_b, carry_in], |v| v[0] ^ v[1]).unwrap();
+    let a_xor_b = reactor.create_compute(&[CellID::Input(a), CellID::Input(b)], |v| v[0] ^ v[1]).unwrap();
+    let sum = reactor.create_compute(&[CellID::Compute(a_xor_b), CellID::Input(carry_in)], |v| v[0] ^ v[1]).unwrap();
 
-    let a_xor_b_and_cin = reactor.create_compute(&[a_xor_b, carry_in], |v| v[0] && v[1]).unwrap();
-    let a_and_b = reactor.create_compute(&[a, b], |v| v[0] && v[1]).unwrap();
-    let carry_out = reactor.create_compute(&[a_xor_b_and_cin, a_and_b], |v| v[0] || v[1]).unwrap();
+    let a_xor_b_and_cin = reactor.create_compute(&[CellID::Compute(a_xor_b), CellID::Input(carry_in)], |v| v[0] && v[1]).unwrap();
+    let a_and_b = reactor.create_compute(&[CellID::Input(a), CellID::Input(b)], |v| v[0] && v[1]).unwrap();
+    let carry_out = reactor.create_compute(&[CellID::Compute(a_xor_b_and_cin), CellID::Compute(a_and_b)], |v| v[0] || v[1]).unwrap();
 
     let tests = &[
         (false, false, false, false, false),
@@ -281,7 +272,7 @@ fn test_adder_with_boolean_values() {
         assert!(reactor.set_value(b, bval).is_ok());
         assert!(reactor.set_value(carry_in, cinval).is_ok());
 
-        assert_eq!(reactor.value(sum), Some(expected_sum));
-        assert_eq!(reactor.value(carry_out), Some(expected_cout));
+        assert_eq!(reactor.value(CellID::Compute(sum)), Some(expected_sum));
+        assert_eq!(reactor.value(CellID::Compute(carry_out)), Some(expected_cout));
     }
 }
