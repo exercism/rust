@@ -1,5 +1,5 @@
 use std::collections::HashMap;
 
-pub fn solve(_: &str) -> Option<HashMap<char, u8>> {
-    unimplemented!()
+pub fn solve(input: &str) -> Option<HashMap<char, u8>> {
+    unimplemented!("Solve the alphametric {}", input)
 }

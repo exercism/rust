@@ -1,3 +1,3 @@
-pub fn encrypt(_: &str) -> String {
-    unimplemented!()
+pub fn encrypt(input: &str) -> String {
+    unimplemented!("Encrypt {} using a square code", input)
 }

@@ -1,3 +1,3 @@
-pub fn lowest_price(_: &[usize]) -> usize {
-    unimplemented!()
+pub fn lowest_price(input: &[usize]) -> usize {
+    unimplemented!("Find the lowest price of the bookbasket: {}", input)
 }
