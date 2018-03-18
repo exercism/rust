@@ -1,3 +1,3 @@
-pub fn series(_digits: &str, _len: usize) -> Vec<String> {
-    unimplemented!()
+pub fn series(digits: &str, len: usize) -> Vec<String> {
+    unimplemented!("What are the series of length {} in string {:?}", len, digits)
 }
