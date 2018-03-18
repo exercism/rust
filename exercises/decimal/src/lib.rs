@@ -4,7 +4,7 @@ pub struct Decimal {
 }
 
 impl Decimal {
-    pub fn try_from(_: &str) -> Option<Decimal> {
-        unimplemented!()
+    pub fn try_from(input: &str) -> Option<Decimal> {
+        unimplemented!("Create a new decimal with a value of {}", input)
     }
 }
