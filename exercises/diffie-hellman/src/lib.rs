@@ -1,5 +1,5 @@
 pub fn private_key(p: u64) -> u64 {
-    unimplemented!("Pick a private key greater than and less than {}", p)
+    unimplemented!("Pick a private key greater than 1 and less than {}", p)
 }
 
 pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
