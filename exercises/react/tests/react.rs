@@ -2,39 +2,6 @@ extern crate react;
 
 use react::*;
 
-struct CallbackRecorder {
-    // Note that this `Cell` is https://doc.rust-lang.org/std/cell/
-    // a mechanism to allow internal mutability,
-    // distinct from the cells (input cells, compute cells) in the reactor
-    value: std::cell::Cell<Option<isize>>,
-}
-
-/// A CallbackRecorder helps tests whether callbacks get called correctly.
-/// You'll see it used in tests that deal with callbacks.
-/// The names should be descriptive enough so that the tests make sense,
-/// so it's not necessary to fully understand the implementation,
-/// though you are welcome to.
-impl CallbackRecorder {
-    fn new() -> Self {
-        CallbackRecorder {
-            value: std::cell::Cell::new(None),
-        }
-    }
-
-    fn expect_to_have_been_called_with(&self, v: isize) {
-        assert_ne!(self.value.get(), None, "Callback was not called, but should have been");
-        assert_eq!(self.value.replace(None), Some(v), "Callback was called with incorrect value");
-    }
-
-    fn expect_not_to_have_been_called(&self) {
-        assert_eq!(self.value.get(), None, "Callback was called, but should not have been");
-    }
-
-    fn callback_called(&self, v: isize) {
-        assert_eq!(self.value.replace(Some(v)), None, "Callback was called too many times; can't be called with {}", v);
-    }
-}
-
 #[test]
 fn input_cells_have_a_value() {
     let mut reactor = Reactor::new();
@@ -130,6 +97,39 @@ fn error_setting_a_compute_cell() {
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&[input], |_| 0).unwrap();
     assert!(reactor.set_value(output, 3).is_err());
+}
+
+struct CallbackRecorder {
+    // Note that this `Cell` is https://doc.rust-lang.org/std/cell/
+    // a mechanism to allow internal mutability,
+    // distinct from the cells (input cells, compute cells) in the reactor
+    value: std::cell::Cell<Option<isize>>,
+}
+
+/// A CallbackRecorder helps tests whether callbacks get called correctly.
+/// You'll see it used in tests that deal with callbacks.
+/// The names should be descriptive enough so that the tests make sense,
+/// so it's not necessary to fully understand the implementation,
+/// though you are welcome to.
+impl CallbackRecorder {
+    fn new() -> Self {
+        CallbackRecorder {
+            value: std::cell::Cell::new(None),
+        }
+    }
+
+    fn expect_to_have_been_called_with(&self, v: isize) {
+        assert_ne!(self.value.get(), None, "Callback was not called, but should have been");
+        assert_eq!(self.value.replace(None), Some(v), "Callback was called with incorrect value");
+    }
+
+    fn expect_not_to_have_been_called(&self) {
+        assert_eq!(self.value.get(), None, "Callback was called, but should not have been");
+    }
+
+    fn callback_called(&self, v: isize) {
+        assert_eq!(self.value.replace(Some(v)), None, "Callback was called too many times; can't be called with {}", v);
+    }
 }
 
 #[test]
