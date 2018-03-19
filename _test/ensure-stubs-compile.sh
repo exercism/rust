@@ -17,12 +17,15 @@ for dir in $repo/exercises/*/; do
       continue
     fi
 
-    # In Travis CI, we may have already compiled using the example solution.
-    # Touch the src/lib.rs file so that we surely recompile using the stub.
-    touch $dir/src/lib.rs
-
-    # Backup tests; this script will modify them.
+    # Backup tests and stub; this script will modify them.
     cp -r $dir/tests $dir/tests.orig
+    cp $dir/src/lib.rs $dir/lib.rs.orig
+
+    # This sed serves two purposes:
+    # First, in Travis CI, we may have already compiled using the example solution.
+    # Edit the src/lib.rs file so that we surely recompile using the stub.
+    # Second, ensures that the stub compiles without warnings.
+    sed -i -e '1i #![deny(warnings)]' "$dir/src/lib.rs"
 
     # Deny warnings in the tests that may result from compiling the stubs.
     # This helps avoid, for example, an overflowing literal warning
@@ -34,7 +37,8 @@ for dir in $repo/exercises/*/; do
       broken="$broken\n$exercise"
     fi
 
-    # Restore tests.
+    # Restore tests and stub.
+    mv $dir/lib.rs.orig $dir/src/lib.rs
     rm -r $dir/tests
     mv $dir/tests.orig $dir/tests
   fi
