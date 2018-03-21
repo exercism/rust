@@ -65,6 +65,14 @@ fn test_ignore_non_ascii_chars() {
 
 #[test]
 #[ignore]
+fn test_minimize_jaggedness() {
+    test("aaaa bbbb cccc d", "abcd abc abc abc");
+    test("aaaa bbbb cccc dd", "abcd abcd abc abc");
+    test("aaaa bbbb cccc ddd", "abcd abcd abcd abc");
+}
+
+#[test]
+#[ignore]
 fn test_long() {
     test(
         r#"

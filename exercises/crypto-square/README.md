@@ -47,9 +47,10 @@ imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau
 
 Output the encoded text in chunks.  Phrases that fill perfect rectangles
 `(r X c)` should be output `c` chunks of `r` length, separated by spaces.
-Phrases that do not fill perfect rectangles will have `n` empty spaces.
-Those spaces should be distributed evenly, added to the end of the last
-`n` chunks.
+Phrases that do not fill perfect rectangles will be `n` characters short.
+To minimize the jaggedness, the missing chars should be distributed evenly,
+added to the end of the last `n` chunks. The bottom row(s) should be, at most,
+one char short of the top row(s).
 
 ```text
 imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau 
