@@ -28,7 +28,7 @@ fn test_invalid_character_as_check_digit() {
 #[test]
 #[ignore]
 fn test_invalid_character_in_isbn() {
-    assert!(!is_valid_isbn("3-598-2K507-0"));
+    assert!(!is_valid_isbn("3-598-P1581-X"));
 }
 
 #[test]
