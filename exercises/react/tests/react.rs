@@ -99,6 +99,11 @@ fn error_setting_a_compute_cell() {
     assert!(reactor.set_value(output, 3).is_err());
 }
 
+/// A CallbackRecorder helps tests whether callbacks get called correctly.
+/// You'll see it used in tests that deal with callbacks.
+/// The names should be descriptive enough so that the tests make sense,
+/// so it's not necessary to fully understand the implementation,
+/// though you are welcome to.
 struct CallbackRecorder {
     // Note that this `Cell` is https://doc.rust-lang.org/std/cell/
     // a mechanism to allow internal mutability,
@@ -106,11 +111,6 @@ struct CallbackRecorder {
     value: std::cell::Cell<Option<isize>>,
 }
 
-/// A CallbackRecorder helps tests whether callbacks get called correctly.
-/// You'll see it used in tests that deal with callbacks.
-/// The names should be descriptive enough so that the tests make sense,
-/// so it's not necessary to fully understand the implementation,
-/// though you are welcome to.
 impl CallbackRecorder {
     fn new() -> Self {
         CallbackRecorder {
