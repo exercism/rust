@@ -1,3 +1,10 @@
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    InvalidInputBase,
+    InvalidOutputBase,
+    InvalidDigit(u32),
+}
+
 ///
 /// Convert a number between two bases.
 ///
@@ -30,6 +37,6 @@
 ///     process input with leading 0 digits.
 ///
 #[allow(unused_variables)]
-pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, ()> {
+pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
     unimplemented!()
 }
