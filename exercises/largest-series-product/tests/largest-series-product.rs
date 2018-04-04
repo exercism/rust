@@ -65,7 +65,7 @@ fn returns_zero_if_all_products_are_zero() {
 #[test]
 #[ignore]
 fn a_span_is_longer_than_number_is_an_error() {
-    assert!(lsp("123", 4).is_err());
+    assert_eq!(Err(Error::SpanTooLong), lsp("123", 4));
 }
 
 // There may be some confusion about whether this should be 1 or error.
@@ -95,11 +95,11 @@ fn a_non_empty_string_and_no_span_returns_one() {
 #[test]
 #[ignore]
 fn empty_string_and_non_zero_span_is_an_error() {
-    assert!(lsp("", 1).is_err());
+    assert_eq!(Err(Error::SpanTooLong), lsp("", 1));
 }
 
 #[test]
 #[ignore]
 fn a_string_with_non_digits_is_an_error() {
-    assert!(lsp("1234a5", 2).is_err());
+    assert_eq!(Err(Error::InvalidDigit('a')), lsp("1234a5", 2));
 }

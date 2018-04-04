@@ -1,10 +1,16 @@
-pub fn lsp(string_digits: &str, span: usize) -> Result<u64, String> {
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    SpanTooLong,
+    InvalidDigit(char),
+}
+
+pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
     if span == 0 {
         return Ok(1);
     }
 
-    if string_digits.chars().any(|c| !c.is_digit(10)) {
-        return Err(String::from("All characters must be numbers"));
+    if let Some(invalid) = string_digits.chars().find(|c| !c.is_digit(10)) {
+        return Err(Error::InvalidDigit(invalid));
     }
 
     let products: Vec<u64> = string_digits.chars()
@@ -17,6 +23,6 @@ pub fn lsp(string_digits: &str, span: usize) -> Result<u64, String> {
     if let Some(&x) = products.iter().max() {
         Ok(x)
     } else {
-        Err(String::from("Span longer than string"))
+        Err(Error::SpanTooLong)
     }
 }
