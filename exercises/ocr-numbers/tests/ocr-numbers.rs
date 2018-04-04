@@ -7,7 +7,7 @@ fn input_with_lines_not_multiple_of_four_is_error() {
                 "| |\n" +
                 "   ";
 
-    assert!(ocr::convert(&input).is_err());
+    assert_eq!(Err(ocr::Error::InvalidRowCount(3)), ocr::convert(&input));
 }
 
 #[test]
@@ -19,7 +19,7 @@ fn input_with_columns_not_multiple_of_three_is_error() {
                 "   |\n" +
                 "    ";
 
-    assert!(ocr::convert(&input).is_err());
+    assert_eq!(Err(ocr::Error::InvalidColumnCount(4)), ocr::convert(&input));
 }
 
 
