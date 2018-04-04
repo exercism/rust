@@ -40,10 +40,18 @@ fn prepare(input: &str) -> Vec<char> {
     output.extend(
         input
             .chars()
-            .filter(|&c| c.is_ascii() && !c.is_whitespace())
-            .map(|c| c.to_ascii_lowercase())
-            .filter(|&c| c >= 'a' && c <= 'z'),
+            .filter(|&c| c.is_ascii() && !c.is_whitespace() && !c.is_ascii_punctuation())
+            .map(|c| c.to_ascii_lowercase()),
     );
+
+    // add space padding to the end such that the actual string returned
+    // forms a perfect rectangle
+    let (r, c) = dimensions(output.len());
+    let padding_qty = (r * c) - output.len();
+    for _ in 0..padding_qty {
+        output.push(' ');
+    }
+
     output.shrink_to_fit();
 
     output
