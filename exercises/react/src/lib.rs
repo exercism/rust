@@ -5,6 +5,18 @@
 pub type CellID = ();
 pub type CallbackID = ();
 
+#[derive(Debug, PartialEq)]
+pub enum SetValueError {
+    NonexistentCell,
+    ComputeCell,
+}
+
+#[derive(Debug, PartialEq)]
+pub enum RemoveCallbackError {
+    NonexistentCell,
+    NonexistentCallback,
+}
+
 pub struct Reactor<T> {
     // Just so that the compiler doesn't complain about an unused type parameter.
     // You probably want to delete this field.
@@ -28,12 +40,14 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // You do not need to reject compute functions that expect more arguments than there are
     // dependencies (how would you check for this, anyway?).
     //
-    // Return an Err (and you can change the error type) if any dependency doesn't exist.
+    // If any dependency doesn't exist, returns an Err with that nonexistent dependency.
+    // (If multiple dependencies do not exist, exactly which one is returned is not defined and
+    // will not be tested)
     //
     // Notice that there is no way to *remove* a cell.
     // This means that you may assume, without checking, that if the dependencies exist at creation
     // time they will continue to exist as long as the Reactor exists.
-    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, ()> {
+    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, CellID> {
         unimplemented!()
     }
 
@@ -50,20 +64,22 @@ impl <T: Copy + PartialEq> Reactor<T> {
 
     // Sets the value of the specified input cell.
     //
-    // Return an Err (and you can change the error type) if the cell does not exist, or the
-    // specified cell is a compute cell, since compute cells cannot have their values directly set.
+    // Returns an Err if either:
+    // * the cell does not exist
+    // * the specified cell is a compute cell, since compute cells cannot have their values
+    //   directly set.
     //
     // Similarly, you may wonder about `get_mut(&mut self, id: CellID) -> Option<&mut Cell>`, with
     // a `set_value(&mut self, new_value: T)` method on `Cell`.
     //
     // As before, that turned out to add too much extra complexity.
-    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), ()> {
+    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), SetValueError> {
         unimplemented!()
     }
 
     // Adds a callback to the specified compute cell.
     //
-    // Return an Err (and you can change the error type) if the cell does not exist.
+    // Returns the ID of the just-added callback, or None if the cell doesn't exist.
     //
     // Callbacks on input cells will not be tested.
     //
@@ -73,17 +89,16 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // * Exactly once if the compute cell's value changed as a result of the set_value call.
     //   The value passed to the callback should be the final value of the compute cell after the
     //   set_value call.
-    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, id: CellID, callback: F) -> Result<CallbackID, ()> {
+    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, id: CellID, callback: F) -> Option<CallbackID> {
         unimplemented!()
     }
 
     // Removes the specified callback, using an ID returned from add_callback.
     //
-    // Return an Err (and you can change the error type) if either the cell or callback
-    // does not exist.
+    // Returns an Err if either the cell or callback does not exist.
     //
     // A removed callback should no longer be called.
-    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), ()> {
+    pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
         unimplemented!()
     }
 }
