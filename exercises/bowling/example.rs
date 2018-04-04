@@ -1,3 +1,8 @@
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    NotEnoughPinsLeft,
+    GameComplete,
+}
 
 pub struct BowlingGame {
     frames: Vec<Frame>,
@@ -96,12 +101,12 @@ impl BowlingGame {
         BowlingGame { frames: vec![Frame::new()] }
     }
 
-    pub fn roll(&mut self, pins: u16) -> Result<(), &'static str> {
+    pub fn roll(&mut self, pins: u16) -> Result<(), Error> {
         if pins > 10 {
-            Err("Greater than 10 pins")
+            Err(Error::NotEnoughPinsLeft)
         } else {
-            if self.score().is_ok() {
-                return Err("Game Finished. No more rolls.");
+            if self.score().is_some() {
+                return Err(Error::GameComplete);
             }
 
             for frame in self.frames.iter_mut() {
@@ -109,7 +114,7 @@ impl BowlingGame {
             }
 
             if self.frames.iter().any(|f| !f.is_valid()) {
-                return Err("Invalid Roll");
+                return Err(Error::NotEnoughPinsLeft);
             }
 
             if self.frames.iter().last().unwrap().rolls_done() && self.frames.len() < 10 {
@@ -120,11 +125,11 @@ impl BowlingGame {
         }
     }
 
-    pub fn score(&self) -> Result<u16, &'static str> {
+    pub fn score(&self) -> Option<u16> {
         if !self.is_done() {
-            Err("Game Incomplete")
+            None
         } else {
-            Ok(self.frames.iter().fold(0, |acc, r| acc + r.score()))
+            Some(self.frames.iter().fold(0, |acc, r| acc + r.score()))
         }
     }
 
