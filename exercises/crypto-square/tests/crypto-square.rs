@@ -10,7 +10,6 @@ fn test_empty_input() {
     test("", "")
 }
 
-
 #[test]
 #[ignore]
 fn test_encrypt_also_decrypts_square() {
@@ -28,7 +27,7 @@ fn test_encrypt_also_decrypts_square() {
 fn test_example() {
     test(
         "If man was meant to stay on the ground, god would have given us roots.",
-        "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn sseoau",
+        "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau ",
     )
 }
 
@@ -56,15 +55,6 @@ fn test_everything_becomes_lowercase() {
 
 #[test]
 #[ignore]
-fn test_ignore_non_ascii_chars() {
-    test(
-        "She got her education, then got rich programming: 👩‍🎓🎓👩‍💻💰",
-        "setnhm hrigpm eeoori gdnton outrgg tchir haeca",
-    );
-}
-
-#[test]
-#[ignore]
 fn test_long() {
     test(
         r#"
@@ -79,10 +69,12 @@ and the others, too.
 
 -- John F. Kennedy, 12 September 1962
         "#,
-        &(String::from("wohaseagabnttenwan eoennaronedcwpghnf cnmdoseaisshettidk ") +
-              "hwodtyhlztkaaoocte oeoobbaweoilrnphhn ocnteuriaflleeowen shihctdlnolewwseoe " +
-              "eoneabbldusnietitd totoueesmrbglapnhy oshtscceeeeelrotes geiheaaranciienere " +
-              "otsetuuvseasnuensp todrhsseuruognadtt ogeteeetrgsntwntoe tochyttoeieeoidoom " +
-              "htaiahhotettalowjb eodnrearhshhclnioe mtegeytgeaaacienhr"),
+        &(String::from("womdbudlmecsgwdwob enooetbsenaotioihe ")
+            + "cwotcbeeaeunolnnnr henhaecrsrsealeaf1 ocieucavugetciwnk9 "
+            + "ohnosauerithcnhde6 sotteusteehaegitn2 eohhtseotsatptchn  "
+            + "tsiehetohatwtohee  oesrethrenceopwod  gtdtyhagbdhanoety  "
+            + "ooehaetaesaresih1  tgcirygnsklewtne2  ooaneaoitilweptrs  "
+            + "ttdgerazoleiaoese  hoesaeleflnlrnntp  etanshwaosgleedot  "
+            + "mhnoyainubeiuatoe  oedtbrldreinnnojm "),
     )
 }
