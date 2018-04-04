@@ -11,6 +11,11 @@ for dir in $repo/exercises/*/; do
   # it probably contains function signatures, and these should compile.
   if grep -v '^//' $dir/src/lib.rs | grep '\S' > /dev/null; then
     allowed_file=$dir/.meta/ALLOWED_TO_NOT_COMPILE
+
+    # In Travis CI, we may have already compiled using the example solution.
+    # Touch the src/lib.rs file so that we surely recompile using the stub.
+    touch $dir/src/lib.rs
+
     if [ -f $allowed_file ]; then
       echo "$exercise's stub is allowed to not compile"
     elif ! (cd $dir && cargo test --quiet --no-run); then
