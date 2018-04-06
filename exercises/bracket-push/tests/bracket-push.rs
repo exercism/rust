@@ -39,6 +39,12 @@ fn paired_with_whitespace() {
 
 #[test]
 #[ignore]
+fn partially_paired_brackets() {
+    assert!(!brackets_are_balanced("{[])"));
+}
+
+#[test]
+#[ignore]
 fn simple_nested_brackets() {
     assert!(brackets_are_balanced("{[]}"));
 }
