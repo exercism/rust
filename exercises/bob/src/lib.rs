@@ -1,3 +1,3 @@
 pub fn reply(message: &str) -> &str {
-    unimplemented!()
+    unimplemented!("have Bob reply to the incoming message: {}", message)
 }
