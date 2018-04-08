@@ -10,7 +10,7 @@ What is a macro? [Wikipedia](https://en.wikipedia.org/wiki/Macro_(computer_scien
 
 Illuminating! But to be more concrete, macros are a special syntax which allows you to generate code at compile time. Macros can be used compile-time calculation, but more often they're just another way to abstract your code. For example, you've probably already used `println!()` and `vec![]`. These each take an arbitrary number of arguments, so you can't express them as simple functions. On the other hand, they always expand to some amount of absolutely standard Rust code. If you're interested, you can use the [cargo expand](https://github.com/dtolnay/cargo-expand) subcommand to view the results of macro expansion in your code.
 
-For further information about macros in Rust, The Rust Book has a [good chapter](https://doc.rust-lang.org/book/first-edition/macros.html) on them.
+For further information about macros in Rust, The Rust Book has a [good chapter](https://doc.rust-lang.org/book/second-edition/appendix-04-macros.html) on them.
 
 ## Problem Statement
 
