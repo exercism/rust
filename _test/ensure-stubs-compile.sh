@@ -12,13 +12,16 @@ for dir in $repo/exercises/*/; do
   if grep -v '^//' $dir/src/lib.rs | grep '\S' > /dev/null; then
     allowed_file=$dir/.meta/ALLOWED_TO_NOT_COMPILE
 
+    if [ -f $allowed_file ]; then
+      echo "$exercise's stub is allowed to not compile"
+      continue
+    fi
+
     # In Travis CI, we may have already compiled using the example solution.
     # Touch the src/lib.rs file so that we surely recompile using the stub.
     touch $dir/src/lib.rs
 
-    if [ -f $allowed_file ]; then
-      echo "$exercise's stub is allowed to not compile"
-    elif ! (cd $dir && cargo test --quiet --no-run); then
+    if ! (cd $dir && cargo test --quiet --no-run); then
       echo "$exercise's stub does not compile; please make it compile or remove all non-commented lines"
       broken="$broken\n$exercise"
     fi
