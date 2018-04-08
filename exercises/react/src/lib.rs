@@ -1,5 +1,3 @@
-#[allow(unused_variables)]
-
 // Because these are passed without & to some functions,
 // it will probably be necessary for these two types to be Copy.
 pub type CellID = ();
@@ -20,7 +18,7 @@ pub enum RemoveCallbackError {
 pub struct Reactor<T> {
     // Just so that the compiler doesn't complain about an unused type parameter.
     // You probably want to delete this field.
-    dummy: T,
+    dummy: ::std::marker::PhantomData<T>,
 }
 
 // You are guaranteed that Reactor will only be tested against types that are Copy + PartialEq.
@@ -30,7 +28,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     }
 
     // Creates an input cell with the specified initial value, returning its ID.
-    pub fn create_input(&mut self, initial: T) -> CellID {
+    pub fn create_input(&mut self, _initial: T) -> CellID {
         unimplemented!()
     }
 
@@ -47,7 +45,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // Notice that there is no way to *remove* a cell.
     // This means that you may assume, without checking, that if the dependencies exist at creation
     // time they will continue to exist as long as the Reactor exists.
-    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<CellID, CellID> {
+    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, _dependencies: &[CellID], _compute_func: F) -> Result<CellID, CellID> {
         unimplemented!()
     }
 
@@ -59,7 +57,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // It turns out this introduces a significant amount of extra complexity to this exercise.
     // We chose not to cover this here, since this exercise is probably enough work as-is.
     pub fn value(&self, id: CellID) -> Option<T> {
-        unimplemented!()
+        unimplemented!("Get the value of the cell whose id is {:?}", id)
     }
 
     // Sets the value of the specified input cell.
@@ -73,7 +71,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // a `set_value(&mut self, new_value: T)` method on `Cell`.
     //
     // As before, that turned out to add too much extra complexity.
-    pub fn set_value(&mut self, id: CellID, new_value: T) -> Result<(), SetValueError> {
+    pub fn set_value(&mut self, _id: CellID, _new_value: T) -> Result<(), SetValueError> {
         unimplemented!()
     }
 
@@ -89,7 +87,7 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // * Exactly once if the compute cell's value changed as a result of the set_value call.
     //   The value passed to the callback should be the final value of the compute cell after the
     //   set_value call.
-    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, id: CellID, callback: F) -> Option<CallbackID> {
+    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, _id: CellID, _callback: F) -> Option<CallbackID> {
         unimplemented!()
     }
 
@@ -99,6 +97,10 @@ impl <T: Copy + PartialEq> Reactor<T> {
     //
     // A removed callback should no longer be called.
     pub fn remove_callback(&mut self, cell: CellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
-        unimplemented!()
+        unimplemented!(
+            "Remove the callback identified by the CallbackID {:?} from the cell {:?}",
+            callback,
+            cell,
+        )
     }
 }

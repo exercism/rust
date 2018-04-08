@@ -1,5 +1,3 @@
-#[allow(unused_variables)]
-
 pub struct School {
 }
 
@@ -9,7 +7,7 @@ impl School {
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
-        unimplemented!()
+        unimplemented!("Add {} to the roster for {}", student, grade)
     }
 
     pub fn grades(&self) -> Vec<u32> {
@@ -21,6 +19,6 @@ impl School {
     // By returning an owned vector instead,
     // the internal implementation is free to use whatever it chooses.
     pub fn grade(&self, grade: u32) -> Option<Vec<String>> {
-        unimplemented!()
+        unimplemented!("Return the list of students in {}", grade)
     }
 }
