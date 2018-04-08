@@ -7,7 +7,6 @@ pub enum Error {
     InvalidColumnCount(usize),
 }
 
-#[allow(unused_variables)]
 pub fn convert(input: &str) -> Result<String, Error> {
-    unimplemented!();
+    unimplemented!("Convert the input '{}' to a string", input);
 }

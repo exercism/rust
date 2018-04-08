@@ -12,9 +12,12 @@ pub enum Direction {
 pub struct Robot;
 
 impl Robot {
-    #[allow(unused_variables)]
     pub fn new(x: isize, y: isize, d: Direction) -> Self {
-        unimplemented!()
+        unimplemented!(
+            "Create a robot at (x, y) ({}, {}) facing {:?}",
+            x, y,
+            d,
+        )
     }
 
     pub fn turn_right(self) -> Self {
@@ -29,9 +32,8 @@ impl Robot {
         unimplemented!()
     }
 
-    #[allow(unused_variables)]
     pub fn instructions(self, instructions: &str) -> Self {
-        unimplemented!()
+        unimplemented!("Follow the given sequence of instructions: {}", instructions)
     }
 
     pub fn position(&self) -> (isize, isize) {

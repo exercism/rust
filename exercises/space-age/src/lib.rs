@@ -1,18 +1,21 @@
 // The code below is a stub. Just enough to satisfy the compiler.
 // In order to pass the tests you can add-to or change any of this code.
-#![allow(unused_variables)]
 
+#[derive(Debug)]
 pub struct Duration;
 
 impl From<u64> for Duration {
     fn from(s: u64) -> Self {
-        unimplemented!()
+        unimplemented!("s, measured in seconds: {}", s)
     }
 }
 
 pub trait Planet {
     fn years_during(d: &Duration) -> f64 {
-        unimplemented!();
+        unimplemented!(
+            "convert a duration ({:?}) to the number of years on this planet for that duration",
+            d,
+        );
     }
 }
 

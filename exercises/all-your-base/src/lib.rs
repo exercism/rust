@@ -36,7 +36,6 @@ pub enum Error {
 ///  * Never output leading 0 digits. However, your function must be able to
 ///     process input with leading 0 digits.
 ///
-#[allow(unused_variables)]
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
-    unimplemented!()
+    unimplemented!("Convert {:?} from base {} to base {}", number, from_base, to_base)
 }
