@@ -1,7 +1,7 @@
 pub struct SimpleLinkedList<T> {
     // Delete this field
-    // _dummy is needed to avoid unused parameter error during compilation
-    _dummy: T,
+    // dummy is needed to avoid unused parameter error during compilation
+    dummy: ::std::marker::PhantomData<T>,
 }
 
 impl<T> SimpleLinkedList<T> {
@@ -13,7 +13,7 @@ impl<T> SimpleLinkedList<T> {
         unimplemented!()
     }
 
-    pub fn push(&mut self, element: T) {
+    pub fn push(&mut self, _element: T) {
         unimplemented!()
     }
 
@@ -34,13 +34,13 @@ impl<T: Clone> SimpleLinkedList<T> {
 
 
 impl<'a, T: Clone> From<&'a [T]> for SimpleLinkedList<T> {
-    fn from(item: &[T]) -> Self {
+    fn from(_item: &[T]) -> Self {
         unimplemented!()
     }
 }
 
 impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
-    fn into(mut self) -> Vec<T> {
+    fn into(self) -> Vec<T> {
         unimplemented!()
     }
 }
