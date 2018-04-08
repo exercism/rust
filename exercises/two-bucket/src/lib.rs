@@ -22,5 +22,11 @@ pub fn solve(capacity_1: u8,
              goal: u8,
              start_bucket: &Bucket) -> BucketStats
 {
-    unimplemented!();
+    unimplemented!(
+        "Given one bucket of capacity {}, another of capacity {}, starting with {:?}, find pours to reach {}",
+        capacity_1,
+        capacity_2,
+        start_bucket,
+        goal,
+    );
 }
