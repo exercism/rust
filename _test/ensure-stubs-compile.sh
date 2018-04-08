@@ -21,10 +21,22 @@ for dir in $repo/exercises/*/; do
     # Touch the src/lib.rs file so that we surely recompile using the stub.
     touch $dir/src/lib.rs
 
+    # Backup tests; this script will modify them.
+    cp -r $dir/tests $dir/tests.orig
+
+    # Deny warnings in the tests that may result from compiling the stubs.
+    # This helps avoid, for example, an overflowing literal warning
+    # that could be caused by a stub with a type that is too small.
+    sed -i -e '1i #![deny(warnings)]' $dir/tests/*.rs
+
     if ! (cd $dir && cargo test --quiet --no-run); then
       echo "$exercise's stub does not compile; please make it compile or remove all non-commented lines"
       broken="$broken\n$exercise"
     fi
+
+    # Restore tests.
+    rm -r $dir/tests
+    mv $dir/tests.orig $dir/tests
   fi
 done
 
