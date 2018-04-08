@@ -11,20 +11,7 @@ fn error_on_read_empty_buffer() {
 #[ignore]
 fn write_and_read_back_item() {
     let mut buffer = CircularBuffer::new(1);
-    // Normally, using `unwrap` like this would be pretty bad practice:
-    // the call panics on error, which is bad behavior on the part of an
-    // executable or library.
-    //
-    // It's less of a problem within a test, for two reasons:
-    //  1. We control the entire test environment, and so should be able to
-    //     predict exactly when errors will and will not occur.
-    //  2. A panic here simply fails the test instead of aborting in the middle
-    //     of unrelated code.
-    //
-    // Finally, it underscores the fact that this isn't actually the behavior
-    // under test at the moment: when we want to test some behavior, we use assert.
-    // `unwrap()`, in this context, means that we're just trying to get to the point.
-    buffer.write('1').unwrap();
+    assert!(buffer.write('1').is_ok());
     assert_eq!(Ok('1'), buffer.read());
     assert_eq!(Err(Error::EmptyBuffer), buffer.read());
 }
@@ -33,8 +20,8 @@ fn write_and_read_back_item() {
 #[ignore]
 fn write_and_read_back_multiple_items() {
     let mut buffer = CircularBuffer::new(2);
-    buffer.write('1').unwrap();
-    buffer.write('2').unwrap();
+    assert!(buffer.write('1').is_ok());
+    assert!(buffer.write('2').is_ok());
     assert_eq!(Ok('1'), buffer.read());
     assert_eq!(Ok('2'), buffer.read());
     assert_eq!(Err(Error::EmptyBuffer), buffer.read());
@@ -44,9 +31,9 @@ fn write_and_read_back_multiple_items() {
 #[ignore]
 fn alternate_write_and_read() {
     let mut buffer = CircularBuffer::new(2);
-    buffer.write('1').unwrap();
+    assert!(buffer.write('1').is_ok());
     assert_eq!(Ok('1'), buffer.read());
-    buffer.write('2').unwrap();
+    assert!(buffer.write('2').is_ok());
     assert_eq!(Ok('2'), buffer.read());
 }
 
@@ -54,15 +41,15 @@ fn alternate_write_and_read() {
 #[ignore]
 fn clear_buffer() {
     let mut buffer = CircularBuffer::new(3);
-    buffer.write('1').unwrap();
-    buffer.write('2').unwrap();
-    buffer.write('3').unwrap();
+    assert!(buffer.write('1').is_ok());
+    assert!(buffer.write('2').is_ok());
+    assert!(buffer.write('3').is_ok());
     buffer.clear();
     assert_eq!(Err(Error::EmptyBuffer), buffer.read());
-    buffer.write('1').unwrap();
-    buffer.write('2').unwrap();
+    assert!(buffer.write('1').is_ok());
+    assert!(buffer.write('2').is_ok());
     assert_eq!(Ok('1'), buffer.read());
-    buffer.write('3').unwrap();
+    assert!(buffer.write('3').is_ok());
     assert_eq!(Ok('2'), buffer.read());
 }
 
@@ -70,8 +57,8 @@ fn clear_buffer() {
 #[ignore]
 fn full_buffer_error() {
     let mut buffer = CircularBuffer::new(2);
-    buffer.write('1').unwrap();
-    buffer.write('2').unwrap();
+    assert!(buffer.write('1').is_ok());
+    assert!(buffer.write('2').is_ok());
     assert_eq!(Err(Error::FullBuffer), buffer.write('3'));
 }
 
@@ -79,7 +66,7 @@ fn full_buffer_error() {
 #[ignore]
 fn overwrite_item_in_non_full_buffer() {
     let mut buffer = CircularBuffer::new(2);
-    buffer.write('1').unwrap();
+    assert!(buffer.write('1').is_ok());
     buffer.overwrite('2');
     assert_eq!(Ok('1'), buffer.read());
     assert_eq!(Ok('2'), buffer.read());
@@ -90,8 +77,8 @@ fn overwrite_item_in_non_full_buffer() {
 #[ignore]
 fn overwrite_item_in_full_buffer() {
     let mut buffer = CircularBuffer::new(2);
-    buffer.write('1').unwrap();
-    buffer.write('2').unwrap();
+    assert!(buffer.write('1').is_ok());
+    assert!(buffer.write('2').is_ok());
     buffer.overwrite('A');
     assert_eq!(Ok('2'), buffer.read());
     assert_eq!(Ok('A'), buffer.read());
@@ -101,10 +88,10 @@ fn overwrite_item_in_full_buffer() {
 #[ignore]
 fn integer_buffer() {
     let mut buffer = CircularBuffer::new(2);
-    buffer.write(1).unwrap();
-    buffer.write(2).unwrap();
+    assert!(buffer.write(1).is_ok());
+    assert!(buffer.write(2).is_ok());
     assert_eq!(Ok(1), buffer.read());
-    buffer.write(-1).unwrap();
+    assert!(buffer.write(-1).is_ok());
     assert_eq!(Ok(2), buffer.read());
     assert_eq!(Ok(-1), buffer.read());
     assert_eq!(Err(Error::EmptyBuffer), buffer.read());
