@@ -1,3 +1,3 @@
 pub fn raindrops(n: usize) -> String {
-    unimplemented!()
+    unimplemented!("what sound does Raindrop #{} make?", n)
 }
