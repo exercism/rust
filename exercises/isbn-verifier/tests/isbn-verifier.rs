@@ -99,3 +99,9 @@ fn test_invalid_isbn_with_check_digit_X_instead_of_0() {
 fn empty_isbn() {
     assert!(!is_valid_isbn(""));
 }
+
+#[test]
+#[ignore]
+fn input_is_9_characters() {
+    assert!(!is_valid_isbn("134456729"));
+}
