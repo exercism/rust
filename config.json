@@ -926,6 +926,16 @@
       ]
     },
     {
+      "uuid": "8cdc3424-51da-4cae-a065-9982859d5b55",
+      "slug": "palindrome-products",
+      "core": false,
+      "unlocked_by": null,
+      "topics": [
+        "string comparison",
+        "calculation"
+      ]
+    },
+    {
       "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
       "slug": "react",
       "core": false,
