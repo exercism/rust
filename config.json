@@ -200,7 +200,7 @@
       "slug": "saddle-points",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 3,
+      "difficulty": 4,
       "topics": [
         "vectors",
         "iterators"
@@ -211,7 +211,7 @@
       "slug": "isogram",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 3,
+      "difficulty": 4,
       "topics": [
         "chars",
         "iterators",
@@ -772,7 +772,7 @@
       "slug": "poker",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 6,
+      "difficulty": 7,
       "topics": [
         "lifetimes",
         "struct",
@@ -786,7 +786,7 @@
       "slug": "decimal",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 6,
+      "difficulty": 7,
       "topics": [
         "struct",
         "traits",
