@@ -1,4 +1,5 @@
 # Palindrome Products
+
 Detect palindrome products in a given range.
 
 A palindromic number is a number that remains the same when its digits are
@@ -32,6 +33,7 @@ The smallest palindrome product is `121`. Its factors are `(11, 11)`.
 The largest palindrome product is `9009`. Its factors are `(91, 99)`.
 
 ## Rust Installation
+
 Refer to the [exercism help page][help-page] for Rust installation and learning
 resources.
 
@@ -61,6 +63,10 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [help-page]: http://exercism.io/languages/rust
 [modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
+
+## Source
+
+Problem 4 at Project Euler [http://projecteuler.net/problem=4](http://projecteuler.net/problem=4)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
