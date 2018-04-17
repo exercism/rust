@@ -772,7 +772,7 @@
       "slug": "palindrome-products",
       "core": false,
       "unlocked_by": null,
-      "difficulty": 5,
+      "difficulty": 4,
       "topics": [
         "string comparison",
         "calculation",
