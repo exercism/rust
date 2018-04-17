@@ -14,7 +14,7 @@ fn input_cells_have_a_value() {
 fn an_input_cells_value_can_be_set() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(4);
-    assert!(reactor.set_value(input, 20).is_ok());
+    assert!(reactor.set_value(input, 20));
     assert_eq!(reactor.value(CellID::Input(input)), Some(20));
 }
 
@@ -23,7 +23,7 @@ fn an_input_cells_value_can_be_set() {
 fn error_setting_a_nonexistent_input_cell() {
     let mut dummy_reactor = Reactor::new();
     let input = dummy_reactor.create_input(1);
-    assert_eq!(Reactor::new().set_value(input, 0), Err(SetValueError::NonexistentCell));
+    assert!(!Reactor::new().set_value(input, 0));
 }
 
 #[test]
@@ -62,7 +62,7 @@ fn do_not_break_cell_if_creating_compute_cell_with_valid_and_invalid_input() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
     assert_eq!(reactor.create_compute(&[CellID::Input(input), CellID::Input(dummy_cell)], |_| 0), Err(CellID::Input(dummy_cell)));
-    assert!(reactor.set_value(input, 5).is_ok());
+    assert!(reactor.set_value(input, 5));
     assert_eq!(reactor.value(CellID::Input(input)), Some(5));
 }
 
@@ -73,7 +73,7 @@ fn compute_cells_update_value_when_dependencies_are_changed() {
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
     assert_eq!(reactor.value(CellID::Compute(output)), Some(2));
-    assert!(reactor.set_value(input, 3).is_ok());
+    assert!(reactor.set_value(input, 3));
     assert_eq!(reactor.value(CellID::Compute(output)), Some(4));
 }
 
@@ -86,7 +86,7 @@ fn compute_cells_can_depend_on_other_compute_cells() {
     let times_thirty = reactor.create_compute(&[CellID::Input(input)], |v| v[0] * 30).unwrap();
     let output = reactor.create_compute(&[CellID::Compute(times_two), CellID::Compute(times_thirty)], |v| v[0] + v[1]).unwrap();
     assert_eq!(reactor.value(CellID::Compute(output)), Some(32));
-    assert!(reactor.set_value(input, 3).is_ok());
+    assert!(reactor.set_value(input, 3));
     assert_eq!(reactor.value(CellID::Compute(output)), Some(96));
 }
 
@@ -131,7 +131,7 @@ fn compute_cells_fire_callbacks() {
     let input = reactor.create_input(1);
     let output = reactor.create_compute(&[CellID::Input(input)], |v| v[0] + 1).unwrap();
     assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
-    assert!(reactor.set_value(input, 3).is_ok());
+    assert!(reactor.set_value(input, 3));
     cb.expect_to_have_been_called_with(4);
 }
 
@@ -153,9 +153,9 @@ fn callbacks_only_fire_on_change() {
     let output = reactor.create_compute(&[CellID::Input(input)], |v| if v[0] < 3 { 111 } else { 222 }).unwrap();
     assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
 
-    assert!(reactor.set_value(input, 2).is_ok());
+    assert!(reactor.set_value(input, 2));
     cb.expect_not_to_have_been_called();
-    assert!(reactor.set_value(input, 4).is_ok());
+    assert!(reactor.set_value(input, 4));
     cb.expect_to_have_been_called_with(222);
 }
 
@@ -173,14 +173,14 @@ fn callbacks_can_be_added_and_removed() {
     let callback = reactor.add_callback(output, |v| cb1.callback_called(v)).unwrap();
     assert!(reactor.add_callback(output, |v| cb2.callback_called(v)).is_some());
 
-    assert!(reactor.set_value(input, 31).is_ok());
+    assert!(reactor.set_value(input, 31));
     cb1.expect_to_have_been_called_with(32);
     cb2.expect_to_have_been_called_with(32);
 
     assert!(reactor.remove_callback(output, callback).is_ok());
     assert!(reactor.add_callback(output, |v| cb3.callback_called(v)).is_some());
 
-    assert!(reactor.set_value(input, 41).is_ok());
+    assert!(reactor.set_value(input, 41));
     cb1.expect_not_to_have_been_called();
     cb2.expect_to_have_been_called_with(42);
     cb3.expect_to_have_been_called_with(42);
@@ -203,7 +203,7 @@ fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
         assert_eq!(reactor.remove_callback(output, callback), Err(RemoveCallbackError::NonexistentCallback));
     }
 
-    assert!(reactor.set_value(input, 2).is_ok());
+    assert!(reactor.set_value(input, 2));
     cb1.expect_not_to_have_been_called();
     cb2.expect_to_have_been_called_with(3);
 }
@@ -219,7 +219,7 @@ fn callbacks_should_only_be_called_once_even_if_multiple_dependencies_change() {
     let minus_one2 = reactor.create_compute(&[CellID::Compute(minus_one1)], |v| v[0] - 1).unwrap();
     let output = reactor.create_compute(&[CellID::Compute(plus_one), CellID::Compute(minus_one2)], |v| v[0] * v[1]).unwrap();
     assert!(reactor.add_callback(output, |v| cb.callback_called(v)).is_some());
-    assert!(reactor.set_value(input, 4).is_ok());
+    assert!(reactor.set_value(input, 4));
     cb.expect_to_have_been_called_with(10);
 }
 
@@ -234,7 +234,7 @@ fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt
     let always_two = reactor.create_compute(&[CellID::Compute(plus_one), CellID::Compute(minus_one)], |v| v[0] - v[1]).unwrap();
     assert!(reactor.add_callback(always_two, |v| cb.callback_called(v)).is_some());
     for i in 2..5 {
-        assert!(reactor.set_value(input, i).is_ok());
+        assert!(reactor.set_value(input, i));
         cb.expect_not_to_have_been_called();
     }
 }
@@ -268,9 +268,9 @@ fn test_adder_with_boolean_values() {
     ];
 
     for &(aval, bval, cinval, expected_cout, expected_sum) in tests {
-        assert!(reactor.set_value(a, aval).is_ok());
-        assert!(reactor.set_value(b, bval).is_ok());
-        assert!(reactor.set_value(carry_in, cinval).is_ok());
+        assert!(reactor.set_value(a, aval));
+        assert!(reactor.set_value(b, bval));
+        assert!(reactor.set_value(carry_in, cinval));
 
         assert_eq!(reactor.value(CellID::Compute(sum)), Some(expected_sum));
         assert_eq!(reactor.value(CellID::Compute(carry_out)), Some(expected_cout));

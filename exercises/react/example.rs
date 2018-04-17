@@ -29,12 +29,6 @@ pub enum CellID {
 }
 
 #[derive(Debug, PartialEq)]
-pub enum SetValueError {
-    NonexistentCell,
-    ComputeCell,
-}
-
-#[derive(Debug, PartialEq)]
 pub enum RemoveCallbackError {
     NonexistentCell,
     NonexistentCallback,
@@ -125,15 +119,12 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         }
     }
 
-    pub fn set_value(&mut self, id: InputCellID, new_value: T) -> Result<(), SetValueError> {
+    pub fn set_value(&mut self, id: InputCellID, new_value: T) -> bool {
         let InputCellID(id) = id;
-        match self.inputs.get_mut(id) {
-            Some(c) => {
-                c.value = new_value;
-                Ok(c.dependents.clone())
-            },
-            None => Err(SetValueError::NonexistentCell),
-        }.map(|deps| {
+        self.inputs.get_mut(id).map(|c| {
+            c.value = new_value;
+            c.dependents.clone()
+        }).map(|deps| {
             for &d in deps.iter() {
                 self.update_dependent(d);
             }
@@ -142,7 +133,7 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
             for d in deps {
                 self.fire_callbacks(d);
             }
-        })
+        }).is_some()
     }
 
     pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: ComputeCellID, callback: F) -> Option<CallbackID> {
