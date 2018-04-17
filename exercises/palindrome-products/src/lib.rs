@@ -9,9 +9,9 @@ pub struct ReturnVals{
     pub factors: Vec<(i32, i32)>,
 }
 
-pub fn get_smallest_palindrome_product(min: i32, max:i32)->Result<ReturnVals, Error>{
+pub fn get_smallest_palindrome_product(_min: i32, _max:i32)->Result<ReturnVals, Error>{
     unimplemented!();
 }
-pub fn get_largest_palindrome_product(min: i32, max: i32)->Result<ReturnVals, Error>{
+pub fn get_largest_palindrome_product(_min: i32, _max: i32)->Result<ReturnVals, Error>{
     unimplemented!();
 }
