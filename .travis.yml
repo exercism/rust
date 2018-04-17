@@ -13,7 +13,6 @@ sudo: false
 rust:
   - stable
   - beta
-  - nightly
 env:
   - DENYWARNINGS=
   - DENYWARNINGS=1
