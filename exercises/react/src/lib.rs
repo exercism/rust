@@ -1,7 +1,6 @@
-// Because these are passed without & to some functions,
-// it will probably be necessary for these three types to be Copy.
 /// `InputCellID` is a unique identifier for an input cell.
-pub type InputCellID = ();
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct InputCellID();
 /// `ComputeCellID` is a unique identifier for a compute cell.
 /// Values of type `InputCellID` and `ComputeCellID` should not be mutually assignable,
 /// demonstrated by the following tests:
@@ -16,8 +15,10 @@ pub type InputCellID = ();
 /// let input = r.create_input(111);
 /// let compute: react::InputCellID = r.create_compute(&[react::CellID::Input(input)], |_| 222).unwrap();
 /// ```
-pub type ComputeCellID = ();
-pub type CallbackID = ();
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct ComputeCellID();
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct CallbackID();
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CellID {

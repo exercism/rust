@@ -1,7 +1,8 @@
 use std::collections::HashMap;
 
 /// `InputCellID` is a unique identifier for an input cell.
-pub type InputCellID = usize;
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct InputCellID(usize);
 /// `ComputeCellID` is a unique identifier for a compute cell.
 /// Values of type `InputCellID` and `ComputeCellID` should not be mutually assignable,
 /// demonstrated by the following tests:
@@ -16,8 +17,10 @@ pub type InputCellID = usize;
 /// let input = r.create_input(111);
 /// let compute: react::InputCellID = r.create_compute(&[react::CellID::Input(input)], |_| 222).unwrap();
 /// ```
-pub type ComputeCellID = usize;
-pub type CallbackID = usize;
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct ComputeCellID(usize);
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+pub struct CallbackID(usize);
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CellID {
@@ -90,7 +93,7 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
 
     pub fn create_input(&mut self, initial: T) -> InputCellID {
         self.inputs.push(Cell::new(initial));
-        self.inputs.len() - 1
+        InputCellID(self.inputs.len() - 1)
     }
 
     pub fn create_compute<F: Fn(&[T]) -> T + 'a>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<ComputeCellID, CellID> {
@@ -98,15 +101,15 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         // so that we don't perform an incorrect partial write.
         for &dep in dependencies {
             match dep {
-                CellID::Input(id) => if id >= self.inputs.len() { return Err(dep) },
-                CellID::Compute(id) => if id >= self.computes.len() { return Err(dep) },
+                CellID::Input(InputCellID(id)) => if id >= self.inputs.len() { return Err(dep) },
+                CellID::Compute(ComputeCellID(id)) => if id >= self.computes.len() { return Err(dep) },
             }
         }
-        let new_id = self.computes.len();
+        let new_id = ComputeCellID(self.computes.len());
         for &dep in dependencies {
             match dep {
-                CellID::Input(id) => self.inputs[id].dependents.push(new_id),
-                CellID::Compute(id) => self.computes[id].cell.dependents.push(new_id),
+                CellID::Input(InputCellID(id)) => self.inputs[id].dependents.push(new_id),
+                CellID::Compute(ComputeCellID(id)) => self.computes[id].cell.dependents.push(new_id),
             }
         }
         let inputs: Vec<_> = dependencies.iter().map(|&id| self.value(id).unwrap()).collect();
@@ -117,12 +120,13 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
 
     pub fn value(&self, id: CellID) -> Option<T> {
         match id {
-            CellID::Input(id) => self.inputs.get(id).map(|c| c.value),
-            CellID::Compute(id) => self.computes.get(id).map(|c| c.cell.value),
+            CellID::Input(InputCellID(id)) => self.inputs.get(id).map(|c| c.value),
+            CellID::Compute(ComputeCellID(id)) => self.computes.get(id).map(|c| c.cell.value),
         }
     }
 
     pub fn set_value(&mut self, id: InputCellID, new_value: T) -> Result<(), SetValueError> {
+        let InputCellID(id) = id;
         match self.inputs.get_mut(id) {
             Some(c) => {
                 c.value = new_value;
@@ -142,14 +146,17 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
     }
 
     pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: ComputeCellID, callback: F) -> Option<CallbackID> {
+        let ComputeCellID(id) = id;
         self.computes.get_mut(id).map(|c| {
             c.callbacks_issued += 1;
-            c.callbacks.insert(c.callbacks_issued, Box::new(callback));
-            c.callbacks_issued
+            let cbid = CallbackID(c.callbacks_issued);
+            c.callbacks.insert(cbid, Box::new(callback));
+            cbid
         })
     }
 
     pub fn remove_callback(&mut self, cell: ComputeCellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
+        let ComputeCellID(cell) = cell;
         match self.computes.get_mut(cell) {
             Some(c) => match c.callbacks.remove(&callback) {
                 Some(_) => Ok(()),
@@ -160,6 +167,8 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
     }
 
     fn update_dependent(&mut self, id: ComputeCellID) {
+        let ComputeCellID(id) = id;
+
         let (new_value, dependents) = {
             // This block limits the scope of the self.cells borrow.
             // This is necessary becaue we borrow it mutably below.
@@ -189,6 +198,7 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
     }
 
     fn fire_callbacks(&mut self, id: ComputeCellID) {
+        let ComputeCellID(id) = id;
         let dependents = match self.computes.get_mut(id) {
             Some(c) => {
                 if c.cell.value == c.cell.last_value {
