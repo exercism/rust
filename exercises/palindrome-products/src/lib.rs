@@ -1,17 +1,12 @@
-#[derive(Debug, PartialEq)]
-pub enum Error{
-    Empty,
-    RangeFailure,
-}
-#[derive(Debug, PartialEq)]
-pub struct ReturnVals{
-    pub result: i32,
-    pub factors: Vec<(i32, i32)>,
+pub type Palindrome = u64;
+pub fn get_palindrome_products(min: u64, max: u64) -> Vec<Palindrome>{
+    unimplemented!("Find all palindromic numbers which are products of numbers in the inclusive range ({}..{})", min, max)
 }
 
-pub fn get_smallest_palindrome_product(_min: i32, _max:i32)->Result<ReturnVals, Error>{
-    unimplemented!();
+pub fn min(palindromes: Vec<Palindrome>)->Option<Palindrome>{
+    unimplemented!("Return the palindrome of minimal value from the supplied list: {:?}", palindromes)
 }
-pub fn get_largest_palindrome_product(_min: i32, _max: i32)->Result<ReturnVals, Error>{
-    unimplemented!();
+
+pub fn max(palindromes: Vec<Palindrome>)->Option<Palindrome>{
+    unimplemented!("Return the palindrome of maximal value from the supplied list: {:?}", palindromes)
 }
