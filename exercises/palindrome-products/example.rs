@@ -11,18 +11,12 @@ pub fn get_palindrome_products(min: u64, max: u64) -> Vec<Palindrome>{
     palindromes
 }
 
-pub fn min(palindromes: Vec<Palindrome>)->Option<Palindrome>{
-    if palindromes.is_empty(){
-        return None;
-    }
-    palindromes.iter().cloned().min()
+pub fn min(palindromes: &[Palindrome])->Option<Palindrome>{
+    palindromes.iter().min().map(|n| n.clone())
 }
 
-pub fn max(palindromes: Vec<Palindrome>)->Option<Palindrome>{
-    if palindromes.is_empty(){
-        return None;
-    }
-    palindromes.iter().cloned().max()
+pub fn max(palindromes: &[Palindrome])->Option<Palindrome>{
+    palindromes.iter().max().map(|n| n.clone())
 }
 
 fn is_palindrome(s: u64)->bool{
