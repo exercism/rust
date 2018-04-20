@@ -19,9 +19,7 @@ pub fn max(palindromes: &[Palindrome])->Option<Palindrome>{
     palindromes.iter().max().map(|n| n.clone())
 }
 
-fn is_palindrome(s: u64)->bool{
-    let s1 = s.to_string();
-    let s2 = s1.chars().rev().collect::<String>();
-
-    s1 == s2
+fn is_palindrome(n: u64)->bool{
+    let s = n.to_string().into_bytes();
+    s.iter().zip(s.iter().rev()).all(|(c1, c2)| c1 == c2)
 }
