@@ -1,59 +1,59 @@
 {
   "maintainers": [
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "IanWhitney",
+      "show_on_website": false,
+      "alumnus": false,
+      "name": null,
+      "bio": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null
     },
     {
-      "alumnus": true,
       "github_username": "etrepum",
-      "show_on_website": false
+      "show_on_website": false,
+      "alumnus": true
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "ijanos",
+      "show_on_website": false,
+      "alumnus": false,
+      "name": null,
+      "bio": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "petertseng",
+      "show_on_website": false,
+      "alumnus": false,
+      "name": null,
+      "bio": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "EduardoBautista",
+      "show_on_website": false,
+      "alumnus": false,
+      "name": null,
+      "bio": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "coriolinus",
+      "show_on_website": false,
+      "alumnus": false,
+      "name": null,
+      "bio": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null
     }
   ]
 }
