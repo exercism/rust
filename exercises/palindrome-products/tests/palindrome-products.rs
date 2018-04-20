@@ -8,7 +8,7 @@ fn empty_result_for_smallest_palindrome(){
 }
 
 #[test]
-
+#[ignore]
 fn empty_result_for_largest_palindrome(){
     assert_eq!(max(&get_palindrome_products(15, 15)), None);
 }
