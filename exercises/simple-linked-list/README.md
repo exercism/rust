@@ -38,7 +38,7 @@ struct Node<T> {
     next: Option<Box<Node<T>>>,
 }
 ```
-`data` contains the stored data, and `next` points to the following node (if available) or None.  
+`data` contains the stored data, and `next` points to the following node (if available) or `None`.  
 
 ### Why `Option<Box<Node<T>>>` and not just `Option<Node<T>>`?
 Try it on your own. You will get the following error.
@@ -49,7 +49,7 @@ Try it on your own. You will get the following error.
 ...
 |     next: Option<Node<T>>,
 |     --------------------- recursive without indirection
- ```
+```
 
  The problem is that at compile time the size of next must be known.
  Since `next` is recursive ("a node has a node has a node..."), the compiler does not know how much memory is to be allocated.
