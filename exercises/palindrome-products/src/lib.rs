@@ -1,8 +1,7 @@
 pub type Palindrome = u64;
 pub fn get_palindrome_products(min: u64, max: u64) -> Vec<Palindrome> {
     unimplemented!(
-        "Find all palindromic numbers which are products of numbers in the "
-        "inclusive range ({}..{})",
+        "Find all palindromic numbers which are products of numbers in the inclusive range ({}..{})",
         min,
         max
     )
