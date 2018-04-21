@@ -1,4 +1,3 @@
-//
-// See Rust Language Specific Instructions
-// below normal exercise description.
-//
+pub fn encode(n: u64) -> String {
+    unimplemented!("Say {} in English.", n);
+}
