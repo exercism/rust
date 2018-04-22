@@ -1,0 +1,2 @@
+- To implement `ops`, take a look at overloading operators in [Standard Library Documentation for `std::ops`](https://doc.rust-lang.org/std/ops/index.html).
+- If you are stuck, take a look at the `num-complex` crate for an implementation of this.

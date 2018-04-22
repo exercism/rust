@@ -255,6 +255,16 @@
       ]
     },
     {
+      "uuid": "ac4cf522-9f01-4bfc-83de-54beaaf7b081",
+      "slug": "complex-numbers",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+          "mathematics"
+      ]
+    },
+    {
       "uuid": "20e7d347-b80a-4656-ac34-0825126939ff",
       "slug": "perfect-numbers",
       "core": false,
