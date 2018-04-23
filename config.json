@@ -768,6 +768,18 @@
       "topics": []
     },
     {
+      "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
+      "slug": "diamond",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "String",
+        "str",
+        "parsing"
+      ]
+    },
+    {
       "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
       "slug": "poker",
       "core": false,
