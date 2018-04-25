@@ -1,21 +1,22 @@
 extern crate diamond;
+use diamond::*;
 
 #[test]
-fn test_A(){
-    assert_eq!(get_diamond("A"), vec!["A"]);
+fn test_a(){
+    assert_eq!(get_diamond('A'), vec!["A"]);
 }
 
 #[test]
 #[ignore]
-fn test_B(){
-    assert_eq!(get_diamond("B"), vec![" A ", 
+fn test_b(){
+    assert_eq!(get_diamond('B'), vec![" A ", 
                                       "B B",
                                       " A " ]);
 }
 
 #[test]
 #[ignore]
-fn test_C(){
+fn test_c(){
     assert_eq!(get_diamond('C'), vec!["  A  ",
                                       " B B ",
                                       "C   C",
@@ -25,19 +26,19 @@ fn test_C(){
 
 #[test]
 #[ignore]
-fn test_D(){
+fn test_d(){
     assert_eq!(get_diamond('D'), vec!["   A   ",
                                       "  B B  ",
                                       " C   C ",
                                       "D     D",
                                       " C   C ",
                                       "  B B  ",
-                                      "   A   ",
+                                      "   A   "]);
 }
 
 #[test]
 #[ignore]
-fn test_Z(){
+fn test_e(){
     assert_eq!(get_diamond('Z'), vec![
                 "                         A                         ",
                 "                        B B                        ",
