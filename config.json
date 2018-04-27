@@ -768,6 +768,17 @@
       "topics": []
     },
     {
+      "uuid": "8dea3473-36f4-4228-b24b-bee8d9389167",
+      "slug": "spiral-matrix",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "matrix",
+        "nested structures"
+      ]
+    },
+    {
       "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
       "slug": "poker",
       "core": false,
