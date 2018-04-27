@@ -768,6 +768,18 @@
       "topics": []
     },
     {
+      "uuid": "8cdc3424-51da-4cae-a065-9982859d5b55",
+      "slug": "palindrome-products",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "string comparison",
+        "calculation",
+        "structs"
+      ]
+    },
+    {
       "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
       "slug": "poker",
       "core": false,
