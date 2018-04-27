@@ -322,6 +322,17 @@
       ]
     },
     {
+      "uuid": "21b59652-0609-4c77-b03e-559db09e87b5",
+      "slug": "bank-account",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "struct",
+        "error handling"
+      ]
+    },
+    {
       "uuid": "a24cb7bf-3aac-4051-bcd1-952c2a806187",
       "slug": "pangram",
       "core": false,
