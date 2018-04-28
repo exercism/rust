@@ -1,6 +1,11 @@
 static ABC: &'static str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+use std::ascii::AsciiExt;
 
 pub fn get_diamond(diamond_char: char) -> Vec<String> {
+    let diamond_char = AsciiExt::to_ascii_uppercase(&diamond_char);
+    if ABC.find(diamond_char).is_none() {
+        panic!("{:?} is not a valid char.", diamond_char);
+    }
     if diamond_char == 'A' {
         return vec![String::from("A")];
     }
