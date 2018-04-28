@@ -1,15 +1,15 @@
 static ABC: &'static str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-pub fn get_diamond(c: char) -> Vec<String> {
-    if c == 'A' {
+pub fn get_diamond(diamond_char: char) -> Vec<String> {
+    if diamond_char == 'A' {
         return vec![String::from("A")];
     }
     let mut result: Vec<String> = Vec::new();
 
     //build first half
-    for e in ABC.chars() {
-        result.push(get_line(e, c).clone());
-        if e == c {
+    for char_in_abc in ABC.chars() {
+        result.push(get_line(char_in_abc, diamond_char).clone());
+        if char_in_abc == diamond_char {
             break;
         }
     }
@@ -17,17 +17,18 @@ pub fn get_diamond(c: char) -> Vec<String> {
     //build second half
     let mut rev = result.clone();
     rev.pop(); //remove middle pice to avoid duplicates
-    for e in rev.iter().rev().into_iter() {
-        result.push((*e).clone());
+    for line in rev.drain(..).rev() {
+        result.push(line);
+
     }
 
     result
 }
 
-fn get_line(e: char, c: char) -> String {
+fn get_line(char_in_abc: char, diamond_char: char) -> String {
     let mut r = String::new();
-    let letter_e = get_letter_line(e);
-    let letter_c = get_letter_line(c);
+    let letter_e = get_letter_line(char_in_abc);
+    let letter_c = get_letter_line(diamond_char);
     let ws = letter_c.len() - letter_e.len(); //number of whitespaces
 
     //left
@@ -45,16 +46,15 @@ fn get_line(e: char, c: char) -> String {
     r
 }
 
-fn get_letter_line(e: char) -> String {
+fn get_letter_line(char_in_abc: char) -> String {
     let mut r = String::new();
     let odd = (0..)
         .filter(|x| x % 2 != 0)
-        .take(26)
-        .collect::<Vec<usize>>()
-        [ABC.find(e).unwrap()];
+        .nth(ABC.find(char_in_abc).unwrap())
+        .unwrap();
     for i in 0..odd {
         if i == 0 || i == odd - 1 {
-            r.push(e);
+            r.push(char_in_abc);
         } else {
             r.push(' ');
         }
