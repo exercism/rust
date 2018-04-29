@@ -60,6 +60,16 @@
       ]
     },
     {
+      "uuid": "6010753e-4b51-11e8-842f-0ed5f89f718b",
+      "slug": "two-fer",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "Option"
+      ]
+    },
+    {
       "uuid": "ee5048a7-c625-434d-a0a2-4fd54757ee02",
       "slug": "nth-prime",
       "core": false,
