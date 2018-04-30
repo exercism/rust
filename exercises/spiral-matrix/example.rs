@@ -1,13 +1,6 @@
-pub fn get_spiral(size: usize) -> Vec<Vec<usize>> {
-    let mut matrix: Vec<Vec<usize>> = Vec::with_capacity(size);
-    for i in 0..size {
-        matrix.push(Vec::with_capacity(size));
-        for _ in 0..size {
-            matrix[i].push(0);
-        }
-    }
-
-    let num_concentric_squares: usize = (size as f64 / 2.0).round() as usize;
+pub fn spiral_matrix(size: usize) -> Vec<Vec<usize>> {
+    let mut matrix: Vec<Vec<usize>> = vec![vec![0; size]; size];
+    let num_concentric_squares: usize = (size as f64 / 2.0).ceil() as usize;
     let mut counter: usize = 1;
     let mut sidelen = size;
     for i in 0..num_concentric_squares {
