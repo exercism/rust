@@ -1,0 +1,5 @@
+[package]
+name = "trinary"
+version = "0.0.0"
+
+[dependencies]
