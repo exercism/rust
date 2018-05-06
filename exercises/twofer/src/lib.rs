@@ -1,3 +1,3 @@
-pub fn twofer(_name: &str)-> String {
-    unimplemented!("Solve the exercise here.");
+pub fn twofer(name: &str)-> String {
+    unimplemented!("One for {}, one for me.", name);
 }
