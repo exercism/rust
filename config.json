@@ -768,6 +768,18 @@
       "topics": []
     },
     {
+      "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
+      "slug": "diamond",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "String",
+        "str",
+        "parsing"
+      ]
+    },
+    {
       "uuid": "8dea3473-36f4-4228-b24b-bee8d9389167",
       "slug": "spiral-matrix",
       "core": false,
