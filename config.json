@@ -768,6 +768,18 @@
       "topics": []
     },
     {
+      "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
+      "slug": "diamond",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "String",
+        "str",
+        "parsing"
+      ]
+    },
+    {
       "uuid": "8cdc3424-51da-4cae-a065-9982859d5b55",
       "slug": "palindrome-products",
       "core": false,
