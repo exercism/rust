@@ -780,6 +780,17 @@
       ]
     },
     {
+      "uuid": "8dea3473-36f4-4228-b24b-bee8d9389167",
+      "slug": "spiral-matrix",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "matrix",
+        "nested structures"
+      ]
+    },
+    {
       "uuid": "8cdc3424-51da-4cae-a065-9982859d5b55",
       "slug": "palindrome-products",
       "core": false,
