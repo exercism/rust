@@ -2,54 +2,11 @@ extern crate simple_cipher;
 use simple_cipher::*;
 use std::collections::HashSet;
 
-const PLAIN_TEXT: &str = "abcdefghij";
+const PLAIN_TEXT: &str = "thisismysecret";
 const KEY: &str = "abcdefghij";
 
-#[test]
-fn encode_random_uses_key_made_of_letters() {
-    let (k, _) = encode_random(PLAIN_TEXT);
-    assert!(k.chars().all(|c| c.is_ascii_lowercase()));
-}
 
 #[test]
-#[ignore]
-fn encode_random_uses_key_of_100_characters() {
-    let (k, _) = encode_random(PLAIN_TEXT);
-    assert_eq!(k.len(), 100);
-}
-
-#[test]
-#[ignore]
-fn encode_random_uses_randomly_generated_key() {
-    let keys = (0..100)
-        .map(|_| encode_random(PLAIN_TEXT).0)
-        .collect::<HashSet<_>>();
-    assert_eq!(keys.len(), 100);
-}
-
-#[test]
-#[ignore]
-fn encode_random_can_encode() {
-    let (k, encoded) = encode_random("aaaaaaaaaa");
-    assert_eq!(encoded, k.split_at(10).0);
-}
-
-#[test]
-#[ignore]
-fn encode_random_can_decode() {
-    let (k, _) = encode_random("aaaaaaaaaa");
-    assert_eq!(decode(&k, k.split_at(10).0), Some("aaaaaaaaaa".to_string()));
-}
-
-#[test]
-#[ignore]
-fn encode_random_is_reversible() {
-    let (k, encoded) = encode_random(PLAIN_TEXT);
-    assert_eq!(decode(&k, &encoded), Some(PLAIN_TEXT.to_string()));
-}
-
-#[test]
-#[ignore]
 fn cipher_can_encode_with_given_key() {
     assert_eq!(encode(KEY, "aaaaaaaaaa"), Some(KEY.to_string()));
 }
@@ -99,35 +56,81 @@ fn cipher_can_decode_a_message_that_is_shorter_than_the_key() {
 
 #[test]
 #[ignore]
-fn encode_throws_with_an_all_caps_key() {
+fn encode_returns_none_with_an_all_caps_key() {
     let key = "ABCDEF";
     assert_eq!(encode(key, PLAIN_TEXT), None);
 }
 
 #[test]
 #[ignore]
-fn encode_throws_with_an_any_caps_key() {
+fn encode_returns_none_with_an_any_caps_key() {
     let key = "abcdEFg";
     assert_eq!(encode(key, PLAIN_TEXT), None);
 }
 
 #[test]
 #[ignore]
-fn encode_throws_with_numeric_key() {
+fn encode_returns_none_with_numeric_key() {
     let key = "12345";
     assert_eq!(encode(key, PLAIN_TEXT), None);
 }
 
 #[test]
 #[ignore]
-fn encode_throws_with_any_numeric_key() {
+fn encode_returns_none_with_any_numeric_key() {
     let key = "abcd345ef";
     assert_eq!(encode(key, PLAIN_TEXT), None);
 }
 
 #[test]
 #[ignore]
-fn encode_throws_with_empty_key() {
+fn encode_returns_none_with_empty_key() {
     let key = "";
     assert_eq!(encode(key, PLAIN_TEXT), None);
+}
+
+#[test]
+#[ignore]
+fn encode_random_uses_key_made_of_letters() {
+    let (k, _) = encode_random(PLAIN_TEXT);
+    assert!(k.chars().all(|c| c.is_ascii_lowercase()));
+}
+
+#[test]
+#[ignore]
+fn encode_random_uses_key_of_100_characters_or_more() {
+    let (k, _) = encode_random(PLAIN_TEXT);
+    assert!(k.len() >= 100);
+}
+
+#[test]
+#[ignore]
+fn encode_random_uses_randomly_generated_key() {
+    let mut keys = HashSet::new();
+    let trials = 100;
+    for _ in 0..trials {
+        keys.insert(encode_random(PLAIN_TEXT).0);
+    }
+    assert_eq!(keys.len(), trials);
+}
+
+#[test]
+#[ignore]
+fn encode_random_can_encode() {
+    let (k, encoded) = encode_random("aaaaaaaaaa");
+    assert_eq!(encoded, k.split_at(10).0);
+}
+
+#[test]
+#[ignore]
+fn encode_random_can_decode() {
+    let (k, _) = encode_random("aaaaaaaaaa");
+    assert_eq!(decode(&k, k.split_at(10).0), Some("aaaaaaaaaa".to_string()));
+}
+
+#[test]
+#[ignore]
+fn encode_random_is_reversible() {
+    let (k, encoded) = encode_random(PLAIN_TEXT);
+    assert_eq!(decode(&k, &encoded), Some(PLAIN_TEXT.to_string()));
 }

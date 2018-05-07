@@ -372,19 +372,6 @@
       ]
     },
     {
-      "uuid": "f424a350-50bd-11e8-9c2d-fa7ae01bbebc",
-      "slug": "simple-cipher",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 4,
-      "topics": [
-        "str vs string",
-        "iterators",
-        "chars",
-        "ascii"
-      ]
-    },
-    {
       "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
       "slug": "word-count",
       "core": false,
@@ -435,6 +422,18 @@
         "str vs string",
         "primitive types",
         "iterators",
+        "chars",
+        "ascii"
+      ]
+    },
+    {
+      "uuid": "f424a350-50bd-11e8-9c2d-fa7ae01bbebc",
+      "slug": "simple-cipher",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "str vs string",
         "chars",
         "ascii"
       ]

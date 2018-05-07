@@ -25,7 +25,6 @@ fn shift(key: &str, s: &str, dir: i8) -> Option<String> {
     }
     let mut o = String::new();
     let mut i = 0;
-    let l = s.len();
     let mut key_arr = Vec::new();
     for c in key.chars() {
         if !c.is_ascii_lowercase() {
@@ -34,7 +33,7 @@ fn shift(key: &str, s: &str, dir: i8) -> Option<String> {
         key_arr.push(c);
     }
     for c in s.chars() {
-        let shift = key_arr[i % l] as i8 - 'a' as i8;
+        let shift = key_arr[i % key_arr.len()] as i8 - 'a' as i8;
         let n = ((c as i8 - 'a' as i8 + dir * shift) % 26 + 26) % 26;
         o.push(char::from('a' as u8 + n as u8));
         i += 1;
