@@ -1,9 +1,8 @@
 static ABC: &'static str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-use std::ascii::AsciiExt;
 
 pub fn get_diamond(diamond_char: char) -> Vec<String> {
     let mut result: Vec<String> = Vec::new();
-    let diamond_char = AsciiExt::to_ascii_uppercase(&diamond_char);
+    let diamond_char = diamond_char.to_ascii_uppercase();
     if ABC.find(diamond_char).is_none() {
         return result;
     }
@@ -24,7 +23,6 @@ pub fn get_diamond(diamond_char: char) -> Vec<String> {
     rev.pop(); //remove middle pice to avoid duplicates
     for line in rev.drain(..).rev() {
         result.push(line);
-
     }
 
     result
