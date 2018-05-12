@@ -10,6 +10,13 @@ output: "looc"
 Test your function on this string: `uüu` and see what happens. Try to write a function that properly
 reverses this string. Hint: grapheme clusters
 
+To get the bonus test to run, remove the ignore flag (`#[ignore]`) from the
+last test, and execute the tests with:
+
+```bash
+$ cargo test --features grapheme
+```
+
 
 ## Rust Installation
 
@@ -29,13 +36,6 @@ pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
 to pass again.  The test file is located in the `tests` directory.   You can
 also remove the ignore flag from all the tests to get them to run all at once
 if you wish.
-
-To get the bonus test to run, remove the ignore flag (`#[ignore]`) from the
-last test, and execute the tests with:
-
-```bash
-$ cargo test --features grapheme
-```
 
 Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
