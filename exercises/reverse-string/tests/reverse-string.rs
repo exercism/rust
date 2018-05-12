@@ -62,3 +62,11 @@ fn test_a_palindrome() {
 fn test_wide_characters() {
     process_reverse_case("子猫", "猫子");
 }
+
+#[test]
+#[ignore]
+#[cfg(feature="graphemes")]
+/// grapheme clusters
+fn test_grapheme_clusters() {
+    process_reverse_case("uüu", "uüu");
+}
