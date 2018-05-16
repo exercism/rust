@@ -438,9 +438,9 @@
       "unlocked_by": null,
       "difficulty": 4,
       "topics": [
-        "str vs string",
+        "ascii",
         "chars",
-        "ascii"
+        "str_vs_string"
       ]
     },
     {
