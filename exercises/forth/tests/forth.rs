@@ -304,6 +304,27 @@ fn redefining_a_built_in_operator() {
 
 #[test]
 #[ignore]
+fn can_use_different_words_with_the_same_name() {
+    let mut f = Forth::new();
+    assert!(f.eval(": foo 5 ;").is_ok());
+    assert!(f.eval(": bar foo ;").is_ok());
+    assert!(f.eval(": foo 6 ;").is_ok());
+    assert!(f.eval("bar foo").is_ok());
+    assert_eq!(vec![5, 6], f.stack());
+}
+
+#[test]
+#[ignore]
+fn can_define_word_that_uses_word_with_the_same_name() {
+    let mut f = Forth::new();
+    assert!(f.eval(": foo 10 ;").is_ok());
+    assert!(f.eval(": foo foo 1 + ;").is_ok());
+    assert!(f.eval("foo").is_ok());
+    assert_eq!(vec![11], f.stack());
+}
+
+#[test]
+#[ignore]
 fn defining_a_number() {
     let mut f = Forth::new();
     assert_eq!(Err(Error::InvalidWord), f.eval(": 1 2 ;"));
