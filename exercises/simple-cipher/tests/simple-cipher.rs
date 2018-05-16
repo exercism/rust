@@ -91,6 +91,41 @@ fn encode_returns_none_with_empty_key() {
 
 #[test]
 #[ignore]
+fn decode_returns_none_with_an_all_caps_key() {
+    let key = "ABCDEF";
+    assert_eq!(decode(key, PLAIN_TEXT), None);
+}
+
+#[test]
+#[ignore]
+fn decode_returns_none_with_an_any_caps_key() {
+    let key = "abcdEFg";
+    assert_eq!(decode(key, PLAIN_TEXT), None);
+}
+
+#[test]
+#[ignore]
+fn decode_returns_none_with_numeric_key() {
+    let key = "12345";
+    assert_eq!(decode(key, PLAIN_TEXT), None);
+}
+
+#[test]
+#[ignore]
+fn decode_returns_none_with_any_numeric_key() {
+    let key = "abcd345ef";
+    assert_eq!(decode(key, PLAIN_TEXT), None);
+}
+
+#[test]
+#[ignore]
+fn decode_returns_none_with_empty_key() {
+    let key = "";
+    assert_eq!(decode(key, PLAIN_TEXT), None);
+}
+
+#[test]
+#[ignore]
 fn encode_random_uses_key_made_of_letters() {
     let (k, _) = encode_random(PLAIN_TEXT);
     assert!(k.chars().all(|c| c.is_ascii_lowercase()));
