@@ -24,9 +24,14 @@ fn test_empty_string() {
     process_reverse_case("", "");
 }
 
+#[test]
+/// bonus
+fn test_bonus() {
+    process_reverse_case("uüu", "uüu");
+}
 
 #[test]
-#[ignore]
+
 /// a word
 fn test_a_word() {
     process_reverse_case("robot", "tobor");
@@ -34,7 +39,7 @@ fn test_a_word() {
 
 
 #[test]
-#[ignore]
+
 /// a capitalized word
 fn test_a_capitalized_word() {
     process_reverse_case("Ramen", "nemaR");
@@ -42,7 +47,7 @@ fn test_a_capitalized_word() {
 
 
 #[test]
-#[ignore]
+
 /// a sentence with punctuation
 fn test_a_sentence_with_punctuation() {
     process_reverse_case("I'm hungry!", "!yrgnuh m'I");
@@ -50,14 +55,14 @@ fn test_a_sentence_with_punctuation() {
 
 
 #[test]
-#[ignore]
+
 /// a palindrome
 fn test_a_palindrome() {
     process_reverse_case("racecar", "racecar");
 }
 
 #[test]
-#[ignore]
+
 /// wide characters
 fn test_wide_characters() {
     process_reverse_case("子猫", "猫子");
