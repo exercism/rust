@@ -432,6 +432,18 @@
       ]
     },
     {
+      "slug": "simple-cipher",
+      "uuid": "f424a350-50bd-11e8-9c2d-fa7ae01bbebc",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "ascii",
+        "chars",
+        "str_vs_string"
+      ]
+    },
+    {
       "slug": "etl",
       "uuid": "0c8eeef7-4bab-4cf9-9047-c208b5618312",
       "core": false,
