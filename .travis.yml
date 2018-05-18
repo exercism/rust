@@ -6,6 +6,7 @@ script:
 - "sh ./_test/ensure-stubs-compile.sh"
 - "sh ./_test/count-ignores.sh"
 - "./bin/fetch-configlet"
+- "./_test/check-configlet-fmt.sh"
 - "sh ./_test/ensure-readmes-are-updated.sh"
 - "./bin/configlet lint ."
 - "./_test/verify-exercise-difficulties.sh"

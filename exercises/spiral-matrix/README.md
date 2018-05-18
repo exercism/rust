@@ -1,15 +1,27 @@
-# Armstrong Numbers
+# Spiral Matrix
 
-An [Armstrong number](https://en.wikipedia.org/wiki/Narcissistic_number) is a number that is the sum of its own digits each raised to the power of the number of digits.
+Given the size, return a square matrix of numbers in spiral order.
 
-For example:
+The matrix should be filled with natural numbers, starting from 1
+in the top-left corner, increasing in an inward, clockwise spiral order,
+like these examples:
 
-- 9 is an Armstrong number, because `9 = 9^1 = 9`
-- 10 is *not* an Armstrong number, because `10 != 1^2 + 0^2 = 1`
-- 153 is an Armstrong number, because: `153 = 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153`
-- 154 is *not* an Armstrong number, because: `154 != 1^3 + 5^3 + 4^3 = 1 + 125 + 64 = 190`
+###### Spiral matrix of size 3
 
-Write some code to determine whether a number is an Armstrong number.
+```text
+1 2 3
+8 9 4
+7 6 5
+```
+
+###### Spiral matrix of size 4
+
+```text
+ 1  2  3 4
+12 13 14 5
+11 16 15 6
+10  9  8 7
+```
 
 ## Rust Installation
 
@@ -45,7 +57,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-Wikipedia [https://en.wikipedia.org/wiki/Narcissistic_number](https://en.wikipedia.org/wiki/Narcissistic_number)
+Reddit r/dailyprogrammer challenge #320 [Easy] Spiral Ascension. [https://www.reddit.com/r/dailyprogrammer/comments/6i60lr/20170619_challenge_320_easy_spiral_ascension/](https://www.reddit.com/r/dailyprogrammer/comments/6i60lr/20170619_challenge_320_easy_spiral_ascension/)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
