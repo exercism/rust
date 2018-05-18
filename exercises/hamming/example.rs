@@ -1,7 +1,7 @@
-pub fn hamming_distance(a : &str, b: &str) -> Result<usize, &'static str> {
+pub fn hamming_distance(a: &str, b: &str) -> Option<usize> {
     if a.len() != b.len() {
-        return Result::Err("inputs of different length");
+        return None;
     }
 
-    Result::Ok(a.chars().zip(b.chars()).filter(|&(a, b)| a != b).count())
+    Some(a.chars().zip(b.chars()).filter(|&(a, b)| a != b).count())
 }
