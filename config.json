@@ -19,6 +19,17 @@
       ]
     },
     {
+      "slug": "twofer",
+      "uuid": "c6631a2c-4632-11e8-842f-0ed5f89f718b",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "match",
+        "strings"
+      ]
+    },
+    {
       "slug": "gigasecond",
       "uuid": "f880b1ef-8f66-41f3-bb89-f39a4ed592a2",
       "core": false,
