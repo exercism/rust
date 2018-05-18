@@ -4,3 +4,4 @@ version = "1.0.0"
 authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
 
 [dependencies]
+unicode-segmentation = "1.1.0"
