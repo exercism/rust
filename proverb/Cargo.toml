@@ -1,0 +1,6 @@
+[package]
+name = "proverb"
+version = "0.0.0"
+authors = ["sacherjj <sacherjj@gmail.com>"]
+
+[dependencies]
