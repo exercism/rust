@@ -81,3 +81,8 @@ fn test_invalid_isbn_too_long() {
 fn test_invalid_isbn_with_check_digit_X_instead_of_0() {
     assert!(!is_valid_isbn("3-598-21515-X"));
 }
+
+#[test]
+fn test_invalid_isbn_too_long_with_number() {
+    assert!(!is_valid_isbn("35982150881"));
+}
