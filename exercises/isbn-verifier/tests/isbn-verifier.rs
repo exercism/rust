@@ -105,3 +105,9 @@ fn empty_isbn() {
 fn input_is_9_characters() {
     assert!(!is_valid_isbn("134456729"));
 }
+
+#[test]
+#[ignore]
+fn invalid_characters_are_not_ignored() {
+    assert!(!is_valid_isbn("3132P34035"));
+}
