@@ -78,3 +78,9 @@ fn more_than_a_single_zero_is_valid() {
 fn input_digit_9_is_correctly_converted_to_output_digit_9() {
     assert!(is_valid("091"));
 }
+
+#[test]
+#[ignore]
+fn non_digit_isnt_converted_to_digit_by_ascii_value() {
+    assert!(!is_valid(":9"));
+}
