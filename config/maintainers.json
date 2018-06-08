@@ -1,59 +1,65 @@
 {
+  "docs_url": "",
   "maintainers": [
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "IanWhitney",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null,
+      "bio": null
     },
     {
-      "alumnus": true,
       "github_username": "etrepum",
-      "show_on_website": false
+      "alumnus": true,
+      "show_on_website": false,
+      "name": null,
+      "link_text": null,
+      "link_url": null,
+      "avatar_url": null,
+      "bio": null
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "ijanos",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null,
+      "bio": null
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "petertseng",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null,
+      "bio": null
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "EduardoBautista",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null,
+      "bio": null
     },
     {
-      "alumnus": false,
-      "avatar_url": null,
-      "bio": null,
       "github_username": "coriolinus",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": null,
       "link_text": null,
       "link_url": null,
-      "name": null,
-      "show_on_website": false
+      "avatar_url": null,
+      "bio": null
     }
   ]
 }
