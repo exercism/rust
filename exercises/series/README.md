@@ -1,18 +1,18 @@
 # Series
 
 Given a string of digits, output all the contiguous substrings of length `n` in
-that string.
+that string in the order that they appear.
 
 For example, the string "49142" has the following 3-digit series:
 
-- 491
-- 914
-- 142
+- "491"
+- "914"
+- "142"
 
 And the following 4-digit series:
 
-- 4914
-- 9142
+- "4914"
+- "9142"
 
 And if you ask for a 6-digit series from a 5-digit string, you deserve
 whatever you get.
@@ -33,11 +33,28 @@ Execute the tests with:
 $ cargo test
 ```
 
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
+All but the first test have been ignored. If you wish to run every possible test use:
+
+```bash
+$ cargo test -- --ignored
+```
+
+To run specific test, for example `some_test`, you can use:
+
+```bash
+$ cargo test some_test
+```
+
+To find test names, view the tests source file wich is located in `tests` directory.
+Every function that contains `#[test]` flag above it's name is a separate test.
+If the specfic test is ignored use:
+
+```bash
+$ cargo test some_test -- --ignored
+```
+
+Alternatively you can edit the tests source file and remove the `#[ignore]` flag
+from the tests you wish to run and use the first `cargo test` command to run them.
 
 Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
@@ -51,6 +68,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [help-page]: http://exercism.io/languages/rust
 [modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
 
 ## Source
 
