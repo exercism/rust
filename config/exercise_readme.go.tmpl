@@ -17,20 +17,20 @@ Execute the tests with:
 $ cargo test
 ```
 
-All but the first test have been ignored. If you wish to run every possible test use:
+All but the first test have been ignored. If you wish to run all tests, use:
 
 ```bash
 $ cargo test -- --ignored
 ```
 
-To run specific test, for example `some_test`, you can use:
+To run a specific test, for example `some_test`, you can use:
 
 ```bash
 $ cargo test some_test
 ```
 
-To find test names, view the tests source file wich is located in `tests` directory.
-Every function that contains `#[test]` flag above it's name is a separate test.
+To find test names, view the tests source file wich is located in the `tests` directory.
+Every function that contains `#[test]` flag above its name is a separate test.
 If the specfic test is ignored use:
 
 ```bash
