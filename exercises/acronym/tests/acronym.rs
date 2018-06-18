@@ -11,7 +11,6 @@ fn basic() {
   assert_eq!(acronym::abbreviate("Portable Network Graphics"), "PNG");
 }
 
-
 #[test]
 #[ignore]
 fn lowercase_words() {
