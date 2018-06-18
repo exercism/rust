@@ -65,6 +65,12 @@ fn test_invalid_isbn_without_dashes_and_too_long() {
 
 #[test]
 #[ignore]
+fn too_short_isbn() {
+    assert!(!is_valid_isbn("00"));
+}
+
+#[test]
+#[ignore]
 fn test_invalid_isbn_without_check_digit() {
     assert!(!is_valid_isbn("3-598-21507"));
 }
