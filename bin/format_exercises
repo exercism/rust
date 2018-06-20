@@ -19,13 +19,13 @@ for exercise_dir in ${EXERCISES_PATH}/*; do
 	if [[ " ${IGNORED_EXERCISES[*]} " == *"$exercise_name"* ]]; then
 		echo "$exercise_name - Ignored"
 	else
-		echo "$exercise_name - Formatting"
+		(
+			echo "$exercise_name - Formatting"
 
-		cd "$exercise_dir"
+			cd "$exercise_dir"
 
-		cargo fmt
-
-		cd ".."
+			cargo fmt
+		)
 	fi
 
 done
