@@ -20,18 +20,6 @@
       ]
     },
     {
-      "slug": "two-fer",
-      "uuid": "c6631a2c-4632-11e8-842f-0ed5f89f718b",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "deprecated": true,
-      "topics": [
-        "match",
-        "strings"
-      ]
-    },
-    {
       "slug": "gigasecond",
       "uuid": "f880b1ef-8f66-41f3-bb89-f39a4ed592a2",
       "core": false,
@@ -844,7 +832,7 @@
     {
       "slug": "poker",
       "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
       "difficulty": 7,
       "topics": [
@@ -859,7 +847,7 @@
       "slug": "decimal",
       "uuid": "7cefed7c-37f4-46c5-9a45-68fe4d0fb326",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "poker",
       "difficulty": 7,
       "topics": [
         "bigint",
@@ -872,7 +860,7 @@
     {
       "slug": "anagram",
       "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
       "difficulty": 7,
       "topics": [
@@ -887,7 +875,7 @@
       "slug": "protein-translation",
       "uuid": "4e01efbc-51ce-4d20-b093-b3d44c4be5e8",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "anagram",
       "difficulty": 7,
       "topics": [
         "hash_map",
@@ -900,7 +888,7 @@
       "slug": "robot-name",
       "uuid": "ec7f66c2-749e-4d00-9c11-fa9d106632e4",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "anagram",
       "difficulty": 7,
       "topics": [
         "lifetimes",
@@ -914,7 +902,7 @@
       "slug": "book-store",
       "uuid": "a78ed17a-b2c0-485c-814b-e13ccd1f4153",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "poker",
       "difficulty": 7,
       "topics": [
         "algorithms",
@@ -926,7 +914,7 @@
       "slug": "ocr-numbers",
       "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "anagram",
       "difficulty": 10,
       "topics": [
         "chunks",
@@ -937,7 +925,7 @@
     {
       "slug": "minesweeper",
       "uuid": "e0037ac4-ae5f-4622-b3ad-915648263495",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
       "difficulty": 10,
       "topics": [
@@ -948,7 +936,7 @@
       "slug": "dominoes",
       "uuid": "5e6f6986-5011-427b-a992-d6d0c81f5101",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "poker",
       "difficulty": 10,
       "topics": [
         "graph_theory",
@@ -958,7 +946,7 @@
     {
       "slug": "parallel-letter-frequency",
       "uuid": "e114b19f-9a9a-402d-a5cb-1cad8de5088e",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
       "difficulty": 10,
       "topics": [
@@ -969,7 +957,7 @@
       "slug": "rectangles",
       "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "minesweeper",
       "difficulty": 10,
       "topics": [
         "algorithm",
@@ -981,7 +969,7 @@
     {
       "slug": "forth",
       "uuid": "55976c49-1be5-4170-8aa3-056c2223abbb",
-      "core": false,
+      "core": true,
       "unlocked_by": null,
       "difficulty": 10,
       "topics": [
@@ -992,7 +980,7 @@
       "slug": "circular-buffer",
       "uuid": "6ff1a539-251b-49d4-81b5-a6b1e9ba66a4",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "minesweeper",
       "difficulty": 10,
       "topics": [
         "buffer_reimplementation",
@@ -1003,13 +991,25 @@
       "slug": "react",
       "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "anagram",
       "difficulty": 10,
       "topics": [
         "closures",
         "generics",
         "lifetimes"
       ]
+    },
+    {
+      "slug": "two-fer",
+      "uuid": "c6631a2c-4632-11e8-842f-0ed5f89f718b",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "match",
+        "strings"
+      ],
+      "deprecated": true
     },
     {
       "slug": "nucleotide-codons",
