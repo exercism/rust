@@ -3,7 +3,7 @@
 
 EXERCISES_PATH="../exercises/"
 
-# Some exercises use custsom formatting for illustration purpose and should not be formatted. 
+# Some exercises use custom formatting for illustration purpose and should not be formatted. 
 IGNORED_EXERCISES=(
 	"diamond" 
 	"minesweeper" 
@@ -14,12 +14,12 @@ cd "$EXERCISES_PATH"
 
 # Iterate over every exercise directory and if it is not ignored - format it
 for exercise_dir in ./*; do
-	exersice_name=${exercise_dir##*/}
+	exercise_name=${exercise_dir##*/}
 
-	if [[ " ${IGNORED_EXERCISES[*]} " == *"$exersice_name"* ]]; then
-		echo "$exersice_name - Ignored"
+	if [[ " ${IGNORED_EXERCISES[*]} " == *"$exercise_name"* ]]; then
+		echo "$exercise_name - Ignored"
 	else
-		echo "$exersice_name - Formatting"
+		echo "$exercise_name - Formatting"
 
 		cd "$exercise_dir"
 
