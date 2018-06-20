@@ -22,7 +22,6 @@ fn input_with_columns_not_multiple_of_three_is_error() {
     assert_eq!(Err(ocr::Error::InvalidColumnCount(4)), ocr::convert(&input));
 }
 
-
 #[test]
 #[ignore]
 #[cfg_attr(rustfmt, rustfmt_skip)]

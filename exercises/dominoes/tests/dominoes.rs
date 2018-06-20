@@ -6,7 +6,7 @@ type Domino = (usize, usize);
 
 #[derive(Debug)]
 enum CheckResult {
-    GotInvalid,             // chain returned None
+    GotInvalid, // chain returned None
     Correct,
     ChainingFailure(Vec<Domino>), // failure to match the dots at the right side of one domino with
     // the one on the left side of the next
@@ -17,19 +17,19 @@ enum CheckResult {
 fn normalize(d: &Domino) -> Domino {
     match d {
         &(m, n) if m > n => (n, m),
-        &(m, n) => (m, n)
+        &(m, n) => (m, n),
     }
 }
 
 fn check(input: &[Domino]) -> CheckResult {
     let output = match dominoes::chain(input) {
         None => return GotInvalid,
-        Some(o) => o
+        Some(o) => o,
     };
     if input.len() != output.len() {
         return LengthMismatch(output);
-    }
-    else if input.len() == 0 { // and thus output.len() == 0
+    } else if input.len() == 0 {
+        // and thus output.len() == 0
         return Correct;
     }
 
@@ -51,15 +51,14 @@ fn check(input: &[Domino]) -> CheckResult {
         for &(first, second) in iter {
             if n != first {
                 fail = true;
-                break
+                break;
             }
             n = second
         }
     }
     if fail {
         ChainingFailure(output)
-    }
-    else {
+    } else {
         Correct
     }
 }
@@ -68,16 +67,23 @@ fn assert_correct(input: &[Domino]) {
     match check(&input) {
         Correct => (),
         GotInvalid => panic!("Unexpectedly got invalid on input {:?}", input),
-        ChainingFailure(output) => panic!("Chaining failure for input {:?}, output {:?}", input, output),
-        LengthMismatch(output) => panic!("Length mismatch for input {:?}, output {:?}", input, output),
-        DominoMismatch(output) => panic!("Domino mismatch for input {:?}, output {:?}", input, output),
+        ChainingFailure(output) => panic!(
+            "Chaining failure for input {:?}, output {:?}",
+            input, output
+        ),
+        LengthMismatch(output) => {
+            panic!("Length mismatch for input {:?}, output {:?}", input, output)
+        }
+        DominoMismatch(output) => {
+            panic!("Domino mismatch for input {:?}, output {:?}", input, output)
+        }
     }
 }
 
 #[test]
 fn empty_input_empty_output() {
     let input = &[];
-    assert_eq!(dominoes::chain(input), Some(vec!()));
+    assert_eq!(dominoes::chain(input), Some(vec![]));
 }
 
 #[test]
@@ -153,6 +159,16 @@ fn separate_loops() {
 #[test]
 #[ignore]
 fn nine_elements() {
-    let input = &[(1, 2), (5, 3), (3, 1), (1, 2), (2, 4), (1, 6), (2, 3), (3, 4), (5, 6)];
+    let input = &[
+        (1, 2),
+        (5, 3),
+        (3, 1),
+        (1, 2),
+        (2, 4),
+        (1, 6),
+        (2, 3),
+        (3, 4),
+        (5, 6),
+    ];
     assert_correct(input);
 }

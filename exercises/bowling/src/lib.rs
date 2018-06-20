@@ -4,8 +4,7 @@ pub enum Error {
     GameComplete,
 }
 
-pub struct BowlingGame {
-}
+pub struct BowlingGame {}
 
 impl BowlingGame {
     pub fn new() -> Self {

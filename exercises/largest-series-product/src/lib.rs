@@ -5,5 +5,9 @@ pub enum Error {
 }
 
 pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
-    unimplemented!("largest series product of a span of {} digits in {}", span, string_digits);
+    unimplemented!(
+        "largest series product of a span of {} digits in {}",
+        span,
+        string_digits
+    );
 }

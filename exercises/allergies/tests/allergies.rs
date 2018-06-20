@@ -5,16 +5,18 @@ use allergies::*;
 fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
     for element in expected {
         if !actual.contains(element) {
-            panic!("Allergen missing\n  {:?} should be in {:?}",
-                   element,
-                   actual);
+            panic!(
+                "Allergen missing\n  {:?} should be in {:?}",
+                element, actual
+            );
         }
     }
 
     if actual.len() != expected.len() {
-        panic!("Allergy vectors are of different lengths\n  expected {:?}\n  got {:?}",
-               expected,
-               actual);
+        panic!(
+            "Allergy vectors are of different lengths\n  expected {:?}\n  got {:?}",
+            expected, actual
+        );
     }
 }
 
@@ -98,11 +100,13 @@ fn allergic_to_eggs_and_shellfish() {
 #[test]
 #[ignore]
 fn allergic_to_many_things() {
-    let expected = &[Allergen::Strawberries,
-                     Allergen::Tomatoes,
-                     Allergen::Chocolate,
-                     Allergen::Pollen,
-                     Allergen::Cats];
+    let expected = &[
+        Allergen::Strawberries,
+        Allergen::Tomatoes,
+        Allergen::Chocolate,
+        Allergen::Pollen,
+        Allergen::Cats,
+    ];
     let allergies = Allergies::new(248).allergies();
 
     compare_allergy_vectors(expected, &allergies);
@@ -111,14 +115,16 @@ fn allergic_to_many_things() {
 #[test]
 #[ignore]
 fn allergic_to_everything() {
-    let expected = &[Allergen::Eggs,
-                     Allergen::Peanuts,
-                     Allergen::Shellfish,
-                     Allergen::Strawberries,
-                     Allergen::Tomatoes,
-                     Allergen::Chocolate,
-                     Allergen::Pollen,
-                     Allergen::Cats];
+    let expected = &[
+        Allergen::Eggs,
+        Allergen::Peanuts,
+        Allergen::Shellfish,
+        Allergen::Strawberries,
+        Allergen::Tomatoes,
+        Allergen::Chocolate,
+        Allergen::Pollen,
+        Allergen::Cats,
+    ];
     let allergies = Allergies::new(255).allergies();
 
     compare_allergy_vectors(expected, &allergies);
@@ -127,13 +133,15 @@ fn allergic_to_everything() {
 #[test]
 #[ignore]
 fn scores_over_255_do_not_trigger_false_positives() {
-    let expected = &[Allergen::Eggs,
-                     Allergen::Shellfish,
-                     Allergen::Strawberries,
-                     Allergen::Tomatoes,
-                     Allergen::Chocolate,
-                     Allergen::Pollen,
-                     Allergen::Cats];
+    let expected = &[
+        Allergen::Eggs,
+        Allergen::Shellfish,
+        Allergen::Strawberries,
+        Allergen::Tomatoes,
+        Allergen::Chocolate,
+        Allergen::Pollen,
+        Allergen::Cats,
+    ];
     let allergies = Allergies::new(509).allergies();
 
     compare_allergy_vectors(expected, &allergies);

@@ -2,7 +2,7 @@
 pub enum Classification {
     Abundant,
     Perfect,
-    Deficient
+    Deficient,
 }
 
 pub fn classify(num: u64) -> Option<Classification> {

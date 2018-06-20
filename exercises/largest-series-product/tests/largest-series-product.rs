@@ -46,8 +46,10 @@ fn find_the_largest_product_of_five_with_numbers_in_order() {
 #[test]
 #[ignore]
 fn span_of_six_in_a_large_number() {
-    assert_eq!(Ok(23520),
-               lsp("73167176531330624919225119674426574742355349194934", 6));
+    assert_eq!(
+        Ok(23520),
+        lsp("73167176531330624919225119674426574742355349194934", 6)
+    );
 }
 
 #[test]

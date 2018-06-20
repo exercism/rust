@@ -1,6 +1,6 @@
 extern crate perfect_numbers;
 
-use perfect_numbers::{Classification, classify};
+use perfect_numbers::{classify, Classification};
 
 macro_rules! tests {
     ($property_test_func:ident {
@@ -24,7 +24,6 @@ fn test_classification(num: u64, result: Classification) {
 fn basic() {
     assert_eq!(classify(0), None);
 }
-
 
 tests! {
     test_classification {

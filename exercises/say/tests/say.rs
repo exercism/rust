@@ -72,14 +72,20 @@ fn test_one_thousand() {
 #[test]
 #[ignore]
 fn test_one_thousand_two_hundred_thirty_four() {
-    assert_eq!(say::encode(1234), String::from("one thousand two hundred thirty-four"));
+    assert_eq!(
+        say::encode(1234),
+        String::from("one thousand two hundred thirty-four")
+    );
 }
 
 // note, using American style with no and
 #[test]
 #[ignore]
 fn test_eight_hundred_and_ten_thousand() {
-    assert_eq!(say::encode(810_000), String::from("eight hundred ten thousand"));
+    assert_eq!(
+        say::encode(810_000),
+        String::from("eight hundred ten thousand")
+    );
 }
 
 #[test]
@@ -98,8 +104,10 @@ fn test_one_million_two() {
 #[test]
 #[ignore]
 fn test_1002345() {
-    assert_eq!(say::encode(1_002_345),
-               String::from("one million two thousand three hundred forty-five"));
+    assert_eq!(
+        say::encode(1_002_345),
+        String::from("one million two thousand three hundred forty-five")
+    );
 }
 
 #[test]
@@ -111,11 +119,15 @@ fn test_one_billion() {
 #[test]
 #[ignore]
 fn test_987654321123() {
-    assert_eq!(say::encode(987_654_321_123),
-               String::from("nine hundred eighty-seven billion \
-                             six hundred fifty-four million \
-                             three hundred twenty-one thousand \
-                             one hundred twenty-three"));
+    assert_eq!(
+        say::encode(987_654_321_123),
+        String::from(
+            "nine hundred eighty-seven billion \
+             six hundred fifty-four million \
+             three hundred twenty-one thousand \
+             one hundred twenty-three"
+        )
+    );
 }
 
 /*
@@ -124,9 +136,13 @@ fn test_987654321123() {
 #[test]
 #[ignore]
 fn test_max_u64() {
-    assert_eq!(say::encode(9_223_372_036_854_775_807),
-               String::from("nine quintillion two hundred twenty-three \
-                             quadrillion three hundred seventy-two trillion \
-                             thirty-six billion eight hundred fifty-four million \
-                             seven hundred seventy-five thousand eight hundred seven"));
+    assert_eq!(
+        say::encode(9_223_372_036_854_775_807),
+        String::from(
+            "nine quintillion two hundred twenty-three \
+             quadrillion three hundred seventy-two trillion \
+             thirty-six billion eight hundred fifty-four million \
+             seven hundred seventy-five thousand eight hundred seven"
+        )
+    );
 }

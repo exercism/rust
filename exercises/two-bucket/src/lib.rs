@@ -1,7 +1,7 @@
 #[derive(PartialEq, Eq, Debug)]
 pub enum Bucket {
     One,
-    Two
+    Two,
 }
 
 /// A struct to hold your results in.
@@ -17,11 +17,7 @@ pub struct BucketStats {
 }
 
 /// Solve the bucket problem
-pub fn solve(capacity_1: u8,
-             capacity_2: u8,
-             goal: u8,
-             start_bucket: &Bucket) -> BucketStats
-{
+pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) -> BucketStats {
     unimplemented!(
         "Given one bucket of capacity {}, another of capacity {}, starting with {:?}, find pours to reach {}",
         capacity_1,

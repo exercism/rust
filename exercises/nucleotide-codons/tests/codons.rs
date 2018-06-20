@@ -15,7 +15,8 @@ fn test_cysteine_tgt() {
 
 #[test]
 #[ignore]
-fn test_cysteine_tgy() { // "compressed" name for TGT and TGC
+fn test_cysteine_tgy() {
+    // "compressed" name for TGT and TGC
     let info = codons::parse(make_pairs());
     assert_eq!(info.name_for("TGT"), info.name_for("TGY"));
     assert_eq!(info.name_for("TGC"), info.name_for("TGY"));
@@ -34,7 +35,6 @@ fn test_valine() {
     let info = codons::parse(make_pairs());
     assert_eq!(info.name_for("GTN"), Ok("valine"));
 }
-
 
 #[test]
 #[ignore]
@@ -104,13 +104,14 @@ fn make_pairs() -> Vec<(&'static str, &'static str)> {
         ("aspartic acid", vec!["GAT", "GAC"]),
         ("lysine", vec!["AAA", "AAG"]),
         ("arginine", vec!["CGT", "CGC", "CGA", "CGG", "AGA", "AGG"]),
-        ("stop codon", vec!["TAA", "TAG", "TGA"])];
+        ("stop codon", vec!["TAA", "TAG", "TGA"]),
+    ];
     let mut pairs = Vec::<(&'static str, &'static str)>::new();
     for (name, codons) in grouped.into_iter() {
         for codon in codons {
             pairs.push((codon, name));
         }
-    };
+    }
     pairs.sort_by(|&(_, a), &(_, b)| a.cmp(b));
-    return pairs
+    return pairs;
 }
