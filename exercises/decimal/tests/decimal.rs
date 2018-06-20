@@ -111,7 +111,6 @@ fn test_gt_negative_and_zero() {
     assert!(decimal("0.0") > decimal("-1.0"));
 }
 
-
 // tests of arbitrary precision behavior
 #[test]
 #[ignore]
@@ -130,8 +129,8 @@ fn test_eq_vary_sig_digits() {
 #[ignore]
 fn test_add_vary_precision() {
     assert_eq!(
-        decimal("100000000000000000000000000000000000000000000") +
-            decimal("0.00000000000000000000000000000000000000001"),
+        decimal("100000000000000000000000000000000000000000000")
+            + decimal("0.00000000000000000000000000000000000000001"),
         decimal(BIGS[0])
     )
 }
@@ -140,10 +139,8 @@ fn test_add_vary_precision() {
 #[ignore]
 fn test_cleanup_precision() {
     assert_eq!(
-        decimal(
-            "10000000000000000000000000000000000000000000000.999999999999999999999999998",
-        ) +
-            decimal(
+        decimal("10000000000000000000000000000000000000000000000.999999999999999999999999998",)
+            + decimal(
                 "10000000000000000000000000000000000000000000000.000000000000000000000000002",
             ),
         decimal("20000000000000000000000000000000000000000000001")

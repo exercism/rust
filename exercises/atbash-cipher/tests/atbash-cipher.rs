@@ -32,7 +32,10 @@ fn test_encode_mindblowingly() {
 #[test]
 #[ignore]
 fn test_encode_numbers() {
-    assert_eq!("gvhgr mt123 gvhgr mt", cipher::encode("Testing,1 2 3, testing."));
+    assert_eq!(
+        "gvhgr mt123 gvhgr mt",
+        cipher::encode("Testing,1 2 3, testing.")
+    );
 }
 
 #[test]
@@ -44,8 +47,10 @@ fn test_encode_deep_thought() {
 #[test]
 #[ignore]
 fn test_encode_all_the_letters() {
-    assert_eq!("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt",
-        cipher::encode("The quick brown fox jumps over the lazy dog."));
+    assert_eq!(
+        "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt",
+        cipher::encode("The quick brown fox jumps over the lazy dog.")
+    );
 }
 
 #[test]
@@ -53,7 +58,6 @@ fn test_encode_all_the_letters() {
 fn test_encode_ignores_non_ascii() {
     assert_eq!("mlmzh xrrrt mlivw", cipher::encode("non ascii éignored"));
 }
-
 
 #[test]
 #[ignore]
@@ -64,8 +68,10 @@ fn test_decode_exercism() {
 #[test]
 #[ignore]
 fn test_decode_a_sentence() {
-    assert_eq!("anobstacleisoftenasteppingstone",
-        cipher::decode("zmlyh gzxov rhlug vmzhg vkkrm thglm v"));
+    assert_eq!(
+        "anobstacleisoftenasteppingstone",
+        cipher::decode("zmlyh gzxov rhlug vmzhg vkkrm thglm v")
+    );
 }
 
 #[test]
@@ -77,6 +83,8 @@ fn test_decode_numbers() {
 #[test]
 #[ignore]
 fn test_decode_all_the_letters() {
-    assert_eq!("thequickbrownfoxjumpsoverthelazydog",
-        cipher::decode("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"));
+    assert_eq!(
+        "thequickbrownfoxjumpsoverthelazydog",
+        cipher::decode("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt")
+    );
 }

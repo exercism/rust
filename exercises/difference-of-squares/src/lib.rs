@@ -9,6 +9,6 @@ pub fn sum_of_squares(n: usize) -> usize {
 pub fn difference(n: usize) -> usize {
     unimplemented!(
         "difference between square of sum of 1...{n} and sum of squares of 1...{n}",
-        n=n,
+        n = n,
     )
 }

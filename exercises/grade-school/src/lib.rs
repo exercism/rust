@@ -1,5 +1,4 @@
-pub struct School {
-}
+pub struct School {}
 
 impl School {
     pub fn new() -> School {

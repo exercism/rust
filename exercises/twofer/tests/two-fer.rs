@@ -8,7 +8,7 @@ fn empty_string() {
 
 #[test]
 #[ignore]
-fn alice() { 
+fn alice() {
     assert_eq!(twofer("Alice"), "One for Alice, one for me.");
 }
 

@@ -40,13 +40,19 @@ fn finds_a_value_at_the_end_of_an_array() {
 #[test]
 #[ignore]
 fn finds_a_value_in_an_array_of_odd_length() {
-    assert_eq!(find(&[1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634], 144), Some(9));
+    assert_eq!(
+        find(&[1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634], 144),
+        Some(9)
+    );
 }
 
 #[test]
 #[ignore]
 fn finds_a_value_in_an_array_of_even_length() {
-    assert_eq!(find(&[1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377], 21), Some(5));
+    assert_eq!(
+        find(&[1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377], 21),
+        Some(5)
+    );
 }
 
 #[test]
@@ -72,8 +78,6 @@ fn a_value_larger_than_the_arrays_largest_value_is_not_included() {
 fn nothing_is_included_in_an_empty_array() {
     assert_eq!(find(&[], 1), None);
 }
-
-
 
 /* --------------------------------------- Optional Bonus Tests -------------------------------*/
 

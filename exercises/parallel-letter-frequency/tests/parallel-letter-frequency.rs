@@ -11,7 +11,8 @@ const ODE_AN_DIE_FREUDE: [&'static str; 8] = [
     "Deine Zauber binden wieder",
     "Was die Mode streng geteilt;",
     "Alle Menschen werden Brüder,",
-    "Wo dein sanfter Flügel weilt."];
+    "Wo dein sanfter Flügel weilt.",
+];
 
 // Dutch national anthem
 const WILHELMUS: [&'static str; 8] = [
@@ -22,7 +23,8 @@ const WILHELMUS: [&'static str; 8] = [
     "Een Prinse van Oranje",
     "ben ik, vrij, onverveerd,",
     "den Koning van Hispanje",
-    "heb ik altijd geëerd."];
+    "heb ik altijd geëerd.",
+];
 
 // American national anthem
 const STAR_SPANGLED_BANNER: [&'static str; 8] = [
@@ -33,7 +35,8 @@ const STAR_SPANGLED_BANNER: [&'static str; 8] = [
     "And the rockets' red glare, the bombs bursting in air,",
     "Gave proof through the night that our flag was still there;",
     "O say does that star-spangled banner yet wave,",
-    "O'er the land of the free and the home of the brave?"];
+    "O'er the land of the free and the home of the brave?",
+];
 
 #[test]
 fn test_no_texts() {
