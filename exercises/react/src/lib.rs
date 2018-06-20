@@ -39,7 +39,7 @@ pub struct Reactor<T> {
 }
 
 // You are guaranteed that Reactor will only be tested against types that are Copy + PartialEq.
-impl <T: Copy + PartialEq> Reactor<T> {
+impl<T: Copy + PartialEq> Reactor<T> {
     pub fn new() -> Self {
         unimplemented!()
     }
@@ -62,7 +62,11 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // Notice that there is no way to *remove* a cell.
     // This means that you may assume, without checking, that if the dependencies exist at creation
     // time they will continue to exist as long as the Reactor exists.
-    pub fn create_compute<F: Fn(&[T]) -> T>(&mut self, _dependencies: &[CellID], _compute_func: F) -> Result<ComputeCellID, CellID> {
+    pub fn create_compute<F: Fn(&[T]) -> T>(
+        &mut self,
+        _dependencies: &[CellID],
+        _compute_func: F,
+    ) -> Result<ComputeCellID, CellID> {
         unimplemented!()
     }
 
@@ -101,7 +105,11 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // * Exactly once if the compute cell's value changed as a result of the set_value call.
     //   The value passed to the callback should be the final value of the compute cell after the
     //   set_value call.
-    pub fn add_callback<F: FnMut(T) -> ()>(&mut self, _id: ComputeCellID, _callback: F) -> Option<CallbackID> {
+    pub fn add_callback<F: FnMut(T) -> ()>(
+        &mut self,
+        _id: ComputeCellID,
+        _callback: F,
+    ) -> Option<CallbackID> {
         unimplemented!()
     }
 
@@ -110,7 +118,11 @@ impl <T: Copy + PartialEq> Reactor<T> {
     // Returns an Err if either the cell or callback does not exist.
     //
     // A removed callback should no longer be called.
-    pub fn remove_callback(&mut self, cell: ComputeCellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
+    pub fn remove_callback(
+        &mut self,
+        cell: ComputeCellID,
+        callback: CallbackID,
+    ) -> Result<(), RemoveCallbackError> {
         unimplemented!(
             "Remove the callback identified by the CallbackID {:?} from the cell {:?}",
             callback,

@@ -22,8 +22,10 @@ fn test_encode_string_with_no_single_characters() {
 #[test]
 #[ignore]
 fn test_encode_single_characters_mixed_with_repeated_characters() {
-    assert_eq!("12WB12W3B24WB", rle::encode(
-        "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"));
+    assert_eq!(
+        "12WB12W3B24WB",
+        rle::encode("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB")
+    );
 }
 
 #[test]
@@ -61,8 +63,10 @@ fn test_decode_string_with_no_single_characters() {
 #[test]
 #[ignore]
 fn test_decode_single_characters_with_repeated_characters() {
-    assert_eq!("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB",
-               rle::decode("12WB12W3B24WB"));
+    assert_eq!(
+        "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB",
+        rle::decode("12WB12W3B24WB")
+    );
 }
 
 #[test]
@@ -82,5 +86,8 @@ fn test_decode_lower_case_string() {
 #[test]
 #[ignore]
 fn test_consistency() {
-    assert_eq!("zzz ZZ  zZ", rle::decode(rle::encode("zzz ZZ  zZ").as_str()));
+    assert_eq!(
+        "zzz ZZ  zZ",
+        rle::decode(rle::encode("zzz ZZ  zZ").as_str())
+    );
 }

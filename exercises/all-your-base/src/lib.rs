@@ -37,5 +37,10 @@ pub enum Error {
 ///     process input with leading 0 digits.
 ///
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
-    unimplemented!("Convert {:?} from base {} to base {}", number, from_base, to_base)
+    unimplemented!(
+        "Convert {:?} from base {} to base {}",
+        number,
+        from_base,
+        to_base
+    )
 }

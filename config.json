@@ -12,6 +12,7 @@
       "slug": "hello-world",
       "uuid": "13ec1ebe-d71b-436f-ab12-25305e814171",
       "core": false,
+      "auto_approve": true,
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
@@ -417,6 +418,8 @@
     {
       "slug": "crypto-square",
       "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
+      "core": false,
+      "unlocked_by": null,
       "difficulty": 4,
       "topics": [
         "arrays",
@@ -1003,11 +1006,19 @@
     {
       "slug": "nucleotide-codons",
       "uuid": "8dae8f4d-368d-477d-907e-bf746921bfbf",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 0,
+      "topics": null,
       "deprecated": true
     },
     {
       "slug": "hexadecimal",
       "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 0,
+      "topics": null,
       "deprecated": true
     }
   ]

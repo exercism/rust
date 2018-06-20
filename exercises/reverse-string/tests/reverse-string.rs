@@ -5,25 +5,19 @@
 //! [script]: https://github.com/exercism/rust/blob/master/bin/init_exercise.py
 //! [canonical-data]: https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/reverse-string/canonical_data.json
 
-
 extern crate reverse_string;
 use reverse_string::*;
 
 /// Process a single test case for the property `reverse`
 fn process_reverse_case(input: &str, expected: &str) {
-    assert_eq!(
-        &reverse(input),
-        expected
-    )
+    assert_eq!(&reverse(input), expected)
 }
-
 
 #[test]
 /// empty string
 fn test_empty_string() {
     process_reverse_case("", "");
 }
-
 
 #[test]
 #[ignore]
@@ -32,7 +26,6 @@ fn test_a_word() {
     process_reverse_case("robot", "tobor");
 }
 
-
 #[test]
 #[ignore]
 /// a capitalized word
@@ -40,14 +33,12 @@ fn test_a_capitalized_word() {
     process_reverse_case("Ramen", "nemaR");
 }
 
-
 #[test]
 #[ignore]
 /// a sentence with punctuation
 fn test_a_sentence_with_punctuation() {
     process_reverse_case("I'm hungry!", "!yrgnuh m'I");
 }
-
 
 #[test]
 #[ignore]
@@ -65,7 +56,7 @@ fn test_wide_characters() {
 
 #[test]
 #[ignore]
-#[cfg(feature="grapheme")]
+#[cfg(feature = "grapheme")]
 /// grapheme clusters
 fn test_grapheme_clusters() {
     process_reverse_case("uüu", "uüu");

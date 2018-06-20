@@ -4,8 +4,9 @@ use diffie_hellman::*;
 
 #[test]
 fn test_private_key_in_range_key() {
-    let primes: Vec<u64> = vec![5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 773, 967,
-                                3461, 6131];
+    let primes: Vec<u64> = vec![
+        5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 773, 967, 3461, 6131,
+    ];
     let private_keys: Vec<u64> = primes.iter().map(|x| private_key(*x)).collect();
 
     for i in 0..primes.len() {
@@ -24,7 +25,6 @@ fn test_public_key_correct() {
 
     assert_eq!(public_key(p, g, private_key), expected);
 }
-
 
 #[test]
 #[ignore]

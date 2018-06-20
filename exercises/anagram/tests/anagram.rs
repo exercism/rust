@@ -42,7 +42,14 @@ fn test_detect_anagram() {
 #[test]
 #[ignore]
 fn test_multiple_anagrams() {
-    let inputs = ["gallery", "ballerina", "regally", "clergy", "largely", "leading"];
+    let inputs = [
+        "gallery",
+        "ballerina",
+        "regally",
+        "clergy",
+        "largely",
+        "leading",
+    ];
     let mut outputs: Vec<&str> = vec!["gallery", "regally", "largely"];
     outputs.sort();
     let mut result = anagram::anagrams_for("allergy", &inputs);
@@ -106,7 +113,11 @@ fn test_does_not_detect_a_differently_cased_unicode_word_as_its_own_anagram() {
 fn test_same_bytes_different_chars() {
     let inputs = ["€a"]; // E2 82 AC 61
     let outputs: Vec<&str> = vec![];
-    assert_eq!(anagram::anagrams_for(
-        "a⬂", // 61 E2 AC 82
-        &inputs), outputs);
+    assert_eq!(
+        anagram::anagrams_for(
+            "a⬂", // 61 E2 AC 82
+            &inputs
+        ),
+        outputs
+    );
 }

@@ -89,7 +89,6 @@ fn test_negative_hour_roll_over_continuously() {
     assert_eq!(Clock::new(-91, 00).to_string(), "05:00");
 }
 
-
 #[test]
 #[ignore]
 fn test_negative_minutes() {

@@ -76,7 +76,6 @@ fn test_reverse() {
     assert_eq!(rev_list.pop(), None);
 }
 
-
 #[test]
 #[ignore]
 fn test_into_vector() {
