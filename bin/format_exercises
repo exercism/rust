@@ -1,7 +1,9 @@
 #!/bin/bash
 # Format existing exercises using rustfmt
 
-EXERCISES_PATH="../exercises/"
+RUST_TRACK_REPO_PATH=$(cd "$(dirname "$0")/.." && pwd)
+
+EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/"
 
 # Some exercises use custom formatting for illustration purpose and should not be formatted. 
 IGNORED_EXERCISES=(
