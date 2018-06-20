@@ -1,0 +1,31 @@
+#!/bin/bash
+# Format existing exercises using rustfmt
+
+EXERCISES_PATH="../exercises/"
+
+# Some exercises use custsom formatting for illustration purpose and should not be formatted. 
+IGNORED_EXERCISES=(
+	"diamond" 
+	"minesweeper" 
+	"rectangles"
+)
+
+cd "$EXERCISES_PATH"
+
+# Iterate over every exercise directory and if it is not ignored - format it
+for exercise_dir in ./*; do
+	exersice_name=${exercise_dir##*/}
+
+	if [[ " ${IGNORED_EXERCISES[*]} " == *"$exersice_name"* ]]; then
+		echo "$exersice_name - Ignored"
+	else
+		echo "$exersice_name - Formatting"
+
+		cd "$exercise_dir"
+
+		cargo fmt
+
+		cd ".."
+	fi
+
+done
