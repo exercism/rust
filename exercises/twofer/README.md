@@ -1,4 +1,4 @@
-## Two-fer
+# Twofer
 
 `Two-fer` or `2-fer` is short for two for one. One for you and one for me.
 
@@ -10,6 +10,7 @@ When X is a name or "you".
 
 If the given name is "Alice", the result should be "One for Alice, one for me."
 If no name is given, the result should be "One for you, one for me."
+
 
 ## Rust Installation
 
@@ -24,11 +25,31 @@ Execute the tests with:
 $ cargo test
 ```
 
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
+All but the first test have been ignored. After you get the first test to
+pass, open the tests source file wich is located in the `tests` directory
+and remove the `#[ignore]` flag from the next test and get the tests to pass
+again. Each separate test is a function with `#[test]` flag above it.
+Continue, until you pass every test. 
+
+If you wish to run all tests without editing the tests source file, use:
+
+```bash
+$ cargo test -- --ignored
+```
+
+To run a specific test, for example `some_test`, you can use:
+
+```bash
+$ cargo test some_test
+```
+
+If the specfic test is ignored use:
+
+```bash
+$ cargo test some_test -- --ignored
+```
+
+To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
 Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
@@ -42,6 +63,11 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [help-page]: http://exercism.io/languages/rust
 [modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
+
+## Source
+
+[https://en.wikipedia.org/wiki/Two-fer](https://en.wikipedia.org/wiki/Two-fer)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
