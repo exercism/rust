@@ -82,7 +82,10 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 1,
-      "topics": null
+      "topics": [
+        "loops",
+        "primes"
+      ]
     },
     {
       "slug": "bob",
@@ -796,7 +799,11 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 4,
-      "topics": null
+      "topics": [
+        "ascii",
+        "regular_expressions",
+        "strings"
+      ]
     },
     {
       "slug": "diamond",
