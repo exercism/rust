@@ -1,6 +1,12 @@
 extern crate acronym;
 
 #[test]
+fn empty() {
+  assert_eq!(acronym::abbreviate(""), "");
+}
+
+#[test]
+#[ignore]
 fn basic() {
     assert_eq!(acronym::abbreviate("Portable Network Graphics"), "PNG");
 }
