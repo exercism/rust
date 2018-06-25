@@ -37,6 +37,9 @@ Bob calculates
 The calculations produce the same result!  Alice and Bob now share
 secret s.
 
+One possible solution for this exercise is to implement your own modular exponentiation function.
+To learn more about it refer to the [following page][modular-exponentiation].
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
@@ -89,6 +92,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 [rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
+[modular-exponentiation]: https://en.wikipedia.org/wiki/Modular_exponentiation
 
 ## Source
 
