@@ -1,8 +1,6 @@
 use std::{cmp, fmt};
 
 pub struct Clock {
-    hours: u8,
-    minutes: u8,
 }
 
 impl Clock {
