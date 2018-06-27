@@ -24,13 +24,13 @@ impl Clock {
 }
 
 impl fmt::Debug for Clock {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, _f: &mut fmt::Formatter) -> fmt::Result {
         unimplemented!("Return debug representation of a Clock");
     }
 }
 
 impl cmp::PartialEq for Clock {
-    fn eq(&self, other: &Clock) -> bool {
+    fn eq(&self, _other: &Clock) -> bool {
         unimplemented!("Implement comparison between two Clocks");
     }
 }
