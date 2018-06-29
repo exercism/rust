@@ -41,6 +41,36 @@ fn test_secret_key_correct() {
 
 #[test]
 #[ignore]
+fn test_public_key_correct_big_numbers() {
+    let p: u64 = 4_294_967_299;
+
+    let g: u64 = 8;
+
+    let private_key: u64 = 4_294_967_296;
+
+    let expected: u64 = 4096;
+
+    assert_eq!(public_key(p, g, private_key), expected);
+}
+
+#[test]
+#[ignore]
+fn test_secret_key_correct_big_numbers() {
+    let p: u64 = 4_294_967_927;
+
+    let private_key_a = 4_294_967_300;
+
+    let public_key_b = 843;
+
+    let secret = secret(p, public_key_b, private_key_a);
+
+    let expected = 1_389_354_282;
+
+    assert_eq!(secret, expected);
+}
+
+#[test]
+#[ignore]
 fn test_changed_secret_key() {
     let p: u64 = 13;
     let g: u64 = 11;

@@ -37,6 +37,10 @@ Bob calculates
 The calculations produce the same result!  Alice and Bob now share
 secret s.
 
+One possible solution for this exercise is to implement your own modular exponentiation function.
+To learn more about it refer to the [following page](https://en.wikipedia.org/wiki/Modular_exponentiation).
+
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
