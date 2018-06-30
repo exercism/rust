@@ -1,5 +1,7 @@
+use std::fmt;
+
 #[derive(Debug, PartialEq)]
-pub struct Clock {}
+pub struct Clock;
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
@@ -13,8 +15,10 @@ impl Clock {
     pub fn add_minutes(self, minutes: i32) -> Self {
         unimplemented!("Add {} minutes to existing Clock time", minutes);
     }
+}
 
-    pub fn to_string(&self) -> String {
-        unimplemented!("Return String representation of a Clock");
+impl fmt::Display for Clock {
+    fn fmt(&self, _f: &mut fmt::Formatter) -> fmt::Result {
+        unimplemented!("Implement 'hh:mm' display format for the Clock.");
     }
 }
