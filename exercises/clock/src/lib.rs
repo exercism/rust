@@ -1,7 +1,5 @@
-use std::{cmp, fmt};
-
-pub struct Clock {
-}
+#[derive(Debug, PartialEq)]
+pub struct Clock {}
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
@@ -18,17 +16,5 @@ impl Clock {
 
     pub fn to_string(&self) -> String {
         unimplemented!("Return String representation of a Clock");
-    }
-}
-
-impl fmt::Debug for Clock {
-    fn fmt(&self, _f: &mut fmt::Formatter) -> fmt::Result {
-        unimplemented!("Return debug representation of a Clock");
-    }
-}
-
-impl cmp::PartialEq for Clock {
-    fn eq(&self, _other: &Clock) -> bool {
-        unimplemented!("Implement comparison between two Clocks");
     }
 }
