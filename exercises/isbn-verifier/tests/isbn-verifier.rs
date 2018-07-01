@@ -77,12 +77,6 @@ fn test_invalid_isbn_without_check_digit() {
 
 #[test]
 #[ignore]
-fn test_invalid_isbn_too_long() {
-    assert!(!is_valid_isbn("3-598-21507-XX"));
-}
-
-#[test]
-#[ignore]
 fn test_valid_digits_invalid_length() {
     assert!(!is_valid_isbn("35982150881"));
 }
@@ -116,4 +110,10 @@ fn input_is_9_characters() {
 #[ignore]
 fn invalid_characters_are_not_ignored() {
     assert!(!is_valid_isbn("3132P34035"));
+}
+
+#[test]
+#[ignore]
+fn too_long_but_contains_a_valid_isbn() {
+    assert!(!is_valid_isbn("98245726788"));
 }
