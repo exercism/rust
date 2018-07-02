@@ -1,4 +1,3 @@
 [package]
 name = "rotational-cipher"
 version = "1.0.0"
-authors = ["Chad Baxter <cbaxter@mail.umw.edu>"]
