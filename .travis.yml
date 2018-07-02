@@ -10,6 +10,7 @@ script:
 - "sh ./_test/ensure-readmes-are-updated.sh"
 - "./bin/configlet lint ."
 - "./_test/verify-exercise-difficulties.sh"
+- "./_test/check-exercises-for-authors.sh"
 sudo: false
 rust:
   - stable
