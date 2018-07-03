@@ -2,7 +2,7 @@ pub fn classify(num: u64) -> Option<Classification> {
     if num == 0 {
         return None;
     }
-    let sum: u64 = (1..num).filter(|i| num%i == 0).sum();
+    let sum: u64 = (1..num).filter(|i| num % i == 0).sum();
     if sum == num {
         Some(Classification::Perfect)
     } else if sum < num {
@@ -16,5 +16,5 @@ pub fn classify(num: u64) -> Option<Classification> {
 pub enum Classification {
     Abundant,
     Perfect,
-    Deficient
+    Deficient,
 }

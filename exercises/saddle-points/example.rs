@@ -6,7 +6,6 @@ pub fn find_saddle_points(input: &[Vec<u64>]) -> Vec<(usize, usize)> {
 
     for i in 0..width {
         for j in 0..height {
-
             let column = input.iter().map(|x| x[j]).collect::<Vec<u64>>();
             let row = &input[i];
 

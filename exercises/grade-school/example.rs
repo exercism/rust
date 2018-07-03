@@ -1,12 +1,14 @@
 use std::collections::HashMap;
 
 pub struct School {
-    grades: HashMap<u32, Vec<String>>
+    grades: HashMap<u32, Vec<String>>,
 }
 
 impl School {
     pub fn new() -> School {
-        School { grades: HashMap::new() }
+        School {
+            grades: HashMap::new(),
+        }
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {

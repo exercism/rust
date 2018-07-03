@@ -38,7 +38,11 @@ pub enum Error {
 ///  * Never output leading 0 digits. However, your function must be able to
 ///     process input with leading 0 digits.
 ///
-pub fn convert<P: AsRef<[Digit]>>(digits: P, from_base: Digit, to_base: Digit) -> Result<Vec<Digit>, Error> {
+pub fn convert<P: AsRef<[Digit]>>(
+    digits: P,
+    from_base: Digit,
+    to_base: Digit,
+) -> Result<Vec<Digit>, Error> {
     // check that both bases are in the correct range
     if from_base < 2 {
         return Err(Error::InvalidInputBase);
@@ -53,7 +57,9 @@ pub fn convert<P: AsRef<[Digit]>>(digits: P, from_base: Digit, to_base: Digit) -
     }
 
     // convert all digits into a single large number
-    let mut immediate = digits.as_ref().iter()
+    let mut immediate = digits
+        .as_ref()
+        .iter()
         .rev()
         .enumerate()
         .map(|(i, &num)| num * from_base.pow(i as u32))

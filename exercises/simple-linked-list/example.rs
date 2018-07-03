@@ -8,7 +8,6 @@ struct Node<T> {
     next: Option<Box<Node<T>>>,
 }
 
-
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
         SimpleLinkedList { head: None, len: 0 }
@@ -54,7 +53,6 @@ impl<T: Clone> SimpleLinkedList<T> {
         rev_list
     }
 }
-
 
 impl<'a, T: Clone> From<&'a [T]> for SimpleLinkedList<T> {
     fn from(item: &[T]) -> Self {

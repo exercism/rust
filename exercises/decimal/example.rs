@@ -1,6 +1,6 @@
 use std::cmp::Ordering;
 use std::fmt;
-use std::ops::{Add, Sub, Mul};
+use std::ops::{Add, Mul, Sub};
 
 #[macro_use]
 extern crate try_opt;
@@ -71,8 +71,8 @@ impl Decimal {
             let precision_difference =
                 (higher_precision.decimal_index - lower_precision.decimal_index) as usize;
 
-            lower_precision.digits = &lower_precision.digits *
-                pow(BigInt::from(10_usize), precision_difference);
+            lower_precision.digits =
+                &lower_precision.digits * pow(BigInt::from(10_usize), precision_difference);
             lower_precision.decimal_index += precision_difference;
         }
         if one.decimal_index < two.decimal_index {
@@ -111,7 +111,7 @@ macro_rules! auto_impl_decimal_ops {
                 )
             }
         }
-    }
+    };
 }
 
 auto_impl_decimal_ops!(Add, add, |s, o| s + o, |s, _| s);
@@ -136,7 +136,7 @@ macro_rules! auto_impl_decimal_cow {
                 }
             }
         }
-    }
+    };
 }
 
 auto_impl_decimal_cow!(PartialEq, eq, |a, b| a == b, bool);

@@ -21,7 +21,9 @@ impl Luhn {
 
 impl From<String> for Luhn {
     fn from(s: String) -> Self {
-        Luhn { digits: s.chars().collect() }
+        Luhn {
+            digits: s.chars().collect(),
+        }
     }
 }
 

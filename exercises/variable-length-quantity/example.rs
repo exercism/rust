@@ -77,7 +77,7 @@ fn to_bytes_single(mut value: u32) -> Vec<u8> {
 pub fn from_bytes(bytes: &[u8]) -> Result<Vec<u32>, Error> {
     let mut res = vec![];
     let mut tmp = 0;
-    for (i,b) in bytes.iter().enumerate() {
+    for (i, b) in bytes.iter().enumerate() {
         // test if first 7 bit are set, to check for overflow
         if (tmp & 0xfe_00_00_00) > 0 {
             return Err(Error::Overflow);
@@ -92,14 +92,13 @@ pub fn from_bytes(bytes: &[u8]) -> Result<Vec<u32>, Error> {
             tmp = 0;
         } else {
             // check for incomplete bytes
-            if i+1 == bytes.len() {
+            if i + 1 == bytes.len() {
                 // the next index would be past the end,
                 // i.e. there are no more bytes.
                 return Err(Error::IncompleteNumber);
             }
         }
     }
-
 
     Ok(res)
 }

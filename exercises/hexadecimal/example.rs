@@ -16,7 +16,7 @@ fn parse_hex_digit(c: char) -> Option<i64> {
         'd' => Some(13),
         'e' => Some(14),
         'f' => Some(15),
-        _   => None,
+        _ => None,
     }
 }
 
@@ -28,8 +28,6 @@ pub fn hex_to_int(string: &str) -> Option<i64> {
         .rev()
         .enumerate()
         .fold(Some(0), |acc, (pos, c)| {
-            parse_hex_digit(c).and_then(|n| {
-                acc.map(|acc| acc + n * base.pow(pos as u32))
-            })
+            parse_hex_digit(c).and_then(|n| acc.map(|acc| acc + n * base.pow(pos as u32)))
         })
 }

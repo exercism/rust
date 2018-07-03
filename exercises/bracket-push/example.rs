@@ -45,13 +45,18 @@ pub struct MatchingBrackets {
 
 impl From<Vec<(char, char)>> for MatchingBrackets {
     fn from(v: Vec<(char, char)>) -> Self {
-        MatchingBrackets { collection: v.into_iter().collect::<HashMap<char, char>>() }
+        MatchingBrackets {
+            collection: v.into_iter().collect::<HashMap<char, char>>(),
+        }
     }
 }
 
 impl MatchingBrackets {
     fn contains(&self, other: &char) -> bool {
-        let known = self.collection.keys().chain(self.collection.values()).collect::<Vec<_>>();
+        let known = self.collection
+            .keys()
+            .chain(self.collection.values())
+            .collect::<Vec<_>>();
         known.contains(&other)
     }
 

@@ -15,7 +15,7 @@ use std::collections::{HashSet, VecDeque};
 #[derive(PartialEq, Eq, Debug)]
 pub enum Bucket {
     One,
-    Two
+    Two,
 }
 
 /// A struct to hold your results in.
@@ -31,11 +31,7 @@ pub struct BucketStats {
 }
 
 /// Solve the bucket problem
-pub fn solve(capacity_1: u8,
-             capacity_2: u8,
-             goal: u8,
-             start_bucket: &Bucket) -> BucketStats
-{
+pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) -> BucketStats {
     let state = match *start_bucket {
         Bucket::One => (capacity_1, 0),
         Bucket::Two => (0, capacity_2),

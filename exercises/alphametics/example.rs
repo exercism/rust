@@ -6,14 +6,14 @@ extern crate permutohedron;
 use itertools::Itertools;
 use permutohedron::Heap as Permutations;
 
-
+use std::char;
 use std::collections::HashMap;
 use std::collections::HashSet;
-use std::char;
 
 fn test_equation(puzzle: &str, substitutions: &HashMap<char, u8>) -> bool {
     // Create a new String with characters changed to numbers
-    let puzzle: String = puzzle.chars()
+    let puzzle: String = puzzle
+        .chars()
         .map(|c| {
             if let Some(&n) = substitutions.get(&c) {
                 // If the character is in the substitutions, get the number and
@@ -33,13 +33,20 @@ fn test_equation(puzzle: &str, substitutions: &HashMap<char, u8>) -> bool {
     let right = equation[1].trim().parse::<u32>().unwrap();
 
     // Sum the parts on the left side
-    let left: u32 = equation[0].split('+').map(str::trim).map(|n| n.parse::<u32>().unwrap()).sum();
+    let left: u32 = equation[0]
+        .split('+')
+        .map(str::trim)
+        .map(|n| n.parse::<u32>().unwrap())
+        .sum();
 
     // Create a String with just the numbers and spaces
-    let just_numbers =
-        puzzle.chars().filter(|c| c.is_digit(10) || c.is_whitespace()).collect::<String>();
+    let just_numbers = puzzle
+        .chars()
+        .filter(|c| c.is_digit(10) || c.is_whitespace())
+        .collect::<String>();
     // Split this into the numbers and check every number's first character
-    let no_leading_zeroes = just_numbers.split_whitespace()
+    let no_leading_zeroes = just_numbers
+        .split_whitespace()
         .all(|number| number.chars().next().unwrap() != '0');
 
     // Return true if left and right side is equal and the equation doesnt
@@ -47,11 +54,12 @@ fn test_equation(puzzle: &str, substitutions: &HashMap<char, u8>) -> bool {
     left == right && no_leading_zeroes
 }
 
-
 pub fn solve(puzzle: &str) -> Option<HashMap<char, u8>> {
     // Get unique letters from the puzzle
-    let letters: HashSet<char> =
-        puzzle.chars().filter(|&c| c.is_alphabetic() && c.is_uppercase()).collect();
+    let letters: HashSet<char> = puzzle
+        .chars()
+        .filter(|&c| c.is_alphabetic() && c.is_uppercase())
+        .collect();
     let letters: Vec<char> = letters.into_iter().collect();
 
     // All available numbers for substitution

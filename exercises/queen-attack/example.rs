@@ -12,9 +12,9 @@ impl ChessPiece for Queen {
     }
 
     fn can_attack<T: ChessPiece>(&self, piece: &T) -> bool {
-        self.position.horizontal_from(&piece.position()) ||
-        self.position.vertical_from(&piece.position()) ||
-        self.position.diagonal_from(&piece.position())
+        self.position.horizontal_from(&piece.position())
+            || self.position.vertical_from(&piece.position())
+            || self.position.diagonal_from(&piece.position())
     }
 }
 

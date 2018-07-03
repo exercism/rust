@@ -1,12 +1,12 @@
 fn is_prime(n: u32) -> bool {
     let mut i: u32 = 3;
     while (i * i) < (n + 1) {
-      if n % i == 0 {
-         return false;
-      }
-      i += 1;
-   }
-   return true;
+        if n % i == 0 {
+            return false;
+        }
+        i += 1;
+    }
+    return true;
 }
 
 pub fn nth(n: u32) -> Option<u32> {

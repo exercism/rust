@@ -1,4 +1,5 @@
-#[macro_use] extern crate lazy_static;
+#[macro_use]
+extern crate lazy_static;
 extern crate regex;
 
 use regex::Regex;
@@ -24,5 +25,8 @@ pub fn translate_word(word: &str) -> String {
 }
 
 pub fn translate(text: &str) -> String {
-    text.split(" ").map(|w| translate_word(w)).collect::<Vec<_>>().join(" ")
+    text.split(" ")
+        .map(|w| translate_word(w))
+        .collect::<Vec<_>>()
+        .join(" ")
 }

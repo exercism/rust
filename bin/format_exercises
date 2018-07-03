@@ -25,6 +25,8 @@ for exercise_dir in ${EXERCISES_PATH}/*; do
 			cd "$exercise_dir"
 
 			cargo fmt
+
+			[ -f example.rs ] && rustfmt example.rs
 		)
 	fi
 

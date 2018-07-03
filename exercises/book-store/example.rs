@@ -1,9 +1,9 @@
+use std::cell::RefCell;
 use std::cmp::Ordering;
-use std::collections::{BTreeSet, HashSet};
 use std::collections::hash_map::DefaultHasher;
+use std::collections::{BTreeSet, HashSet};
 use std::hash::{Hash, Hasher};
 use std::mem;
-use std::cell::RefCell;
 
 type Book = usize;
 type GroupedBasket = Vec<Group>;
@@ -25,17 +25,15 @@ impl Group {
     }
 
     fn price(&self) -> Price {
-        (self.0.borrow().len() as Price) * BOOK_PRICE *
-            match self.0.borrow().len() {
-                2 => 95,
-                3 => 90,
-                4 => 80,
-                5 => 75,
-                _ => 100,
-            } / 100
+        (self.0.borrow().len() as Price) * BOOK_PRICE * match self.0.borrow().len() {
+            2 => 95,
+            3 => 90,
+            4 => 80,
+            5 => 75,
+            _ => 100,
+        } / 100
     }
 }
-
 
 impl Ord for Group {
     // we want to order groups first by qty contained DESC, then by lowest value ASC
@@ -45,14 +43,12 @@ impl Ord for Group {
                 if self.0.borrow().len() == 0 {
                     Ordering::Equal
                 } else {
-                    self.0.borrow().iter().next().unwrap().cmp(
-                        other
-                            .0
-                            .borrow()
-                            .iter()
-                            .next()
-                            .unwrap(),
-                    )
+                    self.0
+                        .borrow()
+                        .iter()
+                        .next()
+                        .unwrap()
+                        .cmp(other.0.borrow().iter().next().unwrap())
                 }
             }
             otherwise => otherwise,
