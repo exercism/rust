@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn count(nucleotide: char, dna: &str) -> Result<usize, ()> {
+pub fn count(nucleotide: char, dna: &str) -> Result<usize, char> {
     unimplemented!(
         "How much of nucleotide type '{}' is contained inside DNA string '{}'?",
         nucleotide,
