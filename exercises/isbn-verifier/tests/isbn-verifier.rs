@@ -77,6 +77,18 @@ fn test_invalid_isbn_too_long() {
 
 #[test]
 #[ignore]
+fn test_valid_digits_invalid_length() {
+    assert!(!is_valid_isbn("35982150881"));
+}
+
+#[test]
+#[ignore]
+fn test_special_characters() {
+    assert!(!is_valid_isbn("!@#%!@"));
+}
+
+#[test]
+#[ignore]
 #[allow(non_snake_case)]
 fn test_invalid_isbn_with_check_digit_X_instead_of_0() {
     assert!(!is_valid_isbn("3-598-21515-X"));
