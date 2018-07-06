@@ -2,13 +2,23 @@ use std::collections::HashMap;
 
 static VALID_NUCLEOTIDES: &'static str = "ACGT";
 
-pub fn count(nucleotide: char, input: &str) -> Result<usize, char> {
-    let valid = |x: char| VALID_NUCLEOTIDES.contains(x);
-    if valid(nucleotide) && input.chars().all(valid) {
-        Ok(input.chars().filter(|&c| c == nucleotide).count())
+fn valid(c: char) -> Result<char, char> {
+    if VALID_NUCLEOTIDES.contains(c) {
+        Ok(c)
     } else {
-        Err(nucleotide)
+        Err(c)
     }
+}
+
+pub fn count(nucleotide: char, input: &str) -> Result<usize, char> {
+    valid(nucleotide)?;
+    let mut count = 0;
+    for c in input.chars() {
+        if valid(c)? == nucleotide {
+            count += 1;
+        }
+    }
+    Ok(count)
 }
 
 pub fn nucleotide_counts(input: &str) -> Result<HashMap<char, usize>, char> {
