@@ -1,10 +1,9 @@
 use std::cmp::Ordering;
 
 pub fn find<C, T>(elements: C, needle: T) -> Option<usize>
-    where
-        C: AsRef<[T]>,
-        T: Ord,
-
+where
+    C: AsRef<[T]>,
+    T: Ord,
 {
     let mut base = 0usize;
     let mut slice: &[T] = elements.as_ref();

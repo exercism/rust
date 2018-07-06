@@ -4,7 +4,7 @@ pub fn square_of_sum(n: usize) -> usize {
 }
 
 pub fn sum_of_squares(n: usize) -> usize {
-    (0..n+1).map(|x| x*x).fold(0, |accum, x| accum + x)
+    (0..n + 1).map(|x| x * x).fold(0, |accum, x| accum + x)
 }
 
 pub fn difference(n: usize) -> usize {

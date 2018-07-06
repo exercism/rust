@@ -1,5 +1,3 @@
-
-
 /// The possible nucleotides in DNA and RNA
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum Nucleotide {
@@ -7,7 +5,7 @@ pub enum Nucleotide {
     Cytosine,
     Guanine,
     Thymine,
-    Uracil
+    Uracil,
 }
 
 impl Nucleotide {
@@ -19,7 +17,9 @@ impl Nucleotide {
             'G' => Nucleotide::Guanine,
             'T' => Nucleotide::Thymine,
             'U' => Nucleotide::Uracil,
-            _ => { return None; }
+            _ => {
+                return None;
+            }
         })
     }
 }
@@ -38,8 +38,12 @@ impl DNA {
         let mut out = Vec::new();
         for (idx, ch) in input.chars().enumerate() {
             match Nucleotide::from_char(ch) {
-                Some(Nucleotide::Uracil) | None => { return Err(idx); },
-                Some(n) => { out.push(n);  },
+                Some(Nucleotide::Uracil) | None => {
+                    return Err(idx);
+                }
+                Some(n) => {
+                    out.push(n);
+                }
             }
         }
         Ok(DNA(out))
@@ -52,7 +56,7 @@ impl DNA {
                 Nucleotide::Cytosine => Nucleotide::Guanine,
                 Nucleotide::Guanine => Nucleotide::Cytosine,
                 Nucleotide::Thymine => Nucleotide::Adenine,
-                Nucleotide::Uracil => unreachable!()
+                Nucleotide::Uracil => unreachable!(),
             }
         }
         RNA(self.0)
@@ -70,8 +74,12 @@ impl RNA {
         let mut out = Vec::new();
         for (idx, ch) in input.chars().enumerate() {
             match Nucleotide::from_char(ch) {
-                Some(Nucleotide::Thymine) | None => { return Err(idx); },
-                Some(n) => { out.push(n);  },
+                Some(Nucleotide::Thymine) | None => {
+                    return Err(idx);
+                }
+                Some(n) => {
+                    out.push(n);
+                }
             }
         }
         Ok(RNA(out))

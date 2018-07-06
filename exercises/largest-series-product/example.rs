@@ -13,7 +13,8 @@ pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
         return Err(Error::InvalidDigit(invalid));
     }
 
-    let products: Vec<u64> = string_digits.chars()
+    let products: Vec<u64> = string_digits
+        .chars()
         .map(|c| c.to_digit(10).unwrap() as u64)
         .collect::<Vec<u64>>()
         .windows(span)

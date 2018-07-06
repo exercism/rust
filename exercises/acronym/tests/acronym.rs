@@ -2,7 +2,7 @@ extern crate acronym;
 
 #[test]
 fn empty() {
-  assert_eq!(acronym::abbreviate(""), "");
+    assert_eq!(acronym::abbreviate(""), "");
 }
 
 #[test]

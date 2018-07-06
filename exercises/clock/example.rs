@@ -1,8 +1,8 @@
 use std::fmt;
 
-#[derive(Eq,PartialEq,Debug)]
+#[derive(Eq, PartialEq, Debug)]
 pub struct Clock {
-    minutes: i32
+    minutes: i32,
 }
 
 impl fmt::Display for Clock {
@@ -23,7 +23,9 @@ impl Clock {
         while mins < 0 {
             mins += 1440;
         }
-        Clock { minutes: mins % 1440 }
+        Clock {
+            minutes: mins % 1440,
+        }
     }
 
     pub fn add_minutes(&mut self, minutes: i32) -> Self {

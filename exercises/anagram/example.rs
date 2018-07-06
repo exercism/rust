@@ -7,8 +7,12 @@ fn sort(word: &String) -> String {
 pub fn anagrams_for<'a>(word: &str, inputs: &[&'a str]) -> Vec<&'a str> {
     let lower = word.to_lowercase();
     let sorted = sort(&lower);
-    inputs.iter().filter(|input| {
-        let input_lower = input.to_lowercase();
-        lower != input_lower && sorted == sort(&input_lower)
-    }).cloned().collect()
+    inputs
+        .iter()
+        .filter(|input| {
+            let input_lower = input.to_lowercase();
+            lower != input_lower && sorted == sort(&input_lower)
+        })
+        .cloned()
+        .collect()
 }

@@ -18,14 +18,18 @@ impl Token {
     }
 
     fn is_operator(&self) -> bool {
-        self.value == String::from("plus") || self.value == String::from("minus") ||
-        self.value == String::from("multiplied") || self.value == String::from("divided")
+        self.value == String::from("plus")
+            || self.value == String::from("minus")
+            || self.value == String::from("multiplied")
+            || self.value == String::from("divided")
     }
 }
 
 impl WordProblem {
     pub fn new(c: &str) -> Self {
-        WordProblem { command: String::from(c) }
+        WordProblem {
+            command: String::from(c),
+        }
     }
 
     pub fn answer(&self) -> Result<isize, ()> {
@@ -74,7 +78,9 @@ impl WordProblem {
     fn tokens(&self) -> Vec<Token> {
         self.command
             .split(|c: char| c.is_whitespace() || c == '?')
-            .map(|w| Token { value: String::from(w) })
+            .map(|w| Token {
+                value: String::from(w),
+            })
             .filter(|t| t.is_valid())
             .collect()
     }

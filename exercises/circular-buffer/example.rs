@@ -19,7 +19,7 @@ impl<T: Default + Clone> CircularBuffer<T> {
             buffer: vec![T::default(); size + 1],
             size: size + 1,
             start: 0,
-            end: 0
+            end: 0,
         }
     }
 

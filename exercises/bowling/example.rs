@@ -98,7 +98,9 @@ impl Frame {
 
 impl BowlingGame {
     pub fn new() -> Self {
-        BowlingGame { frames: vec![Frame::new()] }
+        BowlingGame {
+            frames: vec![Frame::new()],
+        }
     }
 
     pub fn roll(&mut self, pins: u16) -> Result<(), Error> {

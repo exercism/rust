@@ -1,5 +1,5 @@
-use std::iter::FromIterator;
 use std::collections::BTreeSet;
+use std::iter::FromIterator;
 
 pub struct Triangle {
     sides: [u16; 3],

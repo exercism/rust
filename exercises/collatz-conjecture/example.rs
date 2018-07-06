@@ -1,10 +1,10 @@
 pub fn collatz_positive(n: u64) -> u64 {
     if n == 1 {
         0
-    } else  {
+    } else {
         1 + match n % 2 {
             0 => collatz_positive(n / 2),
-            _ => collatz_positive(n * 3 + 1)
+            _ => collatz_positive(n * 3 + 1),
         }
     }
 }

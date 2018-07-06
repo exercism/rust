@@ -49,7 +49,7 @@ struct ComputeCell<'a, T: Copy> {
     callbacks: HashMap<CallbackID, Box<FnMut(T) -> () + 'a>>,
 }
 
-impl <T: Copy> Cell<T> {
+impl<T: Copy> Cell<T> {
     fn new(initial: T) -> Self {
         Cell {
             value: initial,
@@ -59,7 +59,7 @@ impl <T: Copy> Cell<T> {
     }
 }
 
-impl <'a, T: Copy> ComputeCell<'a, T> {
+impl<'a, T: Copy> ComputeCell<'a, T> {
     fn new<F: Fn(&[T]) -> T + 'a>(initial: T, dependencies: Vec<CellID>, f: F) -> Self {
         ComputeCell {
             cell: Cell::new(initial),
@@ -77,9 +77,9 @@ pub struct Reactor<'a, T: Copy> {
     computes: Vec<ComputeCell<'a, T>>,
 }
 
-impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
+impl<'a, T: Copy + PartialEq> Reactor<'a, T> {
     pub fn new() -> Self {
-        Reactor{
+        Reactor {
             inputs: Vec::new(),
             computes: Vec::new(),
         }
@@ -90,25 +90,42 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         InputCellID(self.inputs.len() - 1)
     }
 
-    pub fn create_compute<F: Fn(&[T]) -> T + 'a>(&mut self, dependencies: &[CellID], compute_func: F) -> Result<ComputeCellID, CellID> {
+    pub fn create_compute<F: Fn(&[T]) -> T + 'a>(
+        &mut self,
+        dependencies: &[CellID],
+        compute_func: F,
+    ) -> Result<ComputeCellID, CellID> {
         // Check all dependencies' validity before modifying any of them,
         // so that we don't perform an incorrect partial write.
         for &dep in dependencies {
             match dep {
-                CellID::Input(InputCellID(id)) => if id >= self.inputs.len() { return Err(dep) },
-                CellID::Compute(ComputeCellID(id)) => if id >= self.computes.len() { return Err(dep) },
+                CellID::Input(InputCellID(id)) => if id >= self.inputs.len() {
+                    return Err(dep);
+                },
+                CellID::Compute(ComputeCellID(id)) => if id >= self.computes.len() {
+                    return Err(dep);
+                },
             }
         }
         let new_id = ComputeCellID(self.computes.len());
         for &dep in dependencies {
             match dep {
                 CellID::Input(InputCellID(id)) => self.inputs[id].dependents.push(new_id),
-                CellID::Compute(ComputeCellID(id)) => self.computes[id].cell.dependents.push(new_id),
+                CellID::Compute(ComputeCellID(id)) => {
+                    self.computes[id].cell.dependents.push(new_id)
+                }
             }
         }
-        let inputs: Vec<_> = dependencies.iter().map(|&id| self.value(id).unwrap()).collect();
+        let inputs: Vec<_> = dependencies
+            .iter()
+            .map(|&id| self.value(id).unwrap())
+            .collect();
         let initial = compute_func(&inputs);
-        self.computes.push(ComputeCell::new(initial, dependencies.to_vec(), compute_func));
+        self.computes.push(ComputeCell::new(
+            initial,
+            dependencies.to_vec(),
+            compute_func,
+        ));
         Ok(new_id)
     }
 
@@ -121,22 +138,30 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
 
     pub fn set_value(&mut self, id: InputCellID, new_value: T) -> bool {
         let InputCellID(id) = id;
-        self.inputs.get_mut(id).map(|c| {
-            c.value = new_value;
-            c.dependents.clone()
-        }).map(|deps| {
-            for &d in deps.iter() {
-                self.update_dependent(d);
-            }
-            // We can only fire callbacks after all dependents have updated.
-            // So we can't combine this for loop with the one above!
-            for d in deps {
-                self.fire_callbacks(d);
-            }
-        }).is_some()
+        self.inputs
+            .get_mut(id)
+            .map(|c| {
+                c.value = new_value;
+                c.dependents.clone()
+            })
+            .map(|deps| {
+                for &d in deps.iter() {
+                    self.update_dependent(d);
+                }
+                // We can only fire callbacks after all dependents have updated.
+                // So we can't combine this for loop with the one above!
+                for d in deps {
+                    self.fire_callbacks(d);
+                }
+            })
+            .is_some()
     }
 
-    pub fn add_callback<F: FnMut(T) -> () + 'a>(&mut self, id: ComputeCellID, callback: F) -> Option<CallbackID> {
+    pub fn add_callback<F: FnMut(T) -> () + 'a>(
+        &mut self,
+        id: ComputeCellID,
+        callback: F,
+    ) -> Option<CallbackID> {
         let ComputeCellID(id) = id;
         self.computes.get_mut(id).map(|c| {
             c.callbacks_issued += 1;
@@ -146,7 +171,11 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
         })
     }
 
-    pub fn remove_callback(&mut self, cell: ComputeCellID, callback: CallbackID) -> Result<(), RemoveCallbackError> {
+    pub fn remove_callback(
+        &mut self,
+        cell: ComputeCellID,
+        callback: CallbackID,
+    ) -> Result<(), RemoveCallbackError> {
         let ComputeCellID(cell) = cell;
         match self.computes.get_mut(cell) {
             Some(c) => match c.callbacks.remove(&callback) {
@@ -167,7 +196,10 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
                 Some(c) => (&c.dependencies, &c.f, c.cell.dependents.clone()),
                 None => panic!("Cell to update disappeared while querying"),
             };
-            let inputs: Vec<_> = dependencies.iter().map(|&id| self.value(id).unwrap()).collect();
+            let inputs: Vec<_> = dependencies
+                .iter()
+                .map(|&id| self.value(id).unwrap())
+                .collect();
             (f(&inputs), dependents)
         };
 
@@ -179,7 +211,7 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
                     return;
                 }
                 c.cell.value = new_value;
-            },
+            }
             None => panic!("Cell to update disappeared while updating"),
         }
 
@@ -195,14 +227,14 @@ impl <'a, T: Copy + PartialEq> Reactor<'a, T> {
                 if c.cell.value == c.cell.last_value {
                     // Value hasn't changed since last callback fire.
                     // We thus shouldn't fire the callbacks.
-                    return
+                    return;
                 }
                 for cb in c.callbacks.values_mut() {
                     cb(c.cell.value);
                 }
                 c.cell.last_value = c.cell.value;
                 c.cell.dependents.clone()
-            },
+            }
             None => panic!("Callback cell disappeared"),
         };
 

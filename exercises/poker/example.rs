@@ -1,5 +1,5 @@
-use std::fmt;
 use std::cmp::Ordering;
+use std::fmt;
 
 #[macro_use]
 extern crate try_opt;
@@ -181,8 +181,8 @@ impl PokerHand {
     fn is_ace_low_straight(cards: &[Card]) -> bool {
         // special case: ace-low straight
         // still depends on the sorted precondition
-        cards[0].rank.value() == 2 && cards[4].rank == Rank::Ace &&
-            cards
+        cards[0].rank.value() == 2 && cards[4].rank == Rank::Ace
+            && cards
                 .windows(2)
                 .take(3) // (0, 1), (1, 2), (2, 3) --> skips 4, ace
                 .map(|pair| pair[1].rank.value() - pair[0].rank.value())
@@ -201,8 +201,8 @@ impl PokerHand {
             let is_straight = cards
                 .windows(2)
                 .map(|pair| pair[1].rank.value() - pair[0].rank.value())
-                .all(|diff| diff == 1) ||
-                PokerHand::is_ace_low_straight(cards);
+                .all(|diff| diff == 1)
+                || PokerHand::is_ace_low_straight(cards);
 
             if is_flush && is_straight {
                 return Some(PokerHand::StraightFlush);
@@ -269,9 +269,10 @@ impl<'a> Hand<'a> {
     }
 
     fn cmp_high_card(&self, other: &Hand, card: usize) -> Ordering {
-        let mut ordering = self.cards[card].rank.value().cmp(
-            &other.cards[card].rank.value(),
-        );
+        let mut ordering = self.cards[card]
+            .rank
+            .value()
+            .cmp(&other.cards[card].rank.value());
         if card != 0 {
             ordering = ordering.then_with(|| self.cmp_high_card(other, card - 1));
         }

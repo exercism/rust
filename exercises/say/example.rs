@@ -1,13 +1,39 @@
-const SMALL: &'static [&'static str] = &["zero", "one", "two", "three", "four", "five",
-                                         "six", "seven", "eight", "nine", "ten",
-                                         "eleven", "twelve", "thirteen", "fourteen", "fifteen",
-                                         "sixteen", "seventeen", "eighteen", "nineteen"];
+const SMALL: &'static [&'static str] = &[
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
+];
 
-const TENS: &'static [&'static str] = &["ones", "ten", "twenty", "thirty", "forty",
-                                        "fifty", "sixty", "seventy", "eighty", "ninety"];
+const TENS: &'static [&'static str] = &[
+    "ones", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",
+];
 
-const SCALE: &'static [&'static str] = &["", "thousand", "million", "billion",
-                                         "trillion", "quadrillion", "quintillion"];
+const SCALE: &'static [&'static str] = &[
+    "",
+    "thousand",
+    "million",
+    "billion",
+    "trillion",
+    "quadrillion",
+    "quintillion",
+];
 
 pub fn encode(n: u64) -> String {
     if n < 20 {

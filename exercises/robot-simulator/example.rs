@@ -78,8 +78,11 @@ impl Robot {
     }
 
     pub fn instructions(&self, instructions: &str) -> Self {
-        instructions.chars().fold(self.clone(),
-                                  |robot, instruction| robot.execute(instruction))
+        instructions
+            .chars()
+            .fold(self.clone(), |robot, instruction| {
+                robot.execute(instruction)
+            })
     }
 
     pub fn position(&self) -> (i32, i32) {

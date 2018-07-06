@@ -4,7 +4,6 @@ pub fn spiral_matrix(size: usize) -> Vec<Vec<usize>> {
     let mut counter: usize = 1;
     let mut sidelen = size;
     for i in 0..num_concentric_squares {
-
         for j in 0..sidelen {
             matrix[i][i + j] = counter;
             counter += 1;
