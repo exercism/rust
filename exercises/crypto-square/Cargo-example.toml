@@ -1,7 +1,6 @@
 [package]
 name = "crypto-square"
 version = "0.1.0"
-authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
 
 [dependencies]
 itertools = "0.6.1"

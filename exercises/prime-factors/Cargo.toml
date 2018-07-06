@@ -1,6 +1,5 @@
 [package]
 name = "prime_factors"
 version = "1.1.0"
-authors = ["sacherjj <sacherjj@gmail.com>"]
 
 [dependencies]
