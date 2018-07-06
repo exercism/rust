@@ -1,0 +1,3 @@
+ Stub doesn't compile because there is no to_string() implementation.
+ This exercise is an introduction to derived and self-implemented traits,
+ therefore adding template for a trait would reduce student learning.
