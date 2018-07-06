@@ -29,13 +29,13 @@ fn test_count_empty() {
 #[test]
 #[ignore]
 fn count_invalid_nucleotide() {
-    assert!(dna::count('X', "A").is_err());
+    assert_eq!(dna::count('X', "A"), Err('X'));
 }
 
 #[test]
 #[ignore]
 fn count_invalid_dna() {
-    assert!(dna::count('A', "AX").is_err());
+    assert_eq!(dna::count('A', "AX"), Err('X'));
 }
 
 #[test]
@@ -81,5 +81,5 @@ fn test_nucleotide_count_counts_all() {
 #[test]
 #[ignore]
 fn counts_invalid_nucleotide_results_in_err() {
-    assert!(dna::nucleotide_counts("GGXXX").is_err());
+    assert_eq!(dna::nucleotide_counts("GGXXX"), Err('X'));
 }
