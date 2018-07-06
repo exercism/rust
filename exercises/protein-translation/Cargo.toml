@@ -1,4 +1,3 @@
 [package]
 name = "protein-translation"
 version = "0.1.0"
-authors = ["Peter Minten <peter@pminten.nl>"]

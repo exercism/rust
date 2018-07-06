@@ -1,6 +1,5 @@
 [package]
 name = "book_store"
 version = "1.3.0"
-authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
 
 [dependencies]
