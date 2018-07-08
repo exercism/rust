@@ -32,7 +32,7 @@
 //!    |Of Atreus, Agamemnon, King of men.         |     
 //!    ---------------------------------------------     
 //!                                                      
-//!  midsummer-night.txt                                 
+//!  midsummer_night.txt                                 
 //!    -----------------------------------------------   
 //!    |I do entreat your grace to pardon me.        |   
 //!    |I know not by what power I am made bold,     |   
@@ -43,7 +43,7 @@
 //!    |If I refuse to wed Demetrius.                |   
 //!    -----------------------------------------------   
 //!                                                      
-//!  paradise-lost.txt                                   
+//!  paradise_lost.txt                                   
 //!    -------------------------------------------------
 //!    |Of Mans First Disobedience, and the Fruit      |
 //!    |Of that Forbidden Tree, whose mortal tast      |
@@ -60,18 +60,6 @@ extern crate grep;
 use grep::grep;
 
 use std::fs;
-
-/// Process a single test case for the property `grep`
-///
-/// All cases for the `grep` property are implemented
-/// in terms of this function.
-///
-/// Note that you'll need to both name the expected transform which
-/// the student needs to write, and name the types of the inputs and outputs.
-/// While rustc _may_ be able to handle things properly given a working example,
-/// students will face confusing errors if the `I` and `O` types are not concrete.
-///
-/// Expected input format: ('input',)
 
 static ILIAD_CONTENT: &'static str = "Achilles sing, O Goddess! Peleus' son;
 His wrath pernicious, who ten thousand woes
@@ -124,11 +112,11 @@ fn tear_down_files(files: &[&str]) {
 }
 
 fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[&str]) {
-    set_up_files(files);
+    //   set_up_files(files);
 
     let grep_result = grep(pattern, flags, files);
 
-    tear_down_files(files);
+    //   tear_down_files(files);
 
     assert_eq!(grep_result, expected);
 }
@@ -149,374 +137,345 @@ fn test_one_file_one_match_no_flags() {
     process_grep_case(&pattern, &flags, &files, &expected);
 }
 
-/*
 #[test]
+#[ignore]
 /// One file, one match, print line numbers flag
 fn test_one_file_one_match_print_line_numbers_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "Forbidden");
-            hm.insert("flags", vec!["-n"]);
-            hm.insert("files", vec!["paradise-lost.txt"]);
-            hm
-        },
-        vec!["2:Of that Forbidden Tree, whose mortal tast"],
-    );
+    let pattern = "Forbidden";
+
+    let flags = vec!["-n"];
+
+    let files = vec!["paradise_lost.txt"];
+
+    let expected = vec!["2:Of that Forbidden Tree, whose mortal tast"];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, one match, case-insensitive flag
 fn test_one_file_one_match_caseinsensitive_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "FORBIDDEN");
-            hm.insert("flags", vec!["-i"]);
-            hm.insert("files", vec!["paradise-lost.txt"]);
-            hm
-        },
-        vec!["Of that Forbidden Tree, whose mortal tast"],
-    );
+    let pattern = "FORBIDDEN";
+
+    let flags = vec!["-i"];
+
+    let files = vec!["paradise_lost.txt"];
+
+    let expected = vec!["Of that Forbidden Tree, whose mortal tast"];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, one match, print file names flag
 fn test_one_file_one_match_print_file_names_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "Forbidden");
-            hm.insert("flags", vec!["-l"]);
-            hm.insert("files", vec!["paradise-lost.txt"]);
-            hm
-        },
-        vec!["paradise-lost.txt"],
-    );
+    let pattern = "Forbidden";
+
+    let flags = vec!["-l"];
+
+    let files = vec!["paradise_lost.txt"];
+
+    let expected = vec!["paradise_lost.txt"];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, one match, match entire lines flag
 fn test_one_file_one_match_match_entire_lines_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "With loss of Eden, till one greater Man");
-            hm.insert("flags", vec!["-x"]);
-            hm.insert("files", vec!["paradise-lost.txt"]);
-            hm
-        },
-        vec!["With loss of Eden, till one greater Man"],
-    );
+    let pattern = "With loss of Eden, till one greater Man";
+
+    let flags = vec!["-x"];
+
+    let files = vec!["paradise_lost.txt"];
+
+    let expected = vec!["With loss of Eden, till one greater Man"];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, one match, multiple flags
 fn test_one_file_one_match_multiple_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "OF ATREUS, Agamemnon, KIng of MEN.");
-            hm.insert("flags", vec!["-n", "-i", "-x"]);
-            hm.insert("files", vec!["iliad.txt"]);
-            hm
-        },
-        vec!["9:Of Atreus, Agamemnon, King of men."],
-    );
+    let pattern = "OF ATREUS, Agamemnon, KIng of MEN.";
+
+    let flags = vec!["-x", "-i", "-n"];
+
+    let files = vec!["iliad.txt"];
+
+    let expected = vec!["9:Of Atreus, Agamemnon, King of men."];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, several matches, no flags
 fn test_one_file_several_matches_no_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "may");
-            hm.insert("flags", vec![]);
-            hm.insert("files", vec!["midsummer-night.txt"]);
-            hm
-        },
-        vec![
-            "Nor how it may concern my modesty,",
-            "But I beseech your grace that I may know",
-            "The worst that may befall me in this case,",
-        ],
-    );
+    let pattern = "may";
+
+    let flags = vec![];
+
+    let files = vec!["midsummer_night.txt"];
+
+    let expected = vec![
+        "Nor how it may concern my modesty,",
+        "But I beseech your grace that I may know",
+        "The worst that may befall me in this case,",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, several matches, print line numbers flag
 fn test_one_file_several_matches_print_line_numbers_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "may");
-            hm.insert("flags", vec!["-n"]);
-            hm.insert("files", vec!["midsummer-night.txt"]);
-            hm
-        },
-        vec![
-            "3:Nor how it may concern my modesty,",
-            "5:But I beseech your grace that I may know",
-            "6:The worst that may befall me in this case,",
-        ],
-    );
+    let pattern = "may";
+
+    let flags = vec!["-n"];
+
+    let files = vec!["midsummer_night.txt"];
+
+    let expected = vec![
+        "3:Nor how it may concern my modesty,",
+        "5:But I beseech your grace that I may know",
+        "6:The worst that may befall me in this case,",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, several matches, match entire lines flag
 fn test_one_file_several_matches_match_entire_lines_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "may");
-            hm.insert("flags", vec!["-x"]);
-            hm.insert("files", vec!["midsummer-night.txt"]);
-            hm
-        },
-        vec![],
-    );
+    let pattern = "may";
+
+    let flags = vec!["-x"];
+
+    let files = vec!["midsummer_night.txt"];
+
+    let expected = vec![];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, several matches, case-insensitive flag
 fn test_one_file_several_matches_caseinsensitive_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "ACHILLES");
-            hm.insert("flags", vec!["-i"]);
-            hm.insert("files", vec!["iliad.txt"]);
-            hm
-        },
-        vec![
-            "Achilles sing, O Goddess! Peleus' son;",
-            "The noble Chief Achilles from the son",
-        ],
-    );
+    let pattern = "ACHILLES";
+
+    let flags = vec!["-i"];
+
+    let files = vec!["iliad.txt"];
+
+    let expected = vec![
+        "Achilles sing, O Goddess! Peleus' son;",
+        "The noble Chief Achilles from the son",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, several matches, inverted flag
 fn test_one_file_several_matches_inverted_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "Of");
-            hm.insert("flags", vec!["-v"]);
-            hm.insert("files", vec!["paradise-lost.txt"]);
-            hm
-        },
-        vec![
-            "Brought Death into the World, and all our woe,",
-            "With loss of Eden, till one greater Man",
-            "Restore us, and regain the blissful Seat,",
-            "Sing Heav'nly Muse, that on the secret top",
-            "That Shepherd, who first taught the chosen Seed",
-        ],
-    );
+    let pattern = "Of";
+
+    let flags = vec!["-v"];
+
+    let files = vec!["paradise_lost.txt"];
+
+    let expected = vec![
+        "Brought Death into the World, and all our woe,",
+        "With loss of Eden, till one greater Man",
+        "Restore us, and regain the blissful Seat,",
+        "Sing Heav'nly Muse, that on the secret top",
+        "That Shepherd, who first taught the chosen Seed",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// One file, no matches, various flags
 fn test_one_file_no_matches_various_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "Gandalf");
-            hm.insert("flags", vec!["-n", "-l", "-x", "-i"]);
-            hm.insert("files", vec!["iliad.txt"]);
-            hm
-        },
-        vec![],
-    );
+    let pattern = "Gandalf";
+
+    let flags = vec!["-n", "-l", "-x", "-i"];
+
+    let files = vec!["iliad.txt"];
+
+    let expected = vec![];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 // Test grepping multiples files at once
 
 #[test]
+#[ignore]
 /// Multiple files, one match, no flags
 fn test_multiple_files_one_match_no_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "Agamemnon");
-            hm.insert("flags", vec![]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec!["iliad.txt:Of Atreus, Agamemnon, King of men."],
-    );
+    let pattern = "Agamemnon";
+
+    let flags = vec![];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec!["iliad.txt:Of Atreus, Agamemnon, King of men."];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// Multiple files, several matches, no flags
 fn test_multiple_files_several_matches_no_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "may");
-            hm.insert("flags", vec![]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec![
-            "midsummer-night.txt:Nor how it may concern my modesty,",
-            "midsummer-night.txt:But I beseech your grace that I may know",
-            "midsummer-night.txt:The worst that may befall me in this case,",
-        ],
-    );
+    let pattern = "may";
+
+    let flags = vec![];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec![
+        "midsummer_night.txt:Nor how it may concern my modesty,",
+        "midsummer_night.txt:But I beseech your grace that I may know",
+        "midsummer_night.txt:The worst that may befall me in this case,",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// Multiple files, several matches, print line numbers flag
 fn test_multiple_files_several_matches_print_line_numbers_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "that");
-            hm.insert("flags", vec!["-n"]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec![
-            "midsummer-night.txt:5:But I beseech your grace that I may know",
-            "midsummer-night.txt:6:The worst that may befall me in this case,",
-            "paradise-lost.txt:2:Of that Forbidden Tree, whose mortal tast",
-            "paradise-lost.txt:6:Sing Heav'nly Muse, that on the secret top",
-        ],
-    );
+    let pattern = "that";
+
+    let flags = vec!["-n"];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec![
+        "midsummer_night.txt:5:But I beseech your grace that I may know",
+        "midsummer_night.txt:6:The worst that may befall me in this case,",
+        "paradise_lost.txt:2:Of that Forbidden Tree, whose mortal tast",
+        "paradise_lost.txt:6:Sing Heav'nly Muse, that on the secret top",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// Multiple files, one match, print file names flag
 fn test_multiple_files_one_match_print_file_names_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "who");
-            hm.insert("flags", vec!["-l"]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec!["iliad.txt", "paradise-lost.txt"],
-    );
+    let pattern = "who";
+
+    let flags = vec!["-l"];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec!["iliad.txt", "paradise_lost.txt"];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
-*/
-/*
+
 #[test]
+#[ignore]
 /// Multiple files, several matches, case-insensitive flag
 fn test_multiple_files_several_matches_caseinsensitive_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "TO");
-            hm.insert("flags", vec!["-i"]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec![
-            "iliad.txt:Caused to Achaia's host, sent many a soul",
-            "iliad.txt:Illustrious into Ades premature,",
-            "iliad.txt:And Heroes gave (so stood the will of Jove)",
-            "iliad.txt:To dogs and to all ravening fowls a prey,",
-            "midsummer-night.txt:I do entreat your grace to pardon me.",
-            "midsummer-night.txt:In such a presence here to plead my thoughts;",
-            "midsummer-night.txt:If I refuse to wed Demetrius.",
-            "paradise-lost.txt:Brought Death into the World, and all our woe,",
-            "paradise-lost.txt:Restore us, and regain the blissful Seat,",
-            "paradise-lost.txt:Sing Heav'nly Muse, that on the secret top",
-        ],
-    );
+    let pattern = "TO";
+
+    let flags = vec!["-i"];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec![
+        "iliad.txt:Caused to Achaia's host, sent many a soul",
+        "iliad.txt:Illustrious into Ades premature,",
+        "iliad.txt:And Heroes gave (so stood the will of Jove)",
+        "iliad.txt:To dogs and to all ravening fowls a prey,",
+        "midsummer_night.txt:I do entreat your grace to pardon me.",
+        "midsummer_night.txt:In such a presence here to plead my thoughts;",
+        "midsummer_night.txt:If I refuse to wed Demetrius.",
+        "paradise_lost.txt:Brought Death into the World, and all our woe,",
+        "paradise_lost.txt:Restore us, and regain the blissful Seat,",
+        "paradise_lost.txt:Sing Heav'nly Muse, that on the secret top",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// Multiple files, several matches, inverted flag
 fn test_multiple_files_several_matches_inverted_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "a");
-            hm.insert("flags", vec!["-v"]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec![
-            "iliad.txt:Achilles sing, O Goddess! Peleus' son;",
-            "iliad.txt:The noble Chief Achilles from the son",
-            "midsummer-night.txt:If I refuse to wed Demetrius.",
-        ],
-    );
+    let pattern = "a";
+
+    let flags = vec!["-v"];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec![
+        "iliad.txt:Achilles sing, O Goddess! Peleus' son;",
+        "iliad.txt:The noble Chief Achilles from the son",
+        "midsummer_night.txt:If I refuse to wed Demetrius.",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// Multiple files, one match, match entire lines flag
 fn test_multiple_files_one_match_match_entire_lines_flag() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "But I beseech your grace that I may know");
-            hm.insert("flags", vec!["-x"]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec!["midsummer-night.txt:But I beseech your grace that I may know"],
-    );
+    let pattern = "But I beseech your grace that I may know";
+
+    let flags = vec!["-x"];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec!["midsummer_night.txt:But I beseech your grace that I may know"];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// Multiple files, one match, multiple flags
 fn test_multiple_files_one_match_multiple_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "WITH LOSS OF EDEN, TILL ONE GREATER MAN");
-            hm.insert("flags", vec!["-n", "-i", "-x"]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec!["paradise-lost.txt:4:With loss of Eden, till one greater Man"],
-    );
+    let pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN";
+
+    let flags = vec!["-n", "-i", "-x"];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec!["paradise_lost.txt:4:With loss of Eden, till one greater Man"];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
 #[test]
+#[ignore]
 /// Multiple files, no matches, various flags
 fn test_multiple_files_no_matches_various_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "Frodo");
-            hm.insert("flags", vec!["-n", "-l", "-x", "-i"]);
-            hm.insert(
-                "files",
-                vec!["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"],
-            );
-            hm
-        },
-        vec![],
-    );
-}*/
+    let pattern = "Frodo";
+
+    let flags = vec!["-n", "-i", "-x", "-l"];
+
+    let files = vec!["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"];
+
+    let expected = vec![];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
+}
