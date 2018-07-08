@@ -56,7 +56,10 @@
 //!    -------------------------------------------------
 
 extern crate grep;
-use grep::*;
+
+use grep::grep;
+
+use std::fs;
 
 /// Process a single test case for the property `grep`
 ///
@@ -69,13 +72,65 @@ use grep::*;
 /// students will face confusing errors if the `I` and `O` types are not concrete.
 ///
 /// Expected input format: ('input',)
-fn process_grep_case<I, O>(input: I, expected: O) {
-    // typical implementation:
-    // assert_eq!(
-    //     student_grep_func(input),
-    //     expected
-    // )
-    unimplemented!()
+
+static ILIAD_CONTENT: &'static str = "Achilles sing, O Goddess! Peleus' son;
+His wrath pernicious, who ten thousand woes
+Caused to Achaia's host, sent many a soul
+Illustrious into Ades premature,
+And Heroes gave (so stood the will of Jove)
+To dogs and to all ravening fowls a prey,
+When fierce dispute had separated once
+The noble Chief Achilles from the son
+Of Atreus, Agamemnon, King of men.
+";
+
+static MIDSUMMER_NIGHT_CONTENT: &'static str = "I do entreat your grace to pardon me.
+I know not by what power I am made bold,
+Nor how it may concern my modesty,
+In such a presence here to plead my thoughts;
+But I beseech your grace that I may know
+The worst that may befall me in this case,
+If I refuse to wed Demetrius.
+";
+
+static PARADISE_LOST_CONTENT: &'static str = "Of Mans First Disobedience, and the Fruit
+Of that Forbidden Tree, whose mortal tast
+Brought Death into the World, and all our woe,
+With loss of Eden, till one greater Man
+Restore us, and regain the blissful Seat,
+Sing Heav'nly Muse, that on the secret top
+Of Oreb, or of Sinai, didst inspire
+That Shepherd, who first taught the chosen Seed
+";
+
+fn set_up_files(files: &[&str]) {
+    for file_name in files {
+        fs::write(
+            file_name,
+            match *file_name {
+                "iliad.txt" => ILIAD_CONTENT,
+                "midsummer_night.txt" => MIDSUMMER_NIGHT_CONTENT,
+                "paradise_lost.txt" => PARADISE_LOST_CONTENT,
+                _ => "",
+            },
+        ).expect(&format!("Could not write content to {}", file_name));
+    }
+}
+
+fn tear_down_files(files: &[&str]) {
+    for file_name in files {
+        fs::remove_file(file_name).expect(&format!("Could not delete {}", file_name));
+    }
+}
+
+fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[&str]) {
+    set_up_files(files);
+
+    let grep_result = grep(pattern, flags, files);
+
+    tear_down_files(files);
+
+    assert_eq!(grep_result, expected);
 }
 
 // Test grepping a single file
@@ -83,20 +138,19 @@ fn process_grep_case<I, O>(input: I, expected: O) {
 #[test]
 /// One file, one match, no flags
 fn test_one_file_one_match_no_flags() {
-    process_grep_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("pattern", "Agamemnon");
-            hm.insert("flags", vec![]);
-            hm.insert("files", vec!["iliad.txt"]);
-            hm
-        },
-        vec!["Of Atreus, Agamemnon, King of men."],
-    );
+    let pattern = "Agamemnon";
+
+    let flags = vec![];
+
+    let files = vec!["iliad.txt"];
+
+    let expected = vec!["Of Atreus, Agamemnon, King of men."];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
 }
 
+/*
 #[test]
-#[ignore]
 /// One file, one match, print line numbers flag
 fn test_one_file_one_match_print_line_numbers_flag() {
     process_grep_case(
@@ -112,7 +166,6 @@ fn test_one_file_one_match_print_line_numbers_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, one match, case-insensitive flag
 fn test_one_file_one_match_caseinsensitive_flag() {
     process_grep_case(
@@ -128,7 +181,6 @@ fn test_one_file_one_match_caseinsensitive_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, one match, print file names flag
 fn test_one_file_one_match_print_file_names_flag() {
     process_grep_case(
@@ -144,7 +196,6 @@ fn test_one_file_one_match_print_file_names_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, one match, match entire lines flag
 fn test_one_file_one_match_match_entire_lines_flag() {
     process_grep_case(
@@ -160,7 +211,6 @@ fn test_one_file_one_match_match_entire_lines_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, one match, multiple flags
 fn test_one_file_one_match_multiple_flags() {
     process_grep_case(
@@ -176,7 +226,6 @@ fn test_one_file_one_match_multiple_flags() {
 }
 
 #[test]
-#[ignore]
 /// One file, several matches, no flags
 fn test_one_file_several_matches_no_flags() {
     process_grep_case(
@@ -196,7 +245,6 @@ fn test_one_file_several_matches_no_flags() {
 }
 
 #[test]
-#[ignore]
 /// One file, several matches, print line numbers flag
 fn test_one_file_several_matches_print_line_numbers_flag() {
     process_grep_case(
@@ -216,7 +264,6 @@ fn test_one_file_several_matches_print_line_numbers_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, several matches, match entire lines flag
 fn test_one_file_several_matches_match_entire_lines_flag() {
     process_grep_case(
@@ -232,7 +279,6 @@ fn test_one_file_several_matches_match_entire_lines_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, several matches, case-insensitive flag
 fn test_one_file_several_matches_caseinsensitive_flag() {
     process_grep_case(
@@ -251,7 +297,6 @@ fn test_one_file_several_matches_caseinsensitive_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, several matches, inverted flag
 fn test_one_file_several_matches_inverted_flag() {
     process_grep_case(
@@ -273,7 +318,6 @@ fn test_one_file_several_matches_inverted_flag() {
 }
 
 #[test]
-#[ignore]
 /// One file, no matches, various flags
 fn test_one_file_no_matches_various_flags() {
     process_grep_case(
@@ -291,7 +335,6 @@ fn test_one_file_no_matches_various_flags() {
 // Test grepping multiples files at once
 
 #[test]
-#[ignore]
 /// Multiple files, one match, no flags
 fn test_multiple_files_one_match_no_flags() {
     process_grep_case(
@@ -310,7 +353,6 @@ fn test_multiple_files_one_match_no_flags() {
 }
 
 #[test]
-#[ignore]
 /// Multiple files, several matches, no flags
 fn test_multiple_files_several_matches_no_flags() {
     process_grep_case(
@@ -333,7 +375,6 @@ fn test_multiple_files_several_matches_no_flags() {
 }
 
 #[test]
-#[ignore]
 /// Multiple files, several matches, print line numbers flag
 fn test_multiple_files_several_matches_print_line_numbers_flag() {
     process_grep_case(
@@ -357,7 +398,6 @@ fn test_multiple_files_several_matches_print_line_numbers_flag() {
 }
 
 #[test]
-#[ignore]
 /// Multiple files, one match, print file names flag
 fn test_multiple_files_one_match_print_file_names_flag() {
     process_grep_case(
@@ -374,9 +414,9 @@ fn test_multiple_files_one_match_print_file_names_flag() {
         vec!["iliad.txt", "paradise-lost.txt"],
     );
 }
-
+*/
+/*
 #[test]
-#[ignore]
 /// Multiple files, several matches, case-insensitive flag
 fn test_multiple_files_several_matches_caseinsensitive_flag() {
     process_grep_case(
@@ -406,7 +446,6 @@ fn test_multiple_files_several_matches_caseinsensitive_flag() {
 }
 
 #[test]
-#[ignore]
 /// Multiple files, several matches, inverted flag
 fn test_multiple_files_several_matches_inverted_flag() {
     process_grep_case(
@@ -429,7 +468,6 @@ fn test_multiple_files_several_matches_inverted_flag() {
 }
 
 #[test]
-#[ignore]
 /// Multiple files, one match, match entire lines flag
 fn test_multiple_files_one_match_match_entire_lines_flag() {
     process_grep_case(
@@ -448,7 +486,6 @@ fn test_multiple_files_one_match_match_entire_lines_flag() {
 }
 
 #[test]
-#[ignore]
 /// Multiple files, one match, multiple flags
 fn test_multiple_files_one_match_multiple_flags() {
     process_grep_case(
@@ -467,7 +504,6 @@ fn test_multiple_files_one_match_multiple_flags() {
 }
 
 #[test]
-#[ignore]
 /// Multiple files, no matches, various flags
 fn test_multiple_files_no_matches_various_flags() {
     process_grep_case(
@@ -483,4 +519,4 @@ fn test_multiple_files_no_matches_various_flags() {
         },
         vec![],
     );
-}
+}*/
