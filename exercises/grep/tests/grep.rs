@@ -59,7 +59,9 @@ extern crate grep;
 
 use grep::grep;
 
-use std::fs;
+use std::{
+    fs, sync::{Once, ONCE_INIT},
+};
 
 static ILIAD_CONTENT: &'static str = "Achilles sing, O Goddess! Peleus' son;
 His wrath pernicious, who ten thousand woes
@@ -91,6 +93,34 @@ Of Oreb, or of Sinai, didst inspire
 That Shepherd, who first taught the chosen Seed
 ";
 
+struct Fixture;
+
+impl Fixture {
+    fn set_up(&self) {
+        static SETUP: Once = ONCE_INIT;
+
+        SETUP.call_once(|| {
+            set_up_files(&vec![
+                "iliad.txt",
+                "midsummer_night.txt",
+                "paradise_lost.txt",
+            ]);
+        });
+    }
+}
+
+impl Drop for Fixture {
+    fn drop(&mut self) {
+        /*tear_down_files(&vec![
+            "iliad.txt",
+            "midsummer_night.txt",
+            "paradise_lost.txt",
+        ]);*/
+    }
+}
+
+const TEST_FIXTURE: Fixture = Fixture;
+
 fn set_up_files(files: &[&str]) {
     for file_name in files {
         fs::write(
@@ -112,11 +142,9 @@ fn tear_down_files(files: &[&str]) {
 }
 
 fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[&str]) {
-    //   set_up_files(files);
+    TEST_FIXTURE.set_up();
 
     let grep_result = grep(pattern, flags, files);
-
-    //   tear_down_files(files);
 
     assert_eq!(grep_result, expected);
 }
