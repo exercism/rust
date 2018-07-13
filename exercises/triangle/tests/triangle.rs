@@ -6,7 +6,7 @@ use triangle::*;
 fn positive_length_sides_are_ok() {
     let sides = [2, 2, 2];
     let triangle = Triangle::build(sides);
-    assert!(triangle.is_ok());
+    assert!(triangle.is_some());
 }
 
 #[test]
@@ -14,7 +14,7 @@ fn positive_length_sides_are_ok() {
 fn zero_length_sides_are_illegal() {
     let sides = [0, 0, 0];
     let triangle = Triangle::build(sides);
-    assert!(triangle.is_err());
+    assert!(triangle.is_none());
 }
 
 #[test]
@@ -120,7 +120,7 @@ fn scalene_triangle_has_no_equal_sides_four() {
 fn sum_of_two_sides_must_equal_or_exceed_the_remaining_side_one() {
     let sides = [7, 3, 2];
     let triangle = Triangle::build(sides);
-    assert!(triangle.is_err());
+    assert!(triangle.is_none());
 }
 
 #[test]
@@ -128,7 +128,7 @@ fn sum_of_two_sides_must_equal_or_exceed_the_remaining_side_one() {
 fn sum_of_two_sides_must_equal_or_exceed_the_remaining_side_two() {
     let sides = [1, 1, 3];
     let triangle = Triangle::build(sides);
-    assert!(triangle.is_err());
+    assert!(triangle.is_none());
 }
 
 // Optional Tests
