@@ -14,13 +14,13 @@ impl Triangle {
             (self.sides[2] + self.sides[0] >= self.sides[1])
     }
 
-    pub fn build(sides: [u16; 3]) -> Result<Self, ()> {
+    pub fn build(sides: [u16; 3]) -> Option<Triangle> {
         let t = Triangle { sides: sides };
 
         if t.valid_sides() {
-            Ok(t)
+            Some(t)
         } else {
-            Err(())
+            None
         }
     }
 
