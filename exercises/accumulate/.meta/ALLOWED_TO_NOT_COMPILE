@@ -1,0 +1,2 @@
+Stub doesn't compile because there is no type specified for _function and _closure arguments. 
+This exercise teaches students about the use of function pointers and closures, therefore specifying the type of arguments for them would reduce learning.
