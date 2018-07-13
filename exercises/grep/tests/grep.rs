@@ -36,6 +36,16 @@ Of Oreb, or of Sinai, didst inspire
 That Shepherd, who first taught the chosen Seed
 ";
 
+static BLOK_CONTENT: &'static str = "Белой ночью месяц красный
+Выплывает в синеве.
+Бродит призрачно-прекрасный,
+Отражается в Неве.
+Мне провидится и снится
+Исполпенье тайных дум.
+В вас ли доброе таится,
+Красный месяц, тихий шум?..
+";
+
 struct Fixture;
 
 impl Fixture {
@@ -47,6 +57,7 @@ impl Fixture {
                 "iliad.txt",
                 "midsummer_night.txt",
                 "paradise_lost.txt",
+                "blok.txt",
             ]);
         });
     }
@@ -72,6 +83,7 @@ fn set_up_files(files: &[&str]) {
                 "iliad.txt" => ILIAD_CONTENT,
                 "midsummer_night.txt" => MIDSUMMER_NIGHT_CONTENT,
                 "paradise_lost.txt" => PARADISE_LOST_CONTENT,
+                "blok.txt" => BLOK_CONTENT,
                 _ => "",
             },
         ).expect(&format!("Could not write content to {}", file_name));
@@ -382,6 +394,25 @@ fn test_multiple_files_several_matches_caseinsensitive_flag() {
         "paradise_lost.txt:Brought Death into the World, and all our woe,",
         "paradise_lost.txt:Restore us, and regain the blissful Seat,",
         "paradise_lost.txt:Sing Heav'nly Muse, that on the secret top",
+    ];
+
+    process_grep_case(&pattern, &flags, &files, &expected);
+}
+
+#[test]
+#[ignore]
+fn test_multiple_files_several_matches_caseinsensitive_flag_utf8() {
+    let pattern = "В"; // This letter stands for cyrillic 'Ve' and not latin 'B'. Therefore there should be no matches from paradise_lost.txt
+
+    let flags = vec!["-i"];
+
+    let files = vec!["blok.txt", "paradise_lost.txt"];
+
+    let expected = vec![
+        "blok.txt:Выплывает в синеве.",
+        "blok.txt:Отражается в Неве.",
+        "blok.txt:Мне провидится и снится",
+        "blok.txt:В вас ли доброе таится,",
     ];
 
     process_grep_case(&pattern, &flags, &files, &expected);
