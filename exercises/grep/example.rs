@@ -1,5 +1,25 @@
 use std::fs;
 
+pub struct Flags {
+    print_line_number: bool,
+    print_file_name: bool,
+    use_caseinsensitive_comparison: bool,
+    use_inverted_comparison: bool,
+    match_entire_line: bool,
+}
+
+impl Flags {
+    pub fn new(flags: &[&str]) -> Self {
+        Flags {
+            print_line_number: flags.contains(&"-n"),
+            print_file_name: flags.contains(&"-l"),
+            use_caseinsensitive_comparison: flags.contains(&"-i"),
+            use_inverted_comparison: flags.contains(&"-v"),
+            match_entire_line: flags.contains(&"-x"),
+        }
+    }
+}
+
 fn get_file_lines(file_name: &str) -> Vec<String> {
     fs::read_to_string(file_name)
         .expect(&format!("Could not read {}", file_name))
@@ -8,7 +28,7 @@ fn get_file_lines(file_name: &str) -> Vec<String> {
         .collect()
 }
 
-pub fn grep(pattern: &str, flags: &[&str], files: &[&str]) -> Vec<String> {
+pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Vec<String> {
     let mut grep_result = vec![];
 
     let is_multiple_file_search = files.len() > 1;
@@ -25,7 +45,7 @@ pub fn grep(pattern: &str, flags: &[&str], files: &[&str]) -> Vec<String> {
 
                     let mut inner_pattern = String::from(pattern);
 
-                    if flags.contains(&"-i") {
+                    if flags.use_caseinsensitive_comparison {
                         inner_line = inner_line.to_lowercase().to_string();
 
                         inner_pattern = inner_pattern.to_lowercase().to_string();
@@ -33,11 +53,11 @@ pub fn grep(pattern: &str, flags: &[&str], files: &[&str]) -> Vec<String> {
 
                     let mut is_filtered = inner_line.contains(&inner_pattern);
 
-                    if flags.contains(&"-x") {
+                    if flags.match_entire_line {
                         is_filtered = inner_line == inner_pattern;
                     }
 
-                    if flags.contains(&"-v") {
+                    if flags.use_inverted_comparison {
                         is_filtered = !inner_line.contains(&inner_pattern);
                     }
 
@@ -47,7 +67,7 @@ pub fn grep(pattern: &str, flags: &[&str], files: &[&str]) -> Vec<String> {
                 .map(|(line_number, line)| {
                     let mut result = line.to_owned();
 
-                    if flags.contains(&"-n") {
+                    if flags.print_line_number {
                         result.insert_str(0, &format!("{}:", line_number + 1));
                     }
 
@@ -55,7 +75,7 @@ pub fn grep(pattern: &str, flags: &[&str], files: &[&str]) -> Vec<String> {
                         result.insert_str(0, &format!("{}:", file_name))
                     }
 
-                    if flags.contains(&"-l") {
+                    if flags.print_file_name {
                         result = file_name.to_owned().to_owned();
                     }
 

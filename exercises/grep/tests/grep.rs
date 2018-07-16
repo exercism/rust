@@ -1,6 +1,6 @@
 extern crate grep;
 
-use grep::grep;
+use grep::{grep, Flags};
 
 use std::fs;
 
@@ -104,7 +104,9 @@ fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[
 
     test_fixture.set_up();
 
-    let grep_result = grep(pattern, flags, files);
+    let flags = Flags::new(flags);
+
+    let grep_result = grep(pattern, &flags, files);
 
     assert_eq!(grep_result, expected);
 }
