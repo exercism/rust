@@ -36,7 +36,7 @@ Of Oreb, or of Sinai, didst inspire
 That Shepherd, who first taught the chosen Seed
 ";
 
-static BLOK_CONTENT: &'static str = "Белой ночью месяц красный
+static IN_THE_WHITE_NIGHT_CONTENT: &'static str = "Белой ночью месяц красный
 Выплывает в синеве.
 Бродит призрачно-прекрасный,
 Отражается в Неве.
@@ -57,7 +57,7 @@ impl Fixture {
                 "iliad.txt",
                 "midsummer_night.txt",
                 "paradise_lost.txt",
-                "blok.txt",
+                "in_the_white_night.txt",
             ]);
         });
     }
@@ -83,7 +83,7 @@ fn set_up_files(files: &[&str]) {
                 "iliad.txt" => ILIAD_CONTENT,
                 "midsummer_night.txt" => MIDSUMMER_NIGHT_CONTENT,
                 "paradise_lost.txt" => PARADISE_LOST_CONTENT,
-                "blok.txt" => BLOK_CONTENT,
+                "in_the_white_night.txt" => IN_THE_WHITE_NIGHT_CONTENT,
                 _ => "",
             },
         ).expect(&format!("Could not write content to {}", file_name));
@@ -406,13 +406,13 @@ fn test_multiple_files_several_matches_caseinsensitive_flag_utf8() {
 
     let flags = vec!["-i"];
 
-    let files = vec!["blok.txt", "paradise_lost.txt"];
+    let files = vec!["in_the_white_night.txt", "paradise_lost.txt"];
 
     let expected = vec![
-        "blok.txt:Выплывает в синеве.",
-        "blok.txt:Отражается в Неве.",
-        "blok.txt:Мне провидится и снится",
-        "blok.txt:В вас ли доброе таится,",
+        "in_the_white_night.txt:Выплывает в синеве.",
+        "in_the_white_night.txt:Отражается в Неве.",
+        "in_the_white_night.txt:Мне провидится и снится",
+        "in_the_white_night.txt:В вас ли доброе таится,",
     ];
 
     process_grep_case(&pattern, &flags, &files, &expected);
