@@ -58,10 +58,10 @@ impl Fixture {
 
         SETUP.call_once(|| {
             set_up_files(&vec![
-                "iliad.txt",
-                "midsummer_night.txt",
-                "paradise_lost.txt",
-                "in_the_white_night.txt",
+                ("iliad.txt", ILIAD_CONTENT),
+                ("midsummer_night.txt", MIDSUMMER_NIGHT_CONTENT),
+                ("paradise_lost.txt", PARADISE_LOST_CONTENT),
+                ("in_the_white_night.txt", IN_THE_WHITE_NIGHT_CONTENT),
             ]);
         });
     }
@@ -79,18 +79,12 @@ impl Drop for Fixture {
 
 const TEST_FIXTURE: Fixture = Fixture;
 
-fn set_up_files(files: &[&str]) {
-    for file_name in files {
-        fs::write(
-            file_name,
-            match *file_name {
-                "iliad.txt" => ILIAD_CONTENT,
-                "midsummer_night.txt" => MIDSUMMER_NIGHT_CONTENT,
-                "paradise_lost.txt" => PARADISE_LOST_CONTENT,
-                "in_the_white_night.txt" => IN_THE_WHITE_NIGHT_CONTENT,
-                _ => "",
-            },
-        ).expect(&format!("Could not write content to {}", file_name));
+fn set_up_files(files: &[(&str, &str)]) {
+    for (file_name, file_content) in files {
+        fs::write(file_name, file_content).expect(&format!(
+            "Error setting up file '{}' with the following content:\n{}",
+            file_name, file_content
+        ));
     }
 }
 
