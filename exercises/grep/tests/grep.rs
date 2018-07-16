@@ -36,6 +36,10 @@ Of Oreb, or of Sinai, didst inspire
 That Shepherd, who first taught the chosen Seed
 ";
 
+/// In The White Night
+/// A poem by Alexander Blok(https://en.wikipedia.org/wiki/Alexander_Blok)
+/// a Russian poet who is regarded as one of the most important figures of the Silver Age of Russian Poetry
+/// You can read the translation here: https://lyricstranslate.com/ru/белой-ночью-месяц-красный-white-night-crimson-crescent.html
 static IN_THE_WHITE_NIGHT_CONTENT: &'static str = "Белой ночью месяц красный
 Выплывает в синеве.
 Бродит призрачно-прекрасный,
