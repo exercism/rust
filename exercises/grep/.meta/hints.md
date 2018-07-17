@@ -1,3 +1,8 @@
+### Error handling
+This exercise introduces the usage of `failure` crate,
+that gives you the means to manage your custom error types.
+To learn more about the crate refer to the [failure documentation](https://boats.gitlab.io/failure/intro.html)
+
 ### Additional reading
 
 While this exercise asks you to implement only the most basic functions of `grep`,

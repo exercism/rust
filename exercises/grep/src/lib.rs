@@ -5,6 +5,10 @@
 ///
 /// If you are curious about real-world implementation, refer to the `clap-rs` crate:
 /// https://github.com/kbknapp/clap-rs/blob/master/src/args/arg_matches.rs
+extern crate failure;
+
+use failure::Error;
+
 #[derive(Debug)]
 pub struct Flags;
 
@@ -17,7 +21,7 @@ impl Flags {
     }
 }
 
-pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Vec<String> {
+pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>, Error> {
     unimplemented!(
         "Search the files '{:?}' for '{}' pattern and save the matches in a vector. Your search logic should be aware of the given flags '{:?}'",
         files,

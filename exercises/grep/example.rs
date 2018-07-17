@@ -1,4 +1,17 @@
-use std::fs;
+#[macro_use]
+extern crate failure;
+
+use failure::Error;
+use std::{fs, path::Path};
+
+#[derive(Debug, Fail)]
+enum FileAccessError {
+    #[fail(display = "File not found: {}", file_name)]
+    FileNotFoundError { file_name: String },
+
+    #[fail(display = "Error reading file: {}", file_name)]
+    FileReadError { file_name: String },
+}
 
 pub struct Flags {
     print_line_number: bool,
@@ -20,21 +33,31 @@ impl Flags {
     }
 }
 
-fn get_file_lines(file_name: &str) -> Vec<String> {
-    fs::read_to_string(file_name)
-        .expect(&format!("Could not read {}", file_name))
-        .split("\n")
-        .map(|line| line.to_string())
-        .collect()
+fn get_file_lines(file_name: &str) -> Result<Vec<String>, FileAccessError> {
+    let file_path = Path::new(file_name);
+
+    if !file_path.exists() {
+        return Err(FileAccessError::FileNotFoundError {
+            file_name: String::from(file_name),
+        });
+    }
+
+    if let Ok(content) = fs::read_to_string(file_path) {
+        Ok(content.split("\n").map(|line| line.to_string()).collect())
+    } else {
+        Err(FileAccessError::FileReadError {
+            file_name: String::from(file_name),
+        })
+    }
 }
 
-pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Vec<String> {
+pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>, Error> {
     let mut grep_result = vec![];
 
     let is_multiple_file_search = files.len() > 1;
 
     for file_name in files {
-        let file_lines = get_file_lines(file_name);
+        let file_lines = get_file_lines(file_name)?;
 
         grep_result.extend(
             file_lines
@@ -86,5 +109,5 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Vec<String> {
 
     grep_result.dedup_by(|a, b| (*a).eq(b));
 
-    grep_result
+    Ok(grep_result)
 }

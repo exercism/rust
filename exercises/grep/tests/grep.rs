@@ -106,14 +106,42 @@ fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[
 
     let flags = Flags::new(flags);
 
-    let grep_result = grep(pattern, &flags, files);
+    let grep_result = grep(pattern, &flags, files).unwrap();
 
     assert_eq!(grep_result, expected);
+}
+
+#[test]
+fn test_nonexistent_file_returns_error() {
+    let pattern = "Agamemnon";
+
+    let flags = Flags::new(&vec![]);
+
+    let files = vec!["test_nonexistent_file_returns_error_iliad.txt"];
+
+    assert!(grep(&pattern, &flags, &files).is_err());
+}
+
+#[test]
+#[ignore]
+fn test_grep_returns_result() {
+    let pattern = "Agamemnon";
+
+    let flags = Flags::new(&vec![]);
+
+    let files = vec!["test_grep_returns_result_iliad.txt"];
+
+    let test_fixture = Fixture::new(&files);
+
+    test_fixture.set_up();
+
+    assert!(grep(&pattern, &flags, &files).is_ok());
 }
 
 // Test grepping a single file
 
 #[test]
+#[ignore]
 /// One file, one match, no flags
 fn test_one_file_one_match_no_flags() {
     let pattern = "Agamemnon";
