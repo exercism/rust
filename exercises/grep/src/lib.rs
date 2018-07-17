@@ -1,3 +1,7 @@
+extern crate failure;
+
+use failure::Error;
+
 /// While using raw slice of str to handle flags is convenient,
 /// in the real-world projects it is customary to use a struct,
 /// that contains flags-related logic. So in this exercise
@@ -5,10 +9,6 @@
 ///
 /// If you are curious about real-world implementation, refer to the `clap-rs` crate:
 /// https://github.com/kbknapp/clap-rs/blob/master/src/args/arg_matches.rs
-extern crate failure;
-
-use failure::Error;
-
 #[derive(Debug)]
 pub struct Flags;
 
