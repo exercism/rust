@@ -844,19 +844,19 @@
       ]
     },
     {
-      "uuid": "1bce70ca-db1a-46c8-a314-07d3fda921c2",
       "slug": "grep",
+      "uuid": "1bce70ca-db1a-46c8-a314-07d3fda921c2",
       "core": false,
       "unlocked_by": "poker",
       "difficulty": 7,
       "topics": [
-        "file_io",
-        "string_parsing",
-        "string_functions",
-        "utf8",
         "conditionals",
-		"result",
-		"failure_crate"
+        "failure_crate",
+        "file_io",
+        "result",
+        "string_functions",
+        "string_parsing",
+        "utf"
       ]
     },
     {
