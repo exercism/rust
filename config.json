@@ -277,14 +277,16 @@
       "uuid": "1bce70ca-db1a-46c8-a314-07d3fda921c2",
       "slug": "grep",
       "core": false,
-      "unlocked_by": null,
-      "difficulty": 4,
+      "unlocked_by": "poker",
+      "difficulty": 7,
       "topics": [
         "file_io",
         "string_parsing",
         "string_functions",
         "utf8",
-        "conditionals"
+        "conditionals",
+		"result",
+		"failure_crate"
       ]
     },
     {
