@@ -274,22 +274,6 @@
       ]
     },
     {
-      "uuid": "1bce70ca-db1a-46c8-a314-07d3fda921c2",
-      "slug": "grep",
-      "core": false,
-      "unlocked_by": "poker",
-      "difficulty": 7,
-      "topics": [
-        "file_io",
-        "string_parsing",
-        "string_functions",
-        "utf8",
-        "conditionals",
-		"result",
-		"failure_crate"
-      ]
-    },
-    {
       "slug": "clock",
       "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
       "core": true,
@@ -857,6 +841,22 @@
         "string_parsing",
         "struct",
         "traits"
+      ]
+    },
+    {
+      "uuid": "1bce70ca-db1a-46c8-a314-07d3fda921c2",
+      "slug": "grep",
+      "core": false,
+      "unlocked_by": "poker",
+      "difficulty": 7,
+      "topics": [
+        "file_io",
+        "string_parsing",
+        "string_functions",
+        "utf8",
+        "conditionals",
+		"result",
+		"failure_crate"
       ]
     },
     {
