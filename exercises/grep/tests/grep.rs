@@ -99,6 +99,23 @@ fn tear_down_files(files: &[&str]) {
     }
 }
 
+macro_rules! set_up_test_case {
+    ($(#[$flag:meta])+ $test_case_name:ident(pattern=$pattern:expr, flags=[$($grep_flag:expr),*], files=[$($file:expr),+], expected=[$($expected:expr),*])) => {
+        $(#[$flag])+
+        fn $test_case_name() {
+            let pattern = $pattern;
+
+            let flags = vec![$($grep_flag),*];
+
+            let files = vec![$(concat!(stringify!($test_case_name), "_" ,$file)),+];
+
+            let expected = vec![$($expected),*];
+
+            process_grep_case(&pattern, &flags, &files, &expected);
+        }
+    };
+}
+
 fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[&str]) {
     let test_fixture = Fixture::new(files);
 
@@ -140,271 +157,169 @@ fn test_grep_returns_result() {
 
 // Test grepping a single file
 
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, one match, no flags
-fn test_one_file_one_match_no_flags() {
-    let pattern = "Agamemnon";
+test_one_file_one_match_no_flags(
+    pattern = "Agamemnon",
+    flags = [],
+    files = ["iliad.txt"],
+    expected = ["Of Atreus, Agamemnon, King of men."]
+));
 
-    let flags = vec![];
-
-    let files = vec!["test_one_file_one_match_no_flags_iliad.txt"];
-
-    let expected = vec!["Of Atreus, Agamemnon, King of men."];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, one match, print line numbers flag
-fn test_one_file_one_match_print_line_numbers_flag() {
-    let pattern = "Forbidden";
+test_one_file_one_match_print_line_numbers_flag(
+    pattern = "Forbidden",
+    flags = ["-n"],
+    files = ["paradise_lost.txt"],
+    expected = ["2:Of that Forbidden Tree, whose mortal tast"]
+));
 
-    let flags = vec!["-n"];
-
-    let files = vec!["test_one_file_one_match_print_line_numbers_flag_paradise_lost.txt"];
-
-    let expected = vec!["2:Of that Forbidden Tree, whose mortal tast"];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, one match, case-insensitive flag
-fn test_one_file_one_match_caseinsensitive_flag() {
-    let pattern = "FORBIDDEN";
+test_one_file_one_match_caseinsensitive_flag(
+    pattern = "FORBIDDEN",
+    flags = ["-i"],
+    files = ["paradise_lost.txt"],
+    expected = ["Of that Forbidden Tree, whose mortal tast"]
+));
 
-    let flags = vec!["-i"];
-
-    let files = vec!["test_one_file_one_match_caseinsensitive_flag_paradise_lost.txt"];
-
-    let expected = vec!["Of that Forbidden Tree, whose mortal tast"];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, one match, print file names flag
-fn test_one_file_one_match_print_file_names_flag() {
-    let pattern = "Forbidden";
+test_one_file_one_match_print_file_names_flag(
+    pattern = "Forbidden",
+    flags = ["-l"],
+    files = ["paradise_lost.txt"],
+    expected = ["test_one_file_one_match_print_file_names_flag_paradise_lost.txt"]
+));
 
-    let flags = vec!["-l"];
-
-    let files = vec!["test_one_file_one_match_print_file_names_flag_paradise_lost.txt"];
-
-    let expected = vec!["test_one_file_one_match_print_file_names_flag_paradise_lost.txt"];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, one match, match entire lines flag
-fn test_one_file_one_match_match_entire_lines_flag() {
-    let pattern = "With loss of Eden, till one greater Man";
+test_one_file_one_match_match_entire_lines_flag(
+    pattern = "With loss of Eden, till one greater Man",
+    flags = ["-x"],
+    files = ["paradise_lost.txt"],
+    expected = ["With loss of Eden, till one greater Man"]
+));
 
-    let flags = vec!["-x"];
-
-    let files = vec!["test_one_file_one_match_match_entire_lines_flag_paradise_lost.txt"];
-
-    let expected = vec!["With loss of Eden, till one greater Man"];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, one match, multiple flags
-fn test_one_file_one_match_multiple_flags() {
-    let pattern = "OF ATREUS, Agamemnon, KIng of MEN.";
+test_one_file_one_match_multiple_flags(
+    pattern = "OF ATREUS, Agamemnon, KIng of MEN.",
+    flags = ["-x", "-i", "-n"],
+    files = ["iliad.txt"],
+    expected = ["9:Of Atreus, Agamemnon, King of men."]
+));
 
-    let flags = vec!["-x", "-i", "-n"];
-
-    let files = vec!["test_one_file_one_match_multiple_flags_iliad.txt"];
-
-    let expected = vec!["9:Of Atreus, Agamemnon, King of men."];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, several matches, no flags
-fn test_one_file_several_matches_no_flags() {
-    let pattern = "may";
-
-    let flags = vec![];
-
-    let files = vec!["test_one_file_several_matches_no_flags_midsummer_night.txt"];
-
-    let expected = vec![
+test_one_file_several_matches_no_flags(
+    pattern = "may",
+    flags = [],
+    files = ["midsummer_night.txt"],
+    expected = [
         "Nor how it may concern my modesty,",
         "But I beseech your grace that I may know",
-        "The worst that may befall me in this case,",
-    ];
+        "The worst that may befall me in this case,"
+    ]
+));
 
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, several matches, print line numbers flag
-fn test_one_file_several_matches_print_line_numbers_flag() {
-    let pattern = "may";
-
-    let flags = vec!["-n"];
-
-    let files = vec!["test_one_file_several_matches_print_line_numbers_flag_midsummer_night.txt"];
-
-    let expected = vec![
+test_one_file_several_matches_print_line_numbers_flag(
+    pattern = "may",
+    flags = ["-n"],
+    files = ["midsummer_night.txt"],
+    expected = [
         "3:Nor how it may concern my modesty,",
         "5:But I beseech your grace that I may know",
-        "6:The worst that may befall me in this case,",
-    ];
+        "6:The worst that may befall me in this case,"
+    ]
+));
 
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, several matches, match entire lines flag
-fn test_one_file_several_matches_match_entire_lines_flag() {
-    let pattern = "may";
+test_one_file_several_matches_match_entire_lines_flag(
+    pattern = "may",
+    flags = ["-x"],
+    files = ["midsummer_night.txt"],
+    expected = []
+));
 
-    let flags = vec!["-x"];
-
-    let files = vec!["test_one_file_several_matches_match_entire_lines_flag_midsummer_night.txt"];
-
-    let expected = vec![];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, several matches, case-insensitive flag
-fn test_one_file_several_matches_caseinsensitive_flag() {
-    let pattern = "ACHILLES";
-
-    let flags = vec!["-i"];
-
-    let files = vec!["test_one_file_several_matches_caseinsensitive_flag_iliad.txt"];
-
-    let expected = vec![
+test_one_file_several_matches_caseinsensitive_flag(
+    pattern = "ACHILLES",
+    flags = ["-i"],
+    files = ["iliad.txt"],
+    expected = [
         "Achilles sing, O Goddess! Peleus' son;",
-        "The noble Chief Achilles from the son",
-    ];
+        "The noble Chief Achilles from the son"
+    ]
+));
 
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, several matches, inverted flag
-fn test_one_file_several_matches_inverted_flag() {
-    let pattern = "Of";
-
-    let flags = vec!["-v"];
-
-    let files = vec!["test_one_file_several_matches_inverted_flag_paradise_lost.txt"];
-
-    let expected = vec![
+test_one_file_several_matches_inverted_flag(
+    pattern = "Of",
+    flags = ["-v"],
+    files = ["paradise_lost.txt"],
+    expected = [
         "Brought Death into the World, and all our woe,",
         "With loss of Eden, till one greater Man",
         "Restore us, and regain the blissful Seat,",
         "Sing Heav'nly Muse, that on the secret top",
-        "That Shepherd, who first taught the chosen Seed",
-    ];
+        "That Shepherd, who first taught the chosen Seed"
+    ]
+));
 
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// One file, no matches, various flags
-fn test_one_file_no_matches_various_flags() {
-    let pattern = "Gandalf";
-
-    let flags = vec!["-n", "-l", "-x", "-i"];
-
-    let files = vec!["test_one_file_no_matches_various_flags_iliad.txt"];
-
-    let expected = vec![];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
+test_one_file_no_matches_various_flags(
+    pattern = "Gandalf",
+    flags = ["-n", "-l", "-x", "-i"],
+    files = ["iliad.txt"],
+    expected = []
+));
 
 // Test grepping multiples files at once
 
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// Multiple files, one match, no flags
-fn test_multiple_files_one_match_no_flags() {
-    let pattern = "Agamemnon";
+test_multiple_files_one_match_no_flags(
+    pattern = "Agamemnon",
+    flags = [],
+    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+    expected =
+        ["test_multiple_files_one_match_no_flags_iliad.txt:Of Atreus, Agamemnon, King of men."]
+));
 
-    let flags = vec![];
-
-    let files = vec![
-        "test_multiple_files_one_match_no_flags_iliad.txt",
-        "test_multiple_files_one_match_no_flags_midsummer_night.txt",
-        "test_multiple_files_one_match_no_flags_paradise_lost.txt",
-    ];
-
-    let expected =
-        vec!["test_multiple_files_one_match_no_flags_iliad.txt:Of Atreus, Agamemnon, King of men."];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// Multiple files, several matches, no flags
-fn test_multiple_files_several_matches_no_flags() {
-    let pattern = "may";
-
-    let flags = vec![];
-
-    let files = vec![
-        "test_multiple_files_several_matches_no_flags_iliad.txt",
-        "test_multiple_files_several_matches_no_flags_midsummer_night.txt",
-        "test_multiple_files_several_matches_no_flags_paradise_lost.txt",
-    ];
-
-    let expected = vec![
+test_multiple_files_several_matches_no_flags(
+    pattern = "may",
+    flags = [],
+    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+    expected = [
         "test_multiple_files_several_matches_no_flags_midsummer_night.txt:Nor how it may concern my modesty,",
         "test_multiple_files_several_matches_no_flags_midsummer_night.txt:But I beseech your grace that I may know",
-        "test_multiple_files_several_matches_no_flags_midsummer_night.txt:The worst that may befall me in this case,",
-    ];
+        "test_multiple_files_several_matches_no_flags_midsummer_night.txt:The worst that may befall me in this case,"
+    ]
+));
 
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
-
-#[test]
+set_up_test_case!(#[test]
 #[ignore]
-/// Multiple files, several matches, print line numbers flag
-fn test_multiple_files_several_matches_print_line_numbers_flag() {
-    let pattern = "that";
-
-    let flags = vec!["-n"];
-
-    let files = vec![
-        "test_multiple_files_several_matches_print_line_numbers_flag_iliad.txt",
-        "test_multiple_files_several_matches_print_line_numbers_flag_midsummer_night.txt",
-        "test_multiple_files_several_matches_print_line_numbers_flag_paradise_lost.txt",
-    ];
-
-    let expected = vec![
+test_multiple_files_several_matches_print_line_numbers_flag(
+    pattern = "that",
+    flags = ["-n"],
+    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+    expected = [
         "test_multiple_files_several_matches_print_line_numbers_flag_midsummer_night.txt:5:But I beseech your grace that I may know",
         "test_multiple_files_several_matches_print_line_numbers_flag_midsummer_night.txt:6:The worst that may befall me in this case,",
         "test_multiple_files_several_matches_print_line_numbers_flag_paradise_lost.txt:2:Of that Forbidden Tree, whose mortal tast",
-        "test_multiple_files_several_matches_print_line_numbers_flag_paradise_lost.txt:6:Sing Heav'nly Muse, that on the secret top",
-    ];
-
-    process_grep_case(&pattern, &flags, &files, &expected);
-}
+        "test_multiple_files_several_matches_print_line_numbers_flag_paradise_lost.txt:6:Sing Heav'nly Muse, that on the secret top"
+    ]
+));
 
 #[test]
 #[ignore]
