@@ -131,37 +131,34 @@ fn sum_of_two_sides_must_equal_or_exceed_the_remaining_side_two() {
     assert!(triangle.is_none());
 }
 
-// Optional Tests
-//
-// Support Triangles with non-integer sides.
-//
-// You'll probably want to use the Num crate
-//
-// https://crates.io/crates/num
-//
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn scalene_triangle_with_floating_point_sides() {
+    let sides = [0.4, 0.6, 0.3];
+    let triangle = Triangle::build(sides).unwrap();
+    assert!(!triangle.is_equilateral());
+    assert!(!triangle.is_isosceles());
+    assert!(triangle.is_scalene());
+}
 
-// #[test]
-// fn scalene_triangle_with_floating_point_sides() {
-//     let sides = [0.4, 0.6, 0.3];
-//     let triangle = Triangle::build(sides).unwrap();
-//     assert!(!triangle.is_equilateral());
-//     assert!(!triangle.is_isosceles());
-//     assert!(triangle.is_scalene());
-// }
-//
-// #[test]
-// fn equilateral_triangles_with_floating_point_sides() {
-//     let sides = [0.2, 0.2, 0.2];
-//     let triangle = Triangle::build(sides).unwrap();
-//     assert!(triangle.is_equilateral());
-//     assert!(!triangle.is_scalene());
-// }
-//
-// #[test]
-// fn isosceles_triangle_with_floating_point_sides() {
-//     let sides = [0.3, 0.4, 0.4];
-//     let triangle = Triangle::build(sides).unwrap();
-//     assert!(!triangle.is_equilateral());
-//     assert!(triangle.is_isosceles());
-//     assert!(!triangle.is_scalene());
-// }
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn equilateral_triangles_with_floating_point_sides() {
+    let sides = [0.2, 0.2, 0.2];
+    let triangle = Triangle::build(sides).unwrap();
+    assert!(triangle.is_equilateral());
+    assert!(!triangle.is_scalene());
+}
+
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn isosceles_triangle_with_floating_point_sides() {
+    let sides = [0.3, 0.4, 0.4];
+    let triangle = Triangle::build(sides).unwrap();
+    assert!(!triangle.is_equilateral());
+    assert!(triangle.is_isosceles());
+    assert!(!triangle.is_scalene());
+}

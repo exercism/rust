@@ -1,20 +1,28 @@
-use std::collections::BTreeSet;
-use std::iter::FromIterator;
+use std::ops::Add;
 
-pub struct Triangle {
-    sides: [u16; 3],
+pub struct Triangle<T> {
+    sides: [T; 3],
 }
 
-impl Triangle {
-    #[cfg_attr(rustfmt, rustfmt_skip)]
+impl<T> Triangle<T>
+where
+    T: Copy + PartialEq + PartialOrd + Add<Output = T> + Default,
+{
     fn valid_sides(&self) -> bool {
-        (self.sides.iter().all(|&s| s > 0)) &&
-            (self.sides[0] + self.sides[1] >= self.sides[2]) &&
-            (self.sides[1] + self.sides[2] >= self.sides[0]) &&
-            (self.sides[2] + self.sides[0] >= self.sides[1])
+        (self.sides.iter().all(|&s| s > T::default()))
+            && (self.sides[0] + self.sides[1] >= self.sides[2])
+            && (self.sides[1] + self.sides[2] >= self.sides[0])
+            && (self.sides[2] + self.sides[0] >= self.sides[1])
     }
 
-    pub fn build(sides: [u16; 3]) -> Option<Triangle> {
+    fn count_distinct_pairs(&self) -> usize {
+        [(0, 1), (0, 2), (1, 2)]
+            .iter()
+            .map(|&(a, b)| if self.sides[a] != self.sides[b] { 1 } else { 0 })
+            .sum()
+    }
+
+    pub fn build(sides: [T; 3]) -> Option<Triangle<T>> {
         let t = Triangle { sides: sides };
 
         if t.valid_sides() {
@@ -25,14 +33,14 @@ impl Triangle {
     }
 
     pub fn is_equilateral(&self) -> bool {
-        BTreeSet::from_iter(self.sides.iter()).len() == 1
+        self.count_distinct_pairs() == 0
     }
 
     pub fn is_isosceles(&self) -> bool {
-        BTreeSet::from_iter(self.sides.iter()).len() == 2
+        self.count_distinct_pairs() == 2
     }
 
     pub fn is_scalene(&self) -> bool {
-        BTreeSet::from_iter(self.sides.iter()).len() == 3
+        self.count_distinct_pairs() == 3
     }
 }
