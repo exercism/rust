@@ -1,0 +1,4 @@
+# Ignore Cargo.lock if creating a library
+# More information here http://doc.crates.io/guide.html#cargotoml-vs-cargolock
+Cargo.lock
+*.txt
