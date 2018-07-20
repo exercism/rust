@@ -61,7 +61,12 @@ are some additional things you could try.
 - Additionally this find function can work not only on slices, but at the
   same time also on a Vec or an Array.
 
-You can find tests (commented out) for these bonus tasks in the test file.
+To run the bonus tests, remove the `#[ignore]` flag and execute the tests with
+the `generic` feature, like this:
+
+```bash
+$ cargo test --features generic
+```
 
 Then please share your thoughts in a comment on the submission. Did this
 experiment make the code better? Worse? Did you learn anything from it?

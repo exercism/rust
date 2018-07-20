@@ -79,22 +79,26 @@ fn nothing_is_included_in_an_empty_array() {
     assert_eq!(find(&[], 1), None);
 }
 
-/* --------------------------------------- Optional Bonus Tests -------------------------------*/
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn works_for_arrays() {
+    assert_eq!(find([6], 6), Some(0));
+}
 
-//#[test]
-//fn works_for_arrays() {
-//    assert_eq!(find([6], 6), Some(0));
-//}
-//
-//#[test]
-//fn works_for_vec() {
-//    let vector = vec![6];
-//    assert_eq!(find(&vector, 6), Some(0));
-//    assert_eq!(find(vector, 6), Some(0));
-//}
-//
-//#[test]
-//fn works_for_str_elements() {
-//    assert_eq!(find(["a"], "a"), Some(0));
-//    assert_eq!(find(["a", "b"], "b"), Some(1));
-//}
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn works_for_vec() {
+    let vector = vec![6];
+    assert_eq!(find(&vector, 6), Some(0));
+    assert_eq!(find(vector, 6), Some(0));
+}
+
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn works_for_str_elements() {
+    assert_eq!(find(["a"], "a"), Some(0));
+    assert_eq!(find(["a", "b"], "b"), Some(1));
+}
