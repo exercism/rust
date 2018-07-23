@@ -4,7 +4,9 @@
 
 Before doing this exercise you should probably do the original Luhn exercise and its successor, "Luhn: Using the From Trait"
 
-To get the original Luhn exercise, run `exercism fetch rust luhn`
+To get the original Luhn exercise, run
+
+> `exercism download --exercise=luhn --track=rust`
 
 To get the "Luhn: Using the From Trait" exercise, run `exercism fetch rust luhn-from`
 
