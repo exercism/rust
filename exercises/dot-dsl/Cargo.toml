@@ -1,0 +1,6 @@
+[package]
+name = "dot-dsl"
+version = "0.1.0"
+authors = ["ZapAnton <wc3ft2@gmail.com>"]
+
+[dependencies]
