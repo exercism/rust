@@ -1,6 +1,9 @@
 extern crate dot_dsl;
 
-use dot_dsl::{Edge, Graph, Node};
+use dot_dsl::graph::{
+    graph_items::{Edge, Node}, Graph,
+};
+
 use std::collections::HashMap;
 
 #[test]
