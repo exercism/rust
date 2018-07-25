@@ -1,10 +1,12 @@
+use std::collections::HashSet;
+
 fn sort(word: &String) -> String {
     let mut sorted: Vec<char> = word.chars().collect();
     sorted.sort();
     sorted.into_iter().collect()
 }
 
-pub fn anagrams_for<'a>(word: &str, inputs: &[&'a str]) -> Vec<&'a str> {
+pub fn anagrams_for<'a>(word: &str, inputs: &[&'a str]) -> HashSet<&'a str> {
     let lower = word.to_lowercase();
     let sorted = sort(&lower);
     inputs
