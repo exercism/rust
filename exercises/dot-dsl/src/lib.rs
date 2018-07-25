@@ -75,4 +75,12 @@ impl Edge {
             attrs: HashMap::new(),
         }
     }
+
+    pub fn with_attrs(mut self, attrs: &[(&'static str, &'static str)]) -> Self {
+        attrs.iter().for_each(|&(name, value)| {
+            self.attrs.insert(name.to_string(), value.to_string());
+        });
+
+        self
+    }
 }
