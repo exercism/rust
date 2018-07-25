@@ -286,6 +286,19 @@
       ]
     },
     {
+      "slug": "dot-dsl",
+      "uuid": "7bc60899-3b12-4c51-b23b-8dced5845e4c",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "builder_pattern",
+        "derive",
+        "modules",
+        "struct"
+      ]
+    },
+    {
       "slug": "hamming",
       "uuid": "2874216a-0822-4ec2-892e-d451fd89646a",
       "core": false,
