@@ -2,7 +2,8 @@ pub mod graph_items;
 
 use std::collections::HashMap;
 
-use self::graph_items::{Edge, Node};
+use self::graph_items::edge::Edge;
+use self::graph_items::node::Node;
 
 pub struct Graph {
     pub nodes: Vec<Node>,
