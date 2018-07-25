@@ -1,10 +1,102 @@
-//! Example implementation for dot-dsl
-//!
-//! - Implement the solution to your exercise here.
-//! - Put the stubs for any tested functions in `src/lib.rs`,
-//!   whose variable names are `_` and
-//!   whose contents are `unimplemented!()`.
-//! - If your example implementation has dependencies, copy
-//!   `Cargo.toml` into `Cargo-example.toml` and then make
-//!   any modifications necessary to the latter so your example will run.
-//! - Test your example by running `../../bin/test-exercise`
+pub mod graph {
+    use std::collections::HashMap;
+
+    use self::graph_items::edge::Edge;
+    use self::graph_items::node::Node;
+
+    pub struct Graph {
+        pub nodes: Vec<Node>,
+        pub edges: Vec<Edge>,
+        pub attrs: HashMap<String, String>,
+    }
+
+    impl Graph {
+        pub fn new() -> Self {
+            Graph {
+                nodes: vec![],
+                edges: vec![],
+                attrs: HashMap::new(),
+            }
+        }
+
+        pub fn with_nodes(mut self, nodes: &[Node]) -> Self {
+            self.nodes = nodes.clone().to_vec();
+
+            self
+        }
+
+        pub fn with_edges(mut self, edges: &[Edge]) -> Self {
+            self.edges = edges.clone().to_vec();
+
+            self
+        }
+
+        pub fn with_attrs(mut self, attrs: &[(&'static str, &'static str)]) -> Self {
+            attrs.iter().for_each(|&(name, value)| {
+                self.attrs.insert(name.to_string(), value.to_string());
+            });
+
+            self
+        }
+    }
+
+    pub mod graph_items {
+        pub mod edge {
+            use std::collections::HashMap;
+
+            #[derive(Clone, PartialEq, Debug)]
+            pub struct Edge {
+                src: String,
+                dst: String,
+                attrs: HashMap<String, String>,
+            }
+
+            impl Edge {
+                pub fn new(src: &str, dst: &str) -> Self {
+                    Edge {
+                        src: src.to_string(),
+                        dst: dst.to_string(),
+                        attrs: HashMap::new(),
+                    }
+                }
+
+                pub fn with_attrs(mut self, attrs: &[(&'static str, &'static str)]) -> Self {
+                    attrs.iter().for_each(|&(name, value)| {
+                        self.attrs.insert(name.to_string(), value.to_string());
+                    });
+
+                    self
+                }
+            }
+        }
+
+        pub mod node {
+            use std::collections::HashMap;
+
+            #[derive(Clone, PartialEq, Debug)]
+            pub struct Node {
+                name: String,
+
+                attrs: HashMap<String, String>,
+            }
+
+            impl Node {
+                pub fn new(name: &str) -> Self {
+                    Node {
+                        name: name.to_string(),
+                        attrs: HashMap::new(),
+                    }
+                }
+
+                pub fn with_attrs(mut self, attrs: &[(&'static str, &'static str)]) -> Self {
+                    attrs.iter().for_each(|&(name, value)| {
+                        self.attrs.insert(name.to_string(), value.to_string());
+                    });
+
+                    self
+                }
+            }
+
+        }
+    }
+}
