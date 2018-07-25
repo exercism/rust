@@ -6,15 +6,72 @@ pub struct Graph {
     pub attrs: HashMap<String, String>,
 }
 
-pub struct Edge;
+#[derive(Clone, PartialEq, Debug)]
+pub struct Edge {
+    src: String,
+    dst: String,
+    attrs: HashMap<String, String>,
+}
 
-pub struct Node;
+#[derive(Clone, PartialEq, Debug)]
+pub struct Node {
+    name: String,
+
+    attrs: HashMap<String, String>,
+}
 
 impl Graph {
     pub fn new() -> Self {
         Graph {
             nodes: vec![],
             edges: vec![],
+            attrs: HashMap::new(),
+        }
+    }
+
+    pub fn with_nodes(mut self, nodes: &[Node]) -> Self {
+        self.nodes = nodes.clone().to_vec();
+
+        self
+    }
+
+    pub fn with_edges(mut self, edges: &[Edge]) -> Self {
+        self.edges = edges.clone().to_vec();
+
+        self
+    }
+
+    pub fn with_attrs(mut self, attrs: &[(&'static str, &'static str)]) -> Self {
+        attrs.iter().for_each(|&(name, value)| {
+            self.attrs.insert(name.to_string(), value.to_string());
+        });
+
+        self
+    }
+}
+
+impl Node {
+    pub fn new(name: &str) -> Self {
+        Node {
+            name: name.to_string(),
+            attrs: HashMap::new(),
+        }
+    }
+
+    pub fn with_attrs(mut self, attrs: &[(&'static str, &'static str)]) -> Self {
+        attrs.iter().for_each(|&(name, value)| {
+            self.attrs.insert(name.to_string(), value.to_string());
+        });
+
+        self
+    }
+}
+
+impl Edge {
+    pub fn new(src: &str, dst: &str) -> Self {
+        Edge {
+            src: src.to_string(),
+            dst: dst.to_string(),
             attrs: HashMap::new(),
         }
     }
