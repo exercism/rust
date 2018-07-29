@@ -3,3 +3,4 @@ name = "dot-dsl"
 version = "0.1.0"
 
 [dependencies]
+maplit = "1.0.1"

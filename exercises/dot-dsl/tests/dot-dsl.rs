@@ -1,10 +1,10 @@
+#[macro_use]
+extern crate maplit;
 extern crate dot_dsl;
 
 use dot_dsl::graph::graph_items::edge::Edge;
 use dot_dsl::graph::graph_items::node::Node;
 use dot_dsl::graph::Graph;
-
-use std::collections::HashMap;
 
 #[test]
 fn test_empty_graph() {
@@ -67,9 +67,9 @@ fn test_graph_with_one_edge() {
 fn test_graph_with_one_attribute() {
     let graph = Graph::new().with_attrs(&[("foo", "1")]);
 
-    let mut expected_attrs = HashMap::new();
-
-    expected_attrs.insert("foo".to_string(), "1".to_string());
+    let expected_attrs = hashmap!{
+        "foo".to_string() => "1".to_string(),
+    };
 
     assert!(graph.nodes.is_empty());
 
@@ -94,13 +94,11 @@ fn test_graph_with_attributes() {
 
     let attrs = vec![("foo", "1"), ("title", "Testing Attrs"), ("bar", "true")];
 
-    let mut expected_attrs = HashMap::new();
-
-    expected_attrs.insert("foo".to_string(), "1".to_string());
-
-    expected_attrs.insert("title".to_string(), "Testing Attrs".to_string());
-
-    expected_attrs.insert("bar".to_string(), "true".to_string());
+    let expected_attrs = hashmap! {
+        "foo".to_string() => "1".to_string(),
+        "title".to_string() => "Testing Attrs".to_string(),
+        "bar".to_string() => "true".to_string(),
+    };
 
     let graph = Graph::new()
         .with_nodes(&nodes)
