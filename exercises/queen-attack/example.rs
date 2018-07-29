@@ -1,6 +1,8 @@
+#[derive(Debug)]
 pub struct Queen {
     position: ChessPosition,
 }
+
 pub trait ChessPiece {
     fn position(&self) -> &ChessPosition;
     fn can_attack<T: ChessPiece>(&self, other: &T) -> bool;
@@ -24,22 +26,23 @@ impl Queen {
     }
 }
 
+#[derive(Debug)]
 pub struct ChessPosition {
     pub rank: i8,
     pub file: i8,
 }
 
 impl ChessPosition {
-    pub fn new(rank: i8, file: i8) -> Result<ChessPosition, String> {
+    pub fn new(rank: i8, file: i8) -> Option<Self> {
         let position = ChessPosition {
             rank: rank,
             file: file,
         };
 
         if position.is_valid() {
-            Ok(position)
+            Some(position)
         } else {
-            Err(String::from("Invalid Position"))
+            None
         }
     }
 

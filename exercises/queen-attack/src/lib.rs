@@ -5,8 +5,12 @@ pub struct ChessPosition;
 pub struct Queen;
 
 impl ChessPosition {
-    pub fn new(rank: i32, file: i32) -> Result<Self, i32> {
-        unimplemented!("Construct a ChessPosition struct, given the following rank, file: ({}, {}). If the position is invalid return error that contains wrong rank/file.", rank, file);
+    pub fn new(rank: i32, file: i32) -> Option<Self> {
+        unimplemented!(
+            "Construct a ChessPosition struct, given the following rank, file: ({}, {}). If the position is invalid return None.",
+            rank,
+            file
+        );
     }
 }
 
