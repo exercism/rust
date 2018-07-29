@@ -4,11 +4,15 @@ Before doing this exercise you should probably do the original Luhn exercise and
 
 To get the original Luhn exercise, run
 
-> `exercism download --exercise=luhn --track=rust`
+```shell
+exercism download --exercise=luhn --track=rust
+```
 
 To get the "Luhn: Using the From Trait" exercise, run
 
-> `exercism download --exercise=luhn-from --track=rust`
+```shell
+exercism download --exercise=luhn-from --track=rust
+```
 
 In the original Luhn exercise you only validated strings, but the Luhn algorithm can be applied to integers as well.
 
