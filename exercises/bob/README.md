@@ -13,6 +13,8 @@ anything.
 
 He answers 'Whatever.' to anything else.
 
+Bob's conversational partner is a purist when it comes to written communication and always follows normal rules regarding sentence punctuation in English.
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
