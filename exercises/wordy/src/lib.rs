@@ -8,9 +8,9 @@ impl WordProblem {
         );
     }
 
-    pub fn answer(&self) -> Result<i32, String> {
+    pub fn answer(&self) -> Option<i32> {
         unimplemented!(
-            "Return the result of the transmitted command, or an error, if the command is invalid."
+            "Return the result of the transmitted command or None, if the command is invalid."
         );
     }
 }
