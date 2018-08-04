@@ -26,8 +26,7 @@
       "unlocked_by": "hello-world",
       "difficulty": 1,
       "topics": [
-        "crates",
-        "mathematics"
+        "crates"
       ]
     },
     {
@@ -38,8 +37,7 @@
       "difficulty": 1,
       "topics": [
         "booleans",
-        "conditionals",
-        "mathematics"
+        "conditionals"
       ]
     },
     {
@@ -73,6 +71,7 @@
       "difficulty": 1,
       "topics": [
         "loops",
+        "math",
         "primes"
       ]
     },
@@ -118,7 +117,8 @@
       "difficulty": 1,
       "topics": [
         "fold",
-        "map"
+        "map",
+        "math"
       ]
     },
     {
@@ -129,7 +129,8 @@
       "difficulty": 1,
       "topics": [
         "algorithm",
-        "borrowing"
+        "borrowing",
+        "math"
       ]
     },
     {
@@ -139,7 +140,6 @@
       "unlocked_by": "hello-world",
       "difficulty": 1,
       "topics": [
-        "mathematics",
         "panic"
       ]
     },
@@ -150,6 +150,7 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
+        "math",
         "option"
       ]
     },
@@ -160,7 +161,7 @@
       "unlocked_by": "hello-world",
       "difficulty": 1,
       "topics": [
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -181,7 +182,7 @@
       "unlocked_by": "hello-world",
       "difficulty": 1,
       "topics": [
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -191,6 +192,7 @@
       "unlocked_by": "pythagorean-triplet",
       "difficulty": 1,
       "topics": [
+        "math",
         "option"
       ]
     },
@@ -201,7 +203,7 @@
       "unlocked_by": "pythagorean-triplet",
       "difficulty": 1,
       "topics": [
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -259,8 +261,7 @@
       "difficulty": 4,
       "topics": [
         "conversion_between_string_and_int",
-        "loop",
-        "mathematics"
+        "loop"
       ]
     },
     {
@@ -270,7 +271,7 @@
       "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -315,7 +316,7 @@
       "difficulty": 4,
       "topics": [
         "index_optional",
-        "mathematics",
+        "math",
         "vec"
       ]
     },
@@ -376,6 +377,7 @@
       "topics": [
         "char",
         "higher_order_functions",
+        "math",
         "result",
         "windows"
       ]
@@ -491,6 +493,7 @@
       "difficulty": 4,
       "topics": [
         "map",
+        "math",
         "vector",
         "while_let_optional"
       ]
@@ -515,7 +518,6 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "mathematics",
         "struct"
       ]
     },
@@ -543,6 +545,7 @@
         "enumerate",
         "fold",
         "map",
+        "math",
         "result"
       ]
     },
@@ -766,7 +769,6 @@
       "topics": [
         "combinations",
         "external_crates_optional",
-        "mathematics",
         "string_parsing"
       ]
     },
@@ -778,8 +780,7 @@
       "difficulty": 4,
       "topics": [
         "algorithm",
-        "loops",
-        "mathematics"
+        "loops"
       ]
     },
     {
@@ -825,6 +826,7 @@
       "difficulty": 4,
       "topics": [
         "calculation",
+        "math",
         "string_comparison",
         "structs"
       ]
