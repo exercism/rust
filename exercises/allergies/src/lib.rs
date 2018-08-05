@@ -20,14 +20,14 @@ impl Allergies {
         );
     }
 
-    pub fn is_allergic_to(&self, allergren: &Allergen) -> bool {
+    pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
         unimplemented!(
             "Determine if the patient is allergic to the '{:?}' allergen.",
-            allergren
+            allergen
         );
     }
 
     pub fn allergies(&self) -> Vec<Allergen> {
-        unimplemented!("Return the list of allergens, contained within the score with which the Allergies struct was made.");
+        unimplemented!("Return the list of allergens contained within the score with which the Allergies struct was made.");
     }
 }
