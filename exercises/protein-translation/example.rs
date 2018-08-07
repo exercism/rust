@@ -12,11 +12,7 @@ pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonInfo<'a> {
 
 impl<'a> CodonInfo<'a> {
     pub fn name_for(&self, codon: &str) -> Option<&'a str> {
-        if let Some(acid) = self.actual_codons.get(&codon) {
-            Some(acid)
-        } else {
-            None
-        }
+        self.actual_codons.get(&codon).map(|&acid| acid)
     }
 
     pub fn of_rna(&self, strand: &str) -> Option<Vec<&'a str>> {
