@@ -11,20 +11,21 @@ pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonInfo<'a> {
 }
 
 impl<'a> CodonInfo<'a> {
-    pub fn name_for(&self, codon: &str) -> Result<&'a str, &'static str> {
-        match self.actual_codons.get(&codon) {
-            Some(name) => Ok(name),
-            None => Err("Invalid"),
+    pub fn name_for(&self, codon: &str) -> Option<&'a str> {
+        if let Some(acid) = self.actual_codons.get(&codon) {
+            Some(acid)
+        } else {
+            None
         }
     }
 
-    pub fn of_rna(&self, strand: &str) -> Result<Vec<&'a str>, &'static str> {
+    pub fn of_rna(&self, strand: &str) -> Option<Vec<&'a str>> {
         strand
             .chars()
             .collect::<Vec<char>>()
             .chunks(3)
             .map(|chars| self.name_for(&chars.iter().collect::<String>()))
-            .take_while(|result| result.is_err() || result.unwrap() != "stop codon")
+            .take_while(|result| result.is_none() || result.unwrap() != "stop codon")
             .collect()
     }
 }
