@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn frequency(input: &[&str], worker_count: i32) -> HashMap<char, u32> {
+pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
     unimplemented!(
         "Count the frequency of letters in the given input '{:?}'. Ensure that you are using {} to process the input.",
         input,
