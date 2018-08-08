@@ -3,72 +3,72 @@ extern crate protein_translation as proteins;
 #[test]
 fn test_methionine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("AUG"), Ok("methionine"));
+    assert_eq!(info.name_for("AUG"), Some("methionine"));
 }
 
 #[test]
 #[ignore]
 fn test_cysteine_tgt() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("UGU"), Ok("cysteine"));
+    assert_eq!(info.name_for("UGU"), Some("cysteine"));
 }
 
 #[test]
 #[ignore]
 fn test_stop() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("UAA"), Ok("stop codon"));
+    assert_eq!(info.name_for("UAA"), Some("stop codon"));
 }
 
 #[test]
 #[ignore]
 fn test_valine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("GUU"), Ok("valine"));
+    assert_eq!(info.name_for("GUU"), Some("valine"));
 }
 
 #[test]
 #[ignore]
 fn test_isoleucine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("AUU"), Ok("isoleucine"));
+    assert_eq!(info.name_for("AUU"), Some("isoleucine"));
 }
 
 #[test]
 #[ignore]
 fn test_arginine_name() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("CGA"), Ok("arginine"));
-    assert_eq!(info.name_for("AGA"), Ok("arginine"));
-    assert_eq!(info.name_for("AGG"), Ok("arginine"));
+    assert_eq!(info.name_for("CGA"), Some("arginine"));
+    assert_eq!(info.name_for("AGA"), Some("arginine"));
+    assert_eq!(info.name_for("AGG"), Some("arginine"));
 }
 
 #[test]
 #[ignore]
 fn empty_is_invalid() {
     let info = proteins::parse(make_pairs());
-    assert!(info.name_for("").is_err());
+    assert!(info.name_for("").is_none());
 }
 
 #[test]
 #[ignore]
 fn x_is_not_shorthand_so_is_invalid() {
     let info = proteins::parse(make_pairs());
-    assert!(info.name_for("VWX").is_err());
+    assert!(info.name_for("VWX").is_none());
 }
 
 #[test]
 #[ignore]
 fn too_short_is_invalid() {
     let info = proteins::parse(make_pairs());
-    assert!(info.name_for("AU").is_err());
+    assert!(info.name_for("AU").is_none());
 }
 
 #[test]
 #[ignore]
 fn too_long_is_invalid() {
     let info = proteins::parse(make_pairs());
-    assert!(info.name_for("ATTA").is_err());
+    assert!(info.name_for("ATTA").is_none());
 }
 
 #[test]
@@ -77,7 +77,7 @@ fn test_translates_rna_strand_into_correct_protein() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
         info.of_rna("AUGUUUUGG"),
-        Ok(vec!["methionine", "phenylalanine", "tryptophan"])
+        Some(vec!["methionine", "phenylalanine", "tryptophan"])
     );
 }
 
@@ -87,7 +87,7 @@ fn test_stops_translation_if_stop_codon_present() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
         info.of_rna("AUGUUUUAA"),
-        Ok(vec!["methionine", "phenylalanine"])
+        Some(vec!["methionine", "phenylalanine"])
     );
 }
 
@@ -97,7 +97,7 @@ fn test_stops_translation_of_longer_strand() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
         info.of_rna("UGGUGUUAUUAAUGGUUU"),
-        Ok(vec!["tryptophan", "cysteine", "tyrosine"])
+        Some(vec!["tryptophan", "cysteine", "tyrosine"])
     );
 }
 
@@ -105,7 +105,7 @@ fn test_stops_translation_of_longer_strand() {
 #[ignore]
 fn test_invalid_codons() {
     let info = proteins::parse(make_pairs());
-    assert!(info.of_rna("CARROT").is_err());
+    assert!(info.of_rna("CARROT").is_none());
 }
 
 // The input data constructor. Returns a list of codon, name pairs.
