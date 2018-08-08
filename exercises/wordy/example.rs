@@ -32,20 +32,20 @@ impl WordProblem {
         }
     }
 
-    pub fn answer(&self) -> Result<isize, ()> {
+    pub fn answer(&self) -> Option<isize> {
         let mut t = self.tokens();
         let mut result: isize = 0;
         let mut opr = "plus".to_string();
 
         if t.len() <= 1 {
-            Err(())
+            None
         } else {
             while t.len() > 1 {
                 result = self.evaluate(result, opr, self.operand(&t.remove(0)));
                 opr = self.operator(&t.remove(0));
             }
             result = self.evaluate(result, opr, self.operand(&t.remove(0)));
-            Ok(result)
+            Some(result)
         }
     }
 
