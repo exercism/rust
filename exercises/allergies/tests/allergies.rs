@@ -23,24 +23,24 @@ fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
 #[test]
 fn is_not_allergic_to_anything() {
     let allergies = Allergies::new(0);
-    assert_eq!(false, allergies.is_allergic_to(&Allergen::Peanuts));
-    assert_eq!(false, allergies.is_allergic_to(&Allergen::Cats));
-    assert_eq!(false, allergies.is_allergic_to(&Allergen::Strawberries));
+    assert!(!allergies.is_allergic_to(&Allergen::Peanuts));
+    assert!(!allergies.is_allergic_to(&Allergen::Cats));
+    assert!(!allergies.is_allergic_to(&Allergen::Strawberries));
 }
 
 #[test]
 #[ignore]
 fn is_allergic_to_eggs() {
-    assert_eq!(true, Allergies::new(1).is_allergic_to(&Allergen::Eggs));
+    assert!(Allergies::new(1).is_allergic_to(&Allergen::Eggs));
 }
 
 #[test]
 #[ignore]
 fn is_allergic_to_egg_shellfish_and_strawberries() {
     let allergies = Allergies::new(5);
-    assert_eq!(true, allergies.is_allergic_to(&Allergen::Eggs));
-    assert_eq!(true, allergies.is_allergic_to(&Allergen::Shellfish));
-    assert_eq!(false, allergies.is_allergic_to(&Allergen::Strawberries));
+    assert!(allergies.is_allergic_to(&Allergen::Eggs));
+    assert!(allergies.is_allergic_to(&Allergen::Shellfish));
+    assert!(!allergies.is_allergic_to(&Allergen::Strawberries));
 }
 
 #[test]
