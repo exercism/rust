@@ -1,9 +1,34 @@
 use std::ptr;
 
+#[derive(Debug)]
 pub struct TreeNode {
     element: i32,
-    left: *mut TreeNode,
-    right: *mut TreeNode,
+    pub left: *mut TreeNode,
+    pub right: *mut TreeNode,
+}
+
+impl PartialEq for TreeNode {
+    fn eq(&self, other: &TreeNode) -> bool {
+        let elements_are_equal = self.element == other.element;
+
+        let left_nodes_are_equal = if self.left.is_null() {
+            other.left.is_null()
+        } else if !other.left.is_null() {
+            unsafe { *self.left == *other.left }
+        } else {
+            false
+        };
+
+        let right_nodes_are_equal = if self.right.is_null() {
+            other.right.is_null()
+        } else if !other.right.is_null() {
+            unsafe { *self.right == *other.right }
+        } else {
+            false
+        };
+
+        elements_are_equal && left_nodes_are_equal && right_nodes_are_equal
+    }
 }
 
 pub struct BinarySearchTree {
@@ -43,7 +68,7 @@ impl BinarySearchTree {
         }
 
         unsafe {
-            if node.element < (*root).element {
+            if node.element <= (*root).element {
                 (*root).left = self.insert_node(node, (*root).left);
             } else {
                 (*root).right = self.insert_node(node, (*root).right);

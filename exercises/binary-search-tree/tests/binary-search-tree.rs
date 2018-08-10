@@ -2,13 +2,6 @@ extern crate binary_search_tree;
 
 use binary_search_tree::*;
 
-#[test]
-fn test_empty_tree() {
-    let tree = BinarySearchTree::new();
-
-    assert!(tree.get_root().is_null());
-}
-
 /*
 fn process_sorteddata_case<I, O>(input: I, expected: O) {
     // typical implementation:
@@ -17,64 +10,47 @@ fn process_sorteddata_case<I, O>(input: I, expected: O) {
     //     expected
     // )
     unimplemented!()
-}
+}*/
 
-fn process_data_case<I, O>(input: I, expected: O) {
-    // typical implementation:
-    // assert_eq!(
-    //     student_data_func(input),
-    //     expected
-    // )
-    unimplemented!()
+#[test]
+fn test_empty_tree() {
+    let tree = BinarySearchTree::new();
+
+    assert!(tree.get_root().is_null());
 }
 
 #[test]
 /// data is retained
 fn test_data_is_retained() {
-    process_data_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["4"]);
-            hm
-        },
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("data", "4");
-            hm.insert("left", None);
-            hm.insert("right", None);
-            hm
-        },
-    );
+    let mut tree = BinarySearchTree::new();
+
+    tree.insert(4);
+
+    unsafe {
+        assert_eq!(TreeNode::new(4), *tree.get_root());
+    }
 }
 
 // insert data at proper node
-
 #[test]
-#[ignore]
 /// smaller number at left node
 fn test_smaller_number_at_left_node() {
-    process_data_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["4", "2"]);
-            hm
-        },
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("data", "4");
-            hm.insert("left", {
-                let mut hm = ::std::collections::HashMap::new();
-                hm.insert("data", "2");
-                hm.insert("left", None);
-                hm.insert("right", None);
-                hm
-            });
-            hm.insert("right", None);
-            hm
-        },
-    );
+    let mut tree = BinarySearchTree::new();
+
+    [4, 2].iter().for_each(|&x| tree.insert(x));
+
+    let mut expected_root = TreeNode::new(4);
+
+    let left_child = TreeNode::new(2);
+
+    expected_root.left = Box::into_raw(Box::new(left_child));
+
+    unsafe {
+        assert_eq!(expected_root, *tree.get_root());
+    }
 }
 
+/*
 #[test]
 #[ignore]
 /// same number at left node
