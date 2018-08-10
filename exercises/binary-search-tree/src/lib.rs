@@ -27,6 +27,10 @@ impl BinarySearchTree {
         }
     }
 
+    pub fn get_root(&self) -> *mut TreeNode {
+        self.root
+    }
+
     pub fn insert(&mut self, element: i32) {
         let node = TreeNode::new(element);
 

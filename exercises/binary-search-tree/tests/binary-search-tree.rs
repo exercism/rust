@@ -1,6 +1,15 @@
 extern crate binary_search_tree;
+
 use binary_search_tree::*;
 
+#[test]
+fn test_empty_tree() {
+    let tree = BinarySearchTree::new();
+
+    assert!(tree.get_root().is_null());
+}
+
+/*
 fn process_sorteddata_case<I, O>(input: I, expected: O) {
     // typical implementation:
     // assert_eq!(
@@ -244,4 +253,4 @@ fn test_can_sort_complex_tree() {
         },
         vec!["1", "2", "3", "5", "6", "7"],
     );
-}
+}*/
