@@ -3,8 +3,8 @@ use std::ptr;
 #[derive(Debug)]
 pub struct TreeNode {
     element: i32,
-    pub left: *mut TreeNode,
-    pub right: *mut TreeNode,
+    left: *mut TreeNode,
+    right: *mut TreeNode,
 }
 
 impl PartialEq for TreeNode {
@@ -42,6 +42,18 @@ impl TreeNode {
             left: ptr::null_mut(),
             right: ptr::null_mut(),
         }
+    }
+
+    pub fn with_right_node(mut self, right_node: TreeNode) -> Self {
+        self.right = Box::into_raw(Box::new(right_node));
+
+        self
+    }
+
+    pub fn with_left_node(mut self, left_node: TreeNode) -> Self {
+        self.left = Box::into_raw(Box::new(left_node));
+
+        self
     }
 }
 

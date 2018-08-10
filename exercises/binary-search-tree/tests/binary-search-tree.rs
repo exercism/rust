@@ -2,15 +2,15 @@ extern crate binary_search_tree;
 
 use binary_search_tree::*;
 
-/*
-fn process_sorteddata_case<I, O>(input: I, expected: O) {
-    // typical implementation:
-    // assert_eq!(
-    //     student_sortedData_func(input),
-    //     expected
-    // )
-    unimplemented!()
-}*/
+fn process_insertion_case(to_insert: &[i32], expected_root: &TreeNode) {
+    let mut tree = BinarySearchTree::new();
+
+    to_insert.iter().for_each(|&element| tree.insert(element));
+
+    unsafe {
+        assert_eq!(*expected_root, *tree.get_root());
+    }
+}
 
 #[test]
 fn test_empty_tree() {
@@ -20,6 +20,7 @@ fn test_empty_tree() {
 }
 
 #[test]
+#[ignore]
 /// data is retained
 fn test_data_is_retained() {
     let mut tree = BinarySearchTree::new();
@@ -33,134 +34,54 @@ fn test_data_is_retained() {
 
 // insert data at proper node
 #[test]
+#[ignore]
 /// smaller number at left node
 fn test_smaller_number_at_left_node() {
-    let mut tree = BinarySearchTree::new();
+    let expected_root = TreeNode::new(4).with_left_node(TreeNode::new(2));
 
-    [4, 2].iter().for_each(|&x| tree.insert(x));
-
-    let mut expected_root = TreeNode::new(4);
-
-    let left_child = TreeNode::new(2);
-
-    expected_root.left = Box::into_raw(Box::new(left_child));
-
-    unsafe {
-        assert_eq!(expected_root, *tree.get_root());
-    }
+    process_insertion_case(&[4, 2], &expected_root);
 }
 
-/*
 #[test]
 #[ignore]
 /// same number at left node
 fn test_same_number_at_left_node() {
-    process_data_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["4", "4"]);
-            hm
-        },
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("data", "4");
-            hm.insert("left", {
-                let mut hm = ::std::collections::HashMap::new();
-                hm.insert("data", "4");
-                hm.insert("left", None);
-                hm.insert("right", None);
-                hm
-            });
-            hm.insert("right", None);
-            hm
-        },
-    );
+    let expected_root = TreeNode::new(4).with_left_node(TreeNode::new(4));
+
+    process_insertion_case(&[4, 4], &expected_root);
 }
 
 #[test]
 #[ignore]
 /// greater number at right node
 fn test_greater_number_at_right_node() {
-    process_data_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["4", "5"]);
-            hm
-        },
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("data", "4");
-            hm.insert("left", None);
-            hm.insert("right", {
-                let mut hm = ::std::collections::HashMap::new();
-                hm.insert("data", "5");
-                hm.insert("left", None);
-                hm.insert("right", None);
-                hm
-            });
-            hm
-        },
-    );
+    let expected_root = TreeNode::new(4).with_right_node(TreeNode::new(5));
+
+    process_insertion_case(&[4, 5], &expected_root);
 }
 
 #[test]
 #[ignore]
 /// can create complex tree
 fn test_can_create_complex_tree() {
-    process_data_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["4", "2", "6", "1", "3", "5", "7"]);
-            hm
-        },
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("data", "4");
-            hm.insert("left", {
-                let mut hm = ::std::collections::HashMap::new();
-                hm.insert("data", "2");
-                hm.insert("left", {
-                    let mut hm = ::std::collections::HashMap::new();
-                    hm.insert("data", "1");
-                    hm.insert("left", None);
-                    hm.insert("right", None);
-                    hm
-                });
-                hm.insert("right", {
-                    let mut hm = ::std::collections::HashMap::new();
-                    hm.insert("data", "3");
-                    hm.insert("left", None);
-                    hm.insert("right", None);
-                    hm
-                });
-                hm
-            });
-            hm.insert("right", {
-                let mut hm = ::std::collections::HashMap::new();
-                hm.insert("data", "6");
-                hm.insert("left", {
-                    let mut hm = ::std::collections::HashMap::new();
-                    hm.insert("data", "5");
-                    hm.insert("left", None);
-                    hm.insert("right", None);
-                    hm
-                });
-                hm.insert("right", {
-                    let mut hm = ::std::collections::HashMap::new();
-                    hm.insert("data", "7");
-                    hm.insert("left", None);
-                    hm.insert("right", None);
-                    hm
-                });
-                hm
-            });
-            hm
-        },
-    );
+    let expected_root = TreeNode::new(4)
+        .with_left_node(
+            TreeNode::new(2)
+                .with_left_node(TreeNode::new(1))
+                .with_right_node(TreeNode::new(3)),
+        )
+        .with_right_node(
+            TreeNode::new(6)
+                .with_left_node(TreeNode::new(5))
+                .with_right_node(TreeNode::new(7)),
+        );
+
+    process_insertion_case(&[4, 2, 6, 1, 3, 5, 7], &expected_root);
 }
 
 // can sort data
 
+/*
 #[test]
 #[ignore]
 /// can sort single number
