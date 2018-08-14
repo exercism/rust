@@ -1,13 +1,3 @@
-pub struct Brackets;
-
-impl<'a> From<&'a str> for Brackets {
-    fn from(input: &str) -> Self {
-        unimplemented!("From the '{}' input construct a new Brackets struct", input);
-    }
-}
-
-impl Brackets {
-    pub fn are_balanced(&self) -> bool {
-        unimplemented!("Check if your Brackets struct contains balanced brackets");
-    }
+pub fn brackets_are_balanced(string: &str) -> bool {
+    unimplemented!("Check if the string \"{}\" contains balanced brackets", string);
 }
