@@ -1,6 +1,5 @@
 [package]
 name = "binary_search_tree"
 version = "1.0.0"
-authors = ["ZapAnton <wc3ft2@gmail.com>"]
 
 [dependencies]
