@@ -2,6 +2,16 @@ extern crate binary_search_tree;
 
 use binary_search_tree::*;
 
+fn process_sort_case(to_sort: &mut [i32]) {
+    let mut tree = BinarySearchTree::new();
+
+    to_sort.iter().for_each(|&element| tree.insert(element));
+
+    to_sort.sort();
+
+    assert_eq!(to_sort.to_vec(), Into::<Vec<i32>>::into(tree));
+}
+
 fn process_insertion_case(to_insert: &[i32], expected_root: &TreeNode) {
     let mut tree = BinarySearchTree::new();
 
@@ -80,74 +90,37 @@ fn test_can_create_complex_tree() {
 }
 
 // can sort data
-
-/*
 #[test]
 #[ignore]
 /// can sort single number
 fn test_can_sort_single_number() {
-    process_sorteddata_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["2"]);
-            hm
-        },
-        vec!["2"],
-    );
+    process_sort_case(&mut [2]);
 }
 
 #[test]
 #[ignore]
 /// can sort if second number is smaller than first
 fn test_can_sort_if_second_number_is_smaller_than_first() {
-    process_sorteddata_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["2", "1"]);
-            hm
-        },
-        vec!["1", "2"],
-    );
+    process_sort_case(&mut [2, 1]);
 }
 
 #[test]
 #[ignore]
 /// can sort if second number is same as first
 fn test_can_sort_if_second_number_is_same_as_first() {
-    process_sorteddata_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["2", "2"]);
-            hm
-        },
-        vec!["2", "2"],
-    );
+    process_sort_case(&mut [2, 2]);
 }
 
 #[test]
 #[ignore]
 /// can sort if second number is greater than first
 fn test_can_sort_if_second_number_is_greater_than_first() {
-    process_sorteddata_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["2", "3"]);
-            hm
-        },
-        vec!["2", "3"],
-    );
+    process_sort_case(&mut [2, 3]);
 }
 
 #[test]
 #[ignore]
 /// can sort complex tree
 fn test_can_sort_complex_tree() {
-    process_sorteddata_case(
-        {
-            let mut hm = ::std::collections::HashMap::new();
-            hm.insert("treeData", vec!["2", "1", "3", "6", "7", "5"]);
-            hm
-        },
-        vec!["1", "2", "3", "5", "6", "7"],
-    );
-}*/
+    process_sort_case(&mut [2, 1, 3, 6, 7, 5]);
+}

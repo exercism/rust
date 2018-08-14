@@ -90,3 +90,31 @@ impl BinarySearchTree {
         root
     }
 }
+
+unsafe fn traverse(node: *mut TreeNode, acc_vec: &mut Vec<i32>) {
+    let node = &*node;
+
+    if !node.left.is_null() {
+        traverse(node.left, acc_vec);
+    }
+
+    acc_vec.push(node.element);
+
+    if !node.right.is_null() {
+        traverse(node.right, acc_vec);
+    }
+}
+
+impl Into<Vec<i32>> for BinarySearchTree {
+    fn into(self) -> Vec<i32> {
+        let mut result = vec![];
+
+        let root = self.get_root();
+
+        unsafe {
+            traverse(root, &mut result);
+        }
+
+        result
+    }
+}
