@@ -942,15 +942,15 @@
       ]
     },
     {
-      "uuid": "6af6786a-3194-439e-969b-7dacc0cd741b",
       "slug": "binary-search-tree",
+      "uuid": "6af6786a-3194-439e-969b-7dacc0cd741b",
       "core": false,
       "unlocked_by": "anagram",
       "difficulty": 7,
       "topics": [
-        "unsafe",
         "builder_pattern",
-        "struct"
+        "struct",
+        "unsafe"
       ]
     },
     {
