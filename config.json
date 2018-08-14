@@ -942,6 +942,18 @@
       ]
     },
     {
+      "uuid": "6af6786a-3194-439e-969b-7dacc0cd741b",
+      "slug": "binary-search-tree",
+      "core": false,
+      "unlocked_by": "anagram",
+      "difficulty": 7,
+      "topics": [
+        "unsafe",
+        "builder_pattern",
+        "struct"
+      ]
+    },
+    {
       "slug": "ocr-numbers",
       "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
       "core": false,
