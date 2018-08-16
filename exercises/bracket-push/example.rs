@@ -1,6 +1,10 @@
 use std::collections::HashMap;
 
-pub struct Brackets {
+pub fn brackets_are_balanced(string: &str) -> bool {
+    Brackets::from(string).are_balanced()
+}
+
+struct Brackets {
     raw_brackets: Vec<char>,
     pairs: MatchingBrackets,
 }
@@ -12,7 +16,7 @@ impl<'a> From<&'a str> for Brackets {
 }
 
 impl Brackets {
-    pub fn new(s: String, pairs: Option<Vec<(char, char)>>) -> Self {
+    fn new(s: String, pairs: Option<Vec<(char, char)>>) -> Self {
         let p = match pairs {
             Some(x) => MatchingBrackets::from(x),
             None => MatchingBrackets::from(vec![('[', ']'), ('{', '}'), ('(', ')')]),
@@ -24,7 +28,7 @@ impl Brackets {
         }
     }
 
-    pub fn are_balanced(&self) -> bool {
+    fn are_balanced(&self) -> bool {
         let mut unclosed: Vec<char> = Vec::new();
 
         for &bracket in self.raw_brackets.iter() {
@@ -39,7 +43,7 @@ impl Brackets {
     }
 }
 
-pub struct MatchingBrackets {
+struct MatchingBrackets {
     collection: HashMap<char, char>,
 }
 
