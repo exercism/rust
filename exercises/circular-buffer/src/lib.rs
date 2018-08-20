@@ -1,7 +1,6 @@
-use std::fmt::Debug;
 use std::marker::PhantomData;
 
-pub struct CircularBuffer<T: Debug> {
+pub struct CircularBuffer<T> {
     // This field is here to make the template compile and not to
     // complain about unused type parameter 'T'. Once you start
     // solving the exercise, delete this field and the 'std::marker::PhantomData'
@@ -15,7 +14,7 @@ pub enum Error {
     FullBuffer,
 }
 
-impl<T: Debug> CircularBuffer<T> {
+impl<T> CircularBuffer<T> {
     pub fn new(capacity: usize) -> Self {
         unimplemented!(
             "Construct a new CircularBuffer with the capacity to hold {}.",
@@ -26,8 +25,8 @@ impl<T: Debug> CircularBuffer<T> {
         );
     }
 
-    pub fn write(&mut self, element: T) -> Result<(), Error> {
-        unimplemented!("Write the element '{:?}' to the CircularBuffer or return FullBuffer error if CircularBuffer is full.", element);
+    pub fn write(&mut self, _element: T) -> Result<(), Error> {
+        unimplemented!("Write the passed element to the CircularBuffer or return FullBuffer error if CircularBuffer is full.");
     }
 
     pub fn read(&mut self) -> Result<T, Error> {
@@ -38,7 +37,7 @@ impl<T: Debug> CircularBuffer<T> {
         unimplemented!("Clear the CircularBuffer.");
     }
 
-    pub fn overwrite(&mut self, element: T) {
-        unimplemented!("Write the element '{:?}' to the CircularBuffer, overwriting the existing elements if CircularBuffer is full.", element);
+    pub fn overwrite(&mut self, _element: T) {
+        unimplemented!("Write the passed element to the CircularBuffer, overwriting the existing elements if CircularBuffer is full.");
     }
 }
