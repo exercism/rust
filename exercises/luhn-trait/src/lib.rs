@@ -7,7 +7,7 @@ pub trait Luhn {
 /// by hand for the every other type presented in the test suite,
 /// but your solution will fail if a new type is presented.
 /// Perhaps there exists a better solution for this problem?
-impl Luhn for &'static str {
+impl<'a> Luhn for &'a str {
     fn valid_luhn(&self) -> bool {
         unimplemented!("Determine if '{}' is a valid credit card number.", self);
     }
