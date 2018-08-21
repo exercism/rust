@@ -17,7 +17,7 @@ It would be very easy to implement this exercise by using the [bigdecimal](https
 # Hints
 
 - Instead of implementing arbitrary-precision arithmetic from scratch, consider building your type on top of the [num_bigint](https://crates.io/crates/num-bigint) crate.
-- You might be able to [derive](https://doc.rust-lang.org/book/second-edition/appendix-03-derivable-traits.html) some of the required traits.
+- You might be able to [derive](https://doc.rust-lang.org/book/2018-edition/appendix-03-derivable-traits.html) some of the required traits.
 - `Decimal` is assumed to be a signed type. You do not have to create a separate unsigned type, though you may do so as an implementation detail if you so choose.
 
 ## Rust Installation
@@ -59,7 +59,7 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -69,9 +69,9 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
-[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
-[rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
+[modules]: https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/2018-edition/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/2018-edition/ch11-02-running-tests.html
 
 ## Source
 

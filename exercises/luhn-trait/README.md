@@ -22,9 +22,9 @@ In "Luhn: Using the From Trait" you implemented a From trait, which also require
 
 Instead of creating a Struct just to perform the validation, what if you validated the primitives (i.e, String, u8, etc.) themselves?
 
-In this exercise you'll create and implement a custom [trait](https://doc.rust-lang.org/book/second-edition/ch10-02-traits.html) that performs the validation.
+In this exercise you'll create and implement a custom [trait](https://doc.rust-lang.org/book/2018-edition/ch10-02-traits.html) that performs the validation.
 
-Note: It is [not idiomatic Rust to implement traits on on primitives](https://doc.rust-lang.org/book/second-edition/ch10-02-traits.html#implementing-a-trait-on-a-type). In this exercise we're showing something that you _can_ do, not something you _should_ do. If you find yourself implementing traits on primitives, perhaps you have a case of [Primitive Obsession](http://wiki.c2.com/?PrimitiveObsession).
+Note: It is [not idiomatic Rust to implement traits on on primitives](https://doc.rust-lang.org/book/2018-edition/ch10-02-traits.html#implementing-a-trait-on-a-type). In this exercise we're showing something that you _can_ do, not something you _should_ do. If you find yourself implementing traits on primitives, perhaps you have a case of [Primitive Obsession](http://wiki.c2.com/?PrimitiveObsession).
 
 ## Rust Installation
 
@@ -65,7 +65,7 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -75,9 +75,9 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
-[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
-[rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
+[modules]: https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/2018-edition/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/2018-edition/ch11-02-running-tests.html
 
 ## Source
 

@@ -42,7 +42,7 @@ For this exercise you should not use this function but just other basic tools in
 
 ## Hints
 
-[Slices](https://doc.rust-lang.org/book/second-edition/ch04-03-slices.html) have additionally to
+[Slices](https://doc.rust-lang.org/book/2018-edition/ch04-03-slices.html) have additionally to
 the normal element access via indexing (slice[index]) many useful functions like
 [split_at](https://doc.rust-lang.org/std/primitive.slice.html#method.split_at) or [getting
 subslices](https://doc.rust-lang.org/std/primitive.slice.html#method.get) (slice[start..end]).
@@ -118,7 +118,7 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -128,9 +128,9 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
-[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
-[rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
+[modules]: https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/2018-edition/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/2018-edition/ch11-02-running-tests.html
 
 ## Source
 
