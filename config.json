@@ -605,7 +605,6 @@
       "unlocked_by": null,
       "difficulty": 4,
       "topics": [
-        "from_trait",
         "stack_or_recursion"
       ]
     },
