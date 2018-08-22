@@ -15,18 +15,19 @@ IGNORED_EXERCISES=(
 )
 
 for dir in $repo/exercises/*/; do
-  exercise=$(basename "$dir")
-  if [ ! -f "$dir/src/lib.rs" ]; then
-	# https://github.com/exercism/rust/pull/270
-	echo "$exercise is missing a src/lib.rs; please create one (an empty file is acceptable)"
-	missing="$missing\n$exercise"
+	exercise=$(basename "$dir")
+
+	if [ ! -f "$dir/src/lib.rs" ]; then
+		# https://github.com/exercism/rust/pull/270
+		echo "$exercise is missing a src/lib.rs; please create one (an empty file is acceptable)"
+		missing="$missing\n$exercise"
 	else
 		#Check if the stub file is empty
 		if [ ! -s "$dir/src/lib.rs" ] || [ "$(cat "$dir/src/lib.rs")" == "" ] && [[ " ${IGNORED_EXERCISES[*]} " != *"$exercise"* ]]; then
 			echo "$exercise has src/lib.rs stub file, but it is empty."
 			empty_stub="$empty_stub\n$exercise"
 		fi
-  fi
+	fi
 done
 
 if [ -n "$missing" ]; then
