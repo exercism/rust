@@ -74,5 +74,3 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 Problem 9 at Project Euler [http://projecteuler.net/problem=9](http://projecteuler.net/problem=9)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

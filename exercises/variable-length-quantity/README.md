@@ -88,5 +88,3 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 A poor Splice developer having to implement MIDI encoding/decoding. [https://splice.com](https://splice.com)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

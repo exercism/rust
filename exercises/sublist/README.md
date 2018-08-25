@@ -70,5 +70,3 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
 [rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

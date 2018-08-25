@@ -69,5 +69,3 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 [https://en.wikipedia.org/wiki/Two-fer](https://en.wikipedia.org/wiki/Two-fer)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
