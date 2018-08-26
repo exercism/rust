@@ -1,0 +1,2 @@
+Stub doesn't compile because the custom trait is not implemented for the every type in the test suite.
+This exercise is an introduction to implementing custom traits for the primitives and fully implementing the trait for the test suite reduces learning.
