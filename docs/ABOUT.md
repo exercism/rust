@@ -1,7 +1,7 @@
 Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.
 It aims to bring modern language design and an advanced type system to systems programming.
 Rust does not use a garbage collector, using advanced static analysis to provide deterministic drops instead.
-It accomplishes this via the concept of [ownership](https://doc.rust-lang.org/book/second-edition/ch04-00-understanding-ownership.html).
+It accomplishes this via the concept of [ownership](https://doc.rust-lang.org/book/2018-edition/ch04-00-understanding-ownership.html).
 
 Rust's core and the standard library are intentionally minimal; batteries are not included.
 Rustaceans are instead encouraged to add libraries, called _crates_, to the language by sharing them on [crates.io](https://crates.io/).
@@ -12,4 +12,4 @@ Regardless of what you build in Rust, it will be fast and memory safe!
 
 The home page for Rust is [rust-lang.org](https://www.rust-lang.org/).
 Rust has excellent documentation at [rust-lang.org/documentation.html](https://www.rust-lang.org/documentation.html).
-Newcomers should start with "The Book" located at [doc.rust-lang.org/book/second-edition/](https://doc.rust-lang.org/book/second-edition/).
+Newcomers should start with "The Book" located at [doc.rust-lang.org/book/2018-edition/](https://doc.rust-lang.org/book/2018-edition/).

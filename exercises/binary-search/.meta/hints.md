@@ -6,7 +6,7 @@ For this exercise you should not use this function but just other basic tools in
 
 ## Hints
 
-[Slices](https://doc.rust-lang.org/book/second-edition/ch04-03-slices.html) have additionally to
+[Slices](https://doc.rust-lang.org/book/2018-edition/ch04-03-slices.html) have additionally to
 the normal element access via indexing (slice[index]) many useful functions like
 [split_at](https://doc.rust-lang.org/std/primitive.slice.html#method.split_at) or [getting
 subslices](https://doc.rust-lang.org/std/primitive.slice.html#method.get) (slice[start..end]).

@@ -11,7 +11,7 @@ list of texts and that employs parallelism.
 
 Learn more about concurrency in Rust here:
 
-- [Concurrency](https://doc.rust-lang.org/book/second-edition/ch16-00-concurrency.html)
+- [Concurrency](https://doc.rust-lang.org/book/2018-edition/ch16-00-concurrency.html)
 
 ## Bonus
 
@@ -37,7 +37,7 @@ rustup run nightly cargo bench
 
 Learn more about nightly Rust:
 
-- [Nightly Rust](https://doc.rust-lang.org/book/second-edition/ch01-03-how-rust-is-made-and-nightly-rust.html)
+- [Nightly Rust](https://doc.rust-lang.org/book/2018-edition/ch01-03-how-rust-is-made-and-nightly-rust.html)
 - [Rustup: Working with nightly](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust)
 
 
@@ -80,7 +80,7 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html) chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Feedback, Issues, Pull Requests
@@ -90,9 +90,9 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: http://exercism.io/languages/rust
-[modules]: https://doc.rust-lang.org/book/second-edition/ch07-00-modules.html
-[cargo]: https://doc.rust-lang.org/book/second-edition/ch14-00-more-about-cargo.html
-[rust-tests]: https://doc.rust-lang.org/book/second-edition/ch11-02-running-tests.html
+[modules]: https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html
+[cargo]: https://doc.rust-lang.org/book/2018-edition/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/2018-edition/ch11-02-running-tests.html
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

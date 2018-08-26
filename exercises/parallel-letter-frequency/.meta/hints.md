@@ -2,7 +2,7 @@
 
 Learn more about concurrency in Rust here:
 
-- [Concurrency](https://doc.rust-lang.org/book/second-edition/ch16-00-concurrency.html)
+- [Concurrency](https://doc.rust-lang.org/book/2018-edition/ch16-00-concurrency.html)
 
 ## Bonus
 
@@ -28,5 +28,5 @@ rustup run nightly cargo bench
 
 Learn more about nightly Rust:
 
-- [Nightly Rust](https://doc.rust-lang.org/book/second-edition/ch01-03-how-rust-is-made-and-nightly-rust.html)
+- [Nightly Rust](https://doc.rust-lang.org/book/2018-edition/ch01-03-how-rust-is-made-and-nightly-rust.html)
 - [Rustup: Working with nightly](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust)
