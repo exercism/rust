@@ -3,7 +3,7 @@ extern crate binary_search_tree;
 use binary_search_tree::*;
 
 fn process_sort_case(to_sort: &mut [i32]) {
-    let mut tree = BinarySearchTree::new();
+    let mut tree: BinarySearchTree<i32> = BinarySearchTree::new();
 
     to_sort.iter().for_each(|&element| tree.insert(element));
 
@@ -12,8 +12,8 @@ fn process_sort_case(to_sort: &mut [i32]) {
     assert_eq!(to_sort.to_vec(), Into::<Vec<i32>>::into(tree));
 }
 
-fn process_insertion_case(to_insert: &[i32], expected_root: &TreeNode) {
-    let mut tree = BinarySearchTree::new();
+fn process_insertion_case(to_insert: &[i32], expected_root: &TreeNode<i32>) {
+    let mut tree: BinarySearchTree<i32> = BinarySearchTree::new();
 
     to_insert.iter().for_each(|&element| tree.insert(element));
 
@@ -24,7 +24,7 @@ fn process_insertion_case(to_insert: &[i32], expected_root: &TreeNode) {
 
 #[test]
 fn test_empty_tree() {
-    let tree = BinarySearchTree::new();
+    let tree: BinarySearchTree<i32> = BinarySearchTree::new();
 
     assert!(tree.get_root().is_null());
 }
@@ -33,7 +33,7 @@ fn test_empty_tree() {
 #[ignore]
 /// data is retained
 fn test_data_is_retained() {
-    let mut tree = BinarySearchTree::new();
+    let mut tree: BinarySearchTree<i32> = BinarySearchTree::new();
 
     tree.insert(4);
 

@@ -1,14 +1,14 @@
 use std::ptr;
 
 #[derive(Debug)]
-pub struct TreeNode {
-    element: i32,
-    left: *mut TreeNode,
-    right: *mut TreeNode,
+pub struct TreeNode<T> {
+    element: T,
+    left: *mut TreeNode<T>,
+    right: *mut TreeNode<T>,
 }
 
-impl PartialEq for TreeNode {
-    fn eq(&self, other: &TreeNode) -> bool {
+impl<T: PartialEq> PartialEq for TreeNode<T> {
+    fn eq(&self, other: &TreeNode<T>) -> bool {
         let elements_are_equal = self.element == other.element;
 
         let left_nodes_are_equal = if self.left.is_null() {
@@ -31,12 +31,12 @@ impl PartialEq for TreeNode {
     }
 }
 
-pub struct BinarySearchTree {
-    root: *mut TreeNode,
+pub struct BinarySearchTree<T> {
+    root: *mut TreeNode<T>,
 }
 
-impl TreeNode {
-    pub fn new(element: i32) -> Self {
+impl<T> TreeNode<T> {
+    pub fn new(element: T) -> Self {
         TreeNode {
             element,
             left: ptr::null_mut(),
@@ -44,37 +44,37 @@ impl TreeNode {
         }
     }
 
-    pub fn with_right_node(mut self, right_node: TreeNode) -> Self {
+    pub fn with_right_node(mut self, right_node: TreeNode<T>) -> Self {
         self.right = Box::into_raw(Box::new(right_node));
 
         self
     }
 
-    pub fn with_left_node(mut self, left_node: TreeNode) -> Self {
+    pub fn with_left_node(mut self, left_node: TreeNode<T>) -> Self {
         self.left = Box::into_raw(Box::new(left_node));
 
         self
     }
 }
 
-impl BinarySearchTree {
+impl<T: PartialOrd> BinarySearchTree<T> {
     pub fn new() -> Self {
         BinarySearchTree {
             root: ptr::null_mut(),
         }
     }
 
-    pub fn get_root(&self) -> *mut TreeNode {
+    pub fn get_root(&self) -> *mut TreeNode<T> {
         self.root
     }
 
-    pub fn insert(&mut self, element: i32) {
+    pub fn insert(&mut self, element: T) {
         let node = TreeNode::new(element);
 
         self.root = self.insert_node(node, self.root);
     }
 
-    fn insert_node(&self, node: TreeNode, root: *mut TreeNode) -> *mut TreeNode {
+    fn insert_node(&self, node: TreeNode<T>, root: *mut TreeNode<T>) -> *mut TreeNode<T> {
         if root.is_null() {
             return Box::into_raw(Box::new(node));
         }
@@ -91,22 +91,25 @@ impl BinarySearchTree {
     }
 }
 
-unsafe fn traverse(node: *mut TreeNode, acc_vec: &mut Vec<i32>) {
+unsafe fn traverse<T>(node: *mut TreeNode<T>, acc_vec: &mut Vec<T>)
+where
+    T: Clone,
+{
     let node = &*node;
 
     if !node.left.is_null() {
         traverse(node.left, acc_vec);
     }
 
-    acc_vec.push(node.element);
+    acc_vec.push(node.element.clone());
 
     if !node.right.is_null() {
         traverse(node.right, acc_vec);
     }
 }
 
-impl Into<Vec<i32>> for BinarySearchTree {
-    fn into(self) -> Vec<i32> {
+impl<T: PartialOrd + Clone> Into<Vec<T>> for BinarySearchTree<T> {
+    fn into(self) -> Vec<T> {
         let mut result = vec![];
 
         let root = self.get_root();
