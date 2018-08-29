@@ -64,8 +64,8 @@ impl<T: PartialOrd> BinarySearchTree<T> {
         }
     }
 
-    pub fn get_root(&self) -> *mut TreeNode<T> {
-        self.root
+    pub fn get_root(&self) -> Option<&mut TreeNode<T>> {
+        unsafe { self.root.as_mut() }
     }
 
     pub fn insert(&mut self, element: T) {
@@ -112,7 +112,7 @@ impl<T: PartialOrd + Clone> Into<Vec<T>> for BinarySearchTree<T> {
     fn into(self) -> Vec<T> {
         let mut result = vec![];
 
-        let root = self.get_root();
+        let root = self.get_root().unwrap();
 
         unsafe {
             traverse(root, &mut result);

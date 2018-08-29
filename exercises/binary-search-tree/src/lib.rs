@@ -28,7 +28,7 @@ impl<T> BinarySearchTree<T> {
         unimplemented!("Costruct a new BinarySearchTree struct.");
     }
 
-    pub fn get_root(&self) -> *mut TreeNode<T> {
+    pub fn get_root(&self) -> Option<&mut TreeNode<T>> {
         unimplemented!("Return the root of the BinarySearchTree struct.");
     }
 

@@ -17,16 +17,14 @@ fn process_insertion_case(to_insert: &[i32], expected_root: &TreeNode<i32>) {
 
     to_insert.iter().for_each(|&element| tree.insert(element));
 
-    unsafe {
-        assert_eq!(*expected_root, *tree.get_root());
-    }
+    assert_eq!(*expected_root, *tree.get_root().unwrap());
 }
 
 #[test]
 fn test_empty_tree() {
     let tree: BinarySearchTree<i32> = BinarySearchTree::new();
 
-    assert!(tree.get_root().is_null());
+    assert!(tree.get_root().is_none());
 }
 
 #[test]
@@ -37,9 +35,7 @@ fn test_data_is_retained() {
 
     tree.insert(4);
 
-    unsafe {
-        assert_eq!(TreeNode::new(4), *tree.get_root());
-    }
+    assert_eq!(TreeNode::new(4), *tree.get_root().unwrap());
 }
 
 // insert data at proper node
