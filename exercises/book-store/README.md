@@ -124,5 +124,3 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 Inspired by the harry potter kata from Cyber-Dojo. [http://cyber-dojo.org](http://cyber-dojo.org)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
