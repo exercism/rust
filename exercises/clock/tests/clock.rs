@@ -328,3 +328,9 @@ fn test_compare_clocks_with_negative_hours_and_minutes() {
 fn test_compare_clocks_with_negative_hours_and_minutes_that_wrap() {
     assert_eq!(Clock::new(18, 7), Clock::new(-54, -11513))
 }
+
+#[test]
+#[ignore]
+fn test_compare_full_clock_and_zeroed_clock() {
+    assert_eq!(Clock::new(24, 0), Clock::new(0, 0))
+}
