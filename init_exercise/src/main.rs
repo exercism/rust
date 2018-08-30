@@ -21,5 +21,10 @@ fn main() {
                 .about("Updates the specified exercise")
                 .arg(Arg::with_name("exercise_name").help("The name of the updated exercise")),
         )
+        .subcommand(
+            SubCommand::with_name("configure")
+                .about("Edits config.json for the specified exercise")
+                .arg(Arg::with_name("exercise_name").help("The name of the configured exercise")),
+        )
         .get_matches();
 }
