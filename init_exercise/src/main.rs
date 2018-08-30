@@ -1,6 +1,8 @@
 extern crate clap;
+mod cmd;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
+use cmd::{configure, generate, update};
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
