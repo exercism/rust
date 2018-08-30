@@ -37,7 +37,7 @@ rustup run nightly cargo bench
 
 Learn more about nightly Rust:
 
-- [Nightly Rust](https://doc.rust-lang.org/book/2018-edition/ch01-03-how-rust-is-made-and-nightly-rust.html)
+- [Nightly Rust](https://doc.rust-lang.org/stable/book/2018-edition/appendix-06-nightly-rust.html)
 - [Rustup: Working with nightly](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust)
 
 
