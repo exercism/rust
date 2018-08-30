@@ -40,7 +40,7 @@ fn init_app<'a>() -> ArgMatches<'a> {
 // and call the appropriate function.
 fn process_matches(matches: &ArgMatches) {
     match matches.subcommand() {
-        ("generate", Some(generate_matches)) => println!("Generate!"),
+        ("generate", Some(generate_matches)) => generate::process_matches(&generate_matches),
         ("update", Some(update_matches)) => println!("Update!"),
         ("configure", Some(configure_matches)) => println!("Configure!"),
         ("", None) => {
