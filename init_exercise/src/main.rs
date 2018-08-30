@@ -1,9 +1,11 @@
 extern crate clap;
 
-use clap::{App, Arg, SubCommand};
+use clap::{App, Arg, ArgMatches, SubCommand};
 
-fn main() {
-    let _matches = App::new(env!("CARGO_PKG_NAME"))
+// Creates a new CLI app with appropriate matches
+// and returns the initialized matches.
+fn init_app<'a>() -> ArgMatches<'a> {
+    App::new(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
@@ -29,5 +31,25 @@ fn main() {
                 .about("Edits config.json for the specified exercise")
                 .arg(Arg::with_name("exercise_name").help("The name of the configured exercise")),
         )
-        .get_matches();
+        .get_matches()
+}
+
+// Determine which subcommand was used
+// and call the appropriate function.
+fn process_matches(matches: &ArgMatches) {
+    match matches.subcommand() {
+        ("generate", Some(generate_matches)) => println!("Generate!"),
+        ("update", Some(update_matches)) => println!("Update!"),
+        ("configure", Some(configure_matches)) => println!("Configure!"),
+        ("", None) => {
+            println!("No subcommand was used.\nUse init_exercise --help to learn about the possible subcommands.")
+        }
+        _ => unreachable!(),
+    }
+}
+
+fn main() {
+    let matches = init_app();
+
+    process_matches(&matches);
 }
