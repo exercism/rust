@@ -14,7 +14,7 @@ fn init_app<'a>() -> ArgMatches<'a> {
         .subcommand(
             SubCommand::with_name("generate")
                 .about("Generates new exercise")
-                .arg(Arg::with_name("exercise_name").help("The name of the generated exercise"))
+                .arg(Arg::with_name("exercise_name").required(true).help("The name of the generated exercise"))
                 .arg(Arg::with_name("no_configure").long("no-configure").short("n").help(
                     "If set, the command will not edit config.json after generating the exercise",
                 ))
