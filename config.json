@@ -481,7 +481,9 @@
       "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
-        "function_pointer"
+        "generics",
+        "higher_order_functions",
+        "move_semantics"
       ]
     },
     {
