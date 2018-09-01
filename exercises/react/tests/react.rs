@@ -122,7 +122,7 @@ struct CallbackRecorder {
     // Note that this `Cell` is https://doc.rust-lang.org/std/cell/
     // a mechanism to allow internal mutability,
     // distinct from the cells (input cells, compute cells) in the reactor
-    value: std::cell::Cell<Option<isize>>,
+    value: std::cell::Cell<Option<i32>>,
 }
 
 impl CallbackRecorder {
@@ -132,7 +132,7 @@ impl CallbackRecorder {
         }
     }
 
-    fn expect_to_have_been_called_with(&self, v: isize) {
+    fn expect_to_have_been_called_with(&self, v: i32) {
         assert_ne!(
             self.value.get(),
             None,
@@ -153,7 +153,7 @@ impl CallbackRecorder {
         );
     }
 
-    fn callback_called(&self, v: isize) {
+    fn callback_called(&self, v: i32) {
         assert_eq!(
             self.value.replace(Some(v)),
             None,
@@ -190,7 +190,7 @@ fn error_adding_callback_to_nonexistent_cell() {
         .create_compute(&[CellID::Input(input)], |_| 0)
         .unwrap();
     assert_eq!(
-        Reactor::new().add_callback(output, |_: usize| println!("hi")),
+        Reactor::new().add_callback(output, |_: u32| println!("hi")),
         None
     );
 }
