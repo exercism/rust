@@ -5,8 +5,8 @@ use std::collections::HashMap;
 
 #[test]
 fn test_empty() {
-    let expected: HashMap<usize, usize> = HashMap::new();
-    let computed: HashMap<usize, usize> = hashmap!();
+    let expected: HashMap<u32, u32> = HashMap::new();
+    let computed: HashMap<u32, u32> = hashmap!();
     assert_eq!(computed, expected);
 }
 
