@@ -1,8 +1,8 @@
-pub fn spiral_matrix(size: usize) -> Vec<Vec<usize>> {
-    let mut matrix: Vec<Vec<usize>> = vec![vec![0; size]; size];
-    let num_concentric_squares: usize = (size as f64 / 2.0).ceil() as usize;
-    let mut counter: usize = 1;
-    let mut sidelen = size;
+pub fn spiral_matrix(size: u32) -> Vec<Vec<u32>> {
+    let mut matrix: Vec<Vec<u32>> = vec![vec![0; size as usize]; size as usize];
+    let num_concentric_squares = (size as f64 / 2.0).ceil() as usize;
+    let mut counter: u32 = 1;
+    let mut sidelen = size as usize;
     for i in 0..num_concentric_squares {
         for j in 0..sidelen {
             matrix[i][i + j] = counter;
@@ -10,12 +10,12 @@ pub fn spiral_matrix(size: usize) -> Vec<Vec<usize>> {
         }
 
         for j in 1..sidelen {
-            matrix[i + j][size - 1 - i] = counter;
+            matrix[i + j][size as usize - 1 - i] = counter;
             counter += 1;
         }
 
         for j in (0..sidelen - 1).rev() {
-            matrix[size - 1 - i][i + j] = counter;
+            matrix[size as usize - 1 - i][i + j] = counter;
             counter += 1;
         }
 
