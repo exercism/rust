@@ -1,6 +1,6 @@
 use std::iter;
 
-pub type Domino = (usize, usize);
+pub type Domino = (u8, u8);
 
 /// A table keeping track of available dominoes.
 ///
@@ -8,7 +8,7 @@ pub type Domino = (usize, usize);
 /// dots and row dots. Positions are mirrored ((3,4) == (4,3)), except for positions with equal row
 /// and column numbers.
 struct AvailabilityTable {
-    m: Vec<usize>,
+    m: Vec<u8>,
 }
 
 impl AvailabilityTable {
@@ -18,16 +18,16 @@ impl AvailabilityTable {
         }
     }
 
-    fn get(&self, x: usize, y: usize) -> usize {
-        self.m[(x - 1) * 6 + (y - 1)]
+    fn get(&self, x: u8, y: u8) -> u8 {
+        self.m[((x - 1) * 6 + (y - 1)) as usize]
     }
 
-    fn set(&mut self, x: usize, y: usize, v: usize) {
+    fn set(&mut self, x: u8, y: u8, v: u8) {
         let m = &mut self.m[..];
-        m[(x - 1) * 6 + (y - 1)] = v;
+        m[((x - 1) * 6 + (y - 1)) as usize] = v;
     }
 
-    fn add(&mut self, x: usize, y: usize) {
+    fn add(&mut self, x: u8, y: u8) {
         if x == y {
             let n = self.get(x, y);
             self.set(x, y, n + 1) // Along the diagonal
@@ -39,7 +39,7 @@ impl AvailabilityTable {
         }
     }
 
-    fn remove(&mut self, x: usize, y: usize) {
+    fn remove(&mut self, x: u8, y: u8) {
         if self.get(x, y) > 0 {
             if x == y {
                 let n = self.get(x, y);
@@ -56,7 +56,7 @@ impl AvailabilityTable {
         }
     }
 
-    fn pop_first(&mut self, x: usize) -> Option<usize> {
+    fn pop_first(&mut self, x: u8) -> Option<u8> {
         for y in 1..7 {
             if self.get(x, y) > 0 {
                 self.remove(x, y);
@@ -78,13 +78,13 @@ pub fn chain(dominoes: &[Domino]) -> Option<Vec<Domino>> {
         _ => {
             // First check if the total number of each amount of dots is even, if not it's not
             // possible to complete a cycle. This follows from that it's an Eulerian path.
-            let mut v: Vec<usize> = vec![0, 0, 0, 0, 0, 0];
+            let mut v: Vec<u8> = vec![0, 0, 0, 0, 0, 0];
             // Keep the mutable borrow in a small scope here to allow v.iter().
             {
                 let vs = &mut v[..];
                 for dom in dominoes.iter() {
-                    vs[dom.0 - 1] += 1;
-                    vs[dom.1 - 1] += 1;
+                    vs[dom.0 as usize - 1] += 1;
+                    vs[dom.1 as usize - 1] += 1;
                 }
             }
             for n in v.iter() {

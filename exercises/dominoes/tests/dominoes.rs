@@ -2,7 +2,7 @@ extern crate dominoes;
 
 use CheckResult::*;
 
-type Domino = (usize, usize);
+type Domino = (u8, u8);
 
 #[derive(Debug)]
 enum CheckResult {
