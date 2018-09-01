@@ -1,4 +1,4 @@
-pub fn raindrops(n: usize) -> String {
+pub fn raindrops(n: u32) -> String {
     let is_pling = |n| n % 3 == 0;
     let is_plang = |n| n % 5 == 0;
     let is_plong = |n| n % 7 == 0;
