@@ -1,5 +1,5 @@
 fn is_prime(n: u32) -> bool {
-    let mut i: u32 = 3;
+    let mut i = 3;
     while (i * i) < (n + 1) {
         if n % i == 0 {
             return false;
@@ -9,20 +9,18 @@ fn is_prime(n: u32) -> bool {
     return true;
 }
 
-pub fn nth(n: u32) -> Option<u32> {
-    match n {
-        0 => None,
-        1 => Some(2),
-        _ => {
-            let mut count: u32 = 1;
-            let mut candidate: u32 = 1;
-            while count < n {
-                candidate += 2;
-                if is_prime(candidate) {
-                    count += 1;
-                }
+pub fn nth(n: u32) -> u32 {
+    if n == 0 {
+        2
+    } else {
+        let mut count = 0;
+        let mut candidate = 1;
+        while count < n {
+            candidate += 2;
+            if is_prime(candidate) {
+                count += 1;
             }
-            Some(candidate)
         }
+        candidate
     }
 }
