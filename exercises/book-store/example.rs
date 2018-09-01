@@ -5,9 +5,9 @@ use std::collections::{BTreeSet, HashSet};
 use std::hash::{Hash, Hasher};
 use std::mem;
 
-type Book = usize;
+type Book = u32;
 type GroupedBasket = Vec<Group>;
-type Price = usize;
+type Price = u32;
 const BOOK_PRICE: Price = 800;
 
 #[derive(Debug, Clone, PartialEq, Eq)]

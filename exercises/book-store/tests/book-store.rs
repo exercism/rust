@@ -14,7 +14,7 @@ use book_store::*;
 /// in terms of this function.
 ///
 /// Expected input format: ('basket', 'targetgrouping')
-fn process_total_case(input: (Vec<usize>, Vec<Vec<usize>>), expected: usize) {
+fn process_total_case(input: (Vec<u32>, Vec<Vec<u32>>), expected: u32) {
     assert_eq!(lowest_price(&input.0), expected)
 }
 
