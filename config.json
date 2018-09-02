@@ -1101,6 +1101,18 @@
       "deprecated": true
     },
     {
+      "uuid": "34738b66-28bb-41bc-85c6-68fcf4a09bc2",
+      "slug": "linked-list",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 10,
+      "topics": [
+        "lists",
+        "generics",
+        "unsafe"
+      ]
+    },
+    {
       "slug": "hexadecimal",
       "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
       "core": false,
