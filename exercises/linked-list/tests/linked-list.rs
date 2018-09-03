@@ -120,7 +120,10 @@ fn insert_middle() {
 
     {
         let mut cursor = list.cursor_tail();
-        cursor.seek_forward(4);
+        for _ in 0..4 {
+            cursor.next();
+        }
+        //cursor.seek_forward(4);
         cursor.insert_list_after(&mut list2);
     }
 

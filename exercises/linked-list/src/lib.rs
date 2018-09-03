@@ -52,8 +52,8 @@ impl<T> Node<T> {
 }
 
 trait NodePtrHelper<T> {
-    fn set_next(&mut self, node: NodePtr<T>);
-    fn set_prev(&mut self, node: NodePtr<T>);
+    fn get_next(&mut self) -> &mut OptNodePtr<T>;
+    fn get_prev(&mut self) -> &mut OptNodePtr<T>;
     fn link(left: NodePtr<T>, right: NodePtr<T>);
     fn insert_between(self, prev: NodePtr<T>, next: NodePtr<T>) -> NodePtr<T>;
     fn insert_new_after(self, element: T) -> NodePtr<T>;
@@ -64,21 +64,17 @@ trait NodePtrHelper<T> {
 }
 
 impl<T> NodePtrHelper<T> for NodePtr<T> {
-    fn set_next(&mut self, node: NodePtr<T>) {
-        unsafe {
-            self.as_mut().next = Some(node);
-        }
+    fn get_next(&mut self)-> &mut OptNodePtr<T> {
+        unsafe { &mut self.as_mut().next }
     }
 
-    fn set_prev(&mut self, node: NodePtr<T>) {
-        unsafe {
-            self.as_mut().prev = Some(node);
-        }
+    fn get_prev(&mut self)-> &mut OptNodePtr<T> {
+        unsafe { &mut self.as_mut().prev }
     }
 
     fn link(mut left: NodePtr<T>, mut right: NodePtr<T>) {
-        left.set_next(right);
-        right.set_prev(left);
+        *left.get_next() = Some(right);
+        *right.get_prev() = Some(left);
     }
 
     fn insert_between(self, prev: NodePtr<T>, next: NodePtr<T>) -> Self {
@@ -88,51 +84,42 @@ impl<T> NodePtrHelper<T> for NodePtr<T> {
     }
 
     fn insert_new_after(mut self, element: T) -> Self {
-        unsafe {
-            if let Some(next) = self.as_mut().next {
-                Node::new_linkless(element)
-                    .insert_between(self, next)
-            } else {
-                let new_node = Node::new_linkless(element);
-                NodePtr::link(self, new_node);
-                new_node
-            }
+        if let Some(next) = *self.get_next() {
+            Node::new_linkless(element)
+                .insert_between(self, next)
+        } else {
+            let new_node = Node::new_linkless(element);
+            NodePtr::link(self, new_node);
+            new_node
         }
     }
 
     fn insert_new_before(mut self, element: T) -> Self {
-        unsafe {
-            if let Some(prev) = self.as_mut().prev {
-                Node::new_linkless(element)
-                    .insert_between(prev, self)
-            } else {
-                let new_node = Node::new_linkless(element);
-                NodePtr::link(new_node, self);
-                new_node
-            }
+        if let Some(prev) = *self.get_prev() {
+            Node::new_linkless(element)
+                .insert_between(prev, self)
+        } else {
+            let new_node = Node::new_linkless(element);
+            NodePtr::link(new_node, self);
+            new_node
         }
     }
 
     // returns next of self, if it exists
     fn unlink_next(&mut self) -> OptNodePtr<T> {
-        unsafe {
-            self.as_mut().next.map(|mut next| {
-                next.as_mut().prev = None;
-                //self.as_mut().next = None;
-                next
-            })
-        }
-    }
+        self.get_next().map(|mut next| {
+            *next.get_prev() = None;
+            //self.as_mut().next = None;
+            next
+        })    }
 
     // returns prev of self, if it exists
     fn unlink_prev(&mut self) -> OptNodePtr<T> {
-        unsafe {
-            self.as_mut().prev.map(|mut prev| {
-                prev.as_mut().next = None;
-                //self.as_mut().prev = None;
-                prev
-            })
-        }
+        self.get_prev().map(|mut prev| {
+            *prev.get_next() = None;
+            //self.as_mut().prev = None;
+            prev
+        })
     }
 
     // must be unlinked from all others
@@ -164,51 +151,19 @@ impl<T> LinkedList<T> {
     }
 
     pub fn push_back(&mut self, element: T) {
-        // FIXME (NLL): Use &mut, not take
-        if let Some(head) = self.head.take() {
-            self.head = Some(head.insert_new_after(element));
-        } else {
-            self._insert_first(element);
-        }
-        self.len += 1;
+        self.cursor_head().insert_after(element);
     }
 
     pub fn push_front(&mut self, element: T) {
-        // FIXME (NLL): Use &mut, not take
-        if let Some(tail) = self.tail.take() {
-            self.tail = Some(tail.insert_new_before(element));
-        } else {
-            self._insert_first(element);
-        }
-        self.len += 1;
+        self.cursor_tail().insert_before(element);
     }
 
     pub fn pop_back(&mut self) -> Option<T> {
-        if let Some(mut head) = self.head.take() {
-            if let Some(prev) = head.unlink_prev() {
-                self.head = Some(prev);
-            } else {
-                self.tail = None;
-            }
-            self.len -= 1;
-            Some(head.into_inner())
-        } else {
-            None
-        }
+        self.cursor_head().take()
     }
 
     pub fn pop_front(&mut self) -> Option<T> {
-        if let Some(mut tail) = self.tail.take() {
-            if let Some(next) = tail.unlink_next() {
-                self.tail = Some(next);
-            } else {
-                self.head = None;
-            }
-            self.len -= 1;
-            Some(tail.into_inner())
-        } else {
-            None
-        }
+        self.cursor_tail().take()
     }
 
     pub fn cursor_tail(&mut self) -> Cursor<T> {
@@ -241,30 +196,14 @@ impl<T> LinkedList<T> {
 impl<T> Drop for LinkedList<T> {
     fn drop(&mut self) {
         while let Some(_) = self.pop_back() {}
-        /* premature optimization
-           to avoid putting head back in all the time
-        if let Some((_, mut tail)) = self.head_tail {
-            while let Some(next) = tail.unlink_next() {
-                tail.into_inner();
-                tail = next;
-            }
-        }
-        */
     }
 }
 
 impl<T: Clone> Clone for LinkedList<T> {
     fn clone(&self) -> Self {
         let mut new_list = LinkedList::new();
-
-        // TODO: Replace with immutable iter
-        let mut cursor = unsafe { self.immutable_cursor_tail() };
-
-        if let Some(first) = cursor.peek() {
-            new_list.push_back(first.clone());
-        }
-        while let Some(next) = cursor.next() {
-            new_list.push_back(next.clone());
+        for element in self.iter().cloned() {
+            new_list.push_back(element);
         }
         new_list
     }
@@ -279,19 +218,21 @@ impl<'a, T: 'a> Iterator for Iter<'a, T> {
     type Item = &'a T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.first {
-            self.first = false;
-            self.cursor.peek()
-        } else {
-            self.cursor.next().map(|r| &*r)
+        // transmuting lifetimes
+        // FIXME: obviously remove this
+        unsafe {
+            if self.first {
+                self.first = false;
+                std::mem::transmute::<Option<&T>, Option<&T>>(self.cursor.peek())
+            } else {
+                std::mem::transmute::<Option<&mut T>, Option<&mut T>>(self.cursor.next()).map(|r| &*r)
+            }
         }
     }
 }
 
 impl<'a, T: 'a> Cursor<'a, T> {
-    // FIXME: I'm pretty certain this lifetime is UNSOUND
-    //        hacked only to get Iter working, temporarily
-    pub fn peek(&self) -> Option<&'a T> {
+    pub fn peek(&self) -> Option<&T> {
         unsafe {
             self.node.map(|node| &(*node.as_ptr()).element)
         }
@@ -305,60 +246,26 @@ impl<'a, T: 'a> Cursor<'a, T> {
 
     // FIXME: I'm pretty certain this lifetime is UNSOUND
     //        hacked only to get Iter working, temporarily
-    pub fn next(&mut self) -> Option<&'a mut T> {
-        unsafe {
-            if let Some(next) = self.node.as_mut()?.as_mut().next {
-                self.node = Some(next);
-                Some(&mut (*next.as_ptr()).element)
-                //self.node.as_mut().map(|node| &mut (*node.as_ptr()).element)
-            } else {
-                None
-            }
-        }
+    pub fn next(&mut self) -> Option<&mut T> {
+        self._step(|node| node.next)
     }
 
     pub fn prev(&mut self) -> Option<&mut T> {
+        self._step(|node| node.prev)
+    }
+
+    fn _step(
+        &mut self,
+        get_next: impl Fn(&mut Node<T>) -> OptNodePtr<T>
+    ) -> Option<&mut T> {
         unsafe {
-            if let Some(prev) = self.node.as_mut()?.as_mut().prev {
-                self.node = Some(prev);
-                Some(&mut (*prev.as_ptr()).element)
+            if let Some(new_pos) = get_next(self.node.as_mut()?.as_mut()) {
+                self.node = Some(new_pos);
+                Some(&mut (*new_pos.as_ptr()).element)
             } else {
                 None
             }
         }
-    }
-
-    // FIXME: return nothing
-    pub fn seek_forward(&mut self, n: usize) -> Option<()> {
-        unsafe {
-            let mut current_node = &*self.node?.as_ptr();
-
-            for _ in 0..n {
-                let next_node = current_node.next?;
-                current_node = &*next_node.as_ptr();
-                self.node = Some(next_node);
-            }
-            Some(())
-        }
-    }
-
-    pub fn seek_backward(&mut self, n: usize) -> Option<()> {
-        unsafe {
-            let mut current_node = &*self.node?.as_ptr();
-
-            for _ in 0..n {
-                current_node = &*current_node.prev?.as_ptr();
-            }
-            Some(())
-        }
-    }
-
-    pub fn jump_to_tail(&mut self) {
-        self.node = self.list.tail;
-    }
-
-    pub fn jump_to_head(&mut self) {
-        self.node = self.list.head;
     }
 
     pub fn take(&mut self) -> Option<T> {
@@ -370,28 +277,35 @@ impl<'a, T: 'a> Cursor<'a, T> {
             (Some(prev), Some(next)) => NodePtr::link(prev, next),
             (Some(_), None) => self.list.head = prev,
             (None, Some(_)) => self.list.tail = next,
-            _ => {},
+            _ => {
+                self.list.head = None;
+                self.list.tail = None;
+            },
         };
         self.list.len -= 1;
         Some(node.into_inner())
     }
 
     pub fn insert_after(&mut self, element: T) {
-        let cursor_node = match self.node {
-            Some(node) => node,
-            None => { // list empty
-                self.node = Some(Node::new_linkless(element));
-                self.list.head = self.node;
-                self.list.tail = self.node;
-                self.list.len += 1;
-                return
+        self._insert(element, |list, cursor_node, element| {
+            let new_node = cursor_node.insert_new_after(element);
+            if list.head == Some(cursor_node) {
+                list.head = Some(new_node);
             }
-        };
-        cursor_node.insert_new_after(element);
-        self.list.len += 1;
+        });
     }
 
     pub fn insert_before(&mut self, element: T) {
+        self._insert(element, |list, cursor_node, element| {
+            let new_node = cursor_node.insert_new_before(element);
+            if list.tail == Some(cursor_node) {
+                list.tail = Some(new_node);
+            }
+        });
+    }
+
+    // put into list, if empty, else do whatever callback says
+    fn _insert(&mut self, element: T, callback: impl Fn(&mut LinkedList<T>, NodePtr<T>, T)) {
         let cursor_node = match self.node {
             Some(node) => node,
             None => { // list empty
@@ -402,7 +316,7 @@ impl<'a, T: 'a> Cursor<'a, T> {
                 return
             }
         };
-        cursor_node.insert_new_before(element);
+        callback(&mut self.list, cursor_node, element);
         self.list.len += 1;
     }
 
@@ -412,9 +326,13 @@ impl<'a, T: 'a> Cursor<'a, T> {
         self.node = self.list.tail;
     }
 
-    pub fn insert_list_after(&mut self, other: &mut LinkedList<T>) {
+    fn _insert_list(
+        &mut self,
+        other: &mut LinkedList<T>,
+        callback: impl Fn(NodePtr<T>, NodePtr<T>, NodePtr<T>)
+    ) {
         unsafe {
-            let mut cursor_node = match self.node {
+            let cursor_node = match self.node {
                 Some(node) => node,
                 None => {
                     self._insert_list_on_empty_list(other);
@@ -427,36 +345,32 @@ impl<'a, T: 'a> Cursor<'a, T> {
                 debug_assert!(tail.as_ref().prev.is_none());
                 std::ptr::write(other, LinkedList::new()); // empty without dropping
 
-                if let Some(next) = cursor_node.as_mut().next {
-                    NodePtr::link(head, next);
-                }
-                NodePtr::link(cursor_node, tail);
+                // link up on the right or left side
+                callback(cursor_node, head, tail);
                 self.list.len += len; // may overflow
             }
         }
     }
 
+    pub fn insert_list_after(&mut self, other: &mut LinkedList<T>) {
+        unsafe {
+            self._insert_list(other, |mut cursor_node, head, tail| {
+                if let Some(next) = cursor_node.as_mut().next {
+                    NodePtr::link(head, next);
+                }
+                NodePtr::link(cursor_node, tail);
+            });
+        }
+    }
+
     pub fn insert_list_before(&mut self, other: &mut LinkedList<T>) {
         unsafe {
-            let mut cursor_node = match self.node {
-                Some(node) => node,
-                None => {
-                    self._insert_list_on_empty_list(other);
-                    return;
-                }
-            };
-
-            if let LinkedList { head: Some(head), tail: Some(tail), len, .. } = *other {
-                debug_assert!(head.as_ref().next.is_none());
-                debug_assert!(tail.as_ref().prev.is_none());
-                std::ptr::write(other, LinkedList::new()); // empty without dropping
-
+            self._insert_list(other, |mut cursor_node, head, tail| {
                 if let Some(prev) = cursor_node.as_mut().prev {
                     NodePtr::link(prev, tail);
                 }
                 NodePtr::link(head, cursor_node);
-                self.list.len += len; // may overflow
-            }
+            });
         }
     }
 }
