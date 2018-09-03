@@ -72,7 +72,7 @@ impl<T> NodePtrHelper<T> for NodePtr<T> {
 
     fn set_prev(&mut self, node: NodePtr<T>) {
         unsafe {
-            self.as_mut().next = Some(node);
+            self.as_mut().prev = Some(node);
         }
     }
 
@@ -138,11 +138,7 @@ impl<T> NodePtrHelper<T> for NodePtr<T> {
     // must be unlinked from all others
     fn into_inner(self) -> T {
         unsafe {
-            debug_assert!(self.as_ref().next.is_none());
-            debug_assert!(self.as_ref().prev.is_none());
-            let element = std::ptr::read(&(*self.as_ptr()).element);
-            Box::from_raw(self.as_ptr());
-            element
+            Box::from_raw(self.as_ptr()).element
         }
     }
 }
