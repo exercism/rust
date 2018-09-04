@@ -69,14 +69,6 @@ impl<'a, T: 'a> Cursor<'a, T> {
     pub fn insert_before(&mut self, _element: T) {
         unimplemented!()
     }
-
-    pub fn insert_list_after(&mut self, _other: &mut LinkedList<T>) {
-        unimplemented!()
-    }
-
-    pub fn insert_list_before(&mut self, _other: &mut LinkedList<T>) {
-        unimplemented!()
-    }
 }
 
 impl<'a, T: 'a> Iterator for Iter<'a, T> {

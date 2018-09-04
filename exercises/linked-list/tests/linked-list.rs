@@ -121,7 +121,10 @@ fn insert_middle() {
             cursor.next();
         }
         //cursor.seek_forward(4);
-        cursor.insert_list_after(&mut list2);
+        while let Some(elem) = list2.pop_back() {
+            cursor.insert_after(elem);
+        }
+        //cursor.insert_list_after(&mut list2);
     }
 
     assert_eq!(list.len(), 20);
