@@ -13,22 +13,6 @@ impl<T> LinkedList<T> {
         unimplemented!()
     }
 
-    pub fn push_back(&mut self, element: T) {
-        self.cursor_head().insert_after(element);
-    }
-
-    pub fn push_front(&mut self, element: T) {
-        self.cursor_tail().insert_before(element);
-    }
-
-    pub fn pop_back(&mut self) -> Option<T> {
-        self.cursor_head().take()
-    }
-
-    pub fn pop_front(&mut self) -> Option<T> {
-        self.cursor_tail().take()
-    }
-
     /// Return a cursor positioned at the tail node
     pub fn cursor_tail(&mut self) -> Cursor<'_, T> {
         unimplemented!()

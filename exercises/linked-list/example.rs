@@ -100,7 +100,8 @@ impl<T> NodePtrHelper<T> for NodePtr<T> {
         self.get_next().map(|mut next| {
             *next.get_prev() = None;
             next
-        })    }
+        })
+    }
 
     // see unlink_next
     fn unlink_prev(&mut self) -> OptNodePtr<T> {
@@ -133,22 +134,6 @@ impl<T> LinkedList<T> {
         self.len
     }
 
-    pub fn push_back(&mut self, element: T) {
-        self.cursor_head().insert_after(element);
-    }
-
-    pub fn push_front(&mut self, element: T) {
-        self.cursor_tail().insert_before(element);
-    }
-
-    pub fn pop_back(&mut self) -> Option<T> {
-        self.cursor_head().take()
-    }
-
-    pub fn pop_front(&mut self) -> Option<T> {
-        self.cursor_tail().take()
-    }
-
     pub fn cursor_tail(&mut self) -> Cursor<T> {
         Cursor {
             node: self.tail,
@@ -173,7 +158,8 @@ impl<T> LinkedList<T> {
 
 impl<T> Drop for LinkedList<T> {
     fn drop(&mut self) {
-        while let Some(_) = self.pop_back() {}
+        let mut cursor = self.cursor_tail();
+        while let Some(_) = cursor.take() {}
     }
 }
 

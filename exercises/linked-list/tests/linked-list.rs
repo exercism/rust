@@ -202,3 +202,30 @@ fn is_generic() {
     struct Foo;
     LinkedList::<Foo>::new();
 }
+
+// implement some additional functionality using the required interface
+// to limit the amount of code the student has to oversee
+trait ListExt<T> {
+    fn push_back(&mut self, element: T);
+    fn push_front(&mut self, element: T);
+    fn pop_back(&mut self) -> Option<T>;
+    fn pop_front(&mut self) -> Option<T>;
+}
+
+impl<T> ListExt<T> for LinkedList<T> {
+    fn push_back(&mut self, element: T) {
+        self.cursor_head().insert_after(element);
+    }
+
+    fn push_front(&mut self, element: T) {
+        self.cursor_tail().insert_before(element);
+    }
+
+    fn pop_back(&mut self) -> Option<T> {
+        self.cursor_head().take()
+    }
+
+    fn pop_front(&mut self) -> Option<T> {
+        self.cursor_tail().take()
+    }
+}
