@@ -160,15 +160,10 @@ impl<T> LinkedList<T> {
         }
     }
 
-    unsafe fn immutable_cursor_tail(&self) -> Cursor<T> {
-        let list = &mut *(self as *const LinkedList<T> as *mut LinkedList<T>);
-        list.cursor_tail()
-    }
-
     pub fn iter(&self) -> Iter<T> {
         Iter {
-            first: true,
-            cursor: unsafe { self.immutable_cursor_tail() },
+            next_node: self.tail,
+            marker: std::marker::PhantomData,
         }
     }
 }
@@ -190,23 +185,19 @@ impl<T: Clone> Clone for LinkedList<T> {
 }
 
 pub struct Iter<'a, T: 'a> {
-    first: bool,
-    cursor: Cursor<'a, T>,
+    next_node: OptNodePtr<T>,
+    marker: std::marker::PhantomData<&'a LinkedList<T>>,
 }
 
 impl<'a, T: 'a> Iterator for Iter<'a, T> {
     type Item = &'a T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        // transmuting lifetimes
-        // FIXME: obviously remove this
+        let node_ptr = self.next_node?;
         unsafe {
-            if self.first {
-                self.first = false;
-                std::mem::transmute::<Option<&T>, Option<&T>>(self.cursor.peek())
-            } else {
-                std::mem::transmute::<Option<&mut T>, Option<&mut T>>(self.cursor.next()).map(|r| &*r)
-            }
+            let current_node = &*node_ptr.as_ptr();
+            self.next_node = current_node.next;
+            Some(&current_node.element)
         }
     }
 }
