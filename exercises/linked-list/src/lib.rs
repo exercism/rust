@@ -50,11 +50,11 @@ trait NodePtrHelper<T> {
 }
 
 impl<T> NodePtrHelper<T> for NodePtr<T> {
-    fn get_next(&mut self)-> &mut OptNodePtr<T> {
+    fn get_next(&mut self) -> &mut OptNodePtr<T> {
         unsafe { &mut self.as_mut().next }
     }
 
-    fn get_prev(&mut self)-> &mut OptNodePtr<T> {
+    fn get_prev(&mut self) -> &mut OptNodePtr<T> {
         unsafe { &mut self.as_mut().prev }
     }
 
@@ -92,23 +92,23 @@ impl<T> NodePtrHelper<T> for NodePtr<T> {
     }
 
     // returns next of self, if it exists
+    // leaves self untouched
     fn unlink_next(&mut self) -> OptNodePtr<T> {
         self.get_next().map(|mut next| {
             *next.get_prev() = None;
-            //self.as_mut().next = None;
             next
         })    }
 
-    // returns prev of self, if it exists
+    // see unlink_next
     fn unlink_prev(&mut self) -> OptNodePtr<T> {
         self.get_prev().map(|mut prev| {
             *prev.get_next() = None;
-            //self.as_mut().prev = None;
             prev
         })
     }
 
-    // must be unlinked from all others
+    // must not be linked to from other pointers
+    // own links are irrelevant
     fn into_inner(self) -> T {
         unsafe {
             Box::from_raw(self.as_ptr()).element
@@ -209,22 +209,20 @@ impl<'a, T: 'a> Cursor<'a, T> {
         }
     }
 
-    // FIXME: I'm pretty certain this lifetime is UNSOUND
-    //        hacked only to get Iter working, temporarily
     pub fn next(&mut self) -> Option<&mut T> {
-        self._step(|node| node.next)
+        self._step(NodePtr::get_next)
     }
 
     pub fn prev(&mut self) -> Option<&mut T> {
-        self._step(|node| node.prev)
+        self._step(NodePtr::get_prev)
     }
 
     fn _step(
         &mut self,
-        get_next: impl Fn(&mut Node<T>) -> OptNodePtr<T>
+        get_next: impl Fn(&mut NodePtr<T>) -> &mut OptNodePtr<T>
     ) -> Option<&mut T> {
         unsafe {
-            if let Some(new_pos) = get_next(self.node.as_mut()?.as_mut()) {
+            if let Some(new_pos) = *get_next(self.node.as_mut()?) {
                 self.node = Some(new_pos);
                 Some(&mut (*new_pos.as_ptr()).element)
             } else {
@@ -285,22 +283,18 @@ impl<'a, T: 'a> Cursor<'a, T> {
         self.list.len += 1;
     }
 
-    fn _insert_list_on_empty_list(&mut self, other: &mut LinkedList<T>) {
-        debug_assert!(self.list.len == 0);
-        std::mem::swap(self.list, other);
-        self.node = self.list.tail;
-    }
-
     fn _insert_list(
         &mut self,
         other: &mut LinkedList<T>,
-        callback: impl Fn(NodePtr<T>, NodePtr<T>, NodePtr<T>)
+        callback: impl Fn(NodePtr<T>, &mut LinkedList<T>, NodePtr<T>, NodePtr<T>)
     ) {
         unsafe {
             let cursor_node = match self.node {
                 Some(node) => node,
-                None => {
-                    self._insert_list_on_empty_list(other);
+                None => { // self is empty
+                    debug_assert!(self.list.len == 0);
+                    std::mem::swap(self.list, other);
+                    self.node = self.list.tail;
                     return;
                 }
             };
@@ -311,31 +305,29 @@ impl<'a, T: 'a> Cursor<'a, T> {
                 std::ptr::write(other, LinkedList::new()); // empty without dropping
 
                 // link up on the right or left side
-                callback(cursor_node, head, tail);
+                callback(cursor_node, &mut self.list, head, tail);
                 self.list.len += len; // may overflow
             }
         }
     }
 
     pub fn insert_list_after(&mut self, other: &mut LinkedList<T>) {
-        unsafe {
-            self._insert_list(other, |mut cursor_node, head, tail| {
-                if let Some(next) = cursor_node.as_mut().next {
-                    NodePtr::link(head, next);
-                }
-                NodePtr::link(cursor_node, tail);
-            });
-        }
+        self._insert_list(other, |mut cursor_node, self_list, head, tail| {
+            match *cursor_node.get_next() {
+                Some(next) => NodePtr::link(head, next),
+                None       => self_list.head = Some(head),
+            }
+            NodePtr::link(cursor_node, tail);
+        });
     }
 
     pub fn insert_list_before(&mut self, other: &mut LinkedList<T>) {
-        unsafe {
-            self._insert_list(other, |mut cursor_node, head, tail| {
-                if let Some(prev) = cursor_node.as_mut().prev {
-                    NodePtr::link(prev, tail);
-                }
-                NodePtr::link(head, cursor_node);
-            });
-        }
+        self._insert_list(other, |mut cursor_node, self_list, head, tail| {
+            match *cursor_node.get_prev() {
+                Some(prev) => NodePtr::link(prev, tail),
+                None       => self_list.tail = Some(tail),
+            }
+            NodePtr::link(head, cursor_node);
+        });
     }
 }
