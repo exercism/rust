@@ -10,6 +10,9 @@ pub struct LinkedList<T> {
     marker: std::marker::PhantomData<Box<T>>, // for dropck
 }
 
+unsafe impl<T: Send> Send for LinkedList<T> {}
+unsafe impl<T: Sync> Sync for LinkedList<T> {}
+
 pub struct Cursor<'a, T: 'a> {
     list: &'a mut LinkedList<T>,
     node: OptNodePtr<T>,

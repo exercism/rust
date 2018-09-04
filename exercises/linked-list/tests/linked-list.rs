@@ -23,9 +23,11 @@ fn push_pop_back_multiple() {
         list.push_back(i);
     }
     assert_eq!(list.len(), 10);
+
     for i in (0..10).rev() {
         assert_eq!(i, list.pop_back().unwrap());
     }
+    assert_eq!(list.len(), 0);
 }
 
 #[test]
@@ -35,9 +37,11 @@ fn push_pop_front_multiple() {
         list.push_front(i);
     }
     assert_eq!(list.len(), 10);
+
     for i in (0..10).rev() {
         assert_eq!(i, list.pop_front().unwrap());
     }
+    assert_eq!(list.len(), 0);
 }
 
 #[test]
@@ -89,13 +93,6 @@ fn no_leaks_or_double_frees() {
     assert_eq!(counter.get(), 0);
 }
 
-#[allow(dead_code)]
-#[test]
-fn is_covariant() {
-    fn a<'a>(x: LinkedList<&'static str>) -> LinkedList<&'a str> {
-        x
-    }
-}
 
 #[test]
 fn clone_is_equal() {
@@ -135,4 +132,73 @@ fn insert_middle() {
     for (exp, &actual) in expected.zip(list.iter()) {
         assert_eq!(exp, actual);
     }
+}
+
+#[test]
+fn head_tail_changes_on_push_back() {
+    let mut heads = vec![];
+    let mut tails = vec![];
+    let mut list = LinkedList::new();
+
+    for i in 0..10 {
+        list.push_back(i);
+        heads.push(list.cursor_head().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        tails.push(list.cursor_tail().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+    }
+    tails.sort();
+    tails.dedup();
+
+    assert_eq!(tails.len(), 1);
+    assert_eq!(tails[0], heads[0]);
+
+    heads.sort();
+    heads.dedup();
+
+    assert_eq!(heads.len(), 10);
+}
+
+#[test]
+fn head_tail_changes_on_push_front() {
+    let mut heads = vec![];
+    let mut tails = vec![];
+    let mut list = LinkedList::new();
+
+    for i in 0..10 {
+        list.push_front(i);
+        heads.push(list.cursor_head().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        tails.push(list.cursor_tail().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+    }
+    heads.sort();
+    heads.dedup();
+
+    assert_eq!(heads.len(), 1);
+    assert_eq!(heads[0], tails[0]);
+
+    tails.sort();
+    tails.dedup();
+
+    assert_eq!(tails.len(), 10);
+}
+
+#[test]
+fn linked_list_is_send_sync() {
+    trait AssertSend: Send {}
+    trait AssertSync: Sync {}
+
+    impl<T: Send> AssertSend for LinkedList<T> {}
+    impl<T: Sync> AssertSync for LinkedList<T> {}
+}
+
+#[allow(dead_code)]
+#[test]
+fn is_covariant() {
+    fn a<'a>(x: LinkedList<&'static str>) -> LinkedList<&'a str> {
+        x
+    }
+}
+
+#[test]
+fn is_generic() {
+    struct Foo;
+    LinkedList::<Foo>::new();
 }
