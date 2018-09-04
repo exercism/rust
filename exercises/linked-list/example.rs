@@ -163,16 +163,6 @@ impl<T> Drop for LinkedList<T> {
     }
 }
 
-impl<T: Clone> Clone for LinkedList<T> {
-    fn clone(&self) -> Self {
-        let mut new_list = LinkedList::new();
-        for element in self.iter().cloned() {
-            new_list.push_back(element);
-        }
-        new_list
-    }
-}
-
 pub struct Iter<'a, T: 'a> {
     next_node: OptNodePtr<T>,
     marker: std::marker::PhantomData<&'a LinkedList<T>>,

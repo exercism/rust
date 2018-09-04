@@ -34,12 +34,6 @@ impl<T> Drop for LinkedList<T> {
     }
 }
 
-impl<T: Clone> Clone for LinkedList<T> {
-    fn clone(&self) -> Self {
-        unimplemented!()
-    }
-}
-
 // the cursor is expected to act as if it is at the position of a node
 impl<'a, T: 'a> Cursor<'a, T> {
     /// Take a mutable reference to the current element

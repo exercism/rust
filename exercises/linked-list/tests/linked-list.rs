@@ -100,7 +100,7 @@ fn clone_is_equal() {
     for i in 0..10 {
         list.push_back(i);
     }
-    let mut list2 = list.clone();
+    let mut list2 = clone_list(&list);
 
     for _ in 0..10 {
         assert_eq!(list.pop_back(), list2.pop_back());
@@ -113,7 +113,7 @@ fn insert_middle() {
     for i in 0..10 {
         list.push_back(i);
     }
-    let mut list2 = list.clone();
+    let mut list2 = clone_list(&list);
 
     {
         let mut cursor = list.cursor_tail();
@@ -204,6 +204,14 @@ fn is_covariant() {
 fn is_generic() {
     struct Foo;
     LinkedList::<Foo>::new();
+}
+
+fn clone_list<T: Clone>(list: &LinkedList<T>) -> LinkedList<T> {
+    let mut new_list = LinkedList::new();
+    for element in list.iter().cloned() {
+        new_list.push_back(element);
+    }
+    new_list
 }
 
 // implement some additional functionality using the required interface
