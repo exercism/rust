@@ -216,10 +216,20 @@ impl<'a, T: 'a> Cursor<'a, T> {
         let prev = node.unlink_prev();
 
         match (prev, next) {
-            (Some(prev), Some(next)) => NodePtr::link(prev, next),
-            (Some(_), None) => self.list.head = prev,
-            (None, Some(_)) => self.list.tail = next,
+            (Some(prev), Some(next)) => {
+                self.node = Some(next);
+                NodePtr::link(prev, next);
+            },
+            (Some(_), None) => {
+                self.node = prev;
+                self.list.head = prev;
+            },
+            (None, Some(_)) => {
+                self.node = next;
+                self.list.tail = next;
+            },
             _ => {
+                self.node = None;
                 self.list.head = None;
                 self.list.tail = None;
             },
