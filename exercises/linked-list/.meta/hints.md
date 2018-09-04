@@ -1,0 +1,13 @@
+# Hints
+
+* A doubly linked does not have a clear ownership hierarchy, which is why it requires either the use
+  of unsafe or abstractions for shared ownership like `Rc`. The latter has some overhead that is unnecessary
+  for this case.
+
+* Refer to the [Rustonomicon](https://doc.rust-lang.org/nomicon/) for details on how to use `unsafe {}` correctly.
+  Remember, the goal of unsafe Rust is to write safe code in cases where the compiler can't help us
+  guarantee correctness. It must not be possible for a user to cause memory unsafety of any kind using
+  only the safe interfaces we expose.
+
+* Several functions require similar behaviour in different directions (left or right, start or end). Try not to duplicate
+  shared code paths.
