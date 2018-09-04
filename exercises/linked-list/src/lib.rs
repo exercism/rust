@@ -35,20 +35,6 @@ impl<T> Node<T> {
             })))
         }
     }
-
-    /* TODO: allocate and link, shorter and maybe optimized
-    fn new(element: T, prev: NodePtr<T>, next: NodePtr<T>) -> NodePtr<T> {
-        Self::allocate(element, Some(prev), Some(next))
-    }
-
-    fn with_prev(element: T, prev: NodePtr<T>) -> NodePtr<T> {
-        Self::allocate(element, Some(prev), None)
-    }
-
-    fn with_next(element: T, next: NodePtr<T>) -> NodePtr<T> {
-        Self::allocate(element, None, Some(next))
-    }
-    */
 }
 
 trait NodePtrHelper<T> {
@@ -144,12 +130,6 @@ impl<T> LinkedList<T> {
         self.len
     }
 
-    fn _insert_first(&mut self, element: T) {
-        let new_node = Node::new_linkless(element);
-        self.head = Some(new_node);
-        self.tail = self.head;
-    }
-
     pub fn push_back(&mut self, element: T) {
         self.cursor_head().insert_after(element);
     }
@@ -232,12 +212,6 @@ impl<'a, T: 'a> Iterator for Iter<'a, T> {
 }
 
 impl<'a, T: 'a> Cursor<'a, T> {
-    pub fn peek(&self) -> Option<&T> {
-        unsafe {
-            self.node.map(|node| &(*node.as_ptr()).element)
-        }
-    }
-
     pub fn peek_mut(&mut self) -> Option<&mut T> {
         unsafe {
             self.node.map(|node| &mut (*node.as_ptr()).element)
