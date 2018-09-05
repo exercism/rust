@@ -38,6 +38,10 @@ pub mod graph {
 
             self
         }
+
+        pub fn get_node(&self, name: &str) -> Option<&Node> {
+            self.nodes.iter().filter(|n| n.name == name).nth(0)
+        }
     }
 
     pub mod graph_items {
@@ -75,7 +79,7 @@ pub mod graph {
 
             #[derive(Clone, PartialEq, Debug)]
             pub struct Node {
-                name: String,
+                pub name: String,
 
                 attrs: HashMap<String, String>,
             }
@@ -94,6 +98,10 @@ pub mod graph {
                     });
 
                     self
+                }
+
+                pub fn get_attr(&self, name: &str) -> Option<&str> {
+                    self.attrs.get(name).map(|v| v.as_ref())
                 }
             }
 
