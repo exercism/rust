@@ -124,3 +124,22 @@ fn test_graph_with_attributes() {
 
     assert_eq!(graph.attrs, expected_attrs);
 }
+
+#[test]
+#[ignore]
+fn test_graph_stores_attributes() {
+    let attributes = [("foo", "bar"), ("bat", "baz"), ("bim", "bef")];
+    let graph = Graph::new().with_nodes(&['a', 'b', 'c']
+        .iter()
+        .enumerate()
+        .map(|(i, n)| Node::new(&n.to_string()).with_attrs(&attributes[i..i + 1]))
+        .collect::<Vec<_>>());
+
+    assert_eq!(
+        graph
+            .get_node("c")
+            .expect("node must be stored")
+            .get_attr("bim"),
+        Some("bef")
+    );
+}
