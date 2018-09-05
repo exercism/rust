@@ -49,6 +49,36 @@ fn get_canonical_data(exercise_name: &str) -> Option<Value> {
     }
 }
 
+// Generate .meta directory and it's contents without using the canonical data
+fn generate_standard_exercise_template(exercise_name: &str, exercise_path: &Path) {
+    ::std::fs::create_dir(exercise_path.join(".meta"))
+        .expect("Failed to create the .meta directory");
+
+    ::std::fs::write(
+        exercise_path.join(".meta").join("description.md"),
+        "Describe your exercise here.\n\nDon't forget that `README.md` is automatically generated; update this within `.meta/description.md`.",
+    ).expect("Failed to create .meta/description.md file");
+
+    ::std::fs::write(
+        exercise_path.join(".meta").join("metadata.yml"),
+        format!(
+            "---\nblurb: \"{}\"\nsource: \"\"\nsource_url: \"\"",
+            exercise_name
+        ),
+    ).expect("Failed to create .meta/metadata.yml file");
+
+    let mut tests_file = OpenOptions::new()
+        .append(true)
+        .open(
+            exercise_path
+                .join("tests")
+                .join(format!("{}.rs", exercise_name)),
+        )
+        .unwrap();
+
+    tests_file.write(b"// Add your tests here").unwrap();
+}
+
 // Generate a new exercise with specified name and flags
 fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool) {
     let rev_parse_output = Command::new("git")
@@ -125,8 +155,10 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
     } else {
         println!(
             "No canonical data for exercise '{}' found. Generating standard exercise template.",
-            exercise_name
+            &exercise_name
         );
+
+        generate_standard_exercise_template(&exercise_name, &exercise_path);
     }
 }
 
