@@ -528,7 +528,7 @@ def generate_readme(exercise_name, get_problem_specification):
     with inside(os.path.join(REPO_ROOT, 'bin')):
         if not os.path.exists('configlet') and not os.path.exists('configlet.exe'):
             with inside(REPO_ROOT):
-                subprocess.run(os.path.join('bin', 'fetch-configlet'))
+                subprocess.run(os.path.join('bin', 'fetch-configlet.sh'))
         for configlet_name in ('configlet', 'configlet.exe'):
             if os.path.exists(configlet_name):
                 configlet = configlet_name

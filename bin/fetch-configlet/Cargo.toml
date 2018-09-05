@@ -1,0 +1,12 @@
+[package]
+name = "fetch-configlet"
+version = "0.1.0"
+authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
+
+[dependencies]
+failure = "0.1.2"
+flate2 = "1.0"
+git2 = "0.7"
+reqwest = "0.8.8"
+structopt = "0.2.10"
+tar = "0.4.16"
