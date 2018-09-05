@@ -1,9 +1,10 @@
-pub fn map<F>(mut values: Vec<i32>, f: F) -> Vec<i32>
+pub fn map<F, T, U>(values: Vec<T>, mut f: F) -> Vec<U>
 where
-    F: Fn(i32) -> i32,
+    F: FnMut(T) -> U,
 {
-    for val in &mut values {
-        *val = f(*val);
+    let mut v = Vec::with_capacity(values.len());
+    for val in values {
+        v.push(f(val));
     }
-    values
+    v
 }
