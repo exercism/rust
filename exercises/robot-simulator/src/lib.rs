@@ -12,7 +12,7 @@ pub enum Direction {
 pub struct Robot;
 
 impl Robot {
-    pub fn new(x: isize, y: isize, d: Direction) -> Self {
+    pub fn new(x: i32, y: i32, d: Direction) -> Self {
         unimplemented!("Create a robot at (x, y) ({}, {}) facing {:?}", x, y, d,)
     }
 
@@ -35,7 +35,7 @@ impl Robot {
         )
     }
 
-    pub fn position(&self) -> (isize, isize) {
+    pub fn position(&self) -> (i32, i32) {
         unimplemented!()
     }
 
