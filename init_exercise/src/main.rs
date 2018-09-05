@@ -1,4 +1,7 @@
 extern crate clap;
+extern crate reqwest;
+extern crate serde_json;
+
 mod cmd;
 
 use clap::{App, Arg, ArgMatches, SubCommand};

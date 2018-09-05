@@ -6,3 +6,5 @@ description = "An utility for creating or updating the exercises on the Exercism
 
 [dependencies]
 clap = "2.32.0"
+reqwest = "0.8.8"
+serde_json = "1.0.26"

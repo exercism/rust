@@ -1,5 +1,7 @@
 /// This module contains source for the `generate` command.
 use clap::ArgMatches;
+use reqwest::{self, StatusCode};
+use serde_json::Value;
 use std::{
     fs::{File, OpenOptions},
     io::Write,
@@ -28,6 +30,24 @@ static EXAMPLE_RS_CONTENT: &'static str = "//! Example implementation
 //!   any modifications necessary to the latter so your example will run.
 //! - Test your example by running `../../bin/test-exercise`
 ";
+
+// Try to get the canonical data for the exercise of the given name
+fn get_canonical_data(exercise_name: &str) -> Option<Value> {
+    let url = format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name);
+
+    let mut response =
+        reqwest::get(&url).expect("Failed to make HTTP request for the canonical data.");
+
+    if response.status() != StatusCode::Ok {
+        return None;
+    } else {
+        return Some(
+            response
+                .json()
+                .expect("Failed to parse the JSON canonical-data response"),
+        );
+    }
+}
 
 // Generate a new exercise with specified name and flags
 fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool) {
@@ -99,6 +119,15 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
 
     ::std::fs::write(exercise_path.join("example.rs"), EXAMPLE_RS_CONTENT)
         .expect("Failed to create example.rs file");
+
+    if let Some(data) = get_canonical_data(exercise_name) {
+        println!("Canonical data: {}", data);
+    } else {
+        println!(
+            "No canonical data for exercise '{}' found. Generating standard exercise template.",
+            exercise_name
+        );
+    }
 }
 
 pub fn process_matches(matches: &ArgMatches) {
