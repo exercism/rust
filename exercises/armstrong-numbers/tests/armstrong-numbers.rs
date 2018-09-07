@@ -8,7 +8,7 @@ fn test_single_digit_numbers_are_armstrong_numbers() {
 
 #[test]
 #[ignore]
-fn test_there_are_no_2_digit_armstring_numbers() {
+fn test_there_are_no_2_digit_armstrong_numbers() {
     assert!(!is_armstrong_number(10))
 }
 
