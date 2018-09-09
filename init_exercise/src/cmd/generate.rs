@@ -50,7 +50,7 @@ fn get_canonical_data(exercise_name: &str) -> Option<Value> {
 }
 
 // Generate .meta directory and it's contents without using the canonical data
-fn generate_standard_exercise_template(exercise_name: &str, exercise_path: &Path) {
+fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
     ::std::fs::create_dir(exercise_path.join(".meta"))
         .expect("Failed to create the .meta directory");
 
@@ -158,7 +158,7 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
             &exercise_name
         );
 
-        generate_standard_exercise_template(&exercise_name, &exercise_path);
+        generate_default_meta(&exercise_name, &exercise_path);
     }
 }
 
