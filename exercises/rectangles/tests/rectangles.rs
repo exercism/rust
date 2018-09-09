@@ -82,7 +82,7 @@ fn rectangle_of_width_1() {
 
 #[test]
 #[ignore]
-fn unit_equare() {
+fn unit_square() {
     let lines = &[
         "++",
         "++"

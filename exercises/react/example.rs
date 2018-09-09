@@ -191,7 +191,7 @@ impl<'a, T: Copy + PartialEq> Reactor<'a, T> {
 
         let (new_value, dependents) = {
             // This block limits the scope of the self.cells borrow.
-            // This is necessary becaue we borrow it mutably below.
+            // This is necessary because we borrow it mutably below.
             let (dependencies, f, dependents) = match self.computes.get(id) {
                 Some(c) => (&c.dependencies, &c.f, c.cell.dependents.clone()),
                 None => panic!("Cell to update disappeared while querying"),

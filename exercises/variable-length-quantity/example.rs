@@ -18,7 +18,7 @@ fn to_bytes_single(mut value: u32) -> Vec<u8> {
     // over allocates, but avoids growth
     let mut res = Vec::with_capacity(4);
 
-    // 0 must be handeled specially, because we need to push one byte
+    // 0 must be handled specially, because we need to push one byte
     if value == 0 {
         return vec![0];
     }

@@ -20,7 +20,7 @@ pub fn get_diamond(diamond_char: char) -> Vec<String> {
 
     //build second half
     let mut rev = result.clone();
-    rev.pop(); //remove middle pice to avoid duplicates
+    rev.pop(); //remove middle piece to avoid duplicates
     for line in rev.drain(..).rev() {
         result.push(line);
     }
