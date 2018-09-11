@@ -37,7 +37,7 @@ Or maybe you will come up with an approach that uses none of those!
 ## Non-integer lengths
 
 The base exercise tests identification of triangles whose sides are all
-integers. However, some triangles cannot be represented by pure integers. A simple example is a right triangle (an isocoles triangle whose equal sides are separated by 90 degrees) whose equal sides both have length of 1. Its hypotenuse is the square root of 2, which is an irrational number: no simple multiplication can represent this number as an integer.
+integers. However, some triangles cannot be represented by pure integers. A simple example is a right triangle (an isosceles triangle whose equal sides are separated by 90 degrees) whose equal sides both have length of 1. Its hypotenuse is the square root of 2, which is an irrational number: no simple multiplication can represent this number as an integer.
 
 It would be tedious to rewrite the analysis functions to handle both integer and floating-point cases, and particularly tedious to do so for all potential integer and floating point types: given signed and unsigned variants of bitwidths 8, 16, 32, 64, and 128, that would be 10 reimplementations of fundamentally the same code even before considering floats!
 

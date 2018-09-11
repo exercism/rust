@@ -25,7 +25,7 @@ fn input_with_columns_not_multiple_of_three_is_error() {
 #[test]
 #[ignore]
 #[cfg_attr(rustfmt, rustfmt_skip)]
-fn unrecognized_chararcters_return_question_mark() {
+fn unrecognized_characters_return_question_mark() {
     let input = "   \n".to_string() +
                 "  _\n" +
                 "  |\n" +

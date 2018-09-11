@@ -9,7 +9,7 @@ pub enum Nucleotide {
 }
 
 impl Nucleotide {
-    /// Parses a nucleotode from its character value, if valid.
+    /// Parses a nucleotide from its character value, if valid.
     fn from_char(ch: char) -> Option<Nucleotide> {
         Some(match ch {
             'A' => Nucleotide::Adenine,
