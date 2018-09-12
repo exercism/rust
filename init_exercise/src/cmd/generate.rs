@@ -3,7 +3,8 @@ use clap::ArgMatches;
 use reqwest::{self, StatusCode};
 use serde_json::Value as JsonValue;
 use std::{
-    fs::{File, OpenOptions},
+    collections::HashMap,
+    fs::{self, File, OpenOptions},
     io::Write,
     path::Path,
     process::Command,
@@ -52,15 +53,14 @@ fn get_canonical_data(exercise_name: &str) -> Option<JsonValue> {
 
 // Generate .meta directory and it's contents without using the canonical data
 fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
-    ::std::fs::create_dir(exercise_path.join(".meta"))
-        .expect("Failed to create the .meta directory");
+    fs::create_dir(exercise_path.join(".meta")).expect("Failed to create the .meta directory");
 
-    ::std::fs::write(
+    fs::write(
         exercise_path.join(".meta").join("description.md"),
         "Describe your exercise here.\n\nDon't forget that `README.md` is automatically generated; update this within `.meta/description.md`.",
     ).expect("Failed to create .meta/description.md file");
 
-    ::std::fs::write(
+    fs::write(
         exercise_path.join(".meta").join("metadata.yml"),
         format!(
             "---\nblurb: \"{}\"\nsource: \"\"\nsource_url: \"\"",
@@ -82,8 +82,8 @@ fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
 
 // Update Cargo.toml of the generated exercise according to the fetched canonical data
 fn update_cargo_toml(exercise_name: &str, exercise_path: &Path, canonical_data: &JsonValue) {
-    let cargo_toml_content = ::std::fs::read_to_string(exercise_path.join("Cargo.toml"))
-        .expect("Error reading Cargo.toml");
+    let cargo_toml_content =
+        fs::read_to_string(exercise_path.join("Cargo.toml")).expect("Error reading Cargo.toml");
 
     let mut cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
 
@@ -101,8 +101,48 @@ fn update_cargo_toml(exercise_name: &str, exercise_path: &Path, canonical_data: 
         );
     }
 
-    ::std::fs::write(exercise_path.join("Cargo.toml"), cargo_toml.to_string())
+    fs::write(exercise_path.join("Cargo.toml"), cargo_toml.to_string())
         .expect("Failed to update Cargo.toml file");
+}
+
+fn generate_property_body<'a>(
+    property_functions: &mut HashMap<&'a str, String>,
+    case: &'a JsonValue,
+) {
+    if let Some(property) = case.get("property") {
+        let property = property.as_str().unwrap();
+
+        if property_functions.contains_key(property) {
+            return;
+        }
+
+        let property_function_body = format!(
+            "\
+             /// Process a single test case for the property `{property}`\n\
+             ///\n\
+             /// All cases for the `{property}` property are implemented\n\
+             /// in terms of this function.\n\
+             /// \n\
+             /// Note that you'll need to both name the expected transform which\n\
+             /// the student needs to write, and name the types of the inputs and outputs.\n\
+             /// While rustc _may_ be able to handle things properly given a working example,\n\
+             /// students will face confusing errors if the `I` and `O` types are not concrete.\n\
+             /// \n\
+             fn process_{property_lower}_case<I, O>(input: I, expected: O) {{\n\
+             //  typical implementation:\n\
+             //  assert_eq!(\n\
+             //      student_{property_lower}_func(input),\n\
+             //      expected\n\
+             //  )\n    unimplemented!()\n\
+             }}\n\
+             \n\
+             ",
+            property = property,
+            property_lower = property.to_lowercase().replace("-", "_")
+        );
+
+        property_functions.insert(property, property_function_body);
+    }
 }
 
 // Generate test suite using the canonical data
@@ -119,7 +159,7 @@ fn generate_tests_from_canonical_data(
         .join(format!("{}.rs", exercise_name));
 
     let tests_content =
-        ::std::fs::read_to_string(&tests_path).expect("Failed to read existing tests content.");
+        fs::read_to_string(&tests_path).expect("Failed to read existing tests content.");
 
     let updated_tests_content = format!(
         "//! Tests for {} \n\
@@ -132,8 +172,31 @@ fn generate_tests_from_canonical_data(
         {} \n\
         ", exercise_name, env!("CARGO_PKG_NAME"), format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name), tests_content);
 
-    ::std::fs::write(&tests_path, updated_tests_content)
+    fs::write(&tests_path, updated_tests_content)
         .expect("Failed to update the content of the test suite");
+
+    let mut property_functions: HashMap<&str, String> = HashMap::new();
+
+    let cases = canonical_data.get("cases").unwrap();
+
+    for case in cases.as_array().unwrap().into_iter() {
+        if let Some(sub_cases) = case.get("cases") {
+            for sub_case in sub_cases.as_array().unwrap().into_iter() {
+                generate_property_body(&mut property_functions, &sub_case);
+            }
+        } else {
+            generate_property_body(&mut property_functions, &case);
+        }
+    }
+
+    let mut tests_file = OpenOptions::new().append(true).open(tests_path).unwrap();
+
+    for (property, property_body) in property_functions.iter() {
+        tests_file.write(property_body.as_bytes()).expect(&format!(
+            "Failed to add {} property function to the tests file",
+            property
+        ));
+    }
 }
 
 // Generate a new exercise with specified name and flags
@@ -169,7 +232,7 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
         .output()
         .expect("Failed to generate a new exercise via 'cargo new' command");
 
-    ::std::fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)
+    fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)
         .expect("Failed to create .gitignore file");
 
     if use_maplit {
@@ -183,8 +246,7 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
             .expect("Failed to add maplit dependency to the Cargo.toml");
     }
 
-    ::std::fs::create_dir(exercise_path.join("tests"))
-        .expect("Failed to create the tests directory");
+    fs::create_dir(exercise_path.join("tests")).expect("Failed to create the tests directory");
 
     let mut test_file = File::create(
         exercise_path
@@ -204,7 +266,7 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
         .write(&format!("use {}::*;\n\n", exercise_name.replace("-", "_")).into_bytes())
         .unwrap();
 
-    ::std::fs::write(exercise_path.join("example.rs"), EXAMPLE_RS_CONTENT)
+    fs::write(exercise_path.join("example.rs"), EXAMPLE_RS_CONTENT)
         .expect("Failed to create example.rs file");
 
     if let Some(canonical_data) = get_canonical_data(exercise_name) {
