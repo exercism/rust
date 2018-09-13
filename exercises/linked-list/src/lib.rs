@@ -1,3 +1,8 @@
+// this module adds some functionality based on the required implementations
+// here like: `LinkedList::pop_back` or `Clone for LinkedList<T>`
+// You are free to use anything in it, but it's mainly for the test framework.
+mod pre_implemented;
+
 pub struct LinkedList<T>(std::marker::PhantomData<T>);
 
 pub struct Cursor<'a, T: 'a>(std::marker::PhantomData<&'a mut T>);

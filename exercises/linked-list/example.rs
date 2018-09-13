@@ -1,3 +1,8 @@
+// this module adds some functionality based on the required implementations here
+// like: `LinkedList::pop_back`, `Clone` and `IntoIterator` for `LinkedList<T>`
+// You are free to use anything in it, but it's primarily for the test framework.
+mod pre_implemented;
+
 use std::ptr::NonNull;
 
 type NodePtr<T> = NonNull<Node<T>>;

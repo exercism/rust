@@ -1,7 +1,10 @@
 extern crate linked_list;
 use linked_list::*;
 
-// Add your tests here
+fn to_raw_ptr<T>(opt: Option<&T>) -> *const T {
+    opt.map_or(std::ptr::null(), |r| r as *const T)
+}
+
 #[test]
 fn empty_list() {
     let list: LinkedList<i32> = LinkedList::new();
@@ -12,7 +15,12 @@ fn empty_list() {
 fn single_element() {
     let mut list: LinkedList<i32> = LinkedList::new();
     list.push_back(5);
+
     assert_eq!(list.len(), 1);
+    assert_eq!(
+        to_raw_ptr(list.front()),
+        to_raw_ptr(list.back())
+    );
     assert_eq!(list.pop_front(), Some(5));
 }
 
@@ -84,10 +92,10 @@ fn no_leaks_or_double_frees() {
     const N: usize  = 15;
 
     let counter = Cell::new(N);
-    let mut list = LinkedList::new();
-    for _ in 0..N {
-        list.push_back(Counter(&counter));
-    }
+    let list = std::iter::repeat_with(|| Counter(&counter))
+        .take(N)
+        .collect::<LinkedList<_>>();
+
     assert_eq!(list.len(), N);
     drop(list);
     assert_eq!(counter.get(), 0);
@@ -96,15 +104,12 @@ fn no_leaks_or_double_frees() {
 
 #[test]
 fn clone_is_equal() {
-    let mut list = LinkedList::new();
-    for i in 0..10 {
-        list.push_back(i);
-    }
-    let mut list2 = clone_list(&list);
+    let list = (0..10).collect::<LinkedList<_>>();
+    let list2 = list.clone();
 
-    for _ in 0..10 {
-        assert_eq!(list.pop_back(), list2.pop_back());
-    }
+    assert!(
+        list.iter().eq(list2.iter())
+    );
 }
 
 #[test]
@@ -113,28 +118,24 @@ fn insert_middle() {
     for i in 0..10 {
         list.push_back(i);
     }
-    let mut list2 = clone_list(&list);
 
     {
         let mut cursor = list.cursor_front();
-        for _ in 0..4 {
-            cursor.next();
+        let didnt_run_into_end = cursor.seek_forward(4);
+        assert!(didnt_run_into_end);
+
+        for n in (0..10).rev() {
+            cursor.insert_after(n);
         }
-        //cursor.seek_forward(4);
-        while let Some(elem) = list2.pop_back() {
-            cursor.insert_after(elem);
-        }
-        //cursor.insert_list_after(&mut list2);
     }
 
     assert_eq!(list.len(), 20);
-    assert_eq!(list2.len(), 0);
 
     let expected = (0..5).chain(0..10).chain(5..10);
 
-    for (exp, &actual) in expected.zip(list.iter()) {
-        assert_eq!(exp, actual);
-    }
+    assert!(
+        expected.eq( list.iter().cloned() )
+    );
 }
 
 #[test]
@@ -145,10 +146,9 @@ fn back_front_changes_on_push_back() {
 
     for i in 0..10 {
         list.push_back(i);
-        backs.push(list.cursor_back().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
-        fronts.push(list.cursor_front().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        backs.push( to_raw_ptr(list.back()) );
+        fronts.push( to_raw_ptr(list.front()) );
     }
-    fronts.sort();
     fronts.dedup();
 
     assert_eq!(fronts.len(), 1);
@@ -168,10 +168,9 @@ fn back_front_changes_on_push_front() {
 
     for i in 0..10 {
         list.push_front(i);
-        backs.push(list.cursor_back().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
-        fronts.push(list.cursor_front().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        backs.push( to_raw_ptr(list.back()) );
+        fronts.push( to_raw_ptr(list.front()) );
     }
-    backs.sort();
     backs.dedup();
 
     assert_eq!(backs.len(), 1);
@@ -204,39 +203,4 @@ fn is_covariant() {
 fn is_generic() {
     struct Foo;
     LinkedList::<Foo>::new();
-}
-
-fn clone_list<T: Clone>(list: &LinkedList<T>) -> LinkedList<T> {
-    let mut new_list = LinkedList::new();
-    for element in list.iter().cloned() {
-        new_list.push_back(element);
-    }
-    new_list
-}
-
-// implement some additional functionality using the required interface
-// to limit the amount of code the student has to oversee
-trait ListExt<T> {
-    fn push_back(&mut self, element: T);
-    fn push_front(&mut self, element: T);
-    fn pop_back(&mut self) -> Option<T>;
-    fn pop_front(&mut self) -> Option<T>;
-}
-
-impl<T> ListExt<T> for LinkedList<T> {
-    fn push_back(&mut self, element: T) {
-        self.cursor_back().insert_after(element);
-    }
-
-    fn push_front(&mut self, element: T) {
-        self.cursor_front().insert_before(element);
-    }
-
-    fn pop_back(&mut self) -> Option<T> {
-        self.cursor_back().take()
-    }
-
-    fn pop_front(&mut self) -> Option<T> {
-        self.cursor_front().take()
-    }
 }
