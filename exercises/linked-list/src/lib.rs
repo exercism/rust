@@ -40,24 +40,28 @@ impl<T> Drop for LinkedList<T> {
     }
 }
 
-// the cursor is expected to act as if it is at the position of a node
+// the cursor is expected to act as if it is at the position of an element
 impl<'a, T: 'a> Cursor<'a, T> {
     /// Take a mutable reference to the current element
     pub fn peek_mut(&mut self) -> Option<&mut T> {
         unimplemented!()
     }
 
-    /// Move one position forward and return a reference to the new position
+    /// Move one position forward (towards the back) and
+    /// return a reference to the new position
     pub fn next(&mut self) -> Option<&mut T> {
         unimplemented!()
     }
 
-    /// Move one position backward and return a reference to the new position
+    /// Move one position backward (towards the front) and
+    /// return a reference to the new position
     pub fn prev(&mut self) -> Option<&mut T> {
         unimplemented!()
     }
 
-    /// Remove the element at the current node from the list and return it.
+    /// Remove and return the element at the current position and move the cursor
+    /// to the neighboring element that's closest to the back. This can be
+    /// either the next or previous position.
     pub fn take(&mut self) -> Option<T> {
         unimplemented!()
     }
