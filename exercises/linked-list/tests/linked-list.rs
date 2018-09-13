@@ -197,6 +197,10 @@ fn is_covariant() {
     fn a<'a>(x: LinkedList<&'static str>) -> LinkedList<&'a str> {
         x
     }
+
+    fn a_iter<'a>(i: Iter<'static, &'static str>) -> Iter<'a, &'a str> {
+        i
+    }
 }
 
 #[test]
