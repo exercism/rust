@@ -12,6 +12,7 @@ fn empty_list() {
 }
 
 #[test]
+#[ignore]
 fn single_element() {
     let mut list: LinkedList<i32> = LinkedList::new();
     list.push_back(5);
@@ -25,6 +26,7 @@ fn single_element() {
 }
 
 #[test]
+#[ignore]
 fn push_pop_back_multiple() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
@@ -39,6 +41,7 @@ fn push_pop_back_multiple() {
 }
 
 #[test]
+#[ignore]
 fn push_pop_front_multiple() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
@@ -53,6 +56,7 @@ fn push_pop_front_multiple() {
 }
 
 #[test]
+#[ignore]
 fn push_front_pop_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
@@ -64,6 +68,7 @@ fn push_front_pop_back() {
 }
 
 #[test]
+#[ignore]
 fn many_list() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for num in 0..10 {
@@ -78,6 +83,7 @@ fn many_list() {
 
 // or same number of leaks as double frees
 #[test]
+#[ignore]
 fn no_leaks_or_double_frees() {
     use std::cell::Cell;
     struct Counter<'a>(&'a Cell<usize>);
@@ -103,6 +109,7 @@ fn no_leaks_or_double_frees() {
 
 
 #[test]
+#[ignore]
 fn clone_is_equal() {
     let list = (0..10).collect::<LinkedList<_>>();
     let list2 = list.clone();
@@ -113,6 +120,7 @@ fn clone_is_equal() {
 }
 
 #[test]
+#[ignore]
 fn insert_middle() {
     let mut list = LinkedList::new();
     for i in 0..10 {
@@ -139,6 +147,7 @@ fn insert_middle() {
 }
 
 #[test]
+#[ignore]
 fn back_front_changes_on_push_back() {
     let mut backs = vec![];
     let mut fronts = vec![];
@@ -161,6 +170,7 @@ fn back_front_changes_on_push_back() {
 }
 
 #[test]
+#[ignore]
 fn back_front_changes_on_push_front() {
     let mut backs = vec![];
     let mut fronts = vec![];
@@ -182,7 +192,9 @@ fn back_front_changes_on_push_front() {
     assert_eq!(fronts.len(), 10);
 }
 
+#[cfg(feature = "advanced")]
 #[test]
+#[ignore]
 fn linked_list_is_send_sync() {
     trait AssertSend: Send {}
     trait AssertSync: Sync {}
@@ -191,8 +203,10 @@ fn linked_list_is_send_sync() {
     impl<T: Sync> AssertSync for LinkedList<T> {}
 }
 
+#[cfg(feature = "advanced")]
 #[allow(dead_code)]
 #[test]
+#[ignore]
 fn is_covariant() {
     fn a<'a>(x: LinkedList<&'static str>) -> LinkedList<&'a str> {
         x
@@ -204,6 +218,7 @@ fn is_covariant() {
 }
 
 #[test]
+#[ignore]
 fn is_generic() {
     struct Foo;
     LinkedList::<Foo>::new();
