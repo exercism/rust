@@ -1,6 +1,5 @@
 [package]
 name = "linked-list"
-version = "0.1.0"
-authors = ["Emerentius <emerentius@arcor.de>"]
+version = "0.0.0"
 
 [dependencies]
