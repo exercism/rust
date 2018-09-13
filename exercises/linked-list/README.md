@@ -32,7 +32,7 @@ difficult to work with the yet unfamiliar borrow checker.
   guarantee correctness. It must not be possible for a user to cause memory unsafety of any kind using
   only the safe interfaces we expose.
 
-* Several functions require similar behaviour in different directions (left or right, start or end). Try not to duplicate
+* Several functions require similar behaviour in different directions (towards front or back). Try not to duplicate
   shared code paths.
 
 

@@ -13,16 +13,17 @@ impl<T> LinkedList<T> {
         unimplemented!()
     }
 
-    /// Return a cursor positioned at the tail node
-    pub fn cursor_tail(&mut self) -> Cursor<'_, T> {
+    /// Return a cursor positioned on the front element
+    pub fn cursor_front(&mut self) -> Cursor<'_, T> {
         unimplemented!()
     }
 
-    /// Return a cursor positioned at the head node
-    pub fn cursor_head(&mut self) -> Cursor<'_, T> {
+    /// Return a cursor positioned on the back element
+    pub fn cursor_back(&mut self) -> Cursor<'_, T> {
         unimplemented!()
     }
 
+    /// Return an iterator that moves from front to back
     pub fn iter(&self) -> Iter<'_, T> {
         unimplemented!()
     }

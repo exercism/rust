@@ -4,8 +4,8 @@ type NodePtr<T> = NonNull<Node<T>>;
 type OptNodePtr<T> = Option<NodePtr<T>>;
 
 pub struct LinkedList<T> {
-    head: OptNodePtr<T>,
-    tail: OptNodePtr<T>,
+    back: OptNodePtr<T>,
+    front: OptNodePtr<T>,
     len: usize,
     marker: std::marker::PhantomData<Box<T>>, // for dropck
 }
@@ -123,8 +123,8 @@ impl<T> NodePtrHelper<T> for NodePtr<T> {
 impl<T> LinkedList<T> {
     pub fn new() -> Self {
         LinkedList {
-            head: None,
-            tail: None,
+            back: None,
+            front: None,
             len: 0,
             marker: std::marker::PhantomData,
         }
@@ -134,23 +134,23 @@ impl<T> LinkedList<T> {
         self.len
     }
 
-    pub fn cursor_tail(&mut self) -> Cursor<T> {
+    pub fn cursor_front(&mut self) -> Cursor<T> {
         Cursor {
-            node: self.tail,
+            node: self.front,
             list: self,
         }
     }
 
-    pub fn cursor_head(&mut self) -> Cursor<T> {
+    pub fn cursor_back(&mut self) -> Cursor<T> {
         Cursor {
-            node: self.head,
+            node: self.back,
             list: self,
         }
     }
 
     pub fn iter(&self) -> Iter<T> {
         Iter {
-            next_node: self.tail,
+            next_node: self.front,
             marker: std::marker::PhantomData,
         }
     }
@@ -158,7 +158,7 @@ impl<T> LinkedList<T> {
 
 impl<T> Drop for LinkedList<T> {
     fn drop(&mut self) {
-        let mut cursor = self.cursor_tail();
+        let mut cursor = self.cursor_front();
         while let Some(_) = cursor.take() {}
     }
 }
@@ -222,16 +222,16 @@ impl<'a, T: 'a> Cursor<'a, T> {
             },
             (Some(_), None) => {
                 self.node = prev;
-                self.list.head = prev;
+                self.list.back = prev;
             },
             (None, Some(_)) => {
                 self.node = next;
-                self.list.tail = next;
+                self.list.front = next;
             },
             _ => {
                 self.node = None;
-                self.list.head = None;
-                self.list.tail = None;
+                self.list.back = None;
+                self.list.front = None;
             },
         };
         self.list.len -= 1;
@@ -241,8 +241,8 @@ impl<'a, T: 'a> Cursor<'a, T> {
     pub fn insert_after(&mut self, element: T) {
         self._insert(element, |list, cursor_node, element| {
             let new_node = cursor_node.insert_new_after(element);
-            if list.head == Some(cursor_node) {
-                list.head = Some(new_node);
+            if list.back == Some(cursor_node) {
+                list.back = Some(new_node);
             }
         });
     }
@@ -250,8 +250,8 @@ impl<'a, T: 'a> Cursor<'a, T> {
     pub fn insert_before(&mut self, element: T) {
         self._insert(element, |list, cursor_node, element| {
             let new_node = cursor_node.insert_new_before(element);
-            if list.tail == Some(cursor_node) {
-                list.tail = Some(new_node);
+            if list.front == Some(cursor_node) {
+                list.front = Some(new_node);
             }
         });
     }
@@ -262,8 +262,8 @@ impl<'a, T: 'a> Cursor<'a, T> {
             Some(node) => node,
             None => { // list empty
                 self.node = Some(Node::new_linkless(element));
-                self.list.head = self.node;
-                self.list.tail = self.node;
+                self.list.back = self.node;
+                self.list.front = self.node;
                 self.list.len += 1;
                 return
             }

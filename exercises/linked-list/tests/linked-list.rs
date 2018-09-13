@@ -116,7 +116,7 @@ fn insert_middle() {
     let mut list2 = clone_list(&list);
 
     {
-        let mut cursor = list.cursor_tail();
+        let mut cursor = list.cursor_front();
         for _ in 0..4 {
             cursor.next();
         }
@@ -138,49 +138,49 @@ fn insert_middle() {
 }
 
 #[test]
-fn head_tail_changes_on_push_back() {
-    let mut heads = vec![];
-    let mut tails = vec![];
+fn back_front_changes_on_push_back() {
+    let mut backs = vec![];
+    let mut fronts = vec![];
     let mut list = LinkedList::new();
 
     for i in 0..10 {
         list.push_back(i);
-        heads.push(list.cursor_head().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
-        tails.push(list.cursor_tail().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        backs.push(list.cursor_back().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        fronts.push(list.cursor_front().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
     }
-    tails.sort();
-    tails.dedup();
+    fronts.sort();
+    fronts.dedup();
 
-    assert_eq!(tails.len(), 1);
-    assert_eq!(tails[0], heads[0]);
+    assert_eq!(fronts.len(), 1);
+    assert_eq!(fronts[0], backs[0]);
 
-    heads.sort();
-    heads.dedup();
+    backs.sort();
+    backs.dedup();
 
-    assert_eq!(heads.len(), 10);
+    assert_eq!(backs.len(), 10);
 }
 
 #[test]
-fn head_tail_changes_on_push_front() {
-    let mut heads = vec![];
-    let mut tails = vec![];
+fn back_front_changes_on_push_front() {
+    let mut backs = vec![];
+    let mut fronts = vec![];
     let mut list = LinkedList::new();
 
     for i in 0..10 {
         list.push_front(i);
-        heads.push(list.cursor_head().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
-        tails.push(list.cursor_tail().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        backs.push(list.cursor_back().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
+        fronts.push(list.cursor_front().peek_mut().map_or(std::ptr::null(), |r| r as *const i32));
     }
-    heads.sort();
-    heads.dedup();
+    backs.sort();
+    backs.dedup();
 
-    assert_eq!(heads.len(), 1);
-    assert_eq!(heads[0], tails[0]);
+    assert_eq!(backs.len(), 1);
+    assert_eq!(backs[0], fronts[0]);
 
-    tails.sort();
-    tails.dedup();
+    fronts.sort();
+    fronts.dedup();
 
-    assert_eq!(tails.len(), 10);
+    assert_eq!(fronts.len(), 10);
 }
 
 #[test]
@@ -225,18 +225,18 @@ trait ListExt<T> {
 
 impl<T> ListExt<T> for LinkedList<T> {
     fn push_back(&mut self, element: T) {
-        self.cursor_head().insert_after(element);
+        self.cursor_back().insert_after(element);
     }
 
     fn push_front(&mut self, element: T) {
-        self.cursor_tail().insert_before(element);
+        self.cursor_front().insert_before(element);
     }
 
     fn pop_back(&mut self) -> Option<T> {
-        self.cursor_head().take()
+        self.cursor_back().take()
     }
 
     fn pop_front(&mut self) -> Option<T> {
-        self.cursor_tail().take()
+        self.cursor_front().take()
     }
 }
