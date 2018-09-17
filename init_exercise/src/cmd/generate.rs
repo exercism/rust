@@ -41,13 +41,13 @@ fn get_canonical_data(exercise_name: &str) -> Option<JsonValue> {
         reqwest::get(&url).expect("Failed to make HTTP request for the canonical data.");
 
     if response.status() != StatusCode::Ok {
-        return None;
+        None
     } else {
-        return Some(
+        Some(
             response
                 .json()
                 .expect("Failed to parse the JSON canonical-data response"),
-        );
+        )
     }
 }
 
@@ -74,10 +74,9 @@ fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
             exercise_path
                 .join("tests")
                 .join(format!("{}.rs", exercise_name)),
-        )
-        .unwrap();
+        ).unwrap();
 
-    tests_file.write(b"// Add your tests here").unwrap();
+    tests_file.write_all(b"// Add your tests here").unwrap();
 }
 
 // Update Cargo.toml of the generated exercise according to the fetched canonical data
@@ -88,7 +87,7 @@ fn update_cargo_toml(exercise_name: &str, exercise_path: &Path, canonical_data: 
     let mut cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
 
     {
-        let mut package_table = (&mut cargo_toml["package"]).as_table_mut().unwrap();
+        let package_table = (&mut cargo_toml["package"]).as_table_mut().unwrap();
 
         package_table.insert(
             "version".to_string(),
@@ -150,7 +149,7 @@ fn generate_tests_from_canonical_data(
     exercise_name: &str,
     exercise_path: &Path,
     canonical_data: &JsonValue,
-    use_maplit: bool,
+    _use_maplit: bool,
 ) {
     update_cargo_toml(exercise_name, exercise_path, canonical_data);
 
@@ -179,9 +178,9 @@ fn generate_tests_from_canonical_data(
 
     let cases = canonical_data.get("cases").unwrap();
 
-    for case in cases.as_array().unwrap().into_iter() {
+    for case in cases.as_array().unwrap().iter() {
         if let Some(sub_cases) = case.get("cases") {
-            for sub_case in sub_cases.as_array().unwrap().into_iter() {
+            for sub_case in sub_cases.as_array().unwrap().iter() {
                 generate_property_body(&mut property_functions, &sub_case);
             }
         } else {
@@ -191,16 +190,20 @@ fn generate_tests_from_canonical_data(
 
     let mut tests_file = OpenOptions::new().append(true).open(tests_path).unwrap();
 
-    for (property, property_body) in property_functions.iter() {
-        tests_file.write(property_body.as_bytes()).expect(&format!(
-            "Failed to add {} property function to the tests file",
-            property
-        ));
+    for (property, property_body) in &property_functions {
+        tests_file
+            .write_all(property_body.as_bytes())
+            .unwrap_or_else(|_| {
+                panic!(
+                    "Failed to add {} property function to the tests file",
+                    property
+                )
+            });
     }
 }
 
 // Generate a new exercise with specified name and flags
-fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool) {
+fn generate_exercise(exercise_name: &str, _run_configure: bool, use_maplit: bool) {
     let rev_parse_output = Command::new("git")
         .arg("rev-parse")
         .arg("--show-toplevel")
@@ -242,7 +245,7 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
             .unwrap();
 
         cargo_toml_file
-            .write(b"maplit = \"1.0.1\"")
+            .write_all(b"maplit = \"1.0.1\"")
             .expect("Failed to add maplit dependency to the Cargo.toml");
     }
 
@@ -255,15 +258,17 @@ fn generate_exercise(exercise_name: &str, run_configure: bool, use_maplit: bool)
     ).expect("Failed to create test suite file");
 
     if use_maplit {
-        test_file.write(b"#[macro_use]\nextern crate maplit;\n");
+        test_file
+            .write_all(b"#[macro_use]\nextern crate maplit;\n")
+            .expect("Failed to append maplit crate to the test file.");
     }
 
     test_file
-        .write(&format!("extern crate {};\n", exercise_name.replace("-", "_")).into_bytes())
+        .write_all(&format!("extern crate {};\n", exercise_name.replace("-", "_")).into_bytes())
         .unwrap();
 
     test_file
-        .write(&format!("use {}::*;\n\n", exercise_name.replace("-", "_")).into_bytes())
+        .write_all(&format!("use {}::*;\n\n", exercise_name.replace("-", "_")).into_bytes())
         .unwrap();
 
     fs::write(exercise_path.join("example.rs"), EXAMPLE_RS_CONTENT)

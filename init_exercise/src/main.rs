@@ -6,7 +6,7 @@ extern crate toml;
 mod cmd;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
-use cmd::{configure, generate, update};
+use cmd::{generate};
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
@@ -45,8 +45,8 @@ fn init_app<'a>() -> ArgMatches<'a> {
 fn process_matches(matches: &ArgMatches) {
     match matches.subcommand() {
         ("generate", Some(generate_matches)) => generate::process_matches(&generate_matches),
-        ("update", Some(update_matches)) => println!("Update!"),
-        ("configure", Some(configure_matches)) => println!("Configure!"),
+        ("update", Some(_update_matches)) => println!("Update!"),
+        ("configure", Some(_configure_matches)) => println!("Configure!"),
         ("", None) => {
             println!("No subcommand was used.\nUse init_exercise --help to learn about the possible subcommands.")
         }
