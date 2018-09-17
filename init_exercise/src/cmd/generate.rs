@@ -313,6 +313,7 @@ fn generate_tests_from_canonical_data(
         .write_all(test_functions.join("\n\n").as_bytes())
         .unwrap_or_else(|_| panic!("Failed to add test functions to the test file"));
 
+    // FIXME: The algorithm is Unix-specific and will always fail on Windows. General solution required
     if let Ok(which_output) = Command::new("which").arg("rustfmt").output() {
         if !String::from_utf8_lossy(&which_output.stdout)
             .trim()
@@ -326,6 +327,57 @@ fn generate_tests_from_canonical_data(
     }
 }
 
+// Run bin/configlet generate command to generate README for the exercise
+fn generate_readme(exercise_name: &str, track_root: &str) {
+    let bin_path = Path::new(track_root).join("bin");
+
+    let configlet_name = if bin_path.join("configlet").exists() {
+        "configlet"
+    } else if bin_path.join("configlet.exe").exists() {
+        "configlet.exe"
+    } else {
+        // FIXME: Uses bash script that would not work on Windows.
+        // RIIR is preferred.
+        let fetch_output = Command::new("sh")
+            .arg(bin_path.join("fetch-configlet.sh"))
+            .output()
+            .expect("Failed to run fetch-configlet script");
+
+        println!("OUTPUT: {}", String::from_utf8_lossy(&fetch_output.stdout));
+
+        if bin_path.join("configlet").exists() {
+            "configlet"
+        } else if bin_path.join("configlet.exe").exists() {
+            "configlet.exe"
+        } else {
+            panic!("Could not locate configlet. Aborting");
+        }
+    };
+
+    let problem_specifications_path = Path::new(track_root)
+        .join("..")
+        .join("problem-specifications");
+
+    if !problem_specifications_path.exists() {
+        Command::new("git")
+            .arg("clone")
+            .arg("https://github.com/exercism/problem-specifications.git")
+            .arg(&problem_specifications_path)
+            .output()
+            .expect("Failed to clone problem-specifications repo");
+    }
+
+    Command::new(&bin_path.join(configlet_name))
+        .arg("generate")
+        .arg(".")
+        .arg("--only")
+        .arg(&exercise_name)
+        .arg("--spec-path")
+        .arg(&problem_specifications_path)
+        .output()
+        .expect("Failed to run configlet generate command");
+}
+
 // Generate a new exercise with specified name and flags
 fn generate_exercise(exercise_name: &str, _run_configure: bool, use_maplit: bool) {
     let rev_parse_output = Command::new("git")
@@ -336,9 +388,9 @@ fn generate_exercise(exercise_name: &str, _run_configure: bool, use_maplit: bool
 
     let track_root = String::from_utf8(rev_parse_output.stdout).unwrap();
 
-    let exercise_path = Path::new(&track_root.trim())
-        .join("exercises")
-        .join(exercise_name);
+    let track_root = track_root.trim();
+
+    let exercise_path = Path::new(&track_root).join("exercises").join(exercise_name);
 
     if exercise_path.exists() {
         panic!(
@@ -415,6 +467,8 @@ fn generate_exercise(exercise_name: &str, _run_configure: bool, use_maplit: bool
 
         generate_default_meta(&exercise_name, &exercise_path);
     }
+
+    generate_readme(&exercise_name, &track_root);
 }
 
 pub fn process_matches(matches: &ArgMatches) {
