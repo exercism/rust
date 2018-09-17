@@ -144,12 +144,108 @@ fn generate_property_body<'a>(
     }
 }
 
+// Depending on the type of the item variable,
+// transform item into corresponding Rust literal
+fn into_literal(item: &JsonValue, use_maplit: bool) -> String {
+    if item.is_string() {
+        format!("\"{}\"", item.as_str().unwrap())
+    } else if item.is_array() {
+        format!(
+            "vec![{}]",
+            item.as_array()
+                .unwrap()
+                .iter()
+                .map(|item| into_literal(item, use_maplit))
+                .collect::<Vec<String>>()
+                .join(", ")
+        )
+    } else if item.is_number() || item.is_boolean() || item.is_null() {
+        format!("{}", item)
+    } else if !use_maplit {
+        let key_values = item
+            .as_object()
+            .unwrap()
+            .iter()
+            .map(|(key, value)| {
+                format!(
+                    "hm.insert(\"{}\", {});",
+                    key,
+                    into_literal(value, use_maplit)
+                )
+            }).collect::<String>();
+
+        format!(
+            "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
+            key_values
+        )
+    } else {
+        let key_values = item
+            .as_object()
+            .unwrap()
+            .iter()
+            .map(|(key, value)| format!("\"{}\"=>{}", key, into_literal(value, use_maplit)))
+            .collect::<Vec<String>>()
+            .join(",");
+
+        format!("hashmap!{{{}}}", key_values)
+    }
+}
+
+fn generate_test_function(case: &JsonValue, use_maplit: bool) -> String {
+    let description = case.get("description").unwrap();
+
+    let description_formatted = description
+        .as_str()
+        .unwrap()
+        .to_lowercase()
+        .replace(" ", "_");
+
+    let property = case.get("property").unwrap().as_str().unwrap();
+
+    let comments = if let Some(comments) = case.get("comments") {
+        if comments.is_array() {
+            comments
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|line| format!("/// {}", line))
+                .collect::<String>()
+        } else {
+            format!("/// {}\n", comments.as_str().unwrap())
+        }
+    } else {
+        "".to_string()
+    };
+
+    let input = into_literal(case.get("input").unwrap(), use_maplit);
+
+    let expected = into_literal(case.get("expected").unwrap(), use_maplit);
+
+    format!(
+        "#[test]\n\
+         #[ignore]\n\
+         /// {description}\n\
+         {comments}
+         fn test_{description_formatted}() {{\n\
+         process_{property}_case({input}, {expected});\n\
+         }}\n\
+         \n\
+         ",
+        description = description,
+        description_formatted = description_formatted,
+        property = property,
+        comments = comments,
+        input = input,
+        expected = expected
+    )
+}
+
 // Generate test suite using the canonical data
 fn generate_tests_from_canonical_data(
     exercise_name: &str,
     exercise_path: &Path,
     canonical_data: &JsonValue,
-    _use_maplit: bool,
+    use_maplit: bool,
 ) {
     update_cargo_toml(exercise_name, exercise_path, canonical_data);
 
@@ -176,19 +272,31 @@ fn generate_tests_from_canonical_data(
 
     let mut property_functions: HashMap<&str, String> = HashMap::new();
 
+    let mut test_functions: Vec<String> = Vec::new();
+
     let cases = canonical_data.get("cases").unwrap();
 
     for case in cases.as_array().unwrap().iter() {
         if let Some(sub_cases) = case.get("cases") {
             for sub_case in sub_cases.as_array().unwrap().iter() {
                 generate_property_body(&mut property_functions, &sub_case);
+
+                test_functions.push(generate_test_function(&sub_case, use_maplit));
             }
         } else {
             generate_property_body(&mut property_functions, &case);
+
+            test_functions.push(generate_test_function(&case, use_maplit));
         }
     }
 
-    let mut tests_file = OpenOptions::new().append(true).open(tests_path).unwrap();
+    if !test_functions.is_empty() {
+        let first_test_function = test_functions.remove(0).replace("#[ignore]\n", "");
+
+        test_functions.insert(0, first_test_function);
+    }
+
+    let mut tests_file = OpenOptions::new().append(true).open(&tests_path).unwrap();
 
     for (property, property_body) in &property_functions {
         tests_file
@@ -199,6 +307,22 @@ fn generate_tests_from_canonical_data(
                     property
                 )
             });
+    }
+
+    tests_file
+        .write_all(test_functions.join("\n\n").as_bytes())
+        .unwrap_or_else(|_| panic!("Failed to add test functions to the test file"));
+
+    if let Ok(which_output) = Command::new("which").arg("rustfmt").output() {
+        if !String::from_utf8_lossy(&which_output.stdout)
+            .trim()
+            .is_empty()
+        {
+            Command::new("rustfmt")
+                .arg(&tests_path)
+                .output()
+                .expect("Failed to run rustfmt command on the test suite file");
+        }
     }
 }
 
