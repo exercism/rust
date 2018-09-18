@@ -7,7 +7,7 @@ use std::{
     fs::{self, File, OpenOptions},
     io::Write,
     path::Path,
-    process::Command,
+    process::{Command, Stdio},
 };
 use toml::Value as TomlValue;
 
@@ -331,26 +331,32 @@ fn generate_tests_from_canonical_data(
 fn generate_readme(exercise_name: &str, track_root: &str) {
     let bin_path = Path::new(track_root).join("bin");
 
-    let configlet_name = if bin_path.join("configlet").exists() {
-        "configlet"
-    } else if bin_path.join("configlet.exe").exists() {
-        "configlet.exe"
+    let configlet_name_unix = "configlet";
+
+    let configlet_name_windows = "configlet.exe";
+
+    let configlet_name = if bin_path.join(configlet_name_unix).exists() {
+        configlet_name_unix
+    } else if bin_path.join(configlet_name_windows).exists() {
+        configlet_name_windows
     } else {
+        println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
+
         // FIXME: Uses bash script that would not work on Windows.
         // RIIR is preferred.
-        let fetch_output = Command::new("sh")
-            .arg(bin_path.join("fetch-configlet.sh"))
+        Command::new("bash")
+            .current_dir(track_root)
+            .stdout(Stdio::inherit())
+            .arg(bin_path.join("fetch-configlet"))
             .output()
             .expect("Failed to run fetch-configlet script");
 
-        println!("OUTPUT: {}", String::from_utf8_lossy(&fetch_output.stdout));
-
-        if bin_path.join("configlet").exists() {
-            "configlet"
-        } else if bin_path.join("configlet.exe").exists() {
-            "configlet.exe"
+        if bin_path.join(configlet_name_unix).exists() {
+            configlet_name_unix
+        } else if bin_path.join(configlet_name_windows).exists() {
+            configlet_name_windows
         } else {
-            panic!("Could not locate configlet. Aborting");
+            panic!("Could not locate configlet after running bin/fetch-configlet. Aborting");
         }
     };
 
@@ -359,15 +365,30 @@ fn generate_readme(exercise_name: &str, track_root: &str) {
         .join("problem-specifications");
 
     if !problem_specifications_path.exists() {
+        let problem_specifications_url = "https://github.com/exercism/problem-specifications.git";
+        println!(
+            "problem-specifications repository not found. Cloning the repository from {}",
+            problem_specifications_url
+        );
+
         Command::new("git")
+            .current_dir(track_root)
+            .stdout(Stdio::inherit())
             .arg("clone")
-            .arg("https://github.com/exercism/problem-specifications.git")
+            .arg(problem_specifications_url)
             .arg(&problem_specifications_path)
             .output()
             .expect("Failed to clone problem-specifications repo");
     }
 
+    println!(
+        "Generating README for {} via 'bin/configlet generate'",
+        exercise_name
+    );
+
     Command::new(&bin_path.join(configlet_name))
+        .current_dir(track_root)
+        .stdout(Stdio::inherit())
         .arg("generate")
         .arg(".")
         .arg("--only")
