@@ -65,6 +65,6 @@ mod test {
     #[test]
     #[ignore]
     fn type_not_in_scope() {
-        let expected: ::std::collections::HashMap<(), ()> = hashmap!();
+        let _expected: ::std::collections::HashMap<(), ()> = hashmap!();
     }
 }
