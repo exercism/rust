@@ -165,6 +165,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "exercise"
+version = "0.1.0"
+dependencies = [
+ "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "reqwest 0.8.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde_json 1.0.26 (registry+https://github.com/rust-lang/crates.io-index)",
+ "toml 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "foreign-types"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -257,16 +267,6 @@ dependencies = [
  "matches 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "unicode-bidi 0.3.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "unicode-normalization 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "init_exercise"
-version = "0.1.0"
-dependencies = [
- "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "reqwest 0.8.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "serde_json 1.0.26 (registry+https://github.com/rust-lang/crates.io-index)",
- "toml 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

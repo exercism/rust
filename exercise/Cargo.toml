@@ -1,5 +1,5 @@
 [package]
-name = "init_exercise"
+name = "exercise"
 version = "0.1.0"
 authors = ["ZapAnton <wc3ft2@gmail.com>"]
 description = "An utility for creating or updating the exercises on the Exercism Rust track"
