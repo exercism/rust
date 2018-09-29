@@ -1,3 +1,3 @@
 pub fn abbreviate(phrase: &str) -> String {
-    unimplemented!("Given the phrase '{}', return it's acronym", phrase);
+    unimplemented!("Given the phrase '{}', return its acronym", phrase);
 }

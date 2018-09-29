@@ -99,7 +99,7 @@ fn tear_down_files(files: &[&str]) {
     }
 }
 
-/// This macro is here so that every test case had it's own set of files to be used in test.
+/// This macro is here so that every test case had its own set of files to be used in test.
 /// The approach is to create required files for every test case and to append test name to the
 /// file names (so for test with a name 'test_one_file_one_match_no_flags' and a required file
 /// 'iliad.txt' there would be created a file with a name
