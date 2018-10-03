@@ -1,5 +1,6 @@
 /// This module contains source for the `generate` command.
 use clap::ArgMatches;
+use cmd::configure;
 use reqwest::{self, StatusCode};
 use serde_json::Value as JsonValue;
 use std::{
@@ -495,9 +496,13 @@ fn generate_exercise(exercise_name: &str, use_maplit: bool) {
 pub fn process_matches(matches: &ArgMatches) {
     let exercise_name = matches.value_of("exercise_name").unwrap();
 
-    let _run_configure = !matches.is_present("no_configure");
+    let run_configure = !matches.is_present("no_configure");
 
     let use_maplit = matches.is_present("use_maplit");
 
     generate_exercise(exercise_name, use_maplit);
+
+    if run_configure {
+        configure::configure_exercise(exercise_name);
+    }
 }
