@@ -20,7 +20,13 @@ echo $BIN_DIR_PATH
 
 	cargo build --release
 
-	echo "Copying exercise crate from $EXERCISE_CRATE_PATH/target/release/exercise into $BIN_DIR_PATH"
+	RELEASE_PATH="$EXERCISE_CRATE_PATH/target/release/exercise"
 
-	cp "$EXERCISE_CRATE_PATH/target/release/exercise" "$BIN_DIR_PATH"
+	if [ -f "$RELEASE_PATH/exercise.exe" ]; then
+		RELEASE_PATH="$RELEASE_PATH.exe"
+	fi
+
+	echo "Copying exercise crate from $RELEASE_PATH into $BIN_DIR_PATH"
+
+	cp "$RELEASE_PATH" "$BIN_DIR_PATH"
 )
