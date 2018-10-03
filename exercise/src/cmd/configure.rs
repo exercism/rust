@@ -29,9 +29,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     let unlocked_by = loop {
         let user_input = get_user_input("Exercise slug which unlocks this (blank for None): ");
         if user_input.is_empty() {
-            // TODO: As of Exercism V2, only core exercises can have "unlocked_by"
-            // field set to null. Perhaps "hello-world" could be used here?
-            break None;
+            break "hello-world".to_string();
         } else if !config_content["exercises"]
             .as_array()
             .unwrap()
@@ -42,7 +40,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
 
             continue;
         } else {
-            break Some(user_input);
+            break user_input;
         };
     };
 
