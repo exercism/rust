@@ -9,7 +9,7 @@ mod cmd;
 mod utils;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
-use cmd::generate;
+use cmd::{configure, generate};
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
@@ -38,7 +38,7 @@ fn init_app<'a>() -> ArgMatches<'a> {
         .subcommand(
             SubCommand::with_name("configure")
                 .about("Edits config.json for the specified exercise")
-                .arg(Arg::with_name("exercise_name").help("The name of the configured exercise")),
+                .arg(Arg::with_name("exercise_name").required(true).help("The name of the configured exercise")),
         )
         .get_matches()
 }
@@ -48,11 +48,17 @@ fn init_app<'a>() -> ArgMatches<'a> {
 fn process_matches(matches: &ArgMatches) {
     match matches.subcommand() {
         ("generate", Some(generate_matches)) => generate::process_matches(&generate_matches),
+
         ("update", Some(_update_matches)) => println!("Update!"),
-        ("configure", Some(_configure_matches)) => println!("Configure!"),
+
+        ("configure", Some(configure_matches)) => {
+            configure::configure_exercise(configure_matches.value_of("exercise_name").unwrap())
+        }
+
         ("", None) => {
             println!("No subcommand was used.\nUse init_exercise --help to learn about the possible subcommands.")
         }
+
         _ => unreachable!(),
     }
 }
