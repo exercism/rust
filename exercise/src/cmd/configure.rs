@@ -148,7 +148,6 @@ fn update_config_content(exercise_name: &str, config_content: &mut Value, user_c
 }
 
 // TODO: Add a check for the existing exercise configuration
-// TODO: Add configlet fmt call
 pub fn configure_exercise(exercise_name: &str) {
     println!(
         "Configuring config.json for the {} exercise.",
@@ -184,4 +183,8 @@ pub fn configure_exercise(exercise_name: &str) {
         &config_path,
         serde_json::to_string_pretty(&config_content).unwrap(),
     ).expect("Failed to write the updated track configuration to the config.json file");
+
+    println!("Formatting the config.json file via 'bin/configlet fmt'");
+
+    utils::run_configlate_command("fmt", &["."]);
 }
