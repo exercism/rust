@@ -36,7 +36,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
             .as_array()
             .unwrap()
             .iter()
-            .any(|value| value["slug"] == user_input)
+            .any(|exercise| exercise["slug"] == user_input)
         {
             println!("{} is not an existing exercise slug", user_input);
 
@@ -92,6 +92,63 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     })
 }
 
+fn update_config_content(exercise_name: &str, config_content: &mut Value, user_config: Value) {
+    let config_exercises = config_content["exercises"].as_array_mut().unwrap();
+
+    let insert_index = {
+        let exercises_with_similar_difficulty = config_exercises
+            .iter()
+            .enumerate()
+            .filter(|(_, exercise)| exercise["difficulty"] == user_config["difficulty"])
+            .map(|(index, exercise)| (index, exercise["slug"].as_str().unwrap()))
+            .collect::<Vec<(usize, &str)>>();
+
+        let mut start_index = 0;
+
+        let mut end_index = exercises_with_similar_difficulty.len() - 1;
+
+        let insert_index = loop {
+            if start_index == end_index {
+                break start_index;
+            }
+
+            let middle_index = start_index + ((end_index - start_index) / 2);
+
+            let user_input = get_user_input(&format!(
+                "Is {} easier then {}? (y/N): ",
+                exercise_name, exercises_with_similar_difficulty[middle_index].1
+            ));
+
+            if user_input.to_lowercase().starts_with('y') {
+                end_index = middle_index;
+            } else {
+                start_index = middle_index + 1;
+            }
+        };
+
+        exercises_with_similar_difficulty[insert_index].0
+    };
+
+    let prompt = if insert_index == 0 {
+        format!("{} is the easiest exercise on the track.", exercise_name)
+    } else if insert_index == config_exercises.len() - 1 {
+        format!("{} is the hardest exercise on the track.", exercise_name)
+    } else {
+        format!(
+            "{} is placed between {} and {} exercises in difficulty.",
+            exercise_name,
+            config_exercises[insert_index - 1]["slug"].as_str().unwrap(),
+            config_exercises[insert_index]["slug"].as_str().unwrap(),
+        )
+    };
+
+    println!("You have configured that {}", prompt);
+
+    config_exercises.insert(insert_index, user_config);
+}
+
+// TODO: Add a check for the existing exercise configuration
+// TODO: Add configlet fmt call
 pub fn configure_exercise(exercise_name: &str) {
     println!(
         "Configuring config.json for the {} exercise.",
@@ -102,12 +159,12 @@ pub fn configure_exercise(exercise_name: &str) {
 
     let config_path = Path::new(&track_root).join("config.json");
 
-    let config_content_string = fs::read_to_string(config_path)
+    let config_content_string = fs::read_to_string(&config_path)
         .expect("Failed to read the contents of the config.json file");
 
-    let config_content: Value = serde_json::from_str(&config_content_string).unwrap();
+    let mut config_content: Value = serde_json::from_str(&config_content_string).unwrap();
 
-    let _user_config = loop {
+    let user_config = loop {
         let user_config = get_user_config(exercise_name, &config_content);
 
         let user_input = get_user_input(&format!(
@@ -120,4 +177,11 @@ pub fn configure_exercise(exercise_name: &str) {
             break user_config;
         }
     };
+
+    update_config_content(exercise_name, &mut config_content, user_config);
+
+    fs::write(
+        &config_path,
+        serde_json::to_string_pretty(&config_content).unwrap(),
+    ).expect("Failed to write the updated track configuration to the config.json file");
 }
