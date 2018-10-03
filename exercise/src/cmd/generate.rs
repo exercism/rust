@@ -400,7 +400,7 @@ fn generate_readme(exercise_name: &str, track_root: &str) {
 }
 
 // Generate a new exercise with specified name and flags
-fn generate_exercise(exercise_name: &str, _run_configure: bool, use_maplit: bool) {
+fn generate_exercise(exercise_name: &str, use_maplit: bool) {
     let rev_parse_output = Command::new("git")
         .arg("rev-parse")
         .arg("--show-toplevel")
@@ -495,9 +495,9 @@ fn generate_exercise(exercise_name: &str, _run_configure: bool, use_maplit: bool
 pub fn process_matches(matches: &ArgMatches) {
     let exercise_name = matches.value_of("exercise_name").unwrap();
 
-    let run_configure = !matches.is_present("no_configure");
+    let _run_configure = !matches.is_present("no_configure");
 
     let use_maplit = matches.is_present("use_maplit");
 
-    generate_exercise(exercise_name, run_configure, use_maplit);
+    generate_exercise(exercise_name, use_maplit);
 }
