@@ -465,6 +465,18 @@
       ]
     },
     {
+      "slug": "rail-fence-cipher",
+      "uuid": "9a8bae4f-2c0b-4e9e-aab2-b92f82dd3b87",
+      "core": false,
+      "unlocked_by": "atbash-cipher",
+      "difficulty": 4,
+      "topics": [
+        "chars",
+        "cipher",
+        "string_permutation"
+      ]
+    },
+    {
       "slug": "etl",
       "uuid": "0c8eeef7-4bab-4cf9-9047-c208b5618312",
       "core": false,
