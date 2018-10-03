@@ -4,9 +4,10 @@ extern crate serde_json;
 extern crate toml;
 
 mod cmd;
+mod utils;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
-use cmd::{generate};
+use cmd::generate;
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
