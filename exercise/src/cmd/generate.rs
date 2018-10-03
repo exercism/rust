@@ -331,36 +331,10 @@ fn generate_tests_from_canonical_data(
 
 // Run bin/configlet generate command to generate README for the exercise
 fn generate_readme(exercise_name: &str, track_root: &str) {
-    let bin_path = Path::new(track_root).join("bin");
-
-    let configlet_name_unix = "configlet";
-
-    let configlet_name_windows = "configlet.exe";
-
-    let configlet_name = if bin_path.join(configlet_name_unix).exists() {
-        configlet_name_unix
-    } else if bin_path.join(configlet_name_windows).exists() {
-        configlet_name_windows
-    } else {
-        println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
-
-        // FIXME: Uses bash script that would not work on Windows.
-        // RIIR is preferred.
-        Command::new("bash")
-            .current_dir(track_root)
-            .stdout(Stdio::inherit())
-            .arg(bin_path.join("fetch-configlet"))
-            .output()
-            .expect("Failed to run fetch-configlet script");
-
-        if bin_path.join(configlet_name_unix).exists() {
-            configlet_name_unix
-        } else if bin_path.join(configlet_name_windows).exists() {
-            configlet_name_windows
-        } else {
-            panic!("Could not locate configlet after running bin/fetch-configlet. Aborting");
-        }
-    };
+    println!(
+        "Generating README for {} via 'bin/configlet generate'",
+        exercise_name
+    );
 
     let problem_specifications_path = Path::new(track_root)
         .join("..")
@@ -383,22 +357,16 @@ fn generate_readme(exercise_name: &str, track_root: &str) {
             .expect("Failed to clone problem-specifications repo");
     }
 
-    println!(
-        "Generating README for {} via 'bin/configlet generate'",
-        exercise_name
+    utils::run_configlate_command(
+        "generate",
+        &[
+            ".",
+            "--only",
+            exercise_name,
+            "--spec-path",
+            problem_specifications_path.to_str().unwrap(),
+        ],
     );
-
-    Command::new(&bin_path.join(configlet_name))
-        .current_dir(track_root)
-        .stdout(Stdio::inherit())
-        .arg("generate")
-        .arg(".")
-        .arg("--only")
-        .arg(&exercise_name)
-        .arg("--spec-path")
-        .arg(&problem_specifications_path)
-        .output()
-        .expect("Failed to run configlet generate command");
 }
 
 // Generate a new exercise with specified name and flags
