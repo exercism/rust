@@ -1,10 +1,7 @@
 pub struct RailFence(u32);
 
 fn uncons(s: &str) -> (&str, &str) {
-    s.split_at(match s.chars().next() {
-        Some(c) => c.len_utf8(),
-        None => 0,
-    })
+    s.split_at(s.chars().next().map_or(0, |c| c.len_utf8()))
 }
 
 impl RailFence {
