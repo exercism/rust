@@ -357,7 +357,7 @@ fn generate_readme(exercise_name: &str, track_root: &str) {
             .expect("Failed to clone problem-specifications repo");
     }
 
-    utils::run_configlate_command(
+    utils::run_configlet_command(
         "generate",
         &[
             ".",

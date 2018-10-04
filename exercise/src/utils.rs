@@ -15,7 +15,7 @@ pub fn get_track_root() -> String {
     track_root.trim().to_string()
 }
 
-pub fn run_configlate_command(command: &str, args: &[&str]) {
+pub fn run_configlet_command(command: &str, args: &[&str]) {
     let track_root = get_track_root();
 
     let bin_path = Path::new(&track_root).join("bin");

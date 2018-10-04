@@ -184,5 +184,5 @@ pub fn configure_exercise(exercise_name: &str) {
 
     println!("Formatting the config.json file via 'bin/configlet fmt'");
 
-    utils::run_configlate_command("fmt", &["."]);
+    utils::run_configlet_command("fmt", &["."]);
 }
