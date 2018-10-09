@@ -78,3 +78,9 @@ fn multiples_eleven() {
 fn multiples_twelve() {
     assert_eq!(0, sum_of_multiples(10000, &[]))
 }
+
+#[test]
+#[ignore]
+fn the_only_multiple_of_0_is_0() {
+    assert_eq!(0, sum_of_multiples(1, &[0]))
+}
