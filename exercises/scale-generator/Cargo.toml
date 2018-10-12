@@ -3,4 +3,3 @@ name = "scale_generator"
 version = "1.0.0"
 
 [dependencies]
-failure = "0.1"
