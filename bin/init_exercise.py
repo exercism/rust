@@ -200,7 +200,7 @@ def make_exercise_with_specifications(name, exercise_dir, canonical_data, use_ma
         print("//!", file=tests_rs)
         print("//! [script]: https://github.com/exercism/rust/blob/master/bin/init_exercise.py",
               file=tests_rs)
-        print("//! [canonical-data]: {}".format(url_for(name, 'canonical_data.json')),
+        print("//! [canonical-data]: {}".format(url_for(name, 'canonical-data.json')),
               file=tests_rs)
         if 'comments' in canonical_data:
             c = canonical_data['comments']
