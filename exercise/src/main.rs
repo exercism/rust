@@ -9,7 +9,7 @@ mod cmd;
 mod utils;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
-use cmd::{configure, generate};
+use cmd::{configure, generate, update};
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
@@ -61,7 +61,17 @@ fn process_matches(matches: &ArgMatches) {
             }
         },
 
-        ("update", Some(_update_matches)) => println!("Update!"),
+        ("update", Some(update_matches)) => {
+            let exercise_name = update_matches.value_of("exercise_name").unwrap();
+
+            let run_configure = update_matches.is_present("configure");
+
+            update::update_exercise(exercise_name);
+
+            if run_configure {
+                configure::configure_exercise(exercise_name);
+            }
+        },
 
         ("configure", Some(configure_matches)) => {
             configure::configure_exercise(configure_matches.value_of("exercise_name").unwrap())

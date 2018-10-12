@@ -27,7 +27,8 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     let core = false;
 
     let unlocked_by = loop {
-        let user_input = get_user_input("Exercise slug which unlocks this (blank for 'hello-world'): ");
+        let user_input =
+            get_user_input("Exercise slug which unlocks this (blank for 'hello-world'): ");
 
         if user_input.is_empty() {
             break "hello-world".to_string();
