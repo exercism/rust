@@ -93,7 +93,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
 
 fn choose_exercise_insert_index(
     exercise_name: &str,
-    exercises: &Vec<Value>,
+    exercises: &[Value],
     difficulty: &Value,
 ) -> usize {
     let exercises_with_similar_difficulty = exercises
