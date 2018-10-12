@@ -22,8 +22,8 @@ fn init_app<'a>() -> ArgMatches<'a> {
             SubCommand::with_name("generate")
                 .about("Generates new exercise")
                 .arg(Arg::with_name("exercise_name").required(true).help("The name of the generated exercise"))
-                .arg(Arg::with_name("no_configure").long("no-configure").short("n").help(
-                    "If set, the command will not edit config.json after generating the exercise",
+                .arg(Arg::with_name("configure").long("configure").short("c").help(
+                    "If set, the command will edit the config.json file after generating the exercise",
                 ))
                 .arg(Arg::with_name("use_maplit").long("use-maplit").short("m").help("Use the maplit crate to improve the readability of the generated test suite")),
         )
@@ -31,8 +31,8 @@ fn init_app<'a>() -> ArgMatches<'a> {
             SubCommand::with_name("update")
                 .about("Updates the specified exercise")
                 .arg(Arg::with_name("exercise_name").help("The name of the updated exercise"))
-                .arg(Arg::with_name("no_configure").long("no-configure").short("n").help(
-                    "If set, the command will not edit config.json after updating the exercise",
+                .arg(Arg::with_name("configure").long("configure").short("c").help(
+                    "If set, the command will edit the config.json file after updating the exercise",
                 ))
         )
         .subcommand(
@@ -50,7 +50,7 @@ fn process_matches(matches: &ArgMatches) {
         ("generate", Some(generate_matches)) => {
             let exercise_name = generate_matches.value_of("exercise_name").unwrap();
 
-            let run_configure = !generate_matches.is_present("no_configure");
+            let run_configure = generate_matches.is_present("configure");
 
             let use_maplit = generate_matches.is_present("use_maplit");
 
