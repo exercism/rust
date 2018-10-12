@@ -1,6 +1,4 @@
 /// This module contains source for the `generate` command.
-use clap::ArgMatches;
-use cmd::configure;
 use reqwest::{self, StatusCode};
 use serde_json::Value as JsonValue;
 use std::{
@@ -370,7 +368,7 @@ fn generate_readme(exercise_name: &str, track_root: &str) {
 }
 
 // Generate a new exercise with specified name and flags
-fn generate_exercise(exercise_name: &str, use_maplit: bool) {
+pub fn generate_exercise(exercise_name: &str, use_maplit: bool) {
     let track_root = utils::get_track_root();
 
     let exercise_path = Path::new(&track_root).join("exercises").join(exercise_name);
@@ -452,18 +450,4 @@ fn generate_exercise(exercise_name: &str, use_maplit: bool) {
     }
 
     generate_readme(&exercise_name, &track_root);
-}
-
-pub fn process_matches(matches: &ArgMatches) {
-    let exercise_name = matches.value_of("exercise_name").unwrap();
-
-    let run_configure = !matches.is_present("no_configure");
-
-    let use_maplit = matches.is_present("use_maplit");
-
-    generate_exercise(exercise_name, use_maplit);
-
-    if run_configure {
-        configure::configure_exercise(exercise_name);
-    }
 }

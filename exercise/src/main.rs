@@ -47,7 +47,19 @@ fn init_app<'a>() -> ArgMatches<'a> {
 // and call the appropriate function.
 fn process_matches(matches: &ArgMatches) {
     match matches.subcommand() {
-        ("generate", Some(generate_matches)) => generate::process_matches(&generate_matches),
+        ("generate", Some(generate_matches)) => {
+            let exercise_name = generate_matches.value_of("exercise_name").unwrap();
+
+            let run_configure = !generate_matches.is_present("no_configure");
+
+            let use_maplit = generate_matches.is_present("use_maplit");
+
+            generate::generate_exercise(exercise_name, use_maplit);
+
+            if run_configure {
+                configure::configure_exercise(exercise_name);
+            }
+        },
 
         ("update", Some(_update_matches)) => println!("Update!"),
 
