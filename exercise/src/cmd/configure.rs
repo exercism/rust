@@ -90,7 +90,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     })
 }
 
-fn update_config_content(exercise_name: &str, config_content: &mut Value, user_config: Value) {
+fn insert_user_config(exercise_name: &str, config_content: &mut Value, user_config: Value) {
     let config_exercises = config_content["exercises"].as_array_mut().unwrap();
 
     let insert_index = {
@@ -145,7 +145,20 @@ fn update_config_content(exercise_name: &str, config_content: &mut Value, user_c
     config_exercises.insert(insert_index, user_config);
 }
 
-// TODO: Add a check for the existing exercise configuration
+fn update_existing_config(exercise_name: &str, config_content: &mut Value, user_config: Value) {
+    let exercises = config_content["exercises"].as_array_mut().unwrap();
+
+    let (existing_exercise_index, _) = exercises
+        .iter()
+        .enumerate()
+        .find(|(_, exercise)| exercise["slug"] == exercise_name)
+        .unwrap();
+
+    exercises.remove(existing_exercise_index);
+
+    exercises.insert(existing_exercise_index, user_config);
+}
+
 pub fn configure_exercise(exercise_name: &str) {
     println!(
         "Configuring config.json for the {} exercise.",
@@ -161,7 +174,7 @@ pub fn configure_exercise(exercise_name: &str) {
 
     let mut config_content: Value = serde_json::from_str(&config_content_string).unwrap();
 
-    let user_config = loop {
+    let user_config: Value = loop {
         let user_config = get_user_config(exercise_name, &config_content);
 
         let user_input = get_user_input(&format!(
@@ -175,7 +188,16 @@ pub fn configure_exercise(exercise_name: &str) {
         }
     };
 
-    update_config_content(exercise_name, &mut config_content, user_config);
+    if config_content["exercises"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|exercise| exercise["slug"] == exercise_name)
+    {
+        update_existing_config(exercise_name, &mut config_content, user_config);
+    } else {
+        insert_user_config(exercise_name, &mut config_content, user_config);
+    }
 
     fs::write(
         &config_path,
