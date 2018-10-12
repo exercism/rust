@@ -10,7 +10,7 @@ use scale_generator::*;
 
 /// Process a single test case for the property `chromatic`
 ///
-/// All cases for the `pitches` property are implemented
+/// All cases for the `chromatic` property are implemented
 /// in terms of this function.
 fn process_chromatic_case(tonic: &str, expected: &[&str]) {
     let s = Scale::chromatic(tonic).unwrap();
@@ -19,7 +19,7 @@ fn process_chromatic_case(tonic: &str, expected: &[&str]) {
 
 /// Process a single test case for the property `interval`
 ///
-/// All cases for the `pitches` property are implemented
+/// All cases for the `interval` property are implemented
 /// in terms of this function.
 fn process_interval_case(tonic: &str, intervals: &str, expected: &[&str]) {
     let s = Scale::new(tonic, intervals).unwrap();
