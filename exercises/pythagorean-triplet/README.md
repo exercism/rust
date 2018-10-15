@@ -7,6 +7,12 @@ which,
 a**2 + b**2 = c**2
 ```
 
+and such that,
+
+```text
+a < b < c
+```
+
 For example,
 
 ```text
