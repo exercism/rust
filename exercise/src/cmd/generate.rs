@@ -1,5 +1,4 @@
 /// This module contains source for the `generate` command.
-use reqwest::{self, StatusCode};
 use serde_json::Value as JsonValue;
 use std::{
     collections::HashMap,
@@ -32,24 +31,6 @@ static EXAMPLE_RS_CONTENT: &'static str = "//! Example implementation
 //!   any modifications necessary to the latter so your example will run.
 //! - Test your example by running `../../bin/test-exercise`
 ";
-
-// Try to get the canonical data for the exercise of the given name
-fn get_canonical_data(exercise_name: &str) -> Option<JsonValue> {
-    let url = format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name);
-
-    let mut response =
-        reqwest::get(&url).expect("Failed to make HTTP request for the canonical data.");
-
-    if response.status() != StatusCode::Ok {
-        None
-    } else {
-        Some(
-            response
-                .json()
-                .expect("Failed to parse the JSON canonical-data response"),
-        )
-    }
-}
 
 // Generate .meta directory and it's contents without using the canonical data
 fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
@@ -431,7 +412,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) {
     fs::write(exercise_path.join("example.rs"), EXAMPLE_RS_CONTENT)
         .expect("Failed to create example.rs file");
 
-    if let Some(canonical_data) = get_canonical_data(exercise_name) {
+    if let Some(canonical_data) = utils::get_canonical_data(exercise_name) {
         println!("Generating tests from canonical data");
 
         generate_tests_from_canonical_data(

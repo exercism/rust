@@ -1,3 +1,5 @@
+use reqwest::{self, StatusCode};
+use serde_json::Value;
 use std::{
     path::Path,
     process::{Command, Stdio},
@@ -56,4 +58,22 @@ pub fn run_configlet_command(command: &str, args: &[&str]) {
         .args(args)
         .output()
         .expect("Failed to run configlet generate command");
+}
+
+// Try to get the canonical data for the exercise of the given name
+pub fn get_canonical_data(exercise_name: &str) -> Option<Value> {
+    let url = format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name);
+
+    let mut response =
+        reqwest::get(&url).expect("Failed to make HTTP request for the canonical data.");
+
+    if response.status() != StatusCode::Ok {
+        None
+    } else {
+        Some(
+            response
+                .json()
+                .expect("Failed to parse the JSON canonical-data response"),
+        )
+    }
 }
