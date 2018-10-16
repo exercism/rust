@@ -84,3 +84,9 @@ fn multiples_twelve() {
 fn the_only_multiple_of_0_is_0() {
     assert_eq!(0, sum_of_multiples(1, &[0]))
 }
+
+#[test]
+#[ignore]
+fn solutions_using_include_exclude_must_extend_to_cardinality_greater_than_3() {
+    assert_eq!(39614537, sum_of_multiples(10000, &[2, 3, 5, 7, 11]))
+}
