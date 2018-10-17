@@ -899,6 +899,20 @@
       ]
     },
     {
+      "slug": "scale-generator",
+      "uuid": "b9436a89-90cb-4fb7-95b0-758f17c309ff",
+      "core": false,
+      "unlocked_by": "poker",
+      "difficulty": 7,
+      "topics": [
+        "enums",
+        "from_primitive",
+        "music_theory",
+        "to_primitive",
+        "traits"
+      ]
+    },
+    {
       "slug": "decimal",
       "uuid": "7cefed7c-37f4-46c5-9a45-68fe4d0fb326",
       "core": false,
