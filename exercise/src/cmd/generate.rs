@@ -108,17 +108,17 @@ fn generate_property_body<'a>(
              /// While rustc _may_ be able to handle things properly given a working example,\n\
              /// students will face confusing errors if the `I` and `O` types are not concrete.\n\
              /// \n\
-             fn process_{property_lower}_case<I, O>(input: I, expected: O) {{\n\
+             fn process_{property_formatted}_case<I, O>(input: I, expected: O) {{\n\
              //  typical implementation:\n\
              //  assert_eq!(\n\
-             //      student_{property_lower}_func(input),\n\
+             //      student_{property_formatted}_func(input),\n\
              //      expected\n\
              //  )\n    unimplemented!()\n\
              }}\n\
              \n\
              ",
             property = property,
-            property_lower = property.to_lowercase().replace("-", "_")
+            property_formatted = utils::format_exercise_property(property),
         );
 
         property_functions.insert(property, property_function_body);
@@ -173,13 +173,7 @@ fn into_literal(item: &JsonValue, use_maplit: bool) -> String {
 }
 
 fn generate_test_function(case: &JsonValue, use_maplit: bool) -> String {
-    let description = case.get("description").unwrap();
-
-    let description_formatted = description
-        .as_str()
-        .unwrap()
-        .to_lowercase()
-        .replace(" ", "_");
+    let description = case.get("description").unwrap().as_str().unwrap();
 
     let property = case.get("property").unwrap().as_str().unwrap();
 
@@ -213,8 +207,8 @@ fn generate_test_function(case: &JsonValue, use_maplit: bool) -> String {
          \n\
          ",
         description = description,
-        description_formatted = description_formatted,
-        property = property,
+        description_formatted = utils::format_exercise_description(description),
+        property = utils::format_exercise_property(property),
         comments = comments,
         input = input,
         expected = expected

@@ -90,3 +90,16 @@ pub fn get_tests_content(exercise_name: &str) -> io::Result<String> {
 
     fs::read_to_string(tests_path)
 }
+
+pub fn format_exercise_description(description: &str) -> String {
+    description
+        .chars()
+        .filter(|c| c.is_alphabetic())
+        .collect::<String>()
+        .replace(" ", "_")
+        .to_lowercase()
+}
+
+pub fn format_exercise_property(property: &str) -> String {
+    property.replace(" ", "_").to_lowercase()
+}
