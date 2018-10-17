@@ -356,6 +356,17 @@
       ]
     },
     {
+      "slug": "paasio",
+      "uuid": "8c24c151-d22a-4818-83b5-4fe0f919e3fd",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "io",
+        "traits"
+      ]
+    },
+    {
       "slug": "nucleotide-count",
       "uuid": "3f54853b-cc65-4282-ab25-8dc3fdf43c03",
       "core": false,
