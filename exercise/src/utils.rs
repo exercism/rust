@@ -1,6 +1,7 @@
 use reqwest::{self, StatusCode};
 use serde_json::Value;
 use std::{
+    fs, io,
     path::Path,
     process::{Command, Stdio},
 };
@@ -76,4 +77,16 @@ pub fn get_canonical_data(exercise_name: &str) -> Option<Value> {
                 .expect("Failed to parse the JSON canonical-data response"),
         )
     }
+}
+
+pub fn get_tests_content(exercise_name: &str) -> io::Result<String> {
+    let track_root = get_track_root();
+
+    let tests_path = Path::new(&track_root)
+        .join("exercises")
+        .join(exercise_name)
+        .join("tests")
+        .join(format!("{}.rs", exercise_name));
+
+    fs::read_to_string(tests_path)
 }

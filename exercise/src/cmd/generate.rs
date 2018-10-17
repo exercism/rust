@@ -234,8 +234,12 @@ fn generate_tests_from_canonical_data(
         .join("tests")
         .join(format!("{}.rs", exercise_name));
 
-    let tests_content =
-        fs::read_to_string(&tests_path).expect("Failed to read existing tests content.");
+    let tests_content = utils::get_tests_content(exercise_name).unwrap_or_else(|_| {
+        panic!(
+            "Failed to get the content of the test suite for the '{}' exercise. Aborting.",
+            exercise_name
+        )
+    });
 
     let updated_tests_content = format!(
         "//! Tests for {} \n\
