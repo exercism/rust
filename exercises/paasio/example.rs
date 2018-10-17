@@ -23,7 +23,7 @@ impl<W: Write> WriteStats<W> {
         self.bytes
     }
 
-    pub fn get_writes(&self) -> usize {
+    pub fn writes(&self) -> usize {
         self.writes
     }
 }
@@ -64,7 +64,7 @@ impl<R: Read> ReadStats<R> {
         self.bytes
     }
 
-    pub fn get_reads(&self) -> usize {
+    pub fn reads(&self) -> usize {
         self.reads
     }
 }
