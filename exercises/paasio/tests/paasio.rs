@@ -26,7 +26,7 @@ macro_rules! test_read {
                 // there wasn't any more pending data which simply didn't
                 // fit into the existing buffer
                 assert_eq!(2, reader.reads());
-                assert_eq!(size, reader.get_bytes());
+                assert_eq!(size, reader.bytes_through());
             }
 
             $(#[$attr])*
@@ -46,7 +46,7 @@ macro_rules! test_read {
                 // we read once more than the number of chunks, because the final
                 // read returns 0 new bytes
                 assert_eq!(1+chunks_read, reader.reads());
-                assert_eq!(size, reader.get_bytes());
+                assert_eq!(size, reader.bytes_through());
             }
 
             $(#[$attr])*
@@ -68,7 +68,7 @@ macro_rules! test_read {
                 // the first collects everything into the buffer,
                 // and the second ensures that no data remains
                 assert_eq!(2, reader.get_ref().reads());
-                assert_eq!(size, reader.get_ref().get_bytes());
+                assert_eq!(size, reader.get_ref().bytes_through());
             }
         }
     };
@@ -91,7 +91,7 @@ macro_rules! test_write {
                 let written = writer.write(data);
                 assert!(written.is_ok());
                 assert_eq!(size, written.unwrap());
-                assert_eq!(size, writer.get_bytes());
+                assert_eq!(size, writer.bytes_through());
                 assert_eq!(1, writer.writes());
                 assert_eq!(data, writer.get_ref().as_slice());
             }
@@ -105,7 +105,7 @@ macro_rules! test_write {
                 let written = writer.write(data);
                 assert!(written.is_ok());
                 assert_eq!(size, written.unwrap());
-                assert_eq!(size, writer.get_bytes());
+                assert_eq!(size, writer.bytes_through());
                 assert_eq!(1, writer.writes());
             }
 
@@ -123,7 +123,7 @@ macro_rules! test_write {
                     assert!(written.is_ok());
                     assert_eq!(CHUNK_SIZE, written.unwrap());
                 }
-                assert_eq!(size, writer.get_bytes());
+                assert_eq!(size, writer.bytes_through());
                 assert_eq!(chunk_count, writer.writes());
             }
 
@@ -141,12 +141,12 @@ macro_rules! test_write {
                 }
                 // at this point, nothing should have yet been passed through to
                 // our writer
-                assert_eq!(0, writer.get_ref().get_bytes());
+                assert_eq!(0, writer.get_ref().bytes_through());
                 assert_eq!(0, writer.get_ref().writes());
 
                 // after flushing, everything should pass through in one go
                 assert!(writer.flush().is_ok());
-                assert_eq!(size, writer.get_ref().get_bytes());
+                assert_eq!(size, writer.get_ref().bytes_through());
                 assert_eq!(1, writer.get_ref().writes());
             }
         }

@@ -19,7 +19,7 @@ impl<W: Write> WriteStats<W> {
         &self.inner
     }
 
-    pub fn get_bytes(&self) -> usize {
+    pub fn bytes_through(&self) -> usize {
         self.bytes
     }
 
@@ -60,7 +60,7 @@ impl<R: Read> ReadStats<R> {
         &self.inner
     }
 
-    pub fn get_bytes(&self) -> usize {
+    pub fn bytes_through(&self) -> usize {
         self.bytes
     }
 

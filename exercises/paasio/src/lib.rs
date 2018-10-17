@@ -14,7 +14,7 @@ impl<R: Read> ReadStats<R> {
         unimplemented!()
     }
 
-    pub fn get_bytes(&self) -> usize {
+    pub fn bytes_through(&self) -> usize {
         unimplemented!()
     }
 
@@ -43,7 +43,7 @@ impl<W: Write> WriteStats<W> {
         unimplemented!()
     }
 
-    pub fn get_bytes(&self) -> usize {
+    pub fn bytes_through(&self) -> usize {
         unimplemented!()
     }
 
