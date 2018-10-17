@@ -87,6 +87,12 @@ fn the_only_multiple_of_0_is_0() {
 
 #[test]
 #[ignore]
+fn the_factor_0_does_not_affect_the_sum_of_multiples_of_other_factors() {
+    assert_eq!(3, sum_of_multiples(4, &[3, 0]))
+}
+
+#[test]
+#[ignore]
 fn solutions_using_include_exclude_must_extend_to_cardinality_greater_than_3() {
     assert_eq!(39614537, sum_of_multiples(10000, &[2, 3, 5, 7, 11]))
 }
