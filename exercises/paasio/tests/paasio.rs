@@ -38,7 +38,7 @@ macro_rules! test_read {
 
                 let mut buffer = [0_u8; CHUNK_SIZE];
                 let mut chunks_read = 0;
-                while reader.read(&mut buffer[..]).expect("read must succeed") > 0 {
+                while reader.read(&mut buffer[..]).unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read+1)) > 0 {
                     chunks_read += 1;
                 }
 
@@ -58,7 +58,7 @@ macro_rules! test_read {
 
                 let mut buffer = [0_u8; CHUNK_SIZE];
                 let mut chunks_read = 0;
-                while reader.read(&mut buffer[..]).expect("read must succeed") > 0 {
+                while reader.read(&mut buffer[..]).unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read+1)) > 0 {
                     chunks_read += 1;
                 }
 
