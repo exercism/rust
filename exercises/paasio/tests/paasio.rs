@@ -20,7 +20,7 @@ macro_rules! test_read {
                 let qty_read = reader.read_to_end(&mut buffer);
 
                 assert!(qty_read.is_ok());
-                assert_eq!(size, qty_read.unwrap() );
+                assert_eq!(size, qty_read.unwrap());
                 assert_eq!(size, buffer.len());
                 // 2: first to read all the data, second to check that
                 // there wasn't any more pending data which simply didn't
@@ -171,7 +171,7 @@ test_write!(#[ignore] write_string (
 
 test_read!(#[ignore]
 read_byte_literal(
-    &[1_u8, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,][..],
+    &[1_u8, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144][..],
     |d: &[u8]| d.len()
 ));
 test_write!(#[ignore]
