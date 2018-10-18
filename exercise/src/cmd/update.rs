@@ -26,15 +26,14 @@ fn exercise_exists(exercise_name: &str) -> bool {
     false
 }
 
-fn generate_diff_test(case: &Value, diff_type: &DiffType) -> String {
-    // FIXME: Add use_maplit arg
+fn generate_diff_test(case: &Value, diff_type: &DiffType, use_maplit: bool) -> String {
     format!(
         "//{}\n{}",
         match diff_type {
             DiffType::NEW => "NEW",
             DiffType::UPDATED => "UPDATED",
         },
-        utils::generate_test_function(case, false)
+        utils::generate_test_function(case, use_maplit)
     )
 }
 
@@ -42,7 +41,12 @@ fn generate_diff_property(property: &str) -> String {
     format!("//{}\n{}", "NEW", utils::generate_property_body(property))
 }
 
-fn generate_diffs(case: &Value, tests_content: &str, diffs: &mut HashSet<String>) {
+fn generate_diffs(
+    case: &Value,
+    tests_content: &str,
+    diffs: &mut HashSet<String>,
+    use_maplit: bool,
+) {
     let description = case["description"].as_str().unwrap();
 
     let description_formatted = utils::format_exercise_description(description);
@@ -53,7 +57,7 @@ fn generate_diffs(case: &Value, tests_content: &str, diffs: &mut HashSet<String>
         DiffType::UPDATED
     };
 
-    if diffs.insert(generate_diff_test(&case, &diff_type)) {
+    if diffs.insert(generate_diff_test(&case, &diff_type, use_maplit)) {
         match diff_type {
             DiffType::NEW => println!("New test case detected: {}.", description_formatted),
             DiffType::UPDATED => println!("Updated test case: {}.", description_formatted),
@@ -71,7 +75,7 @@ fn generate_diffs(case: &Value, tests_content: &str, diffs: &mut HashSet<String>
     }
 }
 
-fn get_diffs(exercise_name: &str, tests_content: &str) -> HashSet<String> {
+fn get_diffs(exercise_name: &str, tests_content: &str, use_maplit: bool) -> HashSet<String> {
     let canonical_data = utils::get_canonical_data(exercise_name).unwrap_or_else(|| {
         panic!(
             "Failed to get canonical data for the '{}' exercise. Aborting",
@@ -91,10 +95,10 @@ fn get_diffs(exercise_name: &str, tests_content: &str) -> HashSet<String> {
     for case in cases.as_array().unwrap().iter() {
         if let Some(sub_cases) = case.get("cases") {
             for sub_case in sub_cases.as_array().unwrap().iter() {
-                generate_diffs(&sub_case, &tests_content, &mut diffs);
+                generate_diffs(&sub_case, &tests_content, &mut diffs, use_maplit);
             }
         } else {
-            generate_diffs(&case, &tests_content, &mut diffs);
+            generate_diffs(&case, &tests_content, &mut diffs, use_maplit);
         }
     }
 
@@ -127,7 +131,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
     utils::rustfmt(&tests_path);
 }
 
-pub fn update_exercise(exercise_name: &str) {
+pub fn update_exercise(exercise_name: &str, use_maplit: bool) {
     if !exercise_exists(exercise_name) {
         panic!(
             "Exercise with the name '{}' does not exists. Aborting",
@@ -142,7 +146,7 @@ pub fn update_exercise(exercise_name: &str) {
         )
     });
 
-    let diffs = get_diffs(exercise_name, &tests_content);
+    let diffs = get_diffs(exercise_name, &tests_content, use_maplit);
 
     apply_diffs(exercise_name, &diffs, &tests_content);
 }
