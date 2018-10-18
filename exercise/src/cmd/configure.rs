@@ -47,7 +47,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     };
 
     let difficulty = loop {
-        let user_input = get_user_input("Difficulty for this exercise(1, 4, 7, 10): ");
+        let user_input = get_user_input("Difficulty for this exercise (1, 4, 7, 10): ");
 
         if let Ok(difficulty) = user_input.parse::<u32>() {
             if ![1, 4, 7, 10].contains(&difficulty) {
