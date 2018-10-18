@@ -94,7 +94,7 @@ pub fn get_tests_content(exercise_name: &str) -> io::Result<String> {
 pub fn format_exercise_description(description: &str) -> String {
     description
         .chars()
-        .filter(|c| c.is_alphabetic())
+        .filter(|c| c.is_alphanumeric() || *c == ' ')
         .collect::<String>()
         .replace(" ", "_")
         .to_lowercase()
@@ -102,4 +102,121 @@ pub fn format_exercise_description(description: &str) -> String {
 
 pub fn format_exercise_property(property: &str) -> String {
     property.replace(" ", "_").to_lowercase()
+}
+
+pub fn generate_property_body(property: &str) -> String {
+    format!(
+        "\
+         /// Process a single test case for the property `{property}`\n\
+         ///\n\
+         /// All cases for the `{property}` property are implemented\n\
+         /// in terms of this function.\n\
+         /// \n\
+         /// Note that you'll need to both name the expected transform which\n\
+         /// the student needs to write, and name the types of the inputs and outputs.\n\
+         /// While rustc _may_ be able to handle things properly given a working example,\n\
+         /// students will face confusing errors if the `I` and `O` types are not concrete.\n\
+         /// \n\
+         fn process_{property_formatted}_case<I, O>(input: I, expected: O) {{\n\
+         //  typical implementation:\n\
+         //  assert_eq!(\n\
+         //      student_{property_formatted}_func(input),\n\
+         //      expected\n\
+         //  )\n    unimplemented!()\n\
+         }}\n\
+         \n\
+         ",
+        property = property,
+        property_formatted = format_exercise_property(property),
+    )
+}
+
+// Depending on the type of the item variable,
+// transform item into corresponding Rust literal
+fn into_literal(item: &Value, use_maplit: bool) -> String {
+    if item.is_string() {
+        format!("\"{}\"", item.as_str().unwrap())
+    } else if item.is_array() {
+        format!(
+            "vec![{}]",
+            item.as_array()
+                .unwrap()
+                .iter()
+                .map(|item| into_literal(item, use_maplit))
+                .collect::<Vec<String>>()
+                .join(", ")
+        )
+    } else if item.is_number() || item.is_boolean() || item.is_null() {
+        format!("{}", item)
+    } else if !use_maplit {
+        let key_values = item
+            .as_object()
+            .unwrap()
+            .iter()
+            .map(|(key, value)| {
+                format!(
+                    "hm.insert(\"{}\", {});",
+                    key,
+                    into_literal(value, use_maplit)
+                )
+            }).collect::<String>();
+
+        format!(
+            "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
+            key_values
+        )
+    } else {
+        let key_values = item
+            .as_object()
+            .unwrap()
+            .iter()
+            .map(|(key, value)| format!("\"{}\"=>{}", key, into_literal(value, use_maplit)))
+            .collect::<Vec<String>>()
+            .join(",");
+
+        format!("hashmap!{{{}}}", key_values)
+    }
+}
+
+pub fn generate_test_function(case: &Value, use_maplit: bool) -> String {
+    let description = case.get("description").unwrap().as_str().unwrap();
+
+    let property = case.get("property").unwrap().as_str().unwrap();
+
+    let comments = if let Some(comments) = case.get("comments") {
+        if comments.is_array() {
+            comments
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|line| format!("/// {}", line))
+                .collect::<String>()
+        } else {
+            format!("/// {}\n", comments.as_str().unwrap())
+        }
+    } else {
+        "".to_string()
+    };
+
+    let input = into_literal(case.get("input").unwrap(), use_maplit);
+
+    let expected = into_literal(case.get("expected").unwrap(), use_maplit);
+
+    format!(
+        "#[test]\n\
+         #[ignore]\n\
+         /// {description}\n\
+         {comments}
+         fn test_{description_formatted}() {{\n\
+         process_{property}_case({input}, {expected});\n\
+         }}\n\
+         \n\
+         ",
+        description = description,
+        description_formatted = format_exercise_description(description),
+        property = format_exercise_property(property),
+        comments = comments,
+        input = input,
+        expected = expected
+    )
 }

@@ -1,5 +1,5 @@
 use serde_json::Value;
-use std::path::Path;
+use std::{collections::HashSet, path::Path};
 use utils;
 
 fn exercise_exists(exercise_name: &str) -> bool {
@@ -21,39 +21,54 @@ fn exercise_exists(exercise_name: &str) -> bool {
     false
 }
 
-fn generate_diff_test(_case: &Value, _diff_prefix: &str) -> String {
-    String::new()
+fn generate_diff_test(case: &Value, diff_prefix: &str) -> String {
+    // FIXME: Add use_maplit arg
+    format!(
+        "//{}\n{}",
+        diff_prefix,
+        utils::generate_test_function(case, false)
+    )
 }
 
-fn generate_diff_property(_case: &Value, _diff_prefix: &str) -> String {
-    String::new()
+fn generate_diff_property(property: &str, diff_prefix: &str) -> String {
+    format!(
+        "//{}\n{}",
+        diff_prefix,
+        utils::generate_property_body(property)
+    )
 }
 
-fn find_diffs(case: &Value, tests_content: &str, diffs: &mut Vec<String>) {
+fn generate_diffs(case: &Value, tests_content: &str, diffs: &mut HashSet<String>) {
     let description = case["description"].as_str().unwrap();
 
-    let diff_prefix = if !tests_content.contains(&format!(
-        "test_{}",
-        utils::format_exercise_description(description)
-    )) {
+    let description_formatted = utils::format_exercise_description(description);
+
+    let diff_prefix = if !tests_content.contains(&format!("test_{}", description_formatted)) {
         "NEW"
     } else {
         "UPDATED"
     };
 
-    diffs.push(generate_diff_test(&case, diff_prefix));
+    if diffs.insert(generate_diff_test(&case, diff_prefix)) {
+        if diff_prefix == "NEW" {
+            println!("New test case detected: {}.", description_formatted);
+        } else {
+            println!("Updated test case: {}.", description_formatted);
+        }
+    }
 
     let property = case["property"].as_str().unwrap();
 
-    if !tests_content.contains(&format!(
-        "process_{}_case",
-        utils::format_exercise_property(property)
-    )) {
-        diffs.push(generate_diff_property(&case, "NEW"));
+    let property_formatted = utils::format_exercise_property(property);
+
+    if !tests_content.contains(&format!("process_{}_case", property_formatted))
+        && diffs.insert(generate_diff_property(property, "NEW"))
+    {
+        println!("New property detected: {}.", property);
     }
 }
 
-fn apply_diffs(exercise_name: &str) {
+fn get_diffs(exercise_name: &str) -> HashSet<String> {
     let canonical_data = utils::get_canonical_data(exercise_name).unwrap_or_else(|| {
         panic!(
             "Failed to get canonical data for the '{}' exercise. Aborting",
@@ -75,17 +90,19 @@ fn apply_diffs(exercise_name: &str) {
         )
     });
 
-    let mut diffs: Vec<String> = vec![];
+    let mut diffs: HashSet<String> = HashSet::new();
 
     for case in cases.as_array().unwrap().iter() {
         if let Some(sub_cases) = case.get("cases") {
             for sub_case in sub_cases.as_array().unwrap().iter() {
-                find_diffs(&sub_case, &tests_content, &mut diffs);
+                generate_diffs(&sub_case, &tests_content, &mut diffs);
             }
         } else {
-            find_diffs(&case, &tests_content, &mut diffs);
+            generate_diffs(&case, &tests_content, &mut diffs);
         }
     }
+
+    diffs
 }
 
 pub fn update_exercise(exercise_name: &str) {
@@ -96,5 +113,5 @@ pub fn update_exercise(exercise_name: &str) {
         );
     }
 
-    apply_diffs(exercise_name);
+    let _diffs = get_diffs(exercise_name);
 }
