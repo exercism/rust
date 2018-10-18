@@ -38,7 +38,7 @@ fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
 
     fs::write(
         exercise_path.join(".meta").join("description.md"),
-        "Describe your exercise here.\n\nDon't forget that `README.md` is automatically generated; update this within `.meta/description.md`.",
+        "Describe your exercise here.\n\nDon't forget that `README.md` is automatically generated; update this within `.meta/description.md`.\n",
     ).expect("Failed to create .meta/description.md file");
 
     fs::write(
