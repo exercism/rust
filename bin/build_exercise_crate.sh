@@ -16,7 +16,7 @@ BIN_DIR_PATH="$TRACK_ROOT/bin"
 
 	RELEASE_PATH="$EXERCISE_CRATE_PATH/target/release/exercise"
 
-	if [ -f "$RELEASE_PATH/exercise.exe" ]; then
+	if [ -f "$RELEASE_PATH.exe" ]; then
 		RELEASE_PATH="$RELEASE_PATH.exe"
 	fi
 
