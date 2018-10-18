@@ -175,18 +175,7 @@ fn generate_tests_from_canonical_data(
         .write_all(test_functions.join("\n\n").as_bytes())
         .unwrap_or_else(|_| panic!("Failed to add test functions to the test file"));
 
-    // FIXME: The algorithm is Unix-specific and will always fail on Windows. General solution required
-    if let Ok(which_output) = Command::new("which").arg("rustfmt").output() {
-        if !String::from_utf8_lossy(&which_output.stdout)
-            .trim()
-            .is_empty()
-        {
-            Command::new("rustfmt")
-                .arg(&tests_path)
-                .output()
-                .expect("Failed to run rustfmt command on the test suite file");
-        }
-    }
+    utils::rustfmt(&tests_path);
 }
 
 // Run bin/configlet generate command to generate README for the exercise

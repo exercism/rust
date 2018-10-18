@@ -220,3 +220,18 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> String {
         expected = expected
     )
 }
+
+// FIXME: The algorithm is Unix-specific and will always fail on Windows. General solution required
+pub fn rustfmt(file_path: &Path) {
+    if let Ok(which_output) = Command::new("which").arg("rustfmt").output() {
+        if !String::from_utf8_lossy(&which_output.stdout)
+            .trim()
+            .is_empty()
+        {
+            Command::new("rustfmt")
+                .arg(file_path)
+                .output()
+                .expect("Failed to run rustfmt command on the test suite file");
+        }
+    }
+}
