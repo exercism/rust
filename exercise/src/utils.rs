@@ -185,14 +185,16 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> String {
 
     let comments = if let Some(comments) = case.get("comments") {
         if comments.is_array() {
-            comments
+            let comments_string = comments
                 .as_array()
                 .unwrap()
                 .iter()
                 .map(|line| format!("/// {}", line))
-                .collect::<String>()
+                .collect::<String>();
+
+            format!("\n{}", comments_string)
         } else {
-            format!("/// {}\n", comments.as_str().unwrap())
+            format!("\n/// {}", comments.as_str().unwrap())
         }
     } else {
         "".to_string()
@@ -205,8 +207,7 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> String {
     format!(
         "#[test]\n\
          #[ignore]\n\
-         /// {description}\n\
-         {comments}
+         /// {description}{comments}\n\
          fn test_{description_formatted}() {{\n\
          process_{property}_case({input}, {expected});\n\
          }}\n\
