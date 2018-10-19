@@ -113,7 +113,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
 pub fn update_exercise(exercise_name: &str, use_maplit: bool) {
     if !utils::exercise_exists(exercise_name) {
         println!(
-            "Exercise with the name '{}' does not exists. Aborting",
+            "Exercise with the name '{}' does not exist. Aborting",
             exercise_name
         );
 
