@@ -22,16 +22,36 @@ fn get_user_input(prompt: &str) -> String {
 }
 
 fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
-    let uuid = Uuid::new_v4().to_hyphenated().to_string();
+    let existing_config: Option<&Value> = config_content["exercises"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|exercise| exercise["slug"] == exercise_name);
+
+    println!("{:#?}", existing_config);
+
+    let uuid = if let Some(existing_config) = existing_config {
+        existing_config["uuid"].as_str().unwrap().to_string()
+    } else {
+        Uuid::new_v4().to_hyphenated().to_string()
+    };
 
     let core = false;
 
     let unlocked_by = loop {
-        let user_input =
-            get_user_input("Exercise slug which unlocks this (blank for 'hello-world'): ");
+        let default_value = if let Some(existing_config) = existing_config {
+            existing_config["unlocked_by"].as_str().unwrap()
+        } else {
+            "hello-world"
+        };
+
+        let user_input = get_user_input(&format!(
+            "Exercise slug which unlocks this (blank for '{}'): ",
+            default_value
+        ));
 
         if user_input.is_empty() {
-            break "hello-world".to_string();
+            break default_value.to_string();
         } else if !config_content["exercises"]
             .as_array()
             .unwrap()
@@ -47,9 +67,20 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     };
 
     let difficulty = loop {
-        let user_input = get_user_input("Difficulty for this exercise (1, 4, 7, 10): ");
+        let default_value = if let Some(existing_config) = existing_config {
+            existing_config["difficulty"].as_u64().unwrap()
+        } else {
+            1
+        };
 
-        if let Ok(difficulty) = user_input.parse::<u32>() {
+        let user_input = get_user_input(&format!(
+            "Difficulty for this exercise [1, 4, 7, 10] (blank for {}): ",
+            default_value
+        ));
+
+        if user_input.is_empty() {
+            break default_value;
+        } else if let Ok(difficulty) = user_input.parse::<u64>() {
             if ![1, 4, 7, 10].contains(&difficulty) {
                 println!("Difficulty should be 1, 4, 7 or 10, not '{}'.", difficulty);
 
@@ -65,7 +96,31 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     };
 
     let topics = loop {
-        let user_input = get_user_input("List of topics for this exercise, comma-separated: ");
+        let default_value = if let Some(existing_config) = existing_config {
+            let topics = &existing_config["topics"];
+
+            if topics.is_array() {
+                topics
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .map(|topic| topic.as_str().unwrap().to_string())
+                    .collect::<Vec<String>>()
+            } else {
+                vec![topics.as_str().unwrap().to_string()]
+            }
+        } else {
+            vec![exercise_name.to_string()]
+        };
+
+        let user_input = get_user_input(&format!(
+            "List of topics for this exercise, comma-separated (blank for {:?}): ",
+            default_value,
+        ));
+
+        if user_input.is_empty() {
+            break default_value;
+        }
 
         let topics = user_input
             .split(',')
@@ -191,6 +246,12 @@ pub fn configure_exercise(exercise_name: &str) {
 
     let mut config_content: Value = serde_json::from_str(&config_content_string).unwrap();
 
+    let config_exists = config_content["exercises"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|exercise| exercise["slug"] == exercise_name);
+
     let user_config: Value = loop {
         let user_config = get_user_config(exercise_name, &config_content);
 
@@ -205,12 +266,7 @@ pub fn configure_exercise(exercise_name: &str) {
         }
     };
 
-    if config_content["exercises"]
-        .as_array()
-        .unwrap()
-        .iter()
-        .any(|exercise| exercise["slug"] == exercise_name)
-    {
+    if config_exists {
         update_existing_config(exercise_name, &mut config_content, user_config);
     } else {
         insert_user_config(exercise_name, &mut config_content, user_config);
