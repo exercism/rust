@@ -23,7 +23,7 @@ fi
 
 TRACK_ROOT="$(git rev-parse --show-toplevel)"
 
-if !(cd "$TRACK_ROOT/$EXERCISE_CRATE_PATH" && cargo build --release); then
+if !(cd "$TRACK_ROOT/$EXERCISE_CRATE_PATH" && cargo check); then
 	echo "\nAn error has occurred while building the exercise crate.\nPlease make it compile."
 	
 	exit 1
