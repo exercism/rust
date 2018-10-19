@@ -168,54 +168,61 @@ fn choose_exercise_insert_index(
     exercises: &[Value],
     difficulty: &Value,
 ) -> usize {
-    let exercises_with_similar_difficulty = exercises
-        .iter()
-        .enumerate()
-        .filter(|(_, exercise)| exercise["difficulty"] == *difficulty)
-        .map(|(index, exercise)| (index, exercise["slug"].as_str().unwrap()))
-        .collect::<Vec<(usize, &str)>>();
+    loop {
+        let exercises_with_similar_difficulty = exercises
+            .iter()
+            .enumerate()
+            .filter(|(_, exercise)| exercise["difficulty"] == *difficulty)
+            .map(|(index, exercise)| (index, exercise["slug"].as_str().unwrap()))
+            .collect::<Vec<(usize, &str)>>();
 
-    let mut start_index = 0;
+        let mut start_index = 0;
 
-    let mut end_index = exercises_with_similar_difficulty.len() - 1;
+        let mut end_index = exercises_with_similar_difficulty.len() - 1;
 
-    let insert_index = loop {
-        if start_index == end_index {
-            break start_index;
-        }
+        let insert_index = loop {
+            if start_index == end_index {
+                break start_index;
+            }
 
-        let middle_index = start_index + ((end_index - start_index) / 2);
+            let middle_index = start_index + ((end_index - start_index) / 2);
+
+            let user_input = get_user_input(&format!(
+                "Is {} easier then {}? (y/N): ",
+                exercise_name, exercises_with_similar_difficulty[middle_index].1
+            ));
+
+            if user_input.to_lowercase().starts_with('y') {
+                end_index = middle_index;
+            } else {
+                start_index = middle_index + 1;
+            }
+        };
+
+        let insert_index = exercises_with_similar_difficulty[insert_index].0;
+
+        let prompt = if insert_index == 0 {
+            format!("{} is the easiest exercise on the track.", exercise_name)
+        } else if insert_index == exercises.len() - 1 {
+            format!("{} is the hardest exercise on the track.", exercise_name)
+        } else {
+            format!(
+                "{} is placed between {} and {} exercises in difficulty.",
+                exercise_name,
+                exercises[insert_index - 1]["slug"].as_str().unwrap(),
+                exercises[insert_index]["slug"].as_str().unwrap(),
+            )
+        };
 
         let user_input = get_user_input(&format!(
-            "Is {} easier then {}? (y/N): ",
-            exercise_name, exercises_with_similar_difficulty[middle_index].1
+            "You have configured that {}.\nIs this correct? (y/N): ",
+            prompt
         ));
 
         if user_input.to_lowercase().starts_with('y') {
-            end_index = middle_index;
-        } else {
-            start_index = middle_index + 1;
+            break insert_index;
         }
-    };
-
-    let insert_index = exercises_with_similar_difficulty[insert_index].0;
-
-    let prompt = if insert_index == 0 {
-        format!("{} is the easiest exercise on the track.", exercise_name)
-    } else if insert_index == exercises.len() - 1 {
-        format!("{} is the hardest exercise on the track.", exercise_name)
-    } else {
-        format!(
-            "{} is placed between {} and {} exercises in difficulty.",
-            exercise_name,
-            exercises[insert_index - 1]["slug"].as_str().unwrap(),
-            exercises[insert_index]["slug"].as_str().unwrap(),
-        )
-    };
-
-    println!("You have configured that {}", prompt);
-
-    insert_index
+    }
 }
 
 fn insert_user_config(exercise_name: &str, config_content: &mut Value, user_config: Value) {
