@@ -202,9 +202,15 @@ fn choose_exercise_insert_index(
         let insert_index = exercises_with_similar_difficulty[insert_index].0;
 
         let prompt = if insert_index == 0 {
-            format!("{} is the easiest exercise on the track.", exercise_name)
+            format!(
+                "{} is the easiest exercise of difficulty {}.",
+                exercise_name, *difficulty
+            )
         } else if insert_index == exercises.len() - 1 {
-            format!("{} is the hardest exercise on the track.", exercise_name)
+            format!(
+                "{} is the hardest exercise of difficulty {}.",
+                exercise_name, *difficulty
+            )
         } else {
             format!(
                 "{} is placed between {} and {} exercises in difficulty.",
