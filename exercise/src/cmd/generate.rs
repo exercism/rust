@@ -223,10 +223,12 @@ fn generate_readme(exercise_name: &str) {
 // Generate a new exercise with specified name and flags
 pub fn generate_exercise(exercise_name: &str, use_maplit: bool) {
     if utils::exercise_exists(exercise_name) {
-        panic!(
+        println!(
             "Exercise with the name {} already exists. Aborting",
             exercise_name
         );
+
+        return;
     }
 
     let exercise_path = Path::new(&utils::get_track_root())

@@ -114,10 +114,12 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
 
 pub fn update_exercise(exercise_name: &str, use_maplit: bool) {
     if !utils::exercise_exists(exercise_name) {
-        panic!(
+        println!(
             "Exercise with the name '{}' does not exists. Aborting",
             exercise_name
         );
+
+        return;
     }
 
     let tests_content = utils::get_tests_content(exercise_name).unwrap_or_else(|_| {
