@@ -256,7 +256,7 @@ pub fn exercise_exists(exercise_name: &str) -> bool {
         .exists()
 }
 
-// Update the version of the specified exersice in the Cargo.toml file according to the passed canonical data
+// Update the version of the specified exercise in the Cargo.toml file according to the passed canonical data
 pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) {
     let cargo_toml_path = Path::new(&get_track_root())
         .join("exercises")
