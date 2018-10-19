@@ -250,22 +250,10 @@ pub fn rustfmt(file_path: &Path) {
 }
 
 pub fn exercise_exists(exercise_name: &str) -> bool {
-    let track_root = get_track_root();
-
-    let exercises_path = Path::new(&track_root).join("exercises");
-
-    for entry in exercises_path
-        .read_dir()
-        .expect("Failed to read 'exercises' dir")
-    {
-        if let Ok(entry) = entry {
-            if entry.file_type().unwrap().is_dir() && entry.file_name() == exercise_name {
-                return true;
-            }
-        }
-    }
-
-    false
+    Path::new(&get_track_root())
+        .join("exercises")
+        .join(exercise_name)
+        .exists()
 }
 
 // Update the version of the specified exersice in the Cargo.toml file according to the passed canonical data
