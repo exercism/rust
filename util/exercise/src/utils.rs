@@ -1,7 +1,7 @@
 use reqwest::{self, StatusCode};
 use serde_json::Value;
 use std::{
-    fs, io,
+    env, fs, io,
     path::Path,
     process::{Command, Stdio},
 };
@@ -223,18 +223,29 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> String {
     )
 }
 
-// FIXME: The algorithm is Unix-specific and will always fail on Windows. General solution required
 pub fn rustfmt(file_path: &Path) {
     if let Ok(which_output) = Command::new("which").arg("rustfmt").output() {
         if !String::from_utf8_lossy(&which_output.stdout)
             .trim()
             .is_empty()
-        {
-            Command::new("rustfmt")
-                .arg(file_path)
-                .output()
-                .expect("Failed to run rustfmt command on the test suite file");
+        {}
+    }
+
+    let rustfmt_is_available = {
+        if let Some(path_var) = env::var_os("PATH") {
+            env::split_paths(&path_var)
+                .into_iter()
+                .any(|path| path.join("rustfmt").exists())
+        } else {
+            false
         }
+    };
+
+    if rustfmt_is_available {
+        Command::new("rustfmt")
+            .arg(file_path)
+            .output()
+            .expect("Failed to run rustfmt command on the test suite file");
     }
 }
 
