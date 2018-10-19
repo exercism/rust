@@ -90,7 +90,7 @@ fn generate_tests_from_canonical_data(
         {} \n\
         ",
         exercise_name,
-        "https://github.com/exercism/rust/tree/master/exercise",
+        "https://github.com/exercism/rust/tree/master/util/exercise",
         format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name),
         tests_content
     );
