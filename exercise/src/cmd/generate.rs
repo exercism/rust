@@ -114,7 +114,12 @@ fn generate_tests_from_canonical_data(
         //! [canonical_data]: {} \n\
         \n\
         {} \n\
-        ", exercise_name, env!("CARGO_PKG_NAME"), format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name), tests_content);
+        ",
+        exercise_name,
+        "https://github.com/exercism/rust/tree/master/exercise",
+        format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name),
+        tests_content
+    );
 
     fs::write(&tests_path, updated_tests_content)
         .expect("Failed to update the content of the test suite");
