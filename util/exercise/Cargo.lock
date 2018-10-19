@@ -166,7 +166,7 @@ dependencies = [
 
 [[package]]
 name = "exercise"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
