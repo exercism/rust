@@ -5,6 +5,7 @@ use std::{
     path::Path,
     process::{Command, Stdio},
 };
+use toml::Value as TomlValue;
 
 pub fn get_track_root() -> String {
     let rev_parse_output = Command::new("git")
@@ -254,4 +255,37 @@ pub fn exercise_exists(exercise_name: &str) -> bool {
     }
 
     false
+}
+
+// Update the version of the specified exersice in the Cargo.toml file according to the passed canonical data
+pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) {
+    let cargo_toml_path = Path::new(&get_track_root())
+        .join("exercises")
+        .join(exercise_name)
+        .join("Cargo.toml");
+
+    let cargo_toml_content = fs::read_to_string(&cargo_toml_path).unwrap_or_else(|_| {
+        panic!(
+            "Failed to read the contents of the {} file",
+            cargo_toml_path.to_str().unwrap()
+        )
+    });
+
+    let mut cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
+
+    {
+        let package_table = cargo_toml["package"].as_table_mut().unwrap();
+
+        package_table.insert(
+            "version".to_string(),
+            TomlValue::String(canonical_data["version"].as_str().unwrap().to_string()),
+        );
+    }
+
+    fs::write(&cargo_toml_path, cargo_toml.to_string()).unwrap_or_else(|_| {
+        panic!(
+            "Failed to update the contents of the {} file",
+            cargo_toml_path.to_str().unwrap()
+        );
+    });
 }

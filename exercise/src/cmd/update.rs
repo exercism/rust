@@ -1,6 +1,5 @@
 use serde_json::Value;
 use std::{collections::HashSet, fs, path::Path};
-use toml::Value as TomlValue;
 use utils;
 
 enum DiffType {
@@ -111,38 +110,6 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
     utils::rustfmt(&tests_path);
 }
 
-fn update_cargo_toml(exercise_name: &str, canonical_data: &Value) {
-    let cargo_toml_path = Path::new(&utils::get_track_root())
-        .join("exercises")
-        .join(exercise_name)
-        .join("Cargo.toml");
-
-    let cargo_toml_content = fs::read_to_string(&cargo_toml_path).unwrap_or_else(|_| {
-        panic!(
-            "Failed to read the contents of the {} file",
-            cargo_toml_path.to_str().unwrap()
-        )
-    });
-
-    let mut cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
-
-    {
-        let package_table = cargo_toml["package"].as_table_mut().unwrap();
-
-        package_table.insert(
-            "version".to_string(),
-            TomlValue::String(canonical_data["version"].as_str().unwrap().to_string()),
-        );
-    }
-
-    fs::write(&cargo_toml_path, cargo_toml.to_string()).unwrap_or_else(|_| {
-        panic!(
-            "Failed to update the contents of the {} file",
-            cargo_toml_path.to_str().unwrap()
-        );
-    });
-}
-
 pub fn update_exercise(exercise_name: &str, use_maplit: bool) {
     if !utils::exercise_exists(exercise_name) {
         println!(
@@ -171,5 +138,5 @@ pub fn update_exercise(exercise_name: &str, use_maplit: bool) {
 
     apply_diffs(exercise_name, &diffs, &tests_content);
 
-    update_cargo_toml(exercise_name, &canonical_data);
+    utils::update_cargo_toml_version(exercise_name, &canonical_data);
 }
