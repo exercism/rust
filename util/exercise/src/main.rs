@@ -2,6 +2,8 @@ extern crate clap;
 extern crate reqwest;
 #[macro_use]
 extern crate serde_json;
+#[macro_use]
+extern crate lazy_static;
 extern crate toml;
 extern crate uuid;
 

@@ -162,9 +162,7 @@ fn generate_readme(exercise_name: &str) {
         exercise_name
     );
 
-    let track_root = utils::get_track_root();
-
-    let problem_specifications_path = Path::new(&track_root)
+    let problem_specifications_path = Path::new(&*utils::TRACK_ROOT)
         .join("..")
         .join("problem-specifications");
 
@@ -176,7 +174,7 @@ fn generate_readme(exercise_name: &str) {
         );
 
         Command::new("git")
-            .current_dir(track_root)
+            .current_dir(&*utils::TRACK_ROOT)
             .stdout(Stdio::inherit())
             .arg("clone")
             .arg(problem_specifications_url)
@@ -208,7 +206,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) {
         return;
     }
 
-    let exercise_path = Path::new(&utils::get_track_root())
+    let exercise_path = Path::new(&*utils::TRACK_ROOT)
         .join("exercises")
         .join(exercise_name);
 

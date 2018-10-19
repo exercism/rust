@@ -266,9 +266,7 @@ pub fn configure_exercise(exercise_name: &str) {
         exercise_name
     );
 
-    let track_root = utils::get_track_root();
-
-    let config_path = Path::new(&track_root).join("config.json");
+    let config_path = Path::new(&*utils::TRACK_ROOT).join("config.json");
 
     let config_content_string = fs::read_to_string(&config_path)
         .expect("Failed to read the contents of the config.json file");

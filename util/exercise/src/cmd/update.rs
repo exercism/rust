@@ -94,7 +94,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
             .collect::<String>()
     );
 
-    let tests_path = Path::new(&utils::get_track_root())
+    let tests_path = Path::new(&*utils::TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
         .join("tests")

@@ -7,22 +7,25 @@ use std::{
 };
 use toml::Value as TomlValue;
 
-pub fn get_track_root() -> String {
-    let rev_parse_output = Command::new("git")
-        .arg("rev-parse")
-        .arg("--show-toplevel")
-        .output()
-        .expect("Failed to get the path to the track repo.");
+lazy_static! {
+    pub static ref TRACK_ROOT: String = {
+        let rev_parse_output = Command::new("git")
+            .arg("rev-parse")
+            .arg("--show-toplevel")
+            .output()
+            .expect("Failed to get the path to the track repo.");
 
-    let track_root = String::from_utf8(rev_parse_output.stdout).unwrap();
-
-    track_root.trim().to_string()
+        String::from_utf8(rev_parse_output.stdout)
+            .unwrap()
+            .trim()
+            .to_string()
+    };
 }
 
 pub fn run_configlet_command(command: &str, args: &[&str]) {
-    let track_root = get_track_root();
+    let track_root = &*TRACK_ROOT;
 
-    let bin_path = Path::new(&track_root).join("bin");
+    let bin_path = Path::new(track_root).join("bin");
 
     let configlet_name_unix = "configlet";
 
@@ -38,7 +41,7 @@ pub fn run_configlet_command(command: &str, args: &[&str]) {
         // FIXME: Uses bash script that would not work on Windows.
         // RIIR is preferred.
         Command::new("bash")
-            .current_dir(&track_root)
+            .current_dir(track_root)
             .stdout(Stdio::inherit())
             .arg(bin_path.join("fetch-configlet"))
             .output()
@@ -54,7 +57,7 @@ pub fn run_configlet_command(command: &str, args: &[&str]) {
     };
 
     Command::new(&bin_path.join(configlet_name))
-        .current_dir(&track_root)
+        .current_dir(track_root)
         .stdout(Stdio::inherit())
         .arg(command)
         .args(args)
@@ -81,9 +84,7 @@ pub fn get_canonical_data(exercise_name: &str) -> Option<Value> {
 }
 
 pub fn get_tests_content(exercise_name: &str) -> io::Result<String> {
-    let track_root = get_track_root();
-
-    let tests_path = Path::new(&track_root)
+    let tests_path = Path::new(&*TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
         .join("tests")
@@ -250,7 +251,7 @@ pub fn rustfmt(file_path: &Path) {
 }
 
 pub fn exercise_exists(exercise_name: &str) -> bool {
-    Path::new(&get_track_root())
+    Path::new(&*TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
         .exists()
@@ -258,7 +259,7 @@ pub fn exercise_exists(exercise_name: &str) -> bool {
 
 // Update the version of the specified exercise in the Cargo.toml file according to the passed canonical data
 pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) {
-    let cargo_toml_path = Path::new(&get_track_root())
+    let cargo_toml_path = Path::new(&*TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
         .join("Cargo.toml");
