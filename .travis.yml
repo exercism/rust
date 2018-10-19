@@ -11,6 +11,7 @@ script:
 - "./bin/configlet lint ."
 - "./_test/verify-exercise-difficulties.sh"
 - "./_test/check-exercises-for-authors.sh"
+- "sh ./_test/check-exercise-crate.sh"
 sudo: false
 rust:
   - stable
