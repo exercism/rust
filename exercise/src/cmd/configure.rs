@@ -28,8 +28,6 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
         .iter()
         .find(|exercise| exercise["slug"] == exercise_name);
 
-    println!("{:#?}", existing_config);
-
     let uuid = if let Some(existing_config) = existing_config {
         existing_config["uuid"].as_str().unwrap().to_string()
     } else {
@@ -67,22 +65,40 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Value {
     };
 
     let difficulty = loop {
+        let unlocked_by_difficulty = config_content["exercises"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|exercise| exercise["slug"] == unlocked_by)
+            .unwrap()["difficulty"]
+            .as_u64()
+            .unwrap();
+
+        let available_difficulties: Vec<u64> = [1, 4, 7, 10]
+            .iter()
+            .skip_while(|&&difficulty| difficulty < unlocked_by_difficulty)
+            .cloned()
+            .collect();
+
         let default_value = if let Some(existing_config) = existing_config {
             existing_config["difficulty"].as_u64().unwrap()
         } else {
-            1
+            *available_difficulties.first().unwrap()
         };
 
         let user_input = get_user_input(&format!(
-            "Difficulty for this exercise [1, 4, 7, 10] (blank for {}): ",
-            default_value
+            "Difficulty for this exercise {:?} (blank for {}): ",
+            available_difficulties, default_value
         ));
 
         if user_input.is_empty() {
             break default_value;
         } else if let Ok(difficulty) = user_input.parse::<u64>() {
-            if ![1, 4, 7, 10].contains(&difficulty) {
-                println!("Difficulty should be 1, 4, 7 or 10, not '{}'.", difficulty);
+            if !available_difficulties.contains(&difficulty) {
+                println!(
+                    "Difficulty should be {:?}, not '{}'.",
+                    available_difficulties, difficulty
+                );
 
                 continue;
             }
