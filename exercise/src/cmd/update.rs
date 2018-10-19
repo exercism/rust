@@ -7,25 +7,6 @@ enum DiffType {
     UPDATED,
 }
 
-fn exercise_exists(exercise_name: &str) -> bool {
-    let track_root = utils::get_track_root();
-
-    let exercises_path = Path::new(&track_root).join("exercises");
-
-    for entry in exercises_path
-        .read_dir()
-        .expect("Failed to read 'exercises' dir")
-    {
-        if let Ok(entry) = entry {
-            if entry.file_type().unwrap().is_dir() && entry.file_name() == exercise_name {
-                return true;
-            }
-        }
-    }
-
-    false
-}
-
 fn generate_diff_test(case: &Value, diff_type: &DiffType, use_maplit: bool) -> String {
     format!(
         "//{}\n{}",
@@ -132,7 +113,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
 }
 
 pub fn update_exercise(exercise_name: &str, use_maplit: bool) {
-    if !exercise_exists(exercise_name) {
+    if !utils::exercise_exists(exercise_name) {
         panic!(
             "Exercise with the name '{}' does not exists. Aborting",
             exercise_name

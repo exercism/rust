@@ -179,13 +179,15 @@ fn generate_tests_from_canonical_data(
 }
 
 // Run bin/configlet generate command to generate README for the exercise
-fn generate_readme(exercise_name: &str, track_root: &str) {
+fn generate_readme(exercise_name: &str) {
     println!(
         "Generating README for {} via 'bin/configlet generate'",
         exercise_name
     );
 
-    let problem_specifications_path = Path::new(track_root)
+    let track_root = utils::get_track_root();
+
+    let problem_specifications_path = Path::new(&track_root)
         .join("..")
         .join("problem-specifications");
 
@@ -220,16 +222,16 @@ fn generate_readme(exercise_name: &str, track_root: &str) {
 
 // Generate a new exercise with specified name and flags
 pub fn generate_exercise(exercise_name: &str, use_maplit: bool) {
-    let track_root = utils::get_track_root();
-
-    let exercise_path = Path::new(&track_root).join("exercises").join(exercise_name);
-
-    if exercise_path.exists() {
+    if utils::exercise_exists(exercise_name) {
         panic!(
             "Exercise with the name {} already exists. Aborting",
             exercise_name
         );
     }
+
+    let exercise_path = Path::new(&utils::get_track_root())
+        .join("exercises")
+        .join(exercise_name);
 
     println!(
         "Generating a new exercise at the following path: {}",
@@ -300,5 +302,5 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) {
         generate_default_meta(&exercise_name, &exercise_path);
     }
 
-    generate_readme(&exercise_name, &track_root);
+    generate_readme(&exercise_name);
 }
