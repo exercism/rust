@@ -60,7 +60,7 @@ All the tests for Rust exercises can be run from the top level of the repo with 
 
 ## On modifying the exercises' README
 
-Please note that the README of every exercise is formed using several templates, not necessary present on this repo:
+Please note that the README of every exercise is formed using several templates, not all of which are necessary present on this repo. The most important of these:
 
 - The `description.md` file in the exercise directory from the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises)
 
