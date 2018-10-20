@@ -58,6 +58,18 @@ Before submitting your pull request, you'll want to verify the changes in two wa
 
 All the tests for Rust exercises can be run from the top level of the repo with `_test/check-exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
 
+## On modifying the exercises' README
+
+Please note that the README of every exercise is formed using several templates, not necessary present on this repo:
+
+- The `description.md` file in the exercise directory from the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises)
+
+- The `.meta/hints.md` file in the exercise directory on this repository
+
+- The [Rust-specific instructions](https://github.com/exercism/rust/blob/master/config/exercise-readme-insert.md)
+
+If you are modifying the section of the README that belongs to the template not from this repository, please consider [opening a PR](https://github.com/exercism/problem-specifications/pulls) on the `problem-specifications` repository first.
+
 ## Contributing a New Exercise
 
 Please see the documentation about [adding new exercises](https://github.com/exercism/docs/blob/master/you-can-help/make-up-new-exercises.md).
