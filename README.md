@@ -58,7 +58,7 @@ Before submitting your pull request, you'll want to verify the changes in two wa
 
 All the tests for Rust exercises can be run from the top level of the repo with `_test/check-exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
 
-## On modifying the exercises' README
+### On modifying the exercises' README
 
 Please note that the README of every exercise is formed using several templates, not all of which are necessary present on this repo. The most important of these:
 
