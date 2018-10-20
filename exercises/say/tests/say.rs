@@ -131,11 +131,11 @@ fn test_987654321123() {
 }
 
 /*
-  This test is only if you implemented full parsing for u64 type.
+  These tests are only if you implemented full parsing for u64 type.
 */
 #[test]
 #[ignore]
-fn test_max_u64() {
+fn test_max_i64() {
     assert_eq!(
         say::encode(9_223_372_036_854_775_807),
         String::from(
@@ -143,6 +143,20 @@ fn test_max_u64() {
              quadrillion three hundred seventy-two trillion \
              thirty-six billion eight hundred fifty-four million \
              seven hundred seventy-five thousand eight hundred seven"
+        )
+    );
+}
+
+#[test]
+#[ignore]
+fn test_max_u64() {
+    assert_eq!(
+        say::encode(18_446_744_073_709_551_615),
+        String::from(
+            "eighteen quintillion four hundred forty-six \
+             quadrillion seven hundred forty-four trillion \
+             seventy-three billion seven hundred nine million \
+             five hundred fifty-one thousand six hundred fifteen"
         )
     );
 }
