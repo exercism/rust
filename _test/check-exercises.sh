@@ -20,15 +20,25 @@ fi
 # can't benchmark with a stable compiler; to bench, use
 # $ BENCHMARK=1 rustup run nightly _test/check-exercises.sh
 if [ -n "$BENCHMARK" ]; then
-    files=exercises/*/benches
+    target_dir=benches
 else
-    files=exercises/*/tests
+    target_dir=tests
+fi
+
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$current_branch" != "master" ]; then
+	files="$(git diff --name-only master | grep "exercises/" | cut -d '/' -f -2)"
+else
+	files=exercises/*
 fi
 
 return_code=0
 # An exercise worth testing is defined here as any top level directory with
 # a 'tests' directory
 for exercise in $files; do
+   exercise="$exercise/$target_dir"
+
    # This assumes that exercises are only one directory deep
    # and that the primary module is named the same as the directory
    directory=$(dirname "${exercise}")
