@@ -64,7 +64,7 @@ Please see the documentation about [adding new exercises](https://github.com/exe
 
 Note that:
 
-- The simplest way to generate a project template is to run `bin/init_exercise.py`. You'll need a Python installation >= 3.5 in order to run this script, but it will automate most of the following points for you.
+- The simplest way to generate, update or configure an exercise is to use the [exercise](https://github.com/exercism/rust/tree/master/util/exercise) utility provided in this repository. To compile the utility you can use the [bin/build_exercise_crate.sh](https://github.com/exercism/rust/tree/master/bin/build_exercise_crate.sh) script or, if the script does not work for you, use the `cargo build --release` command in the `util/exercise/` directory and then copy the `exercise` binary from the `util/exercise/target/release/` directory into the `bin/` directory. Use `bin/exercise --help` to learn about the existing commands and their possible usage. Please note that this utility depends on the `reqwest` crate and therefore you may need to install its [required libraries](https://github.com/seanmonstar/reqwest#requirements) (namely `openssl`) in your system.
 
 - Each exercise must stand on its own. Do not reference files outside the exercise directory. They will not be included when the user fetches the exercise.
 
