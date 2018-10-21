@@ -2,9 +2,25 @@
 
 repo=$(cd "$(dirname "$0")/.." && pwd)
 
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$current_branch" != "master" ]; then
+	changed_exercises="$(git diff --name-only master | grep "exercises/" | cut -d '/' -f -2)"
+else
+	changed_exercises=exercises/*
+fi
+
+if [ -z "$changed_exercises" ]; then
+	echo "No exercise was modified. The script is aborted."
+
+	exit 0
+fi
+
 broken=""
 
-for dir in $repo/exercises/*/; do
+for dir in $changed_exercises; do
+  dir="$repo/$dir"
+
   exercise=$(basename "$dir")
 
   # If src/lib.rs contains any non-comment line that contains any non-spaces,
