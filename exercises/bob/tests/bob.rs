@@ -172,3 +172,7 @@ fn test_non_question_ending_with_whitespace() {
         bob::reply("This is a statement ending with whitespace      ")
     );
 }
+
+#[test]
+#[ignore]
+fn test_nothing() {}
