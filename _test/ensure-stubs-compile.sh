@@ -5,9 +5,9 @@ repo=$(cd "$(dirname "$0")/.." && pwd)
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 
 if [ "$current_branch" != "master" ]; then
-	changed_exercises="$(git diff --name-only master | grep "exercises/" | cut -d '/' -f -2)"
+	changed_exercises="$(git diff --name-only master | grep "exercises/" | cut -d '/' -f -2 | awk -v repo=$repo '{print repo"/"$1}')"
 else
-	changed_exercises=exercises/*
+	changed_exercises=$repo/exercises/*
 fi
 
 if [ -z "$changed_exercises" ]; then
@@ -19,8 +19,6 @@ fi
 broken=""
 
 for dir in $changed_exercises; do
-  dir="$repo/$dir"
-
   exercise=$(basename "$dir")
 
   # If src/lib.rs contains any non-comment line that contains any non-spaces,
