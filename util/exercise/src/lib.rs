@@ -1,11 +1,23 @@
-use reqwest::{self, StatusCode};
+#[macro_use]
+extern crate failure;
+#[macro_use]
+extern crate lazy_static;
+extern crate reqwest;
+extern crate serde_json;
+extern crate toml;
+
+use failure::Error;
+use reqwest::StatusCode;
 use serde_json::Value;
+use std::result;
 use std::{
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
 };
 use toml::Value as TomlValue;
+
+pub type Result<T> = result::Result<T, Error>;
 
 lazy_static! {
     pub static ref TRACK_ROOT: String = {
@@ -16,7 +28,7 @@ lazy_static! {
             .expect("Failed to get the path to the track repo.");
 
         String::from_utf8(rev_parse_output.stdout)
-            .unwrap()
+            .expect("git rev-parse produced non-utf8 output")
             .trim()
             .to_string()
     };
@@ -135,78 +147,100 @@ pub fn generate_property_body(property: &str) -> String {
 
 // Depending on the type of the item variable,
 // transform item into corresponding Rust literal
-fn into_literal(item: &Value, use_maplit: bool) -> String {
-    if item.is_string() {
-        format!("\"{}\"", item.as_str().unwrap())
+fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
+    Ok(if item.is_string() {
+        format!("\"{}\"", item.as_str().unwrap()) // safe: checked prev line
     } else if item.is_array() {
-        format!(
-            "vec![{}]",
-            item.as_array()
-                .unwrap()
-                .iter()
-                .map(|item| into_literal(item, use_maplit))
-                .collect::<Vec<String>>()
-                .join(", ")
-        )
+        let mut items = Vec::new();
+        for im in item
+            .as_array() // safe: checked two lines ago
+            .unwrap()
+            .iter()
+        {
+            items.push(into_literal(item, use_maplit)?);
+        }
+        format!("vec![{}]", items.join(", "))
     } else if item.is_number() || item.is_boolean() || item.is_null() {
         format!("{}", item)
     } else if !use_maplit {
-        let key_values = item
+        let mut kvs = Vec::new();
+        for (key, value) in item
             .as_object()
-            .unwrap()
+            .ok_or(format_err!("item is not object"))?
             .iter()
-            .map(|(key, value)| {
-                format!(
-                    "hm.insert(\"{}\", {});",
-                    key,
-                    into_literal(value, use_maplit)
-                )
-            }).collect::<String>();
+        {
+            kvs.push(format!(
+                "hm.insert(\"{}\", {});",
+                key,
+                into_literal(value, use_maplit)?
+            ));
+        }
 
         format!(
             "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
-            key_values
+            kvs.join(" "),
         )
     } else {
-        let key_values = item
+        let mut kvs = Vec::new();
+        for (key, value) in item
             .as_object()
-            .unwrap()
+            .ok_or(format_err!("item is not object"))?
             .iter()
-            .map(|(key, value)| format!("\"{}\"=>{}", key, into_literal(value, use_maplit)))
-            .collect::<Vec<String>>()
-            .join(",");
-
-        format!("hashmap!{{{}}}", key_values)
-    }
+        {
+            kvs.push(format!("\"{}\"=>{}", key, into_literal(value, use_maplit)?));
+        }
+        format!("hashmap!{{{}}}", kvs.join(","))
+    })
 }
 
-pub fn generate_test_function(case: &Value, use_maplit: bool) -> String {
-    let description = case.get("description").unwrap().as_str().unwrap();
+pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> {
+    let description = case
+        .get("description")
+        .ok_or(format_err!("description is not available"))?
+        .as_str()
+        .ok_or(format_err!("description is not string"))?;
 
-    let property = case.get("property").unwrap().as_str().unwrap();
+    let property = case
+        .get("property")
+        .ok_or(format_err!("property is not available"))?
+        .as_str()
+        .ok_or(format_err!("property is not string"))?;
 
     let comments = if let Some(comments) = case.get("comments") {
         if comments.is_array() {
             let comments_string = comments
                 .as_array()
-                .unwrap()
+                .ok_or(format_err!("comments is not array"))?
                 .iter()
                 .map(|line| format!("/// {}", line))
                 .collect::<String>();
 
             format!("\n{}", comments_string)
         } else {
-            format!("\n/// {}", comments.as_str().unwrap())
+            format!(
+                "\n/// {}",
+                comments
+                    .as_str()
+                    .ok_or(format_err!("comments is not string"))?
+            )
         }
     } else {
         "".to_string()
     };
 
-    let input = into_literal(case.get("input").unwrap(), use_maplit);
+    let input = into_literal(
+        case.get("input")
+            .ok_or(format_err!("input is not available"))?,
+        use_maplit,
+    )?;
 
-    let expected = into_literal(case.get("expected").unwrap(), use_maplit);
+    let expected = into_literal(
+        case.get("expected")
+            .ok_or(format_err!("expected is not available"))?,
+        use_maplit,
+    )?;
 
-    format!(
+    Ok(format!(
         "#[test]\n\
          #[ignore]\n\
          /// {description}{comments}\n\
@@ -221,7 +255,7 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> String {
         comments = comments,
         input = input,
         expected = expected
-    )
+    ))
 }
 
 pub fn rustfmt(file_path: &Path) {
@@ -258,34 +292,33 @@ pub fn exercise_exists(exercise_name: &str) -> bool {
 }
 
 // Update the version of the specified exercise in the Cargo.toml file according to the passed canonical data
-pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) {
+pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) -> Result<()> {
     let cargo_toml_path = Path::new(&*TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
         .join("Cargo.toml");
 
-    let cargo_toml_content = fs::read_to_string(&cargo_toml_path).unwrap_or_else(|_| {
-        panic!(
-            "Failed to read the contents of the {} file",
-            cargo_toml_path.to_str().unwrap()
-        )
-    });
+    let cargo_toml_content = fs::read_to_string(&cargo_toml_path)?;
 
-    let mut cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
+    let mut cargo_toml: TomlValue = cargo_toml_content.parse()?;
 
     {
-        let package_table = cargo_toml["package"].as_table_mut().unwrap();
+        let package_table = cargo_toml["package"]
+            .as_table_mut()
+            .ok_or(format_err!("package not a table"))?;
 
         package_table.insert(
             "version".to_string(),
-            TomlValue::String(canonical_data["version"].as_str().unwrap().to_string()),
+            TomlValue::String(
+                canonical_data["version"]
+                    .as_str()
+                    .ok_or(format_err!("version not a string"))?
+                    .to_string(),
+            ),
         );
     }
 
-    fs::write(&cargo_toml_path, cargo_toml.to_string()).unwrap_or_else(|_| {
-        panic!(
-            "Failed to update the contents of the {} file",
-            cargo_toml_path.to_str().unwrap()
-        );
-    });
+    fs::write(&cargo_toml_path, cargo_toml.to_string())?;
+
+    Ok(())
 }

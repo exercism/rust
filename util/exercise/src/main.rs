@@ -1,17 +1,16 @@
 extern crate clap;
-extern crate reqwest;
+extern crate exercise;
+#[macro_use]
+extern crate failure;
 #[macro_use]
 extern crate serde_json;
-#[macro_use]
-extern crate lazy_static;
-extern crate toml;
 extern crate uuid;
 
 mod cmd;
-mod utils;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
 use cmd::{configure, generate, update};
+use exercise::Result;
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
@@ -47,50 +46,57 @@ fn init_app<'a>() -> ArgMatches<'a> {
 
 // Determine which subcommand was used
 // and call the appropriate function.
-fn process_matches(matches: &ArgMatches) {
+fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
     match matches.subcommand() {
         ("generate", Some(generate_matches)) => {
-            let exercise_name = generate_matches.value_of("exercise_name").unwrap();
-
+            let exercise_name = generate_matches
+                .value_of("exercise_name")
+                .ok_or(format_err!("exercise name not present in args"))?;
             let run_configure = generate_matches.is_present("configure");
-
             let use_maplit = generate_matches.is_present("use_maplit");
 
-            generate::generate_exercise(exercise_name, use_maplit);
+            generate::generate_exercise(exercise_name, use_maplit)?;
 
             if run_configure {
-                configure::configure_exercise(exercise_name);
+                configure::configure_exercise(exercise_name)?;
             }
-        },
+        }
 
         ("update", Some(update_matches)) => {
-            let exercise_name = update_matches.value_of("exercise_name").unwrap();
-
+            let exercise_name = update_matches
+                .value_of("exercise_name")
+                .ok_or(format_err!("exercise name not present in args"))?;
             let run_configure = update_matches.is_present("configure");
-
             let use_maplit = update_matches.is_present("use_maplit");
 
-            update::update_exercise(exercise_name, use_maplit);
+            update::update_exercise(exercise_name, use_maplit)?;
 
             if run_configure {
-                configure::configure_exercise(exercise_name);
+                configure::configure_exercise(exercise_name)?;
             }
-        },
+        }
 
         ("configure", Some(configure_matches)) => {
-            configure::configure_exercise(configure_matches.value_of("exercise_name").unwrap())
+            configure::configure_exercise(
+                configure_matches
+                    .value_of("exercise_name")
+                    .ok_or(format_err!("exercise name not present in args"))?,
+            )?;
         }
 
         ("", None) => {
-            println!("No subcommand was used.\nUse init_exercise --help to learn about the possible subcommands.")
+            println!("No subcommand was used.\nUse init_exercise --help to learn about the possible subcommands.");
         }
 
         _ => unreachable!(),
-    }
+    };
+
+    Ok(())
 }
 
-fn main() {
+fn main() -> Result<()> {
     let matches = init_app();
 
-    process_matches(&matches);
+    process_matches(&matches)?;
+    Ok(())
 }
