@@ -9,11 +9,11 @@ extern crate toml;
 use failure::Error;
 use reqwest::StatusCode;
 use serde_json::Value;
-use std::result;
 use std::{
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
+    result,
 };
 use toml::Value as TomlValue;
 
@@ -148,48 +148,41 @@ pub fn generate_property_body(property: &str) -> String {
 // Depending on the type of the item variable,
 // transform item into corresponding Rust literal
 fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
-    Ok(if item.is_string() {
-        format!("\"{}\"", item.as_str().unwrap()) // safe: checked prev line
-    } else if item.is_array() {
-        let mut items = Vec::new();
-        for im in item
-            .as_array() // safe: checked two lines ago
-            .unwrap()
-            .iter()
-        {
-            items.push(into_literal(item, use_maplit)?);
+    use std::string;
+    use Value::*;
+    Ok(match item {
+        Null => string::String::from("None"),
+        String(s) => format!("\"{}\"", s),
+        Number(_) | Bool(_) => format!("{}", item),
+        Array(vs) => {
+            let mut items = Vec::with_capacity(vs.len());
+            for im in vs.iter() {
+                items.push(into_literal(im, use_maplit)?);
+            }
+            format!("vec![{}]", items.join(", "))
         }
-        format!("vec![{}]", items.join(", "))
-    } else if item.is_number() || item.is_boolean() || item.is_null() {
-        format!("{}", item)
-    } else if !use_maplit {
-        let mut kvs = Vec::new();
-        for (key, value) in item
-            .as_object()
-            .ok_or(format_err!("item is not object"))?
-            .iter()
-        {
-            kvs.push(format!(
-                "hm.insert(\"{}\", {});",
-                key,
-                into_literal(value, use_maplit)?
-            ));
+        Object(m) => {
+            let mut kvs = Vec::with_capacity(m.len());
+            for (key, value) in m.iter() {
+                if use_maplit {
+                    kvs.push(format!("\"{}\"=>{}", key, into_literal(value, use_maplit)?));
+                } else {
+                    kvs.push(format!(
+                        "hm.insert(\"{}\", {});",
+                        key,
+                        into_literal(value, use_maplit)?
+                    ));
+                }
+            }
+            if use_maplit {
+                format!("hashmap!{{{}}}", kvs.join(","))
+            } else {
+                format!(
+                    "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
+                    kvs.join(" "),
+                )
+            }
         }
-
-        format!(
-            "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
-            kvs.join(" "),
-        )
-    } else {
-        let mut kvs = Vec::new();
-        for (key, value) in item
-            .as_object()
-            .ok_or(format_err!("item is not object"))?
-            .iter()
-        {
-            kvs.push(format!("\"{}\"=>{}", key, into_literal(value, use_maplit)?));
-        }
-        format!("hashmap!{{{}}}", kvs.join(","))
     })
 }
 
