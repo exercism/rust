@@ -34,7 +34,7 @@ lazy_static! {
     };
 }
 
-pub fn run_configlet_command(command: &str, args: &[&str]) {
+pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     let track_root = &*TRACK_ROOT;
 
     let bin_path = Path::new(track_root).join("bin");
@@ -56,8 +56,7 @@ pub fn run_configlet_command(command: &str, args: &[&str]) {
             .current_dir(track_root)
             .stdout(Stdio::inherit())
             .arg(bin_path.join("fetch-configlet"))
-            .output()
-            .expect("Failed to run fetch-configlet script");
+            .output()?;
 
         if bin_path.join(configlet_name_unix).exists() {
             configlet_name_unix
@@ -73,25 +72,24 @@ pub fn run_configlet_command(command: &str, args: &[&str]) {
         .stdout(Stdio::inherit())
         .arg(command)
         .args(args)
-        .output()
-        .expect("Failed to run configlet generate command");
+        .output()?;
+
+    Ok(())
 }
 
 // Try to get the canonical data for the exercise of the given name
-pub fn get_canonical_data(exercise_name: &str) -> Option<Value> {
+pub fn get_canonical_data(exercise_name: &str) -> Result<Value> {
     let url = format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name);
 
-    let mut response =
-        reqwest::get(&url).expect("Failed to make HTTP request for the canonical data.");
+    let mut response = reqwest::get(&url)?;
 
     if response.status() != StatusCode::Ok {
-        None
+        Err(format_err!(
+            "fetching canonical data produced response code {}",
+            response.status()
+        ))
     } else {
-        Some(
-            response
-                .json()
-                .expect("Failed to parse the JSON canonical-data response"),
-        )
+        Ok(response.json()?)
     }
 }
 
@@ -251,7 +249,7 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> 
     ))
 }
 
-pub fn rustfmt(file_path: &Path) {
+pub fn rustfmt(file_path: &Path) -> Result<()> {
     if let Ok(which_output) = Command::new("which").arg("rustfmt").output() {
         if !String::from_utf8_lossy(&which_output.stdout)
             .trim()
@@ -270,11 +268,10 @@ pub fn rustfmt(file_path: &Path) {
     };
 
     if rustfmt_is_available {
-        Command::new("rustfmt")
-            .arg(file_path)
-            .output()
-            .expect("Failed to run rustfmt command on the test suite file");
+        Command::new("rustfmt").arg(file_path).output()?;
     }
+
+    Ok(())
 }
 
 pub fn exercise_exists(exercise_name: &str) -> bool {

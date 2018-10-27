@@ -311,8 +311,7 @@ pub fn configure_exercise(exercise_name: &str) -> Result<()> {
 
     let config_path = Path::new(&*exercise::TRACK_ROOT).join("config.json");
 
-    let config_content_string = fs::read_to_string(&config_path)
-        .expect("Failed to read the contents of the config.json file");
+    let config_content_string = fs::read_to_string(&config_path)?;
 
     let mut config_content: Value = serde_json::from_str(&config_content_string)?;
 
@@ -342,12 +341,11 @@ pub fn configure_exercise(exercise_name: &str) -> Result<()> {
         insert_user_config(exercise_name, &mut config_content, user_config)?;
     }
 
-    fs::write(&config_path, serde_json::to_string_pretty(&config_content)?)
-        .expect("Failed to write the updated track configuration to the config.json file");
+    fs::write(&config_path, serde_json::to_string_pretty(&config_content)?)?;
 
     println!("Formatting the config.json file via 'bin/configlet fmt'");
 
-    exercise::run_configlet_command("fmt", &["."]);
+    exercise::run_configlet_command("fmt", &["."])?;
 
     Ok(())
 }

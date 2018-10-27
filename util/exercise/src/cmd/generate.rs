@@ -33,12 +33,12 @@ static EXAMPLE_RS_CONTENT: &'static str = "//! Example implementation
 
 // Generate .meta directory and it's contents without using the canonical data
 fn generate_default_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
-    fs::create_dir(exercise_path.join(".meta")).expect("Failed to create the .meta directory");
+    fs::create_dir(exercise_path.join(".meta"))?;
 
     fs::write(
         exercise_path.join(".meta").join("description.md"),
         "Describe your exercise here.\n\nDon't forget that `README.md` is automatically generated; update this within `.meta/description.md`.\n",
-    ).expect("Failed to create .meta/description.md file");
+    )?;
 
     fs::write(
         exercise_path.join(".meta").join("metadata.yml"),
@@ -46,7 +46,7 @@ fn generate_default_meta(exercise_name: &str, exercise_path: &Path) -> Result<()
             "---\nblurb: \"{}\"\nsource: \"\"\nsource_url: \"\"",
             exercise_name
         ),
-    ).expect("Failed to create .meta/metadata.yml file");
+    )?;
 
     let mut tests_file = OpenOptions::new().append(true).open(
         exercise_path
@@ -93,8 +93,7 @@ fn generate_tests_from_canonical_data(
         exercise_name=exercise_name,
     );
 
-    fs::write(&tests_path, updated_tests_content)
-        .expect("Failed to update the content of the test suite");
+    fs::write(&tests_path, updated_tests_content)?;
 
     let mut property_functions: HashMap<&str, String> = HashMap::new();
 
@@ -166,7 +165,7 @@ fn generate_tests_from_canonical_data(
         .write_all(test_functions.join("\n\n").as_bytes())
         .unwrap_or_else(|_| panic!("Failed to add test functions to the test file"));
 
-    exercise::rustfmt(&tests_path);
+    exercise::rustfmt(&tests_path)?;
 
     Ok(())
 }
@@ -195,8 +194,7 @@ fn generate_readme(exercise_name: &str) -> Result<()> {
             .arg("clone")
             .arg(problem_specifications_url)
             .arg(&problem_specifications_path)
-            .output()
-            .expect("Failed to clone problem-specifications repo");
+            .output()?;
     }
 
     exercise::run_configlet_command(
@@ -210,7 +208,7 @@ fn generate_readme(exercise_name: &str) -> Result<()> {
                 .to_str()
                 .ok_or(format_err!("path inexpressable as str"))?,
         ],
-    );
+    )?;
 
     Ok(())
 }
@@ -242,34 +240,28 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
             exercise_path
                 .to_str()
                 .ok_or(format_err!("path inexpressable as str"))?,
-        ).output()
-        .expect("Failed to generate a new exercise via 'cargo new' command");
+        ).output()?;
 
-    fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)
-        .expect("Failed to create .gitignore file");
+    fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)?;
 
     if use_maplit {
         let mut cargo_toml_file = OpenOptions::new()
             .append(true)
             .open(exercise_path.join("Cargo.toml"))?;
 
-        cargo_toml_file
-            .write_all(b"maplit = \"1.0.1\"")
-            .expect("Failed to add maplit dependency to the Cargo.toml");
+        cargo_toml_file.write_all(b"maplit = \"1.0.1\"")?;
     }
 
-    fs::create_dir(exercise_path.join("tests")).expect("Failed to create the tests directory");
+    fs::create_dir(exercise_path.join("tests"))?;
 
     let mut test_file = File::create(
         exercise_path
             .join("tests")
             .join(format!("{}.rs", exercise_name)),
-    ).expect("Failed to create test suite file");
+    )?;
 
     if use_maplit {
-        test_file
-            .write_all(b"#[macro_use]\nextern crate maplit;\n")
-            .expect("Failed to append maplit crate to the test file.");
+        test_file.write_all(b"#[macro_use]\nextern crate maplit;\n")?;
     }
 
     test_file
@@ -278,25 +270,28 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
     test_file
         .write_all(&format!("use {}::*;\n\n", exercise_name.replace("-", "_")).into_bytes())?;
 
-    fs::write(exercise_path.join("example.rs"), EXAMPLE_RS_CONTENT)
-        .expect("Failed to create example.rs file");
+    fs::write(exercise_path.join("example.rs"), EXAMPLE_RS_CONTENT)?;
 
-    if let Some(canonical_data) = exercise::get_canonical_data(exercise_name) {
-        println!("Generating tests from canonical data");
+    match exercise::get_canonical_data(exercise_name) {
+        Ok(canonical_data) => {
+            println!("Generating tests from canonical data");
 
-        generate_tests_from_canonical_data(
-            &exercise_name,
-            &exercise_path,
-            &canonical_data,
-            use_maplit,
-        )?;
-    } else {
-        println!(
-            "No canonical data for exercise '{}' found. Generating standard exercise template.",
-            &exercise_name
-        );
+            generate_tests_from_canonical_data(
+                &exercise_name,
+                &exercise_path,
+                &canonical_data,
+                use_maplit,
+            )?;
+        }
+        Err(e) => {
+            eprintln!("Failed to get canonical data: {}", e);
+            println!(
+                "No canonical data for exercise '{}' found. Generating standard exercise template.",
+                &exercise_name
+            );
 
-        generate_default_meta(&exercise_name, &exercise_path)?;
+            generate_default_meta(&exercise_name, &exercise_path)?;
+        }
     }
 
     generate_readme(&exercise_name)?;

@@ -100,7 +100,7 @@ fn get_diffs(
     Ok(diffs)
 }
 
-fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str) {
+fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str) -> Result<()> {
     let updated_tests_content = format!(
         "{}\n{}",
         tests_content,
@@ -116,14 +116,10 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
         .join("tests")
         .join(format!("{}.rs", exercise_name));
 
-    fs::write(&tests_path, updated_tests_content.as_bytes()).unwrap_or_else(|_| {
-        panic!(
-            "Failed to update tests file for the '{}' exercise. Aborting.",
-            exercise_name,
-        )
-    });
+    fs::write(&tests_path, updated_tests_content.as_bytes())?;
+    exercise::rustfmt(&tests_path)?;
 
-    exercise::rustfmt(&tests_path);
+    Ok(())
 }
 
 pub fn update_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
@@ -134,24 +130,11 @@ pub fn update_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         ));
     }
 
-    let tests_content = exercise::get_tests_content(exercise_name).unwrap_or_else(|_| {
-        panic!(
-            "Failed to get test content for the '{}' exercise",
-            exercise_name
-        )
-    });
-
-    let canonical_data = exercise::get_canonical_data(exercise_name).unwrap_or_else(|| {
-        panic!(
-            "Failed to get canonical data for the '{}' exercise. Aborting",
-            exercise_name
-        )
-    });
-
+    let tests_content = exercise::get_tests_content(exercise_name)?;
+    let canonical_data = exercise::get_canonical_data(exercise_name)?;
     let diffs = get_diffs(exercise_name, &canonical_data, &tests_content, use_maplit)?;
 
-    apply_diffs(exercise_name, &diffs, &tests_content);
-
+    apply_diffs(exercise_name, &diffs, &tests_content)?;
     exercise::update_cargo_toml_version(exercise_name, &canonical_data)?;
 
     Ok(())
