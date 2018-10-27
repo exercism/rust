@@ -63,7 +63,9 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
         } else if bin_path.join(configlet_name_windows).exists() {
             configlet_name_windows
         } else {
-            panic!("Could not locate configlet after running bin/fetch-configlet. Aborting");
+            return Err(format_err!(
+                "Could not locate configlet after running bin/fetch-configlet. Aborting"
+            ));
         }
     };
 

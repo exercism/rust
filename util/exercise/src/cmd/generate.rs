@@ -72,12 +72,7 @@ fn generate_tests_from_canonical_data(
         .join("tests")
         .join(format!("{}.rs", exercise_name));
 
-    let tests_content = exercise::get_tests_content(exercise_name).unwrap_or_else(|_| {
-        panic!(
-            "Failed to get the content of the test suite for the '{}' exercise. Aborting.",
-            exercise_name
-        )
-    });
+    let tests_content = exercise::get_tests_content(exercise_name)?;
 
     let updated_tests_content = format!(
         "//! Tests for {exercise_name} \n\
@@ -150,20 +145,11 @@ fn generate_tests_from_canonical_data(
 
     let mut tests_file = OpenOptions::new().append(true).open(&tests_path)?;
 
-    for (property, property_body) in &property_functions {
-        tests_file
-            .write_all(property_body.as_bytes())
-            .unwrap_or_else(|_| {
-                panic!(
-                    "Failed to add {} property function to the tests file",
-                    property
-                )
-            });
+    for (_, property_body) in &property_functions {
+        tests_file.write_all(property_body.as_bytes())?;
     }
 
-    tests_file
-        .write_all(test_functions.join("\n\n").as_bytes())
-        .unwrap_or_else(|_| panic!("Failed to add test functions to the test file"));
+    tests_file.write_all(test_functions.join("\n\n").as_bytes())?;
 
     exercise::rustfmt(&tests_path)?;
 
