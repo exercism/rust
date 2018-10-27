@@ -202,10 +202,7 @@ fn generate_readme(exercise_name: &str) -> Result<()> {
 // Generate a new exercise with specified name and flags
 pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
     if exercise::exercise_exists(exercise_name) {
-        return Err(format_err!(
-            "Exercise with the name {} already exists. Aborting",
-            exercise_name,
-        ));
+        return Err(format_err!("exercise with the name {} already exists", exercise_name,).into());
     }
 
     let exercise_path = Path::new(&*exercise::TRACK_ROOT)

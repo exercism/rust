@@ -124,10 +124,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
 
 pub fn update_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
     if !exercise::exercise_exists(exercise_name) {
-        return Err(format_err!(
-            "Exercise with the name '{}' does not exist. Aborting",
-            exercise_name
-        ));
+        return Err(format_err!("exercise with the name '{}' does not exist", exercise_name).into());
     }
 
     let tests_content = exercise::get_tests_content(exercise_name)?;

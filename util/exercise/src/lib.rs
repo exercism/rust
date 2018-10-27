@@ -1,23 +1,22 @@
 #[macro_use]
 extern crate failure;
+extern crate failure_derive;
 #[macro_use]
 extern crate lazy_static;
 extern crate reqwest;
 extern crate serde_json;
 extern crate toml;
 
-use failure::Error;
-use reqwest::StatusCode;
 use serde_json::Value;
 use std::{
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
-    result,
 };
 use toml::Value as TomlValue;
 
-pub type Result<T> = result::Result<T, Error>;
+pub mod errors;
+pub use errors::Result;
 
 lazy_static! {
     pub static ref TRACK_ROOT: String = {
@@ -63,9 +62,10 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
         } else if bin_path.join(configlet_name_windows).exists() {
             configlet_name_windows
         } else {
-            return Err(format_err!(
-                "Could not locate configlet after running bin/fetch-configlet. Aborting"
-            ));
+            use errors::Error;
+            return Err(
+                format_err!("could not locate configlet after running bin/fetch-configlet").into(),
+            );
         }
     };
 
@@ -83,16 +83,8 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
 pub fn get_canonical_data(exercise_name: &str) -> Result<Value> {
     let url = format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name);
 
-    let mut response = reqwest::get(&url)?;
-
-    if response.status() != StatusCode::Ok {
-        Err(format_err!(
-            "fetching canonical data produced response code {}",
-            response.status()
-        ))
-    } else {
-        Ok(response.json()?)
-    }
+    let mut response = reqwest::get(&url)?.error_for_status()?;
+    Ok(response.json()?)
 }
 
 pub fn get_tests_content(exercise_name: &str) -> io::Result<String> {
