@@ -6,8 +6,14 @@ extern crate serde_json;
 extern crate lazy_static;
 extern crate toml;
 extern crate uuid;
+#[macro_use]
+extern crate failure;
+extern crate flate2;
+extern crate git2;
+extern crate tar;
 
 mod cmd;
+mod fetch_configlet;
 mod utils;
 
 use clap::{App, Arg, ArgMatches, SubCommand};

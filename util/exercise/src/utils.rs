@@ -1,3 +1,4 @@
+use fetch_configlet;
 use reqwest::{self, StatusCode};
 use serde_json::Value;
 use std::{
@@ -25,7 +26,7 @@ lazy_static! {
 pub fn run_configlet_command(command: &str, args: &[&str]) {
     let track_root = &*TRACK_ROOT;
 
-    let bin_path = Path::new(track_root).join("bin");
+    let mut bin_path = Path::new(track_root).join("bin");
 
     let configlet_name_unix = "configlet";
 
@@ -38,14 +39,11 @@ pub fn run_configlet_command(command: &str, args: &[&str]) {
     } else {
         println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
 
-        // FIXME: Uses bash script that would not work on Windows.
-        // RIIR is preferred.
-        Command::new("bash")
-            .current_dir(track_root)
-            .stdout(Stdio::inherit())
-            .arg(bin_path.join("fetch-configlet"))
-            .output()
-            .expect("Failed to run fetch-configlet script");
+        if let Ok(path) = fetch_configlet::download() {
+            bin_path = path;
+        } else {
+            panic!("Could not fetch configlet. Aborting");
+        }
 
         if bin_path.join(configlet_name_unix).exists() {
             configlet_name_unix
@@ -161,7 +159,8 @@ fn into_literal(item: &Value, use_maplit: bool) -> String {
                     key,
                     into_literal(value, use_maplit)
                 )
-            }).collect::<String>();
+            })
+            .collect::<String>();
 
         format!(
             "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
@@ -235,7 +234,6 @@ pub fn rustfmt(file_path: &Path) {
     let rustfmt_is_available = {
         if let Some(path_var) = env::var_os("PATH") {
             env::split_paths(&path_var)
-                .into_iter()
                 .any(|path| path.join("rustfmt").exists())
         } else {
             false

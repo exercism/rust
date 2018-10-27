@@ -302,7 +302,8 @@ pub fn configure_exercise(exercise_name: &str) {
     fs::write(
         &config_path,
         serde_json::to_string_pretty(&config_content).unwrap(),
-    ).expect("Failed to write the updated track configuration to the config.json file");
+    )
+    .expect("Failed to write the updated track configuration to the config.json file");
 
     println!("Formatting the config.json file via 'bin/configlet fmt'");
 
