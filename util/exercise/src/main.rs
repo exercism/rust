@@ -1,4 +1,5 @@
 extern crate clap;
+#[macro_use]
 extern crate exercise;
 #[macro_use]
 extern crate failure;

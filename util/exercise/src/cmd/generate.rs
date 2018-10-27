@@ -94,26 +94,11 @@ fn generate_tests_from_canonical_data(
 
     let mut test_functions: Vec<String> = Vec::new();
 
-    let cases = canonical_data
-        .get("cases")
-        .ok_or(format_err!("cases list not present in canonical data"))?;
-
-    for case in cases
-        .as_array()
-        .ok_or(format_err!("case list inexpressable as array"))?
-        .iter()
-    {
+    for case in get!(canonical_data, "cases", as_array) {
         if let Some(sub_cases) = case.get("cases") {
-            for sub_case in sub_cases
-                .as_array()
-                .ok_or(format_err!("subcase list inexpressable as array"))?
-                .iter()
-            {
+            for sub_case in val_as!(sub_cases, as_array) {
                 if let Some(property) = sub_case.get("property") {
-                    let property = property
-                        .as_str()
-                        .ok_or(format_err!("property inexpressable as str"))?;
-
+                    let property = val_as!(property, as_str);
                     if !property_functions.contains_key(property) {
                         property_functions
                             .insert(property, exercise::generate_property_body(property));
@@ -124,10 +109,7 @@ fn generate_tests_from_canonical_data(
             }
         } else {
             if let Some(property) = case.get("property") {
-                let property = property
-                    .as_str()
-                    .ok_or(format_err!("property inexpressable as str"))?;
-
+                let property = val_as!(property, as_str);
                 if !property_functions.contains_key(property) {
                     property_functions.insert(property, exercise::generate_property_body(property));
                 }

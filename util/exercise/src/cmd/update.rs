@@ -32,10 +32,7 @@ fn generate_diffs(
     diffs: &mut HashSet<String>,
     use_maplit: bool,
 ) -> Result<()> {
-    let description = case["description"]
-        .as_str()
-        .ok_or(format_err!("description property not string"))?;
-
+    let description = get!(case, "description", as_str);
     let description_formatted = exercise::format_exercise_description(description);
 
     let diff_type = if !tests_content.contains(&format!("test_{}", description_formatted)) {
@@ -51,10 +48,7 @@ fn generate_diffs(
         }
     }
 
-    let property = case["property"]
-        .as_str()
-        .ok_or(format_err!("case property not string"))?;
-
+    let property = get!(case, "property", as_str);
     let property_formatted = exercise::format_exercise_property(property);
 
     if !tests_content.contains(&format!("process_{}_case", property_formatted))
@@ -67,29 +61,16 @@ fn generate_diffs(
 }
 
 fn get_diffs(
-    exercise_name: &str,
+    _exercise_name: &str,
     canonical_data: &Value,
     tests_content: &str,
     use_maplit: bool,
 ) -> Result<HashSet<String>> {
-    let cases = canonical_data.get("cases").ok_or(format_err!(
-        "Failed to get 'cases' field from the canonical data of the '{}' exercise",
-        exercise_name
-    ))?;
-
     let mut diffs: HashSet<String> = HashSet::new();
 
-    for case in cases
-        .as_array()
-        .ok_or(format_err!("case property not array"))?
-        .iter()
-    {
+    for case in get!(canonical_data, "cases", as_array) {
         if let Some(sub_cases) = case.get("cases") {
-            for sub_case in sub_cases
-                .as_array()
-                .ok_or(format_err!("subcase property not array"))?
-                .iter()
-            {
+            for sub_case in val_as!(sub_cases, as_array) {
                 generate_diffs(&sub_case, &tests_content, &mut diffs, use_maplit)?;
             }
         } else {

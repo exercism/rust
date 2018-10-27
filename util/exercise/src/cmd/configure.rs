@@ -19,17 +19,12 @@ fn get_user_input(prompt: &str) -> Result<String> {
 }
 
 fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value> {
-    let existing_config: Option<&Value> = config_content["exercises"]
-        .as_array()
-        .ok_or(format_err!("misconfig: exercises was not an array"))?
+    let existing_config = get!(config_content, "exercises", as_array)
         .iter()
         .find(|exercise| exercise["slug"] == exercise_name);
 
     let uuid = if let Some(existing_config) = existing_config {
-        existing_config["uuid"]
-            .as_str()
-            .ok_or(format_err!("misconfig: uuid was not a string"))?
-            .to_string()
+        get!(existing_config, "uuid", as_str).to_string()
     } else {
         Uuid::new_v4().to_hyphenated().to_string()
     };
@@ -38,9 +33,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
     let unlocked_by = loop {
         let default_value = if let Some(existing_config) = existing_config {
-            existing_config["unlocked_by"]
-                .as_str()
-                .ok_or(format_err!("misconfig: unlocked_by was not a string"))?
+            get!(existing_config, "unlocked_by", as_str)
         } else {
             "hello-world"
         };
@@ -52,9 +45,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
         if user_input.is_empty() {
             break default_value.to_string();
-        } else if !config_content["exercises"]
-            .as_array()
-            .ok_or(format_err!("misconfig: exercises was not an array"))?
+        } else if !get!(config_content, "exercises", as_array)
             .iter()
             .any(|exercise| exercise["slug"] == user_input)
         {
@@ -67,14 +58,11 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
     };
 
     let difficulty = loop {
-        let unlocked_by_difficulty = config_content["exercises"]
-            .as_array()
-            .ok_or(format_err!("misconfig: exercises was not an array"))?
+        let unlocked_by = get!(config_content, "exercises", as_array)
             .iter()
             .find(|exercise| exercise["slug"] == unlocked_by)
-            .ok_or(format_err!("exercise not found in config"))?["difficulty"]
-            .as_u64()
-            .ok_or(format_err!("misconfig: difficulty was not an integer"))?;
+            .ok_or(format_err!("exercise not found in config"))?;
+        let unlocked_by_difficulty = get!(unlocked_by, "difficulty", as_u64);
 
         let available_difficulties: Vec<u64> = [1, 4, 7, 10]
             .iter()
@@ -83,9 +71,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
             .collect();
 
         let default_value = if let Some(existing_config) = existing_config {
-            existing_config["difficulty"]
-                .as_u64()
-                .ok_or(format_err!("misconfig: difficulty was not an integer"))?
+            get!(existing_config, "difficulty", as_u64)
         } else {
             *available_difficulties
                 .first()
@@ -119,27 +105,24 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
     let topics = loop {
         let default_value = if let Some(existing_config) = existing_config {
-            let topics = &existing_config["topics"];
-
-            if topics.is_array() {
-                let topics_values = topics.as_array().unwrap(); // safe: checked in prev line
-                let mut topics: Vec<String> = Vec::with_capacity(topics_values.len());
-                for topic in topics_values.iter() {
-                    topics.push(
-                        topic
-                            .as_str()
-                            .ok_or(format_err!("exercises is not array"))?
-                            .to_string(),
-                    )
-                }
-                topics
-            } else {
-                vec![
+            use serde_json::Value::*;
+            use std::string;
+            match get!(existing_config, "topics") {
+                String(s) => vec![s.to_string()],
+                Array(topics_values) => {
+                    let mut topics: Vec<string::String> = Vec::with_capacity(topics_values.len());
+                    for topic in topics_values.iter() {
+                        topics.push(val_as!(topic, as_str).to_string())
+                    }
                     topics
-                        .as_str()
-                        .ok_or(format_err!("topics is not string"))?
-                        .to_string(),
-                ]
+                }
+                _ => {
+                    return Err(exercise::errors::Error::SchemaTypeError {
+                        file: "config.json".to_string(),
+                        field: "topics".to_string(),
+                        as_type: "array or string".to_string(),
+                    })
+                }
             }
         } else {
             vec![exercise_name.to_string()]
@@ -191,12 +174,7 @@ fn choose_exercise_insert_index(
             .enumerate()
             .filter(|(_, exercise)| exercise["difficulty"] == *difficulty)
         {
-            exercises_with_similar_difficulty.push((
-                index,
-                exercise["slug"]
-                    .as_str()
-                    .ok_or(format_err!("slug is not str"))?,
-            ));
+            exercises_with_similar_difficulty.push((index, get!(exercise, "slug", as_str)));
         }
 
         let mut start_index = 0;
@@ -238,12 +216,8 @@ fn choose_exercise_insert_index(
             format!(
                 "{} is placed between {} and {} exercises in difficulty.",
                 exercise_name,
-                exercises[insert_index - 1]["slug"]
-                    .as_str()
-                    .ok_or(format_err!("slug is not string"))?,
-                exercises[insert_index]["slug"]
-                    .as_str()
-                    .ok_or(format_err!("slug is not string"))?,
+                get!(exercises[insert_index - 1], "slug", as_str),
+                get!(exercises[insert_index], "slug", as_str),
             )
         };
 
@@ -263,9 +237,8 @@ fn insert_user_config(
     config_content: &mut Value,
     user_config: Value,
 ) -> Result<()> {
-    let exercises = config_content["exercises"]
-        .as_array_mut()
-        .ok_or(format_err!("exercises is not array"))?;
+    // TODO: teach get!() how to handle mutable gets
+    let exercises = get_mut!(config_content, "exercises", as_array_mut);
 
     let insert_index =
         choose_exercise_insert_index(exercise_name, exercises, &user_config["difficulty"])?;
@@ -280,9 +253,8 @@ fn update_existing_config(
     config_content: &mut Value,
     user_config: Value,
 ) -> Result<()> {
-    let exercises = config_content["exercises"]
-        .as_array_mut()
-        .ok_or(format_err!("exercises is not array"))?;
+    // TODO: teach get!() how to handle mutable gets
+    let exercises = get_mut!(config_content, "exercises", as_array_mut);
 
     let existing_exercise_index = exercises
         .iter()
@@ -315,9 +287,7 @@ pub fn configure_exercise(exercise_name: &str) -> Result<()> {
 
     let mut config_content: Value = serde_json::from_str(&config_content_string)?;
 
-    let config_exists = config_content["exercises"]
-        .as_array()
-        .ok_or(format_err!("exercises is not array"))?
+    let config_exists = get!(config_content, "exercises", as_array)
         .iter()
         .any(|exercise| exercise["slug"] == exercise_name);
 

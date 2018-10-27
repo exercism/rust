@@ -18,6 +18,8 @@ use toml::Value as TomlValue;
 pub mod errors;
 pub use errors::Result;
 
+// we look for the track root in various places, but it's never going to change
+// we therefore cache the value for efficiency
 lazy_static! {
     pub static ref TRACK_ROOT: String = {
         let rev_parse_output = Command::new("git")
@@ -30,6 +32,49 @@ lazy_static! {
             .expect("git rev-parse produced non-utf8 output")
             .trim()
             .to_string()
+    };
+}
+
+#[macro_export]
+macro_rules! val_as {
+    ($value:expr, $as:ident) => {
+        $value
+            .$as()
+            .ok_or_else(|| $crate::errors::Error::SchemaTypeError {
+                file: "config.json".to_string(),
+                field: stringify!($name).to_string(),
+                as_type: stringify!($as)[3..].to_string(),
+            })?
+    };
+}
+
+#[macro_export]
+macro_rules! get {
+    ($value:expr, $name:expr) => {
+        $value
+            .get($name)
+            .ok_or_else(|| $crate::errors::Error::ConfigJsonSchemaError {
+                parent: stringify!($value).to_string(),
+                field: stringify!($name).to_string(),
+            })?
+    };
+    ($value:expr, $name:expr, $as:ident) => {
+        val_as!(get!($value, $name), $as)
+    };
+}
+
+#[macro_export]
+macro_rules! get_mut {
+    ($value:expr, $name:expr) => {
+        $value
+            .get_mut($name)
+            .ok_or_else(|| $crate::errors::Error::ConfigJsonSchemaError {
+                parent: stringify!($value).to_string(),
+                field: stringify!($name).to_string(),
+            })?
+    };
+    ($value:expr, $name:expr, $as:ident) => {
+        val_as!(get_mut!($value, $name), $as)
     };
 }
 
@@ -62,7 +107,6 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
         } else if bin_path.join(configlet_name_windows).exists() {
             configlet_name_windows
         } else {
-            use errors::Error;
             return Err(
                 format_err!("could not locate configlet after running bin/fetch-configlet").into(),
             );
@@ -179,51 +223,31 @@ fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
 }
 
 pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> {
-    let description = case
-        .get("description")
-        .ok_or(format_err!("description is not available"))?
-        .as_str()
-        .ok_or(format_err!("description is not string"))?;
-
-    let property = case
-        .get("property")
-        .ok_or(format_err!("property is not available"))?
-        .as_str()
-        .ok_or(format_err!("property is not string"))?;
-
+    let description = get!(case, "description", as_str);
+    let property = get!(case, "property", as_str);
     let comments = if let Some(comments) = case.get("comments") {
-        if comments.is_array() {
-            let comments_string = comments
-                .as_array()
-                .ok_or(format_err!("comments is not array"))?
+        use Value::*;
+        match comments {
+            Array(cs) => cs
                 .iter()
                 .map(|line| format!("/// {}", line))
-                .collect::<String>();
-
-            format!("\n{}", comments_string)
-        } else {
-            format!(
-                "\n/// {}",
-                comments
-                    .as_str()
-                    .ok_or(format_err!("comments is not string"))?
-            )
+                .collect::<Vec<_>>()
+                .join("\n"),
+            String(s) => format!("\n/// {}", s),
+            _ => {
+                return Err(errors::Error::SchemaTypeError {
+                    file: "config.json".to_string(),
+                    field: "comments".to_string(),
+                    as_type: "string or array".to_string(),
+                })
+            }
         }
     } else {
         "".to_string()
     };
 
-    let input = into_literal(
-        case.get("input")
-            .ok_or(format_err!("input is not available"))?,
-        use_maplit,
-    )?;
-
-    let expected = into_literal(
-        case.get("expected")
-            .ok_or(format_err!("expected is not available"))?,
-        use_maplit,
-    )?;
+    let input = into_literal(get!(case, "input"), use_maplit)?;
+    let expected = into_literal(get!(case, "expected"), use_maplit)?;
 
     Ok(format!(
         "#[test]\n\
@@ -287,18 +311,18 @@ pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) ->
     let mut cargo_toml: TomlValue = cargo_toml_content.parse()?;
 
     {
-        let package_table = cargo_toml["package"]
-            .as_table_mut()
-            .ok_or(format_err!("package not a table"))?;
+        let package_table =
+            cargo_toml["package"]
+                .as_table_mut()
+                .ok_or_else(|| errors::Error::SchemaTypeError {
+                    file: "Config.toml".to_string(),
+                    field: "package".to_string(),
+                    as_type: "table".to_string(),
+                })?;
 
         package_table.insert(
             "version".to_string(),
-            TomlValue::String(
-                canonical_data["version"]
-                    .as_str()
-                    .ok_or(format_err!("version not a string"))?
-                    .to_string(),
-            ),
+            TomlValue::String(get!(canonical_data, "version", as_str).to_string()),
         );
     }
 

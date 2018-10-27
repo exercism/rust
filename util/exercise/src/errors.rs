@@ -9,14 +9,25 @@ pub enum Error {
     #[fail(display = "IO error: {}", _0)]
     IoError(#[cause] io::Error),
     #[fail(
-        display = "config.json malformed: field '{}' should have type '{}' but didn't",
-        field,
-        expect_type
+        display = "config.json malformed: '{}' must have field '{}'",
+        parent,
+        field
     )]
-    ConfigJsonSchemaError { field: String, expect_type: String },
+    ConfigJsonSchemaError { parent: String, field: String },
+    #[fail(
+        display = "{} malformed: field '{}' must have type '{}'",
+        file,
+        field,
+        as_type,
+    )]
+    SchemaTypeError {
+        file: String,
+        field: String,
+        as_type: String,
+    },
     #[fail(display = "json error: {}", _0)]
     JsonError(#[cause] serde_json::Error),
-    #[fail(display = "config.toml error: {}", _0)]
+    #[fail(display = "config.toml parse error: {}", _0)]
     ConfigTomlParseError(#[cause] toml::de::Error),
     #[fail(display = "HTTP error: {}", _0)]
     HTTPError(reqwest::Error),
