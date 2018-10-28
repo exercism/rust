@@ -114,6 +114,9 @@ pub fn update_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
 
     apply_diffs(exercise_name, &diffs, &tests_content)?;
     exercise::update_cargo_toml_version(exercise_name, &canonical_data)?;
+    if use_maplit {
+        exercise::ensure_cargo_toml_maplit(exercise_name)?;
+    }
 
     Ok(())
 }

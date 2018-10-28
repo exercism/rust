@@ -349,3 +349,18 @@ pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) ->
         Ok(())
     })
 }
+
+pub fn ensure_cargo_toml_maplit(exercise_name: &str) -> Result<()> {
+    update_cargo_toml(exercise_name, |cargo_toml| {
+        // ensure dev-dependencies section exists,
+        // and insert maplit there
+        val_as!(
+            val_as!(cargo_toml, as_table_mut, "Cargo.toml")
+                .entry(String::from("dev-dependencies"))
+                .or_insert(toml::Value::Table(<toml::value::Table>::default())),
+            as_table_mut,
+            "Cargo.toml"
+        ).insert("maplit".to_string(), toml::Value::String("1.0".to_string()));
+        Ok(())
+    })
+}

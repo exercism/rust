@@ -188,11 +188,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
     fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)?;
 
     if use_maplit {
-        exercise::update_cargo_toml(exercise_name, |cargo_toml| {
-            let deps = get!(cargo_toml, mutable "dependencies" => as_table_mut, "Cargo.toml");
-            deps.insert("maplit".to_string(), toml::Value::String("1.0".to_string()));
-            Ok(())
-        })?;
+        exercise::ensure_cargo_toml_maplit(exercise_name)?;
     }
 
     fs::create_dir(exercise_path.join("tests"))?;
