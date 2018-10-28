@@ -84,11 +84,8 @@ macro_rules! get_mut {
 
 pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     let track_root = &*TRACK_ROOT;
-
     let bin_path = Path::new(track_root).join("bin");
-
     let configlet_name_unix = "configlet";
-
     let configlet_name_windows = "configlet.exe";
 
     let configlet_name = if bin_path.join(configlet_name_unix).exists() {
@@ -121,12 +118,25 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     Ok(())
 }
 
+fn url_for(exercise: &str, file: &str) -> String {
+    format!(
+        "https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/{}",
+        exercise, file,
+    )
+}
+
+fn get_canonical(exercise: &str, file: &str) -> Result<reqwest::Response> {
+    reqwest::get(&url_for(exercise, file)).map_err(|e| e.into())
+}
+
 // Try to get the canonical data for the exercise of the given name
 pub fn get_canonical_data(exercise_name: &str) -> Result<Value> {
-    let url = format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name);
+    let mut response = get_canonical(exercise_name, "canonical-data.json")?.error_for_status()?;
+    response.json().map_err(|e| e.into())
+}
 
-    let mut response = reqwest::get(&url)?.error_for_status()?;
-    Ok(response.json()?)
+pub fn canonical_file_exists(exercise: &str, file: &str) -> Result<bool> {
+    Ok(get_canonical(exercise, file)?.status().is_success())
 }
 
 pub fn get_tests_content(exercise_name: &str) -> io::Result<String> {
