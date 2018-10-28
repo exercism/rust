@@ -19,12 +19,12 @@ fn get_user_input(prompt: &str) -> Result<String> {
 }
 
 fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value> {
-    let existing_config = get!(config_content, "exercises", as_array)
+    let existing_config = get!(config_content, "exercises" => as_array)
         .iter()
         .find(|exercise| exercise["slug"] == exercise_name);
 
     let uuid = if let Some(existing_config) = existing_config {
-        get!(existing_config, "uuid", as_str).to_string()
+        get!(existing_config, "uuid" => as_str).to_string()
     } else {
         Uuid::new_v4().to_hyphenated().to_string()
     };
@@ -33,7 +33,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
     let unlocked_by = loop {
         let default_value = if let Some(existing_config) = existing_config {
-            get!(existing_config, "unlocked_by", as_str)
+            get!(existing_config, "unlocked_by" => as_str)
         } else {
             "hello-world"
         };
@@ -45,7 +45,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
         if user_input.is_empty() {
             break default_value.to_string();
-        } else if !get!(config_content, "exercises", as_array)
+        } else if !get!(config_content, "exercises" => as_array)
             .iter()
             .any(|exercise| exercise["slug"] == user_input)
         {
@@ -58,14 +58,14 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
     };
 
     let difficulty = loop {
-        let unlocked_by = get!(config_content, "exercises", as_array)
+        let unlocked_by = get!(config_content, "exercises" => as_array)
             .iter()
             .find(|exercise| exercise["slug"] == unlocked_by)
             .ok_or(format_err!(
                 "exercise '{}' not found in config",
                 unlocked_by
             ))?;
-        let unlocked_by_difficulty = get!(unlocked_by, "difficulty", as_u64);
+        let unlocked_by_difficulty = get!(unlocked_by, "difficulty" => as_u64);
 
         let available_difficulties: Vec<u64> = [1, 4, 7, 10]
             .iter()
@@ -74,7 +74,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
             .collect();
 
         let default_value = if let Some(existing_config) = existing_config {
-            get!(existing_config, "difficulty", as_u64)
+            get!(existing_config, "difficulty" => as_u64)
         } else {
             *available_difficulties
                 .first()
@@ -177,7 +177,7 @@ fn choose_exercise_insert_index(
             .enumerate()
             .filter(|(_, exercise)| exercise["difficulty"] == *difficulty)
         {
-            exercises_with_similar_difficulty.push((index, get!(exercise, "slug", as_str)));
+            exercises_with_similar_difficulty.push((index, get!(exercise, "slug" => as_str)));
         }
 
         let mut start_index = 0;
@@ -219,8 +219,8 @@ fn choose_exercise_insert_index(
             format!(
                 "{} is placed between {} and {} exercises in difficulty.",
                 exercise_name,
-                get!(exercises[insert_index - 1], "slug", as_str),
-                get!(exercises[insert_index], "slug", as_str),
+                get!(exercises[insert_index - 1], "slug" => as_str),
+                get!(exercises[insert_index], "slug" => as_str),
             )
         };
 
@@ -240,7 +240,7 @@ fn insert_user_config(
     config_content: &mut Value,
     user_config: Value,
 ) -> Result<()> {
-    let exercises = get_mut!(config_content, "exercises", as_array_mut);
+    let exercises = get!(config_content, mutable "exercises" => as_array_mut);
 
     let insert_index =
         choose_exercise_insert_index(exercise_name, exercises, &user_config["difficulty"])?;
@@ -255,7 +255,7 @@ fn update_existing_config(
     config_content: &mut Value,
     user_config: Value,
 ) -> Result<()> {
-    let exercises = get_mut!(config_content, "exercises", as_array_mut);
+    let exercises = get!(config_content, mutable "exercises" => as_array_mut);
 
     let existing_exercise_index = exercises
         .iter()
@@ -291,7 +291,7 @@ pub fn configure_exercise(exercise_name: &str) -> Result<()> {
 
     let mut config_content: Value = serde_json::from_str(&config_content_string)?;
 
-    let config_exists = get!(config_content, "exercises", as_array)
+    let config_exists = get!(config_content, "exercises" => as_array)
         .iter()
         .any(|exercise| exercise["slug"] == exercise_name);
 

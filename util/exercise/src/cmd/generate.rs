@@ -72,7 +72,7 @@ fn generate_tests_from_canonical_data(
 
     let mut test_functions: Vec<String> = Vec::new();
 
-    for case in get!(canonical_data, "cases", as_array) {
+    for case in get!(canonical_data, "cases" => as_array) {
         if let Some(sub_cases) = case.get("cases") {
             for sub_case in val_as!(sub_cases, as_array) {
                 if let Some(property) = sub_case.get("property") {
@@ -188,11 +188,11 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
     fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)?;
 
     if use_maplit {
-        let mut cargo_toml_file = OpenOptions::new()
-            .append(true)
-            .open(exercise_path.join("Cargo.toml"))?;
-
-        cargo_toml_file.write_all(b"maplit = \"1.0.1\"")?;
+        exercise::update_cargo_toml(exercise_name, |cargo_toml| {
+            let deps = get!(cargo_toml, mutable "dependencies" => as_table_mut, "Cargo.toml");
+            deps.insert("maplit".to_string(), toml::Value::String("1.0".to_string()));
+            Ok(())
+        })?;
     }
 
     fs::create_dir(exercise_path.join("tests"))?;

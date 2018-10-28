@@ -42,10 +42,13 @@ lazy_static! {
 #[macro_export]
 macro_rules! val_as {
     ($value:expr, $as:ident) => {
+        val_as!($value, $as, "config.json")
+    };
+    ($value:expr, $as:ident, $file:expr) => {
         $value
             .$as()
             .ok_or_else(|| $crate::errors::Error::SchemaTypeError {
-                file: "config.json".to_string(),
+                file: $file.to_string(),
                 field: stringify!($name).to_string(),
                 as_type: stringify!($as)[3..].to_string(),
             })?
@@ -54,31 +57,41 @@ macro_rules! val_as {
 
 #[macro_export]
 macro_rules! get {
-    ($value:expr, $name:expr) => {
+    ($value:expr, $name:expr, $file:expr) => {
         $value
             .get($name)
-            .ok_or_else(|| $crate::errors::Error::ConfigJsonSchemaError {
+            .ok_or_else(|| $crate::errors::Error::SchemaError {
+                file: $file.to_string(),
                 parent: stringify!($value).to_string(),
                 field: stringify!($name).to_string(),
             })?
     };
-    ($value:expr, $name:expr, $as:ident) => {
+    ($value:expr, $name:expr) => {
+        get!($value, $name, "config.json")
+    };
+    ($value:expr, $name:expr => $as:ident) => {
         val_as!(get!($value, $name), $as)
     };
-}
-
-#[macro_export]
-macro_rules! get_mut {
-    ($value:expr, $name:expr) => {
+    ($value:expr, $name:expr => $as:ident, $file:expr) => {
+        val_as!(get!($value, $name, $file), $as, $file)
+    };
+    ($value:expr, mutable $name:expr, $file:expr) => {
         $value
             .get_mut($name)
-            .ok_or_else(|| $crate::errors::Error::ConfigJsonSchemaError {
+            .ok_or_else(|| $crate::errors::Error::SchemaError {
+                file: $file.to_string(),
                 parent: stringify!($value).to_string(),
                 field: stringify!($name).to_string(),
             })?
     };
-    ($value:expr, $name:expr, $as:ident) => {
-        val_as!(get_mut!($value, $name), $as)
+    ($value:expr, mutable $name:expr) => {
+        get!($value, mutable  $name, "config.json")
+    };
+    ($value:expr, mutable $name:expr => $as:ident) => {
+        val_as!(get!($value, mutable $name), $as)
+    };
+    ($value:expr, mutable $name:expr => $as:ident, $file:expr) => {
+        val_as!(get!($value, mutable $name, $file), $as, $file)
     };
 }
 
@@ -231,8 +244,8 @@ fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
 }
 
 pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> {
-    let description = get!(case, "description", as_str);
-    let property = get!(case, "property", as_str);
+    let description = get!(case, "description" => as_str);
+    let property = get!(case, "property" => as_str);
     let comments = if let Some(comments) = case.get("comments") {
         use Value::*;
         match comments {
@@ -305,34 +318,34 @@ pub fn exercise_exists(exercise_name: &str) -> bool {
         .exists()
 }
 
-// Update the version of the specified exercise in the Cargo.toml file according to the passed canonical data
-pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) -> Result<()> {
+/// Use the supplied update function to update Cargo.toml
+///
+/// This function takes care of the actual parsing, loading, and storing.
+pub fn update_cargo_toml<F>(exercise_name: &str, update: F) -> Result<()>
+where
+    F: Fn(&mut TomlValue) -> Result<()>,
+{
     let cargo_toml_path = Path::new(&*TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
         .join("Cargo.toml");
 
-    let cargo_toml_content = fs::read_to_string(&cargo_toml_path)?;
-
-    let mut cargo_toml: TomlValue = cargo_toml_content.parse()?;
-
-    {
-        let package_table =
-            cargo_toml["package"]
-                .as_table_mut()
-                .ok_or_else(|| errors::Error::SchemaTypeError {
-                    file: "Config.toml".to_string(),
-                    field: "package".to_string(),
-                    as_type: "table".to_string(),
-                })?;
-
-        package_table.insert(
-            "version".to_string(),
-            TomlValue::String(get!(canonical_data, "version", as_str).to_string()),
-        );
-    }
-
+    let mut cargo_toml = fs::read_to_string(&cargo_toml_path)?.parse::<TomlValue>()?;
+    update(&mut cargo_toml)?;
     fs::write(&cargo_toml_path, cargo_toml.to_string())?;
 
     Ok(())
+}
+
+/// Update the version of the specified exercise in the Cargo.toml file according to the canonical data
+pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) -> Result<()> {
+    let version = get!(canonical_data, "version" => as_str);
+    update_cargo_toml(exercise_name, |cargo_toml| {
+        let package_table = get!(cargo_toml, mutable "package" => as_table_mut, "Cargo.toml");
+        package_table.insert(
+            "version".to_string(),
+            TomlValue::String(version.to_string()),
+        );
+        Ok(())
+    })
 }

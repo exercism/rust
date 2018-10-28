@@ -9,11 +9,16 @@ pub enum Error {
     #[fail(display = "IO error: {}", _0)]
     IoError(#[cause] io::Error),
     #[fail(
-        display = "config.json malformed: '{}' must have field '{}'",
+        display = "{} malformed: '{}' must have field '{}'",
+        file,
         parent,
-        field
+        field,
     )]
-    ConfigJsonSchemaError { parent: String, field: String },
+    SchemaError {
+        file: String,
+        parent: String,
+        field: String,
+    },
     #[fail(
         display = "{} malformed: field '{}' must have type '{}'",
         file,
