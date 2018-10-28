@@ -1,6 +1,6 @@
 use exercise::Result;
 use serde_json::Value;
-use std::{collections::HashSet, fs, path::Path};
+use std::{collections::HashSet, fs};
 
 enum DiffType {
     NEW,
@@ -91,12 +91,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
             .collect::<String>()
     );
 
-    let tests_path = Path::new(&*exercise::TRACK_ROOT)
-        .join("exercises")
-        .join(exercise_name)
-        .join("tests")
-        .join(format!("{}.rs", exercise_name));
-
+    let tests_path = exercise::paths::tests(exercise_name);
     fs::write(&tests_path, updated_tests_content.as_bytes())?;
     exercise::rustfmt(&tests_path)?;
 

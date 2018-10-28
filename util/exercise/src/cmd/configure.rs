@@ -3,7 +3,6 @@ use serde_json::{self, Value};
 use std::{
     fs,
     io::{stdin, stdout, Write},
-    path::Path,
 };
 use uuid::Uuid;
 
@@ -285,10 +284,8 @@ pub fn configure_exercise(exercise_name: &str) -> Result<()> {
         exercise_name
     );
 
-    let config_path = Path::new(&*exercise::TRACK_ROOT).join("config.json");
-
+    let config_path = exercise::paths::config_json();
     let config_content_string = fs::read_to_string(&config_path)?;
-
     let mut config_content: Value = serde_json::from_str(&config_content_string)?;
 
     let config_exists = get!(config_content, "exercises" => as_array)

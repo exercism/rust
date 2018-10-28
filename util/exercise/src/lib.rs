@@ -22,22 +22,7 @@ pub mod errors;
 pub mod fetch_configlet;
 pub use errors::Result;
 
-// we look for the track root in various places, but it's never going to change
-// we therefore cache the value for efficiency
-lazy_static! {
-    pub static ref TRACK_ROOT: String = {
-        let rev_parse_output = Command::new("git")
-            .arg("rev-parse")
-            .arg("--show-toplevel")
-            .output()
-            .expect("Failed to get the path to the track repo.");
-
-        String::from_utf8(rev_parse_output.stdout)
-            .expect("git rev-parse produced non-utf8 output")
-            .trim()
-            .to_string()
-    };
-}
+pub mod paths;
 
 #[macro_export]
 macro_rules! val_as {
@@ -96,33 +81,21 @@ macro_rules! get {
 }
 
 pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
-    let track_root = &*TRACK_ROOT;
-    let bin_path = Path::new(track_root).join("bin");
-    let configlet_name_unix = "configlet";
-    let configlet_name_windows = "configlet.exe";
-
-    let configlet_name = if bin_path.join(configlet_name_unix).exists() {
-        configlet_name_unix
-    } else if bin_path.join(configlet_name_windows).exists() {
-        configlet_name_windows
-    } else {
+    let configlet = paths::configlet();
+    if !configlet.exists() {
         println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
 
         let bin_path = fetch_configlet::download()?;
 
-        if bin_path.join(configlet_name_unix).exists() {
-            configlet_name_unix
-        } else if bin_path.join(configlet_name_windows).exists() {
-            configlet_name_windows
-        } else {
+        if !configlet.exists() {
             return Err(
                 format_err!("could not locate configlet after running bin/fetch-configlet").into(),
             );
         }
     };
 
-    Command::new(&bin_path.join(configlet_name))
-        .current_dir(track_root)
+    Command::new(&configlet)
+        .current_dir(paths::track_root())
         .stdout(Stdio::inherit())
         .arg(command)
         .args(args)
@@ -153,13 +126,7 @@ pub fn canonical_file_exists(exercise: &str, file: &str) -> Result<bool> {
 }
 
 pub fn get_tests_content(exercise_name: &str) -> io::Result<String> {
-    let tests_path = Path::new(&*TRACK_ROOT)
-        .join("exercises")
-        .join(exercise_name)
-        .join("tests")
-        .join(format!("{}.rs", exercise_name));
-
-    fs::read_to_string(tests_path)
+    fs::read_to_string(paths::tests(exercise_name))
 }
 
 pub fn format_exercise_description(description: &str) -> String {
@@ -312,10 +279,7 @@ pub fn rustfmt(file_path: &Path) -> Result<()> {
 }
 
 pub fn exercise_exists(exercise_name: &str) -> bool {
-    Path::new(&*TRACK_ROOT)
-        .join("exercises")
-        .join(exercise_name)
-        .exists()
+    paths::exercise(exercise_name).exists()
 }
 
 /// Use the supplied update function to update Cargo.toml
@@ -325,15 +289,10 @@ pub fn update_cargo_toml<F>(exercise_name: &str, update: F) -> Result<()>
 where
     F: Fn(&mut TomlValue) -> Result<()>,
 {
-    let cargo_toml_path = Path::new(&*TRACK_ROOT)
-        .join("exercises")
-        .join(exercise_name)
-        .join("Cargo.toml");
-
+    let cargo_toml_path = paths::cargo_toml(exercise_name);
     let mut cargo_toml = fs::read_to_string(&cargo_toml_path)?.parse::<TomlValue>()?;
     update(&mut cargo_toml)?;
     fs::write(&cargo_toml_path, cargo_toml.to_string())?;
-
     Ok(())
 }
 

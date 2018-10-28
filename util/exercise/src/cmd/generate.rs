@@ -5,7 +5,6 @@ use std::{
     collections::HashMap,
     fs::{self, File, OpenOptions},
     io::Write,
-    path::Path,
     process::{Command, Stdio},
 };
 
@@ -15,8 +14,8 @@ const DESCRIPTION_MD_CONTENT: &'static str = include_str!("defaults/description.
 const METADATA_YML_CONTENT: &'static str = include_str!("defaults/metadata.yml");
 
 // Generate .meta directory and its contents without using the canonical data
-fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
-    let meta_dir = exercise_path.join(".meta");
+fn generate_meta(exercise_name: &str) -> Result<()> {
+    let meta_dir = exercise::paths::dot_meta(exercise_name);
     fs::create_dir(&meta_dir)?;
 
     for (file, content) in [
@@ -26,7 +25,7 @@ fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
         .iter()
     {
         if !exercise::canonical_file_exists(exercise_name, file)? {
-            fs::write(exercise_path.join(".meta").join(file), content)?;
+            fs::write(meta_dir.join(file), content)?;
         }
     }
 
@@ -40,16 +39,12 @@ fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
 // Generate test suite using the canonical data
 fn generate_tests_from_canonical_data(
     exercise_name: &str,
-    exercise_path: &Path,
     canonical_data: &JsonValue,
     use_maplit: bool,
 ) -> Result<()> {
     exercise::update_cargo_toml_version(exercise_name, canonical_data)?;
 
-    let tests_path = exercise_path
-        .join("tests")
-        .join(format!("{}.rs", exercise_name));
-
+    let tests_path = exercise::paths::tests(exercise_name);
     let tests_content = exercise::get_tests_content(exercise_name)?;
 
     let updated_tests_content = format!(
@@ -123,9 +118,8 @@ fn generate_readme(exercise_name: &str) -> Result<()> {
         exercise_name
     );
 
-    let problem_specifications_path = Path::new(&*exercise::TRACK_ROOT)
-        .join("..")
-        .join("problem-specifications");
+    let track_root = exercise::paths::track_root();
+    let problem_specifications_path = track_root.join("..").join("problem-specifications");
 
     if !problem_specifications_path.exists() {
         let problem_specifications_url = "https://github.com/exercism/problem-specifications.git";
@@ -135,7 +129,7 @@ fn generate_readme(exercise_name: &str) -> Result<()> {
         );
 
         Command::new("git")
-            .current_dir(&*exercise::TRACK_ROOT)
+            .current_dir(&track_root)
             .stdout(Stdio::inherit())
             .arg("clone")
             .arg(problem_specifications_url)
@@ -165,9 +159,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         return Err(format_err!("exercise with the name {} already exists", exercise_name,).into());
     }
 
-    let exercise_path = Path::new(&*exercise::TRACK_ROOT)
-        .join("exercises")
-        .join(exercise_name);
+    let exercise_path = exercise::paths::exercise(exercise_name);
 
     println!(
         "Generating a new exercise at path: {}",
@@ -191,13 +183,9 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         exercise::ensure_cargo_toml_maplit(exercise_name)?;
     }
 
-    fs::create_dir(exercise_path.join("tests"))?;
+    fs::create_dir(exercise::paths::tests_dir(exercise_name))?;
 
-    let mut test_file = File::create(
-        exercise_path
-            .join("tests")
-            .join(format!("{}.rs", exercise_name)),
-    )?;
+    let mut test_file = File::create(exercise::paths::tests(exercise_name))?;
 
     if use_maplit {
         test_file.write_all(b"#[macro_use]\nextern crate maplit;\n")?;
@@ -215,12 +203,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         Ok(canonical_data) => {
             println!("Generating tests from canonical data");
 
-            generate_tests_from_canonical_data(
-                &exercise_name,
-                &exercise_path,
-                &canonical_data,
-                use_maplit,
-            )?;
+            generate_tests_from_canonical_data(&exercise_name, &canonical_data, use_maplit)?;
         }
         Err(_) => {
             println!(
@@ -232,7 +215,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         }
     }
 
-    generate_meta(&exercise_name, &exercise_path)?;
+    generate_meta(&exercise_name)?;
     generate_readme(&exercise_name)?;
 
     Ok(())
