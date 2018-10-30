@@ -159,8 +159,7 @@ fn into_literal(item: &Value, use_maplit: bool) -> String {
                     key,
                     into_literal(value, use_maplit)
                 )
-            })
-            .collect::<String>();
+            }).collect::<String>();
 
         format!(
             "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
@@ -233,8 +232,7 @@ pub fn rustfmt(file_path: &Path) {
 
     let rustfmt_is_available = {
         if let Some(path_var) = env::var_os("PATH") {
-            env::split_paths(&path_var)
-                .any(|path| path.join("rustfmt").exists())
+            env::split_paths(&path_var).any(|path| path.join("rustfmt").exists())
         } else {
             false
         }

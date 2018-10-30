@@ -46,8 +46,7 @@ fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
             "---\nblurb: \"{}\"\nsource: \"\"\nsource_url: \"\"",
             exercise_name
         ),
-    )
-    .expect("Failed to create .meta/metadata.yml file");
+    ).expect("Failed to create .meta/metadata.yml file");
 
     let mut tests_file = OpenOptions::new()
         .append(true)
@@ -55,8 +54,7 @@ fn generate_default_meta(exercise_name: &str, exercise_path: &Path) {
             exercise_path
                 .join("tests")
                 .join(format!("{}.rs", exercise_name)),
-        )
-        .unwrap();
+        ).unwrap();
 
     tests_file.write_all(b"// Add your tests here").unwrap();
 }
@@ -244,8 +242,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) {
         exercise_path
             .join("tests")
             .join(format!("{}.rs", exercise_name)),
-    )
-    .expect("Failed to create test suite file");
+    ).expect("Failed to create test suite file");
 
     if use_maplit {
         test_file
