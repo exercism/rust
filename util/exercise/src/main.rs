@@ -48,6 +48,10 @@ fn init_app<'a>() -> ArgMatches<'a> {
                 .about("Edits config.json for the specified exercise")
                 .arg(Arg::with_name("exercise_name").required(true).help("The name of the configured exercise")),
         )
+        .subcommand(
+            SubCommand::with_name("fetch_configlet")
+                .about("Downloads and extracts configlet utility into the repo's /bin directory")
+        )
         .get_matches()
 }
 
@@ -85,6 +89,14 @@ fn process_matches(matches: &ArgMatches) {
 
         ("configure", Some(configure_matches)) => {
             configure::configure_exercise(configure_matches.value_of("exercise_name").unwrap())
+        }
+
+        ("fetch_configlet", Some(_fetch_configlet_matches)) => {
+            if let Ok(fetch_path) = fetch_configlet::download() {
+                println!("Downloaded and moved the configlet utility to the {:?} path", fetch_path);
+            } else {
+                println!("Failed to fetch the configlet utility");
+            }
         }
 
         ("", None) => {
