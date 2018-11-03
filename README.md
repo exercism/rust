@@ -9,7 +9,7 @@ Exercism exercises in Rust
 
 Thank you so much for contributing! :tada:
 
-Please read about how to [get involved in a track](https://github.com/exercism/docs/tree/master/contributing-to-language-tracks). Be sure to read the Exercism [Code of Conduct](https://github.com/exercism/exercism.io/blob/master/CODE_OF_CONDUCT.md).
+Please read about how to [get involved in a track](https://github.com/exercism/docs/tree/master/contributing-to-language-tracks). Be sure to read the Exercism [Code of Conduct](https://exercism.io/code-of-conduct).
 
 We welcome pull requests of all kinds. No contribution is too small.
 
@@ -57,6 +57,18 @@ Before submitting your pull request, you'll want to verify the changes in two wa
 * Run an Exercism-specific linter to verify the track
 
 All the tests for Rust exercises can be run from the top level of the repo with `_test/check-exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
+
+### On modifying the exercises' README
+
+Please note that the README of every exercise is formed using several templates, not all of which are necessarily present on this repo. The most important of these:
+
+- The `description.md` file in the exercise directory from the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises)
+
+- The `.meta/hints.md` file in the exercise directory on this repository
+
+- The [Rust-specific instructions](https://github.com/exercism/rust/blob/master/config/exercise-readme-insert.md)
+
+If you are modifying the section of the README that belongs to the template not from this repository, please consider [opening a PR](https://github.com/exercism/problem-specifications/pulls) on the `problem-specifications` repository first.
 
 ## Contributing a New Exercise
 

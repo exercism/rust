@@ -1,10 +1,13 @@
 #[macro_use]
 extern crate failure;
 extern crate failure_derive;
+extern crate flate2;
+extern crate git2;
 #[macro_use]
 extern crate lazy_static;
 extern crate reqwest;
 extern crate serde_json;
+extern crate tar;
 extern crate toml;
 
 use serde_json::Value;
@@ -16,6 +19,7 @@ use std::{
 use toml::Value as TomlValue;
 
 pub mod errors;
+pub mod fetch_configlet;
 pub use errors::Result;
 
 // we look for the track root in various places, but it's never going to change
@@ -94,13 +98,7 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     } else {
         println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
 
-        // FIXME: Uses bash script that would not work on Windows.
-        // RIIR is preferred.
-        Command::new("bash")
-            .current_dir(track_root)
-            .stdout(Stdio::inherit())
-            .arg(bin_path.join("fetch-configlet"))
-            .output()?;
+        let bin_path = fetch_configlet::download()?;
 
         if bin_path.join(configlet_name_unix).exists() {
             configlet_name_unix
@@ -277,9 +275,7 @@ pub fn rustfmt(file_path: &Path) -> Result<()> {
 
     let rustfmt_is_available = {
         if let Some(path_var) = env::var_os("PATH") {
-            env::split_paths(&path_var)
-                .into_iter()
-                .any(|path| path.join("rustfmt").exists())
+            env::split_paths(&path_var).any(|path| path.join("rustfmt").exists())
         } else {
             false
         }
