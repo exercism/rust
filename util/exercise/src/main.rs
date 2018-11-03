@@ -90,8 +90,11 @@ fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
         }
 
         ("fetch_configlet", Some(_fetch_configlet_matches)) => {
-            if let Ok(fetch_path) = fetch_configlet::download() {
-                println!("Downloaded and moved the configlet utility to the {:?} path", fetch_path);
+            if let Ok(fetch_path) = exercise::fetch_configlet::download() {
+                println!(
+                    "Downloaded and moved the configlet utility to the {:?} path",
+                    fetch_path
+                );
             } else {
                 println!("Failed to fetch the configlet utility");
             }
