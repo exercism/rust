@@ -1,0 +1,13 @@
+/// {{test.description}}
+{%- if test.comment %}
+///
+/// {{test.comment}}{% endif -%}
+fn test_{{ test.description  | slugify | replace(from="-", to="_") }}() {
+    process_{{test.property}}_case(
+        {%- if test.inputs | length > 1 %}({% endif %}
+        {%- for input in test.inputs -%}
+            {{input.literal}}
+            {%- if test.inputs | length > 1 and not loop.last %}, {% endif %}
+        {%- endfor -%}
+        {%- if test.inputs | length > 1 %}){% endif %}, {{test.expect_literal}})
+}

@@ -6,6 +6,9 @@ extern crate git2;
 #[macro_use]
 extern crate lazy_static;
 extern crate reqwest;
+extern crate serde;
+#[macro_use]
+extern crate serde_derive;
 extern crate serde_json;
 extern crate tar;
 extern crate toml;
@@ -22,6 +25,7 @@ pub mod errors;
 pub mod fetch_configlet;
 pub use errors::Result;
 
+pub mod ir;
 pub mod paths;
 
 #[macro_export]
@@ -85,7 +89,7 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     if !configlet.exists() {
         println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
 
-        let bin_path = fetch_configlet::download()?;
+        fetch_configlet::download()?;
 
         if !configlet.exists() {
             return Err(

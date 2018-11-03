@@ -8,10 +8,10 @@ use std::{
     process::{Command, Stdio},
 };
 
-const GITIGNORE_CONTENT: &'static str = include_str!("defaults/gitignore");
-const EXAMPLE_RS_CONTENT: &'static str = include_str!("defaults/example.rs");
-const DESCRIPTION_MD_CONTENT: &'static str = include_str!("defaults/description.md");
-const METADATA_YML_CONTENT: &'static str = include_str!("defaults/metadata.yml");
+const GITIGNORE_CONTENT: &'static str = include_str!("../templates/gitignore");
+const EXAMPLE_RS_CONTENT: &'static str = include_str!("../templates/example.rs");
+const DESCRIPTION_MD_CONTENT: &'static str = include_str!("../templates/description.md");
+const METADATA_YML_CONTENT: &'static str = include_str!("../templates/metadata.yml");
 
 // Generate .meta directory and its contents without using the canonical data
 fn generate_meta(exercise_name: &str) -> Result<()> {
