@@ -61,7 +61,10 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
         let unlocked_by = get!(config_content, "exercises", as_array)
             .iter()
             .find(|exercise| exercise["slug"] == unlocked_by)
-            .ok_or(format_err!("exercise '{}' not found in config", unlocked_by))?;
+            .ok_or(format_err!(
+                "exercise '{}' not found in config",
+                unlocked_by
+            ))?;
         let unlocked_by_difficulty = get!(unlocked_by, "difficulty", as_u64);
 
         let available_difficulties: Vec<u64> = [1, 4, 7, 10]
@@ -237,7 +240,6 @@ fn insert_user_config(
     config_content: &mut Value,
     user_config: Value,
 ) -> Result<()> {
-    // TODO: teach get!() how to handle mutable gets
     let exercises = get_mut!(config_content, "exercises", as_array_mut);
 
     let insert_index =
@@ -253,13 +255,15 @@ fn update_existing_config(
     config_content: &mut Value,
     user_config: Value,
 ) -> Result<()> {
-    // TODO: teach get!() how to handle mutable gets
     let exercises = get_mut!(config_content, "exercises", as_array_mut);
 
     let existing_exercise_index = exercises
         .iter()
         .position(|exercise| exercise["slug"] == exercise_name)
-        .ok_or(format_err!("exercise '{}' not found in config.json", exercise_name))?;
+        .ok_or(format_err!(
+            "exercise '{}' not found in config.json",
+            exercise_name
+        ))?;
 
     let insert_index =
         if exercises[existing_exercise_index]["difficulty"] == user_config["difficulty"] {
