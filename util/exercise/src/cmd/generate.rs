@@ -23,7 +23,7 @@ fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
         ("description.md", DESCRIPTION_MD_CONTENT),
         ("metadata.yml", METADATA_YML_CONTENT),
     ]
-        .iter()
+    .iter()
     {
         if !exercise::canonical_file_exists(exercise_name, file)? {
             fs::write(exercise_path.join(".meta").join(file), content)?;
@@ -183,7 +183,8 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
             exercise_path
                 .to_str()
                 .ok_or(format_err!("path inexpressable as str"))?,
-        ).output()?;
+        )
+        .output()?;
 
     fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)?;
 

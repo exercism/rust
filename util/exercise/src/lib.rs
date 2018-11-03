@@ -84,8 +84,11 @@ macro_rules! get_mut {
 
 pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     let track_root = &*TRACK_ROOT;
+
     let bin_path = Path::new(track_root).join("bin");
+
     let configlet_name_unix = "configlet";
+
     let configlet_name_windows = "configlet.exe";
 
     let configlet_name = if bin_path.join(configlet_name_unix).exists() {
