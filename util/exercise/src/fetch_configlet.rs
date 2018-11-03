@@ -80,7 +80,6 @@ pub fn binpath() -> Result<PathBuf, Error> {
 pub fn download() -> Result<PathBuf, Error> {
     let path = binpath()?;
     let response = reqwest::get(&pkg_url()?)?;
-    let unzipper = GzDecoder::new(response);
-    let mut archive = Archive::new(unzipper);
+    let mut archive = Archive::new(GzDecoder::new(response));
     archive.unpack(&path).map(|_| path).map_err(|e| e.into())
 }

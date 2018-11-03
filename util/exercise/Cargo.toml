@@ -1,16 +1,17 @@
 [package]
 name = "exercise"
-version = "1.1.0"
+version = "1.2.0"
 description = "An utility for creating or updating the exercises on the Exercism Rust track"
 
 [dependencies]
 clap = "2.32.0"
-reqwest = "0.8.8"
-serde_json = "1.0.26"
-toml = "0.4"
-lazy_static = "1.1.0"
-uuid = { version = "0.7", features = ["v4"] }
-failure = "0.1.2"
+failure = "0.1.3"
+failure_derive = "0.1.3"
 flate2 = "1.0"
 git2 = "0.7"
+lazy_static = "1.1.0"
+reqwest = "0.8.8"
+serde_json = "1.0.26"
 tar = "0.4.16"
+toml = "0.4"
+uuid = { version = "0.7", features = ["v4"] }
