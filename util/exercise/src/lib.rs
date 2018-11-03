@@ -88,7 +88,6 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     let configlet = paths::configlet();
     if !configlet.exists() {
         println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
-
         fetch_configlet::download()?;
 
         if !configlet.exists() {
@@ -108,6 +107,7 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     Ok(())
 }
 
+#[inline]
 fn url_for(exercise: &str, file: &str) -> String {
     format!(
         "https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/{}",
@@ -323,7 +323,8 @@ pub fn ensure_cargo_toml_maplit(exercise_name: &str) -> Result<()> {
                 .or_insert(toml::Value::Table(<toml::value::Table>::default())),
             as_table_mut,
             "Cargo.toml"
-        ).insert("maplit".to_string(), toml::Value::String("1.0".to_string()));
+        )
+        .insert("maplit".to_string(), toml::Value::String("1.0".to_string()));
         Ok(())
     })
 }

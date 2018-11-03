@@ -5,7 +5,7 @@ use tar::Archive;
 
 use std::path::PathBuf;
 
-pub const LATEST_URL: &'static str = "https://github.com/exercism/configlet/releases/latest";
+pub const LATEST_URL: &str = "https://github.com/exercism/configlet/releases/latest";
 
 #[cfg(target_os = "macos")]
 pub fn target_os() -> &'static str {

@@ -187,3 +187,14 @@ read_file(
     ::std::fs::File::open("README.md").expect("readme must be present"),
     |f: &::std::fs::File| f.metadata().expect("metadata must be present").len() as usize
 ));
+
+#[test]
+#[ignore]
+fn read_stats_by_ref_returns_wrapped_reader() {
+    use paasio::ReadStats;
+
+    let input =
+        "Why, sometimes I've believed as many as six impossible things before breakfast".as_bytes();
+    let reader = ReadStats::new(input);
+    assert_eq!(reader.get_ref(), &input);
+}
