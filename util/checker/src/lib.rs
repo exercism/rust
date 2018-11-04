@@ -27,5 +27,11 @@ fn get_modifications() -> Vec<String> {
 }
 
 pub fn get_modified_exercises() -> Vec<String> {
-    vec![]
+    let modifications = get_modifications();
+
+    modifications
+        .iter()
+        .filter(|modification| modification.contains("exercises/"))
+        .map(|modified_exercise| modified_exercise.to_string())
+        .collect::<Vec<String>>()
 }
