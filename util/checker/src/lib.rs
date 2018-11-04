@@ -1,4 +1,4 @@
-use std::{path::Path, process::Command};
+use std::{path::{Path, PathBuf}, process::Command};
 
 fn get_track_root() -> String {
     let rev_parse_output = Command::new("git")
@@ -52,9 +52,21 @@ fn get_modifications() -> Vec<String> {
 pub fn get_modified_exercises() -> Vec<String> {
     let modifications = get_modifications();
 
+    let track_root = get_track_root();
+
     modifications
         .iter()
-        .filter(|modification| modification.contains("exercises/"))
-        .map(|modified_exercise| modified_exercise.to_string())
-        .collect::<Vec<String>>()
+        .filter(|modification_path| modification_path.contains("exercises"))
+        .map(|modification_path| {
+            Path::new(modification_path)
+                .iter()
+                .take(2)
+                .collect::<PathBuf>()
+        }).map(|modified_exercise| {
+            Path::new(&track_root)
+                .join(modified_exercise)
+                .to_str()
+                .unwrap()
+                .to_string()
+        }).collect::<Vec<String>>()
 }
