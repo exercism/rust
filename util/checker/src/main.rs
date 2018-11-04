@@ -1,7 +1,7 @@
 use std::{
-    fs::{self, OpenOptions},
-    io::{Seek, SeekFrom, Write},
+    fs,
     path::PathBuf,
+    process::{self, Command},
 };
 
 fn make_reserve_copies(modified_exercise: &PathBuf) {
@@ -62,21 +62,13 @@ fn remove_copies(modified_exercise: &PathBuf) {
 }
 
 fn add_deny_warning_flag(file_path: &PathBuf) {
-    let mut file = OpenOptions::new()
-        .write(true)
-        .read(true)
-        .open(&file_path)
-        .unwrap_or_else(|error| panic!("Failed to open file {:?}: {}", &file_path, error));
+    let file_content = fs::read_to_string(&file_path)
+        .unwrap_or_else(|error| panic!("Failed to read file {:?}: {}", &file_path, error));
 
-    file.seek(SeekFrom::Start(0)).unwrap_or_else(|error| {
-        panic!(
-            "Failed to set an offset for the file {:?}: {}",
-            &file_path, error
-        )
-    });
-
-    file.write_all(b"#![deny(warnings)]")
-        .unwrap_or_else(|error| panic!("Failed to write to file {:?}: {}", &file_path, error));
+    fs::write(
+        &file_path,
+        format!("{}\n{}", "#![deny(warnings)]", file_content),
+    ).unwrap_or_else(|error| panic!("Failed to write to file {:?}: {}", &file_path, error));
 }
 
 fn make_ignore_warnings(modified_exercise: &PathBuf) {
@@ -95,25 +87,49 @@ fn make_ignore_warnings(modified_exercise: &PathBuf) {
     }
 }
 
-fn check_stub(modified_exercise: &PathBuf) {
+fn run_tests(modified_exercise: &PathBuf) -> bool {
+    let cargo_test_output = Command::new("cargo")
+        .args(&["test", "--quiet", "--no-run"])
+        .current_dir(&modified_exercise)
+        .output()
+        .expect("Failed to run cargo test command");
+
+    let status = cargo_test_output.status;
+
+    if !status.success() {
+        println!(
+            "COULD NOT COMPILE {:?}:\n{}",
+            modified_exercise.file_name().unwrap(),
+            String::from_utf8_lossy(&cargo_test_output.stderr)
+        );
+    }
+
+    status.success()
+}
+
+fn check_stub(modified_exercise: &PathBuf) -> bool {
     let allowed_to_not_compile_flag = modified_exercise
         .join(".meta")
         .join("ALLOWED_TO_NOT_COMPILE");
 
     if allowed_to_not_compile_flag.exists() {
         println!(
-            "The stub for {:?} is allowed to not compile.",
+            "The stub for {:?} is allowed to not compile.\n",
             modified_exercise.file_name().unwrap()
         );
 
-        return;
+        return true;
     }
 
     make_reserve_copies(modified_exercise);
 
     make_ignore_warnings(modified_exercise);
 
+    let stub_compiled: bool = run_tests(modified_exercise);
+
     remove_copies(modified_exercise);
+
+    stub_compiled
 }
 
 fn main() {
@@ -129,13 +145,29 @@ fn main() {
 
         return;
     } else {
-        println!(
-            "Found the following modified exercises:\n{:#?}",
-            modified_exercises
-        )
+        println!("Found the following modified exercises:");
+
+        modified_exercises.iter().for_each(|modified_exercise| {
+            println!(
+                "  {}",
+                modified_exercise.file_name().unwrap().to_str().unwrap()
+            )
+        });
+
+        println!();
     }
 
-    modified_exercises
+    if modified_exercises
         .iter()
-        .for_each(|modified_exercise| check_stub(modified_exercise));
+        .map(|modified_exercise| check_stub(modified_exercise))
+        .any(|stub_compiled| !stub_compiled)
+    {
+        println!("Some modified stubs could not be compiled.\nPlease make them compile.");
+
+        process::exit(1);
+    } else {
+        println!("All modified stubs compiled successfully.");
+
+        process::exit(0);
+    }
 }
