@@ -1,4 +1,3 @@
-#[derive(Debug, PartialEq)]
 struct Token<'a> {
     value: &'a str,
 }
