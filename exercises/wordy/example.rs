@@ -37,21 +37,13 @@ pub fn answer(c: &str) -> Option<isize> {
     }
 }
 
-fn evaluate(mut r: isize, operator: &str, operand: isize) -> isize {
-    if operator == "plus" {
-        r += operand;
-        r
-    } else if operator == "minus" {
-        r -= operand;
-        r
-    } else if operator == "multiplied" {
-        r *= operand;
-        r
-    } else if operator == "divided" {
-        r /= operand;
-        r
-    } else {
-        r
+fn evaluate(r: isize, operator: &str, operand: isize) -> isize {
+    match operator {
+        "plus" => r + operand,
+        "minus" => r - operand,
+        "multiplied" => r * operand,
+        "divided" => r / operand,
+        _ => r,
     }
 }
 
