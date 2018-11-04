@@ -1,5 +1,5 @@
 #[derive(Debug, PartialEq)]
-pub struct WordProblem {
+struct WordProblem {
     command: String,
 }
 
@@ -25,14 +25,18 @@ impl Token {
     }
 }
 
+pub fn answer(c: &str) -> Option<isize> {
+    WordProblem::new(c).answer()
+}
+
 impl WordProblem {
-    pub fn new(c: &str) -> Self {
+    fn new(c: &str) -> Self {
         WordProblem {
             command: String::from(c),
         }
     }
 
-    pub fn answer(&self) -> Option<isize> {
+    fn answer(&self) -> Option<isize> {
         let mut t = self.tokens();
         let mut result: isize = 0;
         let mut opr = "plus".to_string();
