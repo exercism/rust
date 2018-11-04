@@ -1,4 +1,8 @@
-use std::{fs, path::PathBuf};
+use std::{
+    fs::{self, OpenOptions},
+    io::{Seek, SeekFrom, Write},
+    path::PathBuf,
+};
 
 fn make_reserve_copies(modified_exercise: &PathBuf) {
     let stub_path = modified_exercise.join("src").join("lib.rs");
@@ -57,6 +61,40 @@ fn remove_copies(modified_exercise: &PathBuf) {
     });
 }
 
+fn add_deny_warning_flag(file_path: &PathBuf) {
+    let mut file = OpenOptions::new()
+        .write(true)
+        .read(true)
+        .open(&file_path)
+        .unwrap_or_else(|error| panic!("Failed to open file {:?}: {}", &file_path, error));
+
+    file.seek(SeekFrom::Start(0)).unwrap_or_else(|error| {
+        panic!(
+            "Failed to set an offset for the file {:?}: {}",
+            &file_path, error
+        )
+    });
+
+    file.write_all(b"#![deny(warnings)]")
+        .unwrap_or_else(|error| panic!("Failed to write to file {:?}: {}", &file_path, error));
+}
+
+fn make_ignore_warnings(modified_exercise: &PathBuf) {
+    let stub_path = modified_exercise.join("src").join("lib.rs");
+
+    let tests_path = modified_exercise.join("tests");
+
+    add_deny_warning_flag(&stub_path);
+
+    for entry in fs::read_dir(&tests_path)
+        .unwrap_or_else(|error| panic!("Failed to read directory {:?}: {}", &tests_path, error))
+    {
+        if let Ok(entry) = entry {
+            add_deny_warning_flag(&entry.path());
+        }
+    }
+}
+
 fn check_stub(modified_exercise: &PathBuf) {
     let allowed_to_not_compile_flag = modified_exercise
         .join(".meta")
@@ -72,6 +110,8 @@ fn check_stub(modified_exercise: &PathBuf) {
     }
 
     make_reserve_copies(modified_exercise);
+
+    make_ignore_warnings(modified_exercise);
 
     remove_copies(modified_exercise);
 }
