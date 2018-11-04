@@ -1,4 +1,7 @@
-use std::{path::{Path, PathBuf}, process::Command};
+use std::{
+    path::{Path, PathBuf},
+    process::Command,
+};
 
 fn get_track_root() -> String {
     let rev_parse_output = Command::new("git")
@@ -12,14 +15,14 @@ fn get_track_root() -> String {
         .to_string()
 }
 
-pub fn get_all_exercises() -> Vec<String> {
+pub fn get_all_exercises() -> Vec<PathBuf> {
     let exercises_path = Path::new(&get_track_root()).join("exercises");
 
     exercises_path
         .read_dir()
         .unwrap_or_else(|_| panic!("Failed to read {:?} directory", &exercises_path))
         .filter(|entry| entry.is_ok() && entry.as_ref().unwrap().path().is_dir())
-        .map(|entry| entry.unwrap().path().to_str().unwrap().to_string())
+        .map(|entry| entry.unwrap().path().to_path_buf())
         .collect()
 }
 
@@ -49,7 +52,7 @@ fn get_modifications() -> Vec<String> {
         .collect()
 }
 
-pub fn get_modified_exercises() -> Vec<String> {
+pub fn get_modified_exercises() -> Vec<PathBuf> {
     let modifications = get_modifications();
 
     let track_root = get_track_root();
@@ -62,11 +65,6 @@ pub fn get_modified_exercises() -> Vec<String> {
                 .iter()
                 .take(2)
                 .collect::<PathBuf>()
-        }).map(|modified_exercise| {
-            Path::new(&track_root)
-                .join(modified_exercise)
-                .to_str()
-                .unwrap()
-                .to_string()
-        }).collect::<Vec<String>>()
+        }).map(|modified_exercise| Path::new(&track_root).join(modified_exercise).to_path_buf())
+        .collect()
 }
