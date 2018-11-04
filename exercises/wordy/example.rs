@@ -1,14 +1,8 @@
-#[derive(Debug, PartialEq)]
-struct WordProblem {
-    command: String,
+struct Token<'a> {
+    value: &'a str,
 }
 
-#[derive(Debug, PartialEq)]
-struct Token {
-    value: String,
-}
-
-impl Token {
+impl <'a> Token<'a> {
     fn is_valid(&self) -> bool {
         !self.value.is_empty() && (self.is_operand() || self.is_operator())
     }
@@ -18,74 +12,54 @@ impl Token {
     }
 
     fn is_operator(&self) -> bool {
-        self.value == String::from("plus")
-            || self.value == String::from("minus")
-            || self.value == String::from("multiplied")
-            || self.value == String::from("divided")
+        self.value == "plus"
+            || self.value == "minus"
+            || self.value == "multiplied"
+            || self.value == "divided"
     }
 }
 
-pub fn answer(c: &str) -> Option<isize> {
-    WordProblem::new(c).answer()
+pub fn answer(c: &str) -> Option<i32> {
+    let mut t = tokens(c);
+    let mut result: i32 = 0;
+    let mut opr = "plus";
+
+    if t.len() <= 1 {
+        None
+    } else {
+        while t.len() > 1 {
+            result = evaluate(result, opr, operand(&t.remove(0)));
+            opr = operator(&t.remove(0));
+        }
+        result = evaluate(result, opr, operand(&t.remove(0)));
+        Some(result)
+    }
 }
 
-impl WordProblem {
-    fn new(c: &str) -> Self {
-        WordProblem {
-            command: String::from(c),
-        }
+fn evaluate(r: i32, operator: &str, operand: i32) -> i32 {
+    match operator {
+        "plus" => r + operand,
+        "minus" => r - operand,
+        "multiplied" => r * operand,
+        "divided" => r / operand,
+        _ => r,
     }
+}
 
-    fn answer(&self) -> Option<isize> {
-        let mut t = self.tokens();
-        let mut result: isize = 0;
-        let mut opr = "plus".to_string();
+fn operand(t: &Token) -> i32 {
+    t.value.parse().unwrap()
+}
 
-        if t.len() <= 1 {
-            None
-        } else {
-            while t.len() > 1 {
-                result = self.evaluate(result, opr, self.operand(&t.remove(0)));
-                opr = self.operator(&t.remove(0));
-            }
-            result = self.evaluate(result, opr, self.operand(&t.remove(0)));
-            Some(result)
-        }
-    }
+fn operator<'a>(t: &Token<'a>) -> &'a str {
+    t.value
+}
 
-    fn evaluate(&self, mut r: isize, operator: String, operand: isize) -> isize {
-        if operator == String::from("plus") {
-            r += operand;
-            r
-        } else if operator == String::from("minus") {
-            r -= operand;
-            r
-        } else if operator == String::from("multiplied") {
-            r *= operand;
-            r
-        } else if operator == String::from("divided") {
-            r /= operand;
-            r
-        } else {
-            r
-        }
-    }
-
-    fn operand(&self, t: &Token) -> isize {
-        t.value.parse().unwrap()
-    }
-
-    fn operator(&self, t: &Token) -> String {
-        String::from(t.value.clone())
-    }
-
-    fn tokens(&self) -> Vec<Token> {
-        self.command
-            .split(|c: char| c.is_whitespace() || c == '?')
-            .map(|w| Token {
-                value: String::from(w),
-            })
-            .filter(|t| t.is_valid())
-            .collect()
-    }
+fn tokens<'a>(command: &'a str) -> Vec<Token<'a>> {
+    command
+        .split(|c: char| c.is_whitespace() || c == '?')
+        .map(|w| Token {
+            value: w,
+        })
+        .filter(|t| t.is_valid())
+        .collect()
 }
