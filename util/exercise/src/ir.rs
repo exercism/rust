@@ -5,7 +5,9 @@
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Property {
-    name: String, inputs: String }
+    name: String,
+    inputs: String,
+}
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Input {
@@ -22,19 +24,15 @@ pub struct NewTest {
     expect_literal: String,
 }
 
-
 pub enum Test {
     New(NewTest),
     Existing(String),
 }
 
-
 pub enum Case {
     Test(Test),
     Cases { comment: String, case: Vec<Case> },
 }
-
-
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Tests {

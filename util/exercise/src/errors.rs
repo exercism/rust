@@ -10,7 +10,9 @@ pub enum Error {
     IoError(#[cause] io::Error),
     #[fail(
         display = "{} malformed: '{}' must have field '{}'",
-        file, parent, field
+        file,
+        parent,
+        field
     )]
     SchemaError {
         file: String,
@@ -19,7 +21,9 @@ pub enum Error {
     },
     #[fail(
         display = "{} malformed: field '{}' must have type '{}'",
-        file, field, as_type
+        file,
+        field,
+        as_type
     )]
     SchemaTypeError {
         file: String,

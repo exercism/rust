@@ -323,8 +323,7 @@ pub fn ensure_cargo_toml_maplit(exercise_name: &str) -> Result<()> {
                 .or_insert(toml::Value::Table(<toml::value::Table>::default())),
             as_table_mut,
             "Cargo.toml"
-        )
-        .insert("maplit".to_string(), toml::Value::String("1.0".to_string()));
+        ).insert("maplit".to_string(), toml::Value::String("1.0".to_string()));
         Ok(())
     })
 }
