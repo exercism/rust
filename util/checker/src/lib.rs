@@ -1,5 +1,17 @@
 use std::process::Command;
 
+fn get_track_root() -> String {
+    let rev_parse_output = Command::new("git")
+        .args(&["rev-parse", "--show-toplevel"])
+        .output()
+        .expect("Failed to execute 'git rev-parse --show-toplevel' command");
+
+    String::from_utf8(rev_parse_output.stdout)
+        .expect("Failed to convert 'git rev-parse' output into UTF-8 String")
+        .trim()
+        .to_string()
+}
+
 pub fn get_current_branch_name() -> String {
     let rev_parse_output = Command::new("git")
         .args(&["rev-parse", "--abbrev-ref", "HEAD"])
