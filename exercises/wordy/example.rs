@@ -1,9 +1,9 @@
 #[derive(Debug, PartialEq)]
-struct Token {
-    value: String,
+struct Token<'a> {
+    value: &'a str,
 }
 
-impl Token {
+impl <'a> Token<'a> {
     fn is_valid(&self) -> bool {
         !self.value.is_empty() && (self.is_operand() || self.is_operator())
     }
@@ -13,17 +13,17 @@ impl Token {
     }
 
     fn is_operator(&self) -> bool {
-        self.value == String::from("plus")
-            || self.value == String::from("minus")
-            || self.value == String::from("multiplied")
-            || self.value == String::from("divided")
+        self.value == "plus"
+            || self.value == "minus"
+            || self.value == "multiplied"
+            || self.value == "divided"
     }
 }
 
 pub fn answer(c: &str) -> Option<isize> {
     let mut t = tokens(c);
     let mut result: isize = 0;
-    let mut opr = "plus".to_string();
+    let mut opr = "plus";
 
     if t.len() <= 1 {
         None
@@ -37,17 +37,17 @@ pub fn answer(c: &str) -> Option<isize> {
     }
 }
 
-fn evaluate(mut r: isize, operator: String, operand: isize) -> isize {
-    if operator == String::from("plus") {
+fn evaluate(mut r: isize, operator: &str, operand: isize) -> isize {
+    if operator == "plus" {
         r += operand;
         r
-    } else if operator == String::from("minus") {
+    } else if operator == "minus" {
         r -= operand;
         r
-    } else if operator == String::from("multiplied") {
+    } else if operator == "multiplied" {
         r *= operand;
         r
-    } else if operator == String::from("divided") {
+    } else if operator == "divided" {
         r /= operand;
         r
     } else {
@@ -59,15 +59,15 @@ fn operand(t: &Token) -> isize {
     t.value.parse().unwrap()
 }
 
-fn operator(t: &Token) -> String {
-    String::from(t.value.clone())
+fn operator<'a>(t: &Token<'a>) -> &'a str {
+    t.value
 }
 
-fn tokens(command: &str) -> Vec<Token> {
+fn tokens<'a>(command: &'a str) -> Vec<Token<'a>> {
     command
         .split(|c: char| c.is_whitespace() || c == '?')
         .map(|w| Token {
-            value: String::from(w),
+            value: w,
         })
         .filter(|t| t.is_valid())
         .collect()
