@@ -19,9 +19,9 @@ impl <'a> Token<'a> {
     }
 }
 
-pub fn answer(c: &str) -> Option<isize> {
+pub fn answer(c: &str) -> Option<i32> {
     let mut t = tokens(c);
-    let mut result: isize = 0;
+    let mut result: i32 = 0;
     let mut opr = "plus";
 
     if t.len() <= 1 {
@@ -36,7 +36,7 @@ pub fn answer(c: &str) -> Option<isize> {
     }
 }
 
-fn evaluate(r: isize, operator: &str, operand: isize) -> isize {
+fn evaluate(r: i32, operator: &str, operand: i32) -> i32 {
     match operator {
         "plus" => r + operand,
         "minus" => r - operand,
@@ -46,7 +46,7 @@ fn evaluate(r: isize, operator: &str, operand: isize) -> isize {
     }
 }
 
-fn operand(t: &Token) -> isize {
+fn operand(t: &Token) -> i32 {
     t.value.parse().unwrap()
 }
 
