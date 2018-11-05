@@ -1,7 +1,6 @@
 use std::{
     error, fmt, io,
     path::{Path, PathBuf},
-    process::Command,
     string::FromUtf8Error,
 };
 
@@ -54,13 +53,25 @@ macro_rules! into_io_command_error {
     };
 }
 
+macro_rules! io_command {
+    ($command: expr) => {{
+        let command = $command;
+
+        let command_splitted = command.split(' ').collect::<Vec<&str>>();
+
+        let cmd = &command_splitted[0];
+
+        let args = &command_splitted[1..];
+
+        std::process::Command::new(cmd)
+            .args(args)
+            .output()
+            .map_err(into_io_command_error!(command.to_string()))?
+    }};
+}
+
 fn get_track_root() -> Result<String, OSInteractionError> {
-    let rev_parse_output = Command::new("git")
-        .args(&["rev-parse", "--show-toplevel"])
-        .output()
-        .map_err(into_io_command_error!(
-            "git rev-parse --show-toplevel".to_string()
-        ))?;
+    let rev_parse_output = io_command!("git rev-parse --show-toplevel");
 
     Ok(String::from_utf8(rev_parse_output.stdout)?
         .trim()
@@ -86,12 +97,7 @@ pub fn get_all_exercises() -> Result<Vec<PathBuf>, OSInteractionError> {
 }
 
 pub fn get_current_branch_name() -> Result<String, OSInteractionError> {
-    let rev_parse_output = Command::new("git")
-        .args(&["rev-parse", "--abbrev-ref", "HEAD"])
-        .output()
-        .map_err(into_io_command_error!(
-            "git rev-parse --abbrev-ref HEAD".to_string()
-        ))?;
+    let rev_parse_output = io_command!("git rev-parse --abbrev-ref HEAD");
 
     Ok(String::from_utf8(rev_parse_output.stdout)?
         .trim()
@@ -99,12 +105,7 @@ pub fn get_current_branch_name() -> Result<String, OSInteractionError> {
 }
 
 fn get_modifications() -> Result<Vec<String>, OSInteractionError> {
-    let diff_output = Command::new("git")
-        .args(&["diff", "--name-only", "master"])
-        .output()
-        .map_err(into_io_command_error!(
-            "git diff --name-only master".to_string()
-        ))?;
+    let diff_output = io_command!("git diff --name-only master");
 
     Ok(String::from_utf8(diff_output.stdout)?
         .trim()
