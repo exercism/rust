@@ -16,93 +16,145 @@ fn generate_paths_and_copies(modified_exercise: &Path) -> [(PathBuf, PathBuf); 2
     [(stub_path, stub_path_copy), (tests_path, tests_path_copy)]
 }
 
-fn make_reserve_copies(modified_exercise: &Path) {
+fn make_reserve_copies(modified_exercise: &Path) -> Result<(), checker::OSInteractionError> {
     let paths_and_copies = generate_paths_and_copies(modified_exercise);
 
     let (ref stub_path, ref stub_path_copy) = paths_and_copies[0];
 
     let (ref tests_path, ref tests_path_copy) = paths_and_copies[1];
 
-    fs::copy(&stub_path, &stub_path_copy)
-        .unwrap_or_else(|_| panic!("Failed to make a reserve copy for {:?}", &stub_path));
+    fs::copy(&stub_path, &stub_path_copy).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!("make a reserve copy for {}", &stub_path.display()),
+            io_error,
+        )
+    })?;
 
     if !tests_path_copy.exists() {
-        fs::create_dir(&tests_path_copy)
-            .unwrap_or_else(|_| panic!("Failed to create {:?} directory", &tests_path_copy));
+        fs::create_dir(&tests_path_copy).map_err(|io_error| {
+            checker::OSInteractionError::IOCommandError(
+                format!("create a new directory {}", &tests_path_copy.display()),
+                io_error,
+            )
+        })?;
     }
 
-    for tests_entry in fs::read_dir(&tests_path)
-        .unwrap_or_else(|_| panic!("Failed to read {:?} directory", &tests_path))
-    {
+    for tests_entry in fs::read_dir(&tests_path).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!("read the {} directory", &tests_path.display()),
+            io_error,
+        )
+    })? {
         if let Ok(tests_entry) = tests_entry {
             let entry_path = tests_entry.path();
+
             fs::copy(
                 &entry_path,
                 &tests_path_copy.join(entry_path.file_name().unwrap()),
-            ).unwrap_or_else(|_| panic!("Failed to make a reserve copy for {:?}", entry_path));
+            ).map_err(|io_error| {
+                checker::OSInteractionError::IOCommandError(
+                    format!("make a reserve copy for {}", &entry_path.display()),
+                    io_error,
+                )
+            })?;
         }
     }
+
+    Ok(())
 }
 
-fn remove_copies(modified_exercise: &Path) {
+fn remove_copies(modified_exercise: &Path) -> Result<(), checker::OSInteractionError> {
     let paths_and_copies = generate_paths_and_copies(modified_exercise);
 
     let (ref stub_path, ref stub_path_copy) = paths_and_copies[0];
 
     let (ref tests_path, ref tests_path_copy) = paths_and_copies[1];
 
-    fs::rename(&stub_path_copy, &stub_path).unwrap_or_else(|error| {
-        panic!(
-            "Failed to rename {:?} to {:?}: {}",
-            &stub_path_copy, &stub_path, error
+    fs::rename(&stub_path_copy, &stub_path).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!(
+                "rename {} to {}",
+                &stub_path_copy.display(),
+                &stub_path.display()
+            ),
+            io_error,
         )
-    });
+    })?;
 
-    fs::remove_dir_all(&tests_path)
-        .unwrap_or_else(|error| panic!("Failed to delete directory {:?}: {}", &tests_path, error));
-
-    fs::rename(&tests_path_copy, &tests_path).unwrap_or_else(|error| {
-        panic!(
-            "Failed to rename {:?} to {:?}: {}",
-            &tests_path_copy, &tests_path, error
+    fs::remove_dir_all(&tests_path).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!("delete the {} directory", &tests_path.display(),),
+            io_error,
         )
-    });
+    })?;
+
+    fs::rename(&tests_path_copy, &tests_path).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!(
+                "rename {} to {}",
+                &tests_path_copy.display(),
+                &tests_path.display()
+            ),
+            io_error,
+        )
+    })?;
+
+    Ok(())
 }
 
-fn add_deny_warning_flag(file_path: &Path) {
-    let file_content = fs::read_to_string(&file_path)
-        .unwrap_or_else(|error| panic!("Failed to read file {:?}: {}", &file_path, error));
+fn add_deny_warning_flag(file_path: &Path) -> Result<(), checker::OSInteractionError> {
+    let file_content = fs::read_to_string(&file_path).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!("read the {} file", &file_path.display()),
+            io_error,
+        )
+    })?;
 
     fs::write(
         &file_path,
         format!("{}\n{}", "#![deny(warnings)]", file_content),
-    ).unwrap_or_else(|error| panic!("Failed to write to file {:?}: {}", &file_path, error));
+    ).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!("write to the {} file", &file_path.display()),
+            io_error,
+        )
+    })
 }
 
-fn make_ignore_warnings(modified_exercise: &Path) {
+fn make_ignore_warnings(modified_exercise: &Path) -> Result<(), checker::OSInteractionError> {
     let paths_and_copies = generate_paths_and_copies(modified_exercise);
 
     let (ref stub_path, _) = paths_and_copies[0];
 
     let (ref tests_path, _) = paths_and_copies[1];
 
-    add_deny_warning_flag(&stub_path);
+    add_deny_warning_flag(&stub_path)?;
 
-    for entry in fs::read_dir(&tests_path)
-        .unwrap_or_else(|error| panic!("Failed to read directory {:?}: {}", &tests_path, error))
-    {
+    for entry in fs::read_dir(&tests_path).map_err(|io_error| {
+        checker::OSInteractionError::IOCommandError(
+            format!("read the {} directory", &tests_path.display()),
+            io_error,
+        )
+    })? {
         if let Ok(entry) = entry {
-            add_deny_warning_flag(&entry.path());
+            add_deny_warning_flag(&entry.path())?;
         }
     }
+
+    Ok(())
 }
 
-fn run_tests(modified_exercise: &Path) -> bool {
+fn run_tests(modified_exercise: &Path) -> Result<bool, checker::OSInteractionError> {
     let cargo_test_output = Command::new("cargo")
         .args(&["test", "--quiet", "--no-run"])
         .current_dir(&modified_exercise)
         .output()
-        .expect("Failed to run cargo test command");
+        .map_err(|io_error| {
+            checker::OSInteractionError::IOCommandError(
+                "cargo test --quiet --no-run".to_string(),
+                io_error,
+            )
+        })?;
 
     let status = cargo_test_output.status;
 
@@ -110,14 +162,14 @@ fn run_tests(modified_exercise: &Path) -> bool {
         println!(
             "COULD NOT COMPILE {}:\n{}",
             modified_exercise.file_name().unwrap().to_str().unwrap(),
-            String::from_utf8_lossy(&cargo_test_output.stderr)
+            String::from_utf8(cargo_test_output.stderr)?
         );
     }
 
-    status.success()
+    Ok(status.success())
 }
 
-fn check_stub(modified_exercise: &Path) -> bool {
+fn check_stub(modified_exercise: &Path) -> Result<bool, checker::OSInteractionError> {
     let allowed_to_not_compile_flag = modified_exercise
         .join(".meta")
         .join("ALLOWED_TO_NOT_COMPILE");
@@ -128,18 +180,18 @@ fn check_stub(modified_exercise: &Path) -> bool {
             modified_exercise.file_name().unwrap()
         );
 
-        return true;
+        return Ok(true);
     }
 
-    make_reserve_copies(modified_exercise);
+    make_reserve_copies(modified_exercise)?;
 
-    make_ignore_warnings(modified_exercise);
+    make_ignore_warnings(modified_exercise)?;
 
-    let stub_compiled: bool = run_tests(modified_exercise);
+    let stub_compiled: bool = run_tests(modified_exercise)?;
 
-    remove_copies(modified_exercise);
+    remove_copies(modified_exercise)?;
 
-    stub_compiled
+    Ok(stub_compiled)
 }
 
 pub fn check_stubs_compile() -> Result<i32, checker::OSInteractionError> {
@@ -167,12 +219,24 @@ pub fn check_stubs_compile() -> Result<i32, checker::OSInteractionError> {
         println!();
     }
 
-    if modified_exercises
-        .iter()
-        .map(|modified_exercise| check_stub(modified_exercise))
-        .any(|stub_compiled| !stub_compiled)
-    {
-        println!("Some modified stubs could not be compiled.\nPlease make them compile.");
+    let mut broken_exercises = vec![];
+
+    for modified_exercise in &modified_exercises {
+        let stub_compiled = check_stub(modified_exercise)?;
+
+        if !stub_compiled {
+            broken_exercises.push(modified_exercise.file_name().unwrap().to_str().unwrap());
+        }
+    }
+
+    if !broken_exercises.is_empty() {
+        println!(
+            "Some modified stubs could not be compiled. Please make them compile:\n{}",
+            broken_exercises
+                .iter()
+                .map(|broken_exercise| format!(" {}\n", broken_exercise))
+                .collect::<String>()
+        );
 
         Ok(1)
     } else {
