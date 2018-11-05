@@ -48,16 +48,19 @@ impl From<FromUtf8Error> for OSInteractionError {
     }
 }
 
+macro_rules! into_io_command_error {
+    ($failed_command: expr) => {
+        |io_error| OSInteractionError::IOCommandError($failed_command, io_error)
+    };
+}
+
 fn get_track_root() -> Result<String, OSInteractionError> {
     let rev_parse_output = Command::new("git")
         .args(&["rev-parse", "--show-toplevel"])
         .output()
-        .map_err(|io_error| {
-            OSInteractionError::IOCommandError(
-                "git rev-parse --show-toplevel".to_string(),
-                io_error,
-            )
-        })?;
+        .map_err(into_io_command_error!(
+            "git rev-parse --show-toplevel".to_string()
+        ))?;
 
     Ok(String::from_utf8(rev_parse_output.stdout)?
         .trim()
@@ -69,12 +72,12 @@ pub fn get_all_exercises() -> Result<Vec<PathBuf>, OSInteractionError> {
 
     let exercises_path = Path::new(&track_root).join("exercises");
 
-    let exercises_dir = exercises_path.read_dir().map_err(|io_error| {
-        OSInteractionError::IOCommandError(
-            format!("read {} directory", &exercises_path.display()),
-            io_error,
-        )
-    })?;
+    let exercises_dir = exercises_path
+        .read_dir()
+        .map_err(into_io_command_error!(format!(
+            "read {} directory",
+            &exercises_path.display()
+        )))?;
 
     Ok(exercises_dir
         .filter(|entry| entry.is_ok() && entry.as_ref().unwrap().path().is_dir())
@@ -86,12 +89,9 @@ pub fn get_current_branch_name() -> Result<String, OSInteractionError> {
     let rev_parse_output = Command::new("git")
         .args(&["rev-parse", "--abbrev-ref", "HEAD"])
         .output()
-        .map_err(|io_error| {
-            OSInteractionError::IOCommandError(
-                "git rev-parse --abbrev-ref HEAD".to_string(),
-                io_error,
-            )
-        })?;
+        .map_err(into_io_command_error!(
+            "git rev-parse --abbrev-ref HEAD".to_string()
+        ))?;
 
     Ok(String::from_utf8(rev_parse_output.stdout)?
         .trim()
@@ -102,9 +102,9 @@ fn get_modifications() -> Result<Vec<String>, OSInteractionError> {
     let diff_output = Command::new("git")
         .args(&["diff", "--name-only", "master"])
         .output()
-        .map_err(|io_error| {
-            OSInteractionError::IOCommandError("git diff --name-only master".to_string(), io_error)
-        })?;
+        .map_err(into_io_command_error!(
+            "git diff --name-only master".to_string()
+        ))?;
 
     Ok(String::from_utf8(diff_output.stdout)?
         .trim()
