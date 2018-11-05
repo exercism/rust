@@ -1,6 +1,6 @@
-use std::{fs, path::PathBuf, process::Command};
+use std::{fs, path::Path, process::Command};
 
-fn make_reserve_copies(modified_exercise: &PathBuf) {
+fn make_reserve_copies(modified_exercise: &Path) {
     let stub_path = modified_exercise.join("src").join("lib.rs");
 
     let stub_path_copy = modified_exercise.join("src").join("lib.rs.orig");
@@ -30,7 +30,7 @@ fn make_reserve_copies(modified_exercise: &PathBuf) {
     }
 }
 
-fn remove_copies(modified_exercise: &PathBuf) {
+fn remove_copies(modified_exercise: &Path) {
     let stub_path = modified_exercise.join("src").join("lib.rs");
 
     let stub_path_copy = modified_exercise.join("src").join("lib.rs.orig");
@@ -57,7 +57,7 @@ fn remove_copies(modified_exercise: &PathBuf) {
     });
 }
 
-fn add_deny_warning_flag(file_path: &PathBuf) {
+fn add_deny_warning_flag(file_path: &Path) {
     let file_content = fs::read_to_string(&file_path)
         .unwrap_or_else(|error| panic!("Failed to read file {:?}: {}", &file_path, error));
 
@@ -67,7 +67,7 @@ fn add_deny_warning_flag(file_path: &PathBuf) {
     ).unwrap_or_else(|error| panic!("Failed to write to file {:?}: {}", &file_path, error));
 }
 
-fn make_ignore_warnings(modified_exercise: &PathBuf) {
+fn make_ignore_warnings(modified_exercise: &Path) {
     let stub_path = modified_exercise.join("src").join("lib.rs");
 
     let tests_path = modified_exercise.join("tests");
@@ -83,7 +83,7 @@ fn make_ignore_warnings(modified_exercise: &PathBuf) {
     }
 }
 
-fn run_tests(modified_exercise: &PathBuf) -> bool {
+fn run_tests(modified_exercise: &Path) -> bool {
     let cargo_test_output = Command::new("cargo")
         .args(&["test", "--quiet", "--no-run"])
         .current_dir(&modified_exercise)
@@ -103,7 +103,7 @@ fn run_tests(modified_exercise: &PathBuf) -> bool {
     status.success()
 }
 
-fn check_stub(modified_exercise: &PathBuf) -> bool {
+fn check_stub(modified_exercise: &Path) -> bool {
     let allowed_to_not_compile_flag = modified_exercise
         .join(".meta")
         .join("ALLOWED_TO_NOT_COMPILE");
@@ -131,7 +131,7 @@ fn check_stub(modified_exercise: &PathBuf) -> bool {
 pub fn check_stubs_compile() -> Result<i32, checker::OSInteractionError> {
     let branch_name = checker::get_current_branch_name()?;
 
-    let modified_exercises: Vec<PathBuf> = match branch_name.as_ref() {
+    let modified_exercises = match branch_name.as_ref() {
         "master" => checker::get_all_exercises()?,
         _ => checker::get_modified_exercises()?,
     };
