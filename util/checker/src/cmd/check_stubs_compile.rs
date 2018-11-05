@@ -1,8 +1,4 @@
-use std::{
-    fs,
-    path::PathBuf,
-    process::{self, Command},
-};
+use std::{fs, path::PathBuf, process::Command};
 
 fn make_reserve_copies(modified_exercise: &PathBuf) {
     let stub_path = modified_exercise.join("src").join("lib.rs");
@@ -132,18 +128,18 @@ fn check_stub(modified_exercise: &PathBuf) -> bool {
     stub_compiled
 }
 
-pub fn check_stubs_compile() {
-    let branch_name = checker::get_current_branch_name();
+pub fn check_stubs_compile() -> Result<i32, checker::OSInteractionError> {
+    let branch_name = checker::get_current_branch_name()?;
 
     let modified_exercises: Vec<PathBuf> = match branch_name.as_ref() {
-        "master" => checker::get_all_exercises(),
-        _ => checker::get_modified_exercises(),
+        "master" => checker::get_all_exercises()?,
+        _ => checker::get_modified_exercises()?,
     };
 
     if modified_exercises.is_empty() {
         println!("No exercise was modified. Aborting.");
 
-        return;
+        return Ok(0);
     } else {
         println!("Found the following modified exercises:");
 
@@ -164,10 +160,10 @@ pub fn check_stubs_compile() {
     {
         println!("Some modified stubs could not be compiled.\nPlease make them compile.");
 
-        process::exit(1);
+        Ok(1)
     } else {
         println!("All modified stubs compiled successfully.");
 
-        process::exit(0);
+        Ok(0)
     }
 }

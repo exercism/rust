@@ -1,63 +1,124 @@
 use std::{
+    error, fmt, io,
     path::{Path, PathBuf},
     process::Command,
+    string::FromUtf8Error,
 };
 
-fn get_track_root() -> String {
+#[derive(Debug)]
+pub enum OSInteractionError {
+    IOCommandError(String, io::Error),
+    ParseOutputError(FromUtf8Error),
+}
+
+impl fmt::Display for OSInteractionError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            OSInteractionError::IOCommandError(ref failed_command, ref io_error) => write!(
+                f,
+                "Failed to run the '{}' command:\n{}\n",
+                failed_command, io_error
+            ),
+            OSInteractionError::ParseOutputError(ref parse_error) => {
+                write!(f, "Failed to parse command output:\n{}\n", parse_error)
+            }
+        }
+    }
+}
+
+impl error::Error for OSInteractionError {
+    fn description(&self) -> &str {
+        match *self {
+            OSInteractionError::IOCommandError(_, ref io_error) => io_error.description(),
+            OSInteractionError::ParseOutputError(ref parse_error) => parse_error.description(),
+        }
+    }
+
+    fn cause(&self) -> Option<&error::Error> {
+        match *self {
+            OSInteractionError::IOCommandError(_, ref io_error) => Some(io_error),
+            OSInteractionError::ParseOutputError(ref parse_error) => Some(parse_error),
+        }
+    }
+}
+
+impl From<FromUtf8Error> for OSInteractionError {
+    fn from(err: FromUtf8Error) -> OSInteractionError {
+        OSInteractionError::ParseOutputError(err)
+    }
+}
+
+fn get_track_root() -> Result<String, OSInteractionError> {
     let rev_parse_output = Command::new("git")
         .args(&["rev-parse", "--show-toplevel"])
         .output()
-        .expect("Failed to execute 'git rev-parse --show-toplevel' command");
+        .map_err(|io_error| {
+            OSInteractionError::IOCommandError(
+                "git rev-parse --show-toplevel".to_string(),
+                io_error,
+            )
+        })?;
 
-    String::from_utf8(rev_parse_output.stdout)
-        .expect("Failed to convert 'git rev-parse' output into UTF-8 String")
+    Ok(String::from_utf8(rev_parse_output.stdout)?
         .trim()
-        .to_string()
+        .to_string())
 }
 
-pub fn get_all_exercises() -> Vec<PathBuf> {
-    let exercises_path = Path::new(&get_track_root()).join("exercises");
+pub fn get_all_exercises() -> Result<Vec<PathBuf>, OSInteractionError> {
+    let track_root = get_track_root()?;
 
-    exercises_path
-        .read_dir()
-        .unwrap_or_else(|_| panic!("Failed to read {:?} directory", &exercises_path))
+    let exercises_path = Path::new(&track_root).join("exercises");
+
+    let exercises_dir = exercises_path.read_dir().map_err(|io_error| {
+        OSInteractionError::IOCommandError(
+            format!("read {} directory", &exercises_path.display()),
+            io_error,
+        )
+    })?;
+
+    Ok(exercises_dir
         .filter(|entry| entry.is_ok() && entry.as_ref().unwrap().path().is_dir())
         .map(|entry| entry.unwrap().path().to_path_buf())
-        .collect()
+        .collect())
 }
 
-pub fn get_current_branch_name() -> String {
+pub fn get_current_branch_name() -> Result<String, OSInteractionError> {
     let rev_parse_output = Command::new("git")
         .args(&["rev-parse", "--abbrev-ref", "HEAD"])
         .output()
-        .expect("Failed to execute 'git rev-parse --abbrev-ref HEAD' command");
+        .map_err(|io_error| {
+            OSInteractionError::IOCommandError(
+                "git rev-parse --abbrev-ref HEAD".to_string(),
+                io_error,
+            )
+        })?;
 
-    String::from_utf8(rev_parse_output.stdout)
-        .expect("Failed to convert 'git rev-parse' output into UTF-8 String")
+    Ok(String::from_utf8(rev_parse_output.stdout)?
         .trim()
-        .to_string()
+        .to_string())
 }
 
-fn get_modifications() -> Vec<String> {
+fn get_modifications() -> Result<Vec<String>, OSInteractionError> {
     let diff_output = Command::new("git")
         .args(&["diff", "--name-only", "master"])
         .output()
-        .expect("Failed to execute 'git diff --name-only master' command");
+        .map_err(|io_error| {
+            OSInteractionError::IOCommandError("git diff --name-only master".to_string(), io_error)
+        })?;
 
-    String::from_utf8(diff_output.stdout)
-        .unwrap()
+    Ok(String::from_utf8(diff_output.stdout)?
         .trim()
         .split('\n')
         .map(|x| x.to_owned())
-        .collect()
+        .collect())
 }
 
-pub fn get_modified_exercises() -> Vec<PathBuf> {
-    let modifications = get_modifications();
+pub fn get_modified_exercises() -> Result<Vec<PathBuf>, OSInteractionError> {
+    let modifications = get_modifications()?;
 
-    let track_root = get_track_root();
+    let track_root = get_track_root()?;
 
-    modifications
+    Ok(modifications
         .iter()
         .filter(|modification_path| modification_path.contains("exercises"))
         .map(|modification_path| {
@@ -66,5 +127,5 @@ pub fn get_modified_exercises() -> Vec<PathBuf> {
                 .take(2)
                 .collect::<PathBuf>()
         }).map(|modified_exercise| Path::new(&track_root).join(modified_exercise).to_path_buf())
-        .collect()
+        .collect())
 }
