@@ -1,13 +1,27 @@
-use std::{fs, path::Path, process::Command};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+    process::Command,
+};
 
-fn make_reserve_copies(modified_exercise: &Path) {
+fn generate_paths_and_copies(modified_exercise: &Path) -> [(PathBuf, PathBuf); 2] {
     let stub_path = modified_exercise.join("src").join("lib.rs");
 
-    let stub_path_copy = modified_exercise.join("src").join("lib.rs.orig");
+    let stub_path_copy = stub_path.with_extension(".orig");
 
     let tests_path = modified_exercise.join("tests");
 
-    let tests_path_copy = modified_exercise.join("tests.orig");
+    let tests_path_copy = tests_path.with_extension(".orig");
+
+    [(stub_path, stub_path_copy), (tests_path, tests_path_copy)]
+}
+
+fn make_reserve_copies(modified_exercise: &Path) {
+    let paths_and_copies = generate_paths_and_copies(modified_exercise);
+
+    let (ref stub_path, ref stub_path_copy) = paths_and_copies[0];
+
+    let (ref tests_path, ref tests_path_copy) = paths_and_copies[1];
 
     fs::copy(&stub_path, &stub_path_copy)
         .unwrap_or_else(|_| panic!("Failed to make a reserve copy for {:?}", &stub_path));
@@ -31,13 +45,11 @@ fn make_reserve_copies(modified_exercise: &Path) {
 }
 
 fn remove_copies(modified_exercise: &Path) {
-    let stub_path = modified_exercise.join("src").join("lib.rs");
+    let paths_and_copies = generate_paths_and_copies(modified_exercise);
 
-    let stub_path_copy = modified_exercise.join("src").join("lib.rs.orig");
+    let (ref stub_path, ref stub_path_copy) = paths_and_copies[0];
 
-    let tests_path = modified_exercise.join("tests");
-
-    let tests_path_copy = modified_exercise.join("tests.orig");
+    let (ref tests_path, ref tests_path_copy) = paths_and_copies[1];
 
     fs::rename(&stub_path_copy, &stub_path).unwrap_or_else(|error| {
         panic!(
@@ -68,9 +80,11 @@ fn add_deny_warning_flag(file_path: &Path) {
 }
 
 fn make_ignore_warnings(modified_exercise: &Path) {
-    let stub_path = modified_exercise.join("src").join("lib.rs");
+    let paths_and_copies = generate_paths_and_copies(modified_exercise);
 
-    let tests_path = modified_exercise.join("tests");
+    let (ref stub_path, _) = paths_and_copies[0];
+
+    let (ref tests_path, _) = paths_and_copies[1];
 
     add_deny_warning_flag(&stub_path);
 
