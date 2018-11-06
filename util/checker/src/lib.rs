@@ -47,12 +47,14 @@ impl From<FromUtf8Error> for OSInteractionError {
     }
 }
 
+#[macro_export]
 macro_rules! into_io_command_error {
     ($failed_command: expr) => {
-        |io_error| OSInteractionError::IOCommandError($failed_command, io_error)
+        |io_error| $crate::OSInteractionError::IOCommandError($failed_command, io_error)
     };
 }
 
+#[macro_export]
 macro_rules! io_command {
     ($command: expr) => {{
         let command = $command;
@@ -66,7 +68,7 @@ macro_rules! io_command {
         std::process::Command::new(cmd)
             .args(args)
             .output()
-            .map_err(into_io_command_error!(command.to_string()))?
+            .map_err($crate::into_io_command_error!(command.to_string()))?
     }};
 }
 

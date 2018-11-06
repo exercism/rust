@@ -1,7 +1,6 @@
 use std::{
     fs,
     path::{Path, PathBuf},
-    process::Command,
 };
 
 fn generate_paths_and_copies(modified_exercise: &Path) -> [(PathBuf, PathBuf); 2] {
@@ -23,40 +22,31 @@ fn make_reserve_copies(modified_exercise: &Path) -> Result<(), checker::OSIntera
 
     let (ref tests_path, ref tests_path_copy) = paths_and_copies[1];
 
-    fs::copy(&stub_path, &stub_path_copy).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!("make a reserve copy for {}", &stub_path.display()),
-            io_error,
-        )
-    })?;
+    fs::copy(&stub_path, &stub_path_copy).map_err(checker::into_io_command_error!(format!(
+        "make a reserve copy for {}",
+        &stub_path.display()
+    )))?;
 
     if !tests_path_copy.exists() {
-        fs::create_dir(&tests_path_copy).map_err(|io_error| {
-            checker::OSInteractionError::IOCommandError(
-                format!("create a new directory {}", &tests_path_copy.display()),
-                io_error,
-            )
-        })?;
+        fs::create_dir(&tests_path_copy).map_err(checker::into_io_command_error!(format!(
+            "create a new directory {}",
+            &tests_path_copy.display()
+        )))?;
     }
 
-    for tests_entry in fs::read_dir(&tests_path).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!("read the {} directory", &tests_path.display()),
-            io_error,
-        )
-    })? {
+    for tests_entry in fs::read_dir(&tests_path).map_err(checker::into_io_command_error!(
+        format!("read the {} directory", &tests_path.display())
+    ))? {
         if let Ok(tests_entry) = tests_entry {
             let entry_path = tests_entry.path();
 
             fs::copy(
                 &entry_path,
                 &tests_path_copy.join(entry_path.file_name().unwrap()),
-            ).map_err(|io_error| {
-                checker::OSInteractionError::IOCommandError(
-                    format!("make a reserve copy for {}", &entry_path.display()),
-                    io_error,
-                )
-            })?;
+            ).map_err(checker::into_io_command_error!(format!(
+                "make a reserve copy for {}",
+                &entry_path.display()
+            )))?;
         }
     }
 
@@ -70,55 +60,38 @@ fn remove_copies(modified_exercise: &Path) -> Result<(), checker::OSInteractionE
 
     let (ref tests_path, ref tests_path_copy) = paths_and_copies[1];
 
-    fs::rename(&stub_path_copy, &stub_path).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!(
-                "rename {} to {}",
-                &stub_path_copy.display(),
-                &stub_path.display()
-            ),
-            io_error,
-        )
-    })?;
+    fs::rename(&stub_path_copy, &stub_path).map_err(checker::into_io_command_error!(format!(
+        "rename {} to {}",
+        &stub_path_copy.display(),
+        &stub_path.display()
+    )))?;
 
-    fs::remove_dir_all(&tests_path).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!("delete the {} directory", &tests_path.display(),),
-            io_error,
-        )
-    })?;
+    fs::remove_dir_all(&tests_path).map_err(checker::into_io_command_error!(format!(
+        "delete the {} directory",
+        &tests_path.display()
+    )))?;
 
-    fs::rename(&tests_path_copy, &tests_path).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!(
-                "rename {} to {}",
-                &tests_path_copy.display(),
-                &tests_path.display()
-            ),
-            io_error,
-        )
-    })?;
+    fs::rename(&tests_path_copy, &tests_path).map_err(checker::into_io_command_error!(format!(
+        "rename {} to {}",
+        &tests_path_copy.display(),
+        &tests_path.display()
+    )))?;
 
     Ok(())
 }
 
 fn add_deny_warning_flag(file_path: &Path) -> Result<(), checker::OSInteractionError> {
-    let file_content = fs::read_to_string(&file_path).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!("read the {} file", &file_path.display()),
-            io_error,
-        )
-    })?;
+    let file_content = fs::read_to_string(&file_path).map_err(checker::into_io_command_error!(
+        format!("read the {} file", &file_path.display())
+    ))?;
 
     fs::write(
         &file_path,
         format!("{}\n{}", "#![deny(warnings)]", file_content),
-    ).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!("write to the {} file", &file_path.display()),
-            io_error,
-        )
-    })
+    ).map_err(checker::into_io_command_error!(format!(
+        "write to the {} file",
+        &file_path.display()
+    )))
 }
 
 fn make_ignore_warnings(modified_exercise: &Path) -> Result<(), checker::OSInteractionError> {
@@ -130,12 +103,10 @@ fn make_ignore_warnings(modified_exercise: &Path) -> Result<(), checker::OSInter
 
     add_deny_warning_flag(&stub_path)?;
 
-    for entry in fs::read_dir(&tests_path).map_err(|io_error| {
-        checker::OSInteractionError::IOCommandError(
-            format!("read the {} directory", &tests_path.display()),
-            io_error,
-        )
-    })? {
+    for entry in fs::read_dir(&tests_path).map_err(checker::into_io_command_error!(format!(
+        "read the {} directory",
+        &tests_path.display()
+    )))? {
         if let Ok(entry) = entry {
             add_deny_warning_flag(&entry.path())?;
         }
@@ -145,16 +116,7 @@ fn make_ignore_warnings(modified_exercise: &Path) -> Result<(), checker::OSInter
 }
 
 fn run_tests(modified_exercise: &Path) -> Result<bool, checker::OSInteractionError> {
-    let cargo_test_output = Command::new("cargo")
-        .args(&["test", "--quiet", "--no-run"])
-        .current_dir(&modified_exercise)
-        .output()
-        .map_err(|io_error| {
-            checker::OSInteractionError::IOCommandError(
-                "cargo test --quiet --no-run".to_string(),
-                io_error,
-            )
-        })?;
+    let cargo_test_output = checker::io_command!("cargo test --quiet --no-run");
 
     let status = cargo_test_output.status;
 
