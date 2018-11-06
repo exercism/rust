@@ -7,11 +7,11 @@ use std::{
 fn generate_paths_and_copies(modified_exercise: &Path) -> [(PathBuf, PathBuf); 2] {
     let stub_path = modified_exercise.join("src").join("lib.rs");
 
-    let stub_path_copy = stub_path.with_extension(".orig");
+    let stub_path_copy = stub_path.with_extension("orig");
 
     let tests_path = modified_exercise.join("tests");
 
-    let tests_path_copy = tests_path.with_extension(".orig");
+    let tests_path_copy = tests_path.with_extension("orig");
 
     [(stub_path, stub_path_copy), (tests_path, tests_path_copy)]
 }
