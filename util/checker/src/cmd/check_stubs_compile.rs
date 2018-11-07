@@ -116,7 +116,13 @@ fn make_ignore_warnings(modified_exercise: &Path) -> Result<(), checker::OSInter
 }
 
 fn run_tests(modified_exercise: &Path) -> Result<bool, checker::OSInteractionError> {
-    let cargo_test_output = checker::io_command!("cargo test --quiet --no-run");
+    let cargo_test_output = std::process::Command::new("cargo")
+        .args(&["test", "--quiet", "--no-run"])
+        .current_dir(modified_exercise)
+        .output()
+        .map_err(checker::into_io_command_error!(
+            "cargo test --quiet --no-run".to_string()
+        ))?;
 
     let status = cargo_test_output.status;
 
