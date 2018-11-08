@@ -21,9 +21,6 @@ broken=""
 for dir in $changed_exercises; do
   exercise=$(basename "$dir")
 
-  # If src/lib.rs contains any non-comment line that contains any non-spaces,
-  # it probably contains function signatures, and these should compile.
-  if grep -v '^//' $dir/src/lib.rs | grep '\S' > /dev/null; then
     allowed_file=$dir/.meta/ALLOWED_TO_NOT_COMPILE
 
     if [ -f $allowed_file ]; then
@@ -55,7 +52,6 @@ for dir in $changed_exercises; do
     mv $dir/lib.rs.orig $dir/src/lib.rs
     rm -r $dir/tests
     mv $dir/tests.orig $dir/tests
-  fi
 done
 
 if [ -n "$broken" ]; then
