@@ -40,11 +40,14 @@ pub fn get_latest() -> Result<String, Error> {
         .build()?
         .head(LATEST_URL)
         .send()?;
+
     let location = response
         .headers()
-        .get::<header::Location>()
-        .ok_or_else(|| format_err!("location not found in headers\n{}", response.headers()))?;
+        .get(header::LOCATION)
+        .ok_or_else(|| format_err!("location not found in headers\n{:#?}", response.headers()))?;
+
     Ok(location
+        .to_str()?
         .trim()
         .rsplit('/')
         .nth(0)
