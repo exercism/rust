@@ -87,6 +87,12 @@ fn paired_and_incomplete_brackets() {
 
 #[test]
 #[ignore]
+fn too_many_closing_brackets() {
+    assert!(!brackets_are_balanced("[]]"));
+}
+
+#[test]
+#[ignore]
 fn math_expression() {
     assert!(brackets_are_balanced("(((185 + 223.85) * 15) - 543)/2"));
 }
