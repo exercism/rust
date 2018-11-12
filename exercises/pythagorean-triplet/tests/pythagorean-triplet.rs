@@ -17,6 +17,36 @@ fn process_tripletswithsum_case(sum: u32, expected: Option<Vec<[u32; 3]>>) {
 }
 
 #[test]
+fn test_triplets_whose_sum_is_12() {
+    process_tripletswithsum_case(12, Some(vec![[3, 4, 5]]));
+}
+
+#[test]
+#[ignore]
+fn test_triplets_whose_sum_is_108() {
+    process_tripletswithsum_case(108, Some(vec![[27, 36, 45]]));
+}
+
+#[test]
+#[ignore]
+fn test_triplets_whose_sum_is_1000() {
+    process_tripletswithsum_case(1000, Some(vec![[200, 375, 425]]));
+}
+
+#[test]
+#[ignore]
+fn test_no_matching_triplets_for_1001() {
+    process_tripletswithsum_case(1001, None);
+}
+
+#[test]
+#[ignore]
+fn test_returns_all_matching_triplets() {
+    process_tripletswithsum_case(90, Some(vec![[9, 40, 41], [15, 36, 39]]));
+}
+
+#[test]
+#[ignore]
 fn test_several_matching_triplets() {
     process_tripletswithsum_case(
         840,
@@ -35,18 +65,6 @@ fn test_several_matching_triplets() {
 
 #[test]
 #[ignore]
-fn test_returns_all_matching_triplets() {
-    process_tripletswithsum_case(90, Some(vec![[9, 40, 41], [15, 36, 39]]));
-}
-
-#[test]
-#[ignore]
-fn test_triplets_whose_sum_is_108() {
-    process_tripletswithsum_case(108, Some(vec![[27, 36, 45]]));
-}
-
-#[test]
-#[ignore]
 fn test_triplets_for_large_number() {
     process_tripletswithsum_case(
         30000,
@@ -58,22 +76,4 @@ fn test_triplets_for_large_number() {
             [7500, 10000, 12500],
         ]),
     );
-}
-
-#[test]
-#[ignore]
-fn test_no_matching_triplets_for_1001() {
-    process_tripletswithsum_case(1001, None);
-}
-
-#[test]
-#[ignore]
-fn test_triplets_whose_sum_is_1000() {
-    process_tripletswithsum_case(1000, Some(vec![[200, 375, 425]]));
-}
-
-#[test]
-#[ignore]
-fn test_triplets_whose_sum_is_12() {
-    process_tripletswithsum_case(12, Some(vec![[3, 4, 5]]));
 }
