@@ -1,5 +1,5 @@
+[dependencies]
+
 [package]
 name = "pythagorean_triplet"
-version = "0.0.0"
-
-[dependencies]
+version = "1.0.0"
