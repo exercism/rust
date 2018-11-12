@@ -45,6 +45,12 @@ fn invalid_credit_card_is_invalid() {
 
 #[test]
 #[ignore]
+fn valid_number_with_an_even_number_of_digits() {
+    assert!(is_valid("095 245 88"));
+}
+
+#[test]
+#[ignore]
 fn strings_that_contain_non_digits_are_invalid() {
     assert!(!is_valid("055a 444 285"));
 }
