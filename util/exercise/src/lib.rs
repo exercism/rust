@@ -279,13 +279,6 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> 
 }
 
 pub fn rustfmt(file_path: &Path) -> Result<()> {
-    if let Ok(which_output) = Command::new("which").arg("rustfmt").output() {
-        if !String::from_utf8_lossy(&which_output.stdout)
-            .trim()
-            .is_empty()
-        {}
-    }
-
     let rustfmt_is_available = {
         if let Some(path_var) = env::var_os("PATH") {
             env::split_paths(&path_var).any(|path| path.join("rustfmt").exists())
