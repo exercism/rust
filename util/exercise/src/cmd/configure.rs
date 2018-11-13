@@ -31,20 +31,28 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
     let core = false;
 
-    let unlocked_by = loop {
+    let unlocked_by: Option<String> = loop {
         let default_value = if let Some(existing_config) = existing_config {
-            get!(existing_config, "unlocked_by", as_str)
+            get!(existing_config, "unlocked_by")
+                .as_str()
+                .map(|s| s.to_string())
         } else {
-            "hello-world"
+            Some("hello-world".to_string())
         };
 
         let user_input = get_user_input(&format!(
             "Exercise slug which unlocks this (blank for '{}'): ",
-            default_value
+            if let Some(ref value) = default_value {
+                value
+            } else {
+                "null"
+            }
         ))?;
 
         if user_input.is_empty() {
-            break default_value.to_string();
+            break default_value;
+        } else if user_input == "null" {
+            break None::<String>
         } else if !get!(config_content, "exercises", as_array)
             .iter()
             .any(|exercise| exercise["slug"] == user_input)
@@ -53,19 +61,26 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
             continue;
         } else {
-            break user_input;
+            break Some(user_input);
         };
     };
 
     let difficulty = loop {
-        let unlocked_by = get!(config_content, "exercises", as_array)
-            .iter()
-            .find(|exercise| exercise["slug"] == unlocked_by)
-            .ok_or(format_err!(
-                "exercise '{}' not found in config",
-                unlocked_by
-            ))?;
-        let unlocked_by_difficulty = get!(unlocked_by, "difficulty", as_u64);
+        let unlocked_by_difficulty = match unlocked_by {
+            Some(ref unlocked_by) => {
+                let unlocked_by_exercise = get!(config_content, "exercises", as_array)
+                    .iter()
+                    .find(|exercise| exercise["slug"] == unlocked_by.as_str())
+                    .ok_or(format_err!(
+                        "exercise '{}' not found in config",
+                        unlocked_by
+                    ))?;
+
+                get!(unlocked_by_exercise, "difficulty", as_u64)
+            }
+
+            None => 1,
+        };
 
         let available_difficulties: Vec<u64> = [1, 4, 7, 10]
             .iter()
