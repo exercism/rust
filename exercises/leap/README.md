@@ -26,6 +26,9 @@ phenomenon, go watch [this youtube video][video].
 
 [video]: http://www.youtube.com/watch?v=xX96xng7sAE
 
+You may use the `arithmetic remainder` operator to test for divisibility.
+
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
