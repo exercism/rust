@@ -1,4 +1,7 @@
 extern crate clap;
+extern crate reqwest;
+
+mod cmd;
 
 use clap::{App, ArgMatches, SubCommand};
 
@@ -15,7 +18,7 @@ fn init_app<'a>() -> ArgMatches<'a> {
 fn process_matches(matches: &ArgMatches) {
     match matches.subcommand() {
         ("missing", _) => {
-            println!("Locating unimplemented exercises!");
+            cmd::list_missing_exercises();
         },
 
         ("", _) => {
