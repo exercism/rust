@@ -4,3 +4,4 @@ version = "0.1.0"
 description = "An utility to track outdated or unimplemented exercises on the Rust track"
 
 [dependencies]
+clap = "2.32.0"
