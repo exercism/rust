@@ -29,8 +29,6 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
         Uuid::new_v4().to_hyphenated().to_string()
     };
 
-    let core = false;
-
     let unlocked_by: Option<String> = loop {
         let default_value = if let Some(existing_config) = existing_config {
             get!(existing_config, "unlocked_by")
@@ -52,7 +50,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
         if user_input.is_empty() {
             break default_value;
         } else if user_input == "null" {
-            break None::<String>
+            break None::<String>;
         } else if !get!(config_content, "exercises", as_array)
             .iter()
             .any(|exercise| exercise["slug"] == user_input)
@@ -64,6 +62,8 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
             break Some(user_input);
         };
     };
+
+    let core = unlocked_by.is_none();
 
     let difficulty = loop {
         let unlocked_by_difficulty = match unlocked_by {
