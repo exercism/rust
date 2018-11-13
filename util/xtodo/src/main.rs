@@ -1,5 +1,6 @@
 extern crate clap;
 extern crate reqwest;
+extern crate serde_json;
 
 mod cmd;
 
@@ -19,11 +20,11 @@ fn process_matches(matches: &ArgMatches) {
     match matches.subcommand() {
         ("missing", _) => {
             cmd::list_missing_exercises();
-        },
+        }
 
         ("", _) => {
             println!("No subcommand was used.\nUse 'xtodo help' to learn about the possible subcommands.");
-        },
+        }
 
         _ => unreachable!(),
     }
