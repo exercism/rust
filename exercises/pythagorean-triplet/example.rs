@@ -1,4 +1,4 @@
-pub fn find(sum: u32) -> Option<Vec<[u32; 3]>> {
+pub fn find(sum: u32) -> Vec<[u32; 3]> {
     let mut triplets = vec![];
 
     for a in 1..sum {
@@ -11,9 +11,5 @@ pub fn find(sum: u32) -> Option<Vec<[u32; 3]>> {
         }
     }
 
-    if triplets.is_empty() {
-        None
-    } else {
-        Some(triplets)
-    }
+    triplets
 }
