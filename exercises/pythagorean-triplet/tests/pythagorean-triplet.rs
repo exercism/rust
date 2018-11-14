@@ -1,18 +1,17 @@
 extern crate pythagorean_triplet;
 
 use pythagorean_triplet::find;
+use std::{collections::HashSet, iter::FromIterator};
 
 fn process_tripletswithsum_case(sum: u32, expected: Vec<[u32; 3]>) {
-    if !expected.is_empty() {
-        let triplets = find(sum);
+    let triplets = find(sum);
 
-        assert!(
-            expected
-                .iter()
-                .all(|expected_triplet| triplets.contains(expected_triplet))
-        );
+    if !expected.is_empty() {
+        let expected = HashSet::from_iter(expected.iter().cloned());
+
+        assert_eq!(expected, triplets);
     } else {
-        assert!(find(sum).is_empty());
+        assert!(triplets.is_empty());
     }
 }
 
