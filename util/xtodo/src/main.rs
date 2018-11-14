@@ -11,6 +11,9 @@ fn init_app<'a>() -> ArgMatches<'a> {
         .version(env!("CARGO_PKG_VERSION"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
         .subcommand(
+            SubCommand::with_name("outdated")
+                .about("List all outdated exercises on the current track"),
+        ).subcommand(
             SubCommand::with_name("missing")
                 .about("List all unimplemented exercises on the current track"),
         ).get_matches()
@@ -20,6 +23,10 @@ fn process_matches(matches: &ArgMatches) {
     match matches.subcommand() {
         ("missing", _) => {
             cmd::list_missing_exercises();
+        }
+
+        ("outdated", _) => {
+            cmd::list_outdated_exercises();
         }
 
         ("", _) => {

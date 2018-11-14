@@ -1,5 +1,5 @@
 use serde_json::Value;
-use std::{collections::HashSet, fs, path::Path};
+use std::collections::HashSet;
 
 fn get_existing_exercises() -> HashSet<String> {
     let existing_exercise_dirs: Value = reqwest::get(
@@ -22,16 +22,6 @@ fn get_existing_exercises() -> HashSet<String> {
         }).collect()
 }
 
-fn get_config_value() -> Value {
-    let track_root = xtodo::get_track_root();
-
-    let config_path = Path::new(&track_root).join("config.json");
-
-    let config_content = fs::read_to_string(config_path).unwrap();
-
-    serde_json::from_str(&config_content).unwrap()
-}
-
 fn get_implemented_exercises(config: &Value) -> HashSet<String> {
     config
         .get("exercises")
@@ -44,13 +34,13 @@ fn get_implemented_exercises(config: &Value) -> HashSet<String> {
 }
 
 pub fn list_missing_exercises() {
-    let existing_exercises = get_existing_exercises();
-
-    let config = get_config_value();
+    let config = xtodo::get_config_value();
 
     let track_name = config.get("language").unwrap().as_str().unwrap();
 
     let implemented_exercises = get_implemented_exercises(&config);
+
+    let existing_exercises = get_existing_exercises();
 
     let unimplemented_exercises: Vec<String> = existing_exercises
         .difference(&implemented_exercises)
