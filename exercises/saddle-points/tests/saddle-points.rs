@@ -132,3 +132,4 @@ fn identify_all_saddle_points() {
     ];
     assert_eq!(vec![(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)], find_saddle_points(&input));
 }
+
