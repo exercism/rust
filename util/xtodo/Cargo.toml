@@ -7,3 +7,4 @@ description = "An utility to track outdated or unimplemented exercises on the Ru
 clap = "2.32.0"
 reqwest = "0.9.4"
 serde_json = "1.0"
+toml = "0.4"
