@@ -122,3 +122,14 @@ fn single_row_matrix() {
     assert_eq!(vec![(0, 1), (0, 3)], find_saddle_points(&input));
 }
 
+#[test]
+#[ignore]
+fn identify_all_saddle_points() {
+    let input = vec![
+        vec![5, 5, 5],
+        vec![5, 5, 5],
+        vec![5, 5, 5],
+    ];
+    assert_eq!(vec![(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)], find_saddle_points(&input));
+}
+
