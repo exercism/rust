@@ -1,11 +1,17 @@
-pub fn find() -> Option<u32> {
-    for a in 1..1000 {
-        for b in (a + 1)..(1000 - a) {
-            let c = 1000 - (a + b);
+use std::collections::HashSet;
+
+pub fn find(sum: u32) -> HashSet<[u32; 3]> {
+    let mut triplets = HashSet::new();
+
+    for a in 1..sum {
+        for b in (a + 1)..(sum - a) {
+            let c = sum - (a + b);
+
             if a * a + b * b == c * c {
-                return Some(a * b * c);
+                triplets.insert([a, b, c]);
             }
         }
     }
-    None
+
+    triplets
 }
