@@ -34,7 +34,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
             if let Value::String(s) = get!(existing_config, "unlocked_by") {
                 s
             } else {
-                "none"
+                "null"
             }
         } else {
             "hello-world"
