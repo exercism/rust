@@ -74,17 +74,13 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                         inner_pattern = inner_pattern.to_lowercase().to_string();
                     }
 
-                    let mut is_filtered = inner_line.contains(&inner_pattern);
-
-                    if flags.match_entire_line {
-                        is_filtered = inner_line == inner_pattern;
-                    }
-
                     if flags.use_inverted_comparison {
-                        is_filtered = !inner_line.contains(&inner_pattern);
+                        !inner_line.contains(&inner_pattern)
+                    } else if flags.match_entire_line {
+                        inner_line == inner_pattern
+                    } else {
+                        inner_line.contains(&inner_pattern)
                     }
-
-                    is_filtered
                 })
                 .filter(|(_, line)| !line.is_empty())
                 .map(|(line_number, line)| {
