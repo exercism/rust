@@ -15,7 +15,7 @@ pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
 
     let products: Vec<u64> = string_digits
         .chars()
-        .map(|c| c.to_digit(10).unwrap() as u64)
+        .map(|c| u64::from(c.to_digit(10).unwrap()))
         .collect::<Vec<u64>>()
         .windows(span)
         .map(|w| w.into_iter().product())

@@ -84,7 +84,7 @@ pub fn from_bytes(bytes: &[u8]) -> Result<Vec<u32>, Error> {
         }
 
         // append bytes of b to tmp
-        tmp = (tmp << 7) | (b & 0x7f) as u32;
+        tmp = (tmp << 7) | u32::from(b & 0x7f);
 
         if 0x80 & b == 0 {
             // continuation bit not set, number if complete

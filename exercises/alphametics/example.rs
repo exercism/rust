@@ -18,7 +18,7 @@ fn test_equation(puzzle: &str, substitutions: &HashMap<char, u8>) -> bool {
             if let Some(&n) = substitutions.get(&c) {
                 // If the character is in the substitutions, get the number and
                 // convert it to a char
-                char::from_digit(n as u32, 10).unwrap()
+                char::from_digit(u32::from(n), 10).unwrap()
             } else {
                 // Otherwise just copy over the character
                 c
