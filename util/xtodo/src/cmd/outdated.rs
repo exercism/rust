@@ -2,6 +2,31 @@ use serde_json::Value as JsonValue;
 use std::{fs, path::Path};
 use toml::Value as TomlValue;
 
+struct RustVersionReader;
+
+trait GetLocalVersion {
+    fn get_local_version(&self, exercise_name: &str) -> Option<String>;
+}
+
+impl GetLocalVersion for RustVersionReader {
+    fn get_local_version(&self, exercise_name: &str) -> Option<String> {
+        let track_root = xtodo::get_track_root();
+
+        let cargo_toml_path = Path::new(&track_root)
+            .join("exercises")
+            .join(exercise_name)
+            .join("Cargo.toml");
+
+        let cargo_toml_content = fs::read_to_string(cargo_toml_path).unwrap();
+
+        let cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
+
+        cargo_toml["package"]
+            .get("version")
+            .map(|version| version.as_str().unwrap().to_string())
+    }
+}
+
 #[derive(Debug)]
 struct ExerciseInfo {
     name: String,
@@ -17,23 +42,6 @@ impl ExerciseInfo {
             canonical_version: None,
         }
     }
-}
-
-fn get_local_version(exercise_name: &str) -> Option<String> {
-    let track_root = xtodo::get_track_root();
-
-    let cargo_toml_path = Path::new(&track_root)
-        .join("exercises")
-        .join(exercise_name)
-        .join("Cargo.toml");
-
-    let cargo_toml_content = fs::read_to_string(cargo_toml_path).unwrap();
-
-    let cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
-
-    cargo_toml["package"]
-        .get("version")
-        .map(|version| version.as_str().unwrap().to_string())
 }
 
 fn get_canonical_version(exercise_name: &str) -> Option<String> {
@@ -58,10 +66,30 @@ fn get_canonical_version(exercise_name: &str) -> Option<String> {
         .map(|version| version.as_str().unwrap().to_string())
 }
 
+fn get_version_reader(track_name: &str) -> Option<impl GetLocalVersion> {
+    match track_name.to_lowercase().as_ref() {
+        "rust" => Some(RustVersionReader),
+        _ => None,
+    }
+}
+
 pub fn list_outdated_exercises() {
     let config = xtodo::get_config_value();
 
     let track_name = config.get("language").unwrap().as_str().unwrap();
+
+    let version_reader = get_version_reader(track_name);
+
+    if version_reader.is_none() {
+        println!(
+            "Reading the local exercise version is not implemented for the {} track. Aborting.",
+            track_name
+        );
+
+        return;
+    }
+
+    let version_reader = version_reader.unwrap();
 
     let mut exercises: Vec<ExerciseInfo> = config
         .get("exercises")
@@ -78,7 +106,7 @@ pub fn list_outdated_exercises() {
     for exercise in &mut exercises {
         let name = &exercise.name;
 
-        exercise.local_version = get_local_version(name);
+        exercise.local_version = version_reader.get_local_version(name);
 
         exercise.canonical_version = get_canonical_version(name);
     }
