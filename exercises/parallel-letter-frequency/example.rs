@@ -30,7 +30,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
     for part in parts {
         let tx = tx.clone();
         thread::spawn(move || {
-            tx.send(count(part)).unwrap();
+            tx.send(count(&part)).unwrap();
         });
     }
 
@@ -44,7 +44,7 @@ pub fn frequency(texts: &[&str], num_workers: usize) -> HashMap<char, usize> {
     results
 }
 
-fn count(lines: Vec<String>) -> HashMap<char, usize> {
+fn count(lines: &[String]) -> HashMap<char, usize> {
     let mut results: HashMap<char, usize> = HashMap::new();
     for line in lines.iter() {
         for c in line.chars() {
