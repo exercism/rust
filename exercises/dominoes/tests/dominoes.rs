@@ -14,10 +14,10 @@ enum CheckResult {
     DominoMismatch(Vec<Domino>), // different dominoes are used in input and output
 }
 
-fn normalize(d: &Domino) -> Domino {
+fn normalize(d: Domino) -> Domino {
     match d {
-        &(m, n) if m > n => (n, m),
-        &(m, n) => (m, n),
+        (m, n) if m > n => (n, m),
+        (m, n) => (m, n),
     }
 }
 
@@ -33,9 +33,9 @@ fn check(input: &[Domino]) -> CheckResult {
         return Correct;
     }
 
-    let mut output_sorted = output.iter().map(|d| normalize(d)).collect::<Vec<Domino>>();
+    let mut output_sorted = output.iter().map(|&d| normalize(d)).collect::<Vec<Domino>>();
     output_sorted.sort();
-    let mut input_sorted = input.iter().map(|d| normalize(d)).collect::<Vec<Domino>>();
+    let mut input_sorted = input.iter().map(|&d| normalize(d)).collect::<Vec<Domino>>();
     input_sorted.sort();
     if input_sorted != output_sorted {
         return DominoMismatch(output);
