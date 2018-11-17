@@ -110,7 +110,7 @@ fn single_column_matrix() {
         vec![4],
         vec![1],
     ];
-    assert_eq!(vec![(1, 0), (3, 0)], find_saddle_points(&input));
+    assert_eq!(vec![(1, 0), (3, 0)], find_sorted_saddle_points(&input));
 }
 
 #[test]
@@ -119,7 +119,7 @@ fn single_row_matrix() {
     let input = vec![
         vec![2, 5, 3, 5],
     ];
-    assert_eq!(vec![(0, 1), (0, 3)], find_saddle_points(&input));
+    assert_eq!(vec![(0, 1), (0, 3)], find_sorted_saddle_points(&input));
 }
 
 #[test]
