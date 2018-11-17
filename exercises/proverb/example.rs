@@ -1,4 +1,4 @@
-pub fn build_proverb(items: Vec<&str>) -> String {
+pub fn build_proverb(items: &[&str]) -> String {
     let mut stanzas = Vec::with_capacity(items.len());
     for index in 0..items.len() {
         if index == items.len() - 1 {
