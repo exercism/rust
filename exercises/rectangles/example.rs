@@ -153,7 +153,7 @@ fn scan_connected(area: &Area) -> Connections {
                     *cf = *cf | CONN_RIGHT;
                 }
                 let cf = conns.points.entry(Point{x: x, y: y}).or_insert(0);
-                if connected.len() > 0 {
+                if !connected.is_empty() {
                     *cf = *cf | CONN_LEFT;
                 }
                 connected.push(x);
