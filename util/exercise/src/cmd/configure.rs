@@ -31,32 +31,29 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
 
     let unlocked_by: Option<String> = loop {
         let default_value = if let Some(existing_config) = existing_config {
-            get!(existing_config, "unlocked_by")
-                .as_str()
-                .map(|s| s.to_string())
+            if let Value::String(s) = get!(existing_config, "unlocked_by") {
+                s
+            } else {
+                "none"
+            }
         } else {
-            Some("hello-world".to_string())
+            "hello-world"
         };
 
         let user_input = get_user_input(&format!(
             "Exercise slug which unlocks this (blank for '{}'): ",
-            if let Some(ref value) = default_value {
-                value
-            } else {
-                "null"
-            }
+            default_value
         ))?;
 
         if user_input.is_empty() {
-            break default_value;
+            break Some(default_value.to_string());
         } else if user_input == "null" {
-            break None::<String>;
+            break None;
         } else if !get!(config_content, "exercises", as_array)
             .iter()
             .any(|exercise| exercise["slug"] == user_input)
         {
             println!("{} is not an existing exercise slug", user_input);
-
             continue;
         } else {
             break Some(user_input);
