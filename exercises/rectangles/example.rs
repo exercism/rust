@@ -131,7 +131,7 @@ pub fn count(lines: &[&str]) -> usize {
             }
         }
     }
-    return total;
+    total
 }
 
 fn scan_connected(area: &Area) -> Connections {
