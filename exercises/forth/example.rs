@@ -77,19 +77,19 @@ impl Forth {
     fn step_term(&mut self, term: Term) -> ForthResult {
         match term {
             Number(value) => self.push(value),
-            Word(word) => self.step_word(word),
+            Word(word) => self.step_word(&word),
             StartDefinition => self.store_definition(),
             EndDefinition => Err(Error::InvalidWord),
         }
     }
 
-    fn step_word(&mut self, word: String) -> ForthResult {
+    fn step_word(&mut self, word: &str) -> ForthResult {
         self.defs
-            .get(&word)
+            .get(word)
             .ok_or(Error::UnknownWord)
             .map(Clone::clone)
             .map(|mut code| self.code.append(&mut code))
-            .or_else(|_| self.step_built_in(&word))
+            .or_else(|_| self.step_built_in(word))
     }
 
     fn step_built_in(&mut self, word: &str) -> ForthResult {

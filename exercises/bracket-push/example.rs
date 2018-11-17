@@ -11,12 +11,12 @@ struct Brackets {
 
 impl<'a> From<&'a str> for Brackets {
     fn from(i: &str) -> Self {
-        Brackets::new(String::from(i), None)
+        Brackets::new(i, None)
     }
 }
 
 impl Brackets {
-    fn new(s: String, pairs: Option<Vec<(char, char)>>) -> Self {
+    fn new(s: &str, pairs: Option<Vec<(char, char)>>) -> Self {
         let p = match pairs {
             Some(x) => MatchingBrackets::from(x),
             None => MatchingBrackets::from(vec![('[', ']'), ('{', '}'), ('(', ')')]),
