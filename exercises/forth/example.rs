@@ -93,7 +93,7 @@ impl Forth {
     }
 
     fn step_built_in(&mut self, word: &str) -> ForthResult {
-        match word.as_ref() {
+        match word {
             "+" => self.bin_op(|(a, b)| Ok(a + b)),
             "-" => self.bin_op(|(a, b)| Ok(a - b)),
             "*" => self.bin_op(|(a, b)| Ok(a * b)),
