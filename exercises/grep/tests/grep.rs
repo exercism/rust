@@ -163,7 +163,7 @@ fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[
 fn test_nonexistent_file_returns_error() {
     let pattern = "Agamemnon";
 
-    let flags = Flags::new(&vec![]);
+    let flags = Flags::new(&[]);
 
     let files = vec!["test_nonexistent_file_returns_error_iliad.txt"];
 
@@ -175,7 +175,7 @@ fn test_nonexistent_file_returns_error() {
 fn test_grep_returns_result() {
     let pattern = "Agamemnon";
 
-    let flags = Flags::new(&vec![]);
+    let flags = Flags::new(&[]);
 
     let files = vec!["test_grep_returns_result_iliad.txt"];
 

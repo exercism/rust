@@ -36,7 +36,7 @@ impl Board {
 }
 
 pub fn annotate(pieces: &[&str]) -> Vec<String> {
-    if pieces.len() == 0 {
+    if pieces.is_empty() {
         return Vec::new();
     }
     let pieces_vec = pieces.iter().map(|&r| r.chars().collect()).collect();

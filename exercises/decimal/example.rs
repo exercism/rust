@@ -170,7 +170,7 @@ mod tests {
 
     #[test]
     fn test_display_temp() {
-        for test_str in vec!["0", "1", "20", "0.3", "0.04", "50.05", "66.0006", "0.007"] {
+        for &test_str in &["0", "1", "20", "0.3", "0.04", "50.05", "66.0006", "0.007"] {
             println!(
                 "Decimal representation of \"{}\": {}",
                 test_str,

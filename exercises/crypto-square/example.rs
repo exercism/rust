@@ -4,7 +4,7 @@ use itertools::Itertools;
 /// Encrypt the input string using square cryptography
 pub fn encrypt(input: &str) -> String {
     let prepared = prepare(input);
-    if prepared.len() == 0 {
+    if prepared.is_empty() {
         return String::new();
     }
 

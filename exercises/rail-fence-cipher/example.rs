@@ -75,7 +75,7 @@ impl RailFence {
         down = true;
         rail = 0;
 
-        while rails.iter().any(|r: &&str| r.len() > 0) {
+        while rails.iter().any(|r: &&str| !r.is_empty()) {
             let (head, t_rail) = uncons(rails[rail]);
             rails[rail] = t_rail;
             self.next(&mut down, &mut rail);

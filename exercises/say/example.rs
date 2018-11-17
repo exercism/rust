@@ -68,7 +68,7 @@ pub fn encode(n: u64) -> String {
             if modu == 0 {
                 continue;
             }
-            if out.len() > 0 {
+            if !out.is_empty() {
                 out.push(' ');
             }
             out.push_str(&encode(modu));
