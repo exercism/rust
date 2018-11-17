@@ -259,7 +259,7 @@ impl<'a> Hand<'a> {
         cards.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
         if cards.len() == 5 {
             Some(Hand {
-                source: source,
+                source,
                 cards: [cards[0], cards[1], cards[2], cards[3], cards[4]],
                 hand_type: try_opt!(PokerHand::analyze(&cards)),
             })

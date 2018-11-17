@@ -149,10 +149,10 @@ fn scan_connected(area: &Area) -> Connections {
                     conns.lines.insert(Line{x1: prev.clone(), y1: y, x2: x, y2: y});
                 }
                 if let Some(last) = connected.last() {
-                    let cf = conns.points.get_mut(&Point{x: last.clone(), y: y}).unwrap();
+                    let cf = conns.points.get_mut(&Point{x: last.clone(), y}).unwrap();
                     *cf = *cf | CONN_RIGHT;
                 }
-                let cf = conns.points.entry(Point{x: x, y: y}).or_insert(0);
+                let cf = conns.points.entry(Point{x, y}).or_insert(0);
                 if !connected.is_empty() {
                     *cf = *cf | CONN_LEFT;
                 }

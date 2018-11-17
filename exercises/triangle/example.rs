@@ -23,7 +23,7 @@ where
     }
 
     pub fn build(sides: [T; 3]) -> Option<Triangle<T>> {
-        let t = Triangle { sides: sides };
+        let t = Triangle { sides };
 
         if t.valid_sides() {
             Some(t)
