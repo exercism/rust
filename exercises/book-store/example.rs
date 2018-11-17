@@ -159,9 +159,9 @@ impl DecomposeGroups {
     fn new(books: &[Book]) -> DecomposeGroups {
         let mut book_groups = GroupedBasket::new();
         'nextbook: for book in books {
-            for idx in 0..book_groups.len() {
-                if !book_groups[idx].0.borrow().contains(&book) {
-                    book_groups[idx].0.borrow_mut().insert(*book);
+            for Group(book_group) in book_groups.iter() {
+                if !book_group.borrow().contains(&book) {
+                    book_group.borrow_mut().insert(*book);
                     continue 'nextbook;
                 }
             }
