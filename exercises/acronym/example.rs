@@ -13,7 +13,7 @@ fn split_camel(phrase: &str) -> Vec<String> {
     let mut word_start: usize = 0;
     for (i, c) in chars.iter().enumerate() {
         if i == chars.len() - 1 || c.is_lowercase() && chars[i + 1].is_uppercase() {
-            words.push(chars[word_start..i + 1].iter().cloned().collect());
+            words.push(chars[word_start..=i].iter().cloned().collect());
             word_start = i + 1;
         }
     }

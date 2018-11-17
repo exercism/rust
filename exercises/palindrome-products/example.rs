@@ -1,8 +1,8 @@
 pub type Palindrome = u64;
 pub fn get_palindrome_products(min: u64, max: u64) -> Vec<Palindrome> {
     let mut palindromes: Vec<u64> = Vec::new();
-    for i in min..max + 1 {
-        for j in min..max + 1 {
+    for i in min..=max {
+        for j in min..=max {
             if is_palindrome(i * j) {
                 palindromes.push(i * j);
             }
