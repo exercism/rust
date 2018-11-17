@@ -20,13 +20,13 @@ pub mod graph {
         }
 
         pub fn with_nodes(mut self, nodes: &[Node]) -> Self {
-            self.nodes = nodes.clone().to_vec();
+            self.nodes = nodes.to_vec();
 
             self
         }
 
         pub fn with_edges(mut self, edges: &[Edge]) -> Self {
-            self.edges = edges.clone().to_vec();
+            self.edges = edges.to_vec();
 
             self
         }
