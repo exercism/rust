@@ -47,16 +47,16 @@ fn parse_case(
         for sub_case in val_as!(sub_cases, as_array) {
             parse_case(&sub_case, property_functions, test_functions, use_maplit)?;
         }
-    } else {
-        if let Some(property) = case.get("property") {
-            let property = val_as!(property, as_str);
+    }
 
-            if !property_functions.contains_key(property) {
-                property_functions.insert(
-                    property.to_string(),
-                    exercise::generate_property_body(property),
-                );
-            }
+    if let Some(property) = case.get("property") {
+        let property = val_as!(property, as_str);
+
+        if !property_functions.contains_key(property) {
+            property_functions.insert(
+                property.to_string(),
+                exercise::generate_property_body(property),
+            );
         }
 
         test_functions.push(exercise::generate_test_function(case, use_maplit)?);

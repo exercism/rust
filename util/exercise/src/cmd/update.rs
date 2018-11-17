@@ -70,9 +70,9 @@ fn get_diffs(
         for sub_case in val_as!(sub_cases, as_array) {
             get_diffs(&sub_case, diffs, tests_content, use_maplit)?;
         }
-    } else {
-        generate_diffs(&case, &tests_content, diffs, use_maplit)?;
     }
+
+    generate_diffs(&case, &tests_content, diffs, use_maplit)?;
 
     Ok(())
 }
@@ -94,6 +94,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
         .join(format!("{}.rs", exercise_name));
 
     fs::write(&tests_path, updated_tests_content.as_bytes())?;
+
     exercise::rustfmt(&tests_path)?;
 
     Ok(())
