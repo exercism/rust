@@ -33,7 +33,7 @@ fn init_app<'a>() -> ArgMatches<'a> {
                 .about("Updates the specified exercise")
                 .arg(Arg::with_name("exercise_name").help("The name of the updated exercise"))
                 .arg(Arg::with_name("use_maplit").long("use-maplit").short("m").help("Use the maplit crate to improve the readability of the updated test suite"))
-                .arg(Arg::with_name("update_readme").long("update-readme").short("r").help("Update the README of the exercise using configlet utility"))
+                .arg(Arg::with_name("dont_update_readme").long("dont-update-readme").short("r").help("If set, the README of the exercise would not be updated"))
                 .arg(Arg::with_name("configure").long("configure").short("c").help(
                     "If set, the command will edit the config.json file after updating the exercise",
                 ))
@@ -77,7 +77,7 @@ fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
 
             let use_maplit = update_matches.is_present("use_maplit");
 
-            let update_readme = update_matches.is_present("update_readme");
+            let update_readme = !update_matches.is_present("dont_update_readme");
 
             update::update_exercise(exercise_name, use_maplit)?;
 
@@ -86,7 +86,7 @@ fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
             }
 
             if update_readme {
-                exercise::run_configlet_command("generate", &[".", "-o", exercise_name]);
+                exercise::run_configlet_command("generate", &[".", "-o", exercise_name])?;
             }
         }
 
