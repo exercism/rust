@@ -11,7 +11,7 @@ impl PascalsTriangle {
 
     pub fn rows(&self) -> Vec<Vec<u32>> {
         (0..self.row_count)
-            .map(|row| PascalsTriangle::row(row))
+            .map(PascalsTriangle::row)
             .collect()
     }
 
