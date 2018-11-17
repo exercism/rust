@@ -64,7 +64,7 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                 .iter()
                 .enumerate()
                 .filter(|&(_, line)| {
-                    let mut inner_line = String::from(line.clone());
+                    let mut inner_line = line.clone();
 
                     let mut inner_pattern = String::from(pattern);
 
