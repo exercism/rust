@@ -24,6 +24,6 @@ impl School {
     }
 
     pub fn grade(&self, grade: u32) -> Option<Vec<String>> {
-        self.grades.get(&grade).map(|v| v.iter().cloned().collect())
+        self.grades.get(&grade).map(|v| v.to_vec())
     }
 }
