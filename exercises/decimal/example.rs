@@ -20,8 +20,8 @@ pub struct Decimal {
 impl Decimal {
     fn new(digits: BigInt, decimal_index: usize) -> Decimal {
         let mut value = Decimal {
-            digits: digits,
-            decimal_index: decimal_index,
+            digits,
+            decimal_index,
         };
         value.reduce();
         value

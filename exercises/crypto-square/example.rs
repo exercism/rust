@@ -89,8 +89,8 @@ struct SquareIndexer {
 impl SquareIndexer {
     fn new(rows: usize, cols: usize) -> SquareIndexer {
         SquareIndexer {
-            rows: rows,
-            cols: cols,
+            rows,
+            cols,
             cur_row: 0,
             cur_col: 0,
             max_value: rows * cols,

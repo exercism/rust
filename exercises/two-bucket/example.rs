@@ -57,13 +57,13 @@ pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) ->
 
             if bucket_1 == goal {
                 return BucketStats {
-                    moves: moves,
+                    moves,
                     goal_bucket: Bucket::One,
                     other_bucket: bucket_2,
                 };
             } else if bucket_2 == goal {
                 return BucketStats {
-                    moves: moves,
+                    moves,
                     goal_bucket: Bucket::Two,
                     other_bucket: bucket_1,
                 };

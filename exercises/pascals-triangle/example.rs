@@ -5,7 +5,7 @@ pub struct PascalsTriangle {
 impl PascalsTriangle {
     pub fn new(row_count: u32) -> Self {
         PascalsTriangle {
-            row_count: row_count,
+            row_count,
         }
     }
 

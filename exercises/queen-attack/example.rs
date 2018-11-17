@@ -22,7 +22,7 @@ impl ChessPiece for Queen {
 
 impl Queen {
     pub fn new(position: ChessPosition) -> Queen {
-        Queen { position: position }
+        Queen { position }
     }
 }
 
@@ -35,8 +35,8 @@ pub struct ChessPosition {
 impl ChessPosition {
     pub fn new(rank: i8, file: i8) -> Option<Self> {
         let position = ChessPosition {
-            rank: rank,
-            file: file,
+            rank,
+            file,
         };
 
         if position.is_valid() {

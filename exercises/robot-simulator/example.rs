@@ -34,7 +34,7 @@ struct Position {
 
 impl Position {
     fn new(x: i32, y: i32) -> Self {
-        Position { x: x, y: y }
+        Position { x, y }
     }
 
     fn advance(&self, direction: &Direction) -> Self {
@@ -60,8 +60,8 @@ impl Robot {
 
     fn build(position: Position, direction: Direction) -> Self {
         Robot {
-            position: position,
-            direction: direction,
+            position,
+            direction,
         }
     }
 

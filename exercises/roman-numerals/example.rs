@@ -42,6 +42,6 @@ impl fmt::Display for Roman {
 
 impl Roman {
     fn new(num: usize) -> Roman {
-        Roman { num: num }
+        Roman { num }
     }
 }
