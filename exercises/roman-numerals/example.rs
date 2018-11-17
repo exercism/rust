@@ -33,7 +33,7 @@ impl fmt::Display for Roman {
         for &(numeric, roman_string) in ROMAN_MAP.into_iter().rev() {
             while start >= numeric {
                 result.push_str(roman_string);
-                start = start - numeric;
+                start -= numeric;
             }
         }
         write!(f, "{}", result)
