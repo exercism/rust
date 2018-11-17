@@ -1,6 +1,6 @@
 [package]
 name = "exercise"
-version = "1.2.1"
+version = "1.2.2"
 description = "An utility for creating or updating the exercises on the Exercism Rust track"
 
 [dependencies]

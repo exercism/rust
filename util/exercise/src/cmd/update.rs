@@ -61,24 +61,20 @@ fn generate_diffs(
 }
 
 fn get_diffs(
-    _exercise_name: &str,
-    canonical_data: &Value,
+    case: &Value,
+    diffs: &mut HashSet<String>,
     tests_content: &str,
     use_maplit: bool,
-) -> Result<HashSet<String>> {
-    let mut diffs: HashSet<String> = HashSet::new();
-
-    for case in get!(canonical_data, "cases", as_array) {
-        if let Some(sub_cases) = case.get("cases") {
-            for sub_case in val_as!(sub_cases, as_array) {
-                generate_diffs(&sub_case, &tests_content, &mut diffs, use_maplit)?;
-            }
-        } else {
-            generate_diffs(&case, &tests_content, &mut diffs, use_maplit)?;
+) -> Result<()> {
+    if let Some(sub_cases) = case.get("cases") {
+        for sub_case in val_as!(sub_cases, as_array) {
+            get_diffs(&sub_case, diffs, tests_content, use_maplit)?;
         }
     }
 
-    Ok(diffs)
+    generate_diffs(&case, &tests_content, diffs, use_maplit)?;
+
+    Ok(())
 }
 
 fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str) -> Result<()> {
@@ -98,6 +94,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
         .join(format!("{}.rs", exercise_name));
 
     fs::write(&tests_path, updated_tests_content.as_bytes())?;
+
     exercise::rustfmt(&tests_path)?;
 
     Ok(())
@@ -109,10 +106,17 @@ pub fn update_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
     }
 
     let tests_content = exercise::get_tests_content(exercise_name)?;
+
     let canonical_data = exercise::get_canonical_data(exercise_name)?;
-    let diffs = get_diffs(exercise_name, &canonical_data, &tests_content, use_maplit)?;
+
+    let mut diffs: HashSet<String> = HashSet::new();
+
+    for case in get!(canonical_data, "cases", as_array) {
+        get_diffs(&case, &mut diffs, &tests_content, use_maplit)?;
+    }
 
     apply_diffs(exercise_name, &diffs, &tests_content)?;
+
     exercise::update_cargo_toml_version(exercise_name, &canonical_data)?;
 
     Ok(())

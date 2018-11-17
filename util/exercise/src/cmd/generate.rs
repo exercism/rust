@@ -9,10 +9,10 @@ use std::{
     process::{Command, Stdio},
 };
 
-const GITIGNORE_CONTENT: &'static str = include_str!("defaults/gitignore");
-const EXAMPLE_RS_CONTENT: &'static str = include_str!("defaults/example.rs");
-const DESCRIPTION_MD_CONTENT: &'static str = include_str!("defaults/description.md");
-const METADATA_YML_CONTENT: &'static str = include_str!("defaults/metadata.yml");
+const GITIGNORE_CONTENT: &str = include_str!("defaults/gitignore");
+const EXAMPLE_RS_CONTENT: &str = include_str!("defaults/example.rs");
+const DESCRIPTION_MD_CONTENT: &str = include_str!("defaults/description.md");
+const METADATA_YML_CONTENT: &str = include_str!("defaults/metadata.yml");
 
 // Generate .meta directory and its contents without using the canonical data
 fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
@@ -23,7 +23,7 @@ fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
         ("description.md", DESCRIPTION_MD_CONTENT),
         ("metadata.yml", METADATA_YML_CONTENT),
     ]
-    .iter()
+        .iter()
     {
         if !exercise::canonical_file_exists(exercise_name, file)? {
             fs::write(exercise_path.join(".meta").join(file), content)?;
@@ -32,6 +32,34 @@ fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
 
     if fs::read_dir(&meta_dir)?.count() == 0 {
         fs::remove_dir(meta_dir)?;
+    }
+
+    Ok(())
+}
+
+fn parse_case(
+    case: &JsonValue,
+    property_functions: &mut HashMap<String, String>,
+    test_functions: &mut Vec<String>,
+    use_maplit: bool,
+) -> Result<()> {
+    if let Some(sub_cases) = case.get("cases") {
+        for sub_case in val_as!(sub_cases, as_array) {
+            parse_case(&sub_case, property_functions, test_functions, use_maplit)?;
+        }
+    }
+
+    if let Some(property) = case.get("property") {
+        let property = val_as!(property, as_str);
+
+        if !property_functions.contains_key(property) {
+            property_functions.insert(
+                property.to_string(),
+                exercise::generate_property_body(property),
+            );
+        }
+
+        test_functions.push(exercise::generate_test_function(case, use_maplit)?);
     }
 
     Ok(())
@@ -68,33 +96,17 @@ fn generate_tests_from_canonical_data(
 
     fs::write(&tests_path, updated_tests_content)?;
 
-    let mut property_functions: HashMap<&str, String> = HashMap::new();
+    let mut property_functions: HashMap<String, String> = HashMap::new();
 
     let mut test_functions: Vec<String> = Vec::new();
 
     for case in get!(canonical_data, "cases", as_array) {
-        if let Some(sub_cases) = case.get("cases") {
-            for sub_case in val_as!(sub_cases, as_array) {
-                if let Some(property) = sub_case.get("property") {
-                    let property = val_as!(property, as_str);
-                    if !property_functions.contains_key(property) {
-                        property_functions
-                            .insert(property, exercise::generate_property_body(property));
-                    }
-                }
-
-                test_functions.push(exercise::generate_test_function(&sub_case, use_maplit)?);
-            }
-        } else {
-            if let Some(property) = case.get("property") {
-                let property = val_as!(property, as_str);
-                if !property_functions.contains_key(property) {
-                    property_functions.insert(property, exercise::generate_property_body(property));
-                }
-            }
-
-            test_functions.push(exercise::generate_test_function(&case, use_maplit)?);
-        }
+        parse_case(
+            &case,
+            &mut property_functions,
+            &mut test_functions,
+            use_maplit,
+        )?;
     }
 
     if !test_functions.is_empty() {
@@ -105,7 +117,7 @@ fn generate_tests_from_canonical_data(
 
     let mut tests_file = OpenOptions::new().append(true).open(&tests_path)?;
 
-    for (_, property_body) in &property_functions {
+    for property_body in property_functions.values() {
         tests_file.write_all(property_body.as_bytes())?;
     }
 
@@ -183,8 +195,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
             exercise_path
                 .to_str()
                 .ok_or(format_err!("path inexpressable as str"))?,
-        )
-        .output()?;
+        ).output()?;
 
     fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)?;
 
