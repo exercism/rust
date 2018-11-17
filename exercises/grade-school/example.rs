@@ -12,7 +12,7 @@ impl School {
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
-        let entry = self.grades.entry(grade).or_insert(Vec::new());
+        let entry = self.grades.entry(grade).or_insert_with(Vec::new);
         entry.push(student.to_string());
         entry.sort();
     }
