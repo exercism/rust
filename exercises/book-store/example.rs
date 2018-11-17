@@ -141,7 +141,7 @@ impl Iterator for DecomposeGroups {
                 let book = {
                     let backing_bt = groups[0].0.borrow();
                     let mut book_iter = backing_bt.iter();
-                    book_iter.next().unwrap().clone()
+                    *book_iter.next().unwrap()
                 };
                 hypothetical = groups.clone();
                 hypothetical[0].0.borrow_mut().remove(&book);

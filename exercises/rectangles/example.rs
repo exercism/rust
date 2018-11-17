@@ -144,10 +144,10 @@ fn scan_connected(area: &Area) -> Connections {
             let sym = area.symbol_at(x, y);
             if sym == Symbol::Corner {
                 for prev in connected.iter() {
-                    conns.lines.insert(Line{x1: prev.clone(), y1: y, x2: x, y2: y});
+                    conns.lines.insert(Line{x1: *prev, y1: y, x2: x, y2: y});
                 }
                 if let Some(last) = connected.last() {
-                    let cf = conns.points.get_mut(&Point{x: last.clone(), y}).unwrap();
+                    let cf = conns.points.get_mut(&Point{x: *last, y}).unwrap();
                     *cf |= CONN_RIGHT;
                 }
                 let cf = conns.points.entry(Point{x, y}).or_insert(0);
