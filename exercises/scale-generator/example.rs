@@ -206,11 +206,9 @@ pub mod note {
         pub fn canonicalize(&self, lean: Accidental) -> Note {
             let mut n: Note = Semitone::from(*self).into();
             if let Some(accidental) = n.accidental {
-                if accidental != lean {
-                    if lean == Accidental::Flat {
-                        n += Interval::HalfStep;
-                        n.accidental = Some(Accidental::Flat);
-                    }
+                if accidental != lean && lean == Accidental::Flat {
+                    n += Interval::HalfStep;
+                    n.accidental = Some(Accidental::Flat);
                 }
             }
             n
