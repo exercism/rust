@@ -28,8 +28,8 @@ fn check(input: &[Domino]) -> CheckResult {
     };
     if input.len() != output.len() {
         return LengthMismatch(output);
-    } else if input.len() == 0 {
-        // and thus output.len() == 0
+    } else if input.is_empty() {
+        // and thus output.is_empty()
         return Correct;
     }
 

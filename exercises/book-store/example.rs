@@ -40,7 +40,7 @@ impl Ord for Group {
     fn cmp(&self, other: &Group) -> Ordering {
         match other.0.borrow().len().cmp(&self.0.borrow().len()) {
             Ordering::Equal => {
-                if self.0.borrow().len() == 0 {
+                if self.0.borrow().is_empty() {
                     Ordering::Equal
                 } else {
                     self.0
