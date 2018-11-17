@@ -22,5 +22,5 @@ fn is_yelling(message: &str) -> bool {
 }
 
 fn is_question(message: &str) -> bool {
-    message.trim_right().ends_with("?")
+    message.trim_right().ends_with('?')
 }

@@ -43,7 +43,7 @@ fn get_file_lines(file_name: &str) -> Result<Vec<String>, FileAccessError> {
     }
 
     if let Ok(content) = fs::read_to_string(file_path) {
-        Ok(content.split("\n").map(|line| line.to_string()).collect())
+        Ok(content.split('\n').map(|line| line.to_string()).collect())
     } else {
         Err(FileAccessError::FileReadError {
             file_name: String::from(file_name),
