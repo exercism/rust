@@ -48,7 +48,7 @@ pub fn convert(input: &str) -> Result<String, Error> {
     Ok(converted_lines.join(","))
 }
 
-fn convert_character(input: &Vec<char>) -> char {
+fn convert_character(input: &[char]) -> char {
     if &input[..] == [' ', '_', ' ', '|', ' ', '|', '|', '_', '|', ' ', ' ', ' '] {
         '0'
     } else if &input[..] == [' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', ' ', ' ', ' '] {
