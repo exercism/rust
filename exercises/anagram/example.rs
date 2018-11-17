@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-fn sort(word: &String) -> String {
+fn sort(word: &str) -> String {
     let mut sorted: Vec<char> = word.chars().collect();
     sorted.sort();
     sorted.into_iter().collect()

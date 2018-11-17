@@ -92,7 +92,7 @@ impl Forth {
             .or_else(|_| self.step_built_in(&word))
     }
 
-    fn step_built_in(&mut self, word: &String) -> ForthResult {
+    fn step_built_in(&mut self, word: &str) -> ForthResult {
         match word.as_ref() {
             "+" => self.bin_op(|(a, b)| Ok(a + b)),
             "-" => self.bin_op(|(a, b)| Ok(a - b)),
