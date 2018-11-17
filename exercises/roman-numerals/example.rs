@@ -30,7 +30,7 @@ impl fmt::Display for Roman {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut start = self.num.clone();
         let mut result = String::new();
-        for &(numeric, roman_string) in ROMAN_MAP.into_iter().rev() {
+        for &(numeric, roman_string) in ROMAN_MAP.iter().rev() {
             while start >= numeric {
                 result.push_str(roman_string);
                 start -= numeric;
