@@ -18,7 +18,7 @@ fn test_equation(puzzle: &str, substitutions: &HashMap<char, u8>) -> bool {
             if let Some(&n) = substitutions.get(&c) {
                 // If the character is in the substitutions, get the number and
                 // convert it to a char
-                char::from_digit(n as u32, 10).unwrap()
+                char::from_digit(u32::from(n), 10).unwrap()
             } else {
                 // Otherwise just copy over the character
                 c
@@ -47,7 +47,7 @@ fn test_equation(puzzle: &str, substitutions: &HashMap<char, u8>) -> bool {
     // Split this into the numbers and check every number's first character
     let no_leading_zeroes = just_numbers
         .split_whitespace()
-        .all(|number| number.chars().next().unwrap() != '0');
+        .all(|number| !number.starts_with('0'));
 
     // Return true if left and right side is equal and the equation doesnt
     // contain leading zeroes.

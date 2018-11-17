@@ -29,7 +29,7 @@ pub fn convert(input: &str) -> Result<String, Error> {
             let line_chars = line.chars().collect::<Vec<_>>();
 
             for (char_number, char_chunk) in line_chars.chunks(3).enumerate() {
-                let char_chars = unparsed_characters.entry(char_number).or_insert(vec![]);
+                let char_chars = unparsed_characters.entry(char_number).or_insert_with(Vec::new);
                 for c in char_chunk {
                     char_chars.push(*c);
                 }
@@ -48,7 +48,7 @@ pub fn convert(input: &str) -> Result<String, Error> {
     Ok(converted_lines.join(","))
 }
 
-fn convert_character(input: &Vec<char>) -> char {
+fn convert_character(input: &[char]) -> char {
     if &input[..] == [' ', '_', ' ', '|', ' ', '|', '|', '_', '|', ' ', ' ', ' '] {
         '0'
     } else if &input[..] == [' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', '|', ' ', ' ', ' '] {

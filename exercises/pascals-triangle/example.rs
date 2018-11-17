@@ -11,14 +11,14 @@ impl PascalsTriangle {
 
     pub fn rows(&self) -> Vec<Vec<u32>> {
         (0..self.row_count)
-            .map(|row| PascalsTriangle::row(row))
+            .map(PascalsTriangle::row)
             .collect()
     }
 
     pub fn row(number: u32) -> Vec<u32> {
         let mut r = vec![1];
 
-        for p in 1..(number + 1) {
+        for p in 1..=number {
             if let Some(&last) = r.last() {
                 r.push((last * (number + 1 - p)) / p)
             }

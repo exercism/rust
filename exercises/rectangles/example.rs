@@ -106,7 +106,7 @@ pub fn count(lines: &[&str]) -> usize {
     }
     for (p, tcf) in conns_transposed.points {
         let cf = conns.points.entry(Point{x: p.y, y: p.x}).or_insert(0);
-        *cf = *cf | (tcf << 2)
+        *cf |= tcf << 2
     }
 
     let mut total = 0;
@@ -131,7 +131,7 @@ pub fn count(lines: &[&str]) -> usize {
             }
         }
     }
-    return total;
+    total
 }
 
 fn scan_connected(area: &Area) -> Connections {
@@ -150,11 +150,11 @@ fn scan_connected(area: &Area) -> Connections {
                 }
                 if let Some(last) = connected.last() {
                     let cf = conns.points.get_mut(&Point{x: last.clone(), y}).unwrap();
-                    *cf = *cf | CONN_RIGHT;
+                    *cf |= CONN_RIGHT;
                 }
                 let cf = conns.points.entry(Point{x, y}).or_insert(0);
                 if !connected.is_empty() {
-                    *cf = *cf | CONN_LEFT;
+                    *cf |= CONN_LEFT;
                 }
                 connected.push(x);
             } else if sym != Symbol::Connect {

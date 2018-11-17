@@ -86,6 +86,6 @@ fn write_tally(results: &HashMap<String, TeamResult>) -> String {
 fn add_game_result(results: &mut HashMap<String, TeamResult>, team: String, result: GameResult) {
     results
         .entry(team)
-        .or_insert(TeamResult::new())
+        .or_insert_with(TeamResult::new)
         .add_game_result(result);
 }

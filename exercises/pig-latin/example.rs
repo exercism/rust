@@ -25,7 +25,7 @@ pub fn translate_word(word: &str) -> String {
 }
 
 pub fn translate(text: &str) -> String {
-    text.split(" ")
+    text.split(' ')
         .map(|w| translate_word(w))
         .collect::<Vec<_>>()
         .join(" ")

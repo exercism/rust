@@ -57,13 +57,13 @@ pub fn convert<P: AsRef<[Digit]>>(
     }
 
     // convert all digits into a single large number
-    let mut immediate = digits
+    let mut immediate: Digit = digits
         .as_ref()
         .iter()
         .rev()
         .enumerate()
         .map(|(i, &num)| num * from_base.pow(i as u32))
-        .fold(0, |accu, num| accu + num);
+        .sum();
 
     // convert number into digits
     let mut res = Vec::new();

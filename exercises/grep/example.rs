@@ -43,7 +43,7 @@ fn get_file_lines(file_name: &str) -> Result<Vec<String>, FileAccessError> {
     }
 
     if let Ok(content) = fs::read_to_string(file_path) {
-        Ok(content.split("\n").map(|line| line.to_string()).collect())
+        Ok(content.split('\n').map(|line| line.to_string()).collect())
     } else {
         Err(FileAccessError::FileReadError {
             file_name: String::from(file_name),
@@ -64,7 +64,7 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                 .iter()
                 .enumerate()
                 .filter(|&(_, line)| {
-                    let mut inner_line = String::from(line.clone());
+                    let mut inner_line = line.clone();
 
                     let mut inner_pattern = String::from(pattern);
 
@@ -74,17 +74,13 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                         inner_pattern = inner_pattern.to_lowercase().to_string();
                     }
 
-                    let mut is_filtered = inner_line.contains(&inner_pattern);
-
-                    if flags.match_entire_line {
-                        is_filtered = inner_line == inner_pattern;
-                    }
-
                     if flags.use_inverted_comparison {
-                        is_filtered = !inner_line.contains(&inner_pattern);
+                        !inner_line.contains(&inner_pattern)
+                    } else if flags.match_entire_line {
+                        inner_line == inner_pattern
+                    } else {
+                        inner_line.contains(&inner_pattern)
                     }
-
-                    is_filtered
                 })
                 .filter(|(_, line)| !line.is_empty())
                 .map(|(line_number, line)| {

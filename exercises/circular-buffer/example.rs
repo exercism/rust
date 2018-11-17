@@ -28,7 +28,7 @@ impl<T: Default + Clone> CircularBuffer<T> {
             return Err(Error::EmptyBuffer);
         }
 
-        let v = self.buffer.get(self.start).unwrap().clone();
+        let v = self.buffer[self.start].clone();
         self.advance_start();
         Ok(v)
     }

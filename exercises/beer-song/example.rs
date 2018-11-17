@@ -20,9 +20,9 @@ pub fn verse(n: i32) -> String {
 }
 
 pub fn sing(start: i32, end: i32) -> String {
-    (end..start + 1)
+    (end..=start)
         .rev()
-        .map(|n| verse(n))
+        .map(verse)
         .collect::<Vec<_>>()
         .join("\n")
 }

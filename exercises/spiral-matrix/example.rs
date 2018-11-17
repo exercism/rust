@@ -1,6 +1,6 @@
 pub fn spiral_matrix(size: u32) -> Vec<Vec<u32>> {
     let mut matrix: Vec<Vec<u32>> = vec![vec![0; size as usize]; size as usize];
-    let num_concentric_squares = (size as f64 / 2.0).ceil() as usize;
+    let num_concentric_squares = (f64::from(size) / 2.0).ceil() as usize;
     let mut counter: u32 = 1;
     let mut sidelen = size as usize;
     for i in 0..num_concentric_squares {

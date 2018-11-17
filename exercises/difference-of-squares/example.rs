@@ -4,7 +4,7 @@ pub fn square_of_sum(n: u32) -> u32 {
 }
 
 pub fn sum_of_squares(n: u32) -> u32 {
-    (0..n + 1).map(|x| x * x).fold(0, |accum, x| accum + x)
+    (0..=n).map(|x| x * x).sum()
 }
 
 pub fn difference(n: u32) -> u32 {

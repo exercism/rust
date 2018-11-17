@@ -16,7 +16,7 @@ pub fn encode(plaintext: &str) -> String {
         .chars()
         .filter(|&ch| ch.is_ascii())
         .filter(|&ch| ch.is_alphanumeric())
-        .map(|ch| get_transpose(ch))
+        .map(get_transpose)
         .collect::<Vec<char>>()
         .chunks(5)
         .map(|slice| slice.iter().cloned().collect::<String>())
@@ -29,6 +29,6 @@ pub fn decode(ciphertext: &str) -> String {
         .split::<char>(' ')
         .collect::<String>()
         .chars()
-        .map(|ch| get_transpose(ch))
+        .map(get_transpose)
         .collect::<String>()
 }
