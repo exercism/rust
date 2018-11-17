@@ -85,9 +85,7 @@ struct Connections {
 }
 
 pub fn count(lines: &[&str]) -> usize {
-    if lines.is_empty() {
-        return 0
-    } else if lines[0].is_empty() {
+    if lines.is_empty() || lines[0].is_empty() {
         return 0
     }
     let area = RealArea {
