@@ -3,6 +3,13 @@ extern crate wordy;
 use wordy::answer;
 
 #[test]
+fn just_a_number() {
+    let command = "What is 5?";
+    assert_eq!(Some(5), answer(command));
+}
+
+#[test]
+#[ignore]
 fn addition() {
     let command = "What is 1 plus 1?";
     assert_eq!(Some(2), answer(command));
@@ -110,5 +117,40 @@ fn unknown_operation() {
 #[ignore]
 fn non_math_question() {
     let command = "Who is the President of the United States?";
+    assert!(answer(command).is_none());
+}
+
+#[test]
+#[ignore]
+fn reject_incomplete_problem() {
+    let command = "What is 1 plus?";
+    assert!(answer(command).is_none());
+}
+
+#[test]
+#[ignore]
+fn reject_two_operations_in_a_row() {
+    let command = "What is 1 plus plus 2?";
+    assert!(answer(command).is_none());
+}
+
+#[test]
+#[ignore]
+fn reject_two_numbers_in_a_row() {
+    let command = "What is 1 plus 2 1?";
+    assert!(answer(command).is_none());
+}
+
+#[test]
+#[ignore]
+fn reject_postfix_notation() {
+    let command = "What is 1 2 plus?";
+    assert!(answer(command).is_none());
+}
+
+#[test]
+#[ignore]
+fn reject_prefix_notation() {
+    let command = "What is plus 1 2?";
     assert!(answer(command).is_none());
 }
