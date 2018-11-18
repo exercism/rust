@@ -4,7 +4,7 @@ pub fn score(word: &str) -> u16 {
     let values = dictionary();
     word.to_lowercase()
         .chars()
-        .map(|c| values.get(&c).clone())
+        .map(|c| values.get(&c))
         .fold(0, |score, v| score + v.unwrap_or(&0))
 }
 
