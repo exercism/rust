@@ -42,6 +42,12 @@ fn test_second_and_past_tests_ignored() {
 
 If you plan to make significant or breaking changes, please open an issue so we can discuss it first. If this is a discussion that is relevant to more than just the Rust track, please open an issue in [exercism/discussions](https://github.com/exercism/discussions/issues).
 
+## Finding a potential contribution
+
+Exercism is constantly evolving, adding new or updating old exercises.
+If you could not find a suitable [issue](https://github.com/exercism/rust/issues), you can use a [xtodo crate](https://github.com/exercism/rust/tree/master/util/xtodo) 
+to find exercises, that are not yet implemented or outdated on this track and then use an [exercise crate](https://github.com/exercism/rust/tree/master/util/exercise) to add or update an exercise.
+
 ## Submitting a Pull Request
 
 Pull requests should be focused on a single exercise, issue, or conceptually cohesive change. Please refer to Exercism's [pull request guidelines](https://github.com/exercism/docs/blob/master/contributing/pull-request-guidelines.md).
