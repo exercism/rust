@@ -39,6 +39,12 @@ fn paired_with_whitespace() {
 
 #[test]
 #[ignore]
+fn partially_paired_brackets() {
+    assert!(!brackets_are_balanced("{[])"));
+}
+
+#[test]
+#[ignore]
 fn simple_nested_brackets() {
     assert!(brackets_are_balanced("{[]}"));
 }
@@ -71,6 +77,18 @@ fn unpaired_and_nested_brackets() {
 #[ignore]
 fn paired_and_wrong_nested_brackets() {
     assert!(!brackets_are_balanced("[({]})"));
+}
+
+#[test]
+#[ignore]
+fn paired_and_incomplete_brackets() {
+    assert!(!brackets_are_balanced("{}["));
+}
+
+#[test]
+#[ignore]
+fn too_many_closing_brackets() {
+    assert!(!brackets_are_balanced("[]]"));
 }
 
 #[test]
