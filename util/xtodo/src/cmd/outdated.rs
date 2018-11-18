@@ -5,25 +5,26 @@ use toml::Value as TomlValue;
 struct RustVersionReader;
 
 trait GetLocalVersion {
-    fn get_local_version(&self, exercise_name: &str) -> Option<String>;
+    fn get_local_version(&self, exercise_name: &str) -> xtodo::Result<String>;
 }
 
 impl GetLocalVersion for RustVersionReader {
-    fn get_local_version(&self, exercise_name: &str) -> Option<String> {
-        let track_root = xtodo::get_track_root();
+    fn get_local_version(&self, exercise_name: &str) -> xtodo::Result<String> {
+        let track_root = xtodo::get_track_root()?;
 
         let cargo_toml_path = Path::new(&track_root)
             .join("exercises")
             .join(exercise_name)
             .join("Cargo.toml");
 
-        let cargo_toml_content = fs::read_to_string(cargo_toml_path).unwrap();
+        let cargo_toml_content = fs::read_to_string(cargo_toml_path)?;
 
-        let cargo_toml: TomlValue = cargo_toml_content.parse().unwrap();
+        let cargo_toml: TomlValue = cargo_toml_content.parse()?;
 
-        cargo_toml["package"]
+        Ok(cargo_toml["package"]
             .get("version")
             .map(|version| version.as_str().unwrap().to_string())
+            .unwrap())
     }
 }
 
@@ -44,26 +45,13 @@ impl ExerciseInfo {
     }
 }
 
-fn get_canonical_version(exercise_name: &str) -> Option<String> {
-    let  mut canonical_data = reqwest::get(&format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name))
-        .unwrap();
+fn get_canonical_version(exercise_name: &str) -> xtodo::Result<String> {
+    let canonical_data: JsonValue = reqwest::get(&format!("https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/canonical-data.json", exercise_name))?.json()?;
 
-    let canonical_data_json: JsonValue = canonical_data.json().unwrap_or_else(|_| {
-        println!(
-            "Could not retrieve canonical-data for the {} exercise: {}",
-            exercise_name,
-            canonical_data
-                .text()
-                .unwrap_or_else(|_| "Failed to make HTTP request.".to_string())
-                .trim()
-        );
-
-        JsonValue::Null
-    });
-
-    canonical_data_json
+    Ok(canonical_data
         .get("version")
         .map(|version| version.as_str().unwrap().to_string())
+        .unwrap())
 }
 
 fn get_version_reader(track_name: &str) -> Option<impl GetLocalVersion> {
@@ -73,8 +61,8 @@ fn get_version_reader(track_name: &str) -> Option<impl GetLocalVersion> {
     }
 }
 
-pub fn list_outdated_exercises() {
-    let config = xtodo::get_config_value();
+pub fn list_outdated_exercises() -> xtodo::Result<()> {
+    let config = xtodo::get_config_value()?;
 
     let track_name = config.get("language").unwrap().as_str().unwrap();
 
@@ -86,7 +74,7 @@ pub fn list_outdated_exercises() {
             track_name
         );
 
-        return;
+        return Ok(());
     }
 
     let version_reader = version_reader.unwrap();
@@ -106,9 +94,27 @@ pub fn list_outdated_exercises() {
     for exercise in &mut exercises {
         let name = &exercise.name;
 
-        exercise.local_version = version_reader.get_local_version(name);
+        exercise.local_version = match version_reader.get_local_version(name) {
+            Ok(local_version) => Some(local_version),
+            Err(err) => {
+                println!(
+                    "Failed to get local version for the {} exercise: {}",
+                    name, err
+                );
+                None
+            }
+        };
 
-        exercise.canonical_version = get_canonical_version(name);
+        exercise.canonical_version = match get_canonical_version(name) {
+            Ok(canonical_version) => Some(canonical_version),
+            Err(err) => {
+                println!(
+                    "Could not retrieve canonical-data for the {} exercise: {}",
+                    name, err
+                );
+                None
+            }
+        };
     }
 
     let outdated_exercises: Vec<&ExerciseInfo> = exercises
@@ -134,4 +140,6 @@ pub fn list_outdated_exercises() {
             )).collect::<Vec<String>>()
             .join("\n")
     );
+
+    Ok(())
 }

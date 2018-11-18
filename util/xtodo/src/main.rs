@@ -20,26 +20,23 @@ fn init_app<'a>() -> ArgMatches<'a> {
         ).get_matches()
 }
 
-fn process_matches(matches: &ArgMatches) {
+fn process_matches(matches: &ArgMatches) -> xtodo::Result<()> {
     match matches.subcommand() {
-        ("missing", _) => {
-            cmd::list_missing_exercises();
-        }
+        ("missing", _) => cmd::list_missing_exercises(),
 
-        ("outdated", _) => {
-            cmd::list_outdated_exercises();
-        }
+        ("outdated", _) => cmd::list_outdated_exercises(),
 
         ("", _) => {
             println!("No subcommand was used.\nUse 'xtodo help' to learn about the possible subcommands.");
+            Ok(())
         }
 
         _ => unreachable!(),
     }
 }
 
-fn main() {
+fn main() -> xtodo::Result<()> {
     let matches = init_app();
 
-    process_matches(&matches);
+    process_matches(&matches)
 }

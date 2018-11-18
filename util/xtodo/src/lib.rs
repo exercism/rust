@@ -1,26 +1,31 @@
+extern crate failure;
+#[macro_use]
+extern crate failure_derive;
 extern crate serde_json;
 
-use serde_json::Value;
-use std::{fs, path::Path, process::Command};
+pub mod errors;
 
-pub fn get_track_root() -> String {
+use serde_json::Value;
+use std::{fs, path::Path, process::Command, result};
+
+pub type Result<T> = result::Result<T, errors::Error>;
+
+pub fn get_track_root() -> Result<String> {
     let rev_parse_output = Command::new("git")
         .args(&["rev-parse", "--show-toplevel"])
-        .output()
-        .unwrap();
+        .output()?;
 
-    String::from_utf8(rev_parse_output.stdout)
-        .unwrap()
+    Ok(String::from_utf8(rev_parse_output.stdout)?
         .trim()
-        .to_string()
+        .to_string())
 }
 
-pub fn get_config_value() -> Value {
-    let track_root = get_track_root();
+pub fn get_config_value() -> Result<Value> {
+    let track_root = get_track_root()?;
 
     let config_path = Path::new(&track_root).join("config.json");
 
-    let config_content = fs::read_to_string(config_path).unwrap();
+    let config_content = fs::read_to_string(config_path)?;
 
-    serde_json::from_str(&config_content).unwrap()
+    Ok(serde_json::from_str(&config_content)?)
 }
