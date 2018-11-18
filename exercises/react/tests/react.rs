@@ -221,6 +221,56 @@ fn callbacks_only_fire_on_change() {
 
 #[test]
 #[ignore]
+fn callbacks_can_be_called_multiple_times() {
+    let cb = CallbackRecorder::new();
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let output = reactor
+        .create_compute(&[CellID::Input(input)], |v| v[0] + 1)
+        .unwrap();
+    assert!(
+        reactor
+            .add_callback(output, |v| cb.callback_called(v))
+            .is_some()
+    );
+
+    assert!(reactor.set_value(input, 2));
+    cb.expect_to_have_been_called_with(3);
+    assert!(reactor.set_value(input, 3));
+    cb.expect_to_have_been_called_with(4);
+}
+
+#[test]
+#[ignore]
+fn callbacks_can_be_called_from_multiple_cells() {
+    let cb1 = CallbackRecorder::new();
+    let cb2 = CallbackRecorder::new();
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let plus_one = reactor
+        .create_compute(&[CellID::Input(input)], |v| v[0] + 1)
+        .unwrap();
+    let minus_one = reactor
+        .create_compute(&[CellID::Input(input)], |v| v[0] - 1)
+        .unwrap();
+    assert!(
+        reactor
+            .add_callback(plus_one, |v| cb1.callback_called(v))
+            .is_some()
+    );
+    assert!(
+        reactor
+            .add_callback(minus_one, |v| cb2.callback_called(v))
+            .is_some()
+    );
+
+    assert!(reactor.set_value(input, 10));
+    cb1.expect_to_have_been_called_with(11);
+    cb2.expect_to_have_been_called_with(9);
+}
+
+#[test]
+#[ignore]
 fn callbacks_can_be_added_and_removed() {
     let cb1 = CallbackRecorder::new();
     let cb2 = CallbackRecorder::new();
