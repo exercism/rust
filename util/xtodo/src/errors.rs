@@ -11,6 +11,9 @@ pub enum Error {
     #[fail(display = "json error: {}", _0)]
     JsonError(#[cause] serde_json::Error),
 
+    #[fail(display = "yaml error: {}", _0)]
+    YamlError(#[cause] serde_yaml::Error),
+
     #[fail(display = "HTTP error: {}", _0)]
     HTTPError(reqwest::Error),
 
@@ -42,6 +45,12 @@ impl From<failure::Error> for Error {
 impl From<serde_json::Error> for Error {
     fn from(err: serde_json::Error) -> Self {
         Error::JsonError(err)
+    }
+}
+
+impl From<serde_yaml::Error> for Error {
+    fn from(err: serde_yaml::Error) -> Self {
+        Error::YamlError(err)
     }
 }
 

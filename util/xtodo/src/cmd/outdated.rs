@@ -1,8 +1,10 @@
 use serde_json::Value as JsonValue;
+use serde_yaml::Value as YamlValue;
 use std::{fs, path::Path};
 use toml::Value as TomlValue;
 
 struct RustVersionReader;
+struct HaskellVersionReader;
 
 trait GetLocalVersion {
     fn get_local_version(&self, exercise_name: &str) -> xtodo::Result<String>;
@@ -25,6 +27,29 @@ impl GetLocalVersion for RustVersionReader {
             .get("version")
             .map(|version| version.as_str().unwrap().to_string())
             .unwrap())
+    }
+}
+
+impl GetLocalVersion for HaskellVersionReader {
+    fn get_local_version(&self, exercise_name: &str) -> xtodo::Result<String> {
+        let track_root = xtodo::get_track_root()?;
+
+        let package_yaml_path = Path::new(&track_root)
+            .join("exercises")
+            .join(exercise_name)
+            .join("package.yaml");
+
+        let package_yaml_content = fs::read_to_string(package_yaml_path)?;
+
+        let package_yaml: YamlValue = serde_yaml::from_str(&package_yaml_content)?;
+
+        Ok(package_yaml["version"]
+            .as_str()
+            .unwrap()
+            .split('.')
+            .take(3)
+            .collect::<Vec<&str>>()
+            .join("."))
     }
 }
 
@@ -54,9 +79,10 @@ fn get_canonical_version(exercise_name: &str) -> xtodo::Result<String> {
         .unwrap())
 }
 
-fn get_version_reader(track_name: &str) -> Option<impl GetLocalVersion> {
+fn get_version_reader(track_name: &str) -> Option<Box<GetLocalVersion>> {
     match track_name.to_lowercase().as_ref() {
-        "rust" => Some(RustVersionReader),
+        "rust" => Some(Box::new(RustVersionReader)),
+        "haskell" => Some(Box::new(HaskellVersionReader)),
         _ => None,
     }
 }

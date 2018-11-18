@@ -1,6 +1,7 @@
 extern crate clap;
 extern crate reqwest;
 extern crate serde_json;
+extern crate serde_yaml;
 extern crate toml;
 
 mod cmd;
