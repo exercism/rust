@@ -1,6 +1,6 @@
 [package]
 name = "xtodo"
-version = "0.1.0"
+version = "1.0.0"
 description = "An utility to track outdated or unimplemented exercises on the Rust track"
 
 [dependencies]
