@@ -1,65 +1,53 @@
-struct Token<'a> {
-    value: &'a str,
+#[derive(PartialEq)]
+enum Token<'a> {
+    Number(i32),
+    NonNumber(&'a str),
 }
 
-impl <'a> Token<'a> {
-    fn is_valid(&self) -> bool {
-        !self.value.is_empty() && (self.is_operand() || self.is_operator())
-    }
-
-    fn is_operand(&self) -> bool {
-        self.value.chars().all(|c| c.is_numeric() || c == '-')
-    }
-
-    fn is_operator(&self) -> bool {
-        self.value == "plus"
-            || self.value == "minus"
-            || self.value == "multiplied"
-            || self.value == "divided"
-    }
+fn apply_op<'a, 'b>(num1: i32, words: &'a [Token<'b>]) -> Option<(i32, &'a [Token<'b>])> {
+    let number_pos = words.iter().position(|w| match w {
+        Token::Number(_) => true,
+        Token::NonNumber(_) => false,
+    })?;
+    let (op_and_num, remainder) = words.split_at(number_pos + 1);
+    let (op, num2) = op_and_num.split_at(number_pos);
+    let num2 = match num2 {
+        [Token::Number(i)] => i,
+        _ => unreachable!("We split at a Number above, so num2 is surely a single-element slice w/ a number"),
+    };
+    match op {
+        [Token::NonNumber("plus")] => Some(num1 + num2),
+        [Token::NonNumber("minus")] => Some(num1 - num2),
+        [Token::NonNumber("multiplied"), Token::NonNumber("by")] => Some(num1 * num2),
+        [Token::NonNumber("divided"), Token::NonNumber("by")] => Some(num1 / num2),
+        _ => None,
+    }.map(|n| (n, remainder))
 }
 
 pub fn answer(c: &str) -> Option<i32> {
-    let mut t = tokens(c);
-    let mut result: i32 = 0;
-    let mut opr = "plus";
-
-    if t.len() <= 1 {
-        None
-    } else {
-        while t.len() > 1 {
-            result = evaluate(result, opr, operand(&t.remove(0)));
-            opr = operator(&t.remove(0));
+    let words = c.trim_end_matches('?').split_whitespace().map(|word| {
+        if let Ok(i) = word.parse::<i32>() {
+            Token::Number(i)
+        } else {
+            Token::NonNumber(word)
         }
-        result = evaluate(result, opr, operand(&t.remove(0)));
-        Some(result)
+    }).collect::<Vec<_>>();
+    if words.len() < 3 {
+        return None;
     }
-}
-
-fn evaluate(r: i32, operator: &str, operand: i32) -> i32 {
-    match operator {
-        "plus" => r + operand,
-        "minus" => r - operand,
-        "multiplied" => r * operand,
-        "divided" => r / operand,
-        _ => r,
+    let mut result: i32 = match words[0..3] {
+        [
+            Token::NonNumber("What"),
+            Token::NonNumber("is"),
+            Token::Number(i),
+        ] => i,
+        _ => return None,
+    };
+    let mut words = words.split_at(3).1;
+    while !words.is_empty() {
+        let tmp = apply_op(result, words)?;
+        result = tmp.0;
+        words = tmp.1;
     }
-}
-
-fn operand(t: &Token) -> i32 {
-    t.value.parse().unwrap()
-}
-
-fn operator<'a>(t: &Token<'a>) -> &'a str {
-    t.value
-}
-
-fn tokens<'a>(command: &'a str) -> Vec<Token<'a>> {
-    command
-        .split(|c: char| c.is_whitespace() || c == '?')
-        .map(|w| Token {
-            value: w,
-        })
-        .filter(|t| t.is_valid())
-        .collect()
+    Some(result)
 }
