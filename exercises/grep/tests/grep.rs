@@ -86,16 +86,19 @@ impl<'a> Drop for Fixture<'a> {
 
 fn set_up_files(files: &[(&str, &str)]) {
     for (file_name, file_content) in files {
-        fs::write(file_name, file_content).expect(&format!(
-            "Error setting up file '{}' with the following content:\n{}",
-            file_name, file_content
-        ));
+        fs::write(file_name, file_content).unwrap_or_else(|_| {
+            panic!(
+                "Error setting up file '{}' with the following content:\n{}",
+                file_name, file_content
+            )
+        });
     }
 }
 
 fn tear_down_files(files: &[&str]) {
     for file_name in files {
-        fs::remove_file(file_name).expect(&format!("Could not delete file '{}'", file_name));
+        fs::remove_file(file_name)
+            .unwrap_or_else(|_| panic!("Could not delete file '{}'", file_name));
     }
 }
 
