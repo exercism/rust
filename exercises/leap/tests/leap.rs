@@ -1,6 +1,6 @@
 extern crate leap;
 
-fn process_leapyear_case(year: i32, expected: bool) {
+fn process_leapyear_case(year: u64, expected: bool) {
     assert_eq!(leap::is_leap_year(year), expected);
 }
 
