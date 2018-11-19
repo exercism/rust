@@ -72,7 +72,9 @@ fn get_diffs(
         }
     }
 
-    generate_diffs(&case, &tests_content, diffs, use_maplit)?;
+    if case.get("property").is_some() {
+        generate_diffs(&case, &tests_content, diffs, use_maplit)?;
+    }
 
     Ok(())
 }
