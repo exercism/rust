@@ -58,7 +58,8 @@ impl<'a> Fixture<'a> {
     }
 
     fn set_up(&self) {
-        let file_name_content_pairs = self.file_names
+        let file_name_content_pairs = self
+            .file_names
             .iter()
             .cloned()
             .map(|file_name| {
@@ -71,8 +72,7 @@ impl<'a> Fixture<'a> {
                 } else {
                     (file_name, IN_THE_WHITE_NIGHT_CONTENT)
                 }
-            })
-            .collect::<Vec<(&str, &str)>>();
+            }).collect::<Vec<(&str, &str)>>();
 
         set_up_files(&file_name_content_pairs);
     }
@@ -86,16 +86,19 @@ impl<'a> Drop for Fixture<'a> {
 
 fn set_up_files(files: &[(&str, &str)]) {
     for (file_name, file_content) in files {
-        fs::write(file_name, file_content).expect(&format!(
-            "Error setting up file '{}' with the following content:\n{}",
-            file_name, file_content
-        ));
+        fs::write(file_name, file_content).unwrap_or_else(|_| {
+            panic!(
+                "Error setting up file '{}' with the following content:\n{}",
+                file_name, file_content
+            )
+        });
     }
 }
 
 fn tear_down_files(files: &[&str]) {
     for file_name in files {
-        fs::remove_file(file_name).expect(&format!("Could not delete file '{}'", file_name));
+        fs::remove_file(file_name)
+            .unwrap_or_else(|_| panic!("Could not delete file '{}'", file_name));
     }
 }
 
@@ -313,6 +316,37 @@ test_one_file_no_matches_various_flags(
     expected = []
 ));
 
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_several_matches_inverted_and_match_entire_lines_flags(
+        pattern = "Illustrious into Ades premature,",
+        flags = ["-x", "-v"],
+        files = ["iliad.txt"],
+        expected = [
+            "Achilles sing, O Goddess! Peleus' son;",
+            "His wrath pernicious, who ten thousand woes",
+            "Caused to Achaia's host, sent many a soul",
+            "And Heroes gave (so stood the will of Jove)",
+            "To dogs and to all ravening fowls a prey,",
+            "When fierce dispute had separated once",
+            "The noble Chief Achilles from the son",
+            "Of Atreus, Agamemnon, King of men."
+        ]
+    )
+);
+
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_one_match_file_flag_takes_precedence_over_line_flag(
+        pattern = "ten",
+        flags = ["-n", "-l"],
+        files = ["iliad.txt"],
+        prefix_expected = ["iliad.txt"]
+    )
+);
+
 // Test grepping multiples files at once
 
 set_up_test_case!(#[test]
@@ -435,3 +469,49 @@ test_multiple_files_no_matches_various_flags(
     files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
     expected = []
 ));
+
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_several_matches_file_flag_takes_precedence_over_line_number_flag(
+        pattern = "who",
+        flags = ["-n", "-l"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = ["iliad.txt", "paradise_lost.txt"]
+    )
+);
+
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_several_matches_inverted_and_match_entire_lines_flags(
+        pattern = "Illustrious into Ades premature,",
+        flags = ["-x", "-v"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = [
+            "iliad.txt:Achilles sing, O Goddess! Peleus' son;",
+            "iliad.txt:His wrath pernicious, who ten thousand woes",
+            "iliad.txt:Caused to Achaia's host, sent many a soul",
+            "iliad.txt:And Heroes gave (so stood the will of Jove)",
+            "iliad.txt:To dogs and to all ravening fowls a prey,",
+            "iliad.txt:When fierce dispute had separated once",
+            "iliad.txt:The noble Chief Achilles from the son",
+            "iliad.txt:Of Atreus, Agamemnon, King of men.",
+            "midsummer_night.txt:I do entreat your grace to pardon me.",
+            "midsummer_night.txt:I know not by what power I am made bold,",
+            "midsummer_night.txt:Nor how it may concern my modesty,",
+            "midsummer_night.txt:In such a presence here to plead my thoughts;",
+            "midsummer_night.txt:But I beseech your grace that I may know",
+            "midsummer_night.txt:The worst that may befall me in this case,",
+            "midsummer_night.txt:If I refuse to wed Demetrius.",
+            "paradise_lost.txt:Of Mans First Disobedience, and the Fruit",
+            "paradise_lost.txt:Of that Forbidden Tree, whose mortal tast",
+            "paradise_lost.txt:Brought Death into the World, and all our woe,",
+            "paradise_lost.txt:With loss of Eden, till one greater Man",
+            "paradise_lost.txt:Restore us, and regain the blissful Seat,",
+            "paradise_lost.txt:Sing Heav'nly Muse, that on the secret top",
+            "paradise_lost.txt:Of Oreb, or of Sinai, didst inspire",
+            "paradise_lost.txt:That Shepherd, who first taught the chosen Seed"
+        ]
+    )
+);
