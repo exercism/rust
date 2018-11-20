@@ -28,7 +28,7 @@ fn test_invalid_character_as_check_digit() {
 #[test]
 #[ignore]
 fn test_invalid_character_in_isbn() {
-    assert!(!is_valid_isbn("3-598-2K507-0"));
+    assert!(!is_valid_isbn("3-598-P1581-X"));
 }
 
 #[test]
@@ -65,14 +65,14 @@ fn test_invalid_isbn_without_dashes_and_too_long() {
 
 #[test]
 #[ignore]
-fn test_invalid_isbn_without_check_digit() {
-    assert!(!is_valid_isbn("3-598-21507"));
+fn too_short_isbn() {
+    assert!(!is_valid_isbn("00"));
 }
 
 #[test]
 #[ignore]
-fn test_invalid_isbn_too_long() {
-    assert!(!is_valid_isbn("3-598-21507-XX"));
+fn test_invalid_isbn_without_check_digit() {
+    assert!(!is_valid_isbn("3-598-21507"));
 }
 
 #[test]
@@ -92,4 +92,28 @@ fn test_special_characters() {
 #[allow(non_snake_case)]
 fn test_invalid_isbn_with_check_digit_X_instead_of_0() {
     assert!(!is_valid_isbn("3-598-21515-X"));
+}
+
+#[test]
+#[ignore]
+fn empty_isbn() {
+    assert!(!is_valid_isbn(""));
+}
+
+#[test]
+#[ignore]
+fn input_is_9_characters() {
+    assert!(!is_valid_isbn("134456729"));
+}
+
+#[test]
+#[ignore]
+fn invalid_characters_are_not_ignored() {
+    assert!(!is_valid_isbn("3132P34035"));
+}
+
+#[test]
+#[ignore]
+fn too_long_but_contains_a_valid_isbn() {
+    assert!(!is_valid_isbn("98245726788"));
 }
