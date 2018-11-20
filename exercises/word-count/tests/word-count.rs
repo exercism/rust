@@ -37,6 +37,24 @@ fn test_count_multiple_occurrences() {
 
 #[test]
 #[ignore]
+fn cramped_lists() {
+    check_word_count(
+        "one,two,three",
+        &[("one", 1), ("two", 1), ("three", 1)],
+    );
+}
+
+#[test]
+#[ignore]
+fn expanded_lists() {
+    check_word_count(
+        "one\ntwo\nthree",
+        &[("one", 1), ("two", 1), ("three", 1)],
+    );
+}
+
+#[test]
+#[ignore]
 fn test_ignore_punctuation() {
     check_word_count(
         "car : carpet as java : javascript!!&@$%^&",
@@ -63,4 +81,44 @@ fn test_include_numbers() {
 #[ignore]
 fn test_normalize_case() {
     check_word_count("go Go GO Stop stop", &[("go", 3), ("stop", 2)]);
+}
+
+#[test]
+#[ignore]
+fn with_apostrophes() {
+    check_word_count(
+        "First: don't laugh. Then: don't cry.",
+        &[
+            ("first", 1),
+            ("don't", 2),
+            ("laugh", 1),
+            ("then", 1),
+            ("cry", 1),
+        ],
+    );
+}
+
+#[test]
+#[ignore]
+fn with_quotations() {
+    check_word_count(
+        "Joe can't tell between 'large' and large.",
+        &[
+            ("joe", 1),
+            ("can't", 1),
+            ("tell", 1),
+            ("between", 1),
+            ("large", 2),
+            ("and", 1),
+        ],
+    );
+}
+
+#[test]
+#[ignore]
+fn multiple_spaces_not_detected_as_a_word() {
+    check_word_count(
+        " multiple   whitespaces",
+        &[("multiple", 1), ("whitespaces", 1)]
+    );
 }
