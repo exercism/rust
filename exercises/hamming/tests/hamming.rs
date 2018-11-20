@@ -21,31 +21,31 @@ fn test_no_difference_between_identical_strands() {
 #[test]
 #[ignore]
 fn test_complete_hamming_distance_in_small_strand() {
-    assert_eq!(hamming::hamming_distance("ACT", "GGA"), Some(3));
+    process_distance_case(["ACT", "GGA"], Some(3));
 }
 
 #[test]
 #[ignore]
 fn test_small_hamming_distance_in_the_middle_somewhere() {
-    assert_eq!(hamming::hamming_distance("GGACG", "GGTCG"), Some(1));
+    process_distance_case(["GGACG", "GGTCG"], Some(1));
 }
 
 #[test]
 #[ignore]
 fn test_larger_distance() {
-    assert_eq!(hamming::hamming_distance("ACCAGGG", "ACTATGG"), Some(2));
+    process_distance_case(["ACCAGGG", "ACTATGG"], Some(2));
 }
 
 #[test]
 #[ignore]
 fn test_first_string_is_longer() {
-    assert_eq!(hamming::hamming_distance("AAA", "AA"), None);
+    process_distance_case(["AAA", "AA"], None);
 }
 
 #[test]
 #[ignore]
 fn test_second_string_is_longer() {
-    assert_eq!(hamming::hamming_distance("A", "AA"), None);
+    process_distance_case(["A", "AA"], None);
 }
 
 #[test]
