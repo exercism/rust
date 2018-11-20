@@ -10,57 +10,46 @@ use std::char;
 use std::collections::HashMap;
 use std::collections::HashSet;
 
-fn test_equation(puzzle: &str, substitutions: &HashMap<char, u8>) -> bool {
-    // Create a new String with characters changed to numbers
-    let puzzle: String = puzzle
-        .chars()
-        .map(|c| {
-            if let Some(&n) = substitutions.get(&c) {
-                // If the character is in the substitutions, get the number and
-                // convert it to a char
-                char::from_digit(u32::from(n), 10).unwrap()
-            } else {
-                // Otherwise just copy over the character
-                c
-            }
-        })
-        .collect();
+fn test_equation(coefficients: &HashMap<char, i64>, cant_be_zero: &HashSet<char>, substitutions: &HashMap<char, u8>) -> bool {
+    if cant_be_zero.iter().any(|d| substitutions[d] == 0) {
+        return false;
+    }
+
+    coefficients.iter().map(|(d, &coeff)| i64::from(substitutions[d]) * coeff).sum::<i64>() == 0
+}
+
+fn letter_coefficients(puzzle: &str) -> (HashMap<char, i64>, HashSet<char>) {
+    let mut coefficients = HashMap::new();
+    let mut cant_be_zero = HashSet::new();
 
     // Split the puzzle into left and right side
     let equation: Vec<&str> = puzzle.split("==").collect();
 
-    // Parse the number on the right side
-    let right = equation[1].trim().parse::<u32>().unwrap();
+    {
+        let mut insert_term = |term: &str, polarity: i64| {
+            cant_be_zero.insert(term.chars().next().unwrap());
+            let mut power_of_ten = polarity;
+            for letter in term.chars().rev() {
+                *coefficients.entry(letter).or_insert(0) += power_of_ten;
+                power_of_ten *= 10;
+            }
+        };
 
-    // Sum the parts on the left side
-    let left: u32 = equation[0]
-        .split('+')
-        .map(str::trim)
-        .map(|n| n.parse::<u32>().unwrap())
-        .sum();
+        // Sum the parts on the left side
+        for left_term in equation[0].split('+').map(str::trim) {
+            insert_term(left_term, 1);
+        }
 
-    // Create a String with just the numbers and spaces
-    let just_numbers = puzzle
-        .chars()
-        .filter(|c| c.is_digit(10) || c.is_whitespace())
-        .collect::<String>();
-    // Split this into the numbers and check every number's first character
-    let no_leading_zeroes = just_numbers
-        .split_whitespace()
-        .all(|number| !number.starts_with('0'));
+        let right_term = equation[1].trim();
+        insert_term(right_term, -1);
+    }
 
-    // Return true if left and right side is equal and the equation doesnt
-    // contain leading zeroes.
-    left == right && no_leading_zeroes
+    (coefficients, cant_be_zero)
 }
 
 pub fn solve(puzzle: &str) -> Option<HashMap<char, u8>> {
-    // Get unique letters from the puzzle
-    let letters: HashSet<char> = puzzle
-        .chars()
-        .filter(|&c| c.is_alphabetic() && c.is_uppercase())
-        .collect();
-    let letters: Vec<char> = letters.into_iter().collect();
+    let (coefficients, cant_be_zero) = letter_coefficients(puzzle);
+    let letters: Vec<char> = coefficients.keys().cloned().collect();
 
     // All available numbers for substitution
     let numbers: &[u8] = &[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -73,7 +62,7 @@ pub fn solve(puzzle: &str) -> Option<HashMap<char, u8>> {
         for p in permutations {
             let substitution: HashMap<char, u8> =
                 letters.iter().zip(p).map(|(&c, &n)| (c, n)).collect();
-            if test_equation(puzzle, &substitution) {
+            if test_equation(&coefficients, &cant_be_zero, &substitution) {
                 // We found a good substitution
                 return Some(substitution);
             }
