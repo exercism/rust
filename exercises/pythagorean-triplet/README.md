@@ -19,9 +19,9 @@ For example,
 3**2 + 4**2 = 9 + 16 = 25 = 5**2.
 ```
 
-There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Given an input integer N, find all Pythagorean triplets for which `a + b + c = N`.
 
-Find the product a * b * c.
+For example, with N = 1000, there is exactly one Pythagorean triplet for which `a + b + c = 1000`: `{200, 375, 425}`.
 
 ## Rust Installation
 
