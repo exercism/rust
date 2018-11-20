@@ -10,7 +10,7 @@ fn roll_returns_a_result() {
 
 #[test]
 #[ignore]
-fn you_can_not_roll_more_than_ten_pins_in_a_single_roll() {
+fn you_cannot_roll_more_than_ten_pins_in_a_single_roll() {
     let mut game = BowlingGame::new();
 
     assert_eq!(game.roll(11), Err(Error::NotEnoughPinsLeft));;
@@ -31,7 +31,7 @@ fn a_game_score_is_some_if_ten_frames_have_been_rolled() {
 
 #[test]
 #[ignore]
-fn you_can_not_score_a_game_with_no_rolls() {
+fn you_cannot_score_a_game_with_no_rolls() {
     let game = BowlingGame::new();
 
     assert_eq!(game.score(), None);
@@ -279,7 +279,7 @@ fn all_strikes_is_a_perfect_score_of_300() {
 
 #[test]
 #[ignore]
-fn you_can_not_roll_more_than_ten_pins_in_a_single_frame() {
+fn you_cannot_roll_more_than_ten_pins_in_a_single_frame() {
     let mut game = BowlingGame::new();
 
     assert!(game.roll(5).is_ok());
@@ -288,7 +288,7 @@ fn you_can_not_roll_more_than_ten_pins_in_a_single_frame() {
 
 #[test]
 #[ignore]
-fn first_bonus_ball_after_a_final_strike_can_not_score_an_invalid_number_of_pins() {
+fn first_bonus_ball_after_a_final_strike_cannot_score_an_invalid_number_of_pins() {
     let mut game = BowlingGame::new();
 
     for _ in 0..18 {
@@ -302,7 +302,7 @@ fn first_bonus_ball_after_a_final_strike_can_not_score_an_invalid_number_of_pins
 
 #[test]
 #[ignore]
-fn the_two_balls_after_a_final_strike_can_not_score_an_invalid_number_of_pins() {
+fn the_two_balls_after_a_final_strike_cannot_score_an_invalid_number_of_pins() {
     let mut game = BowlingGame::new();
 
     for _ in 0..18 {
@@ -332,7 +332,7 @@ fn the_two_balls_after_a_final_strike_can_be_a_strike_and_non_strike() {
 
 #[test]
 #[ignore]
-fn the_two_balls_after_a_final_strike_can_not_be_a_non_strike_followed_by_a_strike() {
+fn the_two_balls_after_a_final_strike_cannot_be_a_non_strike_followed_by_a_strike() {
     let mut game = BowlingGame::new();
 
     for _ in 0..18 {
@@ -347,7 +347,7 @@ fn the_two_balls_after_a_final_strike_can_not_be_a_non_strike_followed_by_a_stri
 
 #[test]
 #[ignore]
-fn second_bonus_ball_after_a_final_strike_can_not_score_an_invalid_number_of_pins_even_if_first_is_strike(
+fn second_bonus_ball_after_a_final_strike_cannot_score_an_invalid_number_of_pins_even_if_first_is_strike(
 ) {
     let mut game = BowlingGame::new();
 
@@ -363,7 +363,7 @@ fn second_bonus_ball_after_a_final_strike_can_not_score_an_invalid_number_of_pin
 
 #[test]
 #[ignore]
-fn if_the_last_frame_is_a_strike_you_can_not_score_before_the_extra_rolls_are_taken() {
+fn if_the_last_frame_is_a_strike_you_cannot_score_before_the_extra_rolls_are_taken() {
     let mut game = BowlingGame::new();
 
     for _ in 0..18 {
@@ -385,7 +385,7 @@ fn if_the_last_frame_is_a_strike_you_can_not_score_before_the_extra_rolls_are_ta
 
 #[test]
 #[ignore]
-fn if_the_last_frame_is_a_spare_you_can_not_create_a_score_before_extra_roll_is_taken() {
+fn if_the_last_frame_is_a_spare_you_cannot_create_a_score_before_extra_roll_is_taken() {
     let mut game = BowlingGame::new();
 
     for _ in 0..18 {
@@ -400,4 +400,36 @@ fn if_the_last_frame_is_a_spare_you_can_not_create_a_score_before_extra_roll_is_
     let _ = game.roll(10);
 
     assert!(game.score().is_some());
+}
+
+#[test]
+#[ignore]
+fn cannot_roll_after_bonus_roll_for_spare() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..9 {
+        let _ = game.roll(0);
+        let _ = game.roll(0);
+    }
+    let _ = game.roll(7);
+    let _ = game.roll(3);
+    assert!(game.roll(2).is_ok());
+
+    assert_eq!(game.roll(2), Err(Error::GameComplete));
+}
+
+#[test]
+#[ignore]
+fn cannot_roll_after_bonus_roll_for_strike() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..9 {
+        let _ = game.roll(0);
+        let _ = game.roll(0);
+    }
+    let _ = game.roll(10);
+    let _ = game.roll(3);
+    assert!(game.roll(2).is_ok());
+
+    assert_eq!(game.roll(2), Err(Error::GameComplete));
 }
