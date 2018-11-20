@@ -1,174 +1,166 @@
 extern crate bob;
 
+fn process_response_case(phrase: &str, expected_response: &str) {
+    assert_eq!(bob::reply(phrase), expected_response);
+}
+
 #[test]
 fn test_stating_something() {
-    assert_eq!("Whatever.", bob::reply("Tom-ay-to, tom-aaaah-to."));
+    process_response_case("Tom-ay-to, tom-aaaah-to.", "Whatever.");
 }
 
 #[test]
 #[ignore]
 fn test_shouting() {
-    assert_eq!("Whoa, chill out!", bob::reply("WATCH OUT!"));
+    process_response_case("WATCH OUT!", "Whoa, chill out!");
 }
 
 #[test]
 #[ignore]
 fn test_shouting_gibberish() {
-    assert_eq!("Whoa, chill out!", bob::reply("FCECDFCAAB"));
+    process_response_case("FCECDFCAAB", "Whoa, chill out!");
 }
 
 #[test]
 #[ignore]
-fn test_asking() {
-    assert_eq!(
-        "Sure.",
-        bob::reply("Does this cryogenic chamber make me look fat?")
-    );
+fn test_asking_a_question() {
+    process_response_case("Does this cryogenic chamber make me look fat?", "Sure.");
 }
 
 #[test]
 #[ignore]
-fn test_ask_numeric_question() {
-    assert_eq!("Sure.", bob::reply("You are, what, like 15?"));
+fn test_asking_a_numeric_question() {
+    process_response_case("You are, what, like 15?", "Sure.");
 }
 
 #[test]
 #[ignore]
 fn test_asking_gibberish() {
-    assert_eq!("Sure.", bob::reply("fffbbcbeab?"));
+    process_response_case("fffbbcbeab?", "Sure.");
 }
 
 #[test]
 #[ignore]
-fn test_exclaiming() {
-    assert_eq!("Whatever.", bob::reply("Let's go make out behind the gym!"));
+fn test_talking_forcefully() {
+    process_response_case("Let's go make out behind the gym!", "Whatever.");
 }
 
 #[test]
 #[ignore]
 fn test_using_acronyms_in_regular_speech() {
-    assert_eq!(
-        "Whatever.",
-        bob::reply("It's OK if you don't want to go to the DMV.")
-    );
+    process_response_case("It's OK if you don't want to go to the DMV.", "Whatever.");
 }
 
 #[test]
 #[ignore]
 fn test_forceful_question() {
-    assert_eq!(
+    process_response_case(
+        "WHAT THE HELL WERE YOU THINKING?",
         "Calm down, I know what I'm doing!",
-        bob::reply("WHAT THE HELL WERE YOU THINKING?")
     );
 }
 
 #[test]
 #[ignore]
 fn test_shouting_numbers() {
-    assert_eq!("Whoa, chill out!", bob::reply("1, 2, 3 GO!"));
+    process_response_case("1, 2, 3 GO!", "Whoa, chill out!");
 }
 
 #[test]
 #[ignore]
-fn test_only_numbers() {
-    assert_eq!("Whatever.", bob::reply("1, 2, 3"));
+fn test_no_letters() {
+    process_response_case("1, 2, 3", "Whatever.");
 }
 
 #[test]
 #[ignore]
-fn test_question_with_only_numbers() {
-    assert_eq!("Sure.", bob::reply("4?"));
+fn test_question_with_no_letters() {
+    process_response_case("4?", "Sure.");
 }
 
 #[test]
 #[ignore]
 fn test_shouting_with_special_characters() {
-    assert_eq!(
+    process_response_case(
+        "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!",
         "Whoa, chill out!",
-        bob::reply("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!")
     );
 }
 
 #[test]
 #[ignore]
 fn test_shouting_with_no_exclamation_mark() {
-    assert_eq!("Whoa, chill out!", bob::reply("I HATE YOU"));
+    process_response_case("I HATE THE DMV", "Whoa, chill out!");
 }
 
 #[test]
 #[ignore]
 fn test_statement_containing_question_mark() {
-    assert_eq!("Whatever.", bob::reply("Ending with ? means a question."));
+    process_response_case("Ending with ? means a question.", "Whatever.");
 }
 
 #[test]
 #[ignore]
-fn test_non_letters_with_question() {
-    assert_eq!("Sure.", bob::reply(":) ?"));
+fn test_nonletters_with_question() {
+    process_response_case(":) ?", "Sure.");
 }
 
 #[test]
 #[ignore]
 fn test_prattling_on() {
-    assert_eq!(
-        "Sure.",
-        bob::reply("Wait! Hang on. Are you going to be OK?")
-    );
+    process_response_case("Wait! Hang on. Are you going to be OK?", "Sure.");
 }
 
 #[test]
 #[ignore]
 fn test_silence() {
-    assert_eq!("Fine. Be that way!", bob::reply(""));
+    process_response_case("", "Fine. Be that way!");
 }
 
 #[test]
 #[ignore]
 fn test_prolonged_silence() {
-    assert_eq!("Fine. Be that way!", bob::reply("          "));
+    process_response_case("          ", "Fine. Be that way!");
 }
 
 #[test]
 #[ignore]
 fn test_alternate_silence() {
-    assert_eq!("Fine. Be that way!", bob::reply("\t\t\t\t\t\t\t\t\t\t"));
+    process_response_case("\t\t\t\t\t\t\t\t\t\t", "Fine. Be that way!");
 }
 
 #[test]
 #[ignore]
 fn test_multiple_line_question() {
-    assert_eq!(
+    process_response_case(
+        "\nDoes this cryogenic chamber make me look fat?\nNo.",
         "Whatever.",
-        bob::reply("\nDoes this cryogenic chamber make me look fat?\nno")
     );
 }
 
 #[test]
 #[ignore]
 fn test_starting_with_whitespace() {
-    assert_eq!("Whatever.", bob::reply("         hmmmmmmm..."));
+    process_response_case("         hmmmmmmm...", "Whatever.");
 }
 
 #[test]
 #[ignore]
 fn test_ending_with_whitespace() {
-    assert_eq!(
-        "Sure.",
-        bob::reply("Okay if like my  spacebar  quite a bit?   ")
-    );
+    process_response_case("Okay if like my  spacebar  quite a bit?   ", "Sure.");
 }
 
 #[test]
 #[ignore]
 fn test_other_whitespace() {
-    assert_eq!("Fine. Be that way!", bob::reply("\n\r \t"));
+    process_response_case("\n\r \t", "Fine. Be that way!");
 }
 
 #[test]
 #[ignore]
-fn test_non_question_ending_with_whitespace() {
-    assert_eq!(
+fn test_nonquestion_ending_with_whitespace() {
+    process_response_case(
+        "This is a statement ending with whitespace      ",
         "Whatever.",
-        bob::reply("This is a statement ending with whitespace      ")
     );
 }
