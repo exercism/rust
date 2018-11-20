@@ -83,5 +83,5 @@ done
 (
    cd $exercise
    # this is the last command; its exit code is what's passed on
-   cargo $command "$@"
+   time cargo $command "$@"
 )
