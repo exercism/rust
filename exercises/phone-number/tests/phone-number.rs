@@ -65,18 +65,6 @@ fn test_invalid_with_punctuations() {
 
 #[test]
 #[ignore]
-fn test_invalid_if_area_code_does_not_start_with_2_9() {
-    process_clean_case("(123) 456-7890", None);
-}
-
-#[test]
-#[ignore]
-fn test_invalid_if_exchange_code_does_not_start_with_2_9() {
-    process_clean_case("(223) 056-7890", None);
-}
-
-#[test]
-#[ignore]
 fn test_invalid_if_area_code_starts_with_1_on_valid_11digit_number() {
     process_clean_case("1 (123) 456-7890", None);
 }
