@@ -122,8 +122,15 @@ fn non_math_question() {
 
 #[test]
 #[ignore]
-fn reject_incomplete_problem() {
+fn reject_problem_missing_an_operand() {
     let command = "What is 1 plus?";
+    assert!(answer(command).is_none());
+}
+
+#[test]
+#[ignore]
+fn reject_problem_with_no_operands_or_operators() {
+    let command = "What is?";
     assert!(answer(command).is_none());
 }
 
