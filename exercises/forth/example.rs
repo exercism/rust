@@ -149,7 +149,19 @@ impl Forth {
     }
 
     fn store_word(&mut self, name: String, code: Code) -> ForthResult {
-        self.defs.insert(name, code);
+        let mut resolved_def = Code::new();
+        for t in code.iter() {
+            match t {
+                Term::Number(_) => resolved_def.push_back(t.clone()),
+                Term::Word(s) => if let Some(cs) = self.defs.get(s) {
+                    resolved_def.append(&mut cs.clone());
+                } else {
+                    resolved_def.push_back(t.clone());
+                },
+                _ => unimplemented!("not even sure a definition in a definition is valid Forth"),
+            }
+        }
+        self.defs.insert(name, resolved_def);
         Forth::ok()
     }
 
