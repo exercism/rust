@@ -1,8 +1,36 @@
 extern crate leap;
 
+fn process_leapyear_case(year: u64, expected: bool) {
+    assert_eq!(leap::is_leap_year(year), expected);
+}
+
 #[test]
-fn test_vanilla_leap_year() {
-    assert_eq!(leap::is_leap_year(1996), true);
+fn test_year_divisible_by_4_not_divisible_by_100_leap_year() {
+    process_leapyear_case(1996, true);
+}
+
+#[test]
+#[ignore]
+fn test_year_not_divisible_by_4_common_year() {
+    process_leapyear_case(2015, false);
+}
+
+#[test]
+#[ignore]
+fn test_year_divisible_by_200_not_divisible_by_400_common_year() {
+    process_leapyear_case(1800, false);
+}
+
+#[test]
+#[ignore]
+fn test_year_divisible_by_100_not_divisible_by_400_common_year() {
+    process_leapyear_case(2100, false);
+}
+
+#[test]
+#[ignore]
+fn test_year_divisible_by_400_leap_year() {
+    process_leapyear_case(2000, true);
 }
 
 #[test]
