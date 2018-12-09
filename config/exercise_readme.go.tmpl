@@ -72,6 +72,31 @@ using the following command inside the exercise directory to format your final s
 cargo fmt
 ```
 
+## Writing effective code
+
+At its core the process of programming consists of two parts: storing and managing
+the resources of your computer. Rust provides a lot of means to accomplish these two
+task. Unfortunately sometimes programmers do not use those means very effectively and
+create programms that work correctly, but require a lot of resources like memory or time.
+
+To catch the most common ineffective usages of the Rust language,
+a tool was created - [clippy](https://github.com/rust-lang/rust-clippy).
+
+To install `clippy` use the following commands:
+
+```bash
+rustup self update
+
+rustup component add clippy
+```
+
+After you have installed `clippy` and have solved the exercise, please consider
+using the following command to see, if your solution could be improved in some way:
+
+```bash
+cargo clippy --all-targets
+```
+
 ## Feedback, Issues, Pull Requests
 
 The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the rust track team are happy to help!
