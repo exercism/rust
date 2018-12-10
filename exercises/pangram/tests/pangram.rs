@@ -1,5 +1,3 @@
-
-
 use pangram::*;
 
 #[test]

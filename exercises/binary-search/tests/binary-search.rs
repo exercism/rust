@@ -1,5 +1,3 @@
-
-
 use binary_search::find;
 
 #[test]

@@ -1,5 +1,3 @@
-
-
 use react::*;
 
 #[test]
@@ -172,11 +170,9 @@ fn compute_cells_fire_callbacks() {
     let output = reactor
         .create_compute(&[CellID::Input(input)], |v| v[0] + 1)
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(output, |v| cb.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(output, |v| cb.callback_called(v))
+        .is_some());
     assert!(reactor.set_value(input, 3));
     cb.expect_to_have_been_called_with(4);
 }
@@ -207,11 +203,9 @@ fn callbacks_only_fire_on_change() {
             |v| if v[0] < 3 { 111 } else { 222 },
         )
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(output, |v| cb.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(output, |v| cb.callback_called(v))
+        .is_some());
 
     assert!(reactor.set_value(input, 2));
     cb.expect_not_to_have_been_called();
@@ -228,11 +222,9 @@ fn callbacks_can_be_called_multiple_times() {
     let output = reactor
         .create_compute(&[CellID::Input(input)], |v| v[0] + 1)
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(output, |v| cb.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(output, |v| cb.callback_called(v))
+        .is_some());
 
     assert!(reactor.set_value(input, 2));
     cb.expect_to_have_been_called_with(3);
@@ -253,16 +245,12 @@ fn callbacks_can_be_called_from_multiple_cells() {
     let minus_one = reactor
         .create_compute(&[CellID::Input(input)], |v| v[0] - 1)
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(plus_one, |v| cb1.callback_called(v))
-            .is_some()
-    );
-    assert!(
-        reactor
-            .add_callback(minus_one, |v| cb2.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(plus_one, |v| cb1.callback_called(v))
+        .is_some());
+    assert!(reactor
+        .add_callback(minus_one, |v| cb2.callback_called(v))
+        .is_some());
 
     assert!(reactor.set_value(input, 10));
     cb1.expect_to_have_been_called_with(11);
@@ -285,22 +273,18 @@ fn callbacks_can_be_added_and_removed() {
     let callback = reactor
         .add_callback(output, |v| cb1.callback_called(v))
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(output, |v| cb2.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(output, |v| cb2.callback_called(v))
+        .is_some());
 
     assert!(reactor.set_value(input, 31));
     cb1.expect_to_have_been_called_with(32);
     cb2.expect_to_have_been_called_with(32);
 
     assert!(reactor.remove_callback(output, callback).is_ok());
-    assert!(
-        reactor
-            .add_callback(output, |v| cb3.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(output, |v| cb3.callback_called(v))
+        .is_some());
 
     assert!(reactor.set_value(input, 41));
     cb1.expect_not_to_have_been_called();
@@ -322,11 +306,9 @@ fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
     let callback = reactor
         .add_callback(output, |v| cb1.callback_called(v))
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(output, |v| cb2.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(output, |v| cb2.callback_called(v))
+        .is_some());
     // We want the first remove to be Ok, but the others should be errors.
     assert!(reactor.remove_callback(output, callback).is_ok());
     for _ in 1..5 {
@@ -362,11 +344,9 @@ fn callbacks_should_only_be_called_once_even_if_multiple_dependencies_change() {
             |v| v[0] * v[1],
         )
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(output, |v| cb.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(output, |v| cb.callback_called(v))
+        .is_some());
     assert!(reactor.set_value(input, 4));
     cb.expect_to_have_been_called_with(10);
 }
@@ -389,11 +369,9 @@ fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt
             |v| v[0] - v[1],
         )
         .unwrap();
-    assert!(
-        reactor
-            .add_callback(always_two, |v| cb.callback_called(v))
-            .is_some()
-    );
+    assert!(reactor
+        .add_callback(always_two, |v| cb.callback_called(v))
+        .is_some());
     for i in 2..5 {
         assert!(reactor.set_value(input, i));
         cb.expect_not_to_have_been_called();

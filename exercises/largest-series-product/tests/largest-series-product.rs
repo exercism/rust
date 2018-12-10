@@ -1,5 +1,3 @@
-
-
 use largest_series_product::*;
 
 #[test]

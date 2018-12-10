@@ -2,9 +2,9 @@
 extern crate maplit;
 extern crate dot_dsl;
 
-use dot_dsl::graph::Graph;
 use dot_dsl::graph::graph_items::edge::Edge;
 use dot_dsl::graph::graph_items::node::Node;
+use dot_dsl::graph::Graph;
 
 #[test]
 fn test_empty_graph() {
@@ -67,7 +67,7 @@ fn test_graph_with_one_edge() {
 fn test_graph_with_one_attribute() {
     let graph = Graph::new().with_attrs(&[("foo", "1")]);
 
-    let expected_attrs = hashmap!{
+    let expected_attrs = hashmap! {
         "foo".to_string() => "1".to_string(),
     };
 
@@ -129,11 +129,13 @@ fn test_graph_with_attributes() {
 #[ignore]
 fn test_graph_stores_attributes() {
     let attributes = [("foo", "bar"), ("bat", "baz"), ("bim", "bef")];
-    let graph = Graph::new().with_nodes(&['a', 'b', 'c']
-        .iter()
-        .enumerate()
-        .map(|(i, n)| Node::new(&n.to_string()).with_attrs(&attributes[i..i + 1]))
-        .collect::<Vec<_>>());
+    let graph = Graph::new().with_nodes(
+        &['a', 'b', 'c']
+            .iter()
+            .enumerate()
+            .map(|(i, n)| Node::new(&n.to_string()).with_attrs(&attributes[i..i + 1]))
+            .collect::<Vec<_>>(),
+    );
 
     assert_eq!(
         graph

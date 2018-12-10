@@ -1,5 +1,3 @@
-
-
 use queen_attack::*;
 
 #[test]

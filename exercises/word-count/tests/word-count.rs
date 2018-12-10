@@ -38,19 +38,13 @@ fn test_count_multiple_occurrences() {
 #[test]
 #[ignore]
 fn cramped_lists() {
-    check_word_count(
-        "one,two,three",
-        &[("one", 1), ("two", 1), ("three", 1)],
-    );
+    check_word_count("one,two,three", &[("one", 1), ("two", 1), ("three", 1)]);
 }
 
 #[test]
 #[ignore]
 fn expanded_lists() {
-    check_word_count(
-        "one\ntwo\nthree",
-        &[("one", 1), ("two", 1), ("three", 1)],
-    );
+    check_word_count("one\ntwo\nthree", &[("one", 1), ("two", 1), ("three", 1)]);
 }
 
 #[test]
@@ -119,6 +113,6 @@ fn with_quotations() {
 fn multiple_spaces_not_detected_as_a_word() {
     check_word_count(
         " multiple   whitespaces",
-        &[("multiple", 1), ("whitespaces", 1)]
+        &[("multiple", 1), ("whitespaces", 1)],
     );
 }

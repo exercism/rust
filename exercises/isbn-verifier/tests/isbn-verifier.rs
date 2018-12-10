@@ -1,5 +1,3 @@
-
-
 use isbn_verifier::is_valid_isbn;
 
 #[test]

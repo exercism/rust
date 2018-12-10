@@ -34,10 +34,7 @@ pub struct ChessPosition {
 
 impl ChessPosition {
     pub fn new(rank: i8, file: i8) -> Option<Self> {
-        let position = ChessPosition {
-            rank,
-            file,
-        };
+        let position = ChessPosition { rank, file };
 
         if position.is_valid() {
             Some(position)

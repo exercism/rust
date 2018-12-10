@@ -1,4 +1,3 @@
-
 use circular_buffer::{CircularBuffer, Error};
 
 #[test]

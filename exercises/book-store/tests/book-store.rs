@@ -5,7 +5,6 @@
 //! [script]: https://github.com/exercism/rust/blob/master/bin/init_exercise.py
 //! [canonical-data]: https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/book-store/canonical_data.json
 
-
 use book_store::*;
 
 /// Process a single test case for the property `total`

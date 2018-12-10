@@ -1,5 +1,3 @@
-
-
 use prime_factors::factors;
 
 #[test]

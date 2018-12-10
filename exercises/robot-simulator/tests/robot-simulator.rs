@@ -1,5 +1,3 @@
-
-
 use robot_simulator::*;
 
 #[test]

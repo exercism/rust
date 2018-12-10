@@ -1,4 +1,3 @@
-
 use palindrome_products::*;
 
 #[test]

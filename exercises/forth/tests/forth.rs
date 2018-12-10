@@ -1,5 +1,3 @@
-
-
 use forth::{Error, Forth, Value};
 
 #[test]

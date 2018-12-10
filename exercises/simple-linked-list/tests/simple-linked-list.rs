@@ -1,5 +1,3 @@
-
-
 use simple_linked_list::SimpleLinkedList;
 
 #[test]

@@ -1,5 +1,3 @@
-
-
 use bracket_push::brackets_are_balanced;
 
 #[test]

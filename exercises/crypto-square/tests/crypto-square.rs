@@ -1,4 +1,3 @@
-
 use crypto_square::encrypt;
 
 fn test(input: &str, output: &str) {

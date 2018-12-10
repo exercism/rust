@@ -4,15 +4,11 @@ pub struct PascalsTriangle {
 
 impl PascalsTriangle {
     pub fn new(row_count: u32) -> Self {
-        PascalsTriangle {
-            row_count,
-        }
+        PascalsTriangle { row_count }
     }
 
     pub fn rows(&self) -> Vec<Vec<u32>> {
-        (0..self.row_count)
-            .map(PascalsTriangle::row)
-            .collect()
+        (0..self.row_count).map(PascalsTriangle::row).collect()
     }
 
     pub fn row(number: u32) -> Vec<u32> {

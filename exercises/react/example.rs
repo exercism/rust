@@ -99,12 +99,16 @@ impl<'a, T: Copy + PartialEq> Reactor<'a, T> {
         // so that we don't perform an incorrect partial write.
         for &dep in dependencies {
             match dep {
-                CellID::Input(InputCellID(id)) => if id >= self.inputs.len() {
-                    return Err(dep);
-                },
-                CellID::Compute(ComputeCellID(id)) => if id >= self.computes.len() {
-                    return Err(dep);
-                },
+                CellID::Input(InputCellID(id)) => {
+                    if id >= self.inputs.len() {
+                        return Err(dep);
+                    }
+                }
+                CellID::Compute(ComputeCellID(id)) => {
+                    if id >= self.computes.len() {
+                        return Err(dep);
+                    }
+                }
             }
         }
         let new_id = ComputeCellID(self.computes.len());

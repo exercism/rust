@@ -1,5 +1,3 @@
-
-
 use sublist::{sublist, Comparison};
 
 #[test]

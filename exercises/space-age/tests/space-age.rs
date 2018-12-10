@@ -1,5 +1,3 @@
-
-
 use space_age::*;
 
 fn assert_in_delta(expected: f64, actual: f64) {

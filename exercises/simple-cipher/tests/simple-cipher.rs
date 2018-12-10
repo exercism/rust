@@ -1,4 +1,3 @@
-
 use simple_cipher::*;
 use std::collections::HashSet;
 

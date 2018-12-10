@@ -1,5 +1,3 @@
-
-
 use grep::{grep, Flags};
 
 use std::fs;
@@ -72,7 +70,8 @@ impl<'a> Fixture<'a> {
                 } else {
                     (file_name, IN_THE_WHITE_NIGHT_CONTENT)
                 }
-            }).collect::<Vec<(&str, &str)>>();
+            })
+            .collect::<Vec<(&str, &str)>>();
 
         set_up_files(&file_name_content_pairs);
     }

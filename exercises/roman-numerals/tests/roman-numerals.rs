@@ -1,5 +1,3 @@
-
-
 use roman_numerals::*;
 
 #[test]

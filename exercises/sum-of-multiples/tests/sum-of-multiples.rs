@@ -1,5 +1,3 @@
-
-
 use sum_of_multiples::*;
 
 #[test]

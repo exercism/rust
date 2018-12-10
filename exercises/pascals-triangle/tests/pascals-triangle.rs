@@ -1,5 +1,3 @@
-
-
 use pascals_triangle::*;
 
 #[test]

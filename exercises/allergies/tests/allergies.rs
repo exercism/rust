@@ -1,5 +1,3 @@
-
-
 use allergies::*;
 
 fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {

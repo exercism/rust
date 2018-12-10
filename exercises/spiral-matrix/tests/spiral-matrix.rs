@@ -1,4 +1,3 @@
-
 use spiral_matrix::*;
 
 #[test]

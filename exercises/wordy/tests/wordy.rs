@@ -1,5 +1,3 @@
-
-
 use wordy::answer;
 
 #[test]

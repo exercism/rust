@@ -59,11 +59,10 @@ fn mutating_closure() {
     let mut counter = 0;
     let input = vec![-2, 3, 4, -5];
     let expected = vec![2, 3, 4, 5];
-    let result = map(input,
-        |x: i64| {
-            counter += 1;
-            x.abs()
-        });
+    let result = map(input, |x: i64| {
+        counter += 1;
+        x.abs()
+    });
     assert_eq!(result, expected);
     assert_eq!(counter, 4);
 }

@@ -12,12 +12,10 @@ use counter::Counter;
 /// Note the type signature: this function should return _the same_ reference to
 /// the winning hand(s) as were passed in, not reconstructed strings which happen to be equal.
 pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
-    let mut hands = try_opt!(
-        hands
-            .iter()
-            .map(|source| Hand::try_from(source))
-            .collect::<Option<Vec<Hand>>>()
-    );
+    let mut hands = try_opt!(hands
+        .iter()
+        .map(|source| Hand::try_from(source))
+        .collect::<Option<Vec<Hand>>>());
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
     hands.last().map(|last| {
         hands
@@ -181,7 +179,8 @@ impl PokerHand {
     fn is_ace_low_straight(cards: &[Card]) -> bool {
         // special case: ace-low straight
         // still depends on the sorted precondition
-        cards[0].rank.value() == 2 && cards[4].rank == Rank::Ace
+        cards[0].rank.value() == 2
+            && cards[4].rank == Rank::Ace
             && cards
                 .windows(2)
                 .take(3) // (0, 1), (1, 2), (2, 3) --> skips 4, ace
@@ -195,7 +194,8 @@ impl PokerHand {
             let is_flush = suit_counter
                 .most_common()
                 .map(|(_suit, count)| count)
-                .next() == Some(5);
+                .next()
+                == Some(5);
             // Note that `is_straight` depends on a precondition: it only works
             // if the input `cards` are sorted by rank value ascending.
             let is_straight = cards
@@ -250,12 +250,10 @@ struct Hand<'a> {
 
 impl<'a> Hand<'a> {
     fn try_from(source: &'a str) -> Option<Hand> {
-        let mut cards = try_opt!(
-            source
-                .split_whitespace()
-                .map(|s| Card::try_from(s))
-                .collect::<Option<Vec<Card>>>()
-        );
+        let mut cards = try_opt!(source
+            .split_whitespace()
+            .map(|s| Card::try_from(s))
+            .collect::<Option<Vec<Card>>>());
         cards.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
         if cards.len() == 5 {
             Some(Hand {

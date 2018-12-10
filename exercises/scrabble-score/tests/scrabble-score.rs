@@ -1,5 +1,3 @@
-
-
 use scrabble_score::*;
 
 #[test]

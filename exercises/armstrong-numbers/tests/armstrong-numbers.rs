@@ -1,4 +1,3 @@
-
 use armstrong_numbers::*;
 
 #[test]

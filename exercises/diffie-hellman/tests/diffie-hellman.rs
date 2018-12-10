@@ -1,5 +1,3 @@
-
-
 use diffie_hellman::*;
 
 #[test]

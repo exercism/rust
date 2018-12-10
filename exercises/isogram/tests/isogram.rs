@@ -1,5 +1,3 @@
-
-
 use isogram::check;
 
 #[test]

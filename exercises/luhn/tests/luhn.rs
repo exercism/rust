@@ -1,5 +1,3 @@
-
-
 use luhn::*;
 
 #[test]

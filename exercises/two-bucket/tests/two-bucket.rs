@@ -1,5 +1,3 @@
-
-
 use two_bucket::{solve, Bucket, BucketStats};
 
 #[test]

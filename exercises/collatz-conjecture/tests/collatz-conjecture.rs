@@ -1,5 +1,3 @@
-
-
 use collatz_conjecture::*;
 
 #[test]

@@ -87,7 +87,8 @@ impl Decimal {
     ///
     /// This reduces the decimal index, so that the raw values are easier to parse
     fn reduce(&mut self) {
-        let extra_zeroes = self.digits
+        let extra_zeroes = self
+            .digits
             .to_string() // produce a decimal representation
             .chars()
             .rev() // trailing values

@@ -29,7 +29,10 @@ fn test_leading_zero_solution_is_invalid() {
 #[test]
 #[ignore]
 fn puzzle_with_two_digits_final_carry() {
-    assert_alphametic_solution_eq("A + A + A + A + A + A + A + A + A + A + A + B == BCC", &[('A', 9), ('B', 1), ('C', 0)]);
+    assert_alphametic_solution_eq(
+        "A + A + A + A + A + A + A + A + A + A + A + B == BCC",
+        &[('A', 9), ('B', 1), ('C', 0)],
+    );
 }
 
 #[test]
