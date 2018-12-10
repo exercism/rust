@@ -4,9 +4,7 @@
 
 EXERCISE_CRATE_PATH="util/exercise"
 
-CURRENT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-
-if [ "$CURRENT_BRANCH_NAME" != "master" ]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     # Check the changes on the current branch against master branch
     git diff --name-only master | grep "$EXERCISE_CRATE_PATH"
 else
