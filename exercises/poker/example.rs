@@ -39,7 +39,7 @@ enum Suit {
 
 impl Suit {
     fn try_from(source: &str) -> Option<Suit> {
-        use Suit::*;
+        use crate::Suit::*;
         match source {
             "S" => Some(Spades),
             "C" => Some(Clubs),
@@ -52,7 +52,7 @@ impl Suit {
 
 impl fmt::Display for Suit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        use Suit::*;
+        use crate::Suit::*;
         write!(
             f,
             "{}",
@@ -77,7 +77,7 @@ enum Rank {
 
 impl Rank {
     fn try_from(source: &str) -> Option<Rank> {
-        use Rank::*;
+        use crate::Rank::*;
         match source {
             "A" => Some(Ace),
             "K" => Some(King),
@@ -97,7 +97,7 @@ impl Rank {
     }
 
     fn value(&self) -> usize {
-        use Rank::*;
+        use crate::Rank::*;
         match *self {
             Ace => 14,
             King => 13,
@@ -110,7 +110,7 @@ impl Rank {
 
 impl fmt::Display for Rank {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        use Rank::*;
+        use crate::Rank::*;
         let num_str; // early declaration to placate NLL of Number case
         write!(
             f,
@@ -325,7 +325,7 @@ impl<'a> fmt::Display for Hand<'a> {
 impl<'a> PartialOrd for Hand<'a> {
     fn partial_cmp(&self, other: &Hand) -> Option<Ordering> {
         Some(self.hand_type.cmp(&other.hand_type).then_with(|| {
-            use PokerHand::*;
+            use crate::PokerHand::*;
             match self.hand_type {
                 HighCard => self.cmp_high_card(other, 4),
                 OnePair => self.cmp_cascade_by_freq(other),

@@ -119,7 +119,7 @@ pub mod interval {
 }
 
 pub mod note {
-    use interval::Interval;
+    use crate::Interval;
     use num_traits::{FromPrimitive, ToPrimitive};
     use std::fmt;
     use std::ops::AddAssign;

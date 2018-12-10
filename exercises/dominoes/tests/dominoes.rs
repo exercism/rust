@@ -1,6 +1,6 @@
 extern crate dominoes;
 
-use CheckResult::*;
+use crate::CheckResult::*;
 
 type Domino = (u8, u8);
 
