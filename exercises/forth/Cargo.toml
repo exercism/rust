@@ -1,3 +1,4 @@
 [package]
+edition = "2018"
 name = "forth"
 version = "1.7.0"

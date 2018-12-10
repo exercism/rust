@@ -1,3 +1,4 @@
 [package]
+edition = "2018"
 name = "nucleotide_codons"
 version = "0.1.0"

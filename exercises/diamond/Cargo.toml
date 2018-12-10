@@ -1,4 +1,5 @@
 [package]
+edition = "2018"
 name = "diamond"
 version = "1.1.0"
 
