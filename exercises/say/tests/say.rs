@@ -1,4 +1,4 @@
-extern crate say;
+use say;
 
 // Note: No tests created using 'and' with numbers.
 // Apparently Most American English does not use the 'and' with numbers,

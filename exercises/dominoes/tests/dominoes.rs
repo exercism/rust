@@ -1,4 +1,4 @@
-extern crate dominoes;
+use dominoes;
 
 use crate::CheckResult::*;
 

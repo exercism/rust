@@ -1,4 +1,4 @@
-extern crate proverb;
+
 
 use proverb::build_proverb;
 

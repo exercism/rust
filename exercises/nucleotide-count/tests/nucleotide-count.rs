@@ -1,4 +1,4 @@
-extern crate nucleotide_count as dna;
+use nucleotide_count as dna;
 
 use std::collections::HashMap;
 

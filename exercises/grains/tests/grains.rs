@@ -1,4 +1,4 @@
-extern crate grains;
+use grains;
 
 #[test]
 fn square_one() {

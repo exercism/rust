@@ -1,4 +1,4 @@
-extern crate pythagorean_triplet;
+
 
 use pythagorean_triplet::find;
 use std::{collections::HashSet, iter::FromIterator};

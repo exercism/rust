@@ -1,4 +1,4 @@
-extern crate saddle_points;
+use saddle_points;
 
 use saddle_points::find_saddle_points;
 

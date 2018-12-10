@@ -1,4 +1,4 @@
-extern crate simple_linked_list;
+
 
 use simple_linked_list::SimpleLinkedList;
 

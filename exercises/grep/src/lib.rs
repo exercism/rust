@@ -1,4 +1,4 @@
-extern crate failure;
+
 
 use failure::Error;
 

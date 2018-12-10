@@ -1,4 +1,4 @@
-extern crate spiral_matrix;
+
 use spiral_matrix::*;
 
 #[test]

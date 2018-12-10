@@ -1,4 +1,4 @@
-extern crate space_age;
+
 
 use space_age::*;
 

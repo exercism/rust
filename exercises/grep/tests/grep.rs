@@ -1,4 +1,4 @@
-extern crate grep;
+
 
 use grep::{grep, Flags};
 

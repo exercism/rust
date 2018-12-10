@@ -1,4 +1,4 @@
-extern crate leap;
+use leap;
 
 fn process_leapyear_case(year: u64, expected: bool) {
     assert_eq!(leap::is_leap_year(year), expected);

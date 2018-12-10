@@ -1,4 +1,4 @@
-extern crate armstrong_numbers;
+
 use armstrong_numbers::*;
 
 #[test]

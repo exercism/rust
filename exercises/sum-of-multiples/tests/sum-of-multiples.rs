@@ -1,4 +1,4 @@
-extern crate sum_of_multiples;
+
 
 use sum_of_multiples::*;
 

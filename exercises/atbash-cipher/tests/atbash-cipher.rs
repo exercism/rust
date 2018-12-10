@@ -1,4 +1,4 @@
-extern crate atbash_cipher as cipher;
+use atbash_cipher as cipher;
 
 #[test]
 fn test_encode_yes() {

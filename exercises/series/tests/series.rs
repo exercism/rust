@@ -1,4 +1,4 @@
-extern crate series;
+
 use series::*;
 
 #[test]

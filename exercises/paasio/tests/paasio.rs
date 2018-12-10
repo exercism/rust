@@ -1,4 +1,4 @@
-extern crate paasio;
+use paasio;
 
 /// test a few read scenarios
 macro_rules! test_read {

@@ -1,4 +1,4 @@
-extern crate pascals_triangle;
+
 
 use pascals_triangle::*;
 

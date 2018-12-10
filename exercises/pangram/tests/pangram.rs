@@ -1,4 +1,4 @@
-extern crate pangram;
+
 
 use pangram::*;
 

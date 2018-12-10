@@ -1,4 +1,4 @@
-extern crate scrabble_score;
+
 
 use scrabble_score::*;
 

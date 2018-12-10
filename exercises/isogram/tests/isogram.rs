@@ -1,4 +1,4 @@
-extern crate isogram;
+
 
 use isogram::check;
 

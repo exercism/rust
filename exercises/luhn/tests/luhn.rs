@@ -1,4 +1,4 @@
-extern crate luhn;
+
 
 use luhn::*;
 

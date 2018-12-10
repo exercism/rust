@@ -5,7 +5,7 @@
 //! [script]: https://github.com/exercism/rust/blob/master/bin/init_exercise.py
 //! [canonical-data]: https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/scale-generator/canonical_data.json
 
-extern crate scale_generator;
+
 use scale_generator::*;
 
 /// Process a single test case for the property `chromatic`

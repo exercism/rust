@@ -1,4 +1,4 @@
-extern crate raindrops;
+use raindrops;
 
 #[test]
 fn test_1() {

@@ -1,4 +1,4 @@
-extern crate binary_search;
+
 
 use binary_search::find;
 

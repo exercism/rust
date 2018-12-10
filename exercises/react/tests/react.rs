@@ -1,4 +1,4 @@
-extern crate react;
+
 
 use react::*;
 

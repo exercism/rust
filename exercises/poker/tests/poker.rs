@@ -1,4 +1,4 @@
-extern crate poker;
+
 use poker::winning_hands;
 use std::collections::HashSet;
 

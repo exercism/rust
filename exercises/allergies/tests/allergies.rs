@@ -1,4 +1,4 @@
-extern crate allergies;
+
 
 use allergies::*;
 

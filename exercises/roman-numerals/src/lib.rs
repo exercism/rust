@@ -3,7 +3,7 @@ use std::fmt::{Display, Formatter, Result};
 pub struct Roman;
 
 impl Display for Roman {
-    fn fmt(&self, _f: &mut Formatter) -> Result {
+    fn fmt(&self, _f: &mut Formatter<'_>) -> Result {
         unimplemented!("Return a roman-numeral string representation of the Roman object");
     }
 }

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-extern crate word_count;
+use word_count;
 
 fn check_word_count(s: &str, pairs: &[(&str, u32)]) {
     // The reason for the awkward code in here is to ensure that the failure

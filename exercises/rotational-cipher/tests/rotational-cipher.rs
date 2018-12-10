@@ -1,4 +1,4 @@
-extern crate rotational_cipher as cipher;
+use rotational_cipher as cipher;
 
 #[test]
 fn rotate_a_1() {

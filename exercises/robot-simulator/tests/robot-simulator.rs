@@ -1,4 +1,4 @@
-extern crate robot_simulator;
+
 
 use robot_simulator::*;
 

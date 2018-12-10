@@ -1,4 +1,4 @@
-extern crate circular_buffer;
+
 use circular_buffer::{CircularBuffer, Error};
 
 #[test]

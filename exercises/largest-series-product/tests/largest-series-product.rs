@@ -1,4 +1,4 @@
-extern crate largest_series_product;
+
 
 use largest_series_product::*;
 

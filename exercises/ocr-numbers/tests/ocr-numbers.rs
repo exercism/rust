@@ -1,4 +1,4 @@
-extern crate ocr_numbers as ocr;
+use ocr_numbers as ocr;
 
 #[test]
 #[cfg_attr(rustfmt, rustfmt_skip)]

@@ -1,4 +1,4 @@
-extern crate isbn_verifier;
+
 
 use isbn_verifier::is_valid_isbn;
 

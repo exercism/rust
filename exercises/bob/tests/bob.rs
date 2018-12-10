@@ -1,4 +1,4 @@
-extern crate bob;
+use bob;
 
 fn process_response_case(phrase: &str, expected_response: &str) {
     assert_eq!(bob::reply(phrase), expected_response);

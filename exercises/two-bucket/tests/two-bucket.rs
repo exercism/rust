@@ -1,4 +1,4 @@
-extern crate two_bucket;
+
 
 use two_bucket::{solve, Bucket, BucketStats};
 

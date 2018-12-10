@@ -1,4 +1,4 @@
-extern crate tournament;
+use tournament;
 
 #[test]
 fn just_the_header_if_no_input() {

@@ -1,4 +1,4 @@
-extern crate triangle;
+
 
 use triangle::*;
 
