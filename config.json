@@ -246,7 +246,7 @@
       "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "conversion_between_string_and_int",
+        "int_string_conversion",
         "loop",
         "string_concatenation",
         "use_of_primitive_char"
@@ -259,7 +259,7 @@
       "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "conversion_between_string_and_int",
+        "int_string_conversion",
         "loop"
       ]
     },
@@ -339,8 +339,8 @@
       "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "chaining_higher_order_functions",
-        "hashmap_optional"
+        "hashmap_optional",
+        "higher_order_functions"
       ]
     },
     {
@@ -688,8 +688,8 @@
       "difficulty": 4,
       "topics": [
         "custom_trait",
-        "default_trait_implementation",
-        "from_trait"
+        "from_trait",
+        "trait_implementation"
       ]
     },
     {
