@@ -4,11 +4,9 @@
 # with the output of configlet fmt.
 
 # Check if config.json or maintainers.json were modified
-current_branch_name="$(git rev-parse --abbrev-ref HEAD)"
-
 check_pattern="config.json\|config/maintainers.json"
 
-if [ "$current_branch_name" != "master" ]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     # Check the changes on the current branch against master branch
     git diff --name-only master | grep "$check_pattern"
 else

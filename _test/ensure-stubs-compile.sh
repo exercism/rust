@@ -2,9 +2,7 @@
 
 repo=$(cd "$(dirname "$0")/.." && pwd)
 
-current_branch="$(git rev-parse --abbrev-ref HEAD)"
-
-if [ "$current_branch" != "master" ]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
 	changed_exercises="$(git diff --name-only master | grep "exercises/" | cut -d '/' -f -2 | sort -u | awk -v repo=$repo '{print repo"/"$1}')"
 else
 	changed_exercises=$repo/exercises/*
