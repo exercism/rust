@@ -61,10 +61,7 @@ substitution cipher a little more fault tolerant by providing a source
 of randomness and ensuring that the key contains only lowercase letters.
 
 If someone doesn't submit a key at all, generate a truly random key of
-at least 100 characters in length.
-
-If the key submitted is not composed only of lowercase letters, your
-solution should handle the error in a language-appropriate way.
+at least 100 alphanumeric characters in length.
 
 ## Extensions
 
