@@ -1,4 +1,3 @@
-extern crate simple_cipher;
 use simple_cipher::*;
 use std::collections::HashSet;
 

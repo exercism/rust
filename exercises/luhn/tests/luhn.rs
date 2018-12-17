@@ -1,5 +1,3 @@
-extern crate luhn;
-
 use luhn::*;
 
 #[test]

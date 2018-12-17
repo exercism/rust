@@ -1,4 +1,4 @@
-extern crate rectangles;
+
 
 use rectangles::count;
 

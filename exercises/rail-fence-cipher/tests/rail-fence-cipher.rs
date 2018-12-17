@@ -8,7 +8,6 @@
 //! The tests do not expect any normalization or cleaning.
 //! That trade is tested in enough other exercises.
 
-extern crate rail_fence_cipher;
 use rail_fence_cipher::*;
 
 /// Process a single test case for the property `encode`

@@ -1,4 +1,4 @@
-extern crate difference_of_squares as squares;
+use difference_of_squares as squares;
 
 #[test]
 fn test_square_of_sum_1() {

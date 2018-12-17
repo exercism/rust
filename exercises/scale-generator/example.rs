@@ -119,7 +119,7 @@ pub mod interval {
 }
 
 pub mod note {
-    use interval::Interval;
+    use crate::Interval;
     use num_traits::{FromPrimitive, ToPrimitive};
     use std::fmt;
     use std::ops::AddAssign;
@@ -305,7 +305,8 @@ pub mod note {
             Semitone::from_i8(
                 (SEMITONES + n.tonic.to_i8().unwrap() + n.accidental.map_or(0, |a| a.to_i8()))
                     % SEMITONES,
-            ).expect("must have valid semitone")
+            )
+            .expect("must have valid semitone")
         }
     }
 
@@ -314,8 +315,9 @@ pub mod note {
             *self = Semitone::from_i8(
                 (SEMITONES + Semitone::from(*self).to_i8().unwrap() + rhs.to_i8().unwrap())
                     % SEMITONES,
-            ).unwrap()
-                .into();
+            )
+            .unwrap()
+            .into();
         }
     }
 

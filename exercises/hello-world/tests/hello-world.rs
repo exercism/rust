@@ -1,4 +1,4 @@
-extern crate hello_world;
+use hello_world;
 
 #[test]
 fn test_hello_world() {

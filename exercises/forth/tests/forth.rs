@@ -1,5 +1,3 @@
-extern crate forth;
-
 use forth::{Error, Forth, Value};
 
 #[test]

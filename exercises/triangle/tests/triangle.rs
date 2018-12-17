@@ -1,5 +1,3 @@
-extern crate triangle;
-
 use triangle::*;
 
 #[test]

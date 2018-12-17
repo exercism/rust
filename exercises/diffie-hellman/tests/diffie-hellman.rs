@@ -1,5 +1,3 @@
-extern crate diffie_hellman;
-
 use diffie_hellman::*;
 
 #[test]

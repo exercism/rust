@@ -1,4 +1,4 @@
-extern crate beer_song as beer;
+use beer_song as beer;
 
 #[test]
 fn test_verse_0() {

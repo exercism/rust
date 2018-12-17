@@ -12,12 +12,10 @@ use counter::Counter;
 /// Note the type signature: this function should return _the same_ reference to
 /// the winning hand(s) as were passed in, not reconstructed strings which happen to be equal.
 pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
-    let mut hands = try_opt!(
-        hands
-            .iter()
-            .map(|source| Hand::try_from(source))
-            .collect::<Option<Vec<Hand>>>()
-    );
+    let mut hands = try_opt!(hands
+        .iter()
+        .map(|source| Hand::try_from(source))
+        .collect::<Option<Vec<Hand>>>());
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
     hands.last().map(|last| {
         hands
@@ -39,7 +37,7 @@ enum Suit {
 
 impl Suit {
     fn try_from(source: &str) -> Option<Suit> {
-        use Suit::*;
+        use crate::Suit::*;
         match source {
             "S" => Some(Spades),
             "C" => Some(Clubs),
@@ -52,7 +50,7 @@ impl Suit {
 
 impl fmt::Display for Suit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        use Suit::*;
+        use crate::Suit::*;
         write!(
             f,
             "{}",
@@ -77,7 +75,7 @@ enum Rank {
 
 impl Rank {
     fn try_from(source: &str) -> Option<Rank> {
-        use Rank::*;
+        use crate::Rank::*;
         match source {
             "A" => Some(Ace),
             "K" => Some(King),
@@ -97,7 +95,7 @@ impl Rank {
     }
 
     fn value(&self) -> usize {
-        use Rank::*;
+        use crate::Rank::*;
         match *self {
             Ace => 14,
             King => 13,
@@ -110,7 +108,7 @@ impl Rank {
 
 impl fmt::Display for Rank {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        use Rank::*;
+        use crate::Rank::*;
         let num_str; // early declaration to placate NLL of Number case
         write!(
             f,
@@ -181,7 +179,8 @@ impl PokerHand {
     fn is_ace_low_straight(cards: &[Card]) -> bool {
         // special case: ace-low straight
         // still depends on the sorted precondition
-        cards[0].rank.value() == 2 && cards[4].rank == Rank::Ace
+        cards[0].rank.value() == 2
+            && cards[4].rank == Rank::Ace
             && cards
                 .windows(2)
                 .take(3) // (0, 1), (1, 2), (2, 3) --> skips 4, ace
@@ -195,7 +194,8 @@ impl PokerHand {
             let is_flush = suit_counter
                 .most_common()
                 .map(|(_suit, count)| count)
-                .next() == Some(5);
+                .next()
+                == Some(5);
             // Note that `is_straight` depends on a precondition: it only works
             // if the input `cards` are sorted by rank value ascending.
             let is_straight = cards
@@ -250,12 +250,10 @@ struct Hand<'a> {
 
 impl<'a> Hand<'a> {
     fn try_from(source: &'a str) -> Option<Hand> {
-        let mut cards = try_opt!(
-            source
-                .split_whitespace()
-                .map(|s| Card::try_from(s))
-                .collect::<Option<Vec<Card>>>()
-        );
+        let mut cards = try_opt!(source
+            .split_whitespace()
+            .map(|s| Card::try_from(s))
+            .collect::<Option<Vec<Card>>>());
         cards.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
         if cards.len() == 5 {
             Some(Hand {
@@ -325,7 +323,7 @@ impl<'a> fmt::Display for Hand<'a> {
 impl<'a> PartialOrd for Hand<'a> {
     fn partial_cmp(&self, other: &Hand) -> Option<Ordering> {
         Some(self.hand_type.cmp(&other.hand_type).then_with(|| {
-            use PokerHand::*;
+            use crate::PokerHand::*;
             match self.hand_type {
                 HighCard => self.cmp_high_card(other, 4),
                 OnePair => self.cmp_cascade_by_freq(other),

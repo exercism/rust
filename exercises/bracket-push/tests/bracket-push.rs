@@ -1,5 +1,3 @@
-extern crate bracket_push;
-
 use bracket_push::brackets_are_balanced;
 
 #[test]

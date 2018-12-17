@@ -1,5 +1,3 @@
-extern crate perfect_numbers;
-
 use perfect_numbers::{classify, Classification};
 
 macro_rules! tests {

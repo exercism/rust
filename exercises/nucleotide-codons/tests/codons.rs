@@ -1,4 +1,4 @@
-extern crate nucleotide_codons as codons;
+use nucleotide_codons as codons;
 
 #[test]
 fn test_methionine() {

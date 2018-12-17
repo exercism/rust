@@ -25,13 +25,16 @@ impl Group {
     }
 
     fn price(&self) -> Price {
-        (self.0.borrow().len() as Price) * BOOK_PRICE * match self.0.borrow().len() {
-            2 => 95,
-            3 => 90,
-            4 => 80,
-            5 => 75,
-            _ => 100,
-        } / 100
+        (self.0.borrow().len() as Price)
+            * BOOK_PRICE
+            * match self.0.borrow().len() {
+                2 => 95,
+                3 => 90,
+                4 => 80,
+                5 => 75,
+                _ => 100,
+            }
+            / 100
     }
 }
 

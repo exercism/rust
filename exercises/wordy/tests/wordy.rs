@@ -1,5 +1,3 @@
-extern crate wordy;
-
 use wordy::answer;
 
 #[test]

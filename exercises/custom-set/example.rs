@@ -44,26 +44,35 @@ impl<T: Ord + Clone> CustomSet<T> {
     }
 
     pub fn intersection(&self, other: &Self) -> CustomSet<T> {
-        CustomSet::new(&self.collection
-            .iter()
-            .cloned()
-            .filter(|c| other.contains(c))
-            .collect::<Vec<_>>())
+        CustomSet::new(
+            &self
+                .collection
+                .iter()
+                .cloned()
+                .filter(|c| other.contains(c))
+                .collect::<Vec<_>>(),
+        )
     }
 
     pub fn union(&self, other: &Self) -> CustomSet<T> {
-        CustomSet::new(&self.collection
-            .iter()
-            .cloned()
-            .chain(other.collection.iter().cloned())
-            .collect::<Vec<_>>())
+        CustomSet::new(
+            &self
+                .collection
+                .iter()
+                .cloned()
+                .chain(other.collection.iter().cloned())
+                .collect::<Vec<_>>(),
+        )
     }
 
     pub fn difference(&self, other: &Self) -> CustomSet<T> {
-        CustomSet::new(&self.collection
-            .iter()
-            .cloned()
-            .filter(|c| !other.contains(c))
-            .collect::<Vec<_>>())
+        CustomSet::new(
+            &self
+                .collection
+                .iter()
+                .cloned()
+                .filter(|c| !other.contains(c))
+                .collect::<Vec<_>>(),
+        )
     }
 }

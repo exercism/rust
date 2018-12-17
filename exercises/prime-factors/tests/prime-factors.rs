@@ -1,5 +1,3 @@
-extern crate prime_factors;
-
 use prime_factors::factors;
 
 #[test]

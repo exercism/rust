@@ -1,4 +1,3 @@
-extern crate palindrome_products;
 use palindrome_products::*;
 
 #[test]

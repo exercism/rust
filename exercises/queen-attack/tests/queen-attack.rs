@@ -1,5 +1,3 @@
-extern crate queen_attack;
-
 use queen_attack::*;
 
 #[test]

@@ -13,7 +13,9 @@ fn apply_op<'a, 'b>(num1: i32, words: &'a [Token<'b>]) -> Option<(i32, &'a [Toke
     let (op, num2) = op_and_num.split_at(number_pos);
     let num2 = match num2 {
         [Token::Number(i)] => i,
-        _ => unreachable!("We split at a Number above, so num2 is surely a single-element slice w/ a number"),
+        _ => unreachable!(
+            "We split at a Number above, so num2 is surely a single-element slice w/ a number"
+        ),
     };
     match op {
         [Token::NonNumber("plus")] => Some(num1 + num2),
@@ -21,26 +23,27 @@ fn apply_op<'a, 'b>(num1: i32, words: &'a [Token<'b>]) -> Option<(i32, &'a [Toke
         [Token::NonNumber("multiplied"), Token::NonNumber("by")] => Some(num1 * num2),
         [Token::NonNumber("divided"), Token::NonNumber("by")] => Some(num1 / num2),
         _ => None,
-    }.map(|n| (n, remainder))
+    }
+    .map(|n| (n, remainder))
 }
 
 pub fn answer(c: &str) -> Option<i32> {
-    let words = c.trim_end_matches('?').split_whitespace().map(|word| {
-        if let Ok(i) = word.parse::<i32>() {
-            Token::Number(i)
-        } else {
-            Token::NonNumber(word)
-        }
-    }).collect::<Vec<_>>();
+    let words = c
+        .trim_end_matches('?')
+        .split_whitespace()
+        .map(|word| {
+            if let Ok(i) = word.parse::<i32>() {
+                Token::Number(i)
+            } else {
+                Token::NonNumber(word)
+            }
+        })
+        .collect::<Vec<_>>();
     if words.len() < 3 {
         return None;
     }
     let mut result: i32 = match words[0..3] {
-        [
-            Token::NonNumber("What"),
-            Token::NonNumber("is"),
-            Token::Number(i),
-        ] => i,
+        [Token::NonNumber("What"), Token::NonNumber("is"), Token::Number(i)] => i,
         _ => return None,
     };
     let mut words = words.split_at(3).1;

@@ -40,8 +40,9 @@ impl FromStr for Term {
             ":" => Ok(Term::StartDefinition),
             ";" => Ok(Term::EndDefinition),
             _ => Err(()),
-        }.or_else(|_| Value::from_str(s).map(Term::Number))
-            .or_else(|_| Ok(Term::Word(s.to_ascii_lowercase())))
+        }
+        .or_else(|_| Value::from_str(s).map(Term::Number))
+        .or_else(|_| Ok(Term::Word(s.to_ascii_lowercase())))
     }
 }
 
@@ -98,9 +99,11 @@ impl Forth {
             "/" => self.bin_op(|(a, b)| a.checked_div(b).ok_or(Error::DivisionByZero)),
             "dup" => self.pop().and_then(|a| self.push(a).and(self.push(a))),
             "drop" => self.pop().and(Forth::ok()),
-            "swap" => self.pop_two()
+            "swap" => self
+                .pop_two()
                 .and_then(|(a, b)| self.push(b).and(self.push(a))),
-            "over" => self.pop_two()
+            "over" => self
+                .pop_two()
                 .and_then(|(a, b)| self.push(a).and(self.push(b)).and(self.push(a))),
             _ => Err(Error::UnknownWord),
         }
@@ -151,11 +154,13 @@ impl Forth {
         for t in code.iter() {
             match t {
                 Term::Number(_) => resolved_def.push_back(t.clone()),
-                Term::Word(s) => if let Some(cs) = self.defs.get(s) {
-                    resolved_def.append(&mut cs.clone());
-                } else {
-                    resolved_def.push_back(t.clone());
-                },
+                Term::Word(s) => {
+                    if let Some(cs) = self.defs.get(s) {
+                        resolved_def.append(&mut cs.clone());
+                    } else {
+                        resolved_def.push_back(t.clone());
+                    }
+                }
                 _ => unimplemented!("not even sure a definition in a definition is valid Forth"),
             }
         }

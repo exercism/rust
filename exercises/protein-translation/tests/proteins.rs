@@ -1,4 +1,4 @@
-extern crate protein_translation as proteins;
+use protein_translation as proteins;
 
 #[test]
 fn test_methionine() {

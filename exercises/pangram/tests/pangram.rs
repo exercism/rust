@@ -1,5 +1,3 @@
-extern crate pangram;
-
 use pangram::*;
 
 #[test]

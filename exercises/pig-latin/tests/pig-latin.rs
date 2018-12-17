@@ -1,4 +1,4 @@
-extern crate pig_latin as pl;
+use pig_latin as pl;
 
 #[test]
 fn test_word_beginning_with_a() {

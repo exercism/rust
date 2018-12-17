@@ -1,4 +1,4 @@
-extern crate variable_length_quantity as vlq;
+use variable_length_quantity as vlq;
 
 #[test]
 fn to_single_byte() {

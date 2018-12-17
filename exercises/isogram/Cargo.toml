@@ -1,3 +1,4 @@
 [package]
+edition = "2018"
 name = "isogram"
 version = "1.3.0"

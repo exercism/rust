@@ -5,7 +5,6 @@
 //! [script]: https://github.com/exercism/rust/blob/b829ce2/bin/init_exercise.py
 //! [canonical-data]: https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/reverse-string/canonical_data.json
 
-extern crate reverse_string;
 use reverse_string::*;
 
 /// Process a single test case for the property `reverse`

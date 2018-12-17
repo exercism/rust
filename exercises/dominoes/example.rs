@@ -70,11 +70,13 @@ impl AvailabilityTable {
 pub fn chain(dominoes: &[Domino]) -> Option<Vec<Domino>> {
     match dominoes.len() {
         0 => Some(vec![]),
-        1 => if dominoes[0].0 == dominoes[0].1 {
-            Some(vec![dominoes[0]])
-        } else {
-            None
-        },
+        1 => {
+            if dominoes[0].0 == dominoes[0].1 {
+                Some(vec![dominoes[0]])
+            } else {
+                None
+            }
+        }
         _ => {
             // First check if the total number of each amount of dots is even, if not it's not
             // possible to complete a cycle. This follows from that it's an Eulerian path.

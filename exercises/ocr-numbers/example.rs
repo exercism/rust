@@ -29,7 +29,9 @@ pub fn convert(input: &str) -> Result<String, Error> {
             let line_chars = line.chars().collect::<Vec<_>>();
 
             for (char_number, char_chunk) in line_chars.chunks(3).enumerate() {
-                let char_chars = unparsed_characters.entry(char_number).or_insert_with(Vec::new);
+                let char_chars = unparsed_characters
+                    .entry(char_number)
+                    .or_insert_with(Vec::new);
                 for c in char_chunk {
                     char_chars.push(*c);
                 }

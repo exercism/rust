@@ -1,4 +1,4 @@
-extern crate robot_name as robot;
+use robot_name as robot;
 
 fn assert_name_matches_pattern(n: &str) {
     assert!(n.len() == 5, "name is exactly 5 characters long");

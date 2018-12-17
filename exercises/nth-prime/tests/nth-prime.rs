@@ -1,4 +1,4 @@
-extern crate nth_prime as np;
+use nth_prime as np;
 
 #[test]
 fn test_first_prime() {
