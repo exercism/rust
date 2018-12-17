@@ -66,7 +66,7 @@ impl Forth {
 
     fn run(&mut self) -> ForthResult {
         while let Some(term) = self.code.pop_front() {
-            try!(self.step_term(term))
+            self.step_term(term)?
         }
 
         Forth::ok()
