@@ -1,33 +1,36 @@
 extern crate linked_list;
 use linked_list::*;
 
-fn to_raw_ptr<T>(opt: Option<&T>) -> *const T {
-    opt.map_or(std::ptr::null(), |r| r as *const T)
+#[test]
+fn is_generic() {
+    struct Foo;
+    LinkedList::<Foo>::new();
 }
 
+// ———————————————————————————————————————————————————————————
+// Tests for Step 1: push / pop at front and back
+// ———————————————————————————————————————————————————————————
+
 #[test]
-fn empty_list() {
+#[ignore]
+fn basics_empty_list() {
     let list: LinkedList<i32> = LinkedList::new();
     assert_eq!(list.len(), 0);
 }
 
 #[test]
 #[ignore]
-fn single_element() {
+fn basics_single_element() {
     let mut list: LinkedList<i32> = LinkedList::new();
     list.push_back(5);
 
     assert_eq!(list.len(), 1);
-    assert_eq!(
-        to_raw_ptr(list.front()),
-        to_raw_ptr(list.back())
-    );
     assert_eq!(list.pop_front(), Some(5));
 }
 
 #[test]
 #[ignore]
-fn push_pop_back_multiple() {
+fn basics_push_pop_at_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_back(i);
@@ -42,7 +45,7 @@ fn push_pop_back_multiple() {
 
 #[test]
 #[ignore]
-fn push_pop_front_multiple() {
+fn basics_push_pop_at_front() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_front(i);
@@ -57,7 +60,7 @@ fn push_pop_front_multiple() {
 
 #[test]
 #[ignore]
-fn push_front_pop_back() {
+fn basics_push_front_pop_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_front(i);
@@ -69,63 +72,50 @@ fn push_front_pop_back() {
 
 #[test]
 #[ignore]
-fn many_list() {
+fn basics_push_back_pop_front() {
+    let mut list: LinkedList<i32> = LinkedList::new();
+    for i in 0..10 {
+        list.push_back(i);
+    }
+    for i in 0..10 {
+        assert_eq!(i, list.pop_front().unwrap());
+    }
+}
+
+// ———————————————————————————————————————————————————————————
+// Tests for Step 2: iteration
+// ———————————————————————————————————————————————————————————
+
+#[test]
+#[ignore]
+fn iter() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for num in 0..10 {
         list.push_back(num);
     }
-    assert_eq!(list.len(), 10);
 
     for (num, &entered_num) in (0..10).zip(list.iter()) {
         assert_eq!(num, entered_num);
     }
 }
 
-// or same number of leaks as double frees
-#[test]
-#[ignore]
-fn no_leaks_or_double_frees() {
-    use std::cell::Cell;
-    struct Counter<'a>(&'a Cell<usize>);
-
-    impl<'a> Drop for Counter<'a> {
-        fn drop(&mut self) {
-            let num = self.0.get();
-            self.0.set(num-1);
-        }
-    }
-
-    const N: usize  = 15;
-
-    let counter = Cell::new(N);
-    let list = std::iter::repeat_with(|| Counter(&counter))
-        .take(N)
-        .collect::<LinkedList<_>>();
-
-    assert_eq!(list.len(), N);
-    drop(list);
-    assert_eq!(counter.get(), 0);
-}
-
+// ———————————————————————————————————————————————————————————
+// Tests for Step 3: full cursor functionality
+// ———————————————————————————————————————————————————————————
 
 #[test]
 #[ignore]
-fn clone_is_equal() {
-    let list = (0..10).collect::<LinkedList<_>>();
-    let list2 = list.clone();
-
-    assert!(
-        list.iter().eq(list2.iter())
-    );
-}
-
-#[test]
-#[ignore]
-fn insert_middle() {
+fn cursor_insert_before_on_empty_list() {
+    // insert_after on empty list is already tested via push_back()
     let mut list = LinkedList::new();
-    for i in 0..10 {
-        list.push_back(i);
-    }
+    list.cursor_front().insert_before(0);
+    assert_eq!(Some(0), list.pop_front());
+}
+
+#[test]
+#[ignore]
+fn cursor_insert_after_in_middle() {
+    let mut list = (0..10).collect::<LinkedList<_>>();
 
     {
         let mut cursor = list.cursor_front();
@@ -148,54 +138,181 @@ fn insert_middle() {
 
 #[test]
 #[ignore]
-fn back_front_changes_on_push_back() {
-    let mut backs = vec![];
-    let mut fronts = vec![];
-    let mut list = LinkedList::new();
+fn cursor_insert_before_in_middle() {
+    let mut list = (0..10).collect::<LinkedList<_>>();
 
-    for i in 0..10 {
-        list.push_back(i);
-        backs.push( to_raw_ptr(list.back()) );
-        fronts.push( to_raw_ptr(list.front()) );
+    {
+        let mut cursor = list.cursor_back();
+        let didnt_run_into_end = cursor.seek_backward(4);
+        assert!(didnt_run_into_end);
+
+        for n in 0..10 {
+            cursor.insert_before(n);
+        }
     }
-    fronts.dedup();
 
-    assert_eq!(fronts.len(), 1);
-    assert_eq!(fronts[0], backs[0]);
+    assert_eq!(list.len(), 20);
 
-    backs.sort();
-    backs.dedup();
+    let expected = (0..5).chain(0..10).chain(5..10);
 
-    assert_eq!(backs.len(), 10);
+    assert!(
+        expected.eq( list.iter().cloned() )
+    );
 }
 
+// "iterates" via next() and checks that it visits the right elements
 #[test]
 #[ignore]
-fn back_front_changes_on_push_front() {
-    let mut backs = vec![];
-    let mut fronts = vec![];
-    let mut list = LinkedList::new();
+fn cursor_next_and_peek() {
+    let mut list = (0..10).collect::<LinkedList<_>>();
+    let mut cursor = list.cursor_front();
 
-    for i in 0..10 {
-        list.push_front(i);
-        backs.push( to_raw_ptr(list.back()) );
-        fronts.push( to_raw_ptr(list.front()) );
+    assert_eq!(cursor.peek_mut(), Some(&mut 0));
+
+    for n in 1..10 {
+        let next = cursor.next().cloned();
+        assert_eq!(next, Some(n));
+        assert_eq!(next, cursor.peek_mut().cloned());
     }
-    backs.dedup();
-
-    assert_eq!(backs.len(), 1);
-    assert_eq!(backs[0], fronts[0]);
-
-    fronts.sort();
-    fronts.dedup();
-
-    assert_eq!(fronts.len(), 10);
 }
+
+// "iterates" via prev() and checks that it visits the right elements
+#[test]
+#[ignore]
+fn cursor_prev_and_peek() {
+    let mut list = (0..10).collect::<LinkedList<_>>();
+    let mut cursor = list.cursor_back();
+
+    assert_eq!(cursor.peek_mut(), Some(&mut 9));
+
+    for n in (0..9).rev() {
+        let prev = cursor.prev().cloned();
+        assert_eq!(prev, Some(n));
+        assert_eq!(prev, cursor.peek_mut().cloned());
+    }
+}
+
+// removes all elements starting from the middle
+#[test]
+#[ignore]
+fn cursor_take() {
+    let mut list = (0..10).collect::<LinkedList<_>>();
+    let mut cursor = list.cursor_front();
+    cursor.seek_forward(5);
+
+    for expected in (5..10).chain((0..5).rev()) {
+        assert_eq!(cursor.take(), Some(expected));
+    }
+}
+
+// ———————————————————————————————————————————————————————————
+// Tests for Step 4: clean-up via `Drop`
+// ———————————————————————————————————————————————————————————
+
+// The leak tests are not thread-safe and must be run on a single
+// thread for reliable results
+// "cargo test -- --test-threads=1"
+//
+// Defines a wrapper around the global allocator that counts allocations
+// to check that no memory has been leaked. Code taken from docs for std::alloc::System.
+// Because this is a global allocator, other tests could interfere, so
+// the tests have to be run consecutively and not in parallel as they would by default.
+use std::alloc::{System, GlobalAlloc, Layout};
+use std::sync::atomic::{AtomicUsize, ATOMIC_USIZE_INIT, Ordering::SeqCst};
+
+struct Counter;
+
+static ALLOCATED: AtomicUsize = ATOMIC_USIZE_INIT;
+
+unsafe impl GlobalAlloc for Counter {
+    unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
+        let ret = System.alloc(layout);
+        if !ret.is_null() {
+            ALLOCATED.fetch_add(layout.size(), SeqCst);
+        }
+        ret
+    }
+
+    unsafe fn dealloc(&self, ptr: *mut u8, layout: Layout) {
+        System.dealloc(ptr, layout);
+        ALLOCATED.fetch_sub(layout.size(), SeqCst);
+    }
+}
+
+#[global_allocator]
+static A: Counter = Counter;
+
+// test that all memory is deallocated
+// does not check if the destructor is run
+#[test]
+#[ignore]
+fn drop_no_leaks() {
+    let allocated_before = ALLOCATED.load(SeqCst);
+    let list = (0..10).collect::<LinkedList<_>>();
+    let list_allocation_size = ALLOCATED.load(SeqCst) - allocated_before;
+    assert!(list_allocation_size != 0, "no bytes were allocated for a nonempty list");
+    drop(list);
+
+    let allocated_after = ALLOCATED.load(SeqCst);
+    let leaked_bytes = allocated_before - allocated_after;
+    assert!(leaked_bytes == 0);
+}
+
+// test that removing an element via the cursor deallocates memory
+// does not check if the destructor is run
+#[test]
+#[ignore]
+fn drop_no_leak_when_removing_single_element() {
+    let mut list = (0..10).collect::<LinkedList<_>>();
+
+    let mut cursor = list.cursor_front();
+    assert!(cursor.seek_forward(4));
+
+    let allocated_before = ALLOCATED.load(SeqCst);
+    cursor.take();
+    let allocated_after = ALLOCATED.load(SeqCst);
+
+    // only check that something is deallocated
+    // we can't know the exact size of the node structure
+    assert!(allocated_before > allocated_after);
+}
+
+// checks number of drops
+// may pass for incorrect programs if double frees happen
+// exactly as often as destructor leaks
+#[test]
+#[ignore]
+fn drop_no_double_frees() {
+    use std::cell::Cell;
+    struct DropCounter<'a>(&'a Cell<usize>);
+
+    impl<'a> Drop for DropCounter<'a> {
+        fn drop(&mut self) {
+            let num = self.0.get();
+            self.0.set(num + 1);
+        }
+    }
+
+    const N: usize = 15;
+
+    let counter = Cell::new(0);
+    let list = std::iter::repeat_with(|| DropCounter(&counter))
+        .take(N)
+        .collect::<LinkedList<_>>();
+
+    assert_eq!(list.len(), N);
+    drop(list);
+    assert_eq!(counter.get(), N);
+}
+
+// ———————————————————————————————————————————————————————————
+// Tests for Step 5 (advanced): covariance and Send/Sync
+// ———————————————————————————————————————————————————————————
 
 #[cfg(feature = "advanced")]
 #[test]
 #[ignore]
-fn linked_list_is_send_sync() {
+fn advanced_linked_list_is_send_sync() {
     trait AssertSend: Send {}
     trait AssertSync: Sync {}
 
@@ -207,7 +324,7 @@ fn linked_list_is_send_sync() {
 #[allow(dead_code)]
 #[test]
 #[ignore]
-fn is_covariant() {
+fn advanced_is_covariant() {
     fn a<'a>(x: LinkedList<&'static str>) -> LinkedList<&'a str> {
         x
     }
@@ -215,11 +332,4 @@ fn is_covariant() {
     fn a_iter<'a>(i: Iter<'static, &'static str>) -> Iter<'a, &'a str> {
         i
     }
-}
-
-#[test]
-#[ignore]
-fn is_generic() {
-    struct Foo;
-    LinkedList::<Foo>::new();
 }
