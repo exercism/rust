@@ -41,7 +41,8 @@ impl<T> Drop for LinkedList<T> {
 }
 
 // the cursor is expected to act as if it is at the position of an element
-impl<'a, T: 'a> Cursor<'a, T> {
+// and it also has to work with and be able to insert into an empty list.
+impl<T> Cursor<'_, T> {
     /// Take a mutable reference to the current element
     pub fn peek_mut(&mut self) -> Option<&mut T> {
         unimplemented!()

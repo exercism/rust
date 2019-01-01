@@ -12,7 +12,13 @@ pub struct LinkedList<T> {
     back: OptNodePtr<T>,
     front: OptNodePtr<T>,
     len: usize,
-    marker: std::marker::PhantomData<Box<T>>, // for dropck
+    // The PhantomData signals dropck that we actually own `T`
+    // I'm only aware of one case where this actually matters, which is when
+    // using the dropck_eyepatch feature in Drop. We aren't using that here, so this is likely
+    // unnecessary.
+    // It can't hurt however and I'm not entirely certain that dropck_eyepatch is the only
+    // case where it matters
+    marker: std::marker::PhantomData<Box<T>>,
 }
 
 unsafe impl<T: Send> Send for LinkedList<T> {}
