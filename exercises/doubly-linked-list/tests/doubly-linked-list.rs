@@ -1,5 +1,5 @@
-extern crate linked_list;
-use linked_list::*;
+extern crate doubly_linked_list;
+use doubly_linked_list::*;
 
 #[test]
 fn is_generic() {

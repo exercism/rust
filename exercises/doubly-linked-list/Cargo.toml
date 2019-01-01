@@ -1,5 +1,5 @@
 [package]
-name = "linked-list"
+name = "doubly-linked-list"
 version = "0.0.0"
 
 [features]

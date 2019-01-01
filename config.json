@@ -1101,7 +1101,7 @@
       "deprecated": true
     },
     {
-      "slug": "linked-list",
+      "slug": "doubly-linked-list",
       "uuid": "34738b66-28bb-41bc-85c6-68fcf4a09bc2",
       "core": false,
       "unlocked_by": "forth",
