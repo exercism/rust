@@ -2,8 +2,7 @@
 //! You are free to use anything, if it suits you.
 //! They are useful for the test framework, but the implementation is trivial.
 //! We supply them to reduce work both for you and the mentors.
-use {LinkedList, Cursor};
-
+use crate::{LinkedList, Cursor};
 
 impl<T> LinkedList<T> {
     pub fn push_back(&mut self, element: T) {
@@ -31,7 +30,7 @@ impl<T> LinkedList<T> {
     }
 }
 
-impl<T> ::std::iter::FromIterator<T> for LinkedList<T> {
+impl<T> std::iter::FromIterator<T> for LinkedList<T> {
     fn from_iter<I>(iter: I) -> Self
     where
         I: IntoIterator<Item = T>,
@@ -51,7 +50,7 @@ impl<T: Clone> Clone for LinkedList<T> {
 }
 
 // seek methods, return false if end of list is reached prematurely
-impl<'a, T: 'a> Cursor<'a, T> {
+impl<T> Cursor<'_, T> {
     pub fn seek_forward(&mut self, n: usize) -> bool {
         (0..n).all(|_| self.next().is_some())
     }

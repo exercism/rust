@@ -1,4 +1,3 @@
-extern crate doubly_linked_list;
 use doubly_linked_list::*;
 
 #[test]

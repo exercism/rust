@@ -24,7 +24,7 @@ pub struct LinkedList<T> {
 unsafe impl<T: Send> Send for LinkedList<T> {}
 unsafe impl<T: Sync> Sync for LinkedList<T> {}
 
-pub struct Cursor<'a, T: 'a> {
+pub struct Cursor<'a, T> {
     list: &'a mut LinkedList<T>,
     node: OptNodePtr<T>,
 }
@@ -174,12 +174,12 @@ impl<T> Drop for LinkedList<T> {
     }
 }
 
-pub struct Iter<'a, T: 'a> {
+pub struct Iter<'a, T> {
     next_node: OptNodePtr<T>,
     marker: std::marker::PhantomData<&'a LinkedList<T>>,
 }
 
-impl<'a, T: 'a> Iterator for Iter<'a, T> {
+impl<'a, T> Iterator for Iter<'a, T> {
     type Item = &'a T;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -192,7 +192,7 @@ impl<'a, T: 'a> Iterator for Iter<'a, T> {
     }
 }
 
-impl<'a, T: 'a> Cursor<'a, T> {
+impl<T> Cursor<'_, T> {
     pub fn peek_mut(&mut self) -> Option<&mut T> {
         unsafe {
             self.node.map(|node| &mut (*node.as_ptr()).element)

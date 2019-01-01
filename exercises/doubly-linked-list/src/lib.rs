@@ -5,9 +5,9 @@ mod pre_implemented;
 
 pub struct LinkedList<T>(std::marker::PhantomData<T>);
 
-pub struct Cursor<'a, T: 'a>(std::marker::PhantomData<&'a mut T>);
+pub struct Cursor<'a, T>(std::marker::PhantomData<&'a mut T>);
 
-pub struct Iter<'a, T: 'a>(std::marker::PhantomData<&'a T>);
+pub struct Iter<'a, T>(std::marker::PhantomData<&'a T>);
 
 impl<T> LinkedList<T> {
     pub fn new() -> Self {
@@ -76,7 +76,7 @@ impl<T> Cursor<'_, T> {
     }
 }
 
-impl<'a, T: 'a> Iterator for Iter<'a, T> {
+impl<'a, T> Iterator for Iter<'a, T> {
     type Item = &'a T;
 
     fn next(&mut self) -> Option<&'a T> {
