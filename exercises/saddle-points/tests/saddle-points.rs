@@ -103,6 +103,6 @@ fn identify_all_saddle_points() {
             (2, 1),
             (2, 2)
         ],
-        find_saddle_points(&input)
+        find_sorted_saddle_points(&input)
     );
 }
