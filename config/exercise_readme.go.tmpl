@@ -46,52 +46,17 @@ To learn more about Rust tests refer to the [online test documentation][rust-tes
 Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
 haven't already, it will help you with organizing your files.
 
-## Writing well-formatted code
+## Further improvements
 
-When you are solving the exercise, you are free to choose any coding format you want.
-However when you are writing a real-world application or a library, your source code will
-be read by other people, not just you. To solve a problem when different people choose
-different formats for a single project, the developers set a standard coding format
-for the said project.
+After you have solved the exercise, please consider using the additional utilities, described in the [installation guide](https://exercism.io/tracks/rust/installation), to further refine your final solution.
 
-In the Rust world there is a tool, that helps developers to bring standard formatting
-to their applications - [rustfmt](https://github.com/rust-lang/rustfmt).
-
-To install `rustfmt` use the following commands:
-
-```bash
-rustup self update
-
-rustup component add rustfmt
-```
-
-After you have installed `rustfmt` and have solved the exercise, please consider
-using the following command inside the exercise directory to format your final solution:
+To format your solution, inside the solution directory use
 
 ```bash
 cargo fmt
 ```
 
-## Writing effective code
-
-At its core the process of programming consists of two parts: storing and managing
-the resources of your computer. Rust provides a lot of means to accomplish these two
-task. Unfortunately sometimes programmers do not use those means very effectively and
-create programms that work correctly, but require a lot of resources like memory or time.
-
-To catch the most common ineffective usages of the Rust language,
-a tool was created - [clippy](https://github.com/rust-lang/rust-clippy).
-
-To install `clippy` use the following commands:
-
-```bash
-rustup self update
-
-rustup component add clippy
-```
-
-After you have installed `clippy` and have solved the exercise, please consider
-using the following command to see, if your solution could be improved in some way:
+To see, if your solution contains some common ineffective use cases, inside the solution directory use
 
 ```bash
 cargo clippy --all-targets
