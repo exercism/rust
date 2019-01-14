@@ -1,1 +1,1 @@
-Methods for installing Rust change as the language evolves. To get up-to-date installation instructions head to the [Rust homepage](https://www.rust-lang.org/) and click the "Install Rust" link.
+Methods for installing Rust change as the language evolves. To get up-to-date installation instructions head to the [Rust install page](https://www.rust-lang.org/tools/install).
