@@ -41,9 +41,6 @@ Complete the functionality of the cursor. It should be able to move to any posit
 
 Implement the `Drop` trait for your `LinkedList` to clean up resources.
 
-**Note**: The leak tests are not thread-safe and must be run on a single
- thread for reliable results: `cargo test -- --test-threads=1`
-
 ## Step 5 (advanced and optional)
 
 The tests for these last two things are conditionally compiled via the feature flag `advanced`.

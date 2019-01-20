@@ -208,73 +208,9 @@ fn cursor_take() {
 // Tests for Step 4: clean-up via `Drop`
 // ———————————————————————————————————————————————————————————
 
-// The leak tests are not thread-safe and must be run on a single
-// thread for reliable results
-// "cargo test -- --test-threads=1"
-//
-// Defines a wrapper around the global allocator that counts allocations
-// to check that no memory has been leaked. Code taken from docs for std::alloc::System.
-// Because this is a global allocator, other tests could interfere, so
-// the tests have to be run consecutively and not in parallel as they would by default.
-use std::alloc::{System, GlobalAlloc, Layout};
-use std::sync::atomic::{AtomicUsize, ATOMIC_USIZE_INIT, Ordering::SeqCst};
-
-struct Counter;
-
-static ALLOCATED: AtomicUsize = ATOMIC_USIZE_INIT;
-
-unsafe impl GlobalAlloc for Counter {
-    unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
-        let ret = System.alloc(layout);
-        if !ret.is_null() {
-            ALLOCATED.fetch_add(layout.size(), SeqCst);
-        }
-        ret
-    }
-
-    unsafe fn dealloc(&self, ptr: *mut u8, layout: Layout) {
-        System.dealloc(ptr, layout);
-        ALLOCATED.fetch_sub(layout.size(), SeqCst);
-    }
-}
-
-#[global_allocator]
-static A: Counter = Counter;
-
-// test that all memory is deallocated
-// does not check if the destructor is run
-#[test]
-#[ignore]
-fn drop_no_leaks() {
-    let allocated_before = ALLOCATED.load(SeqCst);
-    let list = (0..10).collect::<LinkedList<_>>();
-    let list_allocation_size = ALLOCATED.load(SeqCst) - allocated_before;
-    assert!(list_allocation_size != 0, "no bytes were allocated for a nonempty list");
-    drop(list);
-
-    let allocated_after = ALLOCATED.load(SeqCst);
-    let leaked_bytes = allocated_before - allocated_after;
-    assert!(leaked_bytes == 0);
-}
-
-// test that removing an element via the cursor deallocates memory
-// does not check if the destructor is run
-#[test]
-#[ignore]
-fn drop_no_leak_when_removing_single_element() {
-    let mut list = (0..10).collect::<LinkedList<_>>();
-
-    let mut cursor = list.cursor_front();
-    assert!(cursor.seek_forward(4));
-
-    let allocated_before = ALLOCATED.load(SeqCst);
-    cursor.take();
-    let allocated_after = ALLOCATED.load(SeqCst);
-
-    // only check that something is deallocated
-    // we can't know the exact size of the node structure
-    assert!(allocated_before > allocated_after);
-}
+// The leak tests that are also for this step are separated into
+// their own files so that nothing else interferes with the allocator
+// whilst they run
 
 // checks number of drops
 // may pass for incorrect programs if double frees happen
