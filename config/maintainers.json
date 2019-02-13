@@ -60,6 +60,16 @@
       "link_url": null,
       "avatar_url": null,
       "bio": "definitely not an ai gone rogue"
+    },
+    {
+      "github_username": "thedarkula",
+      "alumnus": false,
+      "show_on_website": true,
+      "name": "Meade Kincke",
+      "link_text": "Code Artistry",
+      "link_url": "https://thedarkula.gitlab.io/code-artistry/",
+      "avatar_url": null,
+      "bio": "I love real-world, usable examples. I'm a huge fan of being able to help others to make something work how it should with maximum performance. I especially love Rust and have written a tool called BrewStillery in it and GTK-rs. "
     }
   ]
 }
