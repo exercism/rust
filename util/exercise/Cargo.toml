@@ -14,10 +14,6 @@ tar = "0.4.20"
 toml = "0.4.10"
 uuid = { version = "0.7", features = ["v4"] }
 
-[dependencies.git2]    
-version = "0.8.0"    
-default-features = false    
-    
 [dependencies.reqwest]    
 version = "0.9.9"    
 default-features = false    
