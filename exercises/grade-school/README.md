@@ -76,6 +76,22 @@ To learn more about Rust tests refer to the [online test documentation][rust-tes
 Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
 haven't already, it will help you with organizing your files.
 
+## Further improvements
+
+After you have solved the exercise, please consider using the additional utilities, described in the [installation guide](https://exercism.io/tracks/rust/installation), to further refine your final solution.
+
+To format your solution, inside the solution directory use
+
+```bash
+cargo fmt
+```
+
+To see, if your solution contains some common ineffective use cases, inside the solution directory use
+
+```bash
+cargo clippy --all-targets
+```
+
 ## Feedback, Issues, Pull Requests
 
 The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the rust track team are happy to help!
