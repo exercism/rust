@@ -1,4 +1,4 @@
-use failure::Error;
+use failure::{format_err, Error};
 use flate2::read::GzDecoder;
 use tar::Archive;
 

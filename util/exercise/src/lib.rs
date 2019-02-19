@@ -1,8 +1,5 @@
-#[macro_use]
-extern crate failure;
-
-#[macro_use]
-extern crate lazy_static;
+use failure::format_err;
+use lazy_static::lazy_static;
 use reqwest;
 use serde_json;
 

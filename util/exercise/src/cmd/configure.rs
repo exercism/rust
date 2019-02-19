@@ -1,5 +1,6 @@
-use exercise::{self, Result};
-use serde_json::{self, Value};
+use exercise::{self, get, get_mut, val_as, Result};
+use failure::format_err;
+use serde_json::{self, json, Value};
 use std::{
     fs,
     io::{stdin, stdout, Write},

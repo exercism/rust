@@ -1,5 +1,6 @@
 /// This module contains source for the `generate` command.
-use exercise::Result;
+use exercise::{self, get, val_as, Result};
+use failure::format_err;
 use serde_json::Value as JsonValue;
 use std::{
     collections::HashMap,

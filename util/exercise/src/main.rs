@@ -1,15 +1,9 @@
-#[macro_use]
-extern crate exercise;
-#[macro_use]
-extern crate failure;
-#[macro_use]
-extern crate serde_json;
-
 mod cmd;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
 use cmd::{configure, generate, update};
 use exercise::Result;
+use failure::format_err;
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
