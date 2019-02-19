@@ -1,9 +1,8 @@
 use failure::Error;
 use flate2::read::GzDecoder;
-use git2::Repository;
 use tar::Archive;
 
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 pub const LATEST_URL: &str = "https://github.com/exercism/configlet/releases/latest";
 
@@ -65,24 +64,16 @@ pub fn pkg_url() -> Result<String, Error> {
     ))
 }
 
-/// return the path to the bin directory of the repo
-pub fn binpath() -> Result<PathBuf, Error> {
-    let repo = Repository::discover(".")?;
-    repo.workdir()
-        .ok_or(format_err!("repo has no working directory"))
-        .map(|p| {
-            let mut b = p.to_path_buf();
-            b.push("bin");
-            b
-        })
-}
-
 // download and extract configlet into the repo's /bin folder
 //
 // returns the path into which the bin was extracted on success
 pub fn download() -> Result<PathBuf, Error> {
-    let path = binpath()?;
     let response = reqwest::get(&pkg_url()?)?;
     let mut archive = Archive::new(GzDecoder::new(response));
-    archive.unpack(&path).map(|_| path).map_err(|e| e.into())
+
+    let download_path = Path::new(&*crate::TRACK_ROOT).join("bin");
+    archive
+        .unpack(&download_path)
+        .map(|_| download_path)
+        .map_err(|e| e.into())
 }
