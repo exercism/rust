@@ -1,11 +1,9 @@
-extern crate clap;
 #[macro_use]
 extern crate exercise;
 #[macro_use]
 extern crate failure;
 #[macro_use]
 extern crate serde_json;
-extern crate uuid;
 
 mod cmd;
 
@@ -52,7 +50,7 @@ fn init_app<'a>() -> ArgMatches<'a> {
 
 // Determine which subcommand was used
 // and call the appropriate function.
-fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
+fn process_matches(matches: &ArgMatches<'_>) -> exercise::Result<()> {
     match matches.subcommand() {
         ("generate", Some(generate_matches)) => {
             let exercise_name = generate_matches

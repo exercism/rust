@@ -136,7 +136,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
                         file: "config.json".to_string(),
                         field: "topics".to_string(),
                         as_type: "array or string".to_string(),
-                    })
+                    });
                 }
             }
         } else {
