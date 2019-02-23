@@ -1,4 +1,5 @@
-use exercise::Result;
+use exercise::{self, get, val_as, Result};
+use failure::format_err;
 use serde_json::Value;
 use std::{collections::HashSet, fs, path::Path};
 

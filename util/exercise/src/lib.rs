@@ -1,13 +1,9 @@
-#[macro_use]
-extern crate failure;
-extern crate failure_derive;
-extern crate flate2;
-#[macro_use]
-extern crate lazy_static;
-extern crate reqwest;
-extern crate serde_json;
-extern crate tar;
-extern crate toml;
+use failure::format_err;
+use lazy_static::lazy_static;
+use reqwest;
+use serde_json;
+
+use toml;
 
 use serde_json::Value;
 use std::{
@@ -249,7 +245,7 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> 
                     file: "config.json".to_string(),
                     field: "comments".to_string(),
                     as_type: "string or array".to_string(),
-                })
+                });
             }
         }
     } else {
