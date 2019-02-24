@@ -1,5 +1,6 @@
 use exercise::{self, get, val_as, Result};
 use failure::format_err;
+use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use serde_json::Value;
 use std::{collections::HashSet, fs, path::Path};
 
@@ -85,7 +86,7 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
         "{}\n{}",
         tests_content,
         diffs
-            .iter()
+            .par_iter()
             .map(|diff| format!("\n{}", diff))
             .collect::<String>()
     );

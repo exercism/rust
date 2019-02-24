@@ -1,16 +1,15 @@
 use failure::format_err;
 use lazy_static::lazy_static;
+use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use reqwest;
 use serde_json;
-
-use toml;
-
 use serde_json::Value;
 use std::{
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
 };
+use toml;
 use toml::Value as TomlValue;
 
 pub mod errors;
@@ -197,10 +196,14 @@ fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
         String(s) => format!("\"{}\"", s),
         Number(_) | Bool(_) => format!("{}", item),
         Array(vs) => {
-            let mut items = Vec::with_capacity(vs.len());
-            for im in vs.iter() {
-                items.push(into_literal(im, use_maplit)?);
-            }
+            let items: Vec<string::String> = vs.par_iter()
+                .map(|im| {
+                    match into_literal(im, use_maplit) {
+                        Ok(stringy) => stringy,
+                        Err(error) => panic!("Error in Array arm of into_literal(): {}", error),
+                    }
+                })
+                .collect::<Vec<string::String>>();
             format!("vec![{}]", items.join(", "))
         }
         Object(m) => {
@@ -235,7 +238,7 @@ pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> 
         use Value::*;
         match comments {
             Array(cs) => cs
-                .iter()
+                .par_iter()
                 .map(|line| format!("/// {}", line))
                 .collect::<Vec<_>>()
                 .join("\n"),

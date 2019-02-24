@@ -1,5 +1,6 @@
 use exercise::{self, get, get_mut, val_as, Result};
 use failure::format_err;
+use rayon::iter::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
 use serde_json::{self, json, Value};
 use std::{
     fs,
@@ -21,8 +22,8 @@ fn get_user_input(prompt: &str) -> Result<String> {
 
 fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value> {
     let existing_config = get!(config_content, "exercises", as_array)
-        .iter()
-        .find(|exercise| exercise["slug"] == exercise_name);
+        .par_iter()
+        .find_any(|exercise| exercise["slug"] == exercise_name);
 
     let uuid = if let Some(existing_config) = existing_config {
         get!(existing_config, "uuid", as_str).to_string()
@@ -51,7 +52,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
         } else if user_input == "null" {
             break None;
         } else if !get!(config_content, "exercises", as_array)
-            .iter()
+            .par_iter()
             .any(|exercise| exercise["slug"] == user_input)
         {
             println!("{} is not an existing exercise slug", user_input);
@@ -67,8 +68,8 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
         let unlocked_by_difficulty = match unlocked_by {
             Some(ref unlocked_by) => {
                 let unlocked_by_exercise = get!(config_content, "exercises", as_array)
-                    .iter()
-                    .find(|exercise| exercise["slug"] == unlocked_by.as_str())
+                    .par_iter()
+                    .find_any(|exercise| exercise["slug"] == unlocked_by.as_str())
                     .ok_or(format_err!(
                         "exercise '{}' not found in config",
                         unlocked_by
@@ -271,8 +272,8 @@ fn update_existing_config(
     let exercises = get_mut!(config_content, "exercises", as_array_mut);
 
     let existing_exercise_index = exercises
-        .iter()
-        .position(|exercise| exercise["slug"] == exercise_name)
+        .par_iter()
+        .position_any(|exercise| exercise["slug"] == exercise_name)
         .ok_or(format_err!(
             "exercise '{}' not found in config.json",
             exercise_name
@@ -305,7 +306,7 @@ pub fn configure_exercise(exercise_name: &str) -> Result<()> {
     let mut config_content: Value = serde_json::from_str(&config_content_string)?;
 
     let config_exists = get!(config_content, "exercises", as_array)
-        .iter()
+        .par_iter()
         .any(|exercise| exercise["slug"] == exercise_name);
 
     let user_config: Value = loop {
