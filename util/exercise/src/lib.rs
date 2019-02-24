@@ -197,11 +197,8 @@ fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
         Number(_) | Bool(_) => format!("{}", item),
         Array(vs) => {
             let items: Vec<string::String> = vs.par_iter()
-                .map(|im| {
-                    match into_literal(im, use_maplit) {
-                        Ok(stringy) => stringy,
-                        Err(error) => panic!("Error in Array arm of into_literal(): {}", error),
-                    }
+                .filter_map(|im| {
+                    into_literal(im, use_maplit).ok()
                 })
                 .collect::<Vec<string::String>>();
             format!("vec![{}]", items.join(", "))
