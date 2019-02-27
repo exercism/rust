@@ -42,7 +42,7 @@ macro_rules! test_read {
                     chunks_read += 1;
                 }
 
-                assert_eq!(size / CHUNK_SIZE, chunks_read);
+                assert_eq!(size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE), chunks_read);
                 // we read once more than the number of chunks, because the final
                 // read returns 0 new bytes
                 assert_eq!(1+chunks_read, reader.reads());
@@ -62,7 +62,7 @@ macro_rules! test_read {
                     chunks_read += 1;
                 }
 
-                assert_eq!(size / CHUNK_SIZE, chunks_read);
+                assert_eq!(size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE), chunks_read);
                 // the BufReader should smooth out the reads, collecting into
                 // a buffer and performing only two read operations:
                 // the first collects everything into the buffer,
