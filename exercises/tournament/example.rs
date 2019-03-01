@@ -33,7 +33,7 @@ impl TeamResult {
 pub fn tally(input: &str) -> String {
     let mut results: HashMap<String, TeamResult> = HashMap::new();
     for line in input.to_string().lines() {
-        let parts: Vec<&str> = line.trim_right().split(';').collect();
+        let parts: Vec<&str> = line.trim_end().split(';').collect();
         if parts.len() != 3 {
             continue;
         }
