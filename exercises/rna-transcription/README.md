@@ -87,6 +87,10 @@ To see, if your solution contains some common ineffective use cases, inside the 
 cargo clippy --all-targets
 ```
 
+## Submitting the solution
+
+Generally you should submit all files in which you implemented your solution (`src/lib.rs` in most cases). If you are using any external crates, please consider submitting the `Cargo.toml` file. This will make the review process faster and clearer.
+
 ## Feedback, Issues, Pull Requests
 
 The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the rust track team are happy to help!
