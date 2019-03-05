@@ -69,7 +69,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
                 let unlocked_by_exercise = get!(config_content, "exercises", as_array)
                     .iter()
                     .find(|exercise| exercise["slug"] == unlocked_by.as_str())
-                    .ok_or(format_err!(
+                    .ok_or_else(|| format_err!(
                         "exercise '{}' not found in config",
                         unlocked_by
                     ))?;
@@ -91,7 +91,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
         } else {
             *available_difficulties
                 .first()
-                .ok_or(format_err!("no available difficulties"))?
+                .ok_or_else(|| format_err!("no available difficulties"))?
         };
 
         let user_input = get_user_input(&format!(
@@ -273,7 +273,7 @@ fn update_existing_config(
     let existing_exercise_index = exercises
         .iter()
         .position(|exercise| exercise["slug"] == exercise_name)
-        .ok_or(format_err!(
+        .ok_or_else(|| format_err!(
             "exercise '{}' not found in config.json",
             exercise_name
         ))?;

@@ -50,7 +50,7 @@ pub fn get_latest() -> Result<String, Error> {
         .trim()
         .rsplit('/')
         .nth(0)
-        .ok_or(format_err!("path separator not in location"))?
+        .ok_or_else(|| format_err!("path separator not in location"))?
         .to_string())
 }
 
