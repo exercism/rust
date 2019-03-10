@@ -178,7 +178,7 @@
       "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
       "core": false,
       "unlocked_by": "bracket-push",
-      "difficulty": 1,
+      "difficulty": 4,
       "topics": [
         "from_trait",
         "higher_order_functions",
@@ -350,7 +350,7 @@
       "uuid": "1beb8b0c-d06d-4569-80e5-866ed01a7a66",
       "core": false,
       "unlocked_by": "clock",
-      "difficulty": 4,
+      "difficulty": 7,
       "topics": [
         "enum",
         "immutability"
@@ -680,7 +680,7 @@
       "uuid": "4e01efbc-51ce-4d20-b093-b3d44c4be5e8",
       "core": false,
       "unlocked_by": "anagram",
-      "difficulty": 4,
+      "difficulty": 7,
       "topics": [
         "hash_map",
         "lifetimes",
@@ -707,7 +707,7 @@
       "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
       "core": false,
       "unlocked_by": "anagram",
-      "difficulty": 4,
+      "difficulty": 10,
       "topics": [
         "chunks",
         "lines",
@@ -719,7 +719,7 @@
       "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
       "core": false,
       "unlocked_by": "anagram",
-      "difficulty": 4,
+      "difficulty": 10,
       "topics": [
         "closures",
         "generics",
@@ -743,7 +743,7 @@
       "uuid": "c32c0124-873d-45f4-9287-402aea29f129",
       "core": false,
       "unlocked_by": "space-age",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "custom_trait",
         "higher_order_functions",
@@ -756,7 +756,7 @@
       "uuid": "620b55bb-058e-4c6f-a966-ced3b41736db",
       "core": false,
       "unlocked_by": "space-age",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "operators_optional",
         "result",
@@ -779,7 +779,7 @@
       "uuid": "9d652e63-6654-4dec-a99f-97e6bc8cf772",
       "core": false,
       "unlocked_by": "sublist",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "equality",
         "generic_over_type",
@@ -802,7 +802,7 @@
       "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
       "core": false,
       "unlocked_by": "minesweeper",
-      "difficulty": 7,
+      "difficulty": 10,
       "topics": [
         "algorithm",
         "enum",
@@ -815,7 +815,7 @@
       "uuid": "6ff1a539-251b-49d4-81b5-a6b1e9ba66a4",
       "core": false,
       "unlocked_by": "minesweeper",
-      "difficulty": 7,
+      "difficulty": 10,
       "topics": [
         "buffer_reimplementation",
         "generics"
@@ -838,7 +838,7 @@
       "uuid": "8679c221-d150-4230-b1cd-5ea78ae69db7",
       "core": false,
       "unlocked_by": "luhn",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "char",
         "higher_order_functions",
@@ -852,7 +852,7 @@
       "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
       "core": false,
       "unlocked_by": "luhn",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "chars",
         "entry_api",
@@ -865,7 +865,7 @@
       "uuid": "6abac1d1-0d85-4b51-8001-97a07990630d",
       "core": false,
       "unlocked_by": "luhn",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "format",
         "iters",
@@ -879,7 +879,7 @@
       "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
       "core": false,
       "unlocked_by": "luhn",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "parsing",
         "str",
@@ -891,7 +891,7 @@
       "uuid": "ddc45979-8a92-4313-a4f8-878562d5a483",
       "core": false,
       "unlocked_by": "luhn",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "generics",
         "higher_order_functions",
@@ -903,7 +903,7 @@
       "uuid": "498be645-734a-49b7-aba7-aae1e051e1f0",
       "core": false,
       "unlocked_by": "luhn",
-      "difficulty": 7,
+      "difficulty": 4,
       "topics": [
         "loops",
         "mutable",
@@ -917,7 +917,7 @@
       "uuid": "6e7cac84-99d1-4f9f-b7d6-48ea43024bc0",
       "core": true,
       "unlocked_by": null,
-      "difficulty": 10,
+      "difficulty": 7,
       "topics": [
         "math"
       ]
@@ -927,7 +927,7 @@
       "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
       "core": false,
       "unlocked_by": "pythagorean-triplet",
-      "difficulty": 10,
+      "difficulty": 1,
       "topics": [
         "strings",
         "vectors"
@@ -938,7 +938,7 @@
       "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
       "core": false,
       "unlocked_by": "pythagorean-triplet",
-      "difficulty": 10,
+      "difficulty": 1,
       "topics": [
         "math",
         "option"
@@ -949,7 +949,7 @@
       "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
       "core": false,
       "unlocked_by": "pythagorean-triplet",
-      "difficulty": 10,
+      "difficulty": 1,
       "topics": [
         "math"
       ]
@@ -995,7 +995,7 @@
       "uuid": "1bce70ca-db1a-46c8-a314-07d3fda921c2",
       "core": false,
       "unlocked_by": "poker",
-      "difficulty": 10,
+      "difficulty": 7,
       "topics": [
         "conditionals",
         "failure_crate",
@@ -1011,7 +1011,7 @@
       "uuid": "b9436a89-90cb-4fb7-95b0-758f17c309ff",
       "core": false,
       "unlocked_by": "poker",
-      "difficulty": 10,
+      "difficulty": 7,
       "topics": [
         "enums",
         "from_primitive",
@@ -1025,7 +1025,7 @@
       "uuid": "7cefed7c-37f4-46c5-9a45-68fe4d0fb326",
       "core": false,
       "unlocked_by": "poker",
-      "difficulty": 10,
+      "difficulty": 7,
       "topics": [
         "bigint",
         "external_crates_optional",
@@ -1039,7 +1039,7 @@
       "uuid": "a78ed17a-b2c0-485c-814b-e13ccd1f4153",
       "core": false,
       "unlocked_by": "poker",
-      "difficulty": 10,
+      "difficulty": 7,
       "topics": [
         "algorithms",
         "groups",
