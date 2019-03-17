@@ -144,16 +144,6 @@
       ]
     },
     {
-      "slug": "pythagorean-triplet",
-      "uuid": "6e7cac84-99d1-4f9f-b7d6-48ea43024bc0",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "math"
-      ]
-    },
-    {
       "slug": "prime-factors",
       "uuid": "9f649818-0c82-4b79-b912-4d65b9f60e10",
       "core": false,
@@ -161,17 +151,6 @@
       "difficulty": 1,
       "topics": [
         "math"
-      ]
-    },
-    {
-      "slug": "series",
-      "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
-      "core": false,
-      "unlocked_by": "pythagorean-triplet",
-      "difficulty": 1,
-      "topics": [
-        "strings",
-        "vectors"
       ]
     },
     {
@@ -185,24 +164,280 @@
       ]
     },
     {
-      "slug": "collatz-conjecture",
-      "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
-      "core": false,
-      "unlocked_by": "pythagorean-triplet",
+      "slug": "bracket-push",
+      "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
+      "core": true,
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "math",
-        "option"
+        "stack_or_recursion"
       ]
     },
     {
-      "slug": "diffie-hellman",
-      "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
+      "slug": "luhn-from",
+      "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
       "core": false,
-      "unlocked_by": "pythagorean-triplet",
-      "difficulty": 1,
+      "unlocked_by": "bracket-push",
+      "difficulty": 4,
       "topics": [
-        "math"
+        "from_trait",
+        "higher_order_functions",
+        "iterators",
+        "str_to_digits"
+      ]
+    },
+    {
+      "slug": "clock",
+      "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "derive",
+        "struct",
+        "traits"
+      ]
+    },
+    {
+      "slug": "dot-dsl",
+      "uuid": "7bc60899-3b12-4c51-b23b-8dced5845e4c",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "builder_pattern",
+        "derive",
+        "modules",
+        "struct"
+      ]
+    },
+    {
+      "slug": "simple-linked-list",
+      "uuid": "10923b0b-c726-44a7-9e02-b775e7b8b237",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "lists",
+        "struct",
+        "type_conversion"
+      ]
+    },
+    {
+      "slug": "pascals-triangle",
+      "uuid": "ddc0c1da-6b65-4ed1-8bdc-5e71cd05f720",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "index_optional",
+        "math",
+        "vec"
+      ]
+    },
+    {
+      "slug": "paasio",
+      "uuid": "8c24c151-d22a-4818-83b5-4fe0f919e3fd",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "io",
+        "traits"
+      ]
+    },
+    {
+      "slug": "nucleotide-count",
+      "uuid": "3f54853b-cc65-4282-ab25-8dc3fdf43c03",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "entry_api",
+        "filter",
+        "match",
+        "mutablity",
+        "result"
+      ]
+    },
+    {
+      "slug": "etl",
+      "uuid": "0c8eeef7-4bab-4cf9-9047-c208b5618312",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "btree"
+      ]
+    },
+    {
+      "slug": "acronym",
+      "uuid": "26a9102f-26f6-4238-858e-ba20db66f1a9",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "filter",
+        "flat_map",
+        "loops",
+        "map",
+        "vec"
+      ]
+    },
+    {
+      "slug": "sieve",
+      "uuid": "da784b42-1cec-469e-8e48-0be232b17003",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "map",
+        "math",
+        "vector",
+        "while_let_optional"
+      ]
+    },
+    {
+      "slug": "rna-transcription",
+      "uuid": "9a219d87-cd32-4e12-a879-bfb5747c2369",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "match",
+        "result",
+        "str_vs_string",
+        "struct"
+      ]
+    },
+    {
+      "slug": "triangle",
+      "uuid": "c0bc2af6-d7af-401f-9ed8-bbe31977666c",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "struct"
+      ]
+    },
+    {
+      "slug": "grade-school",
+      "uuid": "5ca03812-c229-48db-b7fd-0889b22f8d1d",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "entry_api",
+        "option",
+        "struct",
+        "vec"
+      ]
+    },
+    {
+      "slug": "binary-search",
+      "uuid": "dd74b65c-0d26-4821-9add-064e32e3a5bd",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "option",
+        "slices",
+        "trait_optional"
+      ]
+    },
+    {
+      "slug": "robot-simulator",
+      "uuid": "1beb8b0c-d06d-4569-80e5-866ed01a7a66",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 7,
+      "topics": [
+        "enum",
+        "immutability"
+      ]
+    },
+    {
+      "slug": "queen-attack",
+      "uuid": "30c33e3d-8034-4618-8346-2ae906961579",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "result",
+        "struct",
+        "trait_optional"
+      ]
+    },
+    {
+      "slug": "bowling",
+      "uuid": "fec447a5-cf11-4ddd-b0fd-63bcc4e245cd",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "goofy_bowling_logic",
+        "result",
+        "struct"
+      ]
+    },
+    {
+      "slug": "tournament",
+      "uuid": "9a2406cc-5037-4761-b820-bb25b1d397c8",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "enum",
+        "hashmap",
+        "sorting",
+        "structs"
+      ]
+    },
+    {
+      "slug": "alphametics",
+      "uuid": "7450bd80-2388-42ac-a61f-097e82581475",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "combinations",
+        "external_crates_optional",
+        "string_parsing"
+      ]
+    },
+    {
+      "slug": "two-bucket",
+      "uuid": "1850fb3f-9dad-449a-90b6-9d90038cf34d",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "algorithm",
+        "loops"
+      ]
+    },
+    {
+      "slug": "spiral-matrix",
+      "uuid": "8dea3473-36f4-4228-b24b-bee8d9389167",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "matrix",
+        "nested_structures"
+      ]
+    },
+    {
+      "slug": "palindrome-products",
+      "uuid": "8cdc3424-51da-4cae-a065-9982859d5b55",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 4,
+      "topics": [
+        "calculation",
+        "math",
+        "string_comparison",
+        "structs"
       ]
     },
     {
@@ -274,31 +509,6 @@
       ]
     },
     {
-      "slug": "clock",
-      "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 4,
-      "topics": [
-        "derive",
-        "struct",
-        "traits"
-      ]
-    },
-    {
-      "slug": "dot-dsl",
-      "uuid": "7bc60899-3b12-4c51-b23b-8dced5845e4c",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "builder_pattern",
-        "derive",
-        "modules",
-        "struct"
-      ]
-    },
-    {
       "slug": "hamming",
       "uuid": "2874216a-0822-4ec2-892e-d451fd89646a",
       "core": false,
@@ -306,30 +516,6 @@
       "difficulty": 4,
       "topics": [
         "result"
-      ]
-    },
-    {
-      "slug": "simple-linked-list",
-      "uuid": "10923b0b-c726-44a7-9e02-b775e7b8b237",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "lists",
-        "struct",
-        "type_conversion"
-      ]
-    },
-    {
-      "slug": "pascals-triangle",
-      "uuid": "ddc0c1da-6b65-4ed1-8bdc-5e71cd05f720",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "index_optional",
-        "math",
-        "vec"
       ]
     },
     {
@@ -355,67 +541,56 @@
       ]
     },
     {
-      "slug": "paasio",
-      "uuid": "8c24c151-d22a-4818-83b5-4fe0f919e3fd",
+      "slug": "all-your-base",
+      "uuid": "54c11dae-3878-4bec-b8d6-775b7d4f317b",
       "core": false,
-      "unlocked_by": "clock",
+      "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "io",
-        "traits"
-      ]
-    },
-    {
-      "slug": "nucleotide-count",
-      "uuid": "3f54853b-cc65-4282-ab25-8dc3fdf43c03",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "entry_api",
-        "filter",
-        "match",
-        "mutablity",
+        "enumerate",
+        "fold",
+        "map",
+        "math",
         "result"
       ]
     },
     {
-      "slug": "luhn",
-      "uuid": "8d64bfc3-fc4b-45c4-85f0-e74dc2ea6812",
-      "core": true,
-      "unlocked_by": null,
+      "slug": "allergies",
+      "uuid": "94f040d6-3f41-4950-8fe6-acf0945ac83d",
+      "core": false,
+      "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "higher_order_functions",
-        "iterators",
-        "str_to_digits"
+        "bitwise_probably",
+        "enum",
+        "filter",
+        "struct",
+        "vectors"
       ]
     },
     {
-      "slug": "largest-series-product",
-      "uuid": "8679c221-d150-4230-b1cd-5ea78ae69db7",
+      "slug": "variable-length-quantity",
+      "uuid": "f1371a9c-c2a4-4fc6-a5fd-3a57c4af16fa",
       "core": false,
-      "unlocked_by": "luhn",
+      "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "char",
-        "higher_order_functions",
-        "math",
+        "bitwise",
+        "encodings",
         "result",
-        "windows"
+        "slices"
       ]
     },
     {
-      "slug": "word-count",
-      "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
+      "slug": "pig-latin",
+      "uuid": "c21c379b-fb23-449b-809a-3c6ef1c31221",
       "core": false,
-      "unlocked_by": "luhn",
+      "unlocked_by": "saddle-points",
       "difficulty": 4,
       "topics": [
-        "chars",
-        "entry_api",
-        "hashmap",
-        "str_vs_string"
+        "ascii",
+        "regular_expressions",
+        "strings"
       ]
     },
     {
@@ -487,197 +662,68 @@
       ]
     },
     {
-      "slug": "etl",
-      "uuid": "0c8eeef7-4bab-4cf9-9047-c208b5618312",
-      "core": false,
-      "unlocked_by": "clock",
+      "slug": "anagram",
+      "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
+      "core": true,
+      "unlocked_by": null,
       "difficulty": 4,
       "topics": [
-        "btree"
-      ]
-    },
-    {
-      "slug": "accumulate",
-      "uuid": "ddc45979-8a92-4313-a4f8-878562d5a483",
-      "core": false,
-      "unlocked_by": "luhn",
-      "difficulty": 4,
-      "topics": [
-        "generics",
-        "higher_order_functions",
-        "move_semantics"
-      ]
-    },
-    {
-      "slug": "acronym",
-      "uuid": "26a9102f-26f6-4238-858e-ba20db66f1a9",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "filter",
-        "flat_map",
+        "iter",
+        "lifetimes",
         "loops",
-        "map",
-        "vec"
-      ]
-    },
-    {
-      "slug": "sieve",
-      "uuid": "da784b42-1cec-469e-8e48-0be232b17003",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "map",
-        "math",
-        "vector",
-        "while_let_optional"
-      ]
-    },
-    {
-      "slug": "rna-transcription",
-      "uuid": "9a219d87-cd32-4e12-a879-bfb5747c2369",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "match",
-        "result",
         "str_vs_string",
+        "vector"
+      ]
+    },
+    {
+      "slug": "protein-translation",
+      "uuid": "4e01efbc-51ce-4d20-b093-b3d44c4be5e8",
+      "core": false,
+      "unlocked_by": "anagram",
+      "difficulty": 7,
+      "topics": [
+        "hash_map",
+        "lifetimes",
+        "result",
         "struct"
       ]
     },
     {
-      "slug": "triangle",
-      "uuid": "c0bc2af6-d7af-401f-9ed8-bbe31977666c",
+      "slug": "robot-name",
+      "uuid": "ec7f66c2-749e-4d00-9c11-fa9d106632e4",
       "core": false,
-      "unlocked_by": "clock",
+      "unlocked_by": "anagram",
       "difficulty": 4,
       "topics": [
-        "struct"
-      ]
-    },
-    {
-      "slug": "roman-numerals",
-      "uuid": "498be645-734a-49b7-aba7-aae1e051e1f0",
-      "core": false,
-      "unlocked_by": "luhn",
-      "difficulty": 4,
-      "topics": [
-        "loops",
-        "mutable",
-        "results",
-        "struct",
-        "traits"
-      ]
-    },
-    {
-      "slug": "all-your-base",
-      "uuid": "54c11dae-3878-4bec-b8d6-775b7d4f317b",
-      "core": false,
-      "unlocked_by": "saddle-points",
-      "difficulty": 4,
-      "topics": [
-        "enumerate",
-        "fold",
-        "map",
-        "math",
-        "result"
-      ]
-    },
-    {
-      "slug": "grade-school",
-      "uuid": "5ca03812-c229-48db-b7fd-0889b22f8d1d",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "entry_api",
-        "option",
-        "struct",
-        "vec"
-      ]
-    },
-    {
-      "slug": "binary-search",
-      "uuid": "dd74b65c-0d26-4821-9add-064e32e3a5bd",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "option",
+        "lifetimes",
+        "randomness",
+        "self_mut",
         "slices",
-        "trait_optional"
-      ]
-    },
-    {
-      "slug": "robot-simulator",
-      "uuid": "1beb8b0c-d06d-4569-80e5-866ed01a7a66",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "enum",
-        "immutability"
-      ]
-    },
-    {
-      "slug": "bracket-push",
-      "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 4,
-      "topics": [
-        "stack_or_recursion"
-      ]
-    },
-    {
-      "slug": "luhn-from",
-      "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
-      "core": false,
-      "unlocked_by": "bracket-push",
-      "difficulty": 4,
-      "topics": [
-        "from_trait",
-        "higher_order_functions",
-        "iterators",
-        "str_to_digits"
-      ]
-    },
-    {
-      "slug": "queen-attack",
-      "uuid": "30c33e3d-8034-4618-8346-2ae906961579",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "result",
-        "struct",
-        "trait_optional"
-      ]
-    },
-    {
-      "slug": "bowling",
-      "uuid": "fec447a5-cf11-4ddd-b0fd-63bcc4e245cd",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "goofy_bowling_logic",
-        "result",
         "struct"
       ]
     },
     {
-      "slug": "sublist",
-      "uuid": "644ffd17-548e-4405-bfd5-a58df74cc19d",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 4,
+      "slug": "ocr-numbers",
+      "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
+      "core": false,
+      "unlocked_by": "anagram",
+      "difficulty": 10,
       "topics": [
-        "enum",
-        "generic_over_type"
+        "chunks",
+        "lines",
+        "slices"
+      ]
+    },
+    {
+      "slug": "react",
+      "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
+      "core": false,
+      "unlocked_by": "anagram",
+      "difficulty": 10,
+      "topics": [
+        "closures",
+        "generics",
+        "lifetimes"
       ]
     },
     {
@@ -685,7 +731,7 @@
       "uuid": "fa94645d-14e1-422d-a832-d24efbb493d8",
       "core": true,
       "unlocked_by": null,
-      "difficulty": 4,
+      "difficulty": 7,
       "topics": [
         "custom_trait",
         "from_trait",
@@ -706,42 +752,112 @@
       ]
     },
     {
-      "slug": "macros",
-      "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
+      "slug": "wordy",
+      "uuid": "620b55bb-058e-4c6f-a966-ced3b41736db",
+      "core": false,
+      "unlocked_by": "space-age",
+      "difficulty": 4,
+      "topics": [
+        "operators_optional",
+        "result",
+        "string_parsing"
+      ]
+    },
+    {
+      "slug": "sublist",
+      "uuid": "644ffd17-548e-4405-bfd5-a58df74cc19d",
       "core": true,
       "unlocked_by": null,
-      "difficulty": 4,
+      "difficulty": 7,
       "topics": [
-        "hashmap",
-        "macros",
-        "macros_by_example"
-      ]
-    },
-    {
-      "slug": "allergies",
-      "uuid": "94f040d6-3f41-4950-8fe6-acf0945ac83d",
-      "core": false,
-      "unlocked_by": "saddle-points",
-      "difficulty": 4,
-      "topics": [
-        "bitwise_probably",
         "enum",
-        "filter",
-        "struct",
-        "vectors"
+        "generic_over_type"
       ]
     },
     {
-      "slug": "variable-length-quantity",
-      "uuid": "f1371a9c-c2a4-4fc6-a5fd-3a57c4af16fa",
+      "slug": "custom-set",
+      "uuid": "9d652e63-6654-4dec-a99f-97e6bc8cf772",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "sublist",
       "difficulty": 4,
       "topics": [
-        "bitwise",
-        "encodings",
+        "equality",
+        "generic_over_type",
+        "struct",
+        "vector"
+      ]
+    },
+    {
+      "slug": "minesweeper",
+      "uuid": "e0037ac4-ae5f-4622-b3ad-915648263495",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 7,
+      "topics": [
+        "board_state"
+      ]
+    },
+    {
+      "slug": "rectangles",
+      "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
+      "core": false,
+      "unlocked_by": "minesweeper",
+      "difficulty": 10,
+      "topics": [
+        "algorithm",
+        "enum",
+        "structs",
+        "traits"
+      ]
+    },
+    {
+      "slug": "circular-buffer",
+      "uuid": "6ff1a539-251b-49d4-81b5-a6b1e9ba66a4",
+      "core": false,
+      "unlocked_by": "minesweeper",
+      "difficulty": 10,
+      "topics": [
+        "buffer_reimplementation",
+        "generics"
+      ]
+    },
+    {
+      "slug": "luhn",
+      "uuid": "8d64bfc3-fc4b-45c4-85f0-e74dc2ea6812",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 7,
+      "topics": [
+        "higher_order_functions",
+        "iterators",
+        "str_to_digits"
+      ]
+    },
+    {
+      "slug": "largest-series-product",
+      "uuid": "8679c221-d150-4230-b1cd-5ea78ae69db7",
+      "core": false,
+      "unlocked_by": "luhn",
+      "difficulty": 4,
+      "topics": [
+        "char",
+        "higher_order_functions",
+        "math",
         "result",
-        "slices"
+        "windows"
+      ]
+    },
+    {
+      "slug": "word-count",
+      "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
+      "core": false,
+      "unlocked_by": "luhn",
+      "difficulty": 4,
+      "topics": [
+        "chars",
+        "entry_api",
+        "hashmap",
+        "str_vs_string"
       ]
     },
     {
@@ -759,79 +875,6 @@
       ]
     },
     {
-      "slug": "wordy",
-      "uuid": "620b55bb-058e-4c6f-a966-ced3b41736db",
-      "core": false,
-      "unlocked_by": "space-age",
-      "difficulty": 4,
-      "topics": [
-        "operators_optional",
-        "result",
-        "string_parsing"
-      ]
-    },
-    {
-      "slug": "tournament",
-      "uuid": "9a2406cc-5037-4761-b820-bb25b1d397c8",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "enum",
-        "hashmap",
-        "sorting",
-        "structs"
-      ]
-    },
-    {
-      "slug": "custom-set",
-      "uuid": "9d652e63-6654-4dec-a99f-97e6bc8cf772",
-      "core": false,
-      "unlocked_by": "sublist",
-      "difficulty": 4,
-      "topics": [
-        "equality",
-        "generic_over_type",
-        "struct",
-        "vector"
-      ]
-    },
-    {
-      "slug": "alphametics",
-      "uuid": "7450bd80-2388-42ac-a61f-097e82581475",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "combinations",
-        "external_crates_optional",
-        "string_parsing"
-      ]
-    },
-    {
-      "slug": "two-bucket",
-      "uuid": "1850fb3f-9dad-449a-90b6-9d90038cf34d",
-      "core": false,
-      "unlocked_by": "clock",
-      "difficulty": 4,
-      "topics": [
-        "algorithm",
-        "loops"
-      ]
-    },
-    {
-      "slug": "pig-latin",
-      "uuid": "c21c379b-fb23-449b-809a-3c6ef1c31221",
-      "core": false,
-      "unlocked_by": "saddle-points",
-      "difficulty": 4,
-      "topics": [
-        "ascii",
-        "regular_expressions",
-        "strings"
-      ]
-    },
-    {
       "slug": "diamond",
       "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
       "core": false,
@@ -844,27 +887,93 @@
       ]
     },
     {
-      "slug": "spiral-matrix",
-      "uuid": "8dea3473-36f4-4228-b24b-bee8d9389167",
+      "slug": "accumulate",
+      "uuid": "ddc45979-8a92-4313-a4f8-878562d5a483",
       "core": false,
-      "unlocked_by": "clock",
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
-        "matrix",
-        "nested_structures"
+        "generics",
+        "higher_order_functions",
+        "move_semantics"
       ]
     },
     {
-      "slug": "palindrome-products",
-      "uuid": "8cdc3424-51da-4cae-a065-9982859d5b55",
+      "slug": "roman-numerals",
+      "uuid": "498be645-734a-49b7-aba7-aae1e051e1f0",
       "core": false,
-      "unlocked_by": "clock",
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
-        "calculation",
+        "loops",
+        "mutable",
+        "results",
+        "struct",
+        "traits"
+      ]
+    },
+    {
+      "slug": "pythagorean-triplet",
+      "uuid": "6e7cac84-99d1-4f9f-b7d6-48ea43024bc0",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 7,
+      "topics": [
+        "math"
+      ]
+    },
+    {
+      "slug": "series",
+      "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
+      "core": false,
+      "unlocked_by": "pythagorean-triplet",
+      "difficulty": 1,
+      "topics": [
+        "strings",
+        "vectors"
+      ]
+    },
+    {
+      "slug": "collatz-conjecture",
+      "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
+      "core": false,
+      "unlocked_by": "pythagorean-triplet",
+      "difficulty": 1,
+      "topics": [
         "math",
-        "string_comparison",
-        "structs"
+        "option"
+      ]
+    },
+    {
+      "slug": "diffie-hellman",
+      "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
+      "core": false,
+      "unlocked_by": "pythagorean-triplet",
+      "difficulty": 1,
+      "topics": [
+        "math"
+      ]
+    },
+    {
+      "slug": "parallel-letter-frequency",
+      "uuid": "e114b19f-9a9a-402d-a5cb-1cad8de5088e",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 10,
+      "topics": [
+        "multi_threading"
+      ]
+    },
+    {
+      "slug": "macros",
+      "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 10,
+      "topics": [
+        "hashmap",
+        "macros",
+        "macros_by_example"
       ]
     },
     {
@@ -872,7 +981,7 @@
       "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
       "core": true,
       "unlocked_by": null,
-      "difficulty": 7,
+      "difficulty": 10,
       "topics": [
         "enum",
         "lifetimes",
@@ -926,47 +1035,6 @@
       ]
     },
     {
-      "slug": "anagram",
-      "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 7,
-      "topics": [
-        "iter",
-        "lifetimes",
-        "loops",
-        "str_vs_string",
-        "vector"
-      ]
-    },
-    {
-      "slug": "protein-translation",
-      "uuid": "4e01efbc-51ce-4d20-b093-b3d44c4be5e8",
-      "core": false,
-      "unlocked_by": "anagram",
-      "difficulty": 7,
-      "topics": [
-        "hash_map",
-        "lifetimes",
-        "result",
-        "struct"
-      ]
-    },
-    {
-      "slug": "robot-name",
-      "uuid": "ec7f66c2-749e-4d00-9c11-fa9d106632e4",
-      "core": false,
-      "unlocked_by": "anagram",
-      "difficulty": 7,
-      "topics": [
-        "lifetimes",
-        "randomness",
-        "self_mut",
-        "slices",
-        "struct"
-      ]
-    },
-    {
       "slug": "book-store",
       "uuid": "a78ed17a-b2c0-485c-814b-e13ccd1f4153",
       "core": false,
@@ -976,28 +1044,6 @@
         "algorithms",
         "groups",
         "set_theory"
-      ]
-    },
-    {
-      "slug": "ocr-numbers",
-      "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
-      "core": false,
-      "unlocked_by": "anagram",
-      "difficulty": 10,
-      "topics": [
-        "chunks",
-        "lines",
-        "slices"
-      ]
-    },
-    {
-      "slug": "minesweeper",
-      "uuid": "e0037ac4-ae5f-4622-b3ad-915648263495",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 10,
-      "topics": [
-        "board_state"
       ]
     },
     {
@@ -1012,29 +1058,6 @@
       ]
     },
     {
-      "slug": "parallel-letter-frequency",
-      "uuid": "e114b19f-9a9a-402d-a5cb-1cad8de5088e",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 10,
-      "topics": [
-        "multi_threading"
-      ]
-    },
-    {
-      "slug": "rectangles",
-      "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
-      "core": false,
-      "unlocked_by": "minesweeper",
-      "difficulty": 10,
-      "topics": [
-        "algorithm",
-        "enum",
-        "structs",
-        "traits"
-      ]
-    },
-    {
       "slug": "forth",
       "uuid": "55976c49-1be5-4170-8aa3-056c2223abbb",
       "core": true,
@@ -1042,29 +1065,6 @@
       "difficulty": 10,
       "topics": [
         "parser_reimplementation"
-      ]
-    },
-    {
-      "slug": "circular-buffer",
-      "uuid": "6ff1a539-251b-49d4-81b5-a6b1e9ba66a4",
-      "core": false,
-      "unlocked_by": "minesweeper",
-      "difficulty": 10,
-      "topics": [
-        "buffer_reimplementation",
-        "generics"
-      ]
-    },
-    {
-      "slug": "react",
-      "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
-      "core": false,
-      "unlocked_by": "anagram",
-      "difficulty": 10,
-      "topics": [
-        "closures",
-        "generics",
-        "lifetimes"
       ]
     },
     {
