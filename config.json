@@ -52,18 +52,6 @@
       ]
     },
     {
-      "slug": "reverse-string",
-      "uuid": "ecf8d1e3-9400-4d1a-8326-2e2820bce024",
-      "core": false,
-      "unlocked_by": "hello-world",
-      "difficulty": 1,
-      "topics": [
-        "iterator",
-        "str",
-        "string"
-      ]
-    },
-    {
       "slug": "nth-prime",
       "uuid": "ee5048a7-c625-434d-a0a2-4fd54757ee02",
       "core": false,
@@ -161,6 +149,18 @@
       "difficulty": 1,
       "topics": [
         "math"
+      ]
+    },
+    {
+      "slug": "reverse-string",
+      "uuid": "ecf8d1e3-9400-4d1a-8326-2e2820bce024",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "iterator",
+        "str",
+        "string"
       ]
     },
     {
