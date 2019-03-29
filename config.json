@@ -166,8 +166,8 @@
     {
       "slug": "bracket-push",
       "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
-      "core": true,
-      "unlocked_by": null,
+      "core": false,
+      "unlocked_by": "bob",
       "difficulty": 1,
       "topics": [
         "stack_or_recursion"
@@ -177,7 +177,7 @@
       "slug": "luhn-from",
       "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
       "core": false,
-      "unlocked_by": "bracket-push",
+      "unlocked_by": "bob",
       "difficulty": 4,
       "topics": [
         "from_trait",
@@ -443,8 +443,8 @@
     {
       "slug": "saddle-points",
       "uuid": "ccebfa12-d224-11e7-8941-cec278b6b50a",
-      "core": true,
-      "unlocked_by": null,
+      "core": false,
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "iterators",
@@ -455,7 +455,7 @@
       "slug": "isogram",
       "uuid": "79613fd8-b7da-11e7-abc4-cec278b6b50a",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "chars",
@@ -467,7 +467,7 @@
       "slug": "say",
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "modulus",
@@ -478,7 +478,7 @@
       "slug": "run-length-encoding",
       "uuid": "4dc9b165-792a-4438-be80-df9aab6f6a9c",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "int_string_conversion",
@@ -491,7 +491,7 @@
       "slug": "isbn-verifier",
       "uuid": "c986c240-46de-419c-8ed6-700eb68f8db6",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "int_string_conversion",
@@ -502,7 +502,7 @@
       "slug": "perfect-numbers",
       "uuid": "20e7d347-b80a-4656-ac34-0825126939ff",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "math"
@@ -512,7 +512,7 @@
       "slug": "hamming",
       "uuid": "2874216a-0822-4ec2-892e-d451fd89646a",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "result"
@@ -522,7 +522,7 @@
       "slug": "scrabble-score",
       "uuid": "561cc4ff-5e74-4701-a7c2-c4edefa0d068",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "hashmap_optional",
@@ -533,7 +533,7 @@
       "slug": "pangram",
       "uuid": "a24cb7bf-3aac-4051-bcd1-952c2a806187",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "ascii_optional",
@@ -544,7 +544,7 @@
       "slug": "all-your-base",
       "uuid": "54c11dae-3878-4bec-b8d6-775b7d4f317b",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "enumerate",
@@ -558,7 +558,7 @@
       "slug": "allergies",
       "uuid": "94f040d6-3f41-4950-8fe6-acf0945ac83d",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "bitwise_probably",
@@ -572,7 +572,7 @@
       "slug": "variable-length-quantity",
       "uuid": "f1371a9c-c2a4-4fc6-a5fd-3a57c4af16fa",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "bitwise",
@@ -585,7 +585,7 @@
       "slug": "pig-latin",
       "uuid": "c21c379b-fb23-449b-809a-3c6ef1c31221",
       "core": false,
-      "unlocked_by": "saddle-points",
+      "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
         "ascii",
@@ -915,8 +915,8 @@
     {
       "slug": "pythagorean-triplet",
       "uuid": "6e7cac84-99d1-4f9f-b7d6-48ea43024bc0",
-      "core": true,
-      "unlocked_by": null,
+      "core": false,
+      "unlocked_by": "luhn",
       "difficulty": 7,
       "topics": [
         "math"
@@ -926,7 +926,7 @@
       "slug": "series",
       "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
       "core": false,
-      "unlocked_by": "pythagorean-triplet",
+      "unlocked_by": "luhn",
       "difficulty": 1,
       "topics": [
         "strings",
@@ -937,7 +937,7 @@
       "slug": "collatz-conjecture",
       "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
       "core": false,
-      "unlocked_by": "pythagorean-triplet",
+      "unlocked_by": "luhn",
       "difficulty": 1,
       "topics": [
         "math",
@@ -948,7 +948,7 @@
       "slug": "diffie-hellman",
       "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
       "core": false,
-      "unlocked_by": "pythagorean-triplet",
+      "unlocked_by": "luhn",
       "difficulty": 1,
       "topics": [
         "math"
