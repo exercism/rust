@@ -54,17 +54,6 @@
       ]
     },
     {
-      "slug": "bob",
-      "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
-      "core": false,
-      "unlocked_by": "hello-world",
-      "difficulty": 1,
-      "topics": [
-        "chars",
-        "string_functions"
-      ]
-    },
-    {
       "slug": "beer-song",
       "uuid": "bb42bc3a-139d-4cab-8b3a-2eac2e1b77b6",
       "core": false,
@@ -161,6 +150,17 @@
       "difficulty": 1,
       "topics": [
         "crates"
+      ]
+    },
+    {
+      "slug": "bob",
+      "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "chars",
+        "string_functions"
       ]
     },
     {
