@@ -174,19 +174,6 @@
       ]
     },
     {
-      "slug": "luhn-from",
-      "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
-      "core": false,
-      "unlocked_by": "bob",
-      "difficulty": 4,
-      "topics": [
-        "from_trait",
-        "higher_order_functions",
-        "iterators",
-        "str_to_digits"
-      ]
-    },
-    {
       "slug": "clock",
       "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
       "core": true,
@@ -739,19 +726,6 @@
       ]
     },
     {
-      "slug": "luhn-trait",
-      "uuid": "c32c0124-873d-45f4-9287-402aea29f129",
-      "core": false,
-      "unlocked_by": "space-age",
-      "difficulty": 4,
-      "topics": [
-        "custom_trait",
-        "higher_order_functions",
-        "iterators",
-        "str_to_digits"
-      ]
-    },
-    {
       "slug": "wordy",
       "uuid": "620b55bb-058e-4c6f-a966-ced3b41736db",
       "core": false,
@@ -828,6 +802,32 @@
       "unlocked_by": null,
       "difficulty": 7,
       "topics": [
+        "higher_order_functions",
+        "iterators",
+        "str_to_digits"
+      ]
+    },
+    {
+      "slug": "luhn-from",
+      "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
+      "core": false,
+      "unlocked_by": "luhn",
+      "difficulty": 4,
+      "topics": [
+        "from_trait",
+        "higher_order_functions",
+        "iterators",
+        "str_to_digits"
+      ]
+    },
+    {
+      "slug": "luhn-trait",
+      "uuid": "c32c0124-873d-45f4-9287-402aea29f129",
+      "core": false,
+      "unlocked_by": "luhn",
+      "difficulty": 4,
+      "topics": [
+        "custom_trait",
         "higher_order_functions",
         "iterators",
         "str_to_digits"
