@@ -47,7 +47,7 @@ fn test_acid_equals_acid() {
 fn test_transcribes_cytosine_guanine() {
     assert_eq!(
         dna::RNA::new("G").unwrap(),
-        dna::DNA::new("C").unwrap().to_rna()
+        dna::DNA::new("C").unwrap().into_rna()
     );
 }
 
@@ -56,7 +56,7 @@ fn test_transcribes_cytosine_guanine() {
 fn test_transcribes_guanine_cytosine() {
     assert_eq!(
         dna::RNA::new("C").unwrap(),
-        dna::DNA::new("G").unwrap().to_rna()
+        dna::DNA::new("G").unwrap().into_rna()
     );
 }
 
@@ -65,7 +65,7 @@ fn test_transcribes_guanine_cytosine() {
 fn test_transcribes_adenine_uracil() {
     assert_eq!(
         dna::RNA::new("U").unwrap(),
-        dna::DNA::new("A").unwrap().to_rna()
+        dna::DNA::new("A").unwrap().into_rna()
     );
 }
 
@@ -74,7 +74,7 @@ fn test_transcribes_adenine_uracil() {
 fn test_transcribes_thymine_to_adenine() {
     assert_eq!(
         dna::RNA::new("A").unwrap(),
-        dna::DNA::new("T").unwrap().to_rna()
+        dna::DNA::new("T").unwrap().into_rna()
     );
 }
 
@@ -83,6 +83,6 @@ fn test_transcribes_thymine_to_adenine() {
 fn test_transcribes_all_dna_to_rna() {
     assert_eq!(
         dna::RNA::new("UGCACCAGAAUU").unwrap(),
-        dna::DNA::new("ACGTGGTCTTAA").unwrap().to_rna()
+        dna::DNA::new("ACGTGGTCTTAA").unwrap().into_rna()
     )
 }

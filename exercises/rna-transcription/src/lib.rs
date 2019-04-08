@@ -9,7 +9,7 @@ impl DNA {
         unimplemented!("Construct new DNA from '{}' string. If string contains invalid nucleotides return index of first invalid nucleotide", dna);
     }
 
-    pub fn to_rna(self) -> RNA {
+    pub fn into_rna(self) -> RNA {
         unimplemented!("Transform DNA {:?} into corresponding RNA", self);
     }
 }
