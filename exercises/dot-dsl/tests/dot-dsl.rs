@@ -132,8 +132,8 @@ fn test_graph_stores_attributes() {
     let graph = Graph::new().with_nodes(
         &['a', 'b', 'c']
             .iter()
-            .enumerate()
-            .map(|(i, n)| Node::new(&n.to_string()).with_attrs(&attributes[i..i + 1]))
+            .zip(attributes.iter())
+            .map(|(name, &attr)| Node::new(&name.to_string()).with_attrs(&[attr]))
             .collect::<Vec<_>>(),
     );
 
