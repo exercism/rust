@@ -46,18 +46,6 @@ fn a_different_team_can_win() {
 
 #[test]
 #[ignore]
-fn a_draw_is_one_point_each() {
-    let input = "Allegoric Alaskans;Blithering Badgers;draw";
-    let expected = "".to_string()
-        + "Team                           | MP |  W |  D |  L |  P\n"
-        + "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1\n"
-        + "Blithering Badgers             |  1 |  0 |  1 |  0 |  1";
-
-    assert_eq!(tournament::tally(&input), expected);
-}
-
-#[test]
-#[ignore]
 fn there_can_be_more_than_one_match() {
     let input = "Allegoric Alaskans;Blithering Badgers;win\n".to_string()
         + "Allegoric Alaskans;Blithering Badgers;win";
@@ -65,6 +53,19 @@ fn there_can_be_more_than_one_match() {
         + "Team                           | MP |  W |  D |  L |  P\n"
         + "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6\n"
         + "Blithering Badgers             |  2 |  0 |  0 |  2 |  0";
+
+    assert_eq!(tournament::tally(&input), expected);
+}
+
+#[test]
+#[ignore]
+fn a_draw_is_one_point_each() {
+    let input = "Allegoric Alaskans;Blithering Badgers;draw\n".to_string()
+        + "Allegoric Alaskans;Blithering Badgers;win";
+    let expected = "".to_string()
+        + "Team                           | MP |  W |  D |  L |  P\n"
+        + "Allegoric Alaskans             |  2 |  1 |  1 |  0 |  4\n"
+        + "Blithering Badgers             |  2 |  0 |  1 |  1 |  1";
 
     assert_eq!(tournament::tally(&input), expected);
 }
