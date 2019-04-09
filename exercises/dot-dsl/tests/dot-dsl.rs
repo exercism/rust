@@ -133,7 +133,7 @@ fn test_graph_stores_attributes() {
         &['a', 'b', 'c']
             .iter()
             .enumerate()
-            .map(|(i, n)| Node::new(&n.to_string()).with_attrs(&attributes[i..i + 1]))
+            .map(|(i, n)| Node::new(&n.to_string()).with_attrs(&attributes[i..=i]))
             .collect::<Vec<_>>(),
     );
 
