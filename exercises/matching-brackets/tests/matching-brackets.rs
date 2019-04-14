@@ -1,4 +1,4 @@
-use bracket_push::brackets_are_balanced;
+use matching_brackets::brackets_are_balanced;
 
 #[test]
 fn paired_square_brackets() {

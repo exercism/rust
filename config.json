@@ -164,7 +164,7 @@
       ]
     },
     {
-      "slug": "bracket-push",
+      "slug": "matching-brackets",
       "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
       "core": false,
       "unlocked_by": "bob",
