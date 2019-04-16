@@ -1,4 +1,0 @@
-[package]
-edition = "2018"
-name = "bracket-push"
-version = "1.5.0"
