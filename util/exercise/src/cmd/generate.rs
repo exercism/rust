@@ -165,7 +165,7 @@ fn generate_readme(exercise_name: &str) -> Result<()> {
             "--spec-path",
             problem_specifications_path
                 .to_str()
-                .ok_or(format_err!("path inexpressable as str"))?,
+                .ok_or_else(|| format_err!("path inexpressable as str"))?,
         ],
     )?;
 
@@ -186,7 +186,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         "Generating a new exercise at path: {}",
         exercise_path
             .to_str()
-            .ok_or(format_err!("path inexpressable as str"))?
+            .ok_or_else(|| format_err!("path inexpressable as str"))?
     );
 
     let _cargo_new_output = Command::new("cargo")
@@ -195,7 +195,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         .arg(
             exercise_path
                 .to_str()
-                .ok_or(format_err!("path inexpressable as str"))?,
+                .ok_or_else(|| format_err!("path inexpressable as str"))?,
         )
         .output()?;
 

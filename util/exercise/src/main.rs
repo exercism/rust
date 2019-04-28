@@ -49,7 +49,7 @@ fn process_matches(matches: &ArgMatches<'_>) -> exercise::Result<()> {
         ("generate", Some(generate_matches)) => {
             let exercise_name = generate_matches
                 .value_of("exercise_name")
-                .ok_or(format_err!("exercise name not present in args"))?;
+                .ok_or_else(|| format_err!("exercise name not present in args"))?;
             let run_configure = generate_matches.is_present("configure");
             let use_maplit = generate_matches.is_present("use_maplit");
 
@@ -63,7 +63,7 @@ fn process_matches(matches: &ArgMatches<'_>) -> exercise::Result<()> {
         ("update", Some(update_matches)) => {
             let exercise_name = update_matches
                 .value_of("exercise_name")
-                .ok_or(format_err!("exercise name not present in args"))?;
+                .ok_or_else(|| format_err!("exercise name not present in args"))?;
 
             let run_configure = update_matches.is_present("configure");
 
@@ -86,7 +86,7 @@ fn process_matches(matches: &ArgMatches<'_>) -> exercise::Result<()> {
             configure::configure_exercise(
                 configure_matches
                     .value_of("exercise_name")
-                    .ok_or(format_err!("exercise name not present in args"))?,
+                    .ok_or_else(|| format_err!("exercise name not present in args"))?,
             )?;
         }
 
