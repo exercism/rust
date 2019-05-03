@@ -11,21 +11,21 @@ macro_rules! expect {
 
 #[test]
 fn test_simple() {
-    let got = fizz_buzz().apply(1..=16).collect::<Vec<_>>();
+    let got = fizz_buzz::<i32>().apply(1..=16).collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
 
 #[test]
 #[ignore]
 fn test_u8() {
-    let got = fizz_buzz().apply(1_u8..=16).collect::<Vec<_>>();
+    let got = fizz_buzz::<u8>().apply(1_u8..=16).collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
 
 #[test]
 #[ignore]
 fn test_u64() {
-    let got = fizz_buzz().apply(1_u64..=16).collect::<Vec<_>>();
+    let got = fizz_buzz::<u64>().apply(1_u64..=16).collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
 
@@ -36,7 +36,7 @@ fn test_nonsequential() {
     let expect = vec![
         "fizz", "fizz", "fizz", "buzz", "buzz", "16", "8", "4", "2", "1",
     ];
-    let got = fizz_buzz()
+    let got = fizz_buzz::<i32>()
         .apply(collatz_12.into_iter().cloned())
         .collect::<Vec<_>>();
     assert_eq!(expect, got);
@@ -49,12 +49,11 @@ fn test_custom() {
         "1", "2", "Fizz", "4", "Buzz", "Fizz", "Bam", "8", "Fizz", "Buzz", "11", "Fizz", "13",
         "Bam", "BuzzFizz", "16",
     ];
-    let fizzer = Fizzy::new()
-        .add_matcher(Matcher::new(|n| n % 5 == 0, "Buzz"))
-        .add_matcher(Matcher::new(|n| n % 3 == 0, "Fizz"))
-        .add_matcher(Matcher::new(|n| n % 7 == 0, "Bam"))
-        .apply(1..=16);
-    let got = fizzer.collect::<Vec<_>>();
+    let fizzer: Fizzy<i32> = Fizzy::new()
+        .add_matcher(Matcher::new(|n: i32| n % 5 == 0, "Buzz"))
+        .add_matcher(Matcher::new(|n: i32| n % 3 == 0, "Fizz"))
+        .add_matcher(Matcher::new(|n: i32| n % 7 == 0, "Bam"));
+    let got = fizzer.apply(1..=16).collect::<Vec<_>>();
     assert_eq!(expect, got);
 }
 
@@ -65,7 +64,7 @@ fn test_f64() {
     // NOTE: this test depends on a language feature introduced in Rust 1.34. If you
     // have an older compiler, upgrade. If you have an older compiler and cannot upgrade,
     // feel free to ignore this test.
-    let got = fizz_buzz()
+    let got = fizz_buzz::<f64>()
         .apply(std::iter::successors(Some(1.0), |prev| Some(prev + 1.0)))
         .take(16)
         .collect::<Vec<_>>();
@@ -115,7 +114,7 @@ fn test_minimal_generic_bounds() {
         }
     }
 
-    let got = fizz_buzz()
+    let got = fizz_buzz::<Fizzable>()
         .apply(std::iter::successors(Some(Fizzable(1)), |prev| {
             Some(*prev + 1.into())
         }))
