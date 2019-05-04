@@ -9,9 +9,9 @@ fn apply_op<'a, 'b>(num1: i32, words: &'a [Token<'b>]) -> Option<(i32, &'a [Toke
         Token::Number(_) => true,
         Token::NonNumber(_) => false,
     })?;
-    let (op_and_num, remainder) = words.split_at(number_pos + 1);
+    let (op_and_num, mut remainder) = words.split_at(number_pos + 1);
     let (op, num2) = op_and_num.split_at(number_pos);
-    let num2 = match num2 {
+    let &num2 = match num2 {
         [Token::Number(i)] => i,
         _ => unreachable!(
             "We split at a Number above, so num2 is surely a single-element slice w/ a number"
@@ -22,6 +22,14 @@ fn apply_op<'a, 'b>(num1: i32, words: &'a [Token<'b>]) -> Option<(i32, &'a [Toke
         [Token::NonNumber("minus")] => Some(num1 - num2),
         [Token::NonNumber("multiplied"), Token::NonNumber("by")] => Some(num1 * num2),
         [Token::NonNumber("divided"), Token::NonNumber("by")] => Some(num1 / num2),
+        [Token::NonNumber("raised"), Token::NonNumber("to"), Token::NonNumber("the")] => {
+            if Some(&Token::NonNumber("power")) == remainder.get(0) {
+                remainder = remainder.get(1..)?;
+                Some(num1.pow(num2 as u32))
+            } else {
+                None
+            }
+        }
         _ => None,
     }
     .map(|n| (n, remainder))
@@ -33,6 +41,11 @@ pub fn answer(c: &str) -> Option<i32> {
         .split_whitespace()
         .map(|word| {
             if let Ok(i) = word.parse::<i32>() {
+                Token::Number(i)
+            } else if let Some(i) = word
+                .get(..word.len() - 2)
+                .and_then(|word| word.parse::<i32>().ok())
+            {
                 Token::Number(i)
             } else {
                 Token::NonNumber(word)

@@ -159,3 +159,19 @@ fn reject_prefix_notation() {
     let command = "What is plus 1 2?";
     assert_eq!(None, answer(command));
 }
+
+#[test]
+#[ignore]
+#[cfg(feature="exponentials")]
+fn exponential() {
+    let command = "What is 2 raised to the 5th power?";
+    assert_eq!(Some(32), answer(command));
+}
+
+#[test]
+#[ignore]
+#[cfg(feature="exponentials")]
+fn addition_and_exponential() {
+    let command = "What is 1 plus 2 raised to the 2nd power?";
+    assert_eq!(Some(9), answer(command));
+}

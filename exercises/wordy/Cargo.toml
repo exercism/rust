@@ -2,3 +2,6 @@
 edition = "2018"
 name = "wordy"
 version = "1.5.0"
+
+[features]
+exponentials = []
