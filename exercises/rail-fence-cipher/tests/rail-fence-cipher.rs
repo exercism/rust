@@ -16,7 +16,7 @@ use rail_fence_cipher::*;
 /// in terms of this function.
 fn process_encode_case(input: &str, rails: u32, expected: &str) {
     let rail_fence = RailFence::new(rails);
-    assert_eq!(rail_fence.encode(input), expected);
+    assert_eq!(expected, rail_fence.encode(input));
 }
 
 /// Process a single test case for the property `decode`
@@ -25,7 +25,7 @@ fn process_encode_case(input: &str, rails: u32, expected: &str) {
 /// in terms of this function.
 fn process_decode_case(input: &str, rails: u32, expected: &str) {
     let rail_fence = RailFence::new(rails);
-    assert_eq!(rail_fence.decode(input), expected);
+    assert_eq!(expected, rail_fence.decode(input));
 }
 
 // encode

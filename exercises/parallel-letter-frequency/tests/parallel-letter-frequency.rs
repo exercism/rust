@@ -40,7 +40,7 @@ const STAR_SPANGLED_BANNER: [&str; 8] = [
 
 #[test]
 fn test_no_texts() {
-    assert_eq!(frequency::frequency(&[], 4), HashMap::new());
+    assert_eq!(HashMap::new(), frequency::frequency(&[], 4));
 }
 
 #[test]
@@ -48,7 +48,7 @@ fn test_no_texts() {
 fn test_one_letter() {
     let mut hm = HashMap::new();
     hm.insert('a', 1);
-    assert_eq!(frequency::frequency(&["a"], 4), hm);
+    assert_eq!(hm, frequency::frequency(&["a"], 4));
 }
 
 #[test]
@@ -56,7 +56,7 @@ fn test_one_letter() {
 fn test_case_insensitivity() {
     let mut hm = HashMap::new();
     hm.insert('a', 2);
-    assert_eq!(frequency::frequency(&["aA"], 4), hm);
+    assert_eq!(hm, frequency::frequency(&["aA"], 4));
 }
 
 #[test]
@@ -66,7 +66,7 @@ fn test_many_empty_lines() {
     for _ in 0..1000 {
         v.push("");
     }
-    assert_eq!(frequency::frequency(&v[..], 4), HashMap::new());
+    assert_eq!(HashMap::new(), frequency::frequency(&v[..], 4));
 }
 
 #[test]
@@ -80,7 +80,7 @@ fn test_many_times_same_text() {
     hm.insert('a', 1000);
     hm.insert('b', 1000);
     hm.insert('c', 1000);
-    assert_eq!(frequency::frequency(&v[..], 4), hm);
+    assert_eq!(hm, frequency::frequency(&v[..], 4));
 }
 
 #[test]
@@ -105,9 +105,9 @@ fn test_all_three_anthems_1_worker() {
         }
     }
     let freqs = frequency::frequency(&v[..], 1);
-    assert_eq!(freqs.get(&'a'), Some(&49));
-    assert_eq!(freqs.get(&'t'), Some(&56));
-    assert_eq!(freqs.get(&'ü'), Some(&2));
+    assert_eq!(Some(&49), freqs.get(&'a'));
+    assert_eq!(Some(&56), freqs.get(&'t'));
+    assert_eq!(Some(&2), freqs.get(&'ü'));
 }
 
 #[test]
@@ -120,7 +120,7 @@ fn test_all_three_anthems_3_workers() {
         }
     }
     let freqs = frequency::frequency(&v[..], 3);
-    assert_eq!(freqs.get(&'a'), Some(&49));
-    assert_eq!(freqs.get(&'t'), Some(&56));
-    assert_eq!(freqs.get(&'ü'), Some(&2));
+    assert_eq!(Some(&49), freqs.get(&'a'));
+    assert_eq!(Some(&56), freqs.get(&'t'));
+    assert_eq!(Some(&2), freqs.get(&'ü'));
 }

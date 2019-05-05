@@ -28,7 +28,7 @@ fn test_graph_with_one_node() {
 
     assert!(graph.attrs.is_empty());
 
-    assert_eq!(graph.nodes, vec![Node::new("a")]);
+    assert_eq!(vec![Node::new("a")], graph.nodes);
 }
 
 #[test]
@@ -43,8 +43,8 @@ fn test_graph_with_one_node_with_keywords() {
     assert!(graph.attrs.is_empty());
 
     assert_eq!(
-        graph.nodes,
-        vec![Node::new("a").with_attrs(&[("color", "green")])]
+        vec![Node::new("a").with_attrs(&[("color", "green")])],
+        graph.nodes
     );
 }
 
@@ -59,7 +59,7 @@ fn test_graph_with_one_edge() {
 
     assert!(graph.attrs.is_empty());
 
-    assert_eq!(graph.edges, vec![Edge::new("a", "b")]);
+    assert_eq!(vec![Edge::new("a", "b")], graph.edges);
 }
 
 #[test]
@@ -75,7 +75,7 @@ fn test_graph_with_one_attribute() {
 
     assert!(graph.edges.is_empty());
 
-    assert_eq!(graph.attrs, expected_attrs);
+    assert_eq!(expected_attrs, graph.attrs);
 }
 
 #[test]
@@ -106,12 +106,12 @@ fn test_graph_with_attributes() {
         .with_attrs(&attrs);
 
     assert_eq!(
-        graph.nodes,
         vec![
             Node::new("a").with_attrs(&[("color", "green")]),
             Node::new("c"),
             Node::new("b").with_attrs(&[("label", "Beta!")]),
-        ]
+        ],
+        graph.nodes
     );
 
     assert_eq!(
@@ -122,7 +122,7 @@ fn test_graph_with_attributes() {
         ]
     );
 
-    assert_eq!(graph.attrs, expected_attrs);
+    assert_eq!(expected_attrs, graph.attrs);
 }
 
 #[test]
@@ -138,10 +138,10 @@ fn test_graph_stores_attributes() {
     );
 
     assert_eq!(
+        Some("bef"),
         graph
             .get_node("c")
             .expect("node must be stored")
-            .get_attr("bim"),
-        Some("bef")
+            .get_attr("bim")
     );
 }

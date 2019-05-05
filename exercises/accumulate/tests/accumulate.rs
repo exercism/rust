@@ -10,7 +10,7 @@ fn square(x: i32) -> i32 {
 fn func_single() {
     let input = vec![2];
     let expected = vec![4];
-    assert_eq!(map(input, square), expected);
+    assert_eq!(expected, map(input, square));
 }
 
 #[test]
@@ -18,7 +18,7 @@ fn func_single() {
 fn func_multi() {
     let input = vec![2, 3, 4, 5];
     let expected = vec![4, 9, 16, 25];
-    assert_eq!(map(input, square), expected);
+    assert_eq!(expected, map(input, square));
 }
 
 #[test]
@@ -26,7 +26,7 @@ fn func_multi() {
 fn closure() {
     let input = vec![2, 3, 4, 5];
     let expected = vec![4, 9, 16, 25];
-    assert_eq!(map(input, |x| x * x), expected);
+    assert_eq!(expected, map(input, |x| x * x));
 }
 
 #[test]
@@ -34,7 +34,7 @@ fn closure() {
 fn closure_floats() {
     let input = vec![2.0, 3.0, 4.0, 5.0];
     let expected = vec![4.0, 9.0, 16.0, 25.0];
-    assert_eq!(map(input, |x| x * x), expected);
+    assert_eq!(expected, map(input, |x| x * x));
 }
 
 #[test]
@@ -42,7 +42,7 @@ fn closure_floats() {
 fn strings() {
     let input = vec!["1".to_string(), "2".into(), "3".into()];
     let expected = vec!["11".to_string(), "22".into(), "33".into()];
-    assert_eq!(map(input, |s| s.repeat(2)), expected);
+    assert_eq!(expected, map(input, |s| s.repeat(2)));
 }
 
 #[test]
@@ -50,7 +50,7 @@ fn strings() {
 fn change_in_type() {
     let input: Vec<&str> = vec!["1", "2", "3"];
     let expected: Vec<String> = vec!["1".into(), "2".into(), "3".into()];
-    assert_eq!(map(input, |s| s.to_string()), expected);
+    assert_eq!(expected, map(input, |s| s.to_string()));
 }
 
 #[test]
@@ -63,8 +63,8 @@ fn mutating_closure() {
         counter += 1;
         x.abs()
     });
-    assert_eq!(result, expected);
-    assert_eq!(counter, 4);
+    assert_eq!(expected, result);
+    assert_eq!(4, counter);
 }
 
 #[test]

@@ -3,29 +3,25 @@ use diamond::*;
 
 #[test]
 fn test_a() {
-    assert_eq!(get_diamond('A'), vec!["A"]);
+    assert_eq!(vec!["A"], get_diamond('A'));
 }
 
 #[test]
 #[ignore]
 fn test_b() {
-    assert_eq!(get_diamond('B'), vec![" A ", "B B", " A "]);
+    assert_eq!(vec![" A ", "B B", " A "], get_diamond('B'));
 }
 
 #[test]
 #[ignore]
 fn test_c() {
-    assert_eq!(
-        get_diamond('C'),
-        vec!["  A  ", " B B ", "C   C", " B B ", "  A  "]
-    );
+    assert_eq!(vec!["  A  ", " B B ", "C   C", " B B ", "  A  "], get_diamond('C'));
 }
 
 #[test]
 #[ignore]
 fn test_d() {
     assert_eq!(
-        get_diamond('D'),
         vec![
             "   A   ",
             "  B B  ",
@@ -34,7 +30,8 @@ fn test_d() {
             " C   C ",
             "  B B  ",
             "   A   ",
-        ]
+        ],
+        get_diamond('D')
     );
 }
 
@@ -42,7 +39,6 @@ fn test_d() {
 #[ignore]
 fn test_e() {
     assert_eq!(
-        get_diamond('Z'),
         vec![
             "                         A                         ",
             "                        B B                        ",
@@ -95,6 +91,7 @@ fn test_e() {
             "                       C   C                       ",
             "                        B B                        ",
             "                         A                         ",
-        ]
+        ],
+        get_diamond('Z')
     );
 }

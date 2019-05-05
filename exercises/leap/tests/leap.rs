@@ -1,7 +1,7 @@
 use leap;
 
 fn process_leapyear_case(year: u64, expected: bool) {
-    assert_eq!(leap::is_leap_year(year), expected);
+    assert_eq!(expected, leap::is_leap_year(year));
 }
 
 #[test]
@@ -36,23 +36,23 @@ fn test_year_divisible_by_400_leap_year() {
 #[test]
 #[ignore]
 fn test_any_old_year() {
-    assert_eq!(leap::is_leap_year(1997), false);
+    assert_eq!(false, leap::is_leap_year(1997));
 }
 
 #[test]
 #[ignore]
 fn test_century() {
-    assert_eq!(leap::is_leap_year(1700), false);
-    assert_eq!(leap::is_leap_year(1800), false);
-    assert_eq!(leap::is_leap_year(1900), false);
+    assert_eq!(false, leap::is_leap_year(1700));
+    assert_eq!(false, leap::is_leap_year(1800));
+    assert_eq!(false, leap::is_leap_year(1900));
 }
 
 #[test]
 #[ignore]
 fn test_exceptional_centuries() {
-    assert_eq!(leap::is_leap_year(1600), true);
-    assert_eq!(leap::is_leap_year(2000), true);
-    assert_eq!(leap::is_leap_year(2400), true);
+    assert_eq!(true, leap::is_leap_year(1600));
+    assert_eq!(true, leap::is_leap_year(2000));
+    assert_eq!(true, leap::is_leap_year(2400));
 }
 
 #[test]

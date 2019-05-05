@@ -100,7 +100,7 @@ fn singleton_input_singleton_output() {
 #[ignore]
 fn singleton_that_cant_be_chained() {
     let input = &[(1, 2)];
-    assert_eq!(dominoes::chain(input), None);
+    assert_eq!(None, dominoes::chain(input));
 }
 
 #[test]
@@ -121,28 +121,28 @@ fn can_reverse_dominoes() {
 #[ignore]
 fn no_chains() {
     let input = &[(1, 2), (4, 1), (2, 3)];
-    assert_eq!(dominoes::chain(input), None);
+    assert_eq!(None, dominoes::chain(input));
 }
 
 #[test]
 #[ignore]
 fn disconnected_simple() {
     let input = &[(1, 1), (2, 2)];
-    assert_eq!(dominoes::chain(input), None);
+    assert_eq!(None, dominoes::chain(input));
 }
 
 #[test]
 #[ignore]
 fn disconnected_double_loop() {
     let input = &[(1, 2), (2, 1), (3, 4), (4, 3)];
-    assert_eq!(dominoes::chain(input), None);
+    assert_eq!(None, dominoes::chain(input));
 }
 
 #[test]
 #[ignore]
 fn disconnected_single_isolated() {
     let input = &[(1, 2), (2, 3), (3, 1), (4, 4)];
-    assert_eq!(dominoes::chain(input), None);
+    assert_eq!(None, dominoes::chain(input));
 }
 
 #[test]

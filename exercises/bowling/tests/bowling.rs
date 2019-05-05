@@ -11,7 +11,7 @@ fn roll_returns_a_result() {
 fn you_cannot_roll_more_than_ten_pins_in_a_single_roll() {
     let mut game = BowlingGame::new();
 
-    assert_eq!(game.roll(11), Err(Error::NotEnoughPinsLeft));;
+    assert_eq!(Err(Error::NotEnoughPinsLeft), game.roll(11));
 }
 
 #[test]
@@ -32,7 +32,7 @@ fn a_game_score_is_some_if_ten_frames_have_been_rolled() {
 fn you_cannot_score_a_game_with_no_rolls() {
     let game = BowlingGame::new();
 
-    assert_eq!(game.score(), None);
+    assert_eq!(None, game.score());
 }
 
 #[test]
@@ -45,7 +45,7 @@ fn a_game_score_is_none_if_fewer_than_ten_frames_have_been_rolled() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), None);
+    assert_eq!(None, game.score());
 }
 
 #[test]
@@ -58,7 +58,7 @@ fn a_roll_is_err_if_the_game_is_done() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.roll(0), Err(Error::GameComplete));;
+    assert_eq!(Err(Error::GameComplete), game.roll(0));;
 }
 
 #[test]
@@ -70,7 +70,7 @@ fn twenty_zero_pin_rolls_scores_zero() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), Some(0));
+    assert_eq!(Some(0), game.score());
 }
 
 #[test]
@@ -83,7 +83,7 @@ fn ten_frames_without_a_strike_or_spare() {
         let _ = game.roll(6);
     }
 
-    assert_eq!(game.score(), Some(90));
+    assert_eq!(Some(90), game.score());
 }
 
 #[test]
@@ -98,7 +98,7 @@ fn spare_in_the_first_frame_followed_by_zeros() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), Some(10));
+    assert_eq!(Some(10), game.score());
 }
 
 #[test]
@@ -114,7 +114,7 @@ fn points_scored_in_the_roll_after_a_spare_are_counted_twice_as_a_bonus() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), Some(16));
+    assert_eq!(Some(16), game.score());
 }
 
 #[test]
@@ -132,7 +132,7 @@ fn consecutive_spares_each_get_a_one_roll_bonus() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), Some(31));
+    assert_eq!(Some(31), game.score());
 }
 
 #[test]
@@ -148,7 +148,7 @@ fn if_the_last_frame_is_a_spare_you_get_one_extra_roll_that_is_scored_once() {
     let _ = game.roll(5);
     let _ = game.roll(7);
 
-    assert_eq!(game.score(), Some(17));
+    assert_eq!(Some(17), game.score());
 }
 
 #[test]
@@ -162,7 +162,7 @@ fn a_strike_earns_ten_points_in_a_frame_with_a_single_roll() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), Some(10));
+    assert_eq!(Some(10), game.score());
 }
 
 #[test]
@@ -178,7 +178,7 @@ fn points_scored_in_the_two_rolls_after_a_strike_are_counted_twice_as_a_bonus() 
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), Some(26));
+    assert_eq!(Some(26), game.score());
 }
 
 #[test]
@@ -196,7 +196,7 @@ fn consecutive_strikes_each_get_the_two_roll_bonus() {
         let _ = game.roll(0);
     }
 
-    assert_eq!(game.score(), Some(81));
+    assert_eq!(Some(81), game.score());
 }
 
 #[test]
@@ -212,7 +212,7 @@ fn a_strike_in_the_last_frame_earns_a_two_roll_bonus_that_is_counted_once() {
     let _ = game.roll(7);
     let _ = game.roll(1);
 
-    assert_eq!(game.score(), Some(18));
+    assert_eq!(Some(18), game.score());
 }
 
 #[test]
@@ -228,7 +228,7 @@ fn a_spare_with_the_two_roll_bonus_does_not_get_a_bonus_roll() {
     let _ = game.roll(7);
     let _ = game.roll(3);
 
-    assert_eq!(game.score(), Some(20));
+    assert_eq!(Some(20), game.score());
 }
 
 #[test]
@@ -244,7 +244,7 @@ fn strikes_with_the_two_roll_bonus_do_not_get_a_bonus_roll() {
     let _ = game.roll(10);
     let _ = game.roll(10);
 
-    assert_eq!(game.score(), Some(30));
+    assert_eq!(Some(30), game.score());
 }
 
 #[test]
@@ -260,7 +260,7 @@ fn a_strike_with_the_one_roll_bonus_after_a_spare_in_the_last_frame_does_not_get
     let _ = game.roll(3);
     let _ = game.roll(10);
 
-    assert_eq!(game.score(), Some(20));
+    assert_eq!(Some(20), game.score());
 }
 
 #[test]
@@ -272,7 +272,7 @@ fn all_strikes_is_a_perfect_score_of_300() {
         let _ = game.roll(10);
     }
 
-    assert_eq!(game.score(), Some(300));
+    assert_eq!(Some(300), game.score());
 }
 
 #[test]
@@ -281,7 +281,7 @@ fn you_cannot_roll_more_than_ten_pins_in_a_single_frame() {
     let mut game = BowlingGame::new();
 
     assert!(game.roll(5).is_ok());
-    assert_eq!(game.roll(6), Err(Error::NotEnoughPinsLeft));;
+    assert_eq!(Err(Error::NotEnoughPinsLeft), game.roll(6));;
 }
 
 #[test]
@@ -295,7 +295,7 @@ fn first_bonus_ball_after_a_final_strike_cannot_score_an_invalid_number_of_pins(
 
     let _ = game.roll(10);
 
-    assert_eq!(game.roll(11), Err(Error::NotEnoughPinsLeft));;
+    assert_eq!(Err(Error::NotEnoughPinsLeft), game.roll(11));;
 }
 
 #[test]
@@ -310,7 +310,7 @@ fn the_two_balls_after_a_final_strike_cannot_score_an_invalid_number_of_pins() {
     let _ = game.roll(10);
 
     assert!(game.roll(5).is_ok());
-    assert_eq!(game.roll(6), Err(Error::NotEnoughPinsLeft));;
+    assert_eq!(Err(Error::NotEnoughPinsLeft), game.roll(6));;
 }
 
 #[test]
@@ -340,7 +340,7 @@ fn the_two_balls_after_a_final_strike_cannot_be_a_non_strike_followed_by_a_strik
     let _ = game.roll(10);
 
     assert!(game.roll(6).is_ok());
-    assert_eq!(game.roll(10), Err(Error::NotEnoughPinsLeft));;
+    assert_eq!(Err(Error::NotEnoughPinsLeft), game.roll(10));;
 }
 
 #[test]
@@ -356,7 +356,7 @@ fn second_bonus_ball_after_a_final_strike_cannot_score_an_invalid_number_of_pins
     let _ = game.roll(10);
 
     assert!(game.roll(10).is_ok());
-    assert_eq!(game.roll(11), Err(Error::NotEnoughPinsLeft));;
+    assert_eq!(Err(Error::NotEnoughPinsLeft), game.roll(11));;
 }
 
 #[test]
@@ -370,11 +370,11 @@ fn if_the_last_frame_is_a_strike_you_cannot_score_before_the_extra_rolls_are_tak
 
     let _ = game.roll(10);
 
-    assert_eq!(game.score(), None);
+    assert_eq!(None, game.score());
 
     let _ = game.roll(10);
 
-    assert_eq!(game.score(), None);
+    assert_eq!(None, game.score());
 
     let _ = game.roll(10);
 
@@ -393,7 +393,7 @@ fn if_the_last_frame_is_a_spare_you_cannot_create_a_score_before_extra_roll_is_t
     let _ = game.roll(5);
     let _ = game.roll(5);
 
-    assert_eq!(game.score(), None);
+    assert_eq!(None, game.score());
 
     let _ = game.roll(10);
 
@@ -413,7 +413,7 @@ fn cannot_roll_after_bonus_roll_for_spare() {
     let _ = game.roll(3);
     assert!(game.roll(2).is_ok());
 
-    assert_eq!(game.roll(2), Err(Error::GameComplete));
+    assert_eq!(Err(Error::GameComplete), game.roll(2));
 }
 
 #[test]
@@ -429,5 +429,5 @@ fn cannot_roll_after_bonus_roll_for_strike() {
     let _ = game.roll(3);
     assert!(game.roll(2).is_ok());
 
-    assert_eq!(game.roll(2), Err(Error::GameComplete));
+    assert_eq!(Err(Error::GameComplete), game.roll(2));
 }

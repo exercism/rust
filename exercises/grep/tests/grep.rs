@@ -156,7 +156,7 @@ fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[
 
     let grep_result = grep(pattern, &flags, files).unwrap();
 
-    assert_eq!(grep_result, expected);
+    assert_eq!(expected, grep_result);
 }
 
 // Test returning a Result

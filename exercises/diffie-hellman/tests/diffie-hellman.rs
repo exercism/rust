@@ -21,7 +21,7 @@ fn test_public_key_correct() {
     let private_key: u64 = 6;
     let expected: u64 = 8;
 
-    assert_eq!(public_key(p, g, private_key), expected);
+    assert_eq!(expected, public_key(p, g, private_key));
 }
 
 #[test]
@@ -34,7 +34,7 @@ fn test_secret_key_correct() {
     let secret = secret(p, public_key_b, private_key_a);
     let expected = 2;
 
-    assert_eq!(secret, expected);
+    assert_eq!(expected, secret);
 }
 
 #[test]
@@ -48,7 +48,7 @@ fn test_public_key_correct_big_numbers() {
 
     let expected: u64 = 4096;
 
-    assert_eq!(public_key(p, g, private_key), expected);
+    assert_eq!(expected, public_key(p, g, private_key));
 }
 
 #[test]
@@ -64,7 +64,7 @@ fn test_secret_key_correct_big_numbers() {
 
     let expected = 1_389_354_282;
 
-    assert_eq!(secret, expected);
+    assert_eq!(expected, secret);
 }
 
 #[test]

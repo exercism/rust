@@ -1,7 +1,7 @@
 use phone_number as phone;
 
 fn process_clean_case(number: &str, expected: Option<&str>) {
-    assert_eq!(phone::number(number), expected.map(|x| x.to_string()));
+    assert_eq!(expected.map(|x| x.to_string()), phone::number(number));
 }
 
 #[test]

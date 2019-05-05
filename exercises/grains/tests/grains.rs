@@ -1,7 +1,7 @@
 use grains;
 
 fn process_square_case(input: u32, expected: u64) {
-    assert_eq!(grains::square(input), expected);
+    assert_eq!(expected, grains::square(input));
 }
 
 #[test]
@@ -70,5 +70,5 @@ fn test_square_greater_than_64_raises_an_exception() {
 #[test]
 #[ignore]
 fn test_returns_the_total_number_of_grains_on_the_board() {
-    assert_eq!(grains::total(), 18_446_744_073_709_551_615);
+    assert_eq!(18_446_744_073_709_551_615, grains::total());
 }

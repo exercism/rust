@@ -9,7 +9,7 @@ use reverse_string::*;
 
 /// Process a single test case for the property `reverse`
 fn process_reverse_case(input: &str, expected: &str) {
-    assert_eq!(&reverse(input), expected)
+    assert_eq!(expected, &reverse(input))
 }
 
 #[test]

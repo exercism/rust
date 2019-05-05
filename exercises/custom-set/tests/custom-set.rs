@@ -174,7 +174,7 @@ fn sets_with_different_elements_are_not_equal() {
 fn add_to_empty_set() {
     let mut set = CustomSet::new(&[]);
     set.add(3);
-    assert_eq!(set, CustomSet::new(&[3]));
+    assert_eq!(CustomSet::new(&[3]), set);
 }
 
 #[test]
@@ -182,7 +182,7 @@ fn add_to_empty_set() {
 fn add_to_non_empty_set() {
     let mut set = CustomSet::new(&[1, 2, 4]);
     set.add(3);
-    assert_eq!(set, CustomSet::new(&[1, 2, 3, 4]));
+    assert_eq!(CustomSet::new(&[1, 2, 3, 4]), set);
 }
 
 #[test]
@@ -190,7 +190,7 @@ fn add_to_non_empty_set() {
 fn add_existing_element() {
     let mut set = CustomSet::new(&[1, 2, 3]);
     set.add(3);
-    assert_eq!(set, CustomSet::new(&[1, 2, 3]));
+    assert_eq!(CustomSet::new(&[1, 2, 3]), set);
 }
 
 #[test]
@@ -198,7 +198,7 @@ fn add_existing_element() {
 fn intersecting_empty_sets_return_empty_set() {
     let set1: CustomSet<()> = CustomSet::new(&[]);
     let set2: CustomSet<()> = CustomSet::new(&[]);
-    assert_eq!(set1.intersection(&set2), CustomSet::new(&[]));
+    assert_eq!(CustomSet::new(&[]), set1.intersection(&set2));
 }
 
 #[test]
@@ -206,7 +206,7 @@ fn intersecting_empty_sets_return_empty_set() {
 fn intersecting_empty_set_with_non_empty_returns_empty_set() {
     let set1 = CustomSet::new(&[]);
     let set2 = CustomSet::new(&[3, 2, 5]);
-    assert_eq!(set1.intersection(&set2), CustomSet::new(&[]));
+    assert_eq!(CustomSet::new(&[]), set1.intersection(&set2));
 }
 
 #[test]
@@ -214,7 +214,7 @@ fn intersecting_empty_set_with_non_empty_returns_empty_set() {
 fn intersecting_non_empty_set_with_empty_returns_empty_set() {
     let set1 = CustomSet::new(&[1, 2, 3, 4]);
     let set2 = CustomSet::new(&[]);
-    assert_eq!(set1.intersection(&set2), CustomSet::new(&[]));
+    assert_eq!(CustomSet::new(&[]), set1.intersection(&set2));
 }
 
 #[test]
@@ -222,8 +222,8 @@ fn intersecting_non_empty_set_with_empty_returns_empty_set() {
 fn intersection_of_two_sets_with_no_shared_elements_is_an_empty_set() {
     let set1 = CustomSet::new(&[1, 2, 3]);
     let set2 = CustomSet::new(&[4, 5, 6]);
-    assert_eq!(set1.intersection(&set2), CustomSet::new(&[]));
-    assert_eq!(set2.intersection(&set1), CustomSet::new(&[]));
+    assert_eq!(CustomSet::new(&[]), set1.intersection(&set2));
+    assert_eq!(CustomSet::new(&[]), set2.intersection(&set1));
 }
 
 #[test]
@@ -231,8 +231,8 @@ fn intersection_of_two_sets_with_no_shared_elements_is_an_empty_set() {
 fn intersection_of_two_sets_with_shared_elements_is_a_set_of_the_shared_elements() {
     let set1 = CustomSet::new(&[1, 2, 3, 4]);
     let set2 = CustomSet::new(&[3, 2, 5]);
-    assert_eq!(set1.intersection(&set2), CustomSet::new(&[2, 3]));
-    assert_eq!(set2.intersection(&set1), CustomSet::new(&[2, 3]));
+    assert_eq!(CustomSet::new(&[2, 3]), set1.intersection(&set2));
+    assert_eq!(CustomSet::new(&[2, 3]), set2.intersection(&set1));
 }
 
 #[test]
@@ -240,7 +240,7 @@ fn intersection_of_two_sets_with_shared_elements_is_a_set_of_the_shared_elements
 fn difference_of_two_empty_sets_is_empty_set() {
     let set1: CustomSet<()> = CustomSet::new(&[]);
     let set2: CustomSet<()> = CustomSet::new(&[]);
-    assert_eq!(set1.difference(&set2), CustomSet::new(&[]));
+    assert_eq!(CustomSet::new(&[]), set1.difference(&set2));
 }
 
 #[test]
@@ -248,7 +248,7 @@ fn difference_of_two_empty_sets_is_empty_set() {
 fn difference_of_an_empty_and_non_empty_set_is_an_empty_set() {
     let set1 = CustomSet::new(&[]);
     let set2 = CustomSet::new(&[3, 2, 5]);
-    assert_eq!(set1.difference(&set2), CustomSet::new(&[]));
+    assert_eq!(CustomSet::new(&[]), set1.difference(&set2));
 }
 
 #[test]
@@ -256,7 +256,7 @@ fn difference_of_an_empty_and_non_empty_set_is_an_empty_set() {
 fn difference_of_a_non_empty_set_and_empty_set_is_the_non_empty_set() {
     let set1 = CustomSet::new(&[1, 2, 3, 4]);
     let set2 = CustomSet::new(&[]);
-    assert_eq!(set1.difference(&set2), CustomSet::new(&[1, 2, 3, 4]));
+    assert_eq!(CustomSet::new(&[1, 2, 3, 4]), set1.difference(&set2));
 }
 
 #[test]
@@ -264,7 +264,7 @@ fn difference_of_a_non_empty_set_and_empty_set_is_the_non_empty_set() {
 fn difference_of_two_non_empty_sets_is_elements_only_in_first_set_one() {
     let set1 = CustomSet::new(&[3, 2, 1]);
     let set2 = CustomSet::new(&[2, 4]);
-    assert_eq!(set1.difference(&set2), CustomSet::new(&[1, 3]));
+    assert_eq!(CustomSet::new(&[1, 3]), set1.difference(&set2));
 }
 
 #[test]
@@ -272,7 +272,7 @@ fn difference_of_two_non_empty_sets_is_elements_only_in_first_set_one() {
 fn union_of_two_empty_sets_is_empty_set() {
     let set1: CustomSet<()> = CustomSet::new(&[]);
     let set2: CustomSet<()> = CustomSet::new(&[]);
-    assert_eq!(set1.union(&set2), CustomSet::new(&[]));
+    assert_eq!(CustomSet::new(&[]), set1.union(&set2));
 }
 
 #[test]
@@ -280,7 +280,7 @@ fn union_of_two_empty_sets_is_empty_set() {
 fn union_of_empty_set_and_non_empty_set_is_all_elements() {
     let set1 = CustomSet::new(&[]);
     let set2 = CustomSet::new(&[2]);
-    assert_eq!(set1.union(&set2), CustomSet::new(&[2]));
+    assert_eq!(CustomSet::new(&[2]), set1.union(&set2));
 }
 
 #[test]
@@ -288,7 +288,7 @@ fn union_of_empty_set_and_non_empty_set_is_all_elements() {
 fn union_of_non_empty_set_and_empty_set_is_the_non_empty_set() {
     let set1 = CustomSet::new(&[1, 3]);
     let set2 = CustomSet::new(&[]);
-    assert_eq!(set1.union(&set2), CustomSet::new(&[1, 3]));
+    assert_eq!(CustomSet::new(&[1, 3]), set1.union(&set2));
 }
 
 #[test]
@@ -296,5 +296,5 @@ fn union_of_non_empty_set_and_empty_set_is_the_non_empty_set() {
 fn union_of_non_empty_sets_contains_all_unique_elements() {
     let set1 = CustomSet::new(&[1, 3]);
     let set2 = CustomSet::new(&[2, 3]);
-    assert_eq!(set1.union(&set2), CustomSet::new(&[3, 2, 1]));
+    assert_eq!(CustomSet::new(&[3, 2, 1]), set1.union(&set2));
 }

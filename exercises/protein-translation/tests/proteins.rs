@@ -3,44 +3,44 @@ use protein_translation as proteins;
 #[test]
 fn test_methionine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("AUG"), Some("methionine"));
+    assert_eq!(Some("methionine"), info.name_for("AUG"));
 }
 
 #[test]
 #[ignore]
 fn test_cysteine_tgt() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("UGU"), Some("cysteine"));
+    assert_eq!(Some("cysteine"), info.name_for("UGU"));
 }
 
 #[test]
 #[ignore]
 fn test_stop() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("UAA"), Some("stop codon"));
+    assert_eq!(Some("stop codon"), info.name_for("UAA"));
 }
 
 #[test]
 #[ignore]
 fn test_valine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("GUU"), Some("valine"));
+    assert_eq!(Some("valine"), info.name_for("GUU"));
 }
 
 #[test]
 #[ignore]
 fn test_isoleucine() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("AUU"), Some("isoleucine"));
+    assert_eq!(Some("isoleucine"), info.name_for("AUU"));
 }
 
 #[test]
 #[ignore]
 fn test_arginine_name() {
     let info = proteins::parse(make_pairs());
-    assert_eq!(info.name_for("CGA"), Some("arginine"));
-    assert_eq!(info.name_for("AGA"), Some("arginine"));
-    assert_eq!(info.name_for("AGG"), Some("arginine"));
+    assert_eq!(Some("arginine"), info.name_for("CGA"));
+    assert_eq!(Some("arginine"), info.name_for("AGA"));
+    assert_eq!(Some("arginine"), info.name_for("AGG"));
 }
 
 #[test]
@@ -76,8 +76,8 @@ fn too_long_is_invalid() {
 fn test_translates_rna_strand_into_correct_protein() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
-        info.of_rna("AUGUUUUGG"),
-        Some(vec!["methionine", "phenylalanine", "tryptophan"])
+        Some(vec!["methionine", "phenylalanine", "tryptophan"]),
+        info.of_rna("AUGUUUUGG")
     );
 }
 
@@ -86,8 +86,8 @@ fn test_translates_rna_strand_into_correct_protein() {
 fn test_stops_translation_if_stop_codon_present() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
-        info.of_rna("AUGUUUUAA"),
-        Some(vec!["methionine", "phenylalanine"])
+        Some(vec!["methionine", "phenylalanine"]),
+        info.of_rna("AUGUUUUAA")
     );
 }
 
@@ -96,8 +96,8 @@ fn test_stops_translation_if_stop_codon_present() {
 fn test_stops_translation_of_longer_strand() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
-        info.of_rna("UGGUGUUAUUAAUGGUUU"),
-        Some(vec!["tryptophan", "cysteine", "tyrosine"])
+        Some(vec!["tryptophan", "cysteine", "tyrosine"]),
+        info.of_rna("UGGUGUUAUUAAUGGUUU")
     );
 }
 

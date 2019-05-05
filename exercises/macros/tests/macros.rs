@@ -7,7 +7,7 @@ use std::collections::HashMap;
 fn test_empty() {
     let expected: HashMap<u32, u32> = HashMap::new();
     let computed: HashMap<u32, u32> = hashmap!();
-    assert_eq!(computed, expected);
+    assert_eq!(expected, computed);
 }
 
 #[test]
@@ -16,7 +16,7 @@ fn test_no_trailing_comma() {
     let mut expected = HashMap::new();
     expected.insert(1, "one");
     expected.insert(2, "two");
-    assert_eq!(hashmap!(1 => "one", 2 => "two"), expected);
+    assert_eq!(expected, hashmap!(1 => "one", 2 => "two"));
 }
 
 #[test]
@@ -28,13 +28,13 @@ fn test_trailing_comma() {
     expected.insert('s', 19);
     expected.insert('h', 8);
     assert_eq!(
+        expected,
         hashmap!(
             'h' => 89,
             'a' => 1,
             's' => 19,
             'h' => 8,
-        ),
-        expected
+        )
     );
 }
 
@@ -50,14 +50,14 @@ fn test_nested() {
     });
     expected.insert("empty", HashMap::new());
     assert_eq!(
+        expected,
         hashmap!(
             "non-empty" => hashmap!(
                 23 => 623,
                 34 => 21
             ),
             "empty" => hashmap!()
-        ),
-        expected
+        )
     );
 }
 

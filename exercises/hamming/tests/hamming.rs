@@ -2,8 +2,8 @@ use hamming;
 
 fn process_distance_case(strand_pair: [&str; 2], expected_distance: Option<usize>) {
     assert_eq!(
-        hamming::hamming_distance(strand_pair[0], strand_pair[1]),
-        expected_distance
+        expected_distance,
+        hamming::hamming_distance(strand_pair[0], strand_pair[1])
     );
 }
 

@@ -15,11 +15,11 @@ fn test_valid_rna_input() {
 #[ignore]
 fn test_invalid_dna_input() {
     // Invalid character
-    assert_eq!(dna::DNA::new("X").err(), Some(0));
+    assert_eq!(Some(0), dna::DNA::new("X").err());
     // Valid nucleotide, but invalid in context
-    assert_eq!(dna::DNA::new("U").err(), Some(0));
+    assert_eq!(Some(0), dna::DNA::new("U").err());
     // Longer string with contained errors
-    assert_eq!(dna::DNA::new("ACGTUXXCTTAA").err(), Some(4));
+    assert_eq!(Some(4), dna::DNA::new("ACGTUXXCTTAA").err());
 }
 
 #[test]
@@ -84,5 +84,5 @@ fn test_transcribes_all_dna_to_rna() {
     assert_eq!(
         dna::RNA::new("UGCACCAGAAUU").unwrap(),
         dna::DNA::new("ACGTGGTCTTAA").unwrap().into_rna()
-    )
+    );
 }

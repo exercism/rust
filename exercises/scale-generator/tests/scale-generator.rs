@@ -13,7 +13,7 @@ use scale_generator::*;
 /// in terms of this function.
 fn process_chromatic_case(tonic: &str, expected: &[&str]) {
     let s = Scale::chromatic(tonic).unwrap();
-    assert_eq!(s.enumerate(), expected);
+    assert_eq!(expected, s.enumerate());
 }
 
 /// Process a single test case for the property `interval`
@@ -22,7 +22,7 @@ fn process_chromatic_case(tonic: &str, expected: &[&str]) {
 /// in terms of this function.
 fn process_interval_case(tonic: &str, intervals: &str, expected: &[&str]) {
     let s = Scale::new(tonic, intervals).unwrap();
-    assert_eq!(s.enumerate(), expected);
+    assert_eq!(expected, s.enumerate());
 }
 
 // Chromatic scales

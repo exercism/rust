@@ -15,12 +15,12 @@ macro_rules! tests {
 }
 
 fn test_classification(num: u64, result: Classification) {
-    assert_eq!(classify(num), Some(result));
+    assert_eq!(Some(result), classify(num));
 }
 
 #[test]
 fn basic() {
-    assert_eq!(classify(0), None);
+    assert_eq!(None, classify(0));
 }
 
 tests! {

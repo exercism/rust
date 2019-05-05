@@ -4,7 +4,7 @@ use react::*;
 fn input_cells_have_a_value() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(10);
-    assert_eq!(reactor.value(CellID::Input(input)), Some(10));
+    assert_eq!(Some(10), reactor.value(CellID::Input(input)));
 }
 
 #[test]
@@ -13,7 +13,7 @@ fn an_input_cells_value_can_be_set() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(4);
     assert!(reactor.set_value(input, 20));
-    assert_eq!(reactor.value(CellID::Input(input)), Some(20));
+    assert_eq!(Some(20), reactor.value(CellID::Input(input)));
 }
 
 #[test]
@@ -32,7 +32,7 @@ fn compute_cells_calculate_initial_value() {
     let output = reactor
         .create_compute(&[CellID::Input(input)], |v| v[0] + 1)
         .unwrap();
-    assert_eq!(reactor.value(CellID::Compute(output)), Some(2));
+    assert_eq!(Some(2), reactor.value(CellID::Compute(output)));
 }
 
 #[test]
@@ -46,7 +46,7 @@ fn compute_cells_take_inputs_in_the_right_order() {
             v[0] + v[1] * 10
         })
         .unwrap();
-    assert_eq!(reactor.value(CellID::Compute(output)), Some(21));
+    assert_eq!(Some(21), reactor.value(CellID::Compute(output)));
 }
 
 #[test]
@@ -55,8 +55,8 @@ fn error_creating_compute_cell_if_input_doesnt_exist() {
     let mut dummy_reactor = Reactor::new();
     let input = dummy_reactor.create_input(1);
     assert_eq!(
-        Reactor::new().create_compute(&[CellID::Input(input)], |_| 0),
-        Err(CellID::Input(input))
+        Err(CellID::Input(input)),
+        Reactor::new().create_compute(&[CellID::Input(input)], |_| 0)
     );
 }
 
@@ -69,11 +69,11 @@ fn do_not_break_cell_if_creating_compute_cell_with_valid_and_invalid_input() {
     let mut reactor = Reactor::new();
     let input = reactor.create_input(1);
     assert_eq!(
-        reactor.create_compute(&[CellID::Input(input), CellID::Input(dummy_cell)], |_| 0),
-        Err(CellID::Input(dummy_cell))
+        Err(CellID::Input(dummy_cell)),
+        reactor.create_compute(&[CellID::Input(input), CellID::Input(dummy_cell)], |_| 0)
     );
     assert!(reactor.set_value(input, 5));
-    assert_eq!(reactor.value(CellID::Input(input)), Some(5));
+    assert_eq!(Some(5), reactor.value(CellID::Input(input)));
 }
 
 #[test]
@@ -84,9 +84,9 @@ fn compute_cells_update_value_when_dependencies_are_changed() {
     let output = reactor
         .create_compute(&[CellID::Input(input)], |v| v[0] + 1)
         .unwrap();
-    assert_eq!(reactor.value(CellID::Compute(output)), Some(2));
+    assert_eq!(Some(2), reactor.value(CellID::Compute(output)));
     assert!(reactor.set_value(input, 3));
-    assert_eq!(reactor.value(CellID::Compute(output)), Some(4));
+    assert_eq!(Some(4), reactor.value(CellID::Compute(output)));
 }
 
 #[test]
@@ -106,9 +106,9 @@ fn compute_cells_can_depend_on_other_compute_cells() {
             |v| v[0] + v[1],
         )
         .unwrap();
-    assert_eq!(reactor.value(CellID::Compute(output)), Some(32));
+    assert_eq!(Some(32), reactor.value(CellID::Compute(output)));
     assert!(reactor.set_value(input, 3));
-    assert_eq!(reactor.value(CellID::Compute(output)), Some(96));
+    assert_eq!(Some(96), reactor.value(CellID::Compute(output)));
 }
 
 /// A CallbackRecorder helps tests whether callbacks get called correctly.
@@ -137,24 +137,24 @@ impl CallbackRecorder {
             "Callback was not called, but should have been"
         );
         assert_eq!(
-            self.value.replace(None),
             Some(v),
+            self.value.replace(None),
             "Callback was called with incorrect value"
         );
     }
 
     fn expect_not_to_have_been_called(&self) {
         assert_eq!(
-            self.value.get(),
             None,
+            self.value.get(),
             "Callback was called, but should not have been"
         );
     }
 
     fn callback_called(&self, v: i32) {
         assert_eq!(
-            self.value.replace(Some(v)),
             None,
+            self.value.replace(Some(v)),
             "Callback was called too many times; can't be called with {}",
             v
         );
@@ -186,8 +186,8 @@ fn error_adding_callback_to_nonexistent_cell() {
         .create_compute(&[CellID::Input(input)], |_| 0)
         .unwrap();
     assert_eq!(
-        Reactor::new().add_callback(output, |_: u32| println!("hi")),
-        None
+        None,
+        Reactor::new().add_callback(output, |_: u32| println!("hi"))
     );
 }
 
@@ -313,8 +313,8 @@ fn removing_a_callback_multiple_times_doesnt_interfere_with_other_callbacks() {
     assert!(reactor.remove_callback(output, callback).is_ok());
     for _ in 1..5 {
         assert_eq!(
-            reactor.remove_callback(output, callback),
-            Err(RemoveCallbackError::NonexistentCallback)
+            Err(RemoveCallbackError::NonexistentCallback),
+            reactor.remove_callback(output, callback)
         );
     }
 
@@ -428,10 +428,10 @@ fn test_adder_with_boolean_values() {
         assert!(reactor.set_value(b, bval));
         assert!(reactor.set_value(carry_in, cinval));
 
-        assert_eq!(reactor.value(CellID::Compute(sum)), Some(expected_sum));
+        assert_eq!(Some(expected_sum), reactor.value(CellID::Compute(sum)));
         assert_eq!(
-            reactor.value(CellID::Compute(carry_out)),
-            Some(expected_cout)
+            Some(expected_cout),
+            reactor.value(CellID::Compute(carry_out))
         );
     }
 }

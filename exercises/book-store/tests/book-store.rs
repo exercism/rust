@@ -14,7 +14,7 @@ use book_store::*;
 ///
 /// Expected input format: ('basket', 'targetgrouping')
 fn process_total_case(input: (Vec<u32>, Vec<Vec<u32>>), expected: u32) {
-    assert_eq!(lowest_price(&input.0), expected)
+    assert_eq!(expected, lowest_price(&input.0))
 }
 
 // Return the total basket price after applying the best discount.

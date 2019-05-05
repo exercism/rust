@@ -53,16 +53,16 @@ fn test_lt() {
 #[test]
 #[ignore]
 fn test_add() {
-    assert_eq!(decimal("0.1") + decimal("0.2"), decimal("0.3"));
-    assert_eq!(decimal(BIGS[0]) + decimal(BIGS[1]), decimal(BIGS[2]));
-    assert_eq!(decimal(BIGS[1]) + decimal(BIGS[0]), decimal(BIGS[2]));
+    assert_eq!(decimal("0.3"), decimal("0.1") + decimal("0.2"));
+    assert_eq!(decimal(BIGS[2]), decimal(BIGS[0]) + decimal(BIGS[1]));
+    assert_eq!(decimal(BIGS[2]), decimal(BIGS[1]) + decimal(BIGS[0]));
 }
 
 #[test]
 #[ignore]
 fn test_sub() {
-    assert_eq!(decimal(BIGS[2]) - decimal(BIGS[1]), decimal(BIGS[0]));
-    assert_eq!(decimal(BIGS[2]) - decimal(BIGS[0]), decimal(BIGS[1]));
+    assert_eq!(decimal(BIGS[0]), decimal(BIGS[2]) - decimal(BIGS[1]));
+    assert_eq!(decimal(BIGS[1]), decimal(BIGS[2]) - decimal(BIGS[0]));
 }
 
 #[test]
@@ -77,24 +77,24 @@ fn test_mul() {
 #[test]
 #[ignore]
 fn test_add_id() {
-    assert_eq!(decimal("1.0") + decimal("0.0"), decimal("1.0"));
-    assert_eq!(decimal("0.1") + decimal("0.0"), decimal("0.1"));
-    assert_eq!(decimal("0.0") + decimal("1.0"), decimal("1.0"));
-    assert_eq!(decimal("0.0") + decimal("0.1"), decimal("0.1"));
+    assert_eq!(decimal("1.0"), decimal("1.0") + decimal("0.0"));
+    assert_eq!(decimal("0.1"), decimal("0.1") + decimal("0.0"));
+    assert_eq!(decimal("1.0"), decimal("0.0") + decimal("1.0"));
+    assert_eq!(decimal("0.1"), decimal("0.0") + decimal("0.1"));
 }
 
 #[test]
 #[ignore]
 fn test_sub_id() {
-    assert_eq!(decimal("1.0") - decimal("0.0"), decimal("1.0"));
-    assert_eq!(decimal("0.1") - decimal("0.0"), decimal("0.1"));
+    assert_eq!(decimal("1.0"), decimal("1.0") - decimal("0.0"));
+    assert_eq!(decimal("0.1"), decimal("0.1") - decimal("0.0"));
 }
 
 #[test]
 #[ignore]
 fn test_mul_id() {
-    assert_eq!(decimal("2.1") * decimal("1.0"), decimal("2.1"));
-    assert_eq!(decimal("1.0") * decimal("2.1"), decimal("2.1"));
+    assert_eq!(decimal("2.1"), decimal("2.1") * decimal("1.0"));
+    assert_eq!(decimal("2.1"), decimal("1.0") * decimal("2.1"));
 }
 
 #[test]
@@ -115,7 +115,7 @@ fn test_gt_negative_and_zero() {
 #[test]
 #[ignore]
 fn test_add_uneven_position() {
-    assert_eq!(decimal("0.1") + decimal("0.02"), decimal("0.12"));
+    assert_eq!(decimal("0.12"), decimal("0.1") + decimal("0.02"));
 }
 
 #[test]
@@ -129,22 +129,20 @@ fn test_eq_vary_sig_digits() {
 #[ignore]
 fn test_add_vary_precision() {
     assert_eq!(
+        decimal(BIGS[0]),
         decimal("100000000000000000000000000000000000000000000")
-            + decimal("0.00000000000000000000000000000000000000001"),
-        decimal(BIGS[0])
-    )
+            + decimal("0.00000000000000000000000000000000000000001")
+    );
 }
 
 #[test]
 #[ignore]
 fn test_cleanup_precision() {
     assert_eq!(
+        decimal("20000000000000000000000000000000000000000000001"),
         decimal("10000000000000000000000000000000000000000000000.999999999999999999999999998",)
-            + decimal(
-                "10000000000000000000000000000000000000000000000.000000000000000000000000002",
-            ),
-        decimal("20000000000000000000000000000000000000000000001")
-    )
+            + decimal("10000000000000000000000000000000000000000000000.000000000000000000000000002")
+    );
 }
 
 #[test]
@@ -178,22 +176,22 @@ fn test_gt_varying_negative_precisions() {
 #[ignore]
 fn test_negatives() {
     assert!(Decimal::try_from("-1").is_some());
-    assert_eq!(decimal("0") - decimal("1"), decimal("-1"));
-    assert_eq!(decimal("5.5") + decimal("-6.5"), decimal("-1"));
+    assert_eq!(decimal("-1"), decimal("0") - decimal("1"));
+    assert_eq!(decimal("-1"), decimal("5.5") + decimal("-6.5"));
 }
 
 #[test]
 #[ignore]
 fn test_explicit_positive() {
-    assert_eq!(decimal("+1"), decimal("1"));
-    assert_eq!(decimal("+2.0") - decimal("-0002.0"), decimal("4"));
+    assert_eq!(decimal("1"), decimal("+1"));
+    assert_eq!(decimal("4"), decimal("+2.0") - decimal("-0002.0"));
 }
 
 #[test]
 #[ignore]
 fn test_multiply_by_negative() {
-    assert_eq!(decimal("5") * decimal("-0.2"), decimal("-1"));
-    assert_eq!(decimal("-20") * decimal("-0.2"), decimal("4"));
+    assert_eq!(decimal("-1"), decimal("5") * decimal("-0.2"));
+    assert_eq!(decimal("4"), decimal("-20") * decimal("-0.2"));
 }
 
 #[test]
@@ -209,121 +207,121 @@ fn test_simple_partial_cmp() {
 #[test]
 #[ignore]
 fn test_carry_into_integer() {
-    assert_eq!(decimal("0.901") + decimal("0.1"), decimal("1.001"))
+    assert_eq!(decimal("1.001"), decimal("0.901") + decimal("0.1"));
 }
 
 #[test]
 #[ignore]
 fn test_carry_into_fractional_with_digits_to_right() {
-    assert_eq!(decimal("0.0901") + decimal("0.01"), decimal("0.1001"))
+    assert_eq!(decimal("0.1001"), decimal("0.0901") + decimal("0.01"));
 }
 
 #[test]
 #[ignore]
 fn test_add_carry_over_negative() {
-    assert_eq!(decimal("-1.99") + decimal("-0.01"), decimal("-2.0"))
+    assert_eq!(decimal("-2.0"), decimal("-1.99") + decimal("-0.01"));
 }
 
 #[test]
 #[ignore]
 fn test_sub_carry_over_negative() {
-    assert_eq!(decimal("-1.99") - decimal("0.01"), decimal("-2.0"))
+    assert_eq!(decimal("-2.0"), decimal("-1.99") - decimal("0.01"));
 }
 
 #[test]
 #[ignore]
 fn test_add_carry_over_negative_with_fractional() {
-    assert_eq!(decimal("-1.99") + decimal("-0.02"), decimal("-2.01"))
+    assert_eq!(decimal("-2.01"), decimal("-1.99") + decimal("-0.02"));
 }
 
 #[test]
 #[ignore]
 fn test_sub_carry_over_negative_with_fractional() {
-    assert_eq!(decimal("-1.99") - decimal("0.02"), decimal("-2.01"))
+    assert_eq!(decimal("-2.01"), decimal("-1.99") - decimal("0.02"));
 }
 
 #[test]
 #[ignore]
 fn test_carry_from_rightmost_one() {
-    assert_eq!(decimal("0.09") + decimal("0.01"), decimal("0.1"))
+    assert_eq!(decimal("0.1"), decimal("0.09") + decimal("0.01"));
 }
 
 #[test]
 #[ignore]
 fn test_carry_from_rightmost_more() {
-    assert_eq!(decimal("0.099") + decimal("0.001"), decimal("0.1"))
+    assert_eq!(decimal("0.1"), decimal("0.099") + decimal("0.001"));
 }
 
 #[test]
 #[ignore]
 fn test_carry_from_rightmost_into_integer() {
-    assert_eq!(decimal("0.999") + decimal("0.001"), decimal("1.0"))
+    assert_eq!(decimal("1.0"), decimal("0.999") + decimal("0.001"));
 }
 
 // test arithmetic borrow rules
 #[test]
 #[ignore]
 fn test_add_borrow() {
-    assert_eq!(decimal("0.01") + decimal("-0.0001"), decimal("0.0099"))
+    assert_eq!(decimal("0.0099"), decimal("0.01") + decimal("-0.0001"));
 }
 
 #[test]
 #[ignore]
 fn test_sub_borrow() {
-    assert_eq!(decimal("0.01") - decimal("0.0001"), decimal("0.0099"))
+    assert_eq!(decimal("0.0099"), decimal("0.01") - decimal("0.0001"));
 }
 
 #[test]
 #[ignore]
 fn test_add_borrow_integral() {
-    assert_eq!(decimal("1.0") + decimal("-0.01"), decimal("0.99"))
+    assert_eq!(decimal("0.99"), decimal("1.0") + decimal("-0.01"));
 }
 
 #[test]
 #[ignore]
 fn test_sub_borrow_integral() {
-    assert_eq!(decimal("1.0") - decimal("0.01"), decimal("0.99"))
+    assert_eq!(decimal("0.99"), decimal("1.0") - decimal("0.01"));
 }
 
 #[test]
 #[ignore]
 fn test_add_borrow_integral_zeroes() {
-    assert_eq!(decimal("1.0") + decimal("-0.99"), decimal("0.01"))
+    assert_eq!(decimal("0.01"), decimal("1.0") + decimal("-0.99"));
 }
 
 #[test]
 #[ignore]
 fn test_sub_borrow_integral_zeroes() {
-    assert_eq!(decimal("1.0") - decimal("0.99"), decimal("0.01"))
+    assert_eq!(decimal("0.01"), decimal("1.0") - decimal("0.99"));
 }
 
 #[test]
 #[ignore]
 fn test_borrow_from_negative() {
-    assert_eq!(decimal("-1.0") + decimal("0.01"), decimal("-0.99"))
+    assert_eq!(decimal("-0.99"), decimal("-1.0") + decimal("0.01"));
 }
 
 #[test]
 #[ignore]
 fn test_add_into_fewer_digits() {
-    assert_eq!(decimal("0.011") + decimal("-0.001"), decimal("0.01"))
+    assert_eq!(decimal("0.01"), decimal("0.011") + decimal("-0.001"));
 }
 
 // misc tests of arithmetic properties
 #[test]
 #[ignore]
 fn test_sub_into_fewer_digits() {
-    assert_eq!(decimal("0.011") - decimal("0.001"), decimal("0.01"))
+    assert_eq!(decimal("0.01"), decimal("0.011") - decimal("0.001"));
 }
 
 #[test]
 #[ignore]
 fn test_add_away_decimal() {
-    assert_eq!(decimal("1.1") + decimal("-0.1"), decimal("1.0"))
+    assert_eq!(decimal("1.0"), decimal("1.1") + decimal("-0.1"));
 }
 
 #[test]
 #[ignore]
 fn test_sub_away_decimal() {
-    assert_eq!(decimal("1.1") - decimal("0.1"), decimal("1.0"))
+    assert_eq!(decimal("1.0"), decimal("1.1") - decimal("0.1"));
 }

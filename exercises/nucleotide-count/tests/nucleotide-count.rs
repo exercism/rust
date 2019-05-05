@@ -9,11 +9,11 @@ fn process_nucleotidecounts_case(s: &str, pairs: &[(char, usize)]) {
     // check for the presence and value of each key in the given pairs vector.
     let mut m: HashMap<char, usize> = dna::nucleotide_counts(s).unwrap();
     for &(k, v) in pairs.iter() {
-        assert_eq!((k, m.remove(&k)), (k, Some(v)));
+        assert_eq!((k, Some(v)), (k, m.remove(&k)));
     }
 
     // may fail with a message that clearly shows all extra pairs in the map
-    assert_eq!(m.iter().collect::<Vec<(&char, &usize)>>(), vec![]);
+    assert_eq!(vec![], m.iter().collect::<Vec<(&char, &usize)>>());
 }
 
 #[test]
@@ -24,31 +24,31 @@ fn count_returns_result() {
 #[test]
 #[ignore]
 fn test_count_empty() {
-    assert_eq!(dna::count('A', ""), Ok(0));
+    assert_eq!(Ok(0), dna::count('A', ""));
 }
 
 #[test]
 #[ignore]
 fn count_invalid_nucleotide() {
-    assert_eq!(dna::count('X', "A"), Err('X'));
+    assert_eq!(Err('X'), dna::count('X', "A"));
 }
 
 #[test]
 #[ignore]
 fn count_invalid_dna() {
-    assert_eq!(dna::count('A', "AX"), Err('X'));
+    assert_eq!(Err('X'), dna::count('A', "AX"));
 }
 
 #[test]
 #[ignore]
 fn test_count_repetitive_cytosine() {
-    assert_eq!(dna::count('C', "CCCCC"), Ok(5));
+    assert_eq!(Ok(5), dna::count('C', "CCCCC"));
 }
 
 #[test]
 #[ignore]
 fn test_count_only_thymine() {
-    assert_eq!(dna::count('T', "GGGGGTAACCCGG"), Ok(1));
+    assert_eq!(Ok(1), dna::count('T', "GGGGGTAACCCGG"));
 }
 
 #[test]
@@ -89,12 +89,12 @@ fn test_strand_with_multiple_nucleotides() {
 #[test]
 #[ignore]
 fn counts_invalid_nucleotide_results_in_err() {
-    assert_eq!(dna::nucleotide_counts("GGXXX"), Err('X'));
+    assert_eq!(Err('X'), dna::nucleotide_counts("GGXXX"));
 }
 
 #[test]
 #[ignore]
 /// strand with invalid nucleotides
 fn test_strand_with_invalid_nucleotides() {
-    assert_eq!(dna::nucleotide_counts("AGXXACT"), Err('X'),);
+    assert_eq!(Err('X'), dna::nucleotide_counts("AGXXACT"));
 }

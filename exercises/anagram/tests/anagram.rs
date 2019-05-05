@@ -8,7 +8,7 @@ fn process_anagram_case(word: &str, inputs: &[&str], expected: &[&str]) {
 
     let expected: HashSet<&str> = HashSet::from_iter(expected.iter().cloned());
 
-    assert_eq!(result, expected);
+    assert_eq!(expected, result);
 }
 
 #[test]

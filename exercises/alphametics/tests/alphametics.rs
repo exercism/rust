@@ -4,7 +4,7 @@ use std::collections::HashMap;
 fn assert_alphametic_solution_eq(puzzle: &str, solution: &[(char, u8)]) {
     let answer = alphametics::solve(puzzle);
     let solution: HashMap<char, u8> = solution.iter().cloned().collect();
-    assert_eq!(answer, Some(solution));
+    assert_eq!(Some(solution), answer)
 }
 
 #[test]
@@ -16,14 +16,14 @@ fn test_with_three_letters() {
 #[ignore]
 fn test_must_have_unique_value_for_each_letter() {
     let answer = alphametics::solve("A == B");
-    assert_eq!(answer, None);
+    assert_eq!(None, answer)
 }
 
 #[test]
 #[ignore]
 fn test_leading_zero_solution_is_invalid() {
     let answer = alphametics::solve("ACA + DD == BD");
-    assert_eq!(answer, None);
+    assert_eq!(None, answer)
 }
 
 #[test]
