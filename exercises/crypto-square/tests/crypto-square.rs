@@ -1,4 +1,3 @@
-extern crate crypto_square;
 use crypto_square::encrypt;
 
 fn test(input: &str, output: &str) {

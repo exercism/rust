@@ -1,4 +1,4 @@
-extern crate etl;
+use etl;
 
 use std::collections::BTreeMap;
 

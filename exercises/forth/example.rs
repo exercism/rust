@@ -2,8 +2,6 @@ use std::collections::HashMap;
 use std::collections::LinkedList;
 use std::str::FromStr;
 
-use Term::*;
-
 pub type Value = i32;
 pub type ForthResult = Result<(), Error>;
 type StackResult<T> = Result<T, Error>;
@@ -39,11 +37,12 @@ impl FromStr for Term {
 
     fn from_str(s: &str) -> Result<Term, ()> {
         match s {
-            ":" => Ok(StartDefinition),
-            ";" => Ok(EndDefinition),
+            ":" => Ok(Term::StartDefinition),
+            ";" => Ok(Term::EndDefinition),
             _ => Err(()),
-        }.or_else(|_| Value::from_str(s).map(Number))
-            .or_else(|_| Ok(Word(s.to_ascii_lowercase())))
+        }
+        .or_else(|_| Value::from_str(s).map(Term::Number))
+        .or_else(|_| Ok(Term::Word(s.to_ascii_lowercase())))
     }
 }
 
@@ -68,7 +67,7 @@ impl Forth {
 
     fn run(&mut self) -> ForthResult {
         while let Some(term) = self.code.pop_front() {
-            try!(self.step_term(term))
+            self.step_term(term)?
         }
 
         Forth::ok()
@@ -76,10 +75,10 @@ impl Forth {
 
     fn step_term(&mut self, term: Term) -> ForthResult {
         match term {
-            Number(value) => self.push(value),
-            Word(word) => self.step_word(&word),
-            StartDefinition => self.store_definition(),
-            EndDefinition => Err(Error::InvalidWord),
+            Term::Number(value) => self.push(value),
+            Term::Word(word) => self.step_word(&word),
+            Term::StartDefinition => self.store_definition(),
+            Term::EndDefinition => Err(Error::InvalidWord),
         }
     }
 
@@ -100,9 +99,11 @@ impl Forth {
             "/" => self.bin_op(|(a, b)| a.checked_div(b).ok_or(Error::DivisionByZero)),
             "dup" => self.pop().and_then(|a| self.push(a).and(self.push(a))),
             "drop" => self.pop().and(Forth::ok()),
-            "swap" => self.pop_two()
+            "swap" => self
+                .pop_two()
                 .and_then(|(a, b)| self.push(b).and(self.push(a))),
-            "over" => self.pop_two()
+            "over" => self
+                .pop_two()
                 .and_then(|(a, b)| self.push(a).and(self.push(b)).and(self.push(a))),
             _ => Err(Error::UnknownWord),
         }
@@ -113,13 +114,13 @@ impl Forth {
 
         loop {
             match self.code.pop_front() {
-                Some(EndDefinition) => break,
+                Some(Term::EndDefinition) => break,
                 Some(term) => def.push_back(term),
                 None => return Err(Error::InvalidWord),
             }
         }
 
-        if let Some(Word(name)) = def.pop_front() {
+        if let Some(Term::Word(name)) = def.pop_front() {
             self.store_word(name, def)
         } else {
             Err(Error::InvalidWord)
@@ -153,11 +154,13 @@ impl Forth {
         for t in code.iter() {
             match t {
                 Term::Number(_) => resolved_def.push_back(t.clone()),
-                Term::Word(s) => if let Some(cs) = self.defs.get(s) {
-                    resolved_def.append(&mut cs.clone());
-                } else {
-                    resolved_def.push_back(t.clone());
-                },
+                Term::Word(s) => {
+                    if let Some(cs) = self.defs.get(s) {
+                        resolved_def.append(&mut cs.clone());
+                    } else {
+                        resolved_def.push_back(t.clone());
+                    }
+                }
                 _ => unimplemented!("not even sure a definition in a definition is valid Forth"),
             }
         }

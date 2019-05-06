@@ -57,7 +57,8 @@ impl From<Vec<(char, char)>> for MatchingBrackets {
 
 impl MatchingBrackets {
     fn contains(&self, other: &char) -> bool {
-        let known = self.collection
+        let known = self
+            .collection
             .keys()
             .chain(self.collection.values())
             .collect::<Vec<_>>();

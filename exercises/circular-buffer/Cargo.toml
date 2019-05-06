@@ -1,3 +1,4 @@
 [package]
+edition = "2018"
 name = "circular-buffer"
 version = "1.1.0"

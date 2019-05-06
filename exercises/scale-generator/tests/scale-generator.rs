@@ -5,7 +5,6 @@
 //! [script]: https://github.com/exercism/rust/blob/master/bin/init_exercise.py
 //! [canonical-data]: https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/scale-generator/canonical_data.json
 
-extern crate scale_generator;
 use scale_generator::*;
 
 /// Process a single test case for the property `chromatic`
@@ -36,7 +35,7 @@ fn test_chromatic_scale_with_sharps() {
     process_chromatic_case(
         "C",
         &[
-            "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
+            "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B",
         ],
     );
 }
@@ -48,7 +47,7 @@ fn test_chromatic_scale_with_flats() {
     process_chromatic_case(
         "F",
         &[
-            "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E"
+            "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E",
         ],
     );
 }

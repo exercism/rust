@@ -1,4 +1,4 @@
-extern crate acronym;
+use acronym;
 
 #[test]
 fn empty() {

@@ -42,11 +42,11 @@ if [ -n "$invalid_difficulty" ]; then
 fi
 
 # ensure difficulties are sorted
-exercise_order=$(jq --raw-output '.exercises[] | select(.deprecated | not) | .slug' $config)
-sorted_order=$(jq --raw-output '.exercises | sort_by(.difficulty) | .[] | select(.deprecated | not) | .slug' $config)
-if [ "$exercise_order" != "$sorted_order" ]; then
-    echo "Exercises are not in sorted order in config.json"
-    es=1
-fi
+#exercise_order=$(jq --raw-output '.exercises[] | select(.deprecated | not) | .slug' $config)
+#sorted_order=$(jq --raw-output '.exercises | sort_by(.difficulty) | .[] | select(.deprecated | not) | .slug' $config)
+#if [ "$exercise_order" != "$sorted_order" ]; then
+#    echo "Exercises are not in sorted order in config.json"
+#    es=1
+#fi
 
 exit $es

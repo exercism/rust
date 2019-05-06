@@ -10,15 +10,12 @@ pub enum Error {
     IoError(#[cause] io::Error),
     #[fail(
         display = "config.json malformed: '{}' must have field '{}'",
-        parent,
-        field
+        parent, field
     )]
     ConfigJsonSchemaError { parent: String, field: String },
     #[fail(
         display = "{} malformed: field '{}' must have type '{}'",
-        file,
-        field,
-        as_type,
+        file, field, as_type
     )]
     SchemaTypeError {
         file: String,

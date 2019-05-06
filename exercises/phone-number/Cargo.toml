@@ -1,3 +1,4 @@
 [package]
+edition = "2018"
 name = "phone-number"
 version = "1.6.1"

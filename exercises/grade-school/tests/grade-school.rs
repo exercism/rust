@@ -1,4 +1,4 @@
-extern crate grade_school as school;
+use grade_school as school;
 
 fn some_strings(v: &[&str]) -> Option<Vec<String>> {
     Some(v.iter().map(|s| s.to_string()).collect())

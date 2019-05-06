@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 
-extern crate parallel_letter_frequency as frequency;
+use parallel_letter_frequency as frequency;
 
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
-const ODE_AN_DIE_FREUDE: [&'static str; 8] = [
+const ODE_AN_DIE_FREUDE: [&str; 8] = [
     "Freude schöner Götterfunken",
     "Tochter aus Elysium,",
     "Wir betreten feuertrunken,",
@@ -15,7 +15,7 @@ const ODE_AN_DIE_FREUDE: [&'static str; 8] = [
 ];
 
 // Dutch national anthem
-const WILHELMUS: [&'static str; 8] = [
+const WILHELMUS: [&str; 8] = [
     "Wilhelmus van Nassouwe",
     "ben ik, van Duitsen bloed,",
     "den vaderland getrouwe",
@@ -27,7 +27,7 @@ const WILHELMUS: [&'static str; 8] = [
 ];
 
 // American national anthem
-const STAR_SPANGLED_BANNER: [&'static str; 8] = [
+const STAR_SPANGLED_BANNER: [&str; 8] = [
     "O say can you see by the dawn's early light,",
     "What so proudly we hailed at the twilight's last gleaming,",
     "Whose broad stripes and bright stars through the perilous fight,",

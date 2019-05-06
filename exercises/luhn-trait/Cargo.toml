@@ -1,3 +1,4 @@
 [package]
+edition = "2018"
 name = "luhn-trait"
 version = "0.0.0"

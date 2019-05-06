@@ -1,4 +1,5 @@
 [package]
+edition = "2018"
 name = "decimal"
 version = "0.1.0"
 

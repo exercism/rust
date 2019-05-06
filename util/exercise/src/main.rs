@@ -1,17 +1,9 @@
-extern crate clap;
-#[macro_use]
-extern crate exercise;
-#[macro_use]
-extern crate failure;
-#[macro_use]
-extern crate serde_json;
-extern crate uuid;
-
 mod cmd;
 
 use clap::{App, Arg, ArgMatches, SubCommand};
 use cmd::{configure, generate, update};
 use exercise::Result;
+use failure::format_err;
 
 // Creates a new CLI app with appropriate matches
 // and returns the initialized matches.
@@ -52,12 +44,12 @@ fn init_app<'a>() -> ArgMatches<'a> {
 
 // Determine which subcommand was used
 // and call the appropriate function.
-fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
+fn process_matches(matches: &ArgMatches<'_>) -> exercise::Result<()> {
     match matches.subcommand() {
         ("generate", Some(generate_matches)) => {
             let exercise_name = generate_matches
                 .value_of("exercise_name")
-                .ok_or(format_err!("exercise name not present in args"))?;
+                .ok_or_else(|| format_err!("exercise name not present in args"))?;
             let run_configure = generate_matches.is_present("configure");
             let use_maplit = generate_matches.is_present("use_maplit");
 
@@ -71,7 +63,7 @@ fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
         ("update", Some(update_matches)) => {
             let exercise_name = update_matches
                 .value_of("exercise_name")
-                .ok_or(format_err!("exercise name not present in args"))?;
+                .ok_or_else(|| format_err!("exercise name not present in args"))?;
 
             let run_configure = update_matches.is_present("configure");
 
@@ -94,7 +86,7 @@ fn process_matches(matches: &ArgMatches) -> exercise::Result<()> {
             configure::configure_exercise(
                 configure_matches
                     .value_of("exercise_name")
-                    .ok_or(format_err!("exercise name not present in args"))?,
+                    .ok_or_else(|| format_err!("exercise name not present in args"))?,
             )?;
         }
 

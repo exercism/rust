@@ -1,3 +1,4 @@
 [package]
+edition = "2018"
 name = "armstrong_numbers"
 version = "1.0.0"

@@ -1,4 +1,5 @@
 [package]
+edition = "2018"
 name = "simple_linked_list"
 version = "0.1.0"
 

@@ -5,8 +5,7 @@ pub fn number(user_number: &str) -> Option<String> {
 
     if number_len < 10
         || number_len > 11
-        || (filtered_number.len() == 11
-            && filtered_number.chars().nth(0).unwrap() != '1')
+        || (filtered_number.len() == 11 && filtered_number.chars().nth(0).unwrap() != '1')
     {
         return None;
     }

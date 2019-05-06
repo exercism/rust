@@ -1,4 +1,4 @@
-extern crate sieve;
+use sieve;
 
 #[test]
 fn limit_lower_than_the_first_prime() {

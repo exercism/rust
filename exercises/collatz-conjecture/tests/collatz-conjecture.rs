@@ -1,5 +1,3 @@
-extern crate collatz_conjecture;
-
 use collatz_conjecture::*;
 
 #[test]

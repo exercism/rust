@@ -1,5 +1,3 @@
-extern crate bowling;
-
 use bowling::*;
 
 #[test]

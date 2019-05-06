@@ -1,5 +1,6 @@
 /// This module contains source for the `generate` command.
-use exercise::Result;
+use exercise::{self, get, val_as, Result};
+use failure::format_err;
 use serde_json::Value as JsonValue;
 use std::{
     collections::HashMap,
@@ -23,7 +24,7 @@ fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
         ("description.md", DESCRIPTION_MD_CONTENT),
         ("metadata.yml", METADATA_YML_CONTENT),
     ]
-        .iter()
+    .iter()
     {
         if !exercise::canonical_file_exists(exercise_name, file)? {
             fs::write(exercise_path.join(".meta").join(file), content)?;
@@ -164,7 +165,7 @@ fn generate_readme(exercise_name: &str) -> Result<()> {
             "--spec-path",
             problem_specifications_path
                 .to_str()
-                .ok_or(format_err!("path inexpressable as str"))?,
+                .ok_or_else(|| format_err!("path inexpressable as str"))?,
         ],
     )?;
 
@@ -185,7 +186,7 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         "Generating a new exercise at path: {}",
         exercise_path
             .to_str()
-            .ok_or(format_err!("path inexpressable as str"))?
+            .ok_or_else(|| format_err!("path inexpressable as str"))?
     );
 
     let _cargo_new_output = Command::new("cargo")
@@ -194,8 +195,9 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
         .arg(
             exercise_path
                 .to_str()
-                .ok_or(format_err!("path inexpressable as str"))?,
-        ).output()?;
+                .ok_or_else(|| format_err!("path inexpressable as str"))?,
+        )
+        .output()?;
 
     fs::write(exercise_path.join(".gitignore"), GITIGNORE_CONTENT)?;
 

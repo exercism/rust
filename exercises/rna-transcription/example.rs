@@ -49,7 +49,7 @@ impl DNA {
         Ok(DNA(out))
     }
 
-    pub fn to_rna(mut self) -> RNA {
+    pub fn into_rna(mut self) -> RNA {
         for nuc in self.0.iter_mut() {
             *nuc = match *nuc {
                 Nucleotide::Adenine => Nucleotide::Uracil,

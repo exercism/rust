@@ -1,5 +1,3 @@
-extern crate failure;
-
 use failure::Error;
 
 /// While using raw slice of str to handle flags is convenient,

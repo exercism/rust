@@ -1,5 +1,3 @@
-extern crate sublist;
-
 use sublist::{sublist, Comparison};
 
 #[test]

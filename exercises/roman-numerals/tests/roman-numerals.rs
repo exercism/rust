@@ -1,5 +1,3 @@
-extern crate roman_numerals;
-
 use roman_numerals::*;
 
 #[test]

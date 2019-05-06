@@ -1,4 +1,4 @@
-extern crate minesweeper;
+
 
 use minesweeper::annotate;
 

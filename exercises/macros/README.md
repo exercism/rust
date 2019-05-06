@@ -10,7 +10,7 @@ What is a macro? [Wikipedia](https://en.wikipedia.org/wiki/Macro_(computer_scien
 
 Illuminating! But to be more concrete, macros are a special syntax which allows you to generate code at compile time. Macros can be used compile-time calculation, but more often they're just another way to abstract your code. For example, you've probably already used `println!()` and `vec![]`. These each take an arbitrary number of arguments, so you can't express them as simple functions. On the other hand, they always expand to some amount of absolutely standard Rust code. If you're interested, you can use the [cargo expand](https://github.com/dtolnay/cargo-expand) subcommand to view the results of macro expansion in your code.
 
-For further information about macros in Rust, The Rust Book has a [good chapter](https://doc.rust-lang.org/book/2018-edition/appendix-04-macros.html) on them.
+For further information about macros in Rust, The Rust Book has a [good chapter](https://doc.rust-lang.org/book/ch19-06-macros.html) on them.
 
 ## Problem Statement
 
@@ -69,8 +69,28 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
 haven't already, it will help you with organizing your files.
+
+## Further improvements
+
+After you have solved the exercise, please consider using the additional utilities, described in the [installation guide](https://exercism.io/tracks/rust/installation), to further refine your final solution.
+
+To format your solution, inside the solution directory use
+
+```bash
+cargo fmt
+```
+
+To see, if your solution contains some common ineffective use cases, inside the solution directory use
+
+```bash
+cargo clippy --all-targets
+```
+
+## Submitting the solution
+
+Generally you should submit all files in which you implemented your solution (`src/lib.rs` in most cases). If you are using any external crates, please consider submitting the `Cargo.toml` file. This will make the review process faster and clearer.
 
 ## Feedback, Issues, Pull Requests
 
@@ -79,9 +99,9 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: https://exercism.io/tracks/rust/learning
-[modules]: https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html
-[cargo]: https://doc.rust-lang.org/book/2018-edition/ch14-00-more-about-cargo.html
-[rust-tests]: https://doc.rust-lang.org/book/2018-edition/ch11-02-running-tests.html
+[modules]: https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html
+[cargo]: https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/ch11-02-running-tests.html
 
 ## Source
 

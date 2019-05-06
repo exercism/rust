@@ -1,4 +1,4 @@
-extern crate rotational_cipher as cipher;
+use rotational_cipher as cipher;
 
 #[test]
 fn rotate_a_1() {
@@ -66,4 +66,16 @@ fn rotate_all_the_letters() {
         "Gur dhvpx oebja sbk whzcf bire gur ynml qbt.",
         cipher::rotate("The quick brown fox jumps over the lazy dog.", 13)
     );
+}
+
+#[test]
+#[ignore]
+fn rotate_m_negative_1() {
+    assert_eq!("l", cipher::rotate("m", -1));
+}
+
+#[test]
+#[ignore]
+fn rotate_letters_negative_26() {
+    assert_eq!("omg", cipher::rotate("omg", -26));
 }

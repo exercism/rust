@@ -5,14 +5,14 @@ Detect saddle points in a matrix.
 So say you have a matrix like so:
 
 ```text
-    0  1  2
+    1  2  3
   |---------
-0 | 9  8  7
-1 | 5  3  2     <--- saddle point at (1,0)
-2 | 6  6  7
+1 | 9  8  7
+2 | 5  3  2     <--- saddle point at column 1, row 2, with value 5
+3 | 6  6  7
 ```
 
-It has a saddle point at (1, 0).
+It has a saddle point at column 1, row 2.
 
 It's called a "saddle point" because it is greater than or equal to
 every element in its row and less than or equal to every element in
@@ -27,6 +27,21 @@ The matrix can have a different number of rows and columns (Non square).
 
 Note that you may find other definitions of matrix saddle points online,
 but the tests for this exercise follow the above unambiguous definition.
+
+## Efficiency Notice
+
+This exercise uses a _vector of vectors_ to store the content of matrices. While
+this exercise is designed to help students understand basic concepts about
+vectors, such as indexing, and that nested data types are legal, _vector of
+vectors_ is a suboptimal choice for high-performance matrix algebra and any
+similar efficient processing of larger amounts of data.
+
+The detailed explanation of this inefficiency is beyond the scope of this
+exercise and this learning track in general. This aspect is known as
+[cache locality](https://stackoverflow.com/questions/12065774/why-does-cache-locality-matter-for-array-performance)
+and you can find a good introduction to it by clicking that link if you'd like
+to learn more about details of a modern computer architecture.
+
 
 ## Rust Installation
 
@@ -67,8 +82,28 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
 haven't already, it will help you with organizing your files.
+
+## Further improvements
+
+After you have solved the exercise, please consider using the additional utilities, described in the [installation guide](https://exercism.io/tracks/rust/installation), to further refine your final solution.
+
+To format your solution, inside the solution directory use
+
+```bash
+cargo fmt
+```
+
+To see, if your solution contains some common ineffective use cases, inside the solution directory use
+
+```bash
+cargo clippy --all-targets
+```
+
+## Submitting the solution
+
+Generally you should submit all files in which you implemented your solution (`src/lib.rs` in most cases). If you are using any external crates, please consider submitting the `Cargo.toml` file. This will make the review process faster and clearer.
 
 ## Feedback, Issues, Pull Requests
 
@@ -77,9 +112,9 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: https://exercism.io/tracks/rust/learning
-[modules]: https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html
-[cargo]: https://doc.rust-lang.org/book/2018-edition/ch14-00-more-about-cargo.html
-[rust-tests]: https://doc.rust-lang.org/book/2018-edition/ch11-02-running-tests.html
+[modules]: https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html
+[cargo]: https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/ch11-02-running-tests.html
 
 ## Source
 
