@@ -4,8 +4,11 @@
   "blurb": "Rust is a compiled programming language designed for speed, concurrency, and memory safety. Rust programs can run almost anywhere, from low-power embedded devices to web servers.",
   "foregone": [
     "binary",
+    "hexadecimal",
+    "nucleotide-codons",
     "octal",
-    "trinary"
+    "trinary",
+    "two-fer"
   ],
   "exercises": [
     {
@@ -1066,36 +1069,6 @@
       "topics": [
         "parser_reimplementation"
       ]
-    },
-    {
-      "slug": "two-fer",
-      "uuid": "c6631a2c-4632-11e8-842f-0ed5f89f718b",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "match",
-        "strings"
-      ],
-      "deprecated": true
-    },
-    {
-      "slug": "nucleotide-codons",
-      "uuid": "8dae8f4d-368d-477d-907e-bf746921bfbf",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 0,
-      "topics": null,
-      "deprecated": true
-    },
-    {
-      "slug": "hexadecimal",
-      "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 0,
-      "topics": null,
-      "deprecated": true
     }
   ]
 }
