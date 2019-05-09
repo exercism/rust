@@ -108,54 +108,70 @@ fn multiple_divisions() {
 #[ignore]
 fn unknown_operation() {
     let command = "What is 52 cubed?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
 }
 
 #[test]
 #[ignore]
 fn non_math_question() {
     let command = "Who is the President of the United States?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
 }
 
 #[test]
 #[ignore]
 fn reject_problem_missing_an_operand() {
     let command = "What is 1 plus?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
 }
 
 #[test]
 #[ignore]
 fn reject_problem_with_no_operands_or_operators() {
     let command = "What is?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
 }
 
 #[test]
 #[ignore]
 fn reject_two_operations_in_a_row() {
     let command = "What is 1 plus plus 2?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
 }
 
 #[test]
 #[ignore]
 fn reject_two_numbers_in_a_row() {
     let command = "What is 1 plus 2 1?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
 }
 
 #[test]
 #[ignore]
 fn reject_postfix_notation() {
     let command = "What is 1 2 plus?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
 }
 
 #[test]
 #[ignore]
 fn reject_prefix_notation() {
     let command = "What is plus 1 2?";
-    assert!(answer(command).is_none());
+    assert_eq!(None, answer(command));
+}
+
+#[test]
+#[ignore]
+#[cfg(feature="exponentials")]
+fn exponential() {
+    let command = "What is 2 raised to the 5th power?";
+    assert_eq!(Some(32), answer(command));
+}
+
+#[test]
+#[ignore]
+#[cfg(feature="exponentials")]
+fn addition_and_exponential() {
+    let command = "What is 1 plus 2 raised to the 2nd power?";
+    assert_eq!(Some(9), answer(command));
 }
