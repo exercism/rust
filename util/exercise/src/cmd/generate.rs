@@ -1,5 +1,5 @@
 /// This module contains source for the `generate` command.
-use exercise::{self, get, val_as, Result};
+use crate::{self as exercise, errors::Result, get, val_as};
 use failure::format_err;
 use serde_json::Value as JsonValue;
 use std::{

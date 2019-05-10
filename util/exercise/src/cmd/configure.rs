@@ -1,4 +1,4 @@
-use exercise::{self, get, get_mut, val_as, Result};
+use crate::{self as exercise, errors::Result, get, get_mut, val_as};
 use failure::format_err;
 use serde_json::{self, json, Value};
 use std::{
@@ -69,10 +69,7 @@ fn get_user_config(exercise_name: &str, config_content: &Value) -> Result<Value>
                 let unlocked_by_exercise = get!(config_content, "exercises", as_array)
                     .iter()
                     .find(|exercise| exercise["slug"] == unlocked_by.as_str())
-                    .ok_or_else(|| format_err!(
-                        "exercise '{}' not found in config",
-                        unlocked_by
-                    ))?;
+                    .ok_or_else(|| format_err!("exercise '{}' not found in config", unlocked_by))?;
 
                 get!(unlocked_by_exercise, "difficulty", as_u64)
             }
@@ -273,10 +270,7 @@ fn update_existing_config(
     let existing_exercise_index = exercises
         .iter()
         .position(|exercise| exercise["slug"] == exercise_name)
-        .ok_or_else(|| format_err!(
-            "exercise '{}' not found in config.json",
-            exercise_name
-        ))?;
+        .ok_or_else(|| format_err!("exercise '{}' not found in config.json", exercise_name))?;
 
     let insert_index =
         if exercises[existing_exercise_index]["difficulty"] == user_config["difficulty"] {
