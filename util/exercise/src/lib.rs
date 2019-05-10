@@ -1,21 +1,18 @@
+pub mod cmd;
+pub mod errors;
+use errors::Result;
 use failure::format_err;
 use lazy_static::lazy_static;
 use reqwest;
 use serde_json;
-
-use toml;
-
 use serde_json::Value;
 use std::{
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
 };
+use toml;
 use toml::Value as TomlValue;
-
-pub mod errors;
-pub mod fetch_configlet;
-pub use errors::Result;
 
 // we look for the track root in various places, but it's never going to change
 // we therefore cache the value for efficiency
@@ -93,16 +90,17 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
     } else {
         println!("Configlet not found in the bin directory. Running bin/fetch-configlet.");
 
-        let bin_path = fetch_configlet::download()?;
+        let bin_path = crate::cmd::fetch_configlet::download()?;
 
         if bin_path.join(configlet_name_unix).exists() {
             configlet_name_unix
         } else if bin_path.join(configlet_name_windows).exists() {
             configlet_name_windows
         } else {
-            return Err(
-                format_err!("could not locate configlet after running bin/fetch-configlet").into(),
-            );
+            return Err(format_err!(
+                "could not locate configlet after running bin/fetch-configlet"
+            )
+            .into());
         }
     };
 

@@ -1,8 +1,8 @@
-mod cmd;
-
 use clap::{App, Arg, ArgMatches, SubCommand};
-use cmd::{configure, generate, update};
-use exercise::Result;
+use exercise::{
+    cmd::{configure, fetch_configlet, generate, update},
+    errors::Result,
+};
 use failure::format_err;
 
 // Creates a new CLI app with appropriate matches
@@ -44,7 +44,7 @@ fn init_app<'a>() -> ArgMatches<'a> {
 
 // Determine which subcommand was used
 // and call the appropriate function.
-fn process_matches(matches: &ArgMatches<'_>) -> exercise::Result<()> {
+fn process_matches(matches: &ArgMatches<'_>) -> Result<()> {
     match matches.subcommand() {
         ("generate", Some(generate_matches)) => {
             let exercise_name = generate_matches
@@ -91,7 +91,7 @@ fn process_matches(matches: &ArgMatches<'_>) -> exercise::Result<()> {
         }
 
         ("fetch_configlet", Some(_fetch_configlet_matches)) => {
-            if let Ok(fetch_path) = exercise::fetch_configlet::download() {
+            if let Ok(fetch_path) = fetch_configlet::download() {
                 println!(
                     "Downloaded and moved the configlet utility to the {:?} path",
                     fetch_path

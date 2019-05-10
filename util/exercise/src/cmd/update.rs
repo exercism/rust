@@ -1,4 +1,4 @@
-use exercise::{self, get, val_as, Result};
+use crate::{self as exercise, errors::Result, get, val_as};
 use failure::format_err;
 use serde_json::Value;
 use std::{collections::HashSet, fs, path::Path};
@@ -105,7 +105,9 @@ fn apply_diffs(exercise_name: &str, diffs: &HashSet<String>, tests_content: &str
 
 pub fn update_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
     if !exercise::exercise_exists(exercise_name) {
-        return Err(format_err!("exercise with the name '{}' does not exist", exercise_name).into());
+        return Err(
+            format_err!("exercise with the name '{}' does not exist", exercise_name).into(),
+        );
     }
 
     let tests_content = exercise::get_tests_content(exercise_name)?;
