@@ -8,14 +8,14 @@ edition = "2018"
 clap = "2.32.0"
 failure = "0.1.5"
 failure_derive = "0.1.5"
-flate2 = "1.0.6"
+flate2 = "1.0.7"
 lazy_static = "1.2.0"
 serde_json = "1.0.38"
-tar = "0.4.20"
+tar = "0.4.25"
 toml = "0.4.10"
 uuid = { version = "0.7", features = ["v4"] }
 
 [dependencies.reqwest]    
-version = "0.9.9"    
+version = "0.9.16"
 default-features = false    
 features = ["rustls-tls"]   
