@@ -1,3 +1,6 @@
 pub fn twofer(name: &str) -> String {
-    unimplemented!("One for {}, one for me.", name);
+    match name {
+        "" => "One for you, one for me.".to_string(),
+        _ => format!("One for {}, one for me.", name),
+    }
 }

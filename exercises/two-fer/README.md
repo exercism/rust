@@ -2,28 +2,15 @@
 
 `Two-fer` or `2-fer` is short for two for one. One for you and one for me.
 
-Given a name, return a string with the message:
-
 ```text
-One for X, one for me.
+"One for X, one for me."
 ```
 
-Where X is the given name.
+When X is a name or "you".
 
-However, if the name is missing, return the string:
+If the given name is "Alice", the result should be "One for Alice, one for me."
+If no name is given, the result should be "One for you, one for me."
 
-```text
-One for you, one for me.
-```
-
-Here are some examples:
-
-|Name    | String to return 
-|:------:|:-----------------: 
-|Alice   | One for Alice, one for me. 
-|Bob     | One for Bob, one for me.
-|        | One for you, one for me.
-|Zaphod  | One for Zaphod, one for me.
 
 ## Rust Installation
 
@@ -64,8 +51,28 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html) chapter if you
+Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
 haven't already, it will help you with organizing your files.
+
+## Further improvements
+
+After you have solved the exercise, please consider using the additional utilities, described in the [installation guide](https://exercism.io/tracks/rust/installation), to further refine your final solution.
+
+To format your solution, inside the solution directory use
+
+```bash
+cargo fmt
+```
+
+To see, if your solution contains some common ineffective use cases, inside the solution directory use
+
+```bash
+cargo clippy --all-targets
+```
+
+## Submitting the solution
+
+Generally you should submit all files in which you implemented your solution (`src/lib.rs` in most cases). If you are using any external crates, please consider submitting the `Cargo.toml` file. This will make the review process faster and clearer.
 
 ## Feedback, Issues, Pull Requests
 
@@ -74,9 +81,9 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: https://exercism.io/tracks/rust/learning
-[modules]: https://doc.rust-lang.org/book/2018-edition/ch07-00-modules.html
-[cargo]: https://doc.rust-lang.org/book/2018-edition/ch14-00-more-about-cargo.html
-[rust-tests]: https://doc.rust-lang.org/book/2018-edition/ch11-02-running-tests.html
+[modules]: https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html
+[cargo]: https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html
+[rust-tests]: https://doc.rust-lang.org/book/ch11-02-running-tests.html
 
 ## Source
 
