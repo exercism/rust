@@ -899,6 +899,18 @@
       ]
     },
     {
+      "slug": "fizzy",
+      "uuid": "6b209749-d4af-45c2-bbdc-27603ce6979f",
+      "core": false,
+      "unlocked_by": "luhn",
+      "difficulty": 7,
+      "topics": [
+        "generics",
+        "impl_trait",
+        "iterators"
+      ]
+    },
+    {
       "slug": "roman-numerals",
       "uuid": "498be645-734a-49b7-aba7-aae1e051e1f0",
       "core": false,
