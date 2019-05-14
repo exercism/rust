@@ -1,5 +1,3 @@
-extern crate luhn_trait;
-
 use luhn_trait::*;
 
 #[test]

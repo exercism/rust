@@ -1,5 +1,3 @@
-extern crate clock;
-
 use clock::Clock;
 
 //

@@ -1,4 +1,3 @@
-extern crate decimal;
 use decimal::Decimal;
 
 /// Create a Decimal from a string literal
