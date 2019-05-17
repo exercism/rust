@@ -1,6 +1,4 @@
-extern crate custom_set as set;
-
-use set::*;
+use custom_set::*;
 
 #[test]
 fn sets_with_no_elements_are_empty() {

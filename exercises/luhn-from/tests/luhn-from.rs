@@ -1,5 +1,3 @@
-extern crate luhn_from;
-
 use luhn_from::*;
 
 #[test]

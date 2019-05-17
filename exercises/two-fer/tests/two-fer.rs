@@ -1,4 +1,3 @@
-extern crate twofer;
 use twofer::twofer;
 
 #[test]

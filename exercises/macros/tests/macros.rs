@@ -1,6 +1,4 @@
-#[macro_use]
-extern crate macros;
-
+use macros::hashmap;
 use std::collections::HashMap;
 
 #[test]
@@ -62,6 +60,7 @@ fn test_nested() {
 }
 
 mod test {
+    use macros::hashmap;
     #[test]
     #[ignore]
     fn type_not_in_scope() {
