@@ -1,6 +1,7 @@
 # Anagram
 
-Given a word and a list of possible anagrams, select the correct sublist.
+An anagram is a rearrangement of letters to form a new word.
+Given a word and a list of candidates, select the sublist of anagrams of the given word.
 
 Given `"listen"` and a list of candidates like `"enlists" "google"
 "inlets" "banana"` the program should return a list containing
@@ -45,7 +46,7 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
+Make sure to read the [Modules][modules] chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Further improvements
@@ -75,7 +76,7 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: https://exercism.io/tracks/rust/learning
-[modules]: https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html
+[modules]: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
 [cargo]: https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html
 [rust-tests]: https://doc.rust-lang.org/book/ch11-02-running-tests.html
 

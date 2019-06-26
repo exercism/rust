@@ -2,9 +2,9 @@
 
 Bob is a lackadaisical teenager. In conversation, his responses are very limited.
 
-Bob answers 'Sure.' if you ask him a question.
+Bob answers 'Sure.' if you ask him a question, such as "How are you?".
 
-He answers 'Whoa, chill out!' if you yell at him.
+He answers 'Whoa, chill out!' if you YELL AT HIM (in all capitals).
 
 He answers 'Calm down, I know what I'm doing!' if you yell a question at him.
 
@@ -54,7 +54,7 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
+Make sure to read the [Modules][modules] chapter if you
 haven't already, it will help you with organizing your files.
 
 ## Further improvements
@@ -84,7 +84,7 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: https://exercism.io/tracks/rust/learning
-[modules]: https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html
+[modules]: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
 [cargo]: https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html
 [rust-tests]: https://doc.rust-lang.org/book/ch11-02-running-tests.html
 
