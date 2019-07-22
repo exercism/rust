@@ -24,8 +24,6 @@ Instead of creating a Struct just to perform the validation, what if you validat
 
 In this exercise you'll create and implement a custom [trait](https://doc.rust-lang.org/book/2018-edition/ch10-02-traits.html) that performs the validation.
 
-Note: It is [not idiomatic Rust to implement traits on on primitives](https://doc.rust-lang.org/book/2018-edition/ch10-02-traits.html#implementing-a-trait-on-a-type). In this exercise we're showing something that you _can_ do, not something you _should_ do. If you find yourself implementing traits on primitives, perhaps you have a case of [Primitive Obsession](http://wiki.c2.com/?PrimitiveObsession).
-
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
