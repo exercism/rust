@@ -1,5 +1,6 @@
 pub type Palindrome = u64;
-pub fn get_palindrome_products(min: u64, max: u64) -> Vec<Palindrome> {
+
+pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
     let mut palindromes: Vec<u64> = Vec::new();
     for i in min..=max {
         for j in min..=max {
@@ -8,15 +9,11 @@ pub fn get_palindrome_products(min: u64, max: u64) -> Vec<Palindrome> {
             }
         }
     }
-    palindromes
-}
 
-pub fn min(palindromes: &[Palindrome]) -> Option<Palindrome> {
-    palindromes.iter().min().cloned()
-}
-
-pub fn max(palindromes: &[Palindrome]) -> Option<Palindrome> {
-    palindromes.iter().max().cloned()
+    palindromes.iter().cloned().fold(None, |prev, pal| match prev {
+        None => Some((pal, pal)),
+        Some((pmin, pmax)) => Some((if pal < pmin {pal} else {pmin}, if pal > pmax {pal} else {pmax})),
+    })
 }
 
 fn is_palindrome(n: u64) -> bool {
