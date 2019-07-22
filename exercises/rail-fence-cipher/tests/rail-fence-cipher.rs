@@ -89,8 +89,8 @@ fn test_decode_with_six_rails() {
 /// Matsuo Bashō (松尾芭蕉)
 fn test_encode_wide_characters() {
     process_encode_case(
-        "古池 蛙飛び込む 水の音",
+        "古池蛙飛び込む水の音",
         3,
-        "古飛 池蛙びむ水音 込の",
+        "古びの池飛込水音蛙む",
     );
 }
