@@ -130,9 +130,7 @@ fn cursor_insert_after_in_middle() {
 
     let expected = (0..5).chain(0..10).chain(5..10);
 
-    assert!(
-        expected.eq( list.iter().cloned() )
-    );
+    assert!(expected.eq(list.iter().cloned()));
 }
 
 #[test]
@@ -154,9 +152,7 @@ fn cursor_insert_before_in_middle() {
 
     let expected = (0..5).chain(0..10).chain(5..10);
 
-    assert!(
-        expected.eq( list.iter().cloned() )
-    );
+    assert!(expected.eq(list.iter().cloned()));
 }
 
 // "iterates" via next() and checks that it visits the right elements

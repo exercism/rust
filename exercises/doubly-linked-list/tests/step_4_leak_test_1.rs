@@ -2,7 +2,7 @@ use doubly_linked_list::*;
 
 // counter of allocated bytes
 // used by the allocator defined below the test
-static ALLOCATED: AtomicUsize = ATOMIC_USIZE_INIT;
+static ALLOCATED: AtomicUsize = AtomicUsize::new(0);
 
 // test that removing an element via the cursor deallocates memory
 // does not check if the destructor is run
@@ -27,11 +27,10 @@ fn drop_no_leak_when_removing_single_element() {
 // to check that no memory has been leaked. Code taken from docs for std::alloc::System.
 // Because this is a global allocator, other tests could interfere, so
 // the tests have to be run consecutively and not in parallel as they would by default.
-use std::alloc::{System, GlobalAlloc, Layout};
-use std::sync::atomic::{AtomicUsize, ATOMIC_USIZE_INIT, Ordering::SeqCst};
+use std::alloc::{GlobalAlloc, Layout, System};
+use std::sync::atomic::{AtomicUsize, Ordering::SeqCst};
 
 struct Counter;
-
 
 unsafe impl GlobalAlloc for Counter {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {

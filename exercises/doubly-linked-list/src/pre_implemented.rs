@@ -2,7 +2,7 @@
 //! You are free to use anything, if it suits you.
 //! They are useful for the test framework, but the implementation is trivial.
 //! We supply them to reduce work both for you and the mentors.
-use crate::{LinkedList, Cursor};
+use crate::{Cursor, LinkedList};
 
 impl<T> LinkedList<T> {
     pub fn push_back(&mut self, element: T) {
