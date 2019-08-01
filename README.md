@@ -5,6 +5,8 @@
 
 Exercism exercises in Rust
 
+[zh](http://llever.com/exercism-rust-zh)
+
 ## Contributing
 
 Thank you so much for contributing! :tada:

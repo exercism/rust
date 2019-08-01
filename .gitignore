@@ -8,3 +8,5 @@ bin/configlet.exe
 bin/exercise
 bin/exercise.exe
 exercises/*/Cargo.lock
+
+/.idea
