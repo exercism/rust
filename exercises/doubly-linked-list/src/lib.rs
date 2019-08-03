@@ -34,12 +34,6 @@ impl<T> LinkedList<T> {
     }
 }
 
-impl<T> Drop for LinkedList<T> {
-    fn drop(&mut self) {
-        unimplemented!()
-    }
-}
-
 // the cursor is expected to act as if it is at the position of an element
 // and it also has to work with and be able to insert into an empty list.
 impl<T> Cursor<'_, T> {
