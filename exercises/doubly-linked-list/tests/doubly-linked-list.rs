@@ -17,14 +17,15 @@ fn basics_empty_list() {
     assert_eq!(list.len(), 0);
 }
 
+// push / pop at back ————————————————————————————————————————
 #[test]
 #[ignore]
-fn basics_single_element() {
+fn basics_single_element_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     list.push_back(5);
 
     assert_eq!(list.len(), 1);
-    assert_eq!(list.pop_front(), Some(5));
+    assert_eq!(list.pop_back(), Some(5));
 }
 
 #[test]
@@ -42,6 +43,17 @@ fn basics_push_pop_at_back() {
     assert_eq!(list.len(), 0);
 }
 
+// push / pop at front ———————————————————————————————————————
+#[test]
+#[ignore]
+fn basics_single_element_front() {
+    let mut list: LinkedList<i32> = LinkedList::new();
+    list.push_front(5);
+
+    assert_eq!(list.len(), 1);
+    assert_eq!(list.pop_front(), Some(5));
+}
+
 #[test]
 #[ignore]
 fn basics_push_pop_at_front() {
@@ -57,6 +69,7 @@ fn basics_push_pop_at_front() {
     assert_eq!(list.len(), 0);
 }
 
+// push / pop at mixed sides —————————————————————————————————
 #[test]
 #[ignore]
 fn basics_push_front_pop_back() {
