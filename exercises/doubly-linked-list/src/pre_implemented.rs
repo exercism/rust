@@ -43,12 +43,6 @@ impl<T> std::iter::FromIterator<T> for LinkedList<T> {
     }
 }
 
-impl<T: Clone> Clone for LinkedList<T> {
-    fn clone(&self) -> Self {
-        self.iter().cloned().collect()
-    }
-}
-
 // seek methods, return false if end of list is reached prematurely
 impl<T> Cursor<'_, T> {
     pub fn seek_forward(&mut self, n: usize) -> bool {
