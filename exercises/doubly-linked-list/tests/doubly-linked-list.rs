@@ -253,6 +253,11 @@ fn drop_no_double_frees() {
 // Tests for Step 5 (advanced): covariance and Send/Sync
 // ———————————————————————————————————————————————————————————
 
+// These are compile time tests. They won't compile unless your
+// code passes.
+// Additional tests for code that must *not* compile are in
+// pre_implemented.rs for technical reasons.
+
 #[cfg(feature = "advanced")]
 #[test]
 #[ignore]

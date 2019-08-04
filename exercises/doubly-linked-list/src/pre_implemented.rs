@@ -59,3 +59,25 @@ impl<T> Cursor<'_, T> {
         (0..n).all(|_| self.prev().is_some())
     }
 }
+
+// These are tests for code that must not compile. They need to be here (or in lib.rs)
+// because only doctests can use `compile_fail` without additional dependencies
+// and doctests are ignored inside tests/doubly-linked-list.rs.
+
+#[allow(unused)]
+#[cfg(feature = "advanced")]
+/// ```compile_fail
+/// use doubly_linked_list::LinkedList;
+/// trait AssertSend: Send {}
+/// impl<T> AssertSend for LinkedList<T> {}
+/// ```
+pub struct IllegalSend;
+
+#[allow(unused)]
+#[cfg(feature = "advanced")]
+/// ```compile_fail
+/// use doubly_linked_list::LinkedList;
+/// trait AssertSync: Sync {}
+/// impl<T> AssertSync for LinkedList<T> {}
+/// ```
+pub struct IllegalSync;
