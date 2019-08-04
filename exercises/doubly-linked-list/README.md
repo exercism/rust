@@ -20,6 +20,17 @@ In Rust, linked lists are very rarely used, but occasionally they trip up
 newcomers, when they try implementing one. Often, they find it unexpectedly
 difficult to work with the yet unfamiliar borrow checker.
 
+## A Note on `unsafe`
+Remember, the goal of unsafe Rust is to write safe code in cases where the compiler can't help us
+guarantee correctness. It must not be possible for a user to cause memory unsafety of any kind using
+only the safe interfaces we expose.
+
+Document the safety-critical invariants you need to uphold and comment each unsafe block explaining why it
+is safe.
+
+Any function where the caller has to maintain safety-critical invariants should be marked unsafe. This includes
+private functions.
+
 ## Step 1
 
 Implement the functionality for adding and removing elements (pushing and popping)
@@ -64,9 +75,6 @@ raw pointers. See the docs for [`Send`](https://doc.rust-lang.org/std/marker/tra
   for this case.
 
 * Refer to the [Rustonomicon](https://doc.rust-lang.org/nomicon/) for details on how to use `unsafe {}` correctly.
-  Remember, the goal of unsafe Rust is to write safe code in cases where the compiler can't help us
-  guarantee correctness. It must not be possible for a user to cause memory unsafety of any kind using
-  only the safe interfaces we expose.
 
 * Several functions require similar behaviour in different directions (towards front or back). Try not to duplicate
   shared code paths.
@@ -111,8 +119,28 @@ $ cargo test some_test -- --ignored
 
 To learn more about Rust tests refer to the [online test documentation][rust-tests]
 
-Make sure to read the [Modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html) chapter if you
+Make sure to read the [Modules][modules] chapter if you
 haven't already, it will help you with organizing your files.
+
+## Further improvements
+
+After you have solved the exercise, please consider using the additional utilities, described in the [installation guide](https://exercism.io/tracks/rust/installation), to further refine your final solution.
+
+To format your solution, inside the solution directory use
+
+```bash
+cargo fmt
+```
+
+To see, if your solution contains some common ineffective use cases, inside the solution directory use
+
+```bash
+cargo clippy --all-targets
+```
+
+## Submitting the solution
+
+Generally you should submit all files in which you implemented your solution (`src/lib.rs` in most cases). If you are using any external crates, please consider submitting the `Cargo.toml` file. This will make the review process faster and clearer.
 
 ## Feedback, Issues, Pull Requests
 
@@ -121,7 +149,7 @@ The [exercism/rust](https://github.com/exercism/rust) repository on GitHub is th
 If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/docs/blob/master/contributing-to-language-tracks/README.md).
 
 [help-page]: https://exercism.io/tracks/rust/learning
-[modules]: https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html
+[modules]: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
 [cargo]: https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html
 [rust-tests]: https://doc.rust-lang.org/book/ch11-02-running-tests.html
 

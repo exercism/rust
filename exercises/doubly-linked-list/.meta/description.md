@@ -18,6 +18,17 @@ In Rust, linked lists are very rarely used, but occasionally they trip up
 newcomers, when they try implementing one. Often, they find it unexpectedly
 difficult to work with the yet unfamiliar borrow checker.
 
+## A Note on `unsafe`
+Remember, the goal of unsafe Rust is to write safe code in cases where the compiler can't help us
+guarantee correctness. It must not be possible for a user to cause memory unsafety of any kind using
+only the safe interfaces we expose.
+
+Document the safety-critical invariants you need to uphold and comment each unsafe block explaining why it
+is safe.
+
+Any function where the caller has to maintain safety-critical invariants should be marked unsafe. This includes
+private functions.
+
 ## Step 1
 
 Implement the functionality for adding and removing elements (pushing and popping)
