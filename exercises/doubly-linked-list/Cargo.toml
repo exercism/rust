@@ -1,0 +1,8 @@
+[package]
+name = "doubly-linked-list"
+version = "0.0.0"
+edition = "2018"
+
+[features]
+# check correct covariance and Send, Sync
+advanced = []
