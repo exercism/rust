@@ -30,7 +30,7 @@ fn test_hex_100_is_decimal_256() {
 #[test]
 #[ignore]
 fn test_hex_19ace_is_decimal_105166() {
-    assert_eq!(Some(105166), hexadecimal::hex_to_int("19ace"));
+    assert_eq!(Some(105_166), hexadecimal::hex_to_int("19ace"));
 }
 
 #[test]
@@ -48,11 +48,11 @@ fn test_black() {
 #[test]
 #[ignore]
 fn test_white() {
-    assert_eq!(Some(16777215), hexadecimal::hex_to_int("ffffff"));
+    assert_eq!(Some(16_777_215), hexadecimal::hex_to_int("ffffff"));
 }
 
 #[test]
 #[ignore]
 fn test_yellow() {
-    assert_eq!(Some(16776960), hexadecimal::hex_to_int("ffff00"));
+    assert_eq!(Some(16_776_960), hexadecimal::hex_to_int("ffff00"));
 }

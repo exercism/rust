@@ -32,7 +32,7 @@ fn each_multiple_is_only_counted_once() {
 #[test]
 #[ignore]
 fn a_much_larger_limit() {
-    assert_eq!(233168, sum_of_multiples(1000, &[3, 5]))
+    assert_eq!(233_168, sum_of_multiples(1000, &[3, 5]))
 }
 
 #[test]
@@ -62,7 +62,7 @@ fn one_factor_is_a_multiple_of_another() {
 #[test]
 #[ignore]
 fn much_larger_factors() {
-    assert_eq!(2203160, sum_of_multiples(10000, &[43, 47]))
+    assert_eq!(2_203_160, sum_of_multiples(10000, &[43, 47]))
 }
 
 #[test]
@@ -92,5 +92,5 @@ fn the_factor_0_does_not_affect_the_sum_of_multiples_of_other_factors() {
 #[test]
 #[ignore]
 fn solutions_using_include_exclude_must_extend_to_cardinality_greater_than_3() {
-    assert_eq!(39614537, sum_of_multiples(10000, &[2, 3, 5, 7, 11]))
+    assert_eq!(39_614_537, sum_of_multiples(10000, &[2, 3, 5, 7, 11]))
 }
