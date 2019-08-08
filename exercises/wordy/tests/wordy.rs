@@ -31,7 +31,7 @@ fn addition_with_negative_numbers() {
 #[ignore]
 fn large_addition() {
     let command = "What is 123 plus 45678?";
-    assert_eq!(Some(45801), answer(command));
+    assert_eq!(Some(45_801), answer(command));
 }
 
 #[test]

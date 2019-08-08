@@ -38,14 +38,14 @@ fn find_the_largest_product_of_three_with_numbers_not_in_order() {
 #[test]
 #[ignore]
 fn find_the_largest_product_of_five_with_numbers_in_order() {
-    assert_eq!(Ok(15120), lsp("0123456789", 5));
+    assert_eq!(Ok(15_120), lsp("0123456789", 5));
 }
 
 #[test]
 #[ignore]
 fn span_of_six_in_a_large_number() {
     assert_eq!(
-        Ok(23520),
+        Ok(23_520),
         lsp("73167176531330624919225119674426574742355349194934", 6)
     );
 }

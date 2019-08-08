@@ -62,7 +62,7 @@ fn one_factor_is_a_multiple_of_another() {
 #[test]
 #[ignore]
 fn much_larger_factors() {
-    assert_eq!(2_203_160, sum_of_multiples(10000, &[43, 47]))
+    assert_eq!(2_203_160, sum_of_multiples(10_000, &[43, 47]))
 }
 
 #[test]
@@ -74,7 +74,7 @@ fn all_numbers_are_multiples_of_1() {
 #[test]
 #[ignore]
 fn no_factors_means_an_empty_sum() {
-    assert_eq!(0, sum_of_multiples(10000, &[]))
+    assert_eq!(0, sum_of_multiples(10_000, &[]))
 }
 
 #[test]
@@ -92,5 +92,5 @@ fn the_factor_0_does_not_affect_the_sum_of_multiples_of_other_factors() {
 #[test]
 #[ignore]
 fn solutions_using_include_exclude_must_extend_to_cardinality_greater_than_3() {
-    assert_eq!(39_614_537, sum_of_multiples(10000, &[2, 3, 5, 7, 11]))
+    assert_eq!(39_614_537, sum_of_multiples(10_000, &[2, 3, 5, 7, 11]))
 }
