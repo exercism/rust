@@ -17,6 +17,30 @@ fn zero_length_sides_are_illegal() {
 
 #[test]
 #[ignore]
+fn one_length_zero_side_first() {
+    let sides = [0, 2, 2];
+    let triangle = Triangle::build(sides);
+    assert!(triangle.is_none());
+}
+
+#[test]
+#[ignore]
+fn one_length_zero_side_second() {
+    let sides = [2, 0, 2];
+    let triangle = Triangle::build(sides);
+    assert!(triangle.is_none());
+}
+
+#[test]
+#[ignore]
+fn one_length_zero_side_third() {
+    let sides = [2, 2, 0];
+    let triangle = Triangle::build(sides);
+    assert!(triangle.is_none());
+}
+
+#[test]
+#[ignore]
 fn equilateral_triangles_have_equal_sides() {
     let sides = [2, 2, 2];
     let triangle = Triangle::build(sides).unwrap();
