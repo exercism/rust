@@ -17,6 +17,10 @@ last test, and execute the tests with:
 $ cargo test --features grapheme
 ```
 
+You will need to use external libraries (a `crate` in rust lingo) for the bonus task. A good place to look for those is [crates.io](https://crates.io/), the official repository of crates.
+
+[Check the documentation](https://doc.rust-lang.org/cargo/guide/dependencies.html) for instructions on how to use external crates in your projects.
+
 
 ## Rust Installation
 
