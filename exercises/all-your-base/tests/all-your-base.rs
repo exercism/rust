@@ -122,7 +122,7 @@ fn single_zero() {
     let input_base = 10;
     let input_digits = &[0];
     let output_base = 2;
-    let output_digits = vec![];
+    let output_digits = vec![0];
     assert_eq!(
         ayb::convert(input_digits, input_base, output_base),
         Ok(output_digits)
@@ -135,7 +135,7 @@ fn multiple_zeros() {
     let input_base = 10;
     let input_digits = &[0, 0, 0];
     let output_base = 2;
-    let output_digits = vec![];
+    let output_digits = vec![0];
     assert_eq!(
         ayb::convert(input_digits, input_base, output_base),
         Ok(output_digits)
