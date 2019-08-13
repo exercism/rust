@@ -109,7 +109,7 @@ fn empty_list() {
     let input_base = 2;
     let input_digits = &[];
     let output_base = 10;
-    let output_digits = vec![];
+    let output_digits = vec![0];
     assert_eq!(
         ayb::convert(input_digits, input_base, output_base),
         Ok(output_digits)
