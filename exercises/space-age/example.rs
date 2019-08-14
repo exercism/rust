@@ -44,7 +44,7 @@ impl Planet for Venus {
 
 impl Planet for Earth {
     fn orbital_duration() -> Duration {
-        Duration::from(31557600)
+        Duration::from(31_557_600)
     }
 }
 

@@ -33,8 +33,8 @@ tests! {
         #[ignore] test_28(28, Classification::Perfect);
         #[ignore] test_30(30, Classification::Abundant);
         #[ignore] test_32(32, Classification::Deficient);
-        #[ignore] test_33550335(33550335, Classification::Abundant);
-        #[ignore] test_33550336(33550336, Classification::Perfect);
-        #[ignore] test_33550337(33550337, Classification::Deficient);
+        #[ignore] test_33550335(33_550_335, Classification::Abundant);
+        #[ignore] test_33550336(33_550_336, Classification::Perfect);
+        #[ignore] test_33550337(33_550_337, Classification::Deficient);
     }
 }

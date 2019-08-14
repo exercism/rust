@@ -38,11 +38,11 @@ fn test_four_digit_non_armstrong_number() {
 #[test]
 #[ignore]
 fn test_seven_digit_armstrong_number() {
-    assert!(is_armstrong_number(9926315))
+    assert!(is_armstrong_number(9_926_315))
 }
 
 #[test]
 #[ignore]
 fn test_seven_digit_non_armstrong_number() {
-    assert!(!is_armstrong_number(9926316))
+    assert!(!is_armstrong_number(9_926_316))
 }

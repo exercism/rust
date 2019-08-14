@@ -32,11 +32,11 @@ fn test_product_of_primes_and_non_primes() {
 #[test]
 #[ignore]
 fn test_product_of_primes() {
-    assert_eq!(factors(901255), vec![5, 17, 23, 461]);
+    assert_eq!(factors(901_255), vec![5, 17, 23, 461]);
 }
 
 #[test]
 #[ignore]
 fn test_factors_include_large_prime() {
-    assert_eq!(factors(93819012551), vec![11, 9539, 894119]);
+    assert_eq!(factors(93_819_012_551), vec![11, 9539, 894_119]);
 }
