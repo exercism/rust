@@ -249,6 +249,12 @@ fn drop_no_double_frees() {
     assert_eq!(counter.get(), N);
 }
 
+#[test]
+#[ignore]
+fn drop_large_list() {
+    drop((0..2_000_000).collect::<LinkedList<i32>>());
+}
+
 // ———————————————————————————————————————————————————————————
 // Tests for Step 5 (advanced): covariance and Send/Sync
 // ———————————————————————————————————————————————————————————
