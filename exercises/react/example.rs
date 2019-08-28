@@ -44,9 +44,9 @@ struct ComputeCell<'a, T: Copy> {
     cell: Cell<T>,
 
     dependencies: Vec<CellID>,
-    f: Box<Fn(&[T]) -> T + 'a>,
+    f: Box<dyn Fn(&[T]) -> T + 'a>,
     callbacks_issued: usize,
-    callbacks: HashMap<CallbackID, Box<FnMut(T) -> () + 'a>>,
+    callbacks: HashMap<CallbackID, Box<dyn FnMut(T) -> () + 'a>>,
 }
 
 impl<T: Copy> Cell<T> {
