@@ -39,7 +39,7 @@ impl Decimal {
         let mut decimal_index = None;
         for ch in input.chars() {
             match ch {
-                '0'...'9' | '-' | '+' => {
+                '0'..='9' | '-' | '+' => {
                     digits.push(ch);
                     if let Some(idx) = decimal_index.as_mut() {
                         *idx += 1;
