@@ -132,7 +132,7 @@ pub fn count(lines: &[&str]) -> usize {
     total
 }
 
-fn scan_connected(area: &Area) -> Connections {
+fn scan_connected(area: &dyn Area) -> Connections {
     let mut conns = Connections{
         lines: HashSet::new(),
         points: HashMap::new()

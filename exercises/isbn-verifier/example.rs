@@ -29,7 +29,7 @@ pub fn is_valid_isbn(isbn: &str) -> bool {
     let mut coefficient = 10;
     for (position, c) in isbn.char_indices() {
         let digit_value = match c {
-            '0'...'9' => c.to_digit(10).unwrap(),
+            '0'..='9' => c.to_digit(10).unwrap(),
             'X' if is_X_valid(&position, &isbn_type) => 10,
             '-' if is_dash_valid(&position, &isbn_type) => continue,
             _ => return false,
