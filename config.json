@@ -10,7 +10,7 @@
   "exercises": [
     {
       "slug": "hello-world",
-      "uuid": "13ec1ebe-d71b-436f-ab12-25305e81417",
+      "uuid": "13ec1ebe-d71b-436f-ab12-25305e814171",
       "core": true,
       "auto_approve": true,
       "unlocked_by": null,
@@ -21,7 +21,7 @@
     },
     {
       "slug": "leap",
-      "uuid": "ef52f576-9c33-4cc1-a018-803ace8897f60",
+      "uuid": "ef52f576-9c33-4cc1-a018-803ace8897f6",
       "core": false,
       "unlocked_by": "hello-world",
       "difficulty": 1,
@@ -32,7 +32,7 @@
     },
     {
       "slug": "raindrops",
-      "uuid": "2c12be9b-3a02-4161-8eac-050642ad791g",
+      "uuid": "2c12be9b-3a02-4161-8eac-050642ad791f",
       "core": false,
       "unlocked_by": "hello-world",
       "difficulty": 1,
