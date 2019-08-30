@@ -9,6 +9,7 @@ script:
 - "./_test/check-configlet-fmt.sh"
 - "sh ./_test/ensure-readmes-are-updated.sh"
 - "./bin/configlet lint ."
+- "sh ./_test/check-uuids.sh"
 - "./_test/verify-exercise-difficulties.sh"
 - "./_test/check-exercises-for-authors.sh"
 - "sh ./_test/check-exercise-crate.sh"
