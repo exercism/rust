@@ -1,6 +1,6 @@
 # Scrabble Score
 
-Given a word, compute the scrabble score for that word.
+Given a word, compute the Scrabble score for that word.
 
 ## Letter Values
 
