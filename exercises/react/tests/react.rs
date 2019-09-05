@@ -193,6 +193,30 @@ fn error_adding_callback_to_nonexistent_cell() {
 
 #[test]
 #[ignore]
+fn error_removing_callback_from_nonexisting_cell() {
+    let mut dummy_reactor = Reactor::new();
+    let dummy_input = dummy_reactor.create_input(1);
+    let _ = dummy_reactor
+        .create_compute(&[CellID::Input(dummy_input)], |_| 0)
+        .unwrap();
+    let dummy_output = dummy_reactor
+        .create_compute(&[CellID::Input(dummy_input)], |_| 0)
+        .unwrap();
+
+    let mut reactor = Reactor::new();
+    let input = reactor.create_input(1);
+    let output = reactor
+        .create_compute(&[CellID::Input(input)], |_| 0)
+        .unwrap();
+    let callback = reactor.add_callback(output, |_| ()).unwrap();
+    assert_eq!(
+        reactor.remove_callback(dummy_output, callback),
+        Err(RemoveCallbackError::NonexistentCell)
+    );
+}
+
+#[test]
+#[ignore]
 fn callbacks_only_fire_on_change() {
     let cb = CallbackRecorder::new();
     let mut reactor = Reactor::new();
