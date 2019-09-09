@@ -48,7 +48,7 @@ pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) ->
     visited.insert((capacity_1, 0));
     visited.insert((0, capacity_2));
 
-    loop {
+    while !next_search.is_empty() {
         let mut current_search = next_search;
         next_search = VecDeque::new();
 
@@ -122,4 +122,7 @@ pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) ->
 
         moves += 1;
     }
+
+    // We ran out of states to search but still didn't reach the goal.
+    None
 }

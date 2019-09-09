@@ -76,3 +76,25 @@ fn goal_equal_to_other_bucket() {
         })
     );
 }
+
+#[test]
+#[ignore]
+fn not_possible_to_reach_the_goal() {
+    assert_eq!(
+        solve(6, 15, 5, &Bucket::One),
+        None
+    );
+}
+
+#[test]
+#[ignore]
+fn with_same_buckets_but_different_goal_then_it_is_possible() {
+    assert_eq!(
+        solve(6, 15, 9, &Bucket::One),
+        Some(BucketStats {
+            moves: 10,
+            goal_bucket: Bucket::Two,
+            other_bucket: 0,
+        })
+    );
+}
