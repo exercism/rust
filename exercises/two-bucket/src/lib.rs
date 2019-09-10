@@ -17,9 +17,9 @@ pub struct BucketStats {
 }
 
 /// Solve the bucket problem
-pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) -> BucketStats {
+pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) -> Option<BucketStats> {
     unimplemented!(
-        "Given one bucket of capacity {}, another of capacity {}, starting with {:?}, find pours to reach {}",
+        "Given one bucket of capacity {}, another of capacity {}, starting with {:?}, find pours to reach {}, or None if impossible",
         capacity_1,
         capacity_2,
         start_bucket,

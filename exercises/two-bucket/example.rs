@@ -31,7 +31,7 @@ pub struct BucketStats {
 }
 
 /// Solve the bucket problem
-pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) -> BucketStats {
+pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) -> Option<BucketStats> {
     let state = match *start_bucket {
         Bucket::One => (capacity_1, 0),
         Bucket::Two => (0, capacity_2),
@@ -48,7 +48,7 @@ pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) ->
     visited.insert((capacity_1, 0));
     visited.insert((0, capacity_2));
 
-    loop {
+    while !next_search.is_empty() {
         let mut current_search = next_search;
         next_search = VecDeque::new();
 
@@ -56,17 +56,17 @@ pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) ->
             let (bucket_1, bucket_2) = state;
 
             if bucket_1 == goal {
-                return BucketStats {
+                return Some(BucketStats {
                     moves,
                     goal_bucket: Bucket::One,
                     other_bucket: bucket_2,
-                };
+                });
             } else if bucket_2 == goal {
-                return BucketStats {
+                return Some(BucketStats {
                     moves,
                     goal_bucket: Bucket::Two,
                     other_bucket: bucket_1,
-                };
+                });
             }
 
             // Empty the first bucket
@@ -122,4 +122,7 @@ pub fn solve(capacity_1: u8, capacity_2: u8, goal: u8, start_bucket: &Bucket) ->
 
         moves += 1;
     }
+
+    // We ran out of states to search but still didn't reach the goal.
+    None
 }
