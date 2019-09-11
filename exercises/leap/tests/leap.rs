@@ -37,6 +37,11 @@ fn test_year_divisible_by_400_leap_year() {
 #[ignore]
 fn test_any_old_year() {
     assert_eq!(leap::is_leap_year(1997), false);
+    assert_eq!(leap::is_leap_year(1), false);
+    assert_eq!(leap::is_leap_year(4), true);
+    assert_eq!(leap::is_leap_year(100), false);
+    assert_eq!(leap::is_leap_year(400), true);
+    assert_eq!(leap::is_leap_year(900), false);
 }
 
 #[test]
