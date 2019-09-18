@@ -34,7 +34,7 @@ and remove the `#[ignore]` flag from the next test and get the tests to pass
 again. Each separate test is a function with `#[test]` flag above it.
 Continue, until you pass every test.
 
-If you wish to run all tests without editing the tests source file, use:
+If you wish to run all ignored tests without editing the tests source file, use:
 
 ```bash
 $ cargo test -- --ignored
