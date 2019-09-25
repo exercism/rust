@@ -41,6 +41,16 @@ fn test_any_old_year() {
 
 #[test]
 #[ignore]
+fn test_early_years() {
+    assert_eq!(leap::is_leap_year(1), false);
+    assert_eq!(leap::is_leap_year(4), true);
+    assert_eq!(leap::is_leap_year(100), false);
+    assert_eq!(leap::is_leap_year(400), true);
+    assert_eq!(leap::is_leap_year(900), false);
+}
+
+#[test]
+#[ignore]
 fn test_century() {
     assert_eq!(leap::is_leap_year(1700), false);
     assert_eq!(leap::is_leap_year(1800), false);
