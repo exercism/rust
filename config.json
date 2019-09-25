@@ -153,27 +153,6 @@
       ]
     },
     {
-      "slug": "bob",
-      "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "chars",
-        "string_functions"
-      ]
-    },
-    {
-      "slug": "matching-brackets",
-      "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
-      "core": false,
-      "unlocked_by": "bob",
-      "difficulty": 1,
-      "topics": [
-        "stack_or_recursion"
-      ]
-    },
-    {
       "slug": "clock",
       "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
       "core": true,
@@ -759,6 +738,27 @@
         "generic_over_type",
         "struct",
         "vector"
+      ]
+    },
+    {
+      "slug": "bob",
+      "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "chars",
+        "string_functions"
+      ]
+    },
+    {
+      "slug": "matching-brackets",
+      "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
+      "core": false,
+      "unlocked_by": "bob",
+      "difficulty": 1,
+      "topics": [
+        "stack_or_recursion"
       ]
     },
     {
