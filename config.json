@@ -155,8 +155,8 @@
     {
       "slug": "bob",
       "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
-      "core": true,
-      "unlocked_by": null,
+      "core": false,
+      "unlocked_by": "gigasecond",
       "difficulty": 1,
       "topics": [
         "chars",
@@ -167,7 +167,7 @@
       "slug": "matching-brackets",
       "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
       "core": false,
-      "unlocked_by": "bob",
+      "unlocked_by": "gigasecond",
       "difficulty": 1,
       "topics": [
         "stack_or_recursion"
