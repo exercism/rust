@@ -16,7 +16,8 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "println"
+        "strings",
+        "test_driven_development"
       ]
     },
     {
