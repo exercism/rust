@@ -184,3 +184,21 @@ fn isosceles_triangle_with_floating_point_sides() {
     assert!(triangle.is_isosceles());
     assert!(!triangle.is_scalene());
 }
+
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn invalid_triangle_with_floating_point_sides_one() {
+    let sides = [0.0, 0.4, 0.3];
+    let triangle = Triangle::build(sides);
+    assert!(triangle.is_none());
+}
+
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn invalid_triangle_with_floating_point_sides_two() {
+    let sides = [0.1, 0.3, 0.5];
+    let triangle = Triangle::build(sides);
+    assert!(triangle.is_none());
+}
