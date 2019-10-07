@@ -38,8 +38,10 @@
       "unlocked_by": "hello-world",
       "difficulty": 1,
       "topics": [
-        "case_or_format",
-        "mutable_string"
+        "conditionals",
+        "strings",
+        "type_conversion",
+        "variables"
       ]
     },
     {
