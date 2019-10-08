@@ -1123,6 +1123,17 @@
       "difficulty": 0,
       "topics": null,
       "deprecated": true
+    },
+    {
+      "slug": "high-scores",
+      "uuid": "7e0f5d25-e1f2-4a25-b150-1c8b24f328d7",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "iterators",
+        "vectors"
+      ]
     }
   ]
 }
