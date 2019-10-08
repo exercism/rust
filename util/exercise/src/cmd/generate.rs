@@ -245,14 +245,12 @@ pub fn generate_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
                 .into_bytes(),
             )?;
             if use_maplit {
-                test_file.write_all(b"#[macro_use]\nextern crate maplit;\n")?;
+                test_file.write_all(b"use maplit::hashmap;\n")?;
             }
 
             test_file.write_all(
                 &format!(
-                    "extern crate {escaped_exercise_name};\n\
-                     use {escaped_exercise_name}::*;\n\
-                     \n",
+                    "use {escaped_exercise_name}::*;\n\n\n",
                     escaped_exercise_name = exercise_name.replace("-", "_"),
                 )
                 .into_bytes(),
