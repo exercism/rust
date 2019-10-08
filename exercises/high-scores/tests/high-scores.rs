@@ -11,14 +11,28 @@ fn test_list_of_scores() {
 #[ignore]
 fn test_latest_score() {
     let high_scores = HighScores::new(&[100, 0, 90, 30]);
-    assert_eq!(high_scores.latest(), 30);
+    assert_eq!(high_scores.latest(), Some(30));
+}
+
+#[test]
+#[ignore]
+fn test_latest_score_empty() {
+    let high_scores = HighScores::new(&[]);
+    assert_eq!(high_scores.latest(), None);
 }
 
 #[test]
 #[ignore]
 fn test_personal_best() {
     let high_scores = HighScores::new(&[40, 100, 70]);
-    assert_eq!(high_scores.personal_best(), 100);
+    assert_eq!(high_scores.personal_best(), Some(100));
+}
+
+#[test]
+#[ignore]
+fn test_personal_best_empty() {
+    let high_scores = HighScores::new(&[]);
+    assert_eq!(high_scores.personal_best(), None);
 }
 
 #[test]
@@ -54,4 +68,11 @@ fn test_personal_top_three_with_less_than_three_scores() {
 fn test_personal_top_three_only_one_score() {
     let high_scores = HighScores::new(&[40]);
     assert_eq!(high_scores.personal_top_three(), vec![40]);
+}
+
+#[test]
+#[ignore]
+fn test_personal_top_three_empty() {
+    let high_scores = HighScores::new(&[]);
+    assert!(high_scores.personal_top_three().is_empty());
 }

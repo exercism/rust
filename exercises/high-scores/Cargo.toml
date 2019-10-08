@@ -1,7 +1,6 @@
 [dependencies]
 
 [package]
-authors = ["Oleksii Filonenko <brightone@protonmail.com>"]
 edition = "2018"
 name = "high-scores"
 version = "4.0.0"

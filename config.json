@@ -1132,6 +1132,7 @@
       "difficulty": 1,
       "topics": [
         "iterators",
+        "lifetimes",
         "vectors"
       ]
     }

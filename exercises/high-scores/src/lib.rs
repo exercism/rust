@@ -2,7 +2,7 @@
 pub struct HighScores;
 
 impl HighScores {
-    pub fn new(_: &[u32]) -> Self {
+    pub fn new(scores: &[u32]) -> Self {
         unimplemented!(
             "Construct a HighScores struct, given the scores: {:?}",
             scores
@@ -13,11 +13,11 @@ impl HighScores {
         unimplemented!("Return all the scores as a slice")
     }
 
-    pub fn latest(&self) -> u32 {
+    pub fn latest(&self) -> Option<u32> {
         unimplemented!("Return the latest (last) score")
     }
 
-    pub fn personal_best(&self) -> u32 {
+    pub fn personal_best(&self) -> Option<u32> {
         unimplemented!("Return the highest score")
     }
 
