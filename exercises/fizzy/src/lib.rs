@@ -32,7 +32,7 @@ impl<T> Fizzy<T> {
         unimplemented!()
     }
 
-    /// map this fizzy onto every element of an interator, returning a new iterator
+    /// map this fizzy onto every element of an iterator, returning a new iterator
     pub fn apply<I>(self, _iter: I) -> impl Iterator<Item = String> {
         // unimplemented!() doesn't actually work, here; () is not an Iterator
         // that said, this is probably not the actual implementation you desire
