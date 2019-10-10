@@ -1,3 +1,5 @@
+use std::iter::FromIterator;
+
 pub struct SimpleLinkedList<T> {
     // Delete this field
     // dummy is needed to avoid unused parameter error during compilation
@@ -30,8 +32,8 @@ impl<T> SimpleLinkedList<T> {
     }
 }
 
-impl<'a, T: Clone> From<&'a [T]> for SimpleLinkedList<T> {
-    fn from(_item: &[T]) -> Self {
+impl<T> FromIterator<T> for SimpleLinkedList<T> {
+    fn from_iter<I: IntoIterator<Item = T>>(_iter: I) -> Self {
         unimplemented!()
     }
 }

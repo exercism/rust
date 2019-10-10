@@ -58,8 +58,8 @@ fn test_peek_returns_reference_to_head_element_but_does_not_remove_it() {
 #[test]
 #[ignore]
 fn test_from_slice() {
-    let array = ["1", "2", "3", "4"];
-    let mut list = SimpleLinkedList::from(array.as_ref());
+    let mut array = vec!["1", "2", "3", "4"];
+    let mut list: SimpleLinkedList<_> = array.drain(..).collect();
     assert_eq!(list.pop(), Some("4"));
     assert_eq!(list.pop(), Some("3"));
     assert_eq!(list.pop(), Some("2"));

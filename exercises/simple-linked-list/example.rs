@@ -1,3 +1,5 @@
+use std::iter::FromIterator;
+
 pub struct SimpleLinkedList<T> {
     head: Option<Box<Node<T>>>,
     len: usize,
@@ -51,13 +53,13 @@ impl<T> SimpleLinkedList<T> {
     }
 }
 
-impl<'a, T: Clone> From<&'a [T]> for SimpleLinkedList<T> {
-    fn from(item: &[T]) -> Self {
-        let mut list = SimpleLinkedList::new();
-        for i in item {
-            list.push(i.clone());
+impl<T> FromIterator<T> for SimpleLinkedList<T> {
+    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
+        let mut sll = SimpleLinkedList::new();
+        for t in iter {
+            sll.push(t);
         }
-        list
+        sll
     }
 }
 
