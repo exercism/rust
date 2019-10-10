@@ -10,12 +10,6 @@ struct Node<T> {
     next: Option<Box<Node<T>>>,
 }
 
-impl<T> Node<T> {
-    fn unpack(self) -> (T, Option<Box<Node<T>>>) {
-        (self.data, self.next)
-    }
-}
-
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
         SimpleLinkedList { head: None, len: 0 }
@@ -77,34 +71,6 @@ impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
         }
         vec.reverse();
         vec
-    }
-}
-
-pub struct IntoIter<T> (Option<Box<Node<T>>>);
-
-impl<T> IntoIterator for SimpleLinkedList<T> {
-    type Item = T;
-    type IntoIter = IntoIter<T>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        IntoIter(self.head)
-    }
-}
-
-impl<T> Iterator for IntoIter<T> {
-    type Item = T;
-
-    fn next(&mut self) -> Option<T> {
-        let mut out = None;
-        if self.0.is_some() {
-            let node_pointer = self.0.take().unwrap();
-            let (item, next) = node_pointer.unpack();
-            out = Some(item);
-            if next.is_some() {
-                self.0.replace(next.unwrap());
-            }
-        }
-        out
     }
 }
 
