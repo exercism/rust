@@ -40,15 +40,12 @@ impl<T> SimpleLinkedList<T> {
     pub fn peek(&self) -> Option<&T> {
         self.head.as_ref().map(|node| &node.data)
     }
-}
 
-impl<T: Clone> SimpleLinkedList<T> {
-    pub fn rev(&self) -> SimpleLinkedList<T> {
+    pub fn rev(self) -> SimpleLinkedList<T> {
         let mut rev_list = SimpleLinkedList::new();
-        let mut next = self.head.as_ref().map(|node| &**node);
-        while let Some(node) = next {
-            rev_list.push(node.data.clone());
-            next = node.next.as_ref().map(|node| &**node);
+        let mut vec: Vec<_> = self.into();
+        for t in vec.drain(..).rev() {
+            rev_list.push(t);
         }
         rev_list
     }

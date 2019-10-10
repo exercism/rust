@@ -24,10 +24,8 @@ impl<T> SimpleLinkedList<T> {
     pub fn peek(&self) -> Option<&T> {
         unimplemented!()
     }
-}
 
-impl<T: Clone> SimpleLinkedList<T> {
-    pub fn rev(&self) -> SimpleLinkedList<T> {
+    pub fn rev(self) -> SimpleLinkedList<T> {
         unimplemented!()
     }
 }
