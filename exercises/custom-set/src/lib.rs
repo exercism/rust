@@ -1,4 +1,3 @@
-use std::fmt::Debug;
 use std::marker::PhantomData;
 
 #[derive(Debug, PartialEq)]
@@ -10,52 +9,40 @@ pub struct CustomSet<T> {
     phantom: PhantomData<T>,
 }
 
-impl<T: Debug> CustomSet<T> {
-    pub fn new(input: &[T]) -> Self {
-        unimplemented!(
-            "From the given input '{:?}' construct a new CustomSet struct.",
-            input
-        );
+impl<T> CustomSet<T> {
+    pub fn new(_input: &[T]) -> Self {
+        unimplemented!();
     }
 
-    pub fn contains(&self, element: &T) -> bool {
-        unimplemented!(
-            "Determine if the '{:?}' element is present in the CustomSet struct.",
-            element
-        );
+    pub fn contains(&self, _element: &T) -> bool {
+        unimplemented!();
     }
 
-    pub fn add(&mut self, element: T) {
-        unimplemented!("Add the '{:?}' element to the CustomSet struct.", element);
+    pub fn add(&mut self, _element: T) {
+        unimplemented!();
     }
 
-    pub fn is_subset(&self, other: &Self) -> bool {
-        unimplemented!(
-            "Determine if the CustomSet struct is a subset of the other '{:?}' struct.",
-            other
-        );
+    pub fn is_subset(&self, _other: &Self) -> bool {
+        unimplemented!();
     }
 
     pub fn is_empty(&self) -> bool {
-        unimplemented!("Determine if the CustomSet struct is empty.");
+        unimplemented!();
     }
 
-    pub fn is_disjoint(&self, other: &Self) -> bool {
-        unimplemented!(
-            "Determine if the CustomSet struct and the other struct '{:?}' are disjoint.",
-            other
-        );
+    pub fn is_disjoint(&self, _other: &Self) -> bool {
+        unimplemented!();
     }
 
-    pub fn intersection(&self, other: &Self) -> Self {
-        unimplemented!("Construct a new CustomSet struct that is an intersection between current struct and the other struct '{:?}'.", other);
+    pub fn intersection(&self, _other: &Self) -> Self {
+        unimplemented!();
     }
 
-    pub fn difference(&self, other: &Self) -> Self {
-        unimplemented!("Construct a new CustomSet struct that is a difference between current struct and the other struct '{:?}'.", other);
+    pub fn difference(&self, _other: &Self) -> Self {
+        unimplemented!();
     }
 
-    pub fn union(&self, other: &Self) -> Self {
-        unimplemented!("Construct a new CustomSet struct that is an union between current struct and the other struct '{:?}'.", other);
+    pub fn union(&self, _other: &Self) -> Self {
+        unimplemented!();
     }
 }
