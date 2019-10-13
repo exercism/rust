@@ -1,3 +1,5 @@
+use std::iter::FromIterator;
+
 pub struct SimpleLinkedList<T> {
     head: Option<Box<Node<T>>>,
     len: usize,
@@ -40,27 +42,24 @@ impl<T> SimpleLinkedList<T> {
     pub fn peek(&self) -> Option<&T> {
         self.head.as_ref().map(|node| &node.data)
     }
-}
 
-impl<T: Clone> SimpleLinkedList<T> {
-    pub fn rev(&self) -> SimpleLinkedList<T> {
+    pub fn rev(self) -> SimpleLinkedList<T> {
         let mut rev_list = SimpleLinkedList::new();
-        let mut next = self.head.as_ref().map(|node| &**node);
-        while let Some(node) = next {
-            rev_list.push(node.data.clone());
-            next = node.next.as_ref().map(|node| &**node);
+        let mut vec: Vec<_> = self.into();
+        for t in vec.drain(..).rev() {
+            rev_list.push(t);
         }
         rev_list
     }
 }
 
-impl<'a, T: Clone> From<&'a [T]> for SimpleLinkedList<T> {
-    fn from(item: &[T]) -> Self {
-        let mut list = SimpleLinkedList::new();
-        for i in item {
-            list.push(i.clone());
+impl<T> FromIterator<T> for SimpleLinkedList<T> {
+    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
+        let mut sll = SimpleLinkedList::new();
+        for t in iter {
+            sll.push(t);
         }
-        list
+        sll
     }
 }
 
