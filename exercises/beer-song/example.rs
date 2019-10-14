@@ -1,4 +1,4 @@
-pub fn verse(n: i32) -> String {
+pub fn verse(n: u32) -> String {
     match n {
         0 => "No more bottles of beer on the wall, no more bottles of beer.\n\
               Go to the store and buy some more, 99 bottles of beer on the wall.\n"
@@ -19,7 +19,7 @@ pub fn verse(n: i32) -> String {
     }
 }
 
-pub fn sing(start: i32, end: i32) -> String {
+pub fn sing(start: u32, end: u32) -> String {
     (end..=start)
         .rev()
         .map(verse)
