@@ -1,7 +1,7 @@
-pub fn verse(n: i32) -> String {
+pub fn verse(n: u32) -> String {
     unimplemented!("emit verse {}", n)
 }
 
-pub fn sing(start: i32, end: i32) -> String {
+pub fn sing(start: u32, end: u32) -> String {
     unimplemented!("sing verses {} to {}, inclusive", start, end)
 }
