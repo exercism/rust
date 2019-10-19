@@ -15,6 +15,8 @@ We welcome pull requests of all kinds. No contribution is too small.
 
 We encourage contributions that provide fixes and improvements to existing exercises. Please note that this track's exercises must conform to the Exercism-wide standards described in the [documentation](https://github.com/exercism/docs/tree/master/language-tracks/exercises). If you're unsure about how to make a change, then go ahead and open a GitHub issue, and we'll discuss it.
 
+If you want to contribute but don't know where to start, the [issues](https://github.com/exercism/rust/issues) tab shows what items are currently of interest to the community. In addition, it is often worth checking the [track dashboard](https://tracks.exercism.io/rust/master), which flags any exercises whose version has fallen behind the version of the [canonical data](https://github.com/exercism/problem-specifications). PRs which keep the track up to date are particularly welcome!
+
 ## Exercise Tests
 
 At the most basic level, Exercism is all about the tests. You can read more about how we think about test suites in [the Exercism documentation](https://github.com/exercism/docs/blob/master/language-tracks/exercises/anatomy/test-suites.md).
