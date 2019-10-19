@@ -6,6 +6,7 @@ fn test_zero_is_an_armstrong_number() {
 }
 
 #[test]
+#[ignore]
 fn test_single_digit_numbers_are_armstrong_numbers() {
     assert!(is_armstrong_number(5))
 }
