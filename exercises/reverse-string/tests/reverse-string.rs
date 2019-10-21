@@ -48,6 +48,13 @@ fn test_a_palindrome() {
 
 #[test]
 #[ignore]
+/// an even-sized word
+fn test_an_even_sized_word() {
+    process_reverse_case("drawer", "reward");
+}
+
+#[test]
+#[ignore]
 /// wide characters
 fn test_wide_characters() {
     process_reverse_case("子猫", "猫子");
