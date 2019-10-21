@@ -65,7 +65,7 @@
       "topics": [
         "case",
         "loop",
-        "string_concatenation",
+        "strings",
         "vector_optional"
       ]
     },
@@ -141,8 +141,8 @@
       "difficulty": 1,
       "topics": [
         "iterator",
-        "str",
-        "string"
+        "str_vs_string",
+        "strings"
       ]
     },
     {
@@ -175,7 +175,7 @@
       "difficulty": 1,
       "topics": [
         "chars",
-        "string_functions"
+        "strings"
       ]
     },
     {
@@ -309,6 +309,7 @@
         "match",
         "result",
         "str_vs_string",
+        "strings",
         "struct"
       ]
     },
@@ -404,7 +405,8 @@
       "topics": [
         "combinations",
         "external_crates_optional",
-        "string_parsing"
+        "parsing",
+        "strings"
       ]
     },
     {
@@ -438,7 +440,7 @@
       "topics": [
         "calculation",
         "math",
-        "string_comparison",
+        "strings",
         "structs"
       ]
     },
@@ -473,7 +475,7 @@
       "difficulty": 4,
       "topics": [
         "modulus",
-        "string_concatenation"
+        "strings"
       ]
     },
     {
@@ -485,7 +487,7 @@
       "topics": [
         "int_string_conversion",
         "loop",
-        "string_concatenation",
+        "strings",
         "use_of_primitive_char"
       ]
     },
@@ -606,7 +608,8 @@
         "chars",
         "iterators",
         "primitive_types",
-        "str_vs_string"
+        "str_vs_string",
+        "strings"
       ]
     },
     {
@@ -622,6 +625,7 @@
         "iterators",
         "primitive_types",
         "str_vs_string",
+        "strings",
         "transforming"
       ]
     },
@@ -636,7 +640,8 @@
         "chars",
         "iterators",
         "primitive_types",
-        "str_vs_string"
+        "str_vs_string",
+        "strings"
       ]
     },
     {
@@ -648,7 +653,8 @@
       "topics": [
         "ascii",
         "chars",
-        "str_vs_string"
+        "str_vs_string",
+        "strings"
       ]
     },
     {
@@ -660,7 +666,7 @@
       "topics": [
         "chars",
         "cipher",
-        "string_permutation"
+        "strings"
       ]
     },
     {
@@ -674,6 +680,7 @@
         "lifetimes",
         "loops",
         "str_vs_string",
+        "strings",
         "vector"
       ]
     },
@@ -748,8 +755,9 @@
       "difficulty": 4,
       "topics": [
         "operators_optional",
+        "parsing",
         "result",
-        "string_parsing"
+        "strings"
       ]
     },
     {
@@ -872,7 +880,8 @@
         "chars",
         "entry_api",
         "hashmap",
-        "str_vs_string"
+        "str_vs_string",
+        "strings"
       ]
     },
     {
@@ -897,8 +906,8 @@
       "difficulty": 4,
       "topics": [
         "parsing",
-        "str",
-        "string"
+        "str_vs_string",
+        "strings"
       ]
     },
     {
@@ -1012,7 +1021,8 @@
       "topics": [
         "enum",
         "lifetimes",
-        "string_parsing",
+        "parsing",
+        "strings",
         "struct",
         "traits"
       ]
@@ -1027,9 +1037,9 @@
         "conditionals",
         "failure_crate",
         "file_io",
+        "parsing",
         "result",
-        "string_functions",
-        "string_parsing",
+        "strings",
         "utf"
       ]
     },
@@ -1056,7 +1066,8 @@
       "topics": [
         "bigint",
         "external_crates_optional",
-        "string_parsing",
+        "parsing",
+        "strings",
         "struct",
         "traits"
       ]
