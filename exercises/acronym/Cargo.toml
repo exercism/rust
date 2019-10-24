@@ -1,6 +1,6 @@
 [package]
 edition = "2018"
 name = "acronym"
-version = "1.0.0"
+version = "1.7.0"
 
 [dependencies]
