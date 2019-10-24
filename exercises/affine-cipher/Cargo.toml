@@ -1,0 +1,4 @@
+[package]
+edition = "2018"
+name = "affine-cipher"
+version = "2.0.0"
