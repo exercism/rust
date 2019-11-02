@@ -28,6 +28,14 @@ The matrix can have a different number of rows and columns (Non square).
 Note that you may find other definitions of matrix saddle points online,
 but the tests for this exercise follow the above unambiguous definition.
 
+## Rust Indices Start At 0
+
+By convention, ordered sequences of values in Rust have their contents numbered
+("indexed") starting from 0. This applies regardless of what the rest of the
+exercise description in this README says, such as references to indices that
+start at 1, so you will have to subtract 1 to translate those index numbers
+to Rust index numbers.
+
 ## Efficiency Notice
 
 This exercise uses a _vector of vectors_ to store the content of matrices. While
