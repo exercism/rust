@@ -55,12 +55,6 @@ fn test_encode_all_the_letters() {
 
 #[test]
 #[ignore]
-fn test_encode_ignores_non_ascii() {
-    assert_eq!(cipher::encode("non ascii éignored"), "mlmzh xrrrt mlivw");
-}
-
-#[test]
-#[ignore]
 fn test_decode_exercism() {
     assert_eq!(cipher::decode("vcvix rhn"), "exercism");
 }
@@ -86,5 +80,20 @@ fn test_decode_all_the_letters() {
     assert_eq!(
         cipher::decode("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"),
         "thequickbrownfoxjumpsoverthelazydog"
+    );
+}
+
+#[test]
+#[ignore]
+fn test_decode_with_too_many_spaces() {
+    assert_eq!(cipher::decode("vc vix    r hn"), "exercism");
+}
+
+#[test]
+#[ignore]
+fn test_decode_with_no_spaces() {
+    assert_eq!(
+        cipher::decode("zmlyhgzxovrhlugvmzhgvkkrmthglmv"),
+        "anobstacleisoftenasteppingstone",
     );
 }
