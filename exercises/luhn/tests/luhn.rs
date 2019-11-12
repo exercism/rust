@@ -89,8 +89,9 @@ fn test_input_digit_9_is_correctly_converted_to_output_digit_9() {
 
 #[test]
 #[ignore]
-/// using ascii value for doubled non-digit isn't allowed/// "Convert non-digits to their ascii values and then offset them by 48 sometimes accidentally declare an invalid string to be valid."
-/// "This test is designed to avoid that solution."
+/// using ascii value for doubled non-digit isn't allowed
+/// Convert non-digits to their ascii values and then offset them by 48 sometimes accidentally declare an invalid string to be valid.
+/// This test is designed to avoid that solution.
 fn test_using_ascii_value_for_doubled_nondigit_isnt_allowed() {
     process_valid_case(":9", false);
 }
@@ -111,8 +112,9 @@ fn test_valid_strings_with_symbols_included_become_invalid() {
 
 #[test]
 #[ignore]
-/// using ascii value for non-doubled non-digit isn't allowed/// "Convert non-digits to their ascii values and then offset them by 48 sometimes accidentally declare an invalid string to be valid."
-/// "This test is designed to avoid that solution."
+/// using ascii value for non-doubled non-digit isn't allowed
+/// Convert non-digits to their ascii values and then offset them by 48 sometimes accidentally declare an invalid string to be valid.
+/// This test is designed to avoid that solution.
 fn test_using_ascii_value_for_nondoubled_nondigit_isnt_allowed() {
     process_valid_case("055b 444 285", false);
 }
