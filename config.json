@@ -64,9 +64,9 @@
       "difficulty": 1,
       "topics": [
         "case",
-        "loop",
+        "loops",
         "strings",
-        "vector_optional"
+        "vectors"
       ]
     },
     {
@@ -98,7 +98,7 @@
       "unlocked_by": "hello-world",
       "difficulty": 1,
       "topics": [
-        "algorithm",
+        "algorithms",
         "borrowing",
         "math"
       ]
@@ -140,7 +140,7 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "iterator",
+        "iterators",
         "str_vs_string",
         "strings"
       ]
@@ -196,7 +196,7 @@
       "difficulty": 4,
       "topics": [
         "derive",
-        "struct",
+        "structs",
         "traits"
       ]
     },
@@ -210,7 +210,7 @@
         "builder_pattern",
         "derive",
         "modules",
-        "struct"
+        "structs"
       ]
     },
     {
@@ -221,7 +221,7 @@
       "difficulty": 4,
       "topics": [
         "lists",
-        "struct",
+        "structs",
         "type_conversion"
       ]
     },
@@ -232,9 +232,9 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "index_optional",
+        "index",
         "math",
-        "vec"
+        "vectors"
       ]
     },
     {
@@ -258,8 +258,8 @@
         "entry_api",
         "filter",
         "match",
-        "mutablity",
-        "result"
+        "mutability",
+        "result_type"
       ]
     },
     {
@@ -283,7 +283,7 @@
         "flat_map",
         "loops",
         "map",
-        "vec"
+        "vectors"
       ]
     },
     {
@@ -295,8 +295,8 @@
       "topics": [
         "map",
         "math",
-        "vector",
-        "while_let_optional"
+        "vectors",
+        "while_let"
       ]
     },
     {
@@ -307,10 +307,10 @@
       "difficulty": 4,
       "topics": [
         "match",
-        "result",
+        "result_type",
         "str_vs_string",
         "strings",
-        "struct"
+        "structs"
       ]
     },
     {
@@ -320,7 +320,7 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "struct"
+        "structs"
       ]
     },
     {
@@ -331,9 +331,9 @@
       "difficulty": 4,
       "topics": [
         "entry_api",
-        "option",
-        "struct",
-        "vec"
+        "option_type",
+        "structs",
+        "vectors"
       ]
     },
     {
@@ -343,9 +343,9 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "option",
+        "option_type",
         "slices",
-        "trait_optional"
+        "traits"
       ]
     },
     {
@@ -355,7 +355,7 @@
       "unlocked_by": "clock",
       "difficulty": 7,
       "topics": [
-        "enum",
+        "enums",
         "immutability"
       ]
     },
@@ -366,9 +366,9 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "result",
-        "struct",
-        "trait_optional"
+        "result_type",
+        "structs",
+        "traits"
       ]
     },
     {
@@ -379,8 +379,8 @@
       "difficulty": 4,
       "topics": [
         "goofy_bowling_logic",
-        "result",
-        "struct"
+        "result_type",
+        "structs"
       ]
     },
     {
@@ -390,8 +390,8 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "enum",
-        "hashmap",
+        "enums",
+        "hashmaps",
         "sorting",
         "structs"
       ]
@@ -404,7 +404,7 @@
       "difficulty": 4,
       "topics": [
         "combinations",
-        "external_crates_optional",
+        "external_crates",
         "parsing",
         "strings"
       ]
@@ -416,7 +416,7 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "algorithm",
+        "algorithms",
         "loops"
       ]
     },
@@ -485,10 +485,10 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
+        "chars",
         "int_string_conversion",
-        "loop",
-        "strings",
-        "use_of_primitive_char"
+        "loops",
+        "strings"
       ]
     },
     {
@@ -499,7 +499,7 @@
       "difficulty": 4,
       "topics": [
         "int_string_conversion",
-        "loop"
+        "loops"
       ]
     },
     {
@@ -519,7 +519,7 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "option"
+        "option_type"
       ]
     },
     {
@@ -529,7 +529,7 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "hashmap_optional",
+        "hashmaps",
         "higher_order_functions"
       ]
     },
@@ -540,7 +540,7 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "ascii_optional",
+        "ascii",
         "filter"
       ]
     },
@@ -555,7 +555,7 @@
         "fold",
         "map",
         "math",
-        "result"
+        "result_type"
       ]
     },
     {
@@ -565,10 +565,10 @@
       "unlocked_by": "clock",
       "difficulty": 4,
       "topics": [
-        "bitwise_probably",
-        "enum",
+        "bitwise",
+        "enums",
         "filter",
-        "struct",
+        "structs",
         "vectors"
       ]
     },
@@ -581,7 +581,7 @@
       "topics": [
         "bitwise",
         "encodings",
-        "result",
+        "result_type",
         "slices"
       ]
     },
@@ -676,12 +676,12 @@
       "unlocked_by": null,
       "difficulty": 4,
       "topics": [
-        "iter",
+        "iterators",
         "lifetimes",
         "loops",
         "str_vs_string",
         "strings",
-        "vector"
+        "vectors"
       ]
     },
     {
@@ -691,10 +691,10 @@
       "unlocked_by": "anagram",
       "difficulty": 7,
       "topics": [
-        "hash_map",
+        "hashmaps",
         "lifetimes",
-        "result",
-        "struct"
+        "result_type",
+        "structs"
       ]
     },
     {
@@ -705,10 +705,10 @@
       "difficulty": 4,
       "topics": [
         "lifetimes",
+        "mutability",
         "randomness",
-        "self_mut",
         "slices",
-        "struct"
+        "structs"
       ]
     },
     {
@@ -742,9 +742,9 @@
       "unlocked_by": null,
       "difficulty": 7,
       "topics": [
-        "custom_trait",
         "from_trait",
-        "trait_implementation"
+        "trait_implementation",
+        "traits"
       ]
     },
     {
@@ -754,9 +754,9 @@
       "unlocked_by": "space-age",
       "difficulty": 4,
       "topics": [
-        "operators_optional",
+        "operators",
         "parsing",
-        "result",
+        "result_type",
         "strings"
       ]
     },
@@ -767,7 +767,7 @@
       "unlocked_by": null,
       "difficulty": 7,
       "topics": [
-        "enum",
+        "enums",
         "generic_over_type"
       ]
     },
@@ -780,8 +780,8 @@
       "topics": [
         "equality",
         "generic_over_type",
-        "struct",
-        "vector"
+        "structs",
+        "vectors"
       ]
     },
     {
@@ -801,8 +801,8 @@
       "unlocked_by": "minesweeper",
       "difficulty": 10,
       "topics": [
-        "algorithm",
-        "enum",
+        "algorithms",
+        "enums",
         "structs",
         "traits"
       ]
@@ -814,7 +814,7 @@
       "unlocked_by": "minesweeper",
       "difficulty": 10,
       "topics": [
-        "buffer_reimplementation",
+        "buffers",
         "generics"
       ]
     },
@@ -850,10 +850,10 @@
       "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
-        "custom_trait",
         "higher_order_functions",
         "iterators",
-        "str_to_digits"
+        "str_to_digits",
+        "traits"
       ]
     },
     {
@@ -863,10 +863,10 @@
       "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
-        "char",
+        "chars",
         "higher_order_functions",
         "math",
-        "result",
+        "result_type",
         "windows"
       ]
     },
@@ -879,7 +879,7 @@
       "topics": [
         "chars",
         "entry_api",
-        "hashmap",
+        "hashmaps",
         "str_vs_string",
         "strings"
       ]
@@ -892,9 +892,9 @@
       "difficulty": 4,
       "topics": [
         "format",
-        "iters",
+        "iterators",
         "match",
-        "option",
+        "option_type",
         "unwrap_or"
       ]
     },
@@ -942,9 +942,9 @@
       "difficulty": 4,
       "topics": [
         "loops",
-        "mutable",
-        "results",
-        "struct",
+        "mutability",
+        "result_type",
+        "structs",
         "traits"
       ]
     },
@@ -977,7 +977,7 @@
       "difficulty": 1,
       "topics": [
         "math",
-        "option"
+        "option_type"
       ]
     },
     {
@@ -1007,7 +1007,7 @@
       "unlocked_by": null,
       "difficulty": 10,
       "topics": [
-        "hashmap",
+        "hashmaps",
         "macros",
         "macros_by_example"
       ]
@@ -1019,11 +1019,11 @@
       "unlocked_by": null,
       "difficulty": 10,
       "topics": [
-        "enum",
+        "enums",
         "lifetimes",
         "parsing",
         "strings",
-        "struct",
+        "structs",
         "traits"
       ]
     },
@@ -1038,7 +1038,7 @@
         "failure_crate",
         "file_io",
         "parsing",
-        "result",
+        "result_type",
         "strings",
         "utf"
       ]
@@ -1065,10 +1065,10 @@
       "difficulty": 7,
       "topics": [
         "bigint",
-        "external_crates_optional",
+        "external_crates",
         "parsing",
         "strings",
-        "struct",
+        "structs",
         "traits"
       ]
     },
@@ -1102,7 +1102,7 @@
       "unlocked_by": null,
       "difficulty": 10,
       "topics": [
-        "parser_reimplementation"
+        "parsing"
       ]
     },
     {
