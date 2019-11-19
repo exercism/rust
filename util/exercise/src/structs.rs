@@ -5,7 +5,7 @@
 //! `serde::Deserialize`.
 
 use indexmap::IndexMap;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 macro_rules! pub_struct_serde_getters {
     (
@@ -32,7 +32,7 @@ pub_struct_serde_getters! {
     pub struct CanonicalData {
         exercise: Exercise,
         version: Version,
-        comments: Comments,
+        comments: Option<Comments>,
         cases: TestGroup,
     }
 }
@@ -43,16 +43,17 @@ type Comments = Vec<String>;
 type TestGroup = Vec<LabeledTestItem>;
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(untagged)]
 pub enum LabeledTestItem {
     Single(LabeledTest),
-    Array(LabeledTestGroup)
+    Array(LabeledTestGroup),
 }
 
 pub_struct_serde_getters! {
     pub struct LabeledTest {
         description: Description,
-        optional: Optional,
-        comments: Comments,
+        optional: Option<Optional>,
+        comments: Option<Comments>,
         property: Property,
         input: Input,
         expected: Expected,
@@ -62,8 +63,8 @@ pub_struct_serde_getters! {
 pub_struct_serde_getters! {
     pub struct LabeledTestGroup {
         description: Description,
-        optional: Optional,
-        comments: Comments,
+        optional: Option<Optional>,
+        comments: Option<Comments>,
         cases: TestGroup,
     }
 }
@@ -71,10 +72,11 @@ pub_struct_serde_getters! {
 type Description = String;
 type Optional = String;
 type Property = String;
-type Input = IndexMap<String, Data>;
-type Expected = Data;
+type Input = serde_json::Value;
+type Expected = serde_json::Value;
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(untagged)]
 pub enum Data {
     None,
     Bool(bool),
