@@ -1,7 +1,10 @@
 /// This module contains source for the `generate` command.
-use crate::{self as exercise, errors::Result, get, val_as};
+use crate::{
+    self as exercise,
+    errors::Result,
+    structs::{CanonicalData, LabeledTestItem},
+};
 use failure::format_err;
-use serde_json::Value as JsonValue;
 use std::{
     collections::HashMap,
     fs::{self, File, OpenOptions},
@@ -39,28 +42,28 @@ fn generate_meta(exercise_name: &str, exercise_path: &Path) -> Result<()> {
 }
 
 fn parse_case(
-    case: &JsonValue,
+    case: &LabeledTestItem,
     property_functions: &mut HashMap<String, String>,
     test_functions: &mut Vec<String>,
     use_maplit: bool,
 ) -> Result<()> {
-    if let Some(sub_cases) = case.get("cases") {
-        for sub_case in val_as!(sub_cases, as_array) {
-            parse_case(&sub_case, property_functions, test_functions, use_maplit)?;
+    match case {
+        LabeledTestItem::Single(case) => {
+            let property = case.property();
+            if !property_functions.contains_key(property) {
+                property_functions.insert(
+                    property.to_string(),
+                    exercise::generate_property_body(property),
+                );
+            }
+
+            test_functions.push(exercise::generate_test_function(case, use_maplit)?);
         }
-    }
-
-    if let Some(property) = case.get("property") {
-        let property = val_as!(property, as_str);
-
-        if !property_functions.contains_key(property) {
-            property_functions.insert(
-                property.to_string(),
-                exercise::generate_property_body(property),
-            );
+        LabeledTestItem::Array(group) => {
+            for case in group.cases() {
+                parse_case(case, property_functions, test_functions, use_maplit)?;
+            }
         }
-
-        test_functions.push(exercise::generate_test_function(case, use_maplit)?);
     }
 
     Ok(())
@@ -70,7 +73,7 @@ fn parse_case(
 fn generate_tests_from_canonical_data(
     exercise_name: &str,
     tests_path: &Path,
-    canonical_data: &JsonValue,
+    canonical_data: &CanonicalData,
     use_maplit: bool,
 ) -> Result<()> {
     exercise::update_cargo_toml_version(exercise_name, canonical_data)?;
@@ -97,9 +100,9 @@ fn generate_tests_from_canonical_data(
 
     let mut test_functions: Vec<String> = Vec::new();
 
-    for case in get!(canonical_data, "cases", as_array) {
+    for case in canonical_data.cases() {
         parse_case(
-            &case,
+            case,
             &mut property_functions,
             &mut test_functions,
             use_maplit,

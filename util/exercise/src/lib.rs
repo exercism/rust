@@ -13,6 +13,7 @@ use std::{
     path::Path,
     process::{Command, Stdio},
 };
+use structs::{CanonicalData, LabeledTest};
 use toml;
 use toml::Value as TomlValue;
 
@@ -128,7 +129,7 @@ fn get_canonical(exercise: &str, file: &str) -> Result<reqwest::Response> {
 }
 
 // Try to get the canonical data for the exercise of the given name
-pub fn get_canonical_data(exercise_name: &str) -> Result<Value> {
+pub fn get_canonical_data(exercise_name: &str) -> Result<CanonicalData> {
     let mut response = get_canonical(exercise_name, "canonical-data.json")?.error_for_status()?;
     response.json().map_err(|e| e.into())
 }
@@ -228,32 +229,22 @@ fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
     })
 }
 
-pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> {
-    let description = get!(case, "description", as_str);
-    let property = get!(case, "property", as_str);
-    let comments = if let Some(comments) = case.get("comments") {
-        use Value::*;
-        match comments {
-            Array(cs) => cs
-                .iter()
-                .map(|line| format!("/// {}", line))
-                .collect::<Vec<_>>()
-                .join("\n"),
-            String(s) => format!("\n/// {}", s),
-            _ => {
-                return Err(errors::Error::SchemaTypeError {
-                    file: "config.json".to_string(),
-                    field: "comments".to_string(),
-                    as_type: "string or array".to_string(),
-                });
-            }
-        }
+pub fn generate_test_function(case: &LabeledTest, use_maplit: bool) -> Result<String> {
+    let description = case.description();
+    let property = case.property();
+
+    let comments = if let Some(comments) = case.comments() {
+        comments
+            .iter()
+            .map(|line| format!("/// {}", line))
+            .collect::<Vec<_>>()
+            .join("\n")
     } else {
-        "".to_string()
+        String::new()
     };
 
-    let input = into_literal(get!(case, "input"), use_maplit)?;
-    let expected = into_literal(get!(case, "expected"), use_maplit)?;
+    let input = into_literal(case.input(), use_maplit)?;
+    let expected = into_literal(case.expected(), use_maplit)?;
 
     Ok(format!(
         "#[test]\n\
@@ -297,7 +288,10 @@ pub fn exercise_exists(exercise_name: &str) -> bool {
 }
 
 // Update the version of the specified exercise in the Cargo.toml file according to the passed canonical data
-pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) -> Result<()> {
+pub fn update_cargo_toml_version(
+    exercise_name: &str,
+    canonical_data: &CanonicalData,
+) -> Result<()> {
     let cargo_toml_path = Path::new(&*TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
@@ -319,7 +313,7 @@ pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) ->
 
         package_table.insert(
             "version".to_string(),
-            TomlValue::String(get!(canonical_data, "version", as_str).to_string()),
+            TomlValue::String(canonical_data.version().to_string()),
         );
     }
 
