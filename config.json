@@ -573,6 +573,21 @@
       ]
     },
     {
+      "slug": "affine-cipher",
+      "uuid": "2a1dcf38-ec05-4b24-a2e2-2e5b3595f3f0",
+      "core": false,
+      "unlocked_by": "atbash-cipher",
+      "difficulty": 4,
+      "topics": [
+        "ascii",
+        "chars",
+        "iterators",
+        "primitive_types",
+        "str_vs_string",
+        "strings"
+      ]
+    },
+    {
       "slug": "variable-length-quantity",
       "uuid": "f1371a9c-c2a4-4fc6-a5fd-3a57c4af16fa",
       "core": false,
