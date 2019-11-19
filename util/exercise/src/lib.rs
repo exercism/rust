@@ -1,5 +1,7 @@
 pub mod cmd;
 pub mod errors;
+pub mod structs;
+
 use errors::Result;
 use failure::format_err;
 use lazy_static::lazy_static;
