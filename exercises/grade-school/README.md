@@ -15,9 +15,12 @@ In the end, you should be able to:
   as 1, 2, 3, etc., and students within a grade should be sorted
   alphabetically by name.
   - "Who all is enrolled in school right now?"
-  - "Grade 1: Anna, Barb, and Charlie. Grade 2: Alex, Peter, and Zoe.
-    Grade 3…"
-
+  - "Let me think. We have 
+  Anna, Barb, and Charlie in grade 1, 
+  Alex, Peter, and Zoe in grade 2
+  and Jim in grade 5. 
+  So the answer is: Anna, Barb, Charlie, Alex, Peter, Zoe and Jim"
+   
 Note that all our students only have one name.  (It's a small town, what
 do you want?)
 
