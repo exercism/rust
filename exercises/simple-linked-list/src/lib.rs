@@ -1,5 +1,6 @@
 use std::iter::FromIterator;
 
+#[derive(Default)]
 pub struct SimpleLinkedList<T> {
     // Delete this field
     // dummy is needed to avoid unused parameter error during compilation
@@ -12,6 +13,10 @@ impl<T> SimpleLinkedList<T> {
     }
 
     pub fn len(&self) -> usize {
+        unimplemented!()
+    }
+
+    pub fn is_empty(&self) -> bool {
         unimplemented!()
     }
 
