@@ -431,3 +431,19 @@ fn cannot_roll_after_bonus_roll_for_strike() {
 
     assert_eq!(game.roll(2), Err(Error::GameComplete));
 }
+
+
+#[test]
+#[ignore]
+fn last_two_strikes_followed_by_only_last_bonus_with_non_strike_points() {
+    let mut game = BowlingGame::new();
+    for _ in 0..16 {
+        let _ = game.roll(0);
+    }
+    let _ = game.roll(10);
+    let _ = game.roll(10);
+    let _ = game.roll(0);
+    let _ = game.roll(1);
+
+    assert_eq!(game.score(), Some(31));
+}
