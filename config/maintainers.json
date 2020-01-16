@@ -70,6 +70,16 @@
       "link_url": "https://thedarkula.gitlab.io/code-artistry/",
       "avatar_url": null,
       "bio": "I love real-world, usable examples. I'm a huge fan of being able to help others to make something work how it should with maximum performance. I especially love Rust and have written a tool called BrewStillery in it and GTK-rs. "
+    },
+    {
+      "github_username": "filalex77",
+      "alumnus": false,
+      "show_on_website": true,
+      "name": "Meade Kincke",
+      "link_text": null,
+      "link_url": null,
+      "avatar_url": "https://s.gravatar.com/avatar/0fc9e7d51cbfcfa04e86f1f5dbdc362d",
+      "bio": "I love Rust for being strict, performant, ergonomic and enjoyable at the same time. After being a mentor for some time, I decided to be a maintainer. Looking forward to it!"
     }
   ]
 }
