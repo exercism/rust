@@ -80,6 +80,16 @@
       "link_url": null,
       "avatar_url": "https://s.gravatar.com/avatar/0fc9e7d51cbfcfa04e86f1f5dbdc362d",
       "bio": "I love Rust for being strict, performant, ergonomic and enjoyable at the same time. After being a mentor for some time, I decided to be a maintainer. Looking forward to it!"
-    }
+    },
+    {
+      "github_username": "lewisclement",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": "Lewis Clement",
+      "link_text": null,
+      "link_url": null,
+      "avatar_url": null,
+      "bio": " After many years of writing hobby projects in C++ and school- and professional projects in C# and JavaScript, my new go-to language has become Rust. As a perfect blend of a low-level language with high-level syntax features it's become the language I get most joy using, and hopefully I help others find enjoyment in it too. "
+    },
   ]
 }
