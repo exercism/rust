@@ -127,10 +127,10 @@ fn test_graph_with_attributes() {
 fn test_graph_stores_attributes() {
     let attributes = [("foo", "bar"), ("bat", "baz"), ("bim", "bef")];
     let graph = Graph::new().with_nodes(
-        &['a', 'b', 'c']
+        &["a", "b", "c"]
             .iter()
             .zip(attributes.iter())
-            .map(|(name, &attr)| Node::new(&name.to_string()).with_attrs(&[attr]))
+            .map(|(name, &attr)| Node::new(&name).with_attrs(&[attr]))
             .collect::<Vec<_>>(),
     );
 
