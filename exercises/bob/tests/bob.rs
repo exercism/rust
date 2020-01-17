@@ -23,8 +23,7 @@ process_response_case({let mut hm = ::std::collections::HashMap::new(); hm.inser
 #[ignore]
 /// other whitespace
 fn test_other_whitespace() {
-process_response_case({let mut hm = ::std::collections::HashMap::new(); hm.insert("heyBob", "
- 	"); hm}, "Fine. Be that way!");
+process_response_case({let mut hm = ::std::collections::HashMap::new(); hm.insert("heyBob", "\r\r 	"); hm}, "Fine. Be that way!");
 }
 
 
