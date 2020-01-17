@@ -230,10 +230,10 @@ fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
 }
 
 pub fn generate_test_function(case: &LabeledTest, use_maplit: bool) -> Result<String> {
-    let description = case.description();
-    let property = case.property();
+    let description = &case.description;
+    let property = &case.property;
 
-    let comments = if let Some(comments) = case.comments() {
+    let comments = if let Some(comments) = &case.comments {
         comments
             .iter()
             .map(|line| format!("/// {}", line))
@@ -243,8 +243,8 @@ pub fn generate_test_function(case: &LabeledTest, use_maplit: bool) -> Result<St
         String::new()
     };
 
-    let input = into_literal(case.input(), use_maplit)?;
-    let expected = into_literal(case.expected(), use_maplit)?;
+    let input = into_literal(&case.input, use_maplit)?;
+    let expected = into_literal(&case.expected, use_maplit)?;
 
     Ok(format!(
         "#[test]\n\
@@ -313,7 +313,7 @@ pub fn update_cargo_toml_version(
 
         package_table.insert(
             "version".to_string(),
-            TomlValue::String(canonical_data.version().to_string()),
+            TomlValue::String(canonical_data.version.to_string()),
         );
     }
 

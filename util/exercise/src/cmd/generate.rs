@@ -49,7 +49,7 @@ fn parse_case(
 ) -> Result<()> {
     match case {
         LabeledTestItem::Single(case) => {
-            let property = case.property();
+            let property = &case.property;
             if !property_functions.contains_key(property) {
                 property_functions.insert(
                     property.to_string(),
@@ -60,7 +60,7 @@ fn parse_case(
             test_functions.push(exercise::generate_test_function(case, use_maplit)?);
         }
         LabeledTestItem::Array(group) => {
-            for case in group.cases() {
+            for case in &group.cases {
                 parse_case(case, property_functions, test_functions, use_maplit)?;
             }
         }
@@ -100,7 +100,7 @@ fn generate_tests_from_canonical_data(
 
     let mut test_functions: Vec<String> = Vec::new();
 
-    for case in canonical_data.cases() {
+    for case in &canonical_data.cases {
         parse_case(
             case,
             &mut property_functions,

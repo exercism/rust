@@ -40,7 +40,7 @@ fn generate_diffs(
     diffs: &mut HashSet<String>,
     use_maplit: bool,
 ) -> Result<()> {
-    let description = case.description();
+    let description = &case.description;
     let description_formatted = exercise::format_exercise_description(description);
 
     let diff_type = if !tests_content.contains(&format!("test_{}", description_formatted)) {
@@ -56,7 +56,7 @@ fn generate_diffs(
         }
     }
 
-    let property = case.property();
+    let property = &case.property;
     let property_formatted = exercise::format_exercise_property(property);
 
     if !tests_content.contains(&format!("process_{}_case", property_formatted))
@@ -77,7 +77,7 @@ fn get_diffs(
     match case {
         LabeledTestItem::Single(case) => generate_diffs(case, &tests_content, diffs, use_maplit)?,
         LabeledTestItem::Array(group) => {
-            for case in group.cases() {
+            for case in &group.cases {
                 get_diffs(case, diffs, tests_content, use_maplit)?;
             }
         }
@@ -122,7 +122,7 @@ pub fn update_exercise(exercise_name: &str, use_maplit: bool) -> Result<()> {
 
     let mut diffs: HashSet<String> = HashSet::new();
 
-    for case in canonical_data.cases() {
+    for case in &canonical_data.cases {
         get_diffs(case, &mut diffs, &tests_content, use_maplit)?;
     }
 
