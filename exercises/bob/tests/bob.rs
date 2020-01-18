@@ -3,6 +3,13 @@ fn process_response_case(phrase: &str, expected_response: &str) {
 }
 
 #[test]
+/// stating something
+fn test_stating_something() {
+    process_response_case("Tom-ay-to, tom-aaaah-to.", "Whatever.");
+}
+
+
+#[test]
 #[ignore]
 /// ending with whitespace
 fn test_ending_with_whitespace() {
@@ -128,14 +135,6 @@ fn test_shouting() {
 /// non-letters with question
 fn test_nonletters_with_question() {
     process_response_case(":) ?", "Sure.");
-}
-
-
-#[test]
-#[ignore]
-/// stating something
-fn test_stating_something() {
-    process_response_case("Tom-ay-to, tom-aaaah-to.", "Whatever.");
 }
 
 
