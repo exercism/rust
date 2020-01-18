@@ -6,14 +6,13 @@ use errors::Result;
 use failure::format_err;
 use lazy_static::lazy_static;
 use reqwest;
-use serde_json;
-use serde_json::Value;
 use std::{
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
 };
 use structs::{CanonicalData, LabeledTest};
+use tera::{Context, Tera};
 use toml;
 use toml::Value as TomlValue;
 
@@ -31,6 +30,30 @@ lazy_static! {
             .expect("git rev-parse produced non-utf8 output")
             .trim()
             .to_string()
+    };
+}
+
+// Create a static `Tera` struct so we can access the templates from anywhere.
+lazy_static! {
+    pub static ref TEMPLATES: Tera = {
+        let templates = Path::new(&*TRACK_ROOT)
+            .join("util")
+            .join("exercise")
+            .join("src")
+            .join("cmd")
+            .join("templates")
+            .join("**")
+            .join("*.rs");
+
+        // Since `TRACK_ROOT` already checks for UTF-8 and nothing added is not
+        // UTF-8, unwrapping is fine.
+        match Tera::new(templates.to_str().unwrap()) {
+            Ok(t) => t,
+            Err(e) => {
+                println!("Parsing error(s): {}", e);
+                ::std::process::exit(1);
+            }
+        }
     };
 }
 
@@ -161,107 +184,16 @@ pub fn format_exercise_property(property: &str) -> String {
     property.replace(" ", "_").to_lowercase()
 }
 
-pub fn generate_property_body(property: &str) -> String {
-    format!(
-        "\
-         /// Process a single test case for the property `{property}`\n\
-         ///\n\
-         /// All cases for the `{property}` property are implemented\n\
-         /// in terms of this function.\n\
-         /// \n\
-         /// Note that you'll need to both name the expected transform which\n\
-         /// the student needs to write, and name the types of the inputs and outputs.\n\
-         /// While rustc _may_ be able to handle things properly given a working example,\n\
-         /// students will face confusing errors if the `I` and `O` types are not concrete.\n\
-         /// \n\
-         fn process_{property_formatted}_case<I, O>(input: I, expected: O) {{\n\
-         //  typical implementation:\n\
-         //  assert_eq!(\n\
-         //      student_{property_formatted}_func(input),\n\
-         //      expected\n\
-         //  )\n    unimplemented!()\n\
-         }}\n\
-         \n\
-         ",
-        property = property,
-        property_formatted = format_exercise_property(property),
-    )
-}
-
-// Depending on the type of the item variable,
-// transform item into corresponding Rust literal
-fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
-    use std::string;
-    use Value::*;
-    Ok(match item {
-        Null => string::String::from("None"),
-        String(s) => format!("\"{}\"", s),
-        Number(_) | Bool(_) => format!("{}", item),
-        Array(vs) => {
-            let mut items = Vec::with_capacity(vs.len());
-            for im in vs.iter() {
-                items.push(into_literal(im, use_maplit)?);
-            }
-            format!("vec![{}]", items.join(", "))
-        }
-        Object(m) => {
-            let mut kvs = Vec::with_capacity(m.len());
-            for (key, value) in m.iter() {
-                if use_maplit {
-                    kvs.push(format!("\"{}\"=>{}", key, into_literal(value, use_maplit)?));
-                } else {
-                    kvs.push(format!(
-                        "hm.insert(\"{}\", {});",
-                        key,
-                        into_literal(value, use_maplit)?
-                    ));
-                }
-            }
-            if use_maplit {
-                format!("hashmap!{{{}}}", kvs.join(","))
-            } else {
-                format!(
-                    "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
-                    kvs.join(" "),
-                )
-            }
-        }
-    })
+pub fn generate_property_body(property: &str) -> Result<String> {
+    let mut context = Context::new();
+    context.insert("property", property);
+    TEMPLATES.render("property_fn.rs", &context).map_err(|e| e.into())
 }
 
 pub fn generate_test_function(case: &LabeledTest, use_maplit: bool) -> Result<String> {
-    let description = &case.description;
-    let property = &case.property;
-
-    let comments = if let Some(comments) = &case.comments {
-        comments
-            .iter()
-            .map(|line| format!("/// {}", line))
-            .collect::<Vec<_>>()
-            .join("\n")
-    } else {
-        String::new()
-    };
-
-    let input = into_literal(&case.input, use_maplit)?;
-    let expected = into_literal(&case.expected, use_maplit)?;
-
-    Ok(format!(
-        "#[test]\n\
-         #[ignore]\n\
-         /// {description}{comments}\n\
-         fn test_{description_formatted}() {{\n\
-         process_{property}_case({input}, {expected});\n\
-         }}\n\
-         \n\
-         ",
-        description = description,
-        description_formatted = format_exercise_description(description),
-        property = format_exercise_property(property),
-        comments = comments,
-        input = input,
-        expected = expected
-    ))
+    let mut context = Context::from_serialize(case)?;
+    context.insert("use_maplit", &use_maplit);
+    TEMPLATES.render("test_fn.rs", &context).map_err(|e| e.into())
 }
 
 pub fn rustfmt(file_path: &Path) -> Result<()> {

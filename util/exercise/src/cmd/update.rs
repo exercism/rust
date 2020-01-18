@@ -26,12 +26,12 @@ fn generate_diff_test(
     ))
 }
 
-fn generate_diff_property(property: &str) -> String {
-    format!(
+fn generate_diff_property(property: &str) -> Result<String> {
+    Ok(format!(
         "//{}\n{}",
         "NEW",
-        exercise::generate_property_body(property)
-    )
+        exercise::generate_property_body(property)?
+    ))
 }
 
 fn generate_diffs(
@@ -60,7 +60,7 @@ fn generate_diffs(
     let property_formatted = exercise::format_exercise_property(property);
 
     if !tests_content.contains(&format!("process_{}_case", property_formatted))
-        && diffs.insert(generate_diff_property(property))
+        && diffs.insert(generate_diff_property(property)?)
     {
         println!("New property detected: {}.", property);
     }

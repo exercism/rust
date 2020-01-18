@@ -53,7 +53,7 @@ fn parse_case(
             if !property_functions.contains_key(property) {
                 property_functions.insert(
                     property.to_string(),
-                    exercise::generate_property_body(property),
+                    exercise::generate_property_body(property)?,
                 );
             }
 
