@@ -6,7 +6,9 @@ use errors::Result;
 use failure::format_err;
 use lazy_static::lazy_static;
 use reqwest;
+use serde_json::Value;
 use std::{
+    collections::HashMap,
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
@@ -47,13 +49,34 @@ lazy_static! {
 
         // Since `TRACK_ROOT` already checks for UTF-8 and nothing added is not
         // UTF-8, unwrapping is fine.
-        match Tera::new(templates.to_str().unwrap()) {
+        let mut tera = match Tera::new(templates.to_str().unwrap()) {
             Ok(t) => t,
             Err(e) => {
                 println!("Parsing error(s): {}", e);
                 ::std::process::exit(1);
             }
-        }
+        };
+
+        // Build wrappers around the formatting functions.
+        let format_description = |args: &HashMap<String, Value>|
+            args.get("description")
+                .and_then(Value::as_str)
+                .map(format_exercise_description)
+                .map(Value::from)
+                .ok_or(tera::Error::from("Problem formatting the description."))
+        ;
+
+        let format_property = |args: &HashMap<String, Value>|
+            args.get("property")
+                .and_then(Value::as_str)
+                .map(format_exercise_property)
+                .map(Value::from)
+                .ok_or(tera::Error::from("Problem formatting the property."))
+        ;
+
+        tera.register_function("format_description", format_description);
+        tera.register_function("format_property", format_property);
+        tera
     };
 }
 
@@ -187,13 +210,17 @@ pub fn format_exercise_property(property: &str) -> String {
 pub fn generate_property_body(property: &str) -> Result<String> {
     let mut context = Context::new();
     context.insert("property", property);
-    TEMPLATES.render("property_fn.rs", &context).map_err(|e| e.into())
+    TEMPLATES
+        .render("property_fn.rs", &context)
+        .map_err(|e| e.into())
 }
 
 pub fn generate_test_function(case: &LabeledTest, use_maplit: bool) -> Result<String> {
     let mut context = Context::from_serialize(case)?;
     context.insert("use_maplit", &use_maplit);
-    TEMPLATES.render("test_fn.rs", &context).map_err(|e| e.into())
+    TEMPLATES
+        .render("test_fn.rs", &context)
+        .map_err(|e| e.into())
 }
 
 pub fn rustfmt(file_path: &Path) -> Result<()> {

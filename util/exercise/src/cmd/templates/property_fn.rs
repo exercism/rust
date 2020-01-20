@@ -8,7 +8,7 @@
 /// While rustc _may_ be able to handle things properly given a working example,
 /// students will face confusing errors if the `I` and `O` types are not
 /// concrete.
-fn process_{{ property | slugify | replace(from="-", to="_") }}_case<I, O>(input: I, expected: O) {
+fn process_{{ format_property(property=property) }}_case<I, O>(input: I, expected: O) {
     //  typical implementation:
     //  assert_eq!(
     //      student_{{ property | slugify | replace(from="-", to="_") }}_func(input),
