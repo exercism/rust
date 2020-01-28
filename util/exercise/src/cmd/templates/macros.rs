@@ -33,3 +33,14 @@
         None
     {% endif -%}
 {% endmacro -%}
+
+{% macro gen_test_fn(case, dont_ignore=false) -%}
+    {# Need to set up the variables for the template. #}
+    {% set description = case.description -%}
+    {% set comments = case.comments -%}
+    {% set property = case.property -%}
+    {% set input = case.input -%}
+    {% set expected = case.expected -%}
+
+    {% include "test_fn.rs" %}
+{% endmacro generate_test_fn -%}

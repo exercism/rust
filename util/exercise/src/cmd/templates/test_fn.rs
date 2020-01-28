@@ -1,6 +1,9 @@
-{% import "macros.rs" as macros %}
+{% import "macros.rs" as macros -%}
+
 #[test]
+{% if not dont_ignore -%}
 #[ignore]
+{% endif -%}
 /// {{ description }}
 {% if comments -%}
     ///
