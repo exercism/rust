@@ -11,7 +11,7 @@
 fn process_{{ format_property(property=property) }}_case<I, O>(input: I, expected: O) {
     //  typical implementation:
     //  assert_eq!(
-    //      student_{{ property | slugify | replace(from="-", to="_") }}_func(input),
+    //      student_{{ format_property(property=property) }}_func(input),
     //      expected,
     //  )
     unimplemented!()
