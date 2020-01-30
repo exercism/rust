@@ -9,14 +9,17 @@
 
 {% for comment in comments -%}
     /// {{ comment }}
-{% endfor -%}
+{% endfor %}
 
 {% if use_maplit -%}
 use maplit::hashmap;
-{% endif -%}
+{% endif %}
 
-{# Prepare an array (global) to store the properties. Also, don't ignore the first case. -#}
-{% set properties = [] -%}
+{% for property in properties | sort -%}
+    {% include "property_fn.rs" %}
+{% endfor -%}
+
+{# Don't ignore the first case. -#}
 {% set dont_ignore = true -%}
 
 {% for item in cases -%}
@@ -34,19 +37,13 @@ use maplit::hashmap;
         {% endif -%}
 
         {% for case in item.cases -%}
-            {% set_global properties = properties | concat(with=case.property) -%}
             {{ macros::gen_test_fn(case=case, dont_ignore=dont_ignore) }}
             {% set_global dont_ignore = false -%}
         {% endfor -%}
 
     {# Or just a single one. #}
     {% else -%}
-        {% set_global properties = properties | concat(with=item.property) -%}
         {{ macros::gen_test_fn(case=item, dont_ignore=dont_ignore) }}
         {% set_global dont_ignore = false -%}
     {% endif -%}
 {% endfor -%}
-
-{%- for property in properties | unique -%}
-    {% include "property_fn.rs" %}
-{%- endfor -%}

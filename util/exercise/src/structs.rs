@@ -6,6 +6,7 @@
 
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use std::collections::HashSet;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct CanonicalData {
@@ -50,3 +51,34 @@ type Optional = String;
 type Property = String;
 type Input = Value;
 type Expected = Value;
+
+impl CanonicalData {
+    pub fn properties(&self) -> HashSet<&str> {
+        self.cases
+            .iter()
+            .flat_map(LabeledTestItem::iter)
+            .map(|case| case.property.as_str())
+            .collect()
+    }
+}
+
+impl LabeledTestItem {
+    fn iter(&self) -> Box<dyn Iterator<Item = &LabeledTest> + '_> {
+        match self {
+            LabeledTestItem::Single(case) => Box::new(case.iter()),
+            LabeledTestItem::Array(cases) => Box::new(cases.iter()),
+        }
+    }
+}
+
+impl LabeledTest {
+    fn iter(&self) -> impl Iterator<Item = &LabeledTest> {
+        std::iter::once(self)
+    }
+}
+
+impl LabeledTestGroup {
+    fn iter(&self) -> impl Iterator<Item = &LabeledTest> {
+        self.cases.iter().flat_map(LabeledTestItem::iter)
+    }
+}

@@ -48,6 +48,7 @@ fn generate_tests_from_canonical_data(
 
     let mut context = Context::from_serialize(canonical_data)?;
     context.insert("use_maplit", &use_maplit);
+    context.insert("properties", &canonical_data.properties());
 
     let test_file = TEMPLATES.render("test_file.rs", &context)?;
     fs::write(&tests_path, test_file)?;
