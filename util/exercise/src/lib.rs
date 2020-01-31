@@ -1,16 +1,20 @@
 pub mod cmd;
 pub mod errors;
+pub mod structs;
+
 use errors::Result;
 use failure::format_err;
 use lazy_static::lazy_static;
 use reqwest;
-use serde_json;
 use serde_json::Value;
 use std::{
+    collections::HashMap,
     env, fs, io,
     path::Path,
     process::{Command, Stdio},
 };
+use structs::{CanonicalData, LabeledTest};
+use tera::{Context, Tera};
 use toml;
 use toml::Value as TomlValue;
 
@@ -28,6 +32,51 @@ lazy_static! {
             .expect("git rev-parse produced non-utf8 output")
             .trim()
             .to_string()
+    };
+}
+
+// Create a static `Tera` struct so we can access the templates from anywhere.
+lazy_static! {
+    pub static ref TEMPLATES: Tera = {
+        let templates = Path::new(&*TRACK_ROOT)
+            .join("util")
+            .join("exercise")
+            .join("src")
+            .join("cmd")
+            .join("templates")
+            .join("**")
+            .join("*.rs");
+
+        // Since `TRACK_ROOT` already checks for UTF-8 and nothing added is not
+        // UTF-8, unwrapping is fine.
+        let mut tera = match Tera::new(templates.to_str().unwrap()) {
+            Ok(t) => t,
+            Err(e) => {
+                println!("Parsing error(s): {}", e);
+                ::std::process::exit(1);
+            }
+        };
+
+        // Build wrappers around the formatting functions.
+        let format_description = |args: &HashMap<String, Value>|
+            args.get("description")
+                .and_then(Value::as_str)
+                .map(format_exercise_description)
+                .map(Value::from)
+                .ok_or(tera::Error::from("Problem formatting the description."))
+        ;
+
+        let format_property = |args: &HashMap<String, Value>|
+            args.get("property")
+                .and_then(Value::as_str)
+                .map(format_exercise_property)
+                .map(Value::from)
+                .ok_or(tera::Error::from("Problem formatting the property."))
+        ;
+
+        tera.register_function("format_description", format_description);
+        tera.register_function("format_property", format_property);
+        tera
     };
 }
 
@@ -126,7 +175,7 @@ fn get_canonical(exercise: &str, file: &str) -> Result<reqwest::Response> {
 }
 
 // Try to get the canonical data for the exercise of the given name
-pub fn get_canonical_data(exercise_name: &str) -> Result<Value> {
+pub fn get_canonical_data(exercise_name: &str) -> Result<CanonicalData> {
     let mut response = get_canonical(exercise_name, "canonical-data.json")?.error_for_status()?;
     response.json().map_err(|e| e.into())
 }
@@ -158,117 +207,20 @@ pub fn format_exercise_property(property: &str) -> String {
     property.replace(" ", "_").to_lowercase()
 }
 
-pub fn generate_property_body(property: &str) -> String {
-    format!(
-        "\
-         /// Process a single test case for the property `{property}`\n\
-         ///\n\
-         /// All cases for the `{property}` property are implemented\n\
-         /// in terms of this function.\n\
-         /// \n\
-         /// Note that you'll need to both name the expected transform which\n\
-         /// the student needs to write, and name the types of the inputs and outputs.\n\
-         /// While rustc _may_ be able to handle things properly given a working example,\n\
-         /// students will face confusing errors if the `I` and `O` types are not concrete.\n\
-         /// \n\
-         fn process_{property_formatted}_case<I, O>(input: I, expected: O) {{\n\
-         //  typical implementation:\n\
-         //  assert_eq!(\n\
-         //      student_{property_formatted}_func(input),\n\
-         //      expected\n\
-         //  )\n    unimplemented!()\n\
-         }}\n\
-         \n\
-         ",
-        property = property,
-        property_formatted = format_exercise_property(property),
-    )
+pub fn generate_property_body(property: &str) -> Result<String> {
+    let mut context = Context::new();
+    context.insert("property", property);
+    TEMPLATES
+        .render("property_fn.rs", &context)
+        .map_err(|e| e.into())
 }
 
-// Depending on the type of the item variable,
-// transform item into corresponding Rust literal
-fn into_literal(item: &Value, use_maplit: bool) -> Result<String> {
-    use std::string;
-    use Value::*;
-    Ok(match item {
-        Null => string::String::from("None"),
-        String(s) => format!("\"{}\"", s),
-        Number(_) | Bool(_) => format!("{}", item),
-        Array(vs) => {
-            let mut items = Vec::with_capacity(vs.len());
-            for im in vs.iter() {
-                items.push(into_literal(im, use_maplit)?);
-            }
-            format!("vec![{}]", items.join(", "))
-        }
-        Object(m) => {
-            let mut kvs = Vec::with_capacity(m.len());
-            for (key, value) in m.iter() {
-                if use_maplit {
-                    kvs.push(format!("\"{}\"=>{}", key, into_literal(value, use_maplit)?));
-                } else {
-                    kvs.push(format!(
-                        "hm.insert(\"{}\", {});",
-                        key,
-                        into_literal(value, use_maplit)?
-                    ));
-                }
-            }
-            if use_maplit {
-                format!("hashmap!{{{}}}", kvs.join(","))
-            } else {
-                format!(
-                    "{{let mut hm = ::std::collections::HashMap::new(); {} hm}}",
-                    kvs.join(" "),
-                )
-            }
-        }
-    })
-}
-
-pub fn generate_test_function(case: &Value, use_maplit: bool) -> Result<String> {
-    let description = get!(case, "description", as_str);
-    let property = get!(case, "property", as_str);
-    let comments = if let Some(comments) = case.get("comments") {
-        use Value::*;
-        match comments {
-            Array(cs) => cs
-                .iter()
-                .map(|line| format!("/// {}", line))
-                .collect::<Vec<_>>()
-                .join("\n"),
-            String(s) => format!("\n/// {}", s),
-            _ => {
-                return Err(errors::Error::SchemaTypeError {
-                    file: "config.json".to_string(),
-                    field: "comments".to_string(),
-                    as_type: "string or array".to_string(),
-                });
-            }
-        }
-    } else {
-        "".to_string()
-    };
-
-    let input = into_literal(get!(case, "input"), use_maplit)?;
-    let expected = into_literal(get!(case, "expected"), use_maplit)?;
-
-    Ok(format!(
-        "#[test]\n\
-         #[ignore]\n\
-         /// {description}{comments}\n\
-         fn test_{description_formatted}() {{\n\
-         process_{property}_case({input}, {expected});\n\
-         }}\n\
-         \n\
-         ",
-        description = description,
-        description_formatted = format_exercise_description(description),
-        property = format_exercise_property(property),
-        comments = comments,
-        input = input,
-        expected = expected
-    ))
+pub fn generate_test_function(case: &LabeledTest, use_maplit: bool) -> Result<String> {
+    let mut context = Context::from_serialize(case)?;
+    context.insert("use_maplit", &use_maplit);
+    TEMPLATES
+        .render("test_fn.rs", &context)
+        .map_err(|e| e.into())
 }
 
 pub fn rustfmt(file_path: &Path) -> Result<()> {
@@ -295,7 +247,10 @@ pub fn exercise_exists(exercise_name: &str) -> bool {
 }
 
 // Update the version of the specified exercise in the Cargo.toml file according to the passed canonical data
-pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) -> Result<()> {
+pub fn update_cargo_toml_version(
+    exercise_name: &str,
+    canonical_data: &CanonicalData,
+) -> Result<()> {
     let cargo_toml_path = Path::new(&*TRACK_ROOT)
         .join("exercises")
         .join(exercise_name)
@@ -317,7 +272,7 @@ pub fn update_cargo_toml_version(exercise_name: &str, canonical_data: &Value) ->
 
         package_table.insert(
             "version".to_string(),
-            TomlValue::String(get!(canonical_data, "version", as_str).to_string()),
+            TomlValue::String(canonical_data.version.to_string()),
         );
     }
 

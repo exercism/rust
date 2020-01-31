@@ -2,6 +2,7 @@ use failure;
 use reqwest;
 use serde_json;
 use std::{convert::From, io, result};
+use tera;
 use toml;
 
 #[derive(Debug, failure::Fail)]
@@ -28,6 +29,8 @@ pub enum Error {
     ConfigTomlParseError(#[cause] toml::de::Error),
     #[fail(display = "HTTP error: {}", _0)]
     HTTPError(reqwest::Error),
+    #[fail(display = "Tera rendering error: {}", _0)]
+    TeraError(tera::Error),
     #[fail(display = "{}", _0)]
     Failure(#[cause] failure::Error),
     #[fail(display = "Unknown Failure: {}", _0)]
@@ -61,6 +64,12 @@ impl From<failure::Error> for Error {
 impl From<serde_json::Error> for Error {
     fn from(err: serde_json::Error) -> Self {
         Error::JsonError(err)
+    }
+}
+
+impl From<tera::Error> for Error {
+    fn from(err: tera::Error) -> Self {
+        Error::TeraError(err)
     }
 }
 
