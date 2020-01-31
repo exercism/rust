@@ -8,7 +8,7 @@
 //! [canonical_data]: https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{{ exercise }}/canonical-data.json
 
 {% for comment in comments -%}
-    /// {{ comment }}
+/// {{ comment }}
 {% endfor %}
 
 {% if use_maplit -%}
@@ -16,11 +16,11 @@ use maplit::hashmap;
 {% endif %}
 
 {% for property in properties | sort -%}
-    {% include "property_fn.rs" %}
+{% include "property_fn.rs" %}
 {% endfor -%}
 
 {# Don't ignore the first case. -#}
-{% set dont_ignore = true -%}
+{% set first_test_case = true -%}
 
 {% for item in cases -%}
     {# Check if we're dealing with a group of cases. #}
@@ -37,13 +37,13 @@ use maplit::hashmap;
         {% endif -%}
 
         {% for case in item.cases -%}
-            {{ macros::gen_test_fn(case=case, dont_ignore=dont_ignore) }}
-            {% set_global dont_ignore = false -%}
+            {{ macros::gen_test_fn(case=case, first_test_case=first_test_case) }}
+            {% set_global first_test_case = false -%}
         {% endfor -%}
 
     {# Or just a single one. #}
     {% else -%}
-        {{ macros::gen_test_fn(case=item, dont_ignore=dont_ignore) }}
-        {% set_global dont_ignore = false -%}
+        {{ macros::gen_test_fn(case=item, first_test_case=first_test_case) }}
+        {% set_global first_test_case = false -%}
     {% endif -%}
 {% endfor -%}

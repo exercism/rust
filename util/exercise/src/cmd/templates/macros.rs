@@ -34,7 +34,7 @@
     {% endif -%}
 {% endmacro -%}
 
-{% macro gen_test_fn(case, dont_ignore=false) -%}
+{% macro gen_test_fn(case, first_test_case=false) -%}
     {# Need to set up the variables for the template. #}
     {% set description = case.description -%}
     {% set comments = case.comments -%}
