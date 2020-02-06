@@ -1,7 +1,7 @@
 {% import "macros.rs" as macros -%}
 
 #[test]
-{% if not dont_ignore -%}
+{% if not first_test_case -%}
 #[ignore]
 {% endif -%}
 /// {{ description }}
