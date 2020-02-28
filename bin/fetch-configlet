@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 LATEST=https://github.com/exercism/configlet/releases/latest
 
 OS=$(
@@ -26,7 +28,12 @@ case $(uname -m) in
         echo 64bit;;
 esac)
 
-VERSION="$(curl --head --silent $LATEST | awk -v FS=/ '/Location:/{print $NF}' | tr -d '\r')"
+VERSION="$(curl --head --silent $LATEST | awk -v FS=/ '/[lL]ocation:/{print $NF}' | tr -d '\r')"
+if [ -z "$VERSION" ]; then
+    echo "Latest configlet release could not be determined; aborting"
+    exit 1
+fi
+
 URL=https://github.com/exercism/configlet/releases/download/$VERSION/configlet-$OS-${ARCH}.tgz
 
-curl -s --location $URL | tar xz -C bin/
+curl -sS --location $URL | tar xz -C bin/
