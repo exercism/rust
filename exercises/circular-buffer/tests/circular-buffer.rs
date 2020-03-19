@@ -94,6 +94,17 @@ fn clear_does_nothing_on_empty_buffer() {
 
 #[test]
 #[ignore]
+fn clear_actually_frees_up_its_elements() {
+    let mut buffer = CircularBuffer::new(1);
+    let element = Rc::new(());
+    assert!(buffer.write(Rc::clone(&element)).is_ok());
+    assert_eq!(Rc::strong_count(&element), 2);
+    buffer.clear();
+    assert_eq!(Rc::strong_count(&element), 1);
+}
+
+#[test]
+#[ignore]
 fn overwrite_acts_like_write_on_non_full_buffer() {
     let mut buffer = CircularBuffer::new(2);
     assert!(buffer.write('1').is_ok());
