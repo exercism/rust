@@ -1,4 +1,5 @@
 use circular_buffer::{CircularBuffer, Error};
+use std::rc::Rc;
 
 #[test]
 fn error_on_read_empty_buffer() {
