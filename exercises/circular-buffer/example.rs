@@ -55,6 +55,11 @@ impl<T: Default + Clone> CircularBuffer<T> {
     pub fn clear(&mut self) {
         self.start = 0;
         self.end = 0;
+
+        // Clear any values in the buffer
+        for element in self.buffer.iter_mut() {
+            std::mem::take(element);
+        }
     }
 
     pub fn is_empty(&self) -> bool {

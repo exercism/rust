@@ -1,4 +1,5 @@
 use circular_buffer::{CircularBuffer, Error};
+use std::rc::Rc;
 
 #[test]
 fn error_on_read_empty_buffer() {
@@ -90,6 +91,17 @@ fn clear_does_nothing_on_empty_buffer() {
     buffer.clear();
     assert!(buffer.write('1').is_ok());
     assert_eq!(Ok('1'), buffer.read());
+}
+
+#[test]
+#[ignore]
+fn clear_actually_frees_up_its_elements() {
+    let mut buffer = CircularBuffer::new(1);
+    let element = Rc::new(());
+    assert!(buffer.write(Rc::clone(&element)).is_ok());
+    assert_eq!(Rc::strong_count(&element), 2);
+    buffer.clear();
+    assert_eq!(Rc::strong_count(&element), 1);
 }
 
 #[test]
