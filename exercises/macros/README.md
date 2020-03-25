@@ -30,6 +30,11 @@ For example, a user of your library might write `hashmap!('a' => 3, 'b' => 11, '
 
 Note that the [`maplit` crate](https://crates.io/crates/maplit) provides a macro which perfectly solves this exercise. Please implement your own solution instead of using this crate; please make an attempt on your own before viewing its source.
 
+## Compatability
+
+Note that this exercise requires Rust 1.36 or later.
+
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning

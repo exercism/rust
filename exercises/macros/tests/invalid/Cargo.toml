@@ -1,0 +1,43 @@
+#
+# This Cargo.toml file is used by the simple-trybuild module.
+# When adding a new file, please name the [[bin]] name to match the file
+# it is used to produce an error message
+#
+
+[package]
+name = "macros-tests"
+version = "0.0.0"
+edition = "2018"
+publish = false
+
+[dependencies.macros]
+path = "../../"
+default-features = false
+
+[[bin]]
+name = "comma-sep-rs"
+path = "comma-sep.rs"
+
+[[bin]]
+name = "double-commas-rs"
+path = "double-commas.rs"
+
+[[bin]]
+name = "only-arrow-rs"
+path = "only-arrow.rs"
+
+[[bin]]
+name = "only-comma-rs"
+path = "only-comma.rs"
+
+[[bin]]
+name = "single-argument-rs"
+path = "single-argument.rs"
+
+[[bin]]
+name = "triple-arguments-rs"
+path = "triple-arguments.rs"
+
+[[bin]]
+name = "two-arrows-rs"
+path = "two-arrows.rs"
