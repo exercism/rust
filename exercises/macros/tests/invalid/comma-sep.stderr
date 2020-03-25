@@ -1,0 +1,5 @@
+error: no rules expected the token `,`
+ --> $DIR/comma-sep.rs:5:17
+  |
+5 |     hashmap!('a', 1);
+  |                 ^ no rules expected this token in macro call

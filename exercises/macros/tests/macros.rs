@@ -67,6 +67,16 @@ fn test_nested() {
     );
 }
 
+#[test]
+#[ignore]
+fn test_invalid_syntax() {
+    // These tests check for syntax that is invalid and should not compile.
+    // If the test fail, then that means the hashmap! macro is allowing
+    // invalid syntax
+    let t = trybuild::TestCases::new();
+    t.compile_fail("tests/invalid/*.rs");
+}
+
 mod test {
     use macros::hashmap;
     #[test]

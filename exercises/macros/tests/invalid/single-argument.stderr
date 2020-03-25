@@ -1,0 +1,5 @@
+error: unexpected end of macro invocation
+ --> $DIR/single-argument.rs:5:17
+  |
+5 |     hashmap!('a');
+  |                 ^ missing tokens in macro arguments
