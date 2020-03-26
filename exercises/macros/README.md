@@ -30,12 +30,15 @@ For example, a user of your library might write `hashmap!('a' => 3, 'b' => 11, '
 
 Note that the [`maplit` crate](https://crates.io/crates/maplit) provides a macro which perfectly solves this exercise. Please implement your own solution instead of using this crate; please make an attempt on your own before viewing its source.
 
+## Compatability
+
+Note that this exercise requires Rust 1.36 or later.
+
+
 ## Rust Installation
 
 Refer to the [exercism help page][help-page] for Rust installation and learning
 resources.
-
-Note that this exercise requires Rust 1.36 or later. Refer to the [rustup update page][rustup-update] for instructions to update to the latest version.
 
 ## Writing the Code
 
@@ -104,7 +107,6 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 [modules]: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
 [cargo]: https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html
 [rust-tests]: https://doc.rust-lang.org/book/ch11-02-running-tests.html
-[rustup-update]: https://github.com/rust-lang/rustup#keeping-rust-up-to-date
 
 ## Source
 
