@@ -1,0 +1,5 @@
+error: no rules expected the token `=>`
+ --> $DIR/only-arrow.rs:5:14
+  |
+5 |     hashmap!(=>);
+  |              ^^ no rules expected this token in macro call
