@@ -94,7 +94,7 @@ fn test_compile_fails_single_argument() {
 #[test]
 #[ignore]
 fn test_compile_fails_triple_arguments() {
-    simple_trybuild::compile_fail("triple-argumentss.rs");
+    simple_trybuild::compile_fail("triple-arguments.rs");
 }
 
 #[test]
@@ -122,10 +122,21 @@ mod simple_trybuild {
     use std::process::Command;
 
     pub fn compile_fail(file_name: &str) {
+        const INVALID_PATH: &str = "tests/invalid";
+
+        assert!(
+            [INVALID_PATH, file_name]
+                .iter()
+                .collect::<std::path::PathBuf>()
+                .exists(),
+            "file tests/invalid/{} does not exist.",
+            file_name
+        );
+
         let test_name = file_name.replace(".", "-");
 
         let result = Command::new("cargo")
-            .current_dir("tests/invalid/")
+            .current_dir(INVALID_PATH)
             .arg("build")
             .arg("--offline")
             .arg("--target-dir=../../target/tests/macros/")
@@ -137,8 +148,9 @@ mod simple_trybuild {
         if let Ok(result) = result {
             assert!(
                 !result.status.success(),
-                "tests/invalid/{} compiled sucessfully, but should not.",
-                file_name,
+                "{}/{} compiled sucessfully, but should not.",
+                INVALID_PATH,
+                file_name
             );
         }
     }
