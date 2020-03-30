@@ -119,39 +119,43 @@ mod test {
 }
 
 mod simple_trybuild {
+    use std::path::PathBuf;
     use std::process::Command;
 
     pub fn compile_fail(file_name: &str) {
-        const INVALID_PATH: &str = "tests/invalid";
+        let invalid_path: PathBuf = ["tests", "invalid"].iter().collect::<PathBuf>();
 
+        let mut file_path = invalid_path.clone();
+        file_path.push(file_name);
         assert!(
-            [INVALID_PATH, file_name]
-                .iter()
-                .collect::<std::path::PathBuf>()
-                .exists(),
-            "file tests/invalid/{} does not exist.",
-            file_name
+            file_path.exists(),
+            "{:?} does not exist.",
+            file_path.into_os_string()
         );
 
         let test_name = file_name.replace(".", "-");
+        let macros_dir = ["..", "..", "target", "tests", "macros"]
+            .iter()
+            .collect::<PathBuf>();
 
         let result = Command::new("cargo")
-            .current_dir(INVALID_PATH)
+            .current_dir(invalid_path)
             .arg("build")
             .arg("--offline")
-            .arg("--target-dir=../../target/tests/macros/")
+            .arg("--target-dir")
+            .arg(macros_dir)
             .arg("--bin")
             .arg(test_name)
             .output();
 
-        assert!(result.is_ok());
         if let Ok(result) = result {
             assert!(
                 !result.status.success(),
-                "{}/{} compiled sucessfully, but should not.",
-                INVALID_PATH,
-                file_name
+                "Expected {:?} to fail to compile, but it succeeded.",
+                file_path
             );
+        } else {
+            panic!("Running subprocess failed.");
         }
     }
 }
