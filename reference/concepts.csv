@@ -35,7 +35,6 @@ scopes-and-expressions,
 explicit-return,
 methods,
 impl-blocks,
-composition,
 generics,
 external-crates,
 use,
@@ -46,7 +45,6 @@ functions,functions
 functions.anonymous,functions
 functions.closures,functions
 functions.higher-order,functions
-recursion,functions
 ranges,
 visibility,
 typedefs,
