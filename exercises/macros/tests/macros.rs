@@ -73,8 +73,25 @@ fn test_invalid_syntax() {
     // These tests check for syntax that is invalid and should not compile.
     // If the test fail, then that means the hashmap! macro is allowing
     // invalid syntax
-    let t = trybuild::TestCases::new();
-    t.compile_fail("tests/invalid/*.rs");
+
+    const TRYBUILD: &str = "TRYBUILD";
+    let cleanup = if std::env::var(TRYBUILD).is_ok() {
+        false
+    } else {
+        std::env::set_var(TRYBUILD, "overwrite");
+        true
+    };
+
+    let result = std::panic::catch_unwind(|| {
+        let t = trybuild::TestCases::new();
+        t.compile_fail("tests/invalid/*.rs");
+    });
+
+    if cleanup {
+        std::env::remove_var(TRYBUILD);
+    }
+
+    assert!(result.is_ok());
 }
 
 mod test {
