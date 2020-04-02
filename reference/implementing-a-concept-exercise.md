@@ -19,7 +19,7 @@ languages
                 |   ├── instructions.md
                 |   ├── introduction.md
                 |   ├── hints.md
-                |   └── after.md (optional)
+                |   └── after.md
                 ├── .meta
                 |   |── design.md
                 |   |── config.json
@@ -36,6 +36,7 @@ languages
 A shell script is provided for boilerplating a concept exercise, use with `sh boil-exercise.sh <SLUG>`. It will provide unfinished files for step 1 and 2 to review in your text editor of choice. You can also use `cargo init --lib <SLUG> --vcs none` to boilerplate the directory and create all the files manually if that doesn't work.
 
 Of special note are
+
 - `src/lib.rs`: the Rust library file, which is the starting point for students to work on the exercise.
 - `Cargo.toml`: the Cargo file. Be aware the online editor does not support editing the `Cargo.toml` so all dependencies must be specified up-front, and the author field should be removed.
 - `tests/<NAME>.rs`: this will become the test suite for this exercise.
