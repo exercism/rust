@@ -33,7 +33,7 @@ languages
 
 ## Step 1: adding track-specific files
 
-A shell script is provided for boilerplating a concept exercise, use with `sh boil-exercise.sh <SLUG>`. It will provide unfinished files for step 1 and 2 to review in your text editor of choice. You can also use `cargo init --lib <SLUG> --vcs none` to boilerplate the directory and create all the files manually if that doesn't work.
+A shell script is provided for boilerplating a concept exercise, use with `sh boil_exercise.sh <SLUG>`. It will provide unfinished files for step 1 and 2 to review in your text editor of choice. You can also use `cargo init --lib <SLUG> --vcs none` to boilerplate the directory and create all the files manually if that doesn't work.
 
 Of special note are
 
