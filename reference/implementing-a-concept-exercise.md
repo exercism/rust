@@ -1,6 +1,14 @@
 # How to implement a Rust concept exercise
 
-This issue describes how to implement a concept exercise for the Rust track. As this document is generic, the following placeholders are used:
+This issue describes how to implement a concept exercise for the Rust track.
+
+**Please please please read the docs before starting.** Posting PRs without reading these docs will be a lot more frustrating for you during the review cycle, and exhaust Exercism's maintainers' time. So, before diving into the implementation, please read the following documents:
+
+- [The features of v3][docs-features-of-v3].
+- [Rationale for v3][docs-rationale-for-v3].
+- [What are concept exercise and how they are structured?][docs-concept-exercises]
+
+As this document is generic, the following placeholders are used:
 
 - `<SLUG>`: the name of the exercise in kebab-case (e.g. `anonymous-methods`).
 - `<NAME>`: the name of the exercise in snake_case (e.g. `anonymous_methods`).
@@ -66,5 +74,8 @@ If you have any questions regarding implementing the exercise, please post them 
 [representer]: https://github.com/exercism/v3/issues/new/choose
 [concept-exercises]: ../exercises/concept/README.md
 [how-to-implement-a-concept-exercise]: ../../../docs/maintainers/generic-how-to-implement-a-concept-exercise.md
+[docs-concept-exercises]: ../../../docs/concept-exercises.md
+[docs-rationale-for-v3]: ../../../docs/rationale-for-v3.md
+[docs-features-of-v3]: ../../../docs/features-of-v3.md
 [concept-exercise-numbers]: ../exercises/concept/numbers
 [reference]: ../../../reference
