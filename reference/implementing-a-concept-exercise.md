@@ -8,6 +8,10 @@ This issue describes how to implement a concept exercise for the Rust track.
 - [Rationale for v3][docs-rationale-for-v3].
 - [What are concept exercise and how they are structured?][docs-concept-exercises]
 
+Please also watch the following video:
+
+- [The Anatomy of a Concept Exercise][anatomy-of-a-concept-exercise].
+
 As this document is generic, the following placeholders are used:
 
 - `<SLUG>`: the name of the exercise in kebab-case (e.g. `anonymous-methods`).
@@ -77,5 +81,6 @@ If you have any questions regarding implementing the exercise, please post them 
 [docs-concept-exercises]: ../../../docs/concept-exercises.md
 [docs-rationale-for-v3]: ../../../docs/rationale-for-v3.md
 [docs-features-of-v3]: ../../../docs/features-of-v3.md
+[anatomy-of-a-concept-exercise]: https://www.youtube.com/watch?v=gkbBqd7hPrA
 [concept-exercise-numbers]: ../exercises/concept/numbers
 [reference]: ../../../reference
