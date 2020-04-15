@@ -131,7 +131,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-Inspired by 'Data Structures and Algorithms with Object-Oriented Design Patterns in Ruby', singly linked-lists.
+Inspired by '[Data Structures and Algorithms with Object-Oriented Design Patterns in Ruby](https://web.archive.org/web/20160414064110/http://www.brpreiss.com/books/opus8/)', singly linked-lists.
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
