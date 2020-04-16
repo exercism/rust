@@ -2,9 +2,9 @@
 
 ## Goal
 
-The goal of this exercise is to explore the concept of [enums][thebook] in Rust. 
+The goal of this exercise is to explore the concept of [enums][thebook] in Rust.
 
-## Learning Objectives 
+## Learning Objectives
 
 After completing the exercise, the user should:
 
@@ -22,7 +22,7 @@ After completing the exercise, the user should:
 
 The Concepts this exercise unlocks are:
 
-- `enums-basic`: know of the existence of the `enum` keyword; know how to define enum variants; know how to assign values to enum variants; 
+- `enums-basic`: know of the existence of the `enum` keyword; know how to define enum variants; know how to assign values to enum variants;
 
 ## Prequisites
 

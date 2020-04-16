@@ -7,23 +7,24 @@ Luhn is a validation algorithm that combines textual and numeric assertions. Rus
 ### primitives
 
 - `&str` and `char`
-   - students must grasp the distinction of individual `char` from `&str` in order to correctly exclude or include parts of the provided input 
+  - students must grasp the distinction of individual `char` from `&str` in order to correctly exclude or include parts of the provided input
 - integer
-   - understanding integers are important to do the required numeric validation 
+  - understanding integers are important to do the required numeric validation
 - booleans
-   - integral for identity assertions and final comparisons
+  - integral for identity assertions and final comparisons
 
 ### iterator features
 
 - chaining
-   - it is important to understand iterator chains here to solve the problem in an ordered fashion. 
+  - it is important to understand iterator chains here to solve the problem in an ordered fashion.
 - `map`, `filter`, turbofish possibly `fold`
-   - combining map and filter provides a foundational design pattern for validation problems such as this one. `fold` solutions also boast further brevity. 
-   - the turbofish is needed in some solutions to tell Rust what type you are creating from a chained expression
+  - combining map and filter provides a foundational design pattern for validation problems such as this one. `fold` solutions also boast further brevity.
+  - the turbofish is needed in some solutions to tell Rust what type you are creating from a chained expression
 
 ## Example Solution 1
 
 york's [solution](https://exercism.io/tracks/rust/exercises/luhn/solutions/7038c269a4af4f5b95ca35a99c5c3b4d)
+
 ```rust
 pub fn is_valid(code: &str) -> bool {
     code.chars()

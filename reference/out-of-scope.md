@@ -14,6 +14,7 @@ interface and the test runner, so the web UI's capabilities effectively serve
 as an outer limit for the Rust's track.
 
 A student may:
+
 - Edit a single `.rs` file
 - Receive output from `stdout` (e.g. from `dbg!`)
 
@@ -26,7 +27,6 @@ Exercism is about acquiring fluency in a programming language, not teaching
 more abstract skills like software design or computer science. So any subject
 that is not particularly relevant to the Rust programming language is not
 within the scope of the Rust track.
-
 
 ## Examples of Excluded Subjects
 

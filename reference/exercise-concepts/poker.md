@@ -7,6 +7,7 @@ When referring to the list of concepts, we mean [this list](https://github.com/e
 Note that for both concept and practice exercises, the list of prerequisite concepts should be as small as possible. The goal here is not to enumerate all concepts which may be used in all possible approaches to the problem; it is to enumerate the minimal set of knowledge with which a determined student could conceivably solve the problem.
 
 ## Required concepts
+
 ### Existing
 
 - fundamentals
@@ -22,6 +23,7 @@ Note that for both concept and practice exercises, the list of prerequisite conc
 - Lifetimes
 
 ## Optional Concepts
+
 ### Existing
 
 - `Eq` and `Ord`: the [`README`](https://github.com/exercism/rust/tree/c0afe3855e0e71dc5429aa97657e074aa90a8e11/exercises/poker#hints) strongly suggests that we implement this in terms of `PartialOrd`, which is covered by this concept. However, nothing in the exercise design makes it necessary to actually implement `Eq` or `Ord`.

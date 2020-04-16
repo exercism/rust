@@ -1,6 +1,6 @@
 # Instructions
 
-In this exercise you'll be generating semi-structured log messages. 
+In this exercise you'll be generating semi-structured log messages.
 
 You'll start with some stubbed functions and the following enum:
 
@@ -16,12 +16,13 @@ pub enum LogLevel {
 Your goal is to emit a log message as follows: `"[<LEVEL>]: <MESSAGE>"`.
 You'll need to implement functions that correspond with log levels.
 
-For example, the below snippet demonstrates an expected output for the `log` function. 
+For example, the below snippet demonstrates an expected output for the `log` function.
 
 ```rust
 log(LogLevel::Error, "Stack overflow")
 // Returns: "[ERROR]: Stack overflow"
 ```
+
 And for `info`:
 
 ```rust
@@ -31,7 +32,7 @@ info("Timezone changed")
 
 Have fun!
 
-## further practice 
+## further practice
 
 There is a feature-gated test in this suite. Feature gates disable compilation entirely for certain sections of your program. They will be covered later. For now just know that there is a test which is only built and run when you use a special testing invocation:
 

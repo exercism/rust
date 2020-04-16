@@ -9,6 +9,7 @@ Note that for both concept and practice exercises, the list of prerequisite conc
 Note that this exercise is very likely to become a concept exercise for the concept "Writing declarative macros".
 
 ## Required concepts
+
 ### Existing
 
 - structs
@@ -22,6 +23,7 @@ Note that this exercise is very likely to become a concept exercise for the conc
 - methods and associated functions (depends on `structs`)
 
 ## Optional Concepts
+
 ### Existing
 
 _none_

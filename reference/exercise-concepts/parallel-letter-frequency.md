@@ -3,6 +3,7 @@
 This exercise boasts a wide variety of possible solutions in combination with the help of external crates. For keeping the amount of work manageable this document contains a small selection of possibilities. Crossbeam solutions have a similar set of concepts as listed here, and Rayon requires only a subset.
 
 ## Summary
+
 - **Primitives**
   - `usize`
   - `char`
@@ -38,15 +39,18 @@ This exercise boasts a wide variety of possible solutions in combination with th
 - **Crates**
 - **Parallelism**
   - Spawning and joining
+
 #### Concepts related to parallelism
+
 - **Channels**
-- **`Mutex` and `RwLock`***
+- **`Mutex` and `RwLock`**
 - **Futures**
 - **Reference counting**
 
-*<sub>*Related but here not applicable for reasonable solutions</sub>*
+\*<sub>Related but here not applicable for reasonable solutions</sub>
 
 ## General
+
 - Strings: specifically the `str` is always a factor here
 - Unicode: performance/feature concessions of ascii vs unicode methods. Benchmarking is skewed when benchmark uses unicode methods and the solution uses ascii methods.
 - Iterators: iterating over input or chunks of it.
@@ -61,6 +65,7 @@ This exercise boasts a wide variety of possible solutions in combination with th
 - **Opt** Crates
 
 ## Std approach with or without channels
+
 - Parallelism - subtopic spawning/joining threads.
 - Iterators - subtopic lazily-evaluated: spawning and joining threads with the same Iterator prevents parallelism.
 - Lifetimes - subtopics `'static lifetime` and explicit `move` semantics
@@ -69,16 +74,19 @@ This exercise boasts a wide variety of possible solutions in combination with th
 - Functions: Specifically higher order functions are required for thread spawning. Closures are an option here.
 
 ## Std approach with channels
+
 - Parallelism - subtopic channels.
 - Tuples: `mpsc::channel()` returns a Tuple
 - Destructuring: tuple can be destructured on assignment
 - Lifetimes: `drop()`
 
 ## Alternate approach with shared variables
+
 - Reference counting: Sharing aggregate data between threads with a reference counted collection.
 - **Honorable mention**: Parallelism - subtopic Mutexes. Not necessary/useful for this exercise, but a common concept nonetheless. Related: `RwLock`.
 
 ### Example std with channels
+
 ```rust
 use std::collections::HashMap;
 use std::thread;
@@ -116,6 +124,7 @@ pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
 ```
 
 ### Example crate with Arc
+
 ```rust
 use std::collections::HashMap;
 use std::iter::FromIterator;
