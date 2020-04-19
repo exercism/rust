@@ -7,21 +7,22 @@ use rand::distributions::{IndependentSample, Range};
 fn modular_exponentiation(base: u64, exponent: u64, modulus: u64) -> u64 {
     let mut result = 1;
 
-    let mut e = exponent;
-
-    let mut b = base;
+    // avoid overflow on multiplication
+    let mut e = exponent as u128;
+    let m = modulus as u128;
+    let mut b = (base % modulus) as u128;
 
     while e > 0 {
         if (e & 1) == 1 {
-            result = (result * b) % modulus;
+            result = (result * b) % m;
         }
 
         e >>= 1;
 
-        b = (b * b) % modulus;
+        b = (b * b) % m;
     }
 
-    result
+    result as u64
 }
 
 pub fn private_key(p: u64) -> u64 {
