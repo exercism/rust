@@ -3,7 +3,7 @@
 This file is intended to explain what Exercism's Rust track can and cannot
 teach within the bounds of the Rust language, community, and ecosystem.
 
-Where material is covered under "What not to teach" in _design.md_ for a
+Where material is covered under "Out of scope" in _design.md_ for a
 particular exercise it should not be repeated here unless it is felt that the
 topic otherwise has insufficient prominence.
 
