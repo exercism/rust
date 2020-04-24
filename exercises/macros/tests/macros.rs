@@ -68,6 +68,35 @@ fn test_nested() {
 }
 
 #[test]
+fn test_type_override() {
+    // Don't allow users to override the intended type with their own
+    mod std {
+        pub mod collections {
+            #[allow(dead_code)]
+            #[derive(Debug)]
+            pub struct HashMap();
+
+            impl HashMap {
+                #[allow(dead_code)]
+                pub fn new() -> Self {
+                    panic!("Don't allow users to override which HashMap is used");
+                }
+            }
+
+            impl<K, V> PartialEq<::std::collections::HashMap<K, V>> for HashMap {
+                fn eq(&self, _: &::std::collections::HashMap<K, V>) -> bool {
+                    panic!("Don't allow users to override which HashMap is used");
+                }
+            }
+        }
+    }
+
+    let expected: ::std::collections::HashMap<u32, u32> = ::std::collections::HashMap::new();
+    let computed = hashmap!();
+    assert_eq!(computed, expected);
+}
+
+#[test]
 #[ignore]
 fn test_compile_fails_comma_sep() {
     simple_trybuild::compile_fail("comma-sep.rs");
