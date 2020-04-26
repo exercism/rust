@@ -73,7 +73,7 @@ fn test_type_override() {
     // The macro should always use std::collections::HashMap and ignore crate::std::collections::HashMap
     mod std {
         pub mod collections {
-            pub struct HashMap();
+            pub struct HashMap;
 
             impl HashMap {
                 #[allow(dead_code)]
