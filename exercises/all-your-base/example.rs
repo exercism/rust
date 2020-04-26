@@ -55,6 +55,11 @@ pub fn convert<P: AsRef<[Digit]>>(
     if let Some(&invalid) = digits.as_ref().iter().find(|&num| *num >= from_base) {
         return Err(Error::InvalidDigit(invalid));
     }
+    
+    // no output digits correspond to zero
+    if digits.as_ref().is_empty() {
+        return Ok(vec![0])
+    }
 
     // convert all digits into a single large number
     let mut immediate: Digit = digits
@@ -73,5 +78,9 @@ pub fn convert<P: AsRef<[Digit]>>(
     }
     // fix order of digits
     res.reverse();
-    Ok(res)
+    if res.is_empty() {
+        Ok(vec![0])
+    } else {
+        Ok(res)
+    }
 }
