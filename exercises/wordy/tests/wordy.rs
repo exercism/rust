@@ -94,7 +94,7 @@ fn multiple_multiplications() {
 #[ignore]
 fn addition_and_multiplication() {
     let command = "What is -3 plus 7 multiplied by -2?";
-    assert_eq!(Some(-8), answer(command));
+    assert_eq!(Some(-17), answer(command));
 }
 
 #[test]
@@ -173,5 +173,5 @@ fn exponential() {
 #[cfg(feature="exponentials")]
 fn addition_and_exponential() {
     let command = "What is 1 plus 2 raised to the 2nd power?";
-    assert_eq!(Some(9), answer(command));
+    assert_eq!(Some(5), answer(command));
 }
