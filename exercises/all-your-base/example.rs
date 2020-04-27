@@ -79,8 +79,7 @@ pub fn convert<P: AsRef<[Digit]>>(
     // fix order of digits
     res.reverse();
     if res.is_empty() {
-        Ok(vec![0])
-    } else {
-        Ok(res)
-    }
+        res.push(0);
+    } 
+    Ok(res)
 }
