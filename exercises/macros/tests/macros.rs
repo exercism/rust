@@ -72,7 +72,7 @@ mod test {
     #[test]
     #[ignore]
     fn type_not_in_scope() {
-        let _empty = hashmap!();
+        let _empty: ::std::collections::HashMap<(), ()> = hashmap!();
         let _expected = hashmap!(23=> 623, 34 => 21);
     }
 }
