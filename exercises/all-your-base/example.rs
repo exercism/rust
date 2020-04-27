@@ -56,11 +56,6 @@ pub fn convert<P: AsRef<[Digit]>>(
         return Err(Error::InvalidDigit(invalid));
     }
     
-    // no output digits correspond to zero
-    if digits.as_ref().is_empty() {
-        return Ok(vec![0])
-    }
-
     // convert all digits into a single large number
     let mut immediate: Digit = digits
         .as_ref()
