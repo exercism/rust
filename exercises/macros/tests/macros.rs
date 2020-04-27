@@ -67,6 +67,16 @@ fn test_nested() {
     );
 }
 
+mod test {
+    use macros::hashmap;
+    #[test]
+    #[ignore]
+    fn type_not_in_scope() {
+        let _empty = hashmap!();
+        let _expected = hashmap!(23=> 623, 34 => 21);
+    }
+}
+
 #[test]
 #[ignore]
 fn test_compile_fails_comma_sep() {
@@ -107,15 +117,6 @@ fn test_compile_fails_only_arrow() {
 #[ignore]
 fn test_compile_fails_two_arrows() {
     simple_trybuild::compile_fail("two-arrows.rs");
-}
-
-mod test {
-    use macros::hashmap;
-    #[test]
-    #[ignore]
-    fn type_not_in_scope() {
-        let _expected: ::std::collections::HashMap<(), ()> = hashmap!();
-    }
 }
 
 mod simple_trybuild {
