@@ -77,6 +77,15 @@ mod test {
     }
 }
 
+mod renamed {
+    use macros as macros_renamed;
+
+    #[test]
+    fn test_renamed_module() {
+        let _expected = macros_renamed::hashmap!(23 => 623, 34 => 21,);
+    }
+}
+
 #[test]
 #[ignore]
 fn test_type_override() {
