@@ -69,6 +69,31 @@ fn test_nested() {
 
 #[test]
 #[ignore]
+fn test_type_override() {
+    // The macro should always use std::collections::HashMap and ignore crate::std::collections::HashMap
+    mod std {
+        pub mod collections {
+            pub struct HashMap;
+
+            impl HashMap {
+                #[allow(dead_code)]
+                pub fn new() -> Self {
+                    panic!("Do not allow users to override which HashMap is used");
+                }
+
+                #[allow(dead_code)]
+                pub fn insert<K, V>(&mut self, _key: K, _val: V) {
+                    panic!("Do not allow users to override which HashMap is used");
+                }
+            }
+        }
+    }
+
+    let _computed = hashmap!(1 => 2, 3 => 4);
+}
+
+#[test]
+#[ignore]
 fn test_compile_fails_comma_sep() {
     simple_trybuild::compile_fail("comma-sep.rs");
 }
