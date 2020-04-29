@@ -81,6 +81,7 @@ mod renamed {
     use macros as macros_renamed;
 
     #[test]
+    #[ignore]
     fn test_renamed_module() {
         let _expected = macros_renamed::hashmap!(23 => 623, 34 => 21,);
     }
