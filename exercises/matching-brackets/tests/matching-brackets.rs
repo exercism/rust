@@ -91,6 +91,18 @@ fn too_many_closing_brackets() {
 
 #[test]
 #[ignore]
+fn early_incomplete_brackets() {
+    assert!(!brackets_are_balanced(")()"));
+}
+
+#[test]
+#[ignore]
+fn early_mismatched_brackets() {
+    assert!(!brackets_are_balanced("{)()"));
+}
+
+#[test]
+#[ignore]
 fn math_expression() {
     assert!(brackets_are_balanced("(((185 + 223.85) * 15) - 543)/2"));
 }
