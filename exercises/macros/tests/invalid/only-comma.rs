@@ -2,5 +2,5 @@ use macros::hashmap;
 
 fn main() {
     // a single random comma is not valid
-    hashmap!(,);
+    let _hm: ::std::collections::HashMap<(), ()> = hashmap!(,);
 }

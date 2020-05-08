@@ -2,5 +2,5 @@ use macros::hashmap;
 
 fn main() {
     // using only commas is invalid
-    hashmap!('a', 1);
+    let _hm: ::std::collections::HashMap<_, _> = hashmap!('a', 1);
 }

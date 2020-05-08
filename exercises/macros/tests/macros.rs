@@ -144,6 +144,12 @@ fn test_compile_fails_two_arrows() {
     simple_trybuild::compile_fail("two-arrows.rs");
 }
 
+#[test]
+#[ignore]
+fn test_compile_fails_leading_comma() {
+    simple_trybuild::compile_fail("leading-comma.rs");
+}
+
 mod simple_trybuild {
     use std::path::PathBuf;
     use std::process::Command;
