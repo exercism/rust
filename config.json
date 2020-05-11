@@ -576,7 +576,7 @@
       "slug": "affine-cipher",
       "uuid": "2a1dcf38-ec05-4b24-a2e2-2e5b3595f3f0",
       "core": false,
-      "unlocked_by": "atbash-cipher",
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
         "ascii",
@@ -615,8 +615,8 @@
     {
       "slug": "atbash-cipher",
       "uuid": "53298a14-76a9-4bb9-943a-57c5e79d9cf7",
-      "core": true,
-      "unlocked_by": null,
+      "core": false,
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
         "ascii",
@@ -631,7 +631,7 @@
       "slug": "crypto-square",
       "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
       "core": false,
-      "unlocked_by": "atbash-cipher",
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
         "arrays",
@@ -648,7 +648,7 @@
       "slug": "rotational-cipher",
       "uuid": "5dbecc83-2c8d-467d-be05-f28a08f7abcf",
       "core": false,
-      "unlocked_by": "atbash-cipher",
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
         "ascii",
@@ -663,7 +663,7 @@
       "slug": "simple-cipher",
       "uuid": "f424a350-50bd-11e8-9c2d-fa7ae01bbebc",
       "core": false,
-      "unlocked_by": "atbash-cipher",
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
         "ascii",
@@ -676,7 +676,7 @@
       "slug": "rail-fence-cipher",
       "uuid": "9a8bae4f-2c0b-4e9e-aab2-b92f82dd3b87",
       "core": false,
-      "unlocked_by": "atbash-cipher",
+      "unlocked_by": "luhn",
       "difficulty": 4,
       "topics": [
         "chars",
