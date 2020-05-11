@@ -68,12 +68,19 @@ fn test_nested() {
 }
 
 mod test {
-    use macros::hashmap;
     #[test]
     #[ignore]
     fn type_not_in_scope() {
+        use macros::hashmap;
+
         let _empty: ::std::collections::HashMap<(), ()> = hashmap!();
         let _expected = hashmap!(23=> 623, 34 => 21);
+    }
+
+    #[test]
+    #[ignore]
+    fn test_macro_out_of_scope() {
+        let _expected = macros::hashmap!(23 => 623, 34 => 21,);
     }
 }
 
