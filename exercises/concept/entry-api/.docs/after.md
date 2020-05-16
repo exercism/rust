@@ -6,7 +6,9 @@ Another way this same pattern can be achieved is by using the `and_modify` metho
 
 ```rust
 map.entry(key).and_modify(|v| *v += 1).or_default();
+```
 
+```rust
 map.entry(key).and_modify(|v| *v += 1).or_insert(0);
 ```
 
