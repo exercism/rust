@@ -41,3 +41,7 @@ path = "triple-arguments.rs"
 [[bin]]
 name = "two-arrows-rs"
 path = "two-arrows.rs"
+
+[[bin]]
+name = "leading-comma-rs"
+path = "leading-comma.rs"
