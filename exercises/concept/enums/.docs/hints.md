@@ -1,9 +1,9 @@
-### General
+## General
 
 - [cheats.rs - Basic Types][cheats-types]
 - [Rust By Example - Enums][rbe-enums]
 
-### using match
+## using match
 
 - `match` comes in handy when working with enums. In this case, see how you might use it when figuring how what kind of log message to generate.
 
