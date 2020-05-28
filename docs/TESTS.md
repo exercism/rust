@@ -2,7 +2,7 @@
 
 Write your code in `src/lib.rs`. Some exercises come with a stub file in `src/lib.rs` that will show you the signatures of the code you'll need to write. If the exercise does not come with a `src/lib.rs` file, create one.
 
-The directory must be named `src` and the file must be named `lib.rs` otherwise your code will not compile. For more details, check out the rustlang book [chapter on modules](https://doc.rust-lang.org/book/ch07-02-modules-and-use-to-control-scope-and-privacy.html)
+The directory must be named `src` and the file must be named `lib.rs` otherwise your code will not compile. For more details, check out the rustlang book [chapter on modules](https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html)
 
 ### Running Tests
 
