@@ -1,5 +1,3 @@
-# Design
-
 ## Goal
 
 The goal of this exercise is to teach how numbers are implemented in Rust. Because Rust doesn't have implicit casting, this automatically includes teaching about primitive bit sizes and type casting.

@@ -1,5 +1,3 @@
-# Design
-
 ## Goal
 
 The goal of this exercise is to explore the concept of [enums][thebook] in Rust.
