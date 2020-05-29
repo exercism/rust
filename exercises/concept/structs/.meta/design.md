@@ -1,9 +1,3 @@
-# Design
-
-## Goal
-
-The goal of this exercise is to teach the student the basics of working with named-field `structs` in Rust. `structs` are an essential user-defined type.
-
 ## Learning objectives
 
 - Know what the `struct` keyword means

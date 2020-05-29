@@ -1,12 +1,9 @@
-## Goal
-
-The goal of this exercise is to teach how numbers are implemented in Rust. Because Rust doesn't have implicit casting, this automatically includes teaching about primitive bit sizes and type casting.
-
 ## Learning objectives
 
 - Know how number literals are represented in Rust
 - Know the different types of integer and floating point primitives
 - Know how to cast
+- primitive bit sizes and type casting
 
 ## Out of scope
 
