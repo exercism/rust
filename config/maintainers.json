@@ -110,6 +110,16 @@
       "link_url": null,
       "avatar_url": null,
       "bio": "Builder of rainbow bridges."
+    },
+    {
+      "github_username": "seanchen1991",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": "Sean Chen",
+      "link_text": "My blog",
+      "link_url": "https://seanchen1991.co",
+      "avatar_url": null,
+      "bio": "I write about teaching, Rust, and sometimes teaching Rust."
     }
   ]
 }
