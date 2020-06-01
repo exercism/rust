@@ -109,7 +109,9 @@ fn test_type_override() {
         }
     }
 
-    let _computed = hashmap!(1 => 2, 3 => 4);
+    let _empty: ::std::collections::HashMap<(), ()> = hashmap!();
+    let _without_comma = hashmap!(1 => 2, 3 => 4);
+    let _with_trailing = hashmap!(1 => 2, 3 => 4,);
 }
 
 #[test]
