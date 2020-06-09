@@ -123,6 +123,12 @@ fn test_negative_hour_and_minutes_both_roll_over_continuously() {
     assert_eq!(Clock::new(-121, -5810).to_string(), "22:10");
 }
 
+#[test]
+#[ignore]
+fn test_zero_hour_and_negative_minutes() {
+    assert_eq!(Clock::new(0, -22).to_string(), "23:38");
+}
+
 //
 // Clock Math
 //
