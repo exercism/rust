@@ -108,6 +108,20 @@ fn test_invalid_codons() {
     assert!(info.of_rna("CARROT").is_none());
 }
 
+#[test]
+#[ignore]
+fn test_invalid_length() {
+    let info = proteins::parse(make_pairs());
+    assert!(info.of_rna("AUGUA").is_none());
+}
+
+#[test]
+#[ignore]
+fn test_valid_stopped_rna() {
+    let info = proteins::parse(make_pairs());
+    assert_eq!(info.of_rna("AUGUAAASDF"), Some(vec!["methionine"]));
+}
+
 // The input data constructor. Returns a list of codon, name pairs.
 fn make_pairs() -> Vec<(&'static str, &'static str)> {
     let grouped = vec![
