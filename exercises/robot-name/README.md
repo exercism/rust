@@ -90,7 +90,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-A debugging session with Paul Blackwell at gSchool. [http://gschool.it](http://gschool.it)
+A debugging session with Paul Blackwell at gSchool.
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
