@@ -1,5 +1,3 @@
-use gigasecond;
-
 use chrono::{TimeZone, Utc};
 
 #[test]
