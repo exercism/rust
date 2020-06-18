@@ -1,16 +1,16 @@
 use std::collections::HashMap;
 
-pub struct CodonInfo<'a> {
+pub struct CodonsInfo<'a> {
     actual_codons: HashMap<&'a str, &'a str>,
 }
 
-pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonInfo<'a> {
-    CodonInfo {
+pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonsInfo<'a> {
+    CodonsInfo {
         actual_codons: pairs.into_iter().collect(),
     }
 }
 
-impl<'a> CodonInfo<'a> {
+impl<'a> CodonsInfo<'a> {
     pub fn name_for(&self, codon: &str) -> Option<&'a str> {
         self.actual_codons.get(&codon).cloned()
     }
