@@ -67,9 +67,8 @@ impl Forth {
 
     fn run(&mut self) -> ForthResult {
         while let Some(term) = self.code.pop_front() {
-            self.step_term(term)?
+            self.step_term(term)?;
         }
-
         Forth::ok()
     }
 
@@ -78,17 +77,30 @@ impl Forth {
             Term::Number(value) => self.push(value),
             Term::Word(word) => self.step_word(&word),
             Term::StartDefinition => self.store_definition(),
-            Term::EndDefinition => Err(Error::InvalidWord),
+            Term::EndDefinition => {
+                eprintln!("`;` without preceding `:`");
+                Err(Error::InvalidWord)
+            }
         }
     }
 
     fn step_word(&mut self, word: &str) -> ForthResult {
-        self.defs
-            .get(word)
-            .ok_or(Error::UnknownWord)
-            .map(Clone::clone)
-            .map(|mut code| self.code.append(&mut code))
-            .or_else(|_| self.step_built_in(word))
+        if let Some(def) = self.defs.get(word) {
+            let mut def = def.clone();
+            while let Some(term) = def.pop_front() {
+                self.step_term(term)?;
+            }
+            Self::ok()
+        } else {
+            self.step_built_in(word)
+        }
+    }
+
+    fn divide((a, b): (Value, Value)) -> StackResult<Value> {
+        a.checked_div(b).ok_or_else(|| {
+            eprintln!("Cannot divide {} by {}", a, b);
+            Error::DivisionByZero
+        })
     }
 
     fn step_built_in(&mut self, word: &str) -> ForthResult {
@@ -96,7 +108,7 @@ impl Forth {
             "+" => self.bin_op(|(a, b)| Ok(a + b)),
             "-" => self.bin_op(|(a, b)| Ok(a - b)),
             "*" => self.bin_op(|(a, b)| Ok(a * b)),
-            "/" => self.bin_op(|(a, b)| a.checked_div(b).ok_or(Error::DivisionByZero)),
+            "/" => self.bin_op(Self::divide),
             "dup" => self.pop().and_then(|a| self.push(a).and(self.push(a))),
             "drop" => self.pop().and(Forth::ok()),
             "swap" => self
@@ -105,7 +117,10 @@ impl Forth {
             "over" => self
                 .pop_two()
                 .and_then(|(a, b)| self.push(a).and(self.push(b)).and(self.push(a))),
-            _ => Err(Error::UnknownWord),
+            _ => {
+                eprintln!("{} is undefined", word);
+                Err(Error::UnknownWord)
+            }
         }
     }
 
@@ -133,7 +148,10 @@ impl Forth {
     }
 
     fn pop(&mut self) -> StackResult<Value> {
-        self.stack.pop_back().ok_or(Error::StackUnderflow)
+        self.stack.pop_back().ok_or_else(|| {
+            eprintln!("Stack underflow");
+            Error::StackUnderflow
+        })
     }
 
     fn pop_two(&mut self) -> StackResult<(Value, Value)> {
@@ -154,14 +172,15 @@ impl Forth {
         for t in code.iter() {
             match t {
                 Term::Number(_) => resolved_def.push_back(t.clone()),
-                Term::Word(s) => {
-                    if let Some(cs) = self.defs.get(s) {
-                        resolved_def.append(&mut cs.clone());
-                    } else {
-                        resolved_def.push_back(t.clone());
-                    }
+                Term::Word(s) => if let Some(cs) = self.defs.get(s) {
+                    resolved_def.append(&mut cs.clone());
+                } else {
+                    resolved_def.push_back(t.clone());
                 }
-                _ => unimplemented!("not even sure a definition in a definition is valid Forth"),
+                _ => {
+                    eprintln!("Nested definition in {}", name);
+                    return Err(Error::InvalidWord);
+                }
             }
         }
         self.defs.insert(name, resolved_def);
