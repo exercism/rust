@@ -34,3 +34,14 @@ The Rust track maintainers [have decided](https://github.com/exercism/v3/discuss
    1. request additional changes. At this point, the process returns to step 3.
 1. Upon approval, a maintainer shall merge their pull request.
    1. Maintainers shall merge their own pull requests. Since contributors are not necessarily maintainers, a maintainer must preform this step.
+
+## Optimistic Merging
+
+The Rust track maintainers have decided to adopt Optimistic Merging temporarily to expedite v3 track development.
+
+- This only applies to the v3 repository
+- We'll go back to a Pessimistic Merging strategy upon releasing v3 to production.
+- We'll approve and merge incomplete work
+  - If it compiles we keep it.
+  - Favor iteration speed over finer points of correct software design.
+- Every pull request must have at least one "Approval" from a track maintainer before it can be merged.
