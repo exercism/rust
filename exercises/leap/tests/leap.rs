@@ -35,7 +35,7 @@ fn test_year_divisible_by_100_not_divisible_by_400_common_year() {
 
 #[test]
 #[ignore]
-fn test_year_divisible_by_100_but_not_by_3_is_still_not_a_leap_year() {
+fn test_year_divisible_by_100_but_not_by_400_is_still_not_a_leap_year() {
     process_leapyear_case(1900, false);
 }
 
