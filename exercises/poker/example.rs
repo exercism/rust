@@ -1,10 +1,6 @@
 use std::cmp::Ordering;
 use std::fmt;
 
-#[macro_use]
-extern crate try_opt;
-
-extern crate counter;
 use counter::Counter;
 
 /// Given a list of poker hands, return a list of those hands which win.
@@ -12,10 +8,10 @@ use counter::Counter;
 /// Note the type signature: this function should return _the same_ reference to
 /// the winning hand(s) as were passed in, not reconstructed strings which happen to be equal.
 pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
-    let mut hands = try_opt!(hands
+    let mut hands = hands
         .iter()
         .map(|source| Hand::try_from(source))
-        .collect::<Option<Vec<Hand>>>());
+        .collect::<Option<Vec<Hand>>>()?;
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
     hands.last().map(|last| {
         hands
@@ -142,8 +138,8 @@ struct Card {
 impl Card {
     fn try_from_split(source: &str, split: usize) -> Option<Card> {
         Some(Card {
-            rank: try_opt!(Rank::try_from(&source[..split])),
-            suit: try_opt!(Suit::try_from(&source[split..])),
+            rank: Rank::try_from(&source[..split])?,
+            suit: Suit::try_from(&source[split..])?,
         })
     }
 
@@ -190,9 +186,10 @@ impl PokerHand {
 
     fn analyze(cards: &[Card]) -> Option<PokerHand> {
         if cards.len() == 5 {
-            let suit_counter = Counter::init(cards.iter().map(|c| c.suit));
+            let suit_counter = cards.iter().map(|c| c.suit).collect::<Counter<_>>();
             let is_flush = suit_counter
                 .most_common()
+                .into_iter()
                 .map(|(_suit, count)| count)
                 .next()
                 == Some(5);
@@ -208,8 +205,8 @@ impl PokerHand {
                 return Some(PokerHand::StraightFlush);
             }
 
-            let rank_counter = Counter::init(cards.iter().map(|c| c.rank));
-            let mut rc_iter = rank_counter.most_common().map(|(_rank, count)| count);
+            let rank_counter = cards.iter().map(|c| c.rank).collect::<Counter<_>>();
+            let mut rc_iter = rank_counter.most_common().into_iter().map(|(_rank, count)| count);
             let rc_most = rc_iter.next();
             let rc_second = rc_iter.next();
 
@@ -250,16 +247,16 @@ struct Hand<'a> {
 
 impl<'a> Hand<'a> {
     fn try_from(source: &'a str) -> Option<Hand> {
-        let mut cards = try_opt!(source
+        let mut cards = source
             .split_whitespace()
             .map(|s| Card::try_from(s))
-            .collect::<Option<Vec<Card>>>());
+            .collect::<Option<Vec<Card>>>()?;
         cards.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
         if cards.len() == 5 {
             Some(Hand {
                 source,
                 cards: [cards[0], cards[1], cards[2], cards[3], cards[4]],
-                hand_type: try_opt!(PokerHand::analyze(&cards)),
+                hand_type: PokerHand::analyze(&cards)?,
             })
         } else {
             None
@@ -278,9 +275,10 @@ impl<'a> Hand<'a> {
     }
 
     fn value_by_frequency(&self) -> (Option<Rank>, Option<Rank>, Option<Rank>) {
-        let rank_counter = Counter::init(self.cards.iter().map(|c| c.rank));
+        let rank_counter = self.cards.iter().map(|c| c.rank).collect::<Counter<_>>();
         let mut rc_iter = rank_counter
             .most_common_tiebreaker(|a, b| b.partial_cmp(a).unwrap_or(Ordering::Less))
+            .into_iter()
             .map(|(rank, _count)| rank);
         (rc_iter.next(), rc_iter.next(), rc_iter.next())
     }
