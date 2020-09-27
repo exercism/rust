@@ -1,7 +1,6 @@
 use std::cmp::Ordering;
 use std::fmt;
 
-extern crate counter;
 use counter::Counter;
 
 /// Given a list of poker hands, return a list of those hands which win.
@@ -187,9 +186,10 @@ impl PokerHand {
 
     fn analyze(cards: &[Card]) -> Option<PokerHand> {
         if cards.len() == 5 {
-            let suit_counter = Counter::init(cards.iter().map(|c| c.suit));
+            let suit_counter = cards.iter().map(|c| c.suit).collect::<Counter<_>>();
             let is_flush = suit_counter
                 .most_common()
+                .into_iter()
                 .map(|(_suit, count)| count)
                 .next()
                 == Some(5);
@@ -205,8 +205,8 @@ impl PokerHand {
                 return Some(PokerHand::StraightFlush);
             }
 
-            let rank_counter = Counter::init(cards.iter().map(|c| c.rank));
-            let mut rc_iter = rank_counter.most_common().map(|(_rank, count)| count);
+            let rank_counter = cards.iter().map(|c| c.rank).collect::<Counter<_>>();
+            let mut rc_iter = rank_counter.most_common().into_iter().map(|(_rank, count)| count);
             let rc_most = rc_iter.next();
             let rc_second = rc_iter.next();
 
@@ -275,9 +275,10 @@ impl<'a> Hand<'a> {
     }
 
     fn value_by_frequency(&self) -> (Option<Rank>, Option<Rank>, Option<Rank>) {
-        let rank_counter = Counter::init(self.cards.iter().map(|c| c.rank));
+        let rank_counter = self.cards.iter().map(|c| c.rank).collect::<Counter<_>>();
         let mut rc_iter = rank_counter
             .most_common_tiebreaker(|a, b| b.partial_cmp(a).unwrap_or(Ordering::Less))
+            .into_iter()
             .map(|(rank, _count)| rank);
         (rc_iter.next(), rc_iter.next(), rc_iter.next())
     }
