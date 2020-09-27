@@ -4,5 +4,4 @@ name = "poker"
 version = "1.0.0"
 
 [dependencies]
-try_opt = "0.1.1"
-counter = "0.1.0"
+counter = "0.5.2"
