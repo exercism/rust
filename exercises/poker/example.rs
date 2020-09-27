@@ -1,9 +1,6 @@
 use std::cmp::Ordering;
 use std::fmt;
 
-#[macro_use]
-extern crate try_opt;
-
 extern crate counter;
 use counter::Counter;
 
@@ -12,10 +9,10 @@ use counter::Counter;
 /// Note the type signature: this function should return _the same_ reference to
 /// the winning hand(s) as were passed in, not reconstructed strings which happen to be equal.
 pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
-    let mut hands = try_opt!(hands
+    let mut hands = hands
         .iter()
         .map(|source| Hand::try_from(source))
-        .collect::<Option<Vec<Hand>>>());
+        .collect::<Option<Vec<Hand>>>()?;
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
     hands.last().map(|last| {
         hands
@@ -142,8 +139,8 @@ struct Card {
 impl Card {
     fn try_from_split(source: &str, split: usize) -> Option<Card> {
         Some(Card {
-            rank: try_opt!(Rank::try_from(&source[..split])),
-            suit: try_opt!(Suit::try_from(&source[split..])),
+            rank: Rank::try_from(&source[..split])?,
+            suit: Suit::try_from(&source[split..])?,
         })
     }
 
@@ -250,16 +247,16 @@ struct Hand<'a> {
 
 impl<'a> Hand<'a> {
     fn try_from(source: &'a str) -> Option<Hand> {
-        let mut cards = try_opt!(source
+        let mut cards = source
             .split_whitespace()
             .map(|s| Card::try_from(s))
-            .collect::<Option<Vec<Card>>>());
+            .collect::<Option<Vec<Card>>>()?;
         cards.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
         if cards.len() == 5 {
             Some(Hand {
                 source,
                 cards: [cards[0], cards[1], cards[2], cards[3], cards[4]],
-                hand_type: try_opt!(PokerHand::analyze(&cards)),
+                hand_type: PokerHand::analyze(&cards)?,
             })
         } else {
             None
