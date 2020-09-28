@@ -1,4 +1,4 @@
-use std::cmp::Ordering;
+use std::{cmp::Ordering, convert::TryFrom};
 use std::fmt;
 
 use counter::Counter;
@@ -9,9 +9,9 @@ use counter::Counter;
 /// the winning hand(s) as were passed in, not reconstructed strings which happen to be equal.
 pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
     let mut hands = hands
-        .iter()
-        .map(|source| Hand::try_from(source))
-        .collect::<Option<Vec<Hand>>>()?;
+        .into_iter()
+        .map(|source| Hand::try_from(*source))
+        .collect::<Result<Vec<_>, _>>().ok()?;
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
     hands.last().map(|last| {
         hands
@@ -31,19 +31,6 @@ enum Suit {
     Hearts,
 }
 
-impl Suit {
-    fn try_from(source: &str) -> Option<Suit> {
-        use crate::Suit::*;
-        match source {
-            "S" => Some(Spades),
-            "C" => Some(Clubs),
-            "D" => Some(Diamonds),
-            "H" => Some(Hearts),
-            _ => None,
-        }
-    }
-}
-
 impl fmt::Display for Suit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         use crate::Suit::*;
@@ -60,6 +47,21 @@ impl fmt::Display for Suit {
     }
 }
 
+impl<'a> TryFrom<&'a str> for Suit {
+    type Error = &'static str;
+
+    fn try_from(source: &str) -> Result<Self, Self::Error> {
+        use crate::Suit::*;
+        match source {
+            "S" => Ok(Spades),
+            "C" => Ok(Clubs),
+            "D" => Ok(Diamonds),
+            "H" => Ok(Hearts),
+            _ => Err("Invalid suit"),
+        }
+    }
+}
+
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
 enum Rank {
     Number(u8),
@@ -70,26 +72,6 @@ enum Rank {
 }
 
 impl Rank {
-    fn try_from(source: &str) -> Option<Rank> {
-        use crate::Rank::*;
-        match source {
-            "A" => Some(Ace),
-            "K" => Some(King),
-            "Q" => Some(Queen),
-            "J" => Some(Jack),
-            "10" => Some(Number(10)),
-            "9" => Some(Number(9)),
-            "8" => Some(Number(8)),
-            "7" => Some(Number(7)),
-            "6" => Some(Number(6)),
-            "5" => Some(Number(5)),
-            "4" => Some(Number(4)),
-            "3" => Some(Number(3)),
-            "2" => Some(Number(2)),
-            _ => None,
-        }
-    }
-
     fn value(&self) -> usize {
         use crate::Rank::*;
         match *self {
@@ -129,6 +111,30 @@ impl PartialOrd for Rank {
     }
 }
 
+impl<'a> TryFrom<&'a str> for Rank {
+    type Error = &'static str;
+
+    fn try_from(source: &str) -> Result<Self, Self::Error> {
+        use crate::Rank::*;
+        match source {
+            "A" => Ok(Ace),
+            "K" => Ok(King),
+            "Q" => Ok(Queen),
+            "J" => Ok(Jack),
+            "10" => Ok(Number(10)),
+            "9" => Ok(Number(9)),
+            "8" => Ok(Number(8)),
+            "7" => Ok(Number(7)),
+            "6" => Ok(Number(6)),
+            "5" => Ok(Number(5)),
+            "4" => Ok(Number(4)),
+            "3" => Ok(Number(3)),
+            "2" => Ok(Number(2)),
+            _ => Err("Invalid rank"),
+        }
+    }
+}
+
 #[derive(Debug, PartialEq, Eq, PartialOrd, Clone, Copy)]
 struct Card {
     rank: Rank,
@@ -136,25 +142,29 @@ struct Card {
 }
 
 impl Card {
-    fn try_from_split(source: &str, split: usize) -> Option<Card> {
-        Some(Card {
+    fn try_from_split(source: &str, split: usize) -> Result<Self, &'static str> {
+        Ok(Card {
             rank: Rank::try_from(&source[..split])?,
             suit: Suit::try_from(&source[split..])?,
         })
-    }
-
-    fn try_from(source: &str) -> Option<Card> {
-        match source.len() {
-            3 => Card::try_from_split(source, 2),
-            2 => Card::try_from_split(source, 1),
-            _ => None,
-        }
     }
 }
 
 impl fmt::Display for Card {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}{}", self.rank, self.suit)
+    }
+}
+
+impl<'a> TryFrom<&'a str> for Card {
+    type Error = &'static str;
+
+    fn try_from(source: &str) -> Result<Self, Self::Error> {
+        match source.len() {
+            3 => Card::try_from_split(source, 2),
+            2 => Card::try_from_split(source, 1),
+            _ => Err("Invalid card"),
+        }
     }
 }
 
@@ -184,7 +194,7 @@ impl PokerHand {
                 .all(|diff| diff == 1)
     }
 
-    fn analyze(cards: &[Card]) -> Option<PokerHand> {
+    fn analyze(cards: &[Card]) -> Result<Self, &'static str> {
         if cards.len() == 5 {
             let suit_counter = cards.iter().map(|c| c.suit).collect::<Counter<_>>();
             let is_flush = suit_counter
@@ -202,7 +212,7 @@ impl PokerHand {
                 || PokerHand::is_ace_low_straight(cards);
 
             if is_flush && is_straight {
-                return Some(PokerHand::StraightFlush);
+                return Ok(PokerHand::StraightFlush);
             }
 
             let rank_counter = cards.iter().map(|c| c.rank).collect::<Counter<_>>();
@@ -211,29 +221,29 @@ impl PokerHand {
             let rc_second = rc_iter.next();
 
             if rc_most == Some(4) {
-                return Some(PokerHand::FourOfAKind);
+                return Ok(PokerHand::FourOfAKind);
             }
             if rc_most == Some(3) && rc_second == Some(2) {
-                return Some(PokerHand::FullHouse);
+                return Ok(PokerHand::FullHouse);
             }
             if is_flush {
-                return Some(PokerHand::Flush);
+                return Ok(PokerHand::Flush);
             }
             if is_straight {
-                return Some(PokerHand::Straight);
+                return Ok(PokerHand::Straight);
             }
             if rc_most == Some(3) {
-                return Some(PokerHand::ThreeOfAKind);
+                return Ok(PokerHand::ThreeOfAKind);
             }
             if rc_most == Some(2) && rc_second == Some(2) {
-                return Some(PokerHand::TwoPair);
+                return Ok(PokerHand::TwoPair);
             }
             if rc_most == Some(2) {
-                return Some(PokerHand::OnePair);
+                return Ok(PokerHand::OnePair);
             }
-            Some(PokerHand::HighCard)
+            Ok(PokerHand::HighCard)
         } else {
-            None
+            Err("Not a hand of five")
         }
     }
 }
@@ -246,22 +256,6 @@ struct Hand<'a> {
 }
 
 impl<'a> Hand<'a> {
-    fn try_from(source: &'a str) -> Option<Hand> {
-        let mut cards = source
-            .split_whitespace()
-            .map(|s| Card::try_from(s))
-            .collect::<Option<Vec<Card>>>()?;
-        cards.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
-        if cards.len() == 5 {
-            Some(Hand {
-                source,
-                cards: [cards[0], cards[1], cards[2], cards[3], cards[4]],
-                hand_type: PokerHand::analyze(&cards)?,
-            })
-        } else {
-            None
-        }
-    }
 
     fn cmp_high_card(&self, other: &Hand, card: usize) -> Ordering {
         let mut ordering = self.cards[card]
@@ -334,5 +328,26 @@ impl<'a> PartialOrd for Hand<'a> {
                 StraightFlush => self.cmp_straight(other),
             }
         }))
+    }
+}
+
+impl<'a> TryFrom<&'a str> for Hand<'a> {
+    type Error = &'static str;
+
+    fn try_from(source: &'a str) -> Result<Self, Self::Error> {
+        let mut cards = source
+            .split_whitespace()
+            .map(Card::try_from)
+            .collect::<Result<Vec<_>, _>>()?;
+        cards.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
+        if cards.len() == 5 {
+            Ok(Hand {
+                source,
+                cards: [cards[0], cards[1], cards[2], cards[3], cards[4]],
+                hand_type: PokerHand::analyze(&cards)?,
+            })
+        } else {
+            Err("Invalid hand")
+        }
     }
 }
