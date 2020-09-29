@@ -7,11 +7,11 @@ use counter::Counter;
 ///
 /// Note the type signature: this function should return _the same_ reference to
 /// the winning hand(s) as were passed in, not reconstructed strings which happen to be equal.
-pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
+pub fn winning_hands<'a>(hands: &[&'a str]) -> Result<Vec<&'a str>, &'static str> {
     let mut hands = hands
         .into_iter()
         .map(|source| Hand::try_from(*source))
-        .collect::<Result<Vec<_>, _>>().ok()?;
+        .collect::<Result<Vec<_>, _>>()?;
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
     hands.last().map(|last| {
         hands
@@ -21,6 +21,7 @@ pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
             .map(|hand| hand.source)
             .collect()
     })
+    .ok_or("No winning hand")
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Clone, Copy, Hash)]

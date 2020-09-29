@@ -28,6 +28,18 @@ fn test_single_hand_always_wins() {
 
 #[test]
 #[ignore]
+fn test_empty_input() {
+    assert!(&winning_hands(&[""]).is_err())
+}
+
+#[test]
+#[ignore]
+fn test_not_enough_cards() {
+    assert!(&winning_hands(&["4S 5S 7H 8D"]).is_err())
+}
+
+#[test]
+#[ignore]
 fn test_highest_card_of_all_hands_wins() {
     test(
         &["4D 5S 6S 8D 3C", "2S 4C 7S 9H 10H", "3S 4S 5D 6H JH"],
