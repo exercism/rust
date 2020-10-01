@@ -190,130 +190,154 @@ fn test_grep_returns_result() {
 
 // Test grepping a single file
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_one_match_no_flags(
-    pattern = "Agamemnon",
-    flags = [],
-    files = ["iliad.txt"],
-    expected = ["Of Atreus, Agamemnon, King of men."]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_one_match_no_flags(
+        pattern = "Agamemnon",
+        flags = [],
+        files = ["iliad.txt"],
+        expected = ["Of Atreus, Agamemnon, King of men."]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_one_match_print_line_numbers_flag(
-    pattern = "Forbidden",
-    flags = ["-n"],
-    files = ["paradise_lost.txt"],
-    expected = ["2:Of that Forbidden Tree, whose mortal tast"]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_one_match_print_line_numbers_flag(
+        pattern = "Forbidden",
+        flags = ["-n"],
+        files = ["paradise_lost.txt"],
+        expected = ["2:Of that Forbidden Tree, whose mortal tast"]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_one_match_caseinsensitive_flag(
-    pattern = "FORBIDDEN",
-    flags = ["-i"],
-    files = ["paradise_lost.txt"],
-    expected = ["Of that Forbidden Tree, whose mortal tast"]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_one_match_caseinsensitive_flag(
+        pattern = "FORBIDDEN",
+        flags = ["-i"],
+        files = ["paradise_lost.txt"],
+        expected = ["Of that Forbidden Tree, whose mortal tast"]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_one_match_print_file_names_flag(
-    pattern = "Forbidden",
-    flags = ["-l"],
-    files = ["paradise_lost.txt"],
-    prefix_expected = ["paradise_lost.txt"]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_one_match_print_file_names_flag(
+        pattern = "Forbidden",
+        flags = ["-l"],
+        files = ["paradise_lost.txt"],
+        prefix_expected = ["paradise_lost.txt"]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_one_match_match_entire_lines_flag(
-    pattern = "With loss of Eden, till one greater Man",
-    flags = ["-x"],
-    files = ["paradise_lost.txt"],
-    expected = ["With loss of Eden, till one greater Man"]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_one_match_match_entire_lines_flag(
+        pattern = "With loss of Eden, till one greater Man",
+        flags = ["-x"],
+        files = ["paradise_lost.txt"],
+        expected = ["With loss of Eden, till one greater Man"]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_one_match_multiple_flags(
-    pattern = "OF ATREUS, Agamemnon, KIng of MEN.",
-    flags = ["-x", "-i", "-n"],
-    files = ["iliad.txt"],
-    expected = ["9:Of Atreus, Agamemnon, King of men."]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_one_match_multiple_flags(
+        pattern = "OF ATREUS, Agamemnon, KIng of MEN.",
+        flags = ["-x", "-i", "-n"],
+        files = ["iliad.txt"],
+        expected = ["9:Of Atreus, Agamemnon, King of men."]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_several_matches_no_flags(
-    pattern = "may",
-    flags = [],
-    files = ["midsummer_night.txt"],
-    expected = [
-        "Nor how it may concern my modesty,",
-        "But I beseech your grace that I may know",
-        "The worst that may befall me in this case,"
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_several_matches_no_flags(
+        pattern = "may",
+        flags = [],
+        files = ["midsummer_night.txt"],
+        expected = [
+            "Nor how it may concern my modesty,",
+            "But I beseech your grace that I may know",
+            "The worst that may befall me in this case,"
+        ]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_several_matches_print_line_numbers_flag(
-    pattern = "may",
-    flags = ["-n"],
-    files = ["midsummer_night.txt"],
-    expected = [
-        "3:Nor how it may concern my modesty,",
-        "5:But I beseech your grace that I may know",
-        "6:The worst that may befall me in this case,"
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_several_matches_print_line_numbers_flag(
+        pattern = "may",
+        flags = ["-n"],
+        files = ["midsummer_night.txt"],
+        expected = [
+            "3:Nor how it may concern my modesty,",
+            "5:But I beseech your grace that I may know",
+            "6:The worst that may befall me in this case,"
+        ]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_several_matches_match_entire_lines_flag(
-    pattern = "may",
-    flags = ["-x"],
-    files = ["midsummer_night.txt"],
-    expected = []
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_several_matches_match_entire_lines_flag(
+        pattern = "may",
+        flags = ["-x"],
+        files = ["midsummer_night.txt"],
+        expected = []
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_several_matches_caseinsensitive_flag(
-    pattern = "ACHILLES",
-    flags = ["-i"],
-    files = ["iliad.txt"],
-    expected = [
-        "Achilles sing, O Goddess! Peleus' son;",
-        "The noble Chief Achilles from the son"
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_several_matches_caseinsensitive_flag(
+        pattern = "ACHILLES",
+        flags = ["-i"],
+        files = ["iliad.txt"],
+        expected = [
+            "Achilles sing, O Goddess! Peleus' son;",
+            "The noble Chief Achilles from the son"
+        ]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_several_matches_inverted_flag(
-    pattern = "Of",
-    flags = ["-v"],
-    files = ["paradise_lost.txt"],
-    expected = [
-        "Brought Death into the World, and all our woe,",
-        "With loss of Eden, till one greater Man",
-        "Restore us, and regain the blissful Seat,",
-        "Sing Heav'nly Muse, that on the secret top",
-        "That Shepherd, who first taught the chosen Seed"
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_several_matches_inverted_flag(
+        pattern = "Of",
+        flags = ["-v"],
+        files = ["paradise_lost.txt"],
+        expected = [
+            "Brought Death into the World, and all our woe,",
+            "With loss of Eden, till one greater Man",
+            "Restore us, and regain the blissful Seat,",
+            "Sing Heav'nly Muse, that on the secret top",
+            "That Shepherd, who first taught the chosen Seed"
+        ]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_one_file_no_matches_various_flags(
-    pattern = "Gandalf",
-    flags = ["-n", "-l", "-x", "-i"],
-    files = ["iliad.txt"],
-    expected = []
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_one_file_no_matches_various_flags(
+        pattern = "Gandalf",
+        flags = ["-n", "-l", "-x", "-i"],
+        files = ["iliad.txt"],
+        expected = []
+    )
+);
 
 set_up_test_case!(
     #[test]
@@ -348,70 +372,80 @@ set_up_test_case!(
 
 // Test grepping multiples files at once
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_one_match_no_flags(
-    pattern = "Agamemnon",
-    flags = [],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = ["iliad.txt:Of Atreus, Agamemnon, King of men."]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_one_match_no_flags(
+        pattern = "Agamemnon",
+        flags = [],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = ["iliad.txt:Of Atreus, Agamemnon, King of men."]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_several_matches_no_flags(
-    pattern = "may",
-    flags = [],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = [
-        "midsummer_night.txt:Nor how it may concern my modesty,",
-        "midsummer_night.txt:But I beseech your grace that I may know",
-        "midsummer_night.txt:The worst that may befall me in this case,"
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_several_matches_no_flags(
+        pattern = "may",
+        flags = [],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = [
+            "midsummer_night.txt:Nor how it may concern my modesty,",
+            "midsummer_night.txt:But I beseech your grace that I may know",
+            "midsummer_night.txt:The worst that may befall me in this case,"
+        ]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_several_matches_print_line_numbers_flag(
-    pattern = "that",
-    flags = ["-n"],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = [
-        "midsummer_night.txt:5:But I beseech your grace that I may know",
-        "midsummer_night.txt:6:The worst that may befall me in this case,",
-        "paradise_lost.txt:2:Of that Forbidden Tree, whose mortal tast",
-        "paradise_lost.txt:6:Sing Heav'nly Muse, that on the secret top"
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_several_matches_print_line_numbers_flag(
+        pattern = "that",
+        flags = ["-n"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = [
+            "midsummer_night.txt:5:But I beseech your grace that I may know",
+            "midsummer_night.txt:6:The worst that may befall me in this case,",
+            "paradise_lost.txt:2:Of that Forbidden Tree, whose mortal tast",
+            "paradise_lost.txt:6:Sing Heav'nly Muse, that on the secret top"
+        ]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_one_match_print_file_names_flag(
-    pattern = "who",
-    flags = ["-l"],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = ["iliad.txt", "paradise_lost.txt"]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_one_match_print_file_names_flag(
+        pattern = "who",
+        flags = ["-l"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = ["iliad.txt", "paradise_lost.txt"]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_several_matches_caseinsensitive_flag(
-    pattern = "TO",
-    flags = ["-i"],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = [
-        "iliad.txt:Caused to Achaia's host, sent many a soul",
-        "iliad.txt:Illustrious into Ades premature,",
-        "iliad.txt:And Heroes gave (so stood the will of Jove)",
-        "iliad.txt:To dogs and to all ravening fowls a prey,",
-        "midsummer_night.txt:I do entreat your grace to pardon me.",
-        "midsummer_night.txt:In such a presence here to plead my thoughts;",
-        "midsummer_night.txt:If I refuse to wed Demetrius.",
-        "paradise_lost.txt:Brought Death into the World, and all our woe,",
-        "paradise_lost.txt:Restore us, and regain the blissful Seat,",
-        "paradise_lost.txt:Sing Heav'nly Muse, that on the secret top"
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_several_matches_caseinsensitive_flag(
+        pattern = "TO",
+        flags = ["-i"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = [
+            "iliad.txt:Caused to Achaia's host, sent many a soul",
+            "iliad.txt:Illustrious into Ades premature,",
+            "iliad.txt:And Heroes gave (so stood the will of Jove)",
+            "iliad.txt:To dogs and to all ravening fowls a prey,",
+            "midsummer_night.txt:I do entreat your grace to pardon me.",
+            "midsummer_night.txt:In such a presence here to plead my thoughts;",
+            "midsummer_night.txt:If I refuse to wed Demetrius.",
+            "paradise_lost.txt:Brought Death into the World, and all our woe,",
+            "paradise_lost.txt:Restore us, and regain the blissful Seat,",
+            "paradise_lost.txt:Sing Heav'nly Muse, that on the secret top"
+        ]
+    )
+);
 
 set_up_test_case!(
     #[test]
@@ -429,45 +463,53 @@ set_up_test_case!(
     )
 );
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_several_matches_inverted_flag(
-    pattern = "a",
-    flags = ["-v"],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = [
-        "iliad.txt:Achilles sing, O Goddess! Peleus' son;",
-        "iliad.txt:The noble Chief Achilles from the son",
-        "midsummer_night.txt:If I refuse to wed Demetrius."
-    ]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_several_matches_inverted_flag(
+        pattern = "a",
+        flags = ["-v"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = [
+            "iliad.txt:Achilles sing, O Goddess! Peleus' son;",
+            "iliad.txt:The noble Chief Achilles from the son",
+            "midsummer_night.txt:If I refuse to wed Demetrius."
+        ]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_one_match_match_entire_lines_flag(
-    pattern = "But I beseech your grace that I may know",
-    flags = ["-x"],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = ["midsummer_night.txt:But I beseech your grace that I may know"]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_one_match_match_entire_lines_flag(
+        pattern = "But I beseech your grace that I may know",
+        flags = ["-x"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = ["midsummer_night.txt:But I beseech your grace that I may know"]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_one_match_multiple_flags(
-    pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN",
-    flags = ["-n", "-i", "-x"],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    prefix_expected = ["paradise_lost.txt:4:With loss of Eden, till one greater Man"]
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_one_match_multiple_flags(
+        pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN",
+        flags = ["-n", "-i", "-x"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        prefix_expected = ["paradise_lost.txt:4:With loss of Eden, till one greater Man"]
+    )
+);
 
-set_up_test_case!(#[test]
-#[ignore]
-test_multiple_files_no_matches_various_flags(
-    pattern = "Frodo",
-    flags = ["-n", "-i", "-x", "-l"],
-    files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
-    expected = []
-));
+set_up_test_case!(
+    #[test]
+    #[ignore]
+    test_multiple_files_no_matches_various_flags(
+        pattern = "Frodo",
+        flags = ["-n", "-i", "-x", "-l"],
+        files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
+        expected = []
+    )
+);
 
 set_up_test_case!(
     #[test]
