@@ -26,11 +26,11 @@ fn test_invalid_dna_input() {
 #[ignore]
 fn test_invalid_rna_input() {
     // Invalid character
-    assert!(dna::RNA::new("X").is_err());
+    assert_eq!(dna::RNA::new("X").unwrap_err(), 0);
     // Valid nucleotide, but invalid in context
-    assert!(dna::RNA::new("T").is_err());
+    assert_eq!(dna::RNA::new("T").unwrap_err(), 0);
     // Longer string with contained errors
-    assert!(dna::RNA::new("ACGUTTXCUUAA").is_err());
+    assert_eq!(dna::RNA::new("ACGUTTXCUUAA").unwrap_err(), 4);
 }
 
 #[test]
