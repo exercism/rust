@@ -1,15 +1,13 @@
-#[macro_use]
-extern crate failure;
+use anyhow::Error;
 
-use failure::Error;
 use std::{fs, path::Path};
 
-#[derive(Debug, Fail)]
+#[derive(Debug, thiserror::Error)]
 enum FileAccessError {
-    #[fail(display = "File not found: {}", file_name)]
+    #[error("File not found: {}", file_name)]
     FileNotFoundError { file_name: String },
 
-    #[fail(display = "Error reading file: {}", file_name)]
+    #[error("Error reading file: {}", file_name)]
     FileReadError { file_name: String },
 }
 

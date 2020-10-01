@@ -1,5 +1,6 @@
 [dependencies]
 anyhow = "1.0"
+thiserror = "1.0"
 
 [package]
 edition = "2018"

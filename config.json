@@ -1049,8 +1049,8 @@
       "unlocked_by": "poker",
       "difficulty": 7,
       "topics": [
+        "anyhow_crate",
         "conditionals",
-        "failure_crate",
         "file_io",
         "parsing",
         "result_type",
