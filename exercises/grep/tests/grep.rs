@@ -1,4 +1,4 @@
-use grep::{grep, Flags};
+use grep::{FileAccessError, Flags, grep};
 
 use std::fs;
 
@@ -167,9 +167,10 @@ fn test_nonexistent_file_returns_error() {
 
     let flags = Flags::new(&[]);
 
-    let files = vec!["test_nonexistent_file_returns_error_iliad.txt"];
+    let file_name = "test_nonexistent_file_returns_error_iliad.txt";
+    let files = vec![file_name];
 
-    assert!(grep(&pattern, &flags, &files).is_err());
+    assert_eq!(grep(&pattern, &flags, &files).unwrap_err(), FileAccessError::FileNotFoundError{file_name: String::from(file_name)});
 }
 
 #[test]
