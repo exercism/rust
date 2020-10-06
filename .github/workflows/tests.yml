@@ -1,10 +1,10 @@
-name: Super-Linter
+name: Run all tests
 
 # Run this workflow every time a new commit is pushed to the repository
 on: push
 
 jobs:
-  super-lint:
+  run-all-tests:
     name: Lint code base
 
     # TODO: not sure what the best OS to run on is so ubuntu will do for now
