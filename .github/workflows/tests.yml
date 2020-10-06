@@ -1,0 +1,60 @@
+name: Super-Linter
+
+# Run this workflow every time a new commit is pushed to the repository
+on: push
+
+jobs:
+  super-lint:
+    name: Lint code base
+
+    # TODO: not sure what the best OS to run on is so ubuntu will do for now
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Runs the Super-Linter action
+      # - name: Run Super-Linter
+      #   uses: github/super-linter@v3
+      #   env:
+      #     DEFAULT_BRANCH: main
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # run these as steps
+      - name: Check exercises
+        run: ./_test/check-exercises.sh
+
+      - name: Ensure src/lib.rs files exist
+        run: bash ./_test/ensure-lib-src-rs-exist.sh
+
+      - name: Ensure stubs compile
+        run: sh ./_test/ensure-stubs-compile.sh
+
+      - name: Count ignores
+        run: sh ./_test/count-ignores.sh
+
+      - name: Fetch configlet
+        run: ./bin/fetch-configlet
+
+      - name: Check configlet format
+        run: ./_test/check-configlet-fmt.sh
+
+      - name: Ensure readmes are updated
+        run: sh ./_test/ensure-readmes-are-updated.sh
+
+      - name: Lint configlet
+        run: ./bin/configlet lint .
+
+      - name: Check UUIDs
+        run: sh ./_test/check-uuids.sh
+
+      - name: Verify exercise difficulties
+        run: ./_test/verify-exercise-difficulties.sh
+
+      - name: Check exercises for authors
+        run: ./_test/check-exercises-for-authors.sh
+
+      - name: Check exercise crate
+        run: sh ./_test/check-exercise-crate.sh
