@@ -5,7 +5,7 @@ on: push
 
 jobs:
   run-all-tests:
-    name: Lint code base
+    name: Run all tests
 
     # TODO: not sure what the best OS to run on is so ubuntu will do for now
     runs-on: ubuntu-latest
