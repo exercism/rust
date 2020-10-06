@@ -17,15 +17,13 @@ jobs:
     strategy:
       # Allows running the build multiple times with different configurations
       matrix:
-        rust: ["stable", "nightly", "beta"]
+        rust: ["stable", "beta"]
         deny_warnings: ['', 1]
 
         # For nightly rust, run the check-exercises.sh script with DENYWARNINGS=1
         include:
           - rust: nightly
             deny_warnings: 1
-            run: ./_test/check-exercises.sh DENYWARNINGS=${{ matrix.deny_warnings }}
-
     
     # Allow failures on nightly rust, or beta if DENYWARNINGS is enabled
     continue-on-error: ${{ matrix.rust == "nightly" || (matrix.rust == "beta" && DENYWARNINGS == 1)}}
