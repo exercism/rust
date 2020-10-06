@@ -1,7 +1,11 @@
 name: Run all tests
 
 # Run this workflow every time a new commit is pushed to the repository
-on: push
+on:
+  push:
+    branches:
+    - master
+  pull_request:
 
 jobs:
   run-all-tests:
