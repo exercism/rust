@@ -67,9 +67,9 @@ jobs:
 
         # TODO: I don't know how to make it run only the check_exercises.sh script
         # For nightly rust, run the job with BENCHMARK=1
-        include:
-          - rust: nightly
-            benchmark: 1
+        # include:
+        #   - rust: nightly
+        #     benchmark: 1
 
     # - continue-on-error: true
     #   if: matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
@@ -77,14 +77,24 @@ jobs:
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
+        env:
+          DENYWARNINGS: ${{ matrix.deny_warnings }}
         uses: actions/checkout@v2
 
       # run scripts as steps
       - name: Check exercises
+        env:
+          DENYWARNINGS: ${{ matrix.deny_warnings }}      
         run: ./_test/check-exercises.sh
 
       - name: Ensure stubs compile
+        env:
+          DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/ensure-stubs-compile.sh
 
       - name: Check exercise crate
+        env:
+          DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/check-exercise-crate.sh
+
+  # nightly-compilation:
