@@ -81,10 +81,18 @@ jobs:
         with:
             toolchain: ${{ matrix.rust }}
 
+      - name: Get changed files in PR
+        run: |
+          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
+          echo $FILES
+
       # run scripts as steps
       # TODO: the TRAVIS_PULL_REQUEST variable is a holdover from before the
       # migration to GitHub Actions. The scripts that use it may require some
       # changes to work properly - check the workflow logs for details.
+      # TODO: I'm not sure how to conditionally set TRAVIS_PULL_REQUEST depending on 
+      # whether this is a PR or not.
       - name: Check exercises
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}      
