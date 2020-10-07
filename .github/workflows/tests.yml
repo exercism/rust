@@ -80,29 +80,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # run scripts as steps
-      # TODO: can the "toolchain" part be consolidated to one place before 
-      # the steps?
-      - name: Check exercises
+      - name: Setup toolchain
         uses: actions-rs/toolchain@v1
         with:
             toolchain: ${{ matrix.rust }}
+
+      # run scripts as steps
+      - name: Check exercises
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}      
         run: ./_test/check-exercises.sh
 
       - name: Ensure stubs compile
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: ${{ matrix.rust }}
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/ensure-stubs-compile.sh
 
       - name: Check exercise crate
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: ${{ matrix.rust }}
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/check-exercise-crate.sh
