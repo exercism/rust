@@ -101,7 +101,8 @@ jobs:
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
     runs-on: ubuntu-latest
-    toolchain: nightly
+    with:
+      toolchain: nightly
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
