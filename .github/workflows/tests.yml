@@ -5,7 +5,7 @@ on:
   push:
     branches:
     - master
-    - actions-test
+    - actions-test # TODO: remove when done testing
   pull_request:
 
 jobs:
@@ -46,6 +46,8 @@ jobs:
         run: ./bin/fetch-configlet
 
       - name: Check configlet format
+        env:
+          TRAVIS_PULL_REQUEST: true # TODO: perhaps refactor the name
         run: ./_test/check-configlet-fmt.sh
 
       - name: Ensure readmes are updated
@@ -65,12 +67,6 @@ jobs:
         rust: ["stable", "beta"]
         deny_warnings: ['', '1']
 
-        # TODO: probably just move this one out to its own job
-        # For nightly rust, run the job with BENCHMARK=1
-        # include:
-        #   - rust: nightly
-        #     benchmark: 1
-
     # TODO: figure out how to make this work for beta + denywarnings
     # - continue-on-error: true
       # if: ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
@@ -86,19 +82,25 @@ jobs:
             toolchain: ${{ matrix.rust }}
 
       # run scripts as steps
+      # TODO: the TRAVIS_PULL_REQUEST variable is a holdover from before the
+      # migration to GitHub Actions. The scripts that use it may require some
+      # changes to work properly - check the workflow logs for details.
       - name: Check exercises
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}      
+          TRAVIS_PULL_REQUEST: true
         run: ./_test/check-exercises.sh
 
       - name: Ensure stubs compile
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
+          TRAVIS_PULL_REQUEST: true
         run: sh ./_test/ensure-stubs-compile.sh
 
       - name: Check exercise crate
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
+          TRAVIS_PULL_REQUEST: true
         run: sh ./_test/check-exercise-crate.sh
 
   nightly-compilation:
