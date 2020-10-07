@@ -55,36 +55,36 @@ jobs:
         run: ./bin/configlet lint .
 
 
-  # compilation:
-  #   name: Check compilation
-  #   runs-on: ubuntu-latest
+  compilation:
+    name: Check compilation
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     # Allows running the job multiple times with different configurations
-  #     matrix:
-  #       rust: ["stable", "beta"]
-  #       deny_warnings: ['', '1']
+    strategy:
+      # Allows running the job multiple times with different configurations
+      matrix:
+        rust: ["stable", "beta"]
+        deny_warnings: ['', '1']
 
-  #       # TODO: I don't know how to make it run only the check_exercises.sh script
-  #       # For nightly rust, run the job with BENCHMARK=1
-  #       include:
-  #         - rust: nightly
-  #           benchmark: 1
+        # TODO: I don't know how to make it run only the check_exercises.sh script
+        # For nightly rust, run the job with BENCHMARK=1
+        include:
+          - rust: nightly
+            benchmark: 1
 
-  #   # - continue-on-error: true
-  #   #   if: matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
+    # - continue-on-error: true
+    #   if: matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
 
-  #   steps:
-  #     # Checks out a copy of your repository on the ubuntu-latest machine
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     # run scripts as steps
-  #     - name: Check exercises
-  #       run: ./_test/check-exercises.sh
+      # run scripts as steps
+      - name: Check exercises
+        run: ./_test/check-exercises.sh
 
-  #     - name: Ensure stubs compile
-  #       run: sh ./_test/ensure-stubs-compile.sh
+      - name: Ensure stubs compile
+        run: sh ./_test/ensure-stubs-compile.sh
 
-  #     - name: Check exercise crate
-  #       run: sh ./_test/check-exercise-crate.sh
+      - name: Check exercise crate
+        run: sh ./_test/check-exercise-crate.sh
