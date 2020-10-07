@@ -80,11 +80,11 @@ jobs:
 
       # run scripts as steps
       - name: Check exercises
-        env: DENYWARNINGS: ${{ matrix.deny_warnings }}
+        # env: DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: ./_test/check-exercises.sh
 
       - name: Ensure stubs compile
-        env: DENYWARNINGS: ${{ matrix.deny_warnings }}
+        # env: DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/ensure-stubs-compile.sh
 
       - name: Check exercise crate
