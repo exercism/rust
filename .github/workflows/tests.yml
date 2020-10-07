@@ -70,7 +70,6 @@ jobs:
           - rust: nightly
             benchmark: 1
     
-    # Allow failures on nightly rust, or beta if DENYWARNINGS is enabled
     - continue-on-error: true
       if: matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
 
