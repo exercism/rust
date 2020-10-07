@@ -69,9 +69,9 @@ jobs:
         include:
           - rust: nightly
             benchmark: 1
-    
-    - continue-on-error: true
-      if: matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
+
+    # - continue-on-error: true
+    #   if: matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
