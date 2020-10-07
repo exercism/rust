@@ -8,46 +8,38 @@ on:
   pull_request:
 
 jobs:
-  run-all-tests:
-    name: Run all tests
-
-    # TODO: not sure what the best OS to run on is so ubuntu will do for now
+  ensure-conventions:
+    name: Ensure conventions are followed
     runs-on: ubuntu-latest
-
-    strategy:
-      # Allows running the build multiple times with different configurations
-      matrix:
-        rust: ["stable", "beta"]
-        deny_warnings: ['', 1]
-
-        # TODO: I don't know how to make it run only the check_exercises.sh script
-        # For nightly rust, run the job with DENYWARNINGS=1
-        include:
-          - rust: nightly
-            deny_warnings: 1
-    
-    # Allow failures on nightly rust, or beta if DENYWARNINGS is enabled
-    continue-on-error: ${{ matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' ) }}
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
-        env: 
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-
-      # run these as steps
-      - name: Check exercises
-        run: ./_test/check-exercises.sh
 
       - name: Ensure src/lib.rs files exist
         run: bash ./_test/ensure-lib-src-rs-exist.sh
 
-      - name: Ensure stubs compile
-        run: sh ./_test/ensure-stubs-compile.sh
-
       - name: Count ignores
         run: sh ./_test/count-ignores.sh
+
+      - name: Check UUIDs
+        run: sh ./_test/check-uuids.sh
+
+      - name: Verify exercise difficulties
+        run: ./_test/verify-exercise-difficulties.sh
+
+      - name: Check exercises for authors
+        run: ./_test/check-exercises-for-authors.sh
+
+  configlet:
+    name: Setup configlet
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Fetch configlet
         run: ./bin/fetch-configlet
@@ -61,14 +53,40 @@ jobs:
       - name: Lint configlet
         run: ./bin/configlet lint .
 
-      - name: Check UUIDs
-        run: sh ./_test/check-uuids.sh
 
-      - name: Verify exercise difficulties
-        run: ./_test/verify-exercise-difficulties.sh
+  compilation:
+    name: Check compilation
+    runs-on: ubuntu-latest
 
-      - name: Check exercises for authors
-        run: ./_test/check-exercises-for-authors.sh
+    strategy:
+      # Allows running the job multiple times with different configurations
+      matrix:
+        rust: ["stable", "beta"]
+        deny_warnings: ['', '1']
+
+        # TODO: I don't know how to make it run only the check_exercises.sh script
+        # For nightly rust, run the job with BENCHMARK=1
+        include:
+          - rust: nightly
+            benchmark: 1
+    
+    # Allow failures on nightly rust, or beta if DENYWARNINGS is enabled
+    - continue-on-error: true
+      if: matrix.rust == 'nightly' || ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # run scripts as steps
+      - name: Check exercises
+        env: DENYWARNINGS: ${{ matrix.deny_warnings }}
+        run: ./_test/check-exercises.sh
+
+      - name: Ensure stubs compile
+        env: DENYWARNINGS: ${{ matrix.deny_warnings }}
+        run: sh ./_test/ensure-stubs-compile.sh
 
       - name: Check exercise crate
         run: sh ./_test/check-exercise-crate.sh
