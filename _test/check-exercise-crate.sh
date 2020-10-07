@@ -2,6 +2,9 @@
 
 # A script to ensure that the util/exercise crate builds after it was modified.
 
+# Improve error propagation during CI
+set -e -o pipefail
+
 EXERCISE_CRATE_PATH="util/exercise"
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
