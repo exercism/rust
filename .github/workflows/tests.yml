@@ -27,7 +27,7 @@ jobs:
             deny_warnings: 1
     
     # Allow failures on nightly rust, or beta if DENYWARNINGS is enabled
-    continue-on-error: ${{ matrix.rust }} == "nightly" || ( ${{ matrix.rust }} == "beta" && DENYWARNINGS == 1 )
+    continue-on-error: "${{ matrix.rust }}"" == "nightly" || ( "${{ matrix.rust }}" == "beta" && DENYWARNINGS == 1 )
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
