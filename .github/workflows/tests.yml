@@ -110,10 +110,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check exercises
+      - name: Setup nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
+
+      - name: Check exercises
         env:
           BENCHMARK: '1'
         run: ./_test/check-exercises.sh
