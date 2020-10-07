@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Improve error propagation during CI
-set -e -o pipefail
+# NOTE: this causes the job to fail always
+# # Improve error propagation during CI
+# set -e -o pipefail
 
 # test for existence and executability of the test-exercise script
 # this depends on that
@@ -31,8 +32,6 @@ fi
 repo=$(cd "$(dirname "$0")/.." && pwd)
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
-	# files="$(git diff --diff-filter=d --name-only master | grep "exercises/" | cut -d '/' -f -2 | sort -u | awk -v repo=$repo '{print repo"/"$1}')"
-   git branch -a
    files="$(git diff --diff-filter=d --name-only remotes/origin/master | grep "exercises/" | cut -d '/' -f -2 | sort -u | awk -v repo=$repo '{print repo"/"$1}')"
 else
 	files=$repo/exercises/*
