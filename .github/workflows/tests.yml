@@ -72,6 +72,12 @@ jobs:
       # if: ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
 
     steps:
+      # Hopefully this checks out master
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
