@@ -79,21 +79,30 @@ jobs:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          toolchain: ${{ matrix.rust }}
 
       # run scripts as steps
+      # TODO: can the "toolchain" part be consolidated to one place before 
+      # the steps?
       - name: Check exercises
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: ${{ matrix.rust }}
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}      
         run: ./_test/check-exercises.sh
 
       - name: Ensure stubs compile
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/ensure-stubs-compile.sh
 
       - name: Check exercise crate
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/check-exercise-crate.sh
@@ -101,8 +110,6 @@ jobs:
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
     runs-on: ubuntu-latest
-    with:
-      toolchain: nightly
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
@@ -110,6 +117,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Check exercises
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
         env:
           BENCHMARK: '1'
         run: ./_test/check-exercises.sh
