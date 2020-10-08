@@ -5,61 +5,24 @@ on:
   push:
     branches:
     - master
+    - actions-test # TODO: remove when done testing
   pull_request:
 
 jobs:
-  run-all-tests:
-    name: Run all tests
-
-    # TODO: not sure what the best OS to run on is so ubuntu will do for now
+  ensure-conventions:
+    name: Ensure conventions are followed
     runs-on: ubuntu-latest
-
-    strategy:
-      # Allows running the build multiple times with different configurations
-      matrix:
-        rust: ["stable", "beta"]
-        deny_warnings: ['', 1]
-
-        # TODO: I don't know how to make it run only the check_exercises.sh script
-        # For nightly rust, run the job with DENYWARNINGS=1
-        include:
-          - rust: nightly
-            deny_warnings: 1
-    
-    # Allow failures on nightly rust, or beta if DENYWARNINGS is enabled
-    continue-on-error: ${{ matrix.rust }} == "nightly" || ( ${{ matrix.rust }} == "beta" && DENYWARNINGS == 1 )
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
-        env: 
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-
-      # run these as steps
-      - name: Check exercises
-        run: ./_test/check-exercises.sh
 
       - name: Ensure src/lib.rs files exist
         run: bash ./_test/ensure-lib-src-rs-exist.sh
 
-      - name: Ensure stubs compile
-        run: sh ./_test/ensure-stubs-compile.sh
-
       - name: Count ignores
         run: sh ./_test/count-ignores.sh
-
-      - name: Fetch configlet
-        run: ./bin/fetch-configlet
-
-      - name: Check configlet format
-        run: ./_test/check-configlet-fmt.sh
-
-      - name: Ensure readmes are updated
-        run: sh ./_test/ensure-readmes-are-updated.sh
-
-      - name: Lint configlet
-        run: ./bin/configlet lint .
 
       - name: Check UUIDs
         run: sh ./_test/check-uuids.sh
@@ -70,5 +33,111 @@ jobs:
       - name: Check exercises for authors
         run: ./_test/check-exercises-for-authors.sh
 
+  configlet:
+    name: Setup configlet
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out master locally so that it is available to the scripts.
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Fetch configlet
+        run: ./bin/fetch-configlet
+
+      - name: Check configlet format
+        env:
+          TRAVIS_PULL_REQUEST: true # TODO: perhaps refactor the name
+        run: ./_test/check-configlet-fmt.sh
+
+      - name: Ensure readmes are updated
+        run: sh ./_test/ensure-readmes-are-updated.sh
+
+      - name: Lint configlet
+        run: ./bin/configlet lint .
+
+
+  compilation:
+    name: Check compilation
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Allows running the job multiple times with different configurations
+      matrix:
+        rust: ["stable", "beta"]
+        deny_warnings: ['', '1']
+
+    # TODO: figure out how to make this work for beta + denywarnings
+    # - continue-on-error: true
+      # if: ( matrix.rust == 'beta' && DENYWARNINGS == '1' )
+
+    steps:
+      # Checks out master locally so that it is available to the scripts.
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: ${{ matrix.rust }}
+
+      # run scripts as steps
+      # TODO: the TRAVIS_PULL_REQUEST variable is a holdover from before the
+      # migration to GitHub Actions. The scripts that use it may require some
+      # changes to work properly - check the workflow logs for details.
+      # TODO: I'm not sure how to conditionally set TRAVIS_PULL_REQUEST depending on 
+      # whether this is a PR or not.
+      - name: Check exercises
+        env:
+          DENYWARNINGS: ${{ matrix.deny_warnings }}      
+          TRAVIS_PULL_REQUEST: true
+        run: ./_test/check-exercises.sh
+
+      - name: Ensure stubs compile
+        env:
+          DENYWARNINGS: ${{ matrix.deny_warnings }}
+          TRAVIS_PULL_REQUEST: true
+        run: sh ./_test/ensure-stubs-compile.sh
+
       - name: Check exercise crate
+        env:
+          DENYWARNINGS: ${{ matrix.deny_warnings }}
+          TRAVIS_PULL_REQUEST: true
         run: sh ./_test/check-exercise-crate.sh
+
+  nightly-compilation:
+    name: Check exercises on nightly (benchmark enabled)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out master locally so that it is available to the scripts.
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup nightly toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+
+      - name: Check exercises
+        env:
+          BENCHMARK: '1'
+        run: ./_test/check-exercises.sh

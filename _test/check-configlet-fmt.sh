@@ -3,12 +3,16 @@
 # This ensures that config.json and config/maintainers.json are compatible
 # with the output of configlet fmt.
 
+# FIXME: causes failures in CI
+# # Improve error propagation during CI
+# set -e -o pipefail
+
 # Check if config.json or maintainers.json were modified
 check_pattern="config.json\|config/maintainers.json"
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     # Check the changes on the current branch against master branch
-    git diff --name-only master | grep "$check_pattern"
+    git diff --name-only remotes/origin/master | grep "$check_pattern"
 else
     # Check the commits on the master branch made during the week
     # This is because Travis cron is set to test the master branch weekly.
