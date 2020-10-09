@@ -2,11 +2,15 @@
 
 # A script to ensure that the util/exercise crate builds after it was modified.
 
+# FIXME: causes failures in CI
+# # Improve error propagation during CI
+# set -e -o pipefail
+
 EXERCISE_CRATE_PATH="util/exercise"
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     # Check the changes on the current branch against master branch
-    git diff --name-only master | grep "$EXERCISE_CRATE_PATH"
+    git diff --name-only remotes/origin/master | grep "$EXERCISE_CRATE_PATH"
 else
     # Check the commits on the master branch made during the week
     # This is because Travis cron is set to test the master branch weekly.
