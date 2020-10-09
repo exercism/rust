@@ -132,7 +132,7 @@ impl Iterator for DecomposeGroups {
                             let hypothetical_hash = hash_of(&hypothetical);
                             if !self.prev_states.contains(&hypothetical_hash) {
                                 self.prev_states.insert(hypothetical_hash);
-                                mem::replace(&mut self.next, Some(hypothetical));
+                                self.next = Some(hypothetical);
                                 return return_value;
                             }
                         }
@@ -151,7 +151,7 @@ impl Iterator for DecomposeGroups {
                 hypothetical.push(Group::new_containing(book));
                 hypothetical.sort();
                 self.prev_states.insert(hash_of(&hypothetical));
-                mem::replace(&mut self.next, Some(hypothetical));
+                self.next = Some(hypothetical);
             }
         }
         return_value
