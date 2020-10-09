@@ -4,7 +4,6 @@
 # # Improve error propagation during CI
 # set -e -o pipefail
 
-
 # test for existence and executability of the test-exercise script
 # this depends on that
 if [ ! -f "./bin/test-exercise" ]; then

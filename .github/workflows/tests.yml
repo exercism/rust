@@ -5,6 +5,7 @@ on:
   push:
     branches:
     - master
+    - actions-test # TODO: remove when done testing
   pull_request:
 
 jobs:
@@ -57,6 +58,8 @@ jobs:
         run: ./bin/fetch-configlet
 
       - name: Check configlet format
+        env:
+          TRAVIS_PULL_REQUEST: true # TODO: perhaps refactor the name
         run: ./_test/check-configlet-fmt.sh
 
       - name: Ensure readmes are updated
