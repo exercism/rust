@@ -6,7 +6,7 @@ EXERCISE_CRATE_PATH="util/exercise"
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     # Check the changes on the current branch against master branch
-    git diff --name-only master | grep "$EXERCISE_CRATE_PATH"
+    git diff --name-only remotes/origin/master | grep "$EXERCISE_CRATE_PATH"
 else
     # Check the commits on the master branch made during the week
     # This is because Travis cron is set to test the master branch weekly.
@@ -23,7 +23,7 @@ TRACK_ROOT="$(git rev-parse --show-toplevel)"
 
 if !(cd "$TRACK_ROOT/$EXERCISE_CRATE_PATH" && cargo check); then
 	echo "\nAn error has occurred while building the exercise crate.\nPlease make it compile."
-	
+
 	exit 1
 else
 	echo "\nexercise crate has been successfully built."
