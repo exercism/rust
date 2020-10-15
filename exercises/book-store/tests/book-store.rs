@@ -29,7 +29,6 @@ fn test_only_a_single_book() {
 }
 
 #[test]
-#[ignore]
 /// Two of the same book
 fn test_two_of_the_same_book() {
     process_total_case((vec![2, 2], vec![vec![2], vec![2]]), 1_600);
