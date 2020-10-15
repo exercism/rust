@@ -1,4 +1,4 @@
-name: Run all tests
+name: CI
 
 # Run this workflow every time a new commit is pushed to the repository
 on:
@@ -105,7 +105,7 @@ jobs:
       # run only on changed files.
       - name: Check exercises
         env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}      
+          DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: ./_test/check-exercises.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
