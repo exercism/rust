@@ -23,7 +23,7 @@ price of any conceivable shopping basket (containing only
 books of the same series), giving as big a discount as
 possible.
 
-For examples, how much does this basket of books cost?
+For example, how much does this basket of books cost?
 
 - 2 copies of the first book
 - 2 copies of the second book
