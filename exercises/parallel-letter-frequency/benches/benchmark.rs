@@ -32,7 +32,7 @@ fn bench_small_sequential(b: &mut Bencher) {
 #[bench]
 fn bench_large_parallel(b: &mut Bencher) {
     let texts = all_texts(30);
-    b.iter(|| parallel_letter_frequency::frequency(&texts, 3));
+    b.iter(|| parallel_letter_frequency::frequencys(&texts, 3));
 }
 
 #[bench]
