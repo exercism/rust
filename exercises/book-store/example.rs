@@ -14,7 +14,7 @@ const BOOK_PRICE: Price = 800;
 struct Group(RefCell<BTreeSet<Book>>);
 
 impl Group {
-    fn new() -> Group {
+    fn new() -> Groups {
         Group(RefCell::new(BTreeSet::new()))
     }
 
