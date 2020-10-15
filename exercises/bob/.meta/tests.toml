@@ -4,7 +4,7 @@
 "e162fead-606f-437a-a166-d051915cea8e" = false
 
 # shouting
-"73a966dc-8017-47d6-bb32-cf07d1a5fcd9" = false
+"73a966dc-8017-47d6-bb32-cf07d1a5fcd9" = true
 
 # shouting gibberish
 "d6c98afd-df35-4806-b55e-2c457c3ab748" = false
@@ -52,7 +52,7 @@
 "8608c508-f7de-4b17-985b-811878b3cf45" = false
 
 # silence
-"bc39f7c6-f543-41be-9a43-fd1c2f753fc0" = false
+"bc39f7c6-f543-41be-9a43-fd1c2f753fc0" = true
 
 # prolonged silence
 "d6c47565-372b-4b09-b1dd-c40552b8378b" = false

@@ -1,16 +1,16 @@
 [canonical-tests]
 
 # zero
-"5d22a120-ba0c-428c-bd25-8682235d83e8" = false
+"5d22a120-ba0c-428c-bd25-8682235d83e8" = true
 
 # one
-"9b5eed77-dbf6-439d-b920-3f7eb58928f6" = false
+"9b5eed77-dbf6-439d-b920-3f7eb58928f6" = true
 
 # fourteen
-"7c499be1-612e-4096-a5e1-43b2f719406d" = false
+"7c499be1-612e-4096-a5e1-43b2f719406d" = true
 
 # twenty
-"f541dd8e-f070-4329-92b4-b7ce2fcf06b4" = false
+"f541dd8e-f070-4329-92b4-b7ce2fcf06b4" = true
 
 # twenty-two
 "d78601eb-4a84-4bfa-bf0e-665aeb8abe94" = false

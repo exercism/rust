@@ -7,7 +7,7 @@
 "4f99b933-367b-404b-8c6d-36d5923ee476" = false
 
 # singleton that can't be chained
-"91122d10-5ec7-47cb-b759-033756375869" = false
+"91122d10-5ec7-47cb-b759-033756375869" = true
 
 # three elements
 "be8bc26b-fd3d-440b-8e9f-d698a0623be3" = false

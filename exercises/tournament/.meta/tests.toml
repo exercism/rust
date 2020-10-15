@@ -4,7 +4,7 @@
 "67e9fab1-07c1-49cf-9159-bc8671cc7c9c" = true
 
 # a win is three points, a loss is zero points
-"1b4a8aef-0734-4007-80a2-0626178c88f4" = false
+"1b4a8aef-0734-4007-80a2-0626178c88f4" = true
 
 # a win can also be expressed as a loss
 "5f45ac09-4efe-46e7-8ddb-75ad85f86e05" = true
@@ -28,7 +28,7 @@
 "97022974-0c8a-4a50-8fe7-e36bdd8a5945" = true
 
 # incomplete competition (not all pairs have played)
-"fe562f0d-ac0a-4c62-b9c9-44ee3236392b" = false
+"fe562f0d-ac0a-4c62-b9c9-44ee3236392b" = true
 
 # ties broken alphabetically
 "3aa0386f-150b-4f99-90bb-5195e7b7d3b8" = true

@@ -22,13 +22,13 @@
 "7037f483-ddb4-4b35-b005-0d0f4ef4606f" = true
 
 # horizontal line, mines at edges
-"e359820f-bb8b-4eda-8762-47b64dba30a6" = false
+"e359820f-bb8b-4eda-8762-47b64dba30a6" = true
 
 # vertical line
 "c5198b50-804f-47e9-ae02-c3b42f7ce3ab" = true
 
 # vertical line, mines at edges
-"0c79a64d-703d-4660-9e90-5adfa5408939" = false
+"0c79a64d-703d-4660-9e90-5adfa5408939" = true
 
 # cross
 "4b098563-b7f3-401c-97c6-79dd1b708f34" = true

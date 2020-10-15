@@ -13,7 +13,7 @@
 "be0e62d5-da9c-47a8-b037-5db21827baa7" = true
 
 # full buffer can't be written to
-"2af22046-3e44-4235-bfe6-05ba60439d38" = false
+"2af22046-3e44-4235-bfe6-05ba60439d38" = true
 
 # a read frees up capacity for another write
 "547d192c-bbf0-4369-b8fa-fc37e71f2393" = false
@@ -22,7 +22,7 @@
 "04a56659-3a81-4113-816b-6ecb659b4471" = true
 
 # items cleared out of buffer can't be read
-"60c3a19a-81a7-43d7-bb0a-f07242b1111f" = false
+"60c3a19a-81a7-43d7-bb0a-f07242b1111f" = true
 
 # clear frees up capacity for another write
 "45f3ae89-3470-49f3-b50e-362e4b330a59" = true
