@@ -43,10 +43,10 @@ a "whole step" or "major second" (written as an upper-case "M"). The
 diatonic scales are built using only these two intervals between
 adjacent notes.
 
-Non-diatonic scales can contain other intervals.  An "augmented first"
-interval, written "A", has two interceding notes (e.g., from A to C or
-Db to E). There are also smaller and larger intervals, but they will not
-figure into this exercise.
+Non-diatonic scales can contain other intervals.  An "augmented second"
+interval, written "A", has two interceding notes (e.g., from A to C or Db to E)
+or a "whole step" plus a "half step". There are also smaller and larger
+intervals, but they will not figure into this exercise.
 
 ## Rust Installation
 
