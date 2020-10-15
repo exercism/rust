@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# FIXME: causes failures in CI
-# # Improve error propagation during CI
-# set -e -o pipefail
-
 repo=$(cd "$(dirname "$0")/.." && pwd)
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then

@@ -2,10 +2,6 @@
 
 # A script to ensure that the util/exercise crate builds after it was modified.
 
-# FIXME: causes failures in CI
-# # Improve error propagation during CI
-# set -e -o pipefail
-
 EXERCISE_CRATE_PATH="util/exercise"
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
@@ -27,7 +23,7 @@ TRACK_ROOT="$(git rev-parse --show-toplevel)"
 
 if !(cd "$TRACK_ROOT/$EXERCISE_CRATE_PATH" && cargo check); then
 	echo "\nAn error has occurred while building the exercise crate.\nPlease make it compile."
-	
+
 	exit 1
 else
 	echo "\nexercise crate has been successfully built."

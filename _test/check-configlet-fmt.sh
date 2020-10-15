@@ -3,10 +3,6 @@
 # This ensures that config.json and config/maintainers.json are compatible
 # with the output of configlet fmt.
 
-# FIXME: causes failures in CI
-# # Improve error propagation during CI
-# set -e -o pipefail
-
 # Check if config.json or maintainers.json were modified
 check_pattern="config.json\|config/maintainers.json"
 
