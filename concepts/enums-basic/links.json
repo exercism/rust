@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Algebraic_data_type",
+    "description": "algebraic data types"
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Tagged_union",
+    "description": "tagged unions"
+  },
+  {
+    "url": "https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html",
+    "description": "introduction to enums in the Rust book"
+  }
+]
