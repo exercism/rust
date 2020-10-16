@@ -46,4 +46,5 @@
 "c423ae21-a0cb-4ec7-aeb1-32971af5b510" = true
 
 # solutions using include-exclude must extend to cardinality greater than 3
-"17053ba9-112f-4ac0-aadb-0519dd836342" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "17053ba9-112f-4ac0-aadb-0519dd836342" = false

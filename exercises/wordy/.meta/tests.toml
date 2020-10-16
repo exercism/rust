@@ -37,13 +37,15 @@
 "4f4a5749-ef0c-4f60-841f-abcfaf05d2ae" = true
 
 # multiple multiplication
-"312d908c-f68f-42c9-aa75-961623cc033f" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "312d908c-f68f-42c9-aa75-961623cc033f" = false
 
 # addition and multiplication
 "38e33587-8940-4cc1-bc28-bfd7e3966276" = true
 
 # multiple division
-"3c854f97-9311-46e8-b574-92b60d17d394" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "3c854f97-9311-46e8-b574-92b60d17d394" = false
 
 # unknown operation
 "3ad3e433-8af7-41ec-aa9b-97b42ab49357" = true

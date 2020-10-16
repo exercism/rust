@@ -1,10 +1,13 @@
 [canonical-tests]
 
 # no name given
-"1cf3e15a-a3d7-4a87-aeb3-ba1b43bc8dce" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "1cf3e15a-a3d7-4a87-aeb3-ba1b43bc8dce" = false
 
 # a name given
-"b4c6dbb8-b4fb-42c2-bafd-10785abe7709" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "b4c6dbb8-b4fb-42c2-bafd-10785abe7709" = false
 
 # another name given
-"3549048d-1a6e-4653-9a79-b0bda163e8d5" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "3549048d-1a6e-4653-9a79-b0bda163e8d5" = false

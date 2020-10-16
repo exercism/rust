@@ -1,25 +1,33 @@
 [canonical-tests]
 
 # age on Earth
-"84f609af-5a91-4d68-90a3-9e32d8a5cd34" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "84f609af-5a91-4d68-90a3-9e32d8a5cd34" = false
 
 # age on Mercury
-"ca20c4e9-6054-458c-9312-79679ffab40b" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "ca20c4e9-6054-458c-9312-79679ffab40b" = false
 
 # age on Venus
-"502c6529-fd1b-41d3-8fab-65e03082b024" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "502c6529-fd1b-41d3-8fab-65e03082b024" = false
 
 # age on Mars
-"9ceadf5e-a0d5-4388-9d40-2c459227ceb8" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "9ceadf5e-a0d5-4388-9d40-2c459227ceb8" = false
 
 # age on Jupiter
-"42927dc3-fe5e-4f76-a5b5-f737fc19bcde" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "42927dc3-fe5e-4f76-a5b5-f737fc19bcde" = false
 
 # age on Saturn
-"8469b332-7837-4ada-b27c-00ee043ebcad" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "8469b332-7837-4ada-b27c-00ee043ebcad" = false
 
 # age on Uranus
-"999354c1-76f8-4bb5-a672-f317b6436743" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "999354c1-76f8-4bb5-a672-f317b6436743" = false
 
 # age on Neptune
-"80096d30-a0d4-4449-903e-a381178355d8" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "80096d30-a0d4-4449-903e-a381178355d8" = false

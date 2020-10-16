@@ -1,10 +1,12 @@
 [canonical-tests]
 
 # zero rows
-"9920ce55-9629-46d5-85d6-4201f4a4234d" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "9920ce55-9629-46d5-85d6-4201f4a4234d" = false
 
 # single row
-"70d643ce-a46d-4e93-af58-12d88dd01f21" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "70d643ce-a46d-4e93-af58-12d88dd01f21" = false
 
 # two rows
 "a6e5a2a2-fc9a-4b47-9f4f-ed9ad9fbe4bd" = true
@@ -13,7 +15,8 @@
 "97206a99-79ba-4b04-b1c5-3c0fa1e16925" = true
 
 # four rows
-"565a0431-c797-417c-a2c8-2935e01ce306" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "565a0431-c797-417c-a2c8-2935e01ce306" = false
 
 # five rows
 "06f9ea50-9f51-4eb2-b9a9-c00975686c27" = true
