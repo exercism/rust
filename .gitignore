@@ -7,4 +7,6 @@ bin/configlet
 bin/configlet.exe
 bin/exercise
 bin/exercise.exe
+bin/canonical_data_syncer
+bin/canonical_data_syncer.exe
 exercises/*/Cargo.lock
