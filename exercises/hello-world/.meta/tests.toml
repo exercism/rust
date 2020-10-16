@@ -1,4 +1,5 @@
 [canonical-tests]
 
 # Say Hi!
-"af9ffe10-dc13-42d8-a742-e7bdafac449d" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "af9ffe10-dc13-42d8-a742-e7bdafac449d" = false

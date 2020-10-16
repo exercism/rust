@@ -10,7 +10,8 @@
 "6fbf8f6d-a03b-42c9-9a58-b489e9235478" = true
 
 # minefield with only mines
-"61aff1c4-fb31-4078-acad-cd5f1e635655" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "61aff1c4-fb31-4078-acad-cd5f1e635655" = false
 
 # mine surrounded by spaces
 "84167147-c504-4896-85d7-246b01dea7c5" = true
@@ -34,4 +35,5 @@
 "4b098563-b7f3-401c-97c6-79dd1b708f34" = true
 
 # large minefield
-"04a260f1-b40a-4e89-839e-8dd8525abe0e" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "04a260f1-b40a-4e89-839e-8dd8525abe0e" = false

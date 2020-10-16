@@ -10,52 +10,67 @@
 "759b9740-3417-44c3-8ca3-262b3c281043" = true
 
 # when the element is in the set
-"f83cd2d1-2a85-41bc-b6be-80adbff4be49" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "f83cd2d1-2a85-41bc-b6be-80adbff4be49" = false
 
 # when the element is not in the set
-"93423fc0-44d0-4bc0-a2ac-376de8d7af34" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "93423fc0-44d0-4bc0-a2ac-376de8d7af34" = false
 
 # empty set is a subset of another empty set
-"c392923a-637b-4495-b28e-34742cd6157a" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "c392923a-637b-4495-b28e-34742cd6157a" = false
 
 # empty set is a subset of non-empty set
-"5635b113-be8c-4c6f-b9a9-23c485193917" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "5635b113-be8c-4c6f-b9a9-23c485193917" = false
 
 # non-empty set is not a subset of empty set
-"832eda58-6d6e-44e2-92c2-be8cf0173cee" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "832eda58-6d6e-44e2-92c2-be8cf0173cee" = false
 
 # set is a subset of set with exact same elements
-"c830c578-8f97-4036-b082-89feda876131" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "c830c578-8f97-4036-b082-89feda876131" = false
 
 # set is a subset of larger set with same elements
-"476a4a1c-0fd1-430f-aa65-5b70cbc810c5" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "476a4a1c-0fd1-430f-aa65-5b70cbc810c5" = false
 
 # set is not a subset of set that does not contain its elements
-"d2498999-3e46-48e4-9660-1e20c3329d3d" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "d2498999-3e46-48e4-9660-1e20c3329d3d" = false
 
 # the empty set is disjoint with itself
-"7d38155e-f472-4a7e-9ad8-5c1f8f95e4cc" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "7d38155e-f472-4a7e-9ad8-5c1f8f95e4cc" = false
 
 # empty set is disjoint with non-empty set
-"7a2b3938-64b6-4b32-901a-fe16891998a6" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "7a2b3938-64b6-4b32-901a-fe16891998a6" = false
 
 # non-empty set is disjoint with empty set
-"589574a0-8b48-48ea-88b0-b652c5fe476f" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "589574a0-8b48-48ea-88b0-b652c5fe476f" = false
 
 # sets are not disjoint if they share an element
-"febeaf4f-f180-4499-91fa-59165955a523" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "febeaf4f-f180-4499-91fa-59165955a523" = false
 
 # sets are disjoint if they share no elements
-"0de20d2f-c952-468a-88c8-5e056740f020" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "0de20d2f-c952-468a-88c8-5e056740f020" = false
 
 # empty sets are equal
 "4bd24adb-45da-4320-9ff6-38c044e9dff8" = true
 
 # empty set is not equal to non-empty set
-"f65c0a0e-6632-4b2d-b82c-b7c6da2ec224" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "f65c0a0e-6632-4b2d-b82c-b7c6da2ec224" = false
 
 # non-empty set is not equal to empty set
-"81e53307-7683-4b1e-a30c-7e49155fe3ca" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "81e53307-7683-4b1e-a30c-7e49155fe3ca" = false
 
 # sets with the same elements are equal
 "d57c5d7c-a7f3-48cc-a162-6b488c0fbbd0" = true
@@ -64,25 +79,31 @@
 "dd61bafc-6653-42cc-961a-ab071ee0ee85" = true
 
 # set is not equal to larger set with same elements
-"06059caf-9bf4-425e-aaff-88966cb3ea14" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "06059caf-9bf4-425e-aaff-88966cb3ea14" = false
 
 # add to empty set
 "8a677c3c-a658-4d39-bb88-5b5b1a9659f4" = true
 
 # add to non-empty set
-"0903dd45-904d-4cf2-bddd-0905e1a8d125" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "0903dd45-904d-4cf2-bddd-0905e1a8d125" = false
 
 # adding an existing element does not change the set
-"b0eb7bb7-5e5d-4733-b582-af771476cb99" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "b0eb7bb7-5e5d-4733-b582-af771476cb99" = false
 
 # intersection of two empty sets is an empty set
-"893d5333-33b8-4151-a3d4-8f273358208a" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "893d5333-33b8-4151-a3d4-8f273358208a" = false
 
 # intersection of an empty set and non-empty set is an empty set
-"d739940e-def2-41ab-a7bb-aaf60f7d782c" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "d739940e-def2-41ab-a7bb-aaf60f7d782c" = false
 
 # intersection of a non-empty set and an empty set is an empty set
-"3607d9d8-c895-4d6f-ac16-a14956e0a4b7" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "3607d9d8-c895-4d6f-ac16-a14956e0a4b7" = false
 
 # intersection of two sets with no shared elements is an empty set
 "b5120abf-5b5e-41ab-aede-4de2ad85c34e" = true
@@ -91,25 +112,33 @@
 "af21ca1b-fac9-499c-81c0-92a591653d49" = true
 
 # difference of two empty sets is an empty set
-"c5e6e2e4-50e9-4bc2-b89f-c518f015b57e" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "c5e6e2e4-50e9-4bc2-b89f-c518f015b57e" = false
 
 # difference of empty set and non-empty set is an empty set
-"2024cc92-5c26-44ed-aafd-e6ca27d6fcd2" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "2024cc92-5c26-44ed-aafd-e6ca27d6fcd2" = false
 
 # difference of a non-empty set and an empty set is the non-empty set
-"e79edee7-08aa-4c19-9382-f6820974b43e" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "e79edee7-08aa-4c19-9382-f6820974b43e" = false
 
 # difference of two non-empty sets is a set of elements that are only in the first set
-"c5ac673e-d707-4db5-8d69-7082c3a5437e" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "c5ac673e-d707-4db5-8d69-7082c3a5437e" = false
 
 # union of empty sets is an empty set
-"c45aed16-5494-455a-9033-5d4c93589dc6" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "c45aed16-5494-455a-9033-5d4c93589dc6" = false
 
 # union of an empty set and non-empty set is the non-empty set
-"9d258545-33c2-4fcb-a340-9f8aa69e7a41" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "9d258545-33c2-4fcb-a340-9f8aa69e7a41" = false
 
 # union of a non-empty set and empty set is the non-empty set
-"3aade50c-80c7-4db8-853d-75bac5818b83" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "3aade50c-80c7-4db8-853d-75bac5818b83" = false
 
 # union of non-empty sets contains all unique elements
-"a00bb91f-c4b4-4844-8f77-c73e2e9df77c" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "a00bb91f-c4b4-4844-8f77-c73e2e9df77c" = false

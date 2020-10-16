@@ -1,55 +1,73 @@
 [canonical-tests]
 
 # at origin facing north
-"c557c16d-26c1-4e06-827c-f6602cd0785c" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "c557c16d-26c1-4e06-827c-f6602cd0785c" = false
 
 # at negative position facing south
-"bf0dffce-f11c-4cdb-8a5e-2c89d8a5a67d" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "bf0dffce-f11c-4cdb-8a5e-2c89d8a5a67d" = false
 
 # changes north to east
-"8cbd0086-6392-4680-b9b9-73cf491e67e5" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "8cbd0086-6392-4680-b9b9-73cf491e67e5" = false
 
 # changes east to south
-"8abc87fc-eab2-4276-93b7-9c009e866ba1" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "8abc87fc-eab2-4276-93b7-9c009e866ba1" = false
 
 # changes south to west
-"3cfe1b85-bbf2-4bae-b54d-d73e7e93617a" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "3cfe1b85-bbf2-4bae-b54d-d73e7e93617a" = false
 
 # changes west to north
-"5ea9fb99-3f2c-47bd-86f7-46b7d8c3c716" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "5ea9fb99-3f2c-47bd-86f7-46b7d8c3c716" = false
 
 # changes north to west
-"fa0c40f5-6ba3-443d-a4b3-58cbd6cb8d63" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "fa0c40f5-6ba3-443d-a4b3-58cbd6cb8d63" = false
 
 # changes west to south
-"da33d734-831f-445c-9907-d66d7d2a92e2" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "da33d734-831f-445c-9907-d66d7d2a92e2" = false
 
 # changes south to east
-"bd1ca4b9-4548-45f4-b32e-900fc7c19389" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "bd1ca4b9-4548-45f4-b32e-900fc7c19389" = false
 
 # changes east to north
-"2de27b67-a25c-4b59-9883-bc03b1b55bba" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "2de27b67-a25c-4b59-9883-bc03b1b55bba" = false
 
 # facing north increments Y
-"f0dc2388-cddc-4f83-9bed-bcf46b8fc7b8" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "f0dc2388-cddc-4f83-9bed-bcf46b8fc7b8" = false
 
 # facing south decrements Y
-"2786cf80-5bbf-44b0-9503-a89a9c5789da" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "2786cf80-5bbf-44b0-9503-a89a9c5789da" = false
 
 # facing east increments X
-"84bf3c8c-241f-434d-883d-69817dbd6a48" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "84bf3c8c-241f-434d-883d-69817dbd6a48" = false
 
 # facing west decrements X
-"bb69c4a7-3bbf-4f64-b415-666fa72d7b04" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "bb69c4a7-3bbf-4f64-b415-666fa72d7b04" = false
 
 # moving east and north from README
-"e34ac672-4ed4-4be3-a0b8-d9af259cbaa1" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "e34ac672-4ed4-4be3-a0b8-d9af259cbaa1" = false
 
 # moving west and north
-"f30e4955-4b47-4aa3-8b39-ae98cfbd515b" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "f30e4955-4b47-4aa3-8b39-ae98cfbd515b" = false
 
 # moving west and south
-"3e466bf6-20ab-4d79-8b51-264165182fca" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "3e466bf6-20ab-4d79-8b51-264165182fca" = false
 
 # moving east and north
-"41f0bb96-c617-4e6b-acff-a4b279d44514" = false
+# this test may not be in the suite but has not been intentionally rejected
+# "41f0bb96-c617-4e6b-acff-a4b279d44514" = false
