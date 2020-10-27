@@ -18,7 +18,7 @@ The Concepts this exercise unlocks are:
 
 - `enums-basic`: know of the existence of the `enum` keyword; know how to define enum variants; know how to assign values to enum variants;
 
-## Prequisites
+## Prerequisites
 
 This exercise's prerequisites Concepts are:
 
