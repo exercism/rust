@@ -1,4 +1,4 @@
-/// The possible nucleotides in DNA and RNA
+/// The possible nucleotides in Dna and Rna
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum Nucleotide {
     Adenine,
@@ -28,13 +28,13 @@ impl Nucleotide {
 ///
 /// Guaranteed that Uracil is not present thanks to `new`.
 #[derive(Debug, Eq, PartialEq, Clone)]
-pub struct DNA(Vec<Nucleotide>);
+pub struct Dna(Vec<Nucleotide>);
 
-impl DNA {
-    /// Parse a DNA string, checking it is valid.
+impl Dna {
+    /// Parse a Dna string, checking it is valid.
     ///
     /// The error value is the first invalid character index (char index, not utf8).
-    pub fn new(input: &str) -> Result<DNA, usize> {
+    pub fn new(input: &str) -> Result<Dna, usize> {
         let mut out = Vec::new();
         for (idx, ch) in input.chars().enumerate() {
             match Nucleotide::from_char(ch) {
@@ -46,10 +46,10 @@ impl DNA {
                 }
             }
         }
-        Ok(DNA(out))
+        Ok(Dna(out))
     }
 
-    pub fn into_rna(mut self) -> RNA {
+    pub fn into_rna(mut self) -> Rna {
         for nuc in self.0.iter_mut() {
             *nuc = match *nuc {
                 Nucleotide::Adenine => Nucleotide::Uracil,
@@ -59,18 +59,18 @@ impl DNA {
                 Nucleotide::Uracil => unreachable!(),
             }
         }
-        RNA(self.0)
+        Rna(self.0)
     }
 }
 
 #[derive(Debug, Eq, PartialEq, Clone)]
-pub struct RNA(Vec<Nucleotide>);
+pub struct Rna(Vec<Nucleotide>);
 
-impl RNA {
-    /// Parse a RNA string, checking it is valid.
+impl Rna {
+    /// Parse a Rna string, checking it is valid.
     ///
     /// The error value is the first invalid character index (char index, not utf8).
-    pub fn new(input: &str) -> Result<RNA, usize> {
+    pub fn new(input: &str) -> Result<Rna, usize> {
         let mut out = Vec::new();
         for (idx, ch) in input.chars().enumerate() {
             match Nucleotide::from_char(ch) {
@@ -82,6 +82,6 @@ impl RNA {
                 }
             }
         }
-        Ok(RNA(out))
+        Ok(Rna(out))
     }
 }
