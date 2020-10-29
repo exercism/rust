@@ -1,5 +1,3 @@
-use anagram;
-
 use std::collections::HashSet;
 use std::iter::FromIterator;
 
