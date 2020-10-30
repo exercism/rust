@@ -1,5 +1,3 @@
-use paasio;
-
 /// test a few read scenarios
 macro_rules! test_read {
     ($(#[$attr:meta])* $modname:ident ($input:expr, $len:expr)) => {

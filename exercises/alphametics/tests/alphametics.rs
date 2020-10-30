@@ -1,4 +1,3 @@
-use alphametics;
 use std::collections::HashMap;
 
 fn assert_alphametic_solution_eq(puzzle: &str, solution: &[(char, u8)]) {
