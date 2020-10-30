@@ -1,5 +1,3 @@
-use saddle_points;
-
 use saddle_points::find_saddle_points;
 
 // We don't care about order

@@ -1,5 +1,3 @@
-use grains;
-
 fn process_square_case(input: u32, expected: u64) {
     assert_eq!(grains::square(input), expected);
 }

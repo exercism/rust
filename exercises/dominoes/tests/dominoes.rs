@@ -1,5 +1,3 @@
-use dominoes;
-
 use crate::CheckResult::*;
 
 type Domino = (u8, u8);
