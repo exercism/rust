@@ -1,4 +1,4 @@
-/// The possible nucleotides in Dna and Rna
+/// The possible nucleotides in DNA and RNA
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum Nucleotide {
     Adenine,
@@ -31,7 +31,7 @@ impl Nucleotide {
 pub struct Dna(Vec<Nucleotide>);
 
 impl Dna {
-    /// Parse a Dna string, checking it is valid.
+    /// Parse a DNA string, checking it is valid.
     ///
     /// The error value is the first invalid character index (char index, not utf8).
     pub fn new(input: &str) -> Result<Dna, usize> {
@@ -67,7 +67,7 @@ impl Dna {
 pub struct Rna(Vec<Nucleotide>);
 
 impl Rna {
-    /// Parse a Rna string, checking it is valid.
+    /// Parse a RNA string, checking it is valid.
     ///
     /// The error value is the first invalid character index (char index, not utf8).
     pub fn new(input: &str) -> Result<Rna, usize> {
