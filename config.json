@@ -810,6 +810,18 @@
       ]
     },
     {
+      "slug": "xorcism",
+      "uuid": "0520ad82-75d9-450c-9267-d9758b3b0513",
+      "core": false,
+      "unlocked_by": "luhn",
+      "difficulty": 7,
+      "topics": [
+        "bitwise",
+        "generics",
+        "lifetimes"
+      ]
+    },
+    {
       "slug": "rectangles",
       "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
       "core": false,
