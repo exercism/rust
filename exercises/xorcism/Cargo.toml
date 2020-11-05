@@ -8,3 +8,7 @@ edition = "2018"
 
 [features]
 io = []
+
+[dev-dependencies]
+rstest = "0.6.4"
+rstest_reuse = "0.1.0"
