@@ -229,55 +229,53 @@ mod vec_vec {
     }
 }
 
-#[test]
 #[cfg(feature = "io")]
-fn writer_roundtrip() {
-    let data = "Spiderman! It's spiderman! Not a bird, or a plane, or a fireman! Just spiderman!";
-    let mut writer_dest = Vec::new();
-    let xs1 = Xorcism::new("Who knows what evil lurks in the hearts of men?");
-    let xs2 = xs1.clone();
-    {
-        let mut writer = xs1.writer(xs2.writer(&mut writer_dest));
-        assert!(writer.write_all(data.as_bytes()).is_ok());
+mod io {
+    use super::*;
+
+    #[apply(ref_str)]
+    fn reader_munges(key: &str, input: &str, expect: &[u8]) {
+        let mut reader = Xorcism::new(key).reader(input.as_bytes());
+        let mut buf = Vec::with_capacity(input.len());
+        let bytes_read = reader.read_to_end(&mut buf).unwrap();
+        assert_eq!(bytes_read, input.len());
+        assert_eq!(buf, expect);
     }
 
-    assert_eq!(writer_dest, data.as_bytes());
-}
+    #[apply(ref_str)]
+    fn reader_roundtrip(key: &str, input: &str, expect: &[u8]) {
+        let _ = expect;
 
-#[test]
-#[cfg(feature = "io")]
-fn writer_munges() {
-    let data = "If wishes were horses, beggars would ride.";
-    let mut writer_dest = Vec::new();
-    {
-        let mut writer = Xorcism::new("TRANSMUTATION_NOTES_1").writer(&mut writer_dest);
-        assert!(writer.write_all(data.as_bytes()).is_ok());
+        let xs = Xorcism::new(key);
+        let reader1 = xs.clone().reader(input.as_bytes());
+        let mut reader2 = xs.clone().reader(reader1);
+        let mut buf = Vec::with_capacity(input.len());
+        let bytes_read = reader2.read_to_end(&mut buf).unwrap();
+        assert_eq!(bytes_read, input.len());
+        assert_eq!(buf, input.as_bytes());
     }
 
-    assert_eq!(writer_dest.len(), data.len());
-    assert_ne!(writer_dest, data.as_bytes());
-}
+    #[apply(ref_str)]
+    fn writer_munges(key: &str, input: &str, expect: &[u8]) {
+        let mut writer_dest = Vec::new();
+        {
+            let mut writer = Xorcism::new(key).writer(&mut writer_dest);
+            assert!(writer.write_all(input.as_bytes()).is_ok());
+        }
+        assert_eq!(writer_dest, expect);
+    }
 
-#[test]
-#[cfg(feature = "io")]
-fn reader_munges() {
-    let data = "The globe is text, its people prose; all the world's a page.";
-    let mut reader = Xorcism::new("But who owns the book?").reader(data.as_bytes());
-    let mut buf = Vec::with_capacity(data.len());
-    let bytes_read = reader.read_to_end(&mut buf).unwrap();
-    assert_eq!(bytes_read, data.len());
-    assert_ne!(buf, data.as_bytes());
-}
+    #[apply(ref_str)]
+    fn writer_roundtrip(key: &str, input: &str, expect: &[u8]) {
+        let _ = expect;
 
-#[test]
-#[cfg(feature = "io")]
-fn reader_roundtrip() {
-    let data = "Mary Poppins was a kind witch. She cared for the children.";
-    let key = "supercalifragilisticexpialidocious.";
-    let xs = Xorcism::new(key);
-    let mut reader = xs.clone().reader(xs.reader(data.as_bytes()));
-    let mut buf = Vec::with_capacity(data.len());
-    let bytes_read = reader.read_to_end(&mut buf).unwrap();
-    assert_eq!(bytes_read, data.len());
-    assert_eq!(buf, data.as_bytes());
+        let mut writer_dest = Vec::new();
+        let xs = Xorcism::new(key);
+        {
+            let writer1 = xs.clone().writer(&mut writer_dest);
+            let mut writer2 = xs.writer(writer1);
+            assert!(writer2.write_all(input.as_bytes()).is_ok());
+        }
+        assert_eq!(writer_dest, input.as_bytes());
+    }
 }
