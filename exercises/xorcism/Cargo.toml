@@ -10,5 +10,6 @@ edition = "2018"
 io = []
 
 [dev-dependencies]
+hexlit = "0.3.0"
 rstest = "0.6.4"
 rstest_reuse = "0.1.0"
