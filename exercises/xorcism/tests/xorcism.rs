@@ -17,6 +17,7 @@ fn identity() {
 }
 
 #[test]
+#[ignore]
 fn statefulness() {
     // we expect Xorcism to be stateful: at the end of a munging run, the key has rotated.
     // this means that until the key has completely rotated around, equal inputs will produce
@@ -86,6 +87,7 @@ mod str_slice {
     use super::*;
 
     #[apply(ref_str)]
+    #[ignore]
     fn munge_in_place(key: &str, input: &str, expect: &[u8]) {
         // we transform the input into a `Vec<u8>` despite its presence in this module because of
         // the more restricted syntax that this function accepts
@@ -106,6 +108,7 @@ mod str_slice {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn munges(key: &str, input: &str, expect: &[u8]) {
         let mut xorcism = Xorcism::new(key);
         let result: Vec<u8> = xorcism.munge(input.as_bytes()).collect();
@@ -115,6 +118,7 @@ mod str_slice {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn round_trip(key: &str, input: &str, expect: &[u8]) {
         // we can't just do _expect, because the apply macro is sensitive to the name of the variable
         let _ = expect;
@@ -132,6 +136,7 @@ mod slice_slice {
     use super::*;
 
     #[apply(ref_str)]
+    #[ignore]
     fn munge_in_place(key: &str, input: &str, expect: &[u8]) {
         let key = key.as_bytes();
 
@@ -154,6 +159,7 @@ mod slice_slice {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn munges(key: &str, input: &str, expect: &[u8]) {
         let key = key.as_bytes();
         let input = input.as_bytes();
@@ -166,6 +172,7 @@ mod slice_slice {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn round_trip(key: &str, input: &str, expect: &[u8]) {
         let key = key.as_bytes();
         let input = input.as_bytes();
@@ -186,6 +193,7 @@ mod vec_vec {
     use super::*;
 
     #[apply(ref_str)]
+    #[ignore]
     fn munge_in_place(key: &str, input: &str, expect: &[u8]) {
         let mut input = input.as_bytes().to_vec();
         let original = input.clone();
@@ -204,6 +212,7 @@ mod vec_vec {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn munges(key: &str, input: &str, expect: &[u8]) {
         let owned_input = input.as_bytes().to_vec();
 
@@ -215,6 +224,7 @@ mod vec_vec {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn round_trip(key: &str, input: &str, expect: &[u8]) {
         let owned_input = input.as_bytes().to_vec();
 
@@ -234,6 +244,7 @@ mod io {
     use super::*;
 
     #[apply(ref_str)]
+    #[ignore]
     fn reader_munges(key: &str, input: &str, expect: &[u8]) {
         let mut reader = Xorcism::new(key).reader(input.as_bytes());
         let mut buf = Vec::with_capacity(input.len());
@@ -243,6 +254,7 @@ mod io {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn reader_roundtrip(key: &str, input: &str, expect: &[u8]) {
         let _ = expect;
 
@@ -256,6 +268,7 @@ mod io {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn writer_munges(key: &str, input: &str, expect: &[u8]) {
         let mut writer_dest = Vec::new();
         {
@@ -266,6 +279,7 @@ mod io {
     }
 
     #[apply(ref_str)]
+    #[ignore]
     fn writer_roundtrip(key: &str, input: &str, expect: &[u8]) {
         let _ = expect;
 
