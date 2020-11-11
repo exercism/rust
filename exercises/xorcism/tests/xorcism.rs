@@ -31,7 +31,7 @@ fn statefulness() {
     // this means that until the key has completely rotated around, equal inputs will produce
     // unequal outputs.
     let key = &[0, 1, 2, 3, 4, 5, 6, 7];
-    let input = &[0b1010_101, 0b0101_0101];
+    let input = &[0b1010_1010, 0b0101_0101];
 
     let mut xs = Xorcism::new(&key);
     let out1: Vec<_> = xs.munge(input).collect();
