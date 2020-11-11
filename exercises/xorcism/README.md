@@ -1,6 +1,6 @@
 # Xorcism
 
-Write a streaming adaptor which contains a reference to a key, and bitwise-xors
+Write a streaming adaptor which contains a reference to a key, and bitwise-XORs
 it with arbitrary data.
 
 XOR is a fundamental binary operation: for each bit in the inputs, set the
@@ -15,13 +15,13 @@ early 1900s. While this is thoroughly obsolete as a method for hiding data, it
 can be surprisingly useful for generating noisy random-seeming data without
 needing the complication of true randomness. It is still used occasionally in
 modern cryptography for certain ciphers: the cipher itself is just a mechanism
-for generating a very random, infinitely long key, which is xor'd with the
+for generating a very random, infinitely long key, which is XOR'd with the
 document.
 
-One interesting property of XOR encryption is that it is symmetrical: xoring any
+One interesting property of XOR encryption is that it is symmetrical: XORing any
 number with itself produces `0`, and XORing any number with `0` returns the
 input number unchanged. Therefore, to decrypt a document which has been
-xor-encrypted, XOR-encrypt it again using the same key.
+XOR-encrypted, XOR-encrypt it again using the same key.
 
 ## Nonallocation
 
