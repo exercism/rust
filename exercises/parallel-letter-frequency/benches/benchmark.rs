@@ -66,7 +66,7 @@ fn all_texts(repeat: usize) -> Vec<&'static str> {
 }
 
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
-pub const ODE_AN_DIE_FREUDE: [&'static str; 8] = [
+pub const ODE_AN_DIE_FREUDE: [&str; 8] = [
     "Freude schöner Götterfunken",
     "Tochter aus Elysium,",
     "Wir betreten feuertrunken,",
@@ -78,7 +78,7 @@ pub const ODE_AN_DIE_FREUDE: [&'static str; 8] = [
 ];
 
 // Dutch national anthem
-pub const WILHELMUS: [&'static str; 8] = [
+pub const WILHELMUS: [&str; 8] = [
     "Wilhelmus van Nassouwe",
     "ben ik, van Duitsen bloed,",
     "den vaderland getrouwe",
@@ -90,7 +90,7 @@ pub const WILHELMUS: [&'static str; 8] = [
 ];
 
 // American national anthem
-pub const STAR_SPANGLED_BANNER: [&'static str; 8] = [
+pub const STAR_SPANGLED_BANNER: [&str; 8] = [
     "O say can you see by the dawn's early light,",
     "What so proudly we hailed at the twilight's last gleaming,",
     "Whose broad stripes and bright stars through the perilous fight,",
