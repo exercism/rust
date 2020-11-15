@@ -1,6 +1,6 @@
 # Exercism Rust Track
 
-[![Build Status](https://travis-ci.org/exercism/rust.svg?branch=master)](https://travis-ci.org/exercism/rust)
+[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=master)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amaster)
 [![Join the chat at https://gitter.im/exercism/rust](https://badges.gitter.im/exercism/rust.svg)](https://gitter.im/exercism/rust?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Exercism exercises in Rust
