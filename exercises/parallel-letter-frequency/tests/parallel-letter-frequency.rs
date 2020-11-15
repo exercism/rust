@@ -63,9 +63,7 @@ fn test_case_insensitivity() {
 #[ignore]
 fn test_many_empty_lines() {
     let mut v = Vec::with_capacity(1000);
-    for _ in 0..1000 {
-        v.push("");
-    }
+    v.resize(1000,"");
     assert_eq!(frequency::frequency(&v[..], 4), HashMap::new());
 }
 
@@ -73,9 +71,7 @@ fn test_many_empty_lines() {
 #[ignore]
 fn test_many_times_same_text() {
     let mut v = Vec::with_capacity(1000);
-    for _ in 0..1000 {
-        v.push("abc");
-    }
+    v.resize(1000, "abc");
     let mut hm = HashMap::new();
     hm.insert('a', 1000);
     hm.insert('b', 1000);
