@@ -128,10 +128,7 @@ fn test_all_three_anthems_3_workers() {
 #[test]
 #[ignore]
 fn test_non_integer_multiple_of_threads() {
-    let mut v = Vec::with_capacity(999);
-    for _ in 0..999 {
-        v.push("abc");
-    }
+    let v = vec!["abc"; 999];
     let mut hm = HashMap::new();
     hm.insert('a', 999);
     hm.insert('b', 999);
