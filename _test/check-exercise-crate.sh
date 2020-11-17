@@ -4,20 +4,21 @@
 
 EXERCISE_CRATE_PATH="util/exercise"
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
     # Check the changes on the current branch against master branch
-    git diff --name-only remotes/origin/master | grep "$EXERCISE_CRATE_PATH"
-else
-    # Check the commits on the master branch made during the week
-    # This is because Travis cron is set to test the master branch weekly.
-    git diff --name-only "@{7 days ago}" | grep "$EXERCISE_CRATE_PATH"
+    if ! git diff --name-only remotes/origin/master | grep -q "$EXERCISE_CRATE_PATH"; then
+        echo "exercise crate was not modified. The script is aborted."
+        exit 0
+    fi
 fi
+# If it's not a pull request, just always run it.
+# Two scenarios:
+# 1. It's being run locally,
+#    in which case we assume the person running it really does want to run it.
+# 2. It's being run on CI for master,
+#    in which case we should check regardless of changes to exercise crate,
+#    in case there's a new toolchain release, etc.
 
-if [ $? != 0 ]; then
-    echo "exercise crate was not modified. The script is aborted."
-
-    exit 0
-fi
 
 TRACK_ROOT="$(git rev-parse --show-toplevel)"
 

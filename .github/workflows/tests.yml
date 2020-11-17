@@ -47,12 +47,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Sets TRAVIS_PULL_REQUEST to false if this is not a pull request.
-      - name: set TRAVIS_PULL_REQUEST
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo "TRAVIS_PULL_REQUEST=${PR_NUMBER:-false}" >> $GITHUB_ENV
-
       - name: Fetch configlet
         run: ./bin/fetch-configlet
 
@@ -93,16 +87,7 @@ jobs:
           toolchain: ${{ matrix.rust }}
           default: true
 
-      # Sets TRAVIS_PULL_REQUEST to false if this is not a pull request.
-      - name: set TRAVIS_PULL_REQUEST
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo "TRAVIS_PULL_REQUEST=${PR_NUMBER:-false}" >> $GITHUB_ENV
-
       # run scripts as steps
-      # TODO: the TRAVIS_PULL_REQUEST variable is a holdover from before the
-      # migration to GitHub Actions. The scripts that use it do so in order to
-      # run only on changed files.
       - name: Check exercises
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}

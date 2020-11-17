@@ -2,7 +2,7 @@
 
 repo=$(cd "$(dirname "$0")/.." && pwd)
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
 	changed_exercises="$(git diff --diff-filter=d --name-only remotes/origin/master | grep "exercises/" | cut -d '/' -f -2 | sort -u | awk -v repo=$repo '{print repo"/"$1}')"
 else
 	changed_exercises=$repo/exercises/*
