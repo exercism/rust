@@ -6,6 +6,9 @@ on:
     branches:
     - master
   pull_request:
+  schedule:
+    # Weekly.
+    - cron: "0 0 * * 0"
 
 jobs:
   ensure-conventions:
