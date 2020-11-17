@@ -14,116 +14,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Ensure src/lib.rs files exist
-        run: bash ./_test/ensure-lib-src-rs-exist.sh
-
-      - name: Count ignores
-        run: sh ./_test/count-ignores.sh
-
-      - name: Check UUIDs
-        run: sh ./_test/check-uuids.sh
-
-      - name: Verify exercise difficulties
-        run: ./_test/verify-exercise-difficulties.sh
-
-      - name: Check exercises for authors
-        run: ./_test/check-exercises-for-authors.sh
-
+      - name: True
+        run: /bin/true
   configlet:
     name: Setup configlet
     runs-on: ubuntu-latest
 
     steps:
-      # Checks out master locally so that it is available to the scripts.
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          ref: master
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Sets TRAVIS_PULL_REQUEST to false if this is not a pull request.
-      - name: set TRAVIS_PULL_REQUEST
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo "TRAVIS_PULL_REQUEST=${PR_NUMBER:-false}" >> $GITHUB_ENV
-
-      - name: Fetch configlet
-        run: ./bin/fetch-configlet
-
-      - name: Check configlet format
-        run: ./_test/check-configlet-fmt.sh
-
-      - name: Ensure readmes are updated
-        run: sh ./_test/ensure-readmes-are-updated.sh
-
-      - name: Lint configlet
-        run: ./bin/configlet lint .
-
-
+      - name: True
+        run: /bin/true
   compilation:
     name: Check compilation
     runs-on: ubuntu-latest
 
-    strategy:
-      # Allows running the job multiple times with different configurations
-      matrix:
-        rust: ["stable", "beta"]
-        deny_warnings: ['', '1']
-
     steps:
-      # Checks out master locally so that it is available to the scripts.
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          ref: master
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Setup toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{ matrix.rust }}
+          toolchain: stable
           default: true
-
-      # Sets TRAVIS_PULL_REQUEST to false if this is not a pull request.
-      - name: set TRAVIS_PULL_REQUEST
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo "TRAVIS_PULL_REQUEST=${PR_NUMBER:-false}" >> $GITHUB_ENV
 
       - name: Install Clippy
         run: rustup component add clippy
-
-      # run scripts as steps
-      # TODO: the TRAVIS_PULL_REQUEST variable is a holdover from before the
-      # migration to GitHub Actions. The scripts that use it do so in order to
-      # run only on changed files.
-      - name: Check exercises
-        env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/check-exercises.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
-
-      - name: Ensure stubs compile
-        env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: sh ./_test/ensure-stubs-compile.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
-
-      - name: Check exercise crate
-        env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: sh ./_test/check-exercise-crate.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
       - name: Clippy on Tests
         env:
@@ -140,23 +55,5 @@ jobs:
     continue-on-error: true # It's okay if the nightly job fails
 
     steps:
-      # Checks out master locally so that it is available to the scripts.
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          ref: master
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup nightly toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          default: true
-
-      - name: Check exercises
-        env:
-          BENCHMARK: '1'
-        run: ./_test/check-exercises.sh
+      - name: True
+        run: /bin/true
