@@ -153,5 +153,5 @@ fn make_pairs() -> Vec<(&'static str, &'static str)> {
         }
     }
     pairs.sort_by(|&(_, a), &(_, b)| a.cmp(b));
-    return pairs;
+    pairs
 }
