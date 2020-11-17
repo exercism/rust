@@ -99,9 +99,6 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: echo "TRAVIS_PULL_REQUEST=${PR_NUMBER:-false}" >> $GITHUB_ENV
 
-      - name: Install Clippy
-        run: rustup component add clippy
-
       # run scripts as steps
       # TODO: the TRAVIS_PULL_REQUEST variable is a holdover from before the
       # migration to GitHub Actions. The scripts that use it do so in order to
@@ -123,6 +120,35 @@ jobs:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
         run: sh ./_test/check-exercise-crate.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        rust: ["stable", "beta"]
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # We actually think explicitly installing Clippy isn't necessary,
+      # as it is currently installed by default.
+      # But we'll include this step anyway just in case that changes.
+      - name: Install Clippy
+        run: rustup component add clippy
+
+      - name: Setup toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          default: true
 
       - name: Clippy tests
         env:
