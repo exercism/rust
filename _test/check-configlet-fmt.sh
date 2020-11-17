@@ -6,20 +6,15 @@
 # Check if config.json or maintainers.json were modified
 check_pattern="config.json\|config/maintainers.json"
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
     # Check the changes on the current branch against master branch
-    git diff --name-only remotes/origin/master | grep "$check_pattern"
-else
-    # Check the commits on the master branch made during the week
-    # This is because Travis cron is set to test the master branch weekly.
-    git diff --name-only "@{7 days ago}" | grep "$check_pattern"
+    if ! git diff --name-only remotes/origin/master | grep -q "$check_pattern"; then
+        echo "config.json or maintainers.json were not changed - configlet fmt is aborted."
+        exit 0
+    fi
 fi
-
-if [ $? != 0 ]; then
-    echo "config.json or maintainers.json were not changed - configlet fmt is aborted."
-
-    exit 0
-fi
+# If it's not a pull request, just always run it.
+# This script is cheap anyway.
 
 repo=$(cd "$(dirname "$0")/.." && pwd)
 configlet="${repo}/bin/configlet"
