@@ -2,7 +2,7 @@ use grep::{grep, Flags};
 
 use std::fs;
 
-static ILIAD_CONTENT: &'static str = "Achilles sing, O Goddess! Peleus' son;
+static ILIAD_CONTENT: &str = "Achilles sing, O Goddess! Peleus' son;
 His wrath pernicious, who ten thousand woes
 Caused to Achaia's host, sent many a soul
 Illustrious into Ades premature,
@@ -13,7 +13,7 @@ The noble Chief Achilles from the son
 Of Atreus, Agamemnon, King of men.
 ";
 
-static MIDSUMMER_NIGHT_CONTENT: &'static str = "I do entreat your grace to pardon me.
+static MIDSUMMER_NIGHT_CONTENT: &str = "I do entreat your grace to pardon me.
 I know not by what power I am made bold,
 Nor how it may concern my modesty,
 In such a presence here to plead my thoughts;
@@ -22,7 +22,7 @@ The worst that may befall me in this case,
 If I refuse to wed Demetrius.
 ";
 
-static PARADISE_LOST_CONTENT: &'static str = "Of Mans First Disobedience, and the Fruit
+static PARADISE_LOST_CONTENT: &str = "Of Mans First Disobedience, and the Fruit
 Of that Forbidden Tree, whose mortal tast
 Brought Death into the World, and all our woe,
 With loss of Eden, till one greater Man
@@ -36,7 +36,7 @@ That Shepherd, who first taught the chosen Seed
 /// A poem by Alexander Blok(https://en.wikipedia.org/wiki/Alexander_Blok)
 /// a Russian poet who is regarded as one of the most important figures of the Silver Age of Russian Poetry
 /// You can read the translation here: https://lyricstranslate.com/ru/белой-ночью-месяц-красный-white-night-crimson-crescent.html
-static IN_THE_WHITE_NIGHT_CONTENT: &'static str = "Белой ночью месяц красный
+static IN_THE_WHITE_NIGHT_CONTENT: &str = "Белой ночью месяц красный
 Выплывает в синеве.
 Бродит призрачно-прекрасный,
 Отражается в Неве.
