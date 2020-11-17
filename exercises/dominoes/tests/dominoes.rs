@@ -35,9 +35,9 @@ fn check(input: &[Domino]) -> CheckResult {
         .iter()
         .map(|&d| normalize(d))
         .collect::<Vec<Domino>>();
-    output_sorted.sort();
+    output_sorted.sort_unstable();
     let mut input_sorted = input.iter().map(|&d| normalize(d)).collect::<Vec<Domino>>();
-    input_sorted.sort();
+    input_sorted.sort_unstable();
     if input_sorted != output_sorted {
         return DominoMismatch(output);
     }

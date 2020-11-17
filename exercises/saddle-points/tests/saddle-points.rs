@@ -3,7 +3,7 @@ use saddle_points::find_saddle_points;
 // We don't care about order
 fn find_sorted_saddle_points(input: &[Vec<u64>]) -> Vec<(usize, usize)> {
     let mut result = saddle_points::find_saddle_points(input);
-    result.sort();
+    result.sort_unstable();
     result
 }
 
