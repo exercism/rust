@@ -11,9 +11,10 @@ if [ ! -x "./bin/test-exercise" ]; then
    exit 1
 fi
 
-# In DENYWARNINGS mode, do not set -e so that we run all tests.
+# In DENYWARNINGS or CLIPPY mode, do not set -e so that we run all tests.
 # This allows us to see all warnings.
-if [ -z "$DENYWARNINGS" ]; then
+# If we are in neither DENYWARNINGS nor CLIPPY mode, do set -e.
+if [ -z "$DENYWARNINGS" ] && [ -z "$CLIPPY" ]; then
     set -e
 fi
 

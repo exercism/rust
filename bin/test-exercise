@@ -82,6 +82,19 @@ done
 # (use subshell so we auto-reset to current pwd after)
 (
    cd $exercise
-   # this is the last command; its exit code is what's passed on
-   time cargo $command "$@"
+   if [ -n "$CLIPPY" ]; then
+     cargo clippy --all-targets --color always "$@" 2>clippy.log
+     # Only consider it a failure if output contains the string in CLIPPY.
+     # For example, if we're only looking in tests, CLIPPY contains tests/
+     if grep -q $CLIPPY clippy.log; then
+       cat clippy.log
+       exit 1
+     else
+       # Just to show progress
+       echo "clippy $exercise OK"
+     fi
+   else
+     # this is the last command; its exit code is what's passed on
+     time cargo $command "$@"
+   fi
 )
