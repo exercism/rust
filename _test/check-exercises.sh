@@ -13,7 +13,8 @@ fi
 
 # In DENYWARNINGS or CLIPPY mode, do not set -e so that we run all tests.
 # This allows us to see all warnings.
-if [ -z "$DENYWARNINGS$CLIPPY" ]; then
+# If we are in neither DENYWARNINGS nor CLIPPY mode, do set -e.
+if [ -z "$DENYWARNINGS" ] && [ -z "$CLIPPY" ]; then
     set -e
 fi
 
