@@ -126,29 +126,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # We actually think explicitly installing Clippy isn't necessary,
-      # as it is currently installed by default.
-      # But we'll include this step anyway just in case that changes.
-      - name: Install Clippy
-        run: rustup component add clippy
-
       - name: Setup toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.rust }}
           default: true
 
-      - name: Clippy tests
+      # Clippy already installed on Stable, but not Beta.
+      # So, we must install here.
+      - name: Install Clippy
+        run: rustup component add clippy
+
+      - name: Clippy
         env:
-          CLIPPY: tests/
+          CLIPPY: true
         run: ./_test/check-exercises.sh
 
-      # Our examples currently have too much Clippy output to consider this.
-      # But maybe in the future.
-      #- name: Clippy examples
-      #  env:
-      #    CLIPPY: src/lib.rs
-      #  run: ./_test/check-exercises.sh
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
     runs-on: ubuntu-latest

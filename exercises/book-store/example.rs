@@ -10,7 +10,7 @@ type GroupedBasket = Vec<Group>;
 type Price = u32;
 const BOOK_PRICE: Price = 800;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 struct Group(RefCell<BTreeSet<Book>>);
 
 impl Group {
@@ -64,6 +64,14 @@ impl PartialOrd for Group {
         Some(self.cmp(other))
     }
 }
+
+impl PartialEq for Group {
+    fn eq(&self, other: &Group) -> bool {
+        self.0.borrow().eq(&other.0.borrow())
+    }
+}
+
+impl Eq for Group {}
 
 impl Hash for Group {
     fn hash<H: Hasher>(&self, hasher: &mut H) {
