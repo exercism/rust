@@ -138,17 +138,11 @@ jobs:
           toolchain: ${{ matrix.rust }}
           default: true
 
-      - name: Clippy tests
+      - name: Clippy
         env:
-          CLIPPY: tests/
+          CLIPPY: true
         run: ./_test/check-exercises.sh
 
-      # Our examples currently have too much Clippy output to consider this.
-      # But maybe in the future.
-      #- name: Clippy examples
-      #  env:
-      #    CLIPPY: src/lib.rs
-      #  run: ./_test/check-exercises.sh
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
     runs-on: ubuntu-latest

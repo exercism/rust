@@ -83,10 +83,12 @@ done
 (
    cd $exercise
    if [ -n "$CLIPPY" ]; then
+     # Consider any Clippy to be an error in tests only.
+     # For now, not the example solutions since they have many Clippy warnings,
+     # and are not shown to students anyway.
+     sed -i -e '1i #![deny(clippy::all)]' tests/*.rs
      cargo clippy --all-targets --color always "$@" 2>clippy.log
-     # Only consider it a failure if output contains the string in CLIPPY.
-     # For example, if we're only looking in tests, CLIPPY contains tests/
-     if grep -q $CLIPPY clippy.log; then
+     if [ $? -ne 0 ]; then
        cat clippy.log
        exit 1
      else
