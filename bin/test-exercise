@@ -84,9 +84,8 @@ done
    cd $exercise
    if [ -n "$CLIPPY" ]; then
      # Consider any Clippy to be an error in tests only.
-     # For now, not the example solutions since they have many Clippy warnings,
-     # and are not shown to students anyway.
      sed -i -e '1i #![deny(clippy::all)]' tests/*.rs
+     sed -i -e '1i #![deny(clippy::all)]' src/lib.rs
      cargo clippy --tests --color always "$@" 2>clippy.log
      if [ $? -ne 0 ]; then
        cat clippy.log
