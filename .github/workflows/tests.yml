@@ -126,17 +126,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # We actually think explicitly installing Clippy isn't necessary,
-      # as it is currently installed by default.
-      # But we'll include this step anyway just in case that changes.
-      - name: Install Clippy
-        run: rustup component add clippy
-
       - name: Setup toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.rust }}
           default: true
+
+      # Clippy already installed on Stable, but not Beta.
+      # So, we must install here.
+      - name: Install Clippy
+        run: rustup component add clippy
 
       - name: Clippy
         env:
