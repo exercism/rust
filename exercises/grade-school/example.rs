@@ -14,12 +14,12 @@ impl School {
     pub fn add(&mut self, grade: u32, student: &str) {
         let entry = self.grades.entry(grade).or_insert_with(Vec::new);
         entry.push(student.to_string());
-        entry.sort();
+        entry.sort_unstable();
     }
 
     pub fn grades(&self) -> Vec<u32> {
         let mut s = self.grades.keys().cloned().collect::<Vec<u32>>();
-        s.sort();
+        s.sort_unstable();
         s
     }
 
