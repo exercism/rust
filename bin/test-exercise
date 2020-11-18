@@ -87,7 +87,7 @@ done
      # For now, not the example solutions since they have many Clippy warnings,
      # and are not shown to students anyway.
      sed -i -e '1i #![deny(clippy::all)]' tests/*.rs
-     cargo clippy --all-targets --color always "$@" 2>clippy.log
+     cargo clippy --tests --color always "$@" 2>clippy.log
      if [ $? -ne 0 ]; then
        cat clippy.log
        exit 1
