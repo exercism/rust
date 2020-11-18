@@ -7,8 +7,8 @@ pub struct Robot {
 
 fn generate_name() -> String {
     let mut s = String::with_capacity(5);
-    static LETTERS: &'static [u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    static NUMBERS: &'static [u8] = b"0123456789";
+    static LETTERS: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static NUMBERS: &[u8] = b"0123456789";
     for _ in 0..2 {
         s.push(*thread_rng().choose(LETTERS).unwrap() as char);
     }

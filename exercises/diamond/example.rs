@@ -1,4 +1,4 @@
-static ABC: &'static str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+static ABC: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 pub fn get_diamond(diamond_char: char) -> Vec<String> {
     let mut result: Vec<String> = Vec::new();

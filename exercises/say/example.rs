@@ -1,4 +1,4 @@
-const SMALL: &'static [&'static str] = &[
+const SMALL: &[&str] = &[
     "zero",
     "one",
     "two",
@@ -21,11 +21,11 @@ const SMALL: &'static [&'static str] = &[
     "nineteen",
 ];
 
-const TENS: &'static [&'static str] = &[
+const TENS: &[&str] = &[
     "ones", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",
 ];
 
-const SCALE: &'static [&'static str] = &[
+const SCALE: &[&str] = &[
     "",
     "thousand",
     "million",
