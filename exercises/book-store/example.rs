@@ -154,7 +154,7 @@ impl Iterator for DecomposeGroups {
                     let mut book_iter = backing_bt.iter();
                     *book_iter.next().unwrap()
                 };
-                hypothetical = groups.clone();
+                hypothetical = groups;
                 hypothetical[0].0.borrow_mut().remove(&book);
                 hypothetical.push(Group::new_containing(book));
                 hypothetical.sort();
