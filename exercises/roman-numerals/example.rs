@@ -1,6 +1,6 @@
 use std::fmt;
 
-static ROMAN_MAP: [(usize, &'static str); 13] = [
+static ROMAN_MAP: [(usize, &str); 13] = [
     (1, "I"),
     (4, "IV"),
     (5, "V"),

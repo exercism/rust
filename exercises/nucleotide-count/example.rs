@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-static VALID_NUCLEOTIDES: &'static str = "ACGT";
+static VALID_NUCLEOTIDES: &str = "ACGT";
 
 fn valid(c: char) -> Result<char, char> {
     if VALID_NUCLEOTIDES.contains(c) {

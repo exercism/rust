@@ -15,4 +15,4 @@ fn english_letter_set() -> BTreeSet<char> {
     BTreeSet::from_iter(ENGLISH_ALPHABET.chars())
 }
 
-const ENGLISH_ALPHABET: &'static str = "abcdefghijklmnopqrstuvwxyz";
+const ENGLISH_ALPHABET: &str = "abcdefghijklmnopqrstuvwxyz";
