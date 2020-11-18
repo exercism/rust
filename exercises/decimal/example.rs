@@ -75,10 +75,10 @@ impl Decimal {
                 &lower_precision.digits * pow(BigInt::from(10_usize), precision_difference);
             lower_precision.decimal_index += precision_difference;
         }
-        if one.decimal_index < two.decimal_index {
-            expand(&mut one, &two)
-        } else if one.decimal_index > two.decimal_index {
-            expand(&mut two, &one)
+        match one.decimal_index.cmp(&two.decimal_index) {
+            std::cmp::Ordering::Equal => {},
+            std::cmp::Ordering::Less => expand(&mut one, &two),
+            std::cmp::Ordering::Greater => expand(&mut two, &one),
         }
         assert_eq!(one.decimal_index, two.decimal_index);
     }

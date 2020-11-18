@@ -3,12 +3,10 @@ pub fn classify(num: u64) -> Option<Classification> {
         return None;
     }
     let sum: u64 = (1..num).filter(|i| num % i == 0).sum();
-    if sum == num {
-        Some(Classification::Perfect)
-    } else if sum < num {
-        Some(Classification::Deficient)
-    } else {
-        Some(Classification::Abundant)
+    match sum.cmp(&num) {
+        std::cmp::Ordering::Equal => Some(Classification::Perfect),
+        std::cmp::Ordering::Less => Some(Classification::Deficient),
+        std::cmp::Ordering::Greater => Some(Classification::Abundant),
     }
 }
 
