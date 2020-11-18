@@ -101,9 +101,10 @@ impl Decimal {
 }
 
 macro_rules! auto_impl_decimal_ops {
-    ($trait:ident, $func_name:ident, $digits_operation:expr, $index_operation:expr) => {
+    ($(#[$attr:meta])* $trait:ident, $func_name:ident, $digits_operation:expr, $index_operation:expr) => {
         impl $trait for Decimal {
             type Output = Self;
+            $(#[$attr])*
             fn $func_name(mut self, mut rhs: Self) -> Self {
                 Decimal::equalize_precision(&mut self, &mut rhs);
                 Decimal::new(
@@ -117,7 +118,7 @@ macro_rules! auto_impl_decimal_ops {
 
 auto_impl_decimal_ops!(Add, add, |s, o| s + o, |s, _| s);
 auto_impl_decimal_ops!(Sub, sub, |s, o| s - o, |s, _| s);
-auto_impl_decimal_ops!(Mul, mul, |s, o| s * o, |s, o| s + o);
+auto_impl_decimal_ops!(#[allow(clippy::suspicious_arithmetic_impl)] Mul, mul, |s, o| s * o, |s, o| s + o);
 
 macro_rules! auto_impl_decimal_cow {
     ($trait:ident, $func_name:ident, $digits_operation:expr, $return_type:ty) => {
