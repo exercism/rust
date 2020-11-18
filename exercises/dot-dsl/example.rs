@@ -40,7 +40,7 @@ pub mod graph {
         }
 
         pub fn get_node(&self, name: &str) -> Option<&Node> {
-            self.nodes.iter().filter(|n| n.name == name).nth(0)
+            self.nodes.iter().filter(|n| n.name == name).next()
         }
     }
 
