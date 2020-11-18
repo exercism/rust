@@ -137,10 +137,15 @@ jobs:
       - name: Install Clippy
         run: rustup component add clippy
 
-      - name: Clippy
+      - name: Clippy tests
         env:
           CLIPPY: true
         run: ./_test/check-exercises.sh
+
+      - name: Clippy stubs
+        env:
+          CLIPPY: true
+        run: sh ./_test/ensure-stubs-compile.sh
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
