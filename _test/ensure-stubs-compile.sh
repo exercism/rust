@@ -42,7 +42,7 @@ for dir in $changed_exercises; do
 	sed -i -e '1i #![deny(warnings)]' $dir/tests/*.rs
 
 	if ! (cd $dir && cargo test --quiet --no-run); then
-	  echo "$exercise's stub does not compile; please make it compile or remove all non-commented lines"
+	  echo "$exercise's stub does not compile; please make it compile"
 	  broken="$broken\n$exercise"
 	fi
 
