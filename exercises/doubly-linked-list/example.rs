@@ -106,7 +106,7 @@ impl<T> LinkedList<T> {
 impl<T> Drop for LinkedList<T> {
     fn drop(&mut self) {
         let mut cursor = self.cursor_front();
-        while let Some(_) = cursor.take() {}
+        while cursor.take().is_some() {}
     }
 }
 

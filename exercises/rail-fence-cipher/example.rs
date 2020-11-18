@@ -17,13 +17,11 @@ impl RailFence {
                 *down = false;
                 *rail -= 1;
             }
+        } else if *rail > 0 {
+            *rail -= 1;
         } else {
-            if *rail > 0 {
-                *rail -= 1;
-            } else {
-                *down = true;
-                *rail += 1;
-            }
+            *down = true;
+            *rail += 1;
         }
     }
 

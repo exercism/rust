@@ -155,7 +155,7 @@ impl Forth {
     }
 
     fn pop_two(&mut self) -> StackResult<(Value, Value)> {
-        self.pop().and_then(|b| self.pop().and_then(|a| Ok((a, b))))
+        self.pop().and_then(|b| self.pop().map(|a| (a, b)))
     }
 
     fn bin_op<F>(&mut self, op: F) -> ForthResult
