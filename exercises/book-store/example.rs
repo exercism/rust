@@ -6,7 +6,6 @@ use std::hash::{Hash, Hasher};
 use std::mem;
 
 type Book = u32;
-type GroupedBasket = Vec<Group>;
 type Price = u32;
 const BOOK_PRICE: Price = 800;
 
@@ -79,16 +78,15 @@ impl Hash for Group {
     }
 }
 
-fn basket_price(basket: &GroupedBasket) -> Price {
+fn basket_price(basket: &[Group]) -> Price {
     basket.iter().map(|g| g.price()).sum()
 }
 
-/// Compute the hash of a GroupedBasket
+/// Compute the hash of a Vec<Group>
 ///
 /// Note that we don't actually care at all about the _values_ within
-/// the groups, only their lengths. Therefore, let's hash not the actual
-/// GB but its lengths.
-fn hash_of(basket: &GroupedBasket) -> u64 {
+/// the groups, only their lengths. Therefore, let's hash only those.
+fn hash_of(basket: &[Group]) -> u64 {
     let lengths = basket
         .iter()
         .map(|g| g.0.borrow().len())
@@ -107,11 +105,11 @@ pub fn lowest_price(books: &[Book]) -> Price {
 
 struct DecomposeGroups {
     prev_states: HashSet<u64>,
-    next: Option<GroupedBasket>,
+    next: Option<Vec<Group>>,
 }
 
 impl Iterator for DecomposeGroups {
-    type Item = GroupedBasket;
+    type Item = Vec<Group>;
     fn next(&mut self) -> Option<Self::Item> {
         // our goal here: produce a stream of valid groups, differentiated by their
         // counts, from most compact to most dispersed.
@@ -168,7 +166,7 @@ impl Iterator for DecomposeGroups {
 
 impl DecomposeGroups {
     fn new(books: &[Book]) -> DecomposeGroups {
-        let mut book_groups = GroupedBasket::new();
+        let mut book_groups = Vec::new();
         'nextbook: for book in books {
             for Group(book_group) in book_groups.iter() {
                 if !book_group.borrow().contains(&book) {
