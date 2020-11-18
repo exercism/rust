@@ -9,7 +9,7 @@ use counter::Counter;
 /// the winning hand(s) as were passed in, not reconstructed strings which happen to be equal.
 pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
     let mut hands = hands
-        .into_iter()
+        .iter()
         .map(|source| Hand::try_from(*source))
         .collect::<Result<Vec<_>, _>>().ok()?;
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));

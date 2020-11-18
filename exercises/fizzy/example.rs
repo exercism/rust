@@ -120,7 +120,7 @@ mod test {
             "fizz", "fizz", "fizz", "buzz", "buzz", "16", "8", "4", "2", "1",
         ];
         let got = fizz_buzz()
-            .apply(collatz_12.into_iter().cloned())
+            .apply(collatz_12.iter().cloned())
             .collect::<Vec<_>>();
         assert_eq!(expect, got);
     }

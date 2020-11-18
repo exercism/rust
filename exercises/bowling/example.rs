@@ -43,7 +43,7 @@ impl Frame {
             return self.bonus_score() <= 10;
         }
 
-        if let Some(first) = self.bonus.iter().next() {
+        if let Some(first) = self.bonus.get(0) {
             if *first == 10 {
                 self.bonus_score() <= 20
             } else {
