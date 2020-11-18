@@ -44,9 +44,9 @@ struct ComputeCell<'a, T: Copy> {
     cell: Cell<T>,
 
     dependencies: Vec<CellID>,
-    f: Box<dyn Fn(&[T]) -> T + 'a>,
+    f: Box<dyn 'a + Fn(&[T]) -> T>,
     callbacks_issued: usize,
-    callbacks: HashMap<CallbackID, Box<dyn FnMut(T) -> () + 'a>>,
+    callbacks: HashMap<CallbackID, Box<dyn 'a + FnMut(T)>>,
 }
 
 impl<T: Copy> Cell<T> {
@@ -60,7 +60,7 @@ impl<T: Copy> Cell<T> {
 }
 
 impl<'a, T: Copy> ComputeCell<'a, T> {
-    fn new<F: Fn(&[T]) -> T + 'a>(initial: T, dependencies: Vec<CellID>, f: F) -> Self {
+    fn new<F: 'a + Fn(&[T]) -> T>(initial: T, dependencies: Vec<CellID>, f: F) -> Self {
         ComputeCell {
             cell: Cell::new(initial),
 
@@ -90,7 +90,7 @@ impl<'a, T: Copy + PartialEq> Reactor<'a, T> {
         InputCellID(self.inputs.len() - 1)
     }
 
-    pub fn create_compute<F: Fn(&[T]) -> T + 'a>(
+    pub fn create_compute<F: 'a + Fn(&[T]) -> T>(
         &mut self,
         dependencies: &[CellID],
         compute_func: F,
@@ -161,7 +161,7 @@ impl<'a, T: Copy + PartialEq> Reactor<'a, T> {
             .is_some()
     }
 
-    pub fn add_callback<F: FnMut(T) -> () + 'a>(
+    pub fn add_callback<F: 'a + FnMut(T)>(
         &mut self,
         id: ComputeCellID,
         callback: F,

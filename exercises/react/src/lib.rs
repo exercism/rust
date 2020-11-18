@@ -105,7 +105,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
     // * Exactly once if the compute cell's value changed as a result of the set_value call.
     //   The value passed to the callback should be the final value of the compute cell after the
     //   set_value call.
-    pub fn add_callback<F: FnMut(T) -> ()>(
+    pub fn add_callback<F: FnMut(T)>(
         &mut self,
         _id: ComputeCellID,
         _callback: F,
