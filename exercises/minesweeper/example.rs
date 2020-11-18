@@ -30,7 +30,7 @@ impl Board {
         if count == 0 {
             ' '
         } else {
-            (('0' as u8) + count) as char
+            (b'0' + count) as char
         }
     }
 }
