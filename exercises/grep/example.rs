@@ -67,9 +67,9 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                     let mut inner_pattern = String::from(pattern);
 
                     if flags.use_caseinsensitive_comparison {
-                        inner_line = inner_line.to_lowercase().to_string();
+                        inner_line = inner_line.to_lowercase();
 
-                        inner_pattern = inner_pattern.to_lowercase().to_string();
+                        inner_pattern = inner_pattern.to_lowercase();
                     }
 
                     if flags.use_inverted_comparison {
