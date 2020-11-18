@@ -47,10 +47,7 @@ fn prepare(input: &str) -> Vec<char> {
     // add space padding to the end such that the actual string returned
     // forms a perfect rectangle
     let (r, c) = dimensions(output.len());
-    let padding_qty = (r * c) - output.len();
-    for _ in 0..padding_qty {
-        output.push(' ');
-    }
+    output.resize(r * c, ' ');
 
     output.shrink_to_fit();
 
