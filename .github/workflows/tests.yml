@@ -109,6 +109,33 @@ jobs:
         run: sh ./_test/check-exercise-crate.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
+  rustformat:
+    name: Check Rust Formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+
+      - name: Rust Format Version
+        run: rustfmt --version
+
+      - name: Format
+        run: sh bin/format_exercises
+
+      - name: Diff
+        run: |
+          if ! git diff --color --exit-code; then
+            echo "Please run cargo fmt, or see the diff above:"
+            exit 1
+          fi
+
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
