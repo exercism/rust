@@ -129,4 +129,3 @@ fn test_non_integer_multiple_of_threads() {
     hm.insert('c', 999);
     assert_eq!(frequency::frequency(&v[..], 4), hm);
 }
-

@@ -1,5 +1,5 @@
-use std::{cmp::Ordering, convert::TryFrom};
 use std::fmt;
+use std::{cmp::Ordering, convert::TryFrom};
 
 use counter::Counter;
 
@@ -11,7 +11,8 @@ pub fn winning_hands<'a>(hands: &[&'a str]) -> Option<Vec<&'a str>> {
     let mut hands = hands
         .into_iter()
         .map(|source| Hand::try_from(*source))
-        .collect::<Result<Vec<_>, _>>().ok()?;
+        .collect::<Result<Vec<_>, _>>()
+        .ok()?;
     hands.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Less));
     hands.last().map(|last| {
         hands
@@ -216,7 +217,10 @@ impl PokerHand {
             }
 
             let rank_counter = cards.iter().map(|c| c.rank).collect::<Counter<_>>();
-            let mut rc_iter = rank_counter.most_common().into_iter().map(|(_rank, count)| count);
+            let mut rc_iter = rank_counter
+                .most_common()
+                .into_iter()
+                .map(|(_rank, count)| count);
             let rc_most = rc_iter.next();
             let rc_second = rc_iter.next();
 
@@ -256,7 +260,6 @@ struct Hand<'a> {
 }
 
 impl<'a> Hand<'a> {
-
     fn cmp_high_card(&self, other: &Hand, card: usize) -> Ordering {
         let mut ordering = self.cards[card]
             .rank
