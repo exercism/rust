@@ -43,12 +43,12 @@ pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome
                     None => Some((Palindrome::new(a, b), Palindrome::new(a, b))),
                     Some((mut minp, mut maxp)) => {
                         match (a * b).cmp(&minp.value()) {
-                            std::cmp::Ordering::Greater => {},
+                            std::cmp::Ordering::Greater => {}
                             std::cmp::Ordering::Less => minp = Palindrome::new(a, b),
                             std::cmp::Ordering::Equal => minp.insert(a, b),
                         }
                         match (a * b).cmp(&maxp.value()) {
-                            std::cmp::Ordering::Less => {},
+                            std::cmp::Ordering::Less => {}
                             std::cmp::Ordering::Greater => maxp = Palindrome::new(a, b),
                             std::cmp::Ordering::Equal => maxp.insert(a, b),
                         }

@@ -320,7 +320,6 @@ pub mod note {
             .into();
         }
     }
-
 }
 
 #[derive(Debug)]

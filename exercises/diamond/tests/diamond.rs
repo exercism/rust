@@ -1,4 +1,3 @@
-
 use diamond::*;
 
 #[test]
@@ -9,21 +8,37 @@ fn test_a() {
 #[test]
 #[ignore]
 fn test_b() {
-    assert_eq!(get_diamond('B'), vec![" A ", "B B", " A "]);
+    #[rustfmt::skip]
+    assert_eq!(
+        get_diamond('B'),
+        vec![
+            " A ",
+            "B B",
+            " A ",
+        ]
+    );
 }
 
 #[test]
 #[ignore]
 fn test_c() {
+    #[rustfmt::skip]
     assert_eq!(
         get_diamond('C'),
-        vec!["  A  ", " B B ", "C   C", " B B ", "  A  "]
+        vec![
+            "  A  ",
+            " B B ",
+            "C   C",
+            " B B ",
+            "  A  ",
+        ]
     );
 }
 
 #[test]
 #[ignore]
 fn test_d() {
+    #[rustfmt::skip]
     assert_eq!(
         get_diamond('D'),
         vec![

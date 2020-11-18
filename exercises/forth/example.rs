@@ -172,10 +172,12 @@ impl Forth {
         for t in code.iter() {
             match t {
                 Term::Number(_) => resolved_def.push_back(t.clone()),
-                Term::Word(s) => if let Some(cs) = self.defs.get(s) {
-                    resolved_def.append(&mut cs.clone());
-                } else {
-                    resolved_def.push_back(t.clone());
+                Term::Word(s) => {
+                    if let Some(cs) = self.defs.get(s) {
+                        resolved_def.append(&mut cs.clone());
+                    } else {
+                        resolved_def.push_back(t.clone());
+                    }
                 }
                 _ => {
                     eprintln!("Nested definition in {}", name);

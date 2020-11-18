@@ -104,7 +104,6 @@ pub mod graph {
                     self.attrs.get(name).map(|v| v.as_ref())
                 }
             }
-
         }
     }
 }

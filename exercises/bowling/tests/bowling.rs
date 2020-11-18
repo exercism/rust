@@ -432,7 +432,6 @@ fn cannot_roll_after_bonus_roll_for_strike() {
     assert_eq!(game.roll(2), Err(Error::GameComplete));
 }
 
-
 #[test]
 #[ignore]
 fn last_two_strikes_followed_by_only_last_bonus_with_non_strike_points() {

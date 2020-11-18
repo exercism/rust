@@ -76,7 +76,7 @@ impl Decimal {
             lower_precision.decimal_index += precision_difference;
         }
         match one.decimal_index.cmp(&two.decimal_index) {
-            std::cmp::Ordering::Equal => {},
+            std::cmp::Ordering::Equal => {}
             std::cmp::Ordering::Less => expand(&mut one, &two),
             std::cmp::Ordering::Greater => expand(&mut two, &one),
         }
@@ -118,7 +118,13 @@ macro_rules! auto_impl_decimal_ops {
 
 auto_impl_decimal_ops!(Add, add, |s, o| s + o, |s, _| s);
 auto_impl_decimal_ops!(Sub, sub, |s, o| s - o, |s, _| s);
-auto_impl_decimal_ops!(#[allow(clippy::suspicious_arithmetic_impl)] Mul, mul, |s, o| s * o, |s, o| s + o);
+auto_impl_decimal_ops!(
+    #[allow(clippy::suspicious_arithmetic_impl)]
+    Mul,
+    mul,
+    |s, o| s * o,
+    |s, o| s + o
+);
 
 macro_rules! auto_impl_decimal_cow {
     ($trait:ident, $func_name:ident, $digits_operation:expr, $return_type:ty) => {

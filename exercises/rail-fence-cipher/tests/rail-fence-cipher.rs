@@ -88,9 +88,5 @@ fn test_decode_with_six_rails() {
 /// this text is possibly one of the most famous haiku of all time, by
 /// Matsuo Bashō (松尾芭蕉)
 fn test_encode_wide_characters() {
-    process_encode_case(
-        "古池蛙飛び込む水の音",
-        3,
-        "古びの池飛込水音蛙む",
-    );
+    process_encode_case("古池蛙飛び込む水の音", 3, "古びの池飛込水音蛙む");
 }

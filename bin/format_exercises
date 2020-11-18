@@ -1,33 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 # Format existing exercises using rustfmt
 
 RUST_TRACK_REPO_PATH=$(cd "$(dirname "$0")/.." && pwd)
 
 EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/"
 
-# Some exercises use custom formatting for illustration purpose and should not be formatted. 
-IGNORED_EXERCISES=(
-	"diamond" 
-	"minesweeper" 
-	"rectangles"
-)
-
-# Iterate over every exercise directory and if it is not ignored - format it
 for exercise_dir in ${EXERCISES_PATH}/*; do
-	exercise_name=${exercise_dir##*/}
-
-	if [[ " ${IGNORED_EXERCISES[*]} " == *"$exercise_name"* ]]; then
-		echo "$exercise_name - Ignored"
-	else
-		(
-			echo "$exercise_name - Formatting"
-
-			cd "$exercise_dir"
-
-			cargo fmt
-
-			[ -f example.rs ] && rustfmt example.rs
-		)
-	fi
-
+  exercise_name=$(basename $exercise_dir)
+  (
+    cd "$exercise_dir"
+    cargo fmt
+    if [ -f example.rs ]; then
+      rustfmt example.rs
+    fi
+  )
 done

@@ -1,9 +1,9 @@
+use hexlit::hex;
 use rstest::rstest;
 use rstest_reuse::{self, *};
 #[cfg(feature = "io")]
 use std::io::{Read, Write};
 use xorcism::Xorcism;
-use hexlit::hex;
 
 #[test]
 fn identity() {
