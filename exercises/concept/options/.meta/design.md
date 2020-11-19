@@ -1,3 +1,5 @@
+# `Option`
+
 ## Learning Objectives
 
 After completing the exercise, the user should:
@@ -30,15 +32,16 @@ The concepts this exercise unlocks are:
 
 ### Hints
 
-- [https://doc.rust-lang.org/std/option/](https://doc.rust-lang.org/std/option/)
-- [https://doc.rust-lang.org/rust-by-example/std/option.html](https://doc.rust-lang.org/rust-by-example/std/option.html)
-- [https://learning-rust.github.io/docs/e3.option_and_result.html](https://learning-rust.github.io/docs/e3.option_and_result.html)
+- <https://doc.rust-lang.org/std/option/>
+- <https://doc.rust-lang.org/rust-by-example/std/option.html>
+- <https://learning-rust.github.io/docs/e3.option_and_result.html>
+- [The Billion-Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/)
 
 ### After
 
 Take a look at the list of methods implemented on the `Option` type:
 
-- [https://doc.rust-lang.org/std/option/enum.Option.html](https://doc.rust-lang.org/std/option/enum.Option.html)
+- <https://doc.rust-lang.org/std/option/enum.Option.html>
 
 Some commonly used methods on `Option`s include:
 

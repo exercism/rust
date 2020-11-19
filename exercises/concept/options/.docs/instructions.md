@@ -30,23 +30,33 @@ alive_player.revive()
 // Returns None
 ```
 
-The `cast_spell` method takes a mutable reference to the Player as well as a `mana_cost` parameter indicating how much mana the spell costs. It returns the amount of damage that the cast spell performs, which will always be two times the mana cost of the spell.
-The method should check to ensure that the Player has access to a mana pool, as well as check to make sure that they have enough mana to satisfy the `mana_cost`.
-In the case that the Player has enough mana, the `mana_cost` should be deducted from the Player's mana pool and the appropriate amount of damage should be returned.
-If the Player doesn't have enough mana, the method should not affect the Player's mana pool and the method should return 0.
+The `cast_spell` method takes a mutable reference to the Player as well as a `mana_cost` parameter indicating how much mana the spell costs. It returns the amount of damage that the cast spell performs, which will always be two times the mana cost of the spell if the spell is successfully cast.
 
-```rust
-let low_mana_wizard = Player { health: 93, mana: Some(3), level: 12 };
-low_mana_wizard.cast_spell(10)
-// Returns 0
-```
+- If the player does not have access to a mana pool, attempting to cast the spell must decrease their health by the mana cost of the spell. The damage returned must be 0.
 
-If the Player doesn't have access to their mana pool yet, the method should return 0.
+  ```rust
+  let not_a_wizard_yet = Player { health: 79, mana: None, level: 9 };
+  assert_eq!(not_a_wizard_yet.cast_spell(5), 0)
+  assert_eq!(not_a_wizard_yet.health, 70);
+  assert_eq!(not_a_wizard_yet.mana, None);
+  ```
 
-```rust
-let not_a_wizard_yet = Player { health: 78, mana: None, level: 9 };
-not_a_wizard_yet.cast_spell(5)
-// Returns 0
-```
+- If the player has a mana pool but insufficient mana, the method should not affect the pool, but instead return 0
+
+  ```rust
+  let low_mana_wizard = Player { health: 93, mana: Some(3), level: 12 };
+  assert_eq!(low_mana_wizard.cast_spell(10), 0);
+  assert_eq!(low_mana_wizard.health, 93);
+  assert_eq!(low_mana_wizard.mana, Some(3));
+  ```
+
+- Otherwise, the `mana_cost` should be deducted from the Player's mana pool and the appropriate amount of damage should be returned.
+
+  ```rust
+  let wizard = Player { health: 123, mana: Some(30), level: 18 };
+  assert_eq!(low_mana_wizard.cast_spell(10), 20);
+  assert_eq!(low_mana_wizard.health, 123);
+  assert_eq!(low_mana_wizard.mana, Some(20));
+  ```
 
 Have fun!
