@@ -139,6 +139,7 @@ impl<T> Cursor<'_, T> {
         }
     }
 
+    #[allow(clippy::should_implement_trait)]
     pub fn next(&mut self) -> Option<&mut T> {
         // safe as node.next is a valid potential pointer
         unsafe { self._step(|node| node.next) }
