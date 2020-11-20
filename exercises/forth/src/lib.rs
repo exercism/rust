@@ -16,7 +16,7 @@ impl Forth {
         unimplemented!()
     }
 
-    pub fn stack(&self) -> Vec<Value> {
+    pub fn stack(&self) -> &[Value] {
         unimplemented!()
     }
 
