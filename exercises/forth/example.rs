@@ -1,13 +1,13 @@
 use std::collections::HashMap;
-use std::collections::LinkedList;
+use std::collections::VecDeque;
 use std::str::FromStr;
 
 pub type Value = i32;
 pub type ForthResult = Result<(), Error>;
 type StackResult<T> = Result<T, Error>;
 
-type Stack = LinkedList<Value>;
-type Code = LinkedList<Term>;
+type Stack = Vec<Value>;
+type Code = VecDeque<Term>;
 type Definitions = HashMap<String, Code>;
 
 pub struct Forth {
@@ -49,14 +49,14 @@ impl FromStr for Term {
 impl Forth {
     pub fn new() -> Forth {
         Forth {
-            code: LinkedList::new(),
+            code: Code::new(),
             defs: HashMap::new(),
-            stack: LinkedList::new(),
+            stack: Stack::new(),
         }
     }
 
-    pub fn stack(&self) -> Vec<Value> {
-        self.stack.iter().cloned().collect()
+    pub fn stack(&self) -> &[Value] {
+        self.stack.as_slice()
     }
 
     pub fn eval(&mut self, input: &str) -> ForthResult {
@@ -125,7 +125,7 @@ impl Forth {
     }
 
     fn store_definition(&mut self) -> ForthResult {
-        let mut def = LinkedList::new();
+        let mut def = Code::new();
 
         loop {
             match self.code.pop_front() {
@@ -143,12 +143,12 @@ impl Forth {
     }
 
     fn push(&mut self, value: Value) -> ForthResult {
-        self.stack.push_back(value);
+        self.stack.push(value);
         Forth::ok()
     }
 
     fn pop(&mut self) -> StackResult<Value> {
-        self.stack.pop_back().ok_or_else(|| {
+        self.stack.pop().ok_or_else(|| {
             eprintln!("Stack underflow");
             Error::StackUnderflow
         })
@@ -189,7 +189,7 @@ impl Forth {
         Forth::ok()
     }
 
-    fn into_code(input: &str) -> LinkedList<Term> {
+    fn into_code(input: &str) -> Code {
         input
             .split(|c: char| c.is_whitespace() || c.is_control())
             .map(Term::from_str)
