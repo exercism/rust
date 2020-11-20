@@ -1,11 +1,11 @@
 use pythagorean_triplet::find;
-use std::{collections::HashSet, iter::FromIterator};
+use std::collections::HashSet;
 
 fn process_tripletswithsum_case(sum: u32, expected: &[[u32; 3]]) {
     let triplets = find(sum);
 
     if !expected.is_empty() {
-        let expected = HashSet::from_iter(expected.iter().cloned());
+        let expected: HashSet<_> = expected.iter().cloned().collect();
 
         assert_eq!(expected, triplets);
     } else {
