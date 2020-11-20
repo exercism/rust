@@ -30,6 +30,7 @@ fn basics_single_element_back() {
 
     assert_eq!(list.pop_back(), Some(5));
 
+    assert_eq!(list.len(), 0);
     assert!(list.is_empty());
 }
 
@@ -39,10 +40,11 @@ fn basics_push_pop_at_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_back(i);
+        assert_eq!(list.len(), i as usize + 1);
         assert!(!list.is_empty());
     }
-    assert_eq!(list.len(), 10);
     for i in (0..10).rev() {
+        assert_eq!(list.len(), i as usize + 1);
         assert!(!list.is_empty());
         assert_eq!(i, list.pop_back().unwrap());
     }
@@ -62,6 +64,7 @@ fn basics_single_element_front() {
 
     assert_eq!(list.pop_front(), Some(5));
 
+    assert_eq!(list.len(), 0);
     assert!(list.is_empty());
 }
 
@@ -71,10 +74,11 @@ fn basics_push_pop_at_front() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_front(i);
+        assert_eq!(list.len(), i as usize + 1);
         assert!(!list.is_empty());
     }
-    assert_eq!(list.len(), 10);
     for i in (0..10).rev() {
+        assert_eq!(list.len(), i as usize + 1);
         assert!(!list.is_empty());
         assert_eq!(i, list.pop_front().unwrap());
     }
@@ -89,12 +93,15 @@ fn basics_push_front_pop_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_front(i);
+        assert_eq!(list.len(), i as usize + 1);
         assert!(!list.is_empty());
     }
     for i in 0..10 {
+        assert_eq!(list.len(), 10 - i as usize);
         assert!(!list.is_empty());
         assert_eq!(i, list.pop_back().unwrap());
     }
+    assert_eq!(list.len(), 0);
     assert!(list.is_empty());
 }
 
@@ -104,12 +111,15 @@ fn basics_push_back_pop_front() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_back(i);
+        assert_eq!(list.len(), i as usize + 1);
         assert!(!list.is_empty());
     }
     for i in 0..10 {
+        assert_eq!(list.len(), 10 - i as usize);
         assert!(!list.is_empty());
         assert_eq!(i, list.pop_front().unwrap());
     }
+    assert_eq!(list.len(), 0);
     assert!(list.is_empty());
 }
 
