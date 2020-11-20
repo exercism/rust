@@ -53,6 +53,7 @@ impl<T> Cursor<'_, T> {
 
     /// Move one position forward (towards the back) and
     /// return a reference to the new position
+    #[allow(clippy::should_implement_trait)]
     pub fn next(&mut self) -> Option<&mut T> {
         unimplemented!()
     }
