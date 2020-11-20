@@ -1,10 +1,9 @@
 use std::collections::HashSet;
-use std::iter::FromIterator;
 
 fn process_anagram_case(word: &str, inputs: &[&str], expected: &[&str]) {
     let result = anagram::anagrams_for(word, inputs);
 
-    let expected: HashSet<&str> = HashSet::from_iter(expected.iter().cloned());
+    let expected: HashSet<&str> = expected.iter().cloned().collect();
 
     assert_eq!(result, expected);
 }
