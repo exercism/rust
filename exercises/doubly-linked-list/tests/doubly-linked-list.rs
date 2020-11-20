@@ -15,6 +15,7 @@ fn is_generic() {
 fn basics_empty_list() {
     let list: LinkedList<i32> = LinkedList::new();
     assert_eq!(list.len(), 0);
+    assert!(list.is_empty());
 }
 
 // push / pop at back ————————————————————————————————————————
@@ -25,7 +26,12 @@ fn basics_single_element_back() {
     list.push_back(5);
 
     assert_eq!(list.len(), 1);
+    assert!(!list.is_empty());
+
     assert_eq!(list.pop_back(), Some(5));
+
+    assert_eq!(list.len(), 0);
+    assert!(list.is_empty());
 }
 
 #[test]
@@ -34,13 +40,16 @@ fn basics_push_pop_at_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_back(i);
+        assert_eq!(list.len(), i as usize + 1);
+        assert!(!list.is_empty());
     }
-    assert_eq!(list.len(), 10);
-
     for i in (0..10).rev() {
+        assert_eq!(list.len(), i as usize + 1);
+        assert!(!list.is_empty());
         assert_eq!(i, list.pop_back().unwrap());
     }
     assert_eq!(list.len(), 0);
+    assert!(list.is_empty());
 }
 
 // push / pop at front ———————————————————————————————————————
@@ -51,7 +60,12 @@ fn basics_single_element_front() {
     list.push_front(5);
 
     assert_eq!(list.len(), 1);
+    assert!(!list.is_empty());
+
     assert_eq!(list.pop_front(), Some(5));
+
+    assert_eq!(list.len(), 0);
+    assert!(list.is_empty());
 }
 
 #[test]
@@ -60,13 +74,16 @@ fn basics_push_pop_at_front() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_front(i);
+        assert_eq!(list.len(), i as usize + 1);
+        assert!(!list.is_empty());
     }
-    assert_eq!(list.len(), 10);
-
     for i in (0..10).rev() {
+        assert_eq!(list.len(), i as usize + 1);
+        assert!(!list.is_empty());
         assert_eq!(i, list.pop_front().unwrap());
     }
     assert_eq!(list.len(), 0);
+    assert!(list.is_empty());
 }
 
 // push / pop at mixed sides —————————————————————————————————
@@ -76,10 +93,16 @@ fn basics_push_front_pop_back() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_front(i);
+        assert_eq!(list.len(), i as usize + 1);
+        assert!(!list.is_empty());
     }
     for i in 0..10 {
+        assert_eq!(list.len(), 10 - i as usize);
+        assert!(!list.is_empty());
         assert_eq!(i, list.pop_back().unwrap());
     }
+    assert_eq!(list.len(), 0);
+    assert!(list.is_empty());
 }
 
 #[test]
@@ -88,10 +111,16 @@ fn basics_push_back_pop_front() {
     let mut list: LinkedList<i32> = LinkedList::new();
     for i in 0..10 {
         list.push_back(i);
+        assert_eq!(list.len(), i as usize + 1);
+        assert!(!list.is_empty());
     }
     for i in 0..10 {
+        assert_eq!(list.len(), 10 - i as usize);
+        assert!(!list.is_empty());
         assert_eq!(i, list.pop_front().unwrap());
     }
+    assert_eq!(list.len(), 0);
+    assert!(list.is_empty());
 }
 
 // ———————————————————————————————————————————————————————————

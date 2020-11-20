@@ -30,6 +30,38 @@ fn test_pop_decrements_length() {
 
 #[test]
 #[ignore]
+fn test_is_empty() {
+    let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
+    assert!(list.is_empty(), "List wasn't empty on creation");
+    for inserts in 0..100 {
+        for i in 0..inserts {
+            list.push(i);
+            assert!(
+                !list.is_empty(),
+                "List was empty after having inserted {}/{} elements",
+                i,
+                inserts
+            );
+        }
+        for i in 0..inserts {
+            assert!(
+                !list.is_empty(),
+                "List was empty before removing {}/{} elements",
+                i,
+                inserts
+            );
+            list.pop();
+        }
+        assert!(
+            list.is_empty(),
+            "List wasn't empty after having removed {} elements",
+            inserts
+        );
+    }
+}
+
+#[test]
+#[ignore]
 fn test_pop_returns_head_element_and_removes_it() {
     let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     list.push(1);
