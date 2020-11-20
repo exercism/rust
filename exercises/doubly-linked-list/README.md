@@ -35,7 +35,7 @@ private functions.
 
 Implement the functionality for adding and removing elements (pushing and popping)
 at the front and back. This is enough to use the list as a double-ended queue.
-Also implement the `len` function.
+Also implement the `len` and `is_empty` functions.
 
 In the finished implementation, all modifications of the list should be done through the cursor struct
 to minimize duplication. The `push_*` and `pop_*` methods on `LinkedList`

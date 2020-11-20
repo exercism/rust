@@ -14,6 +14,15 @@ impl<T> LinkedList<T> {
         unimplemented!()
     }
 
+    // You may be wondering why it's necessary to have is_empty()
+    // when it can easily be determined from len().
+    // It's good custom to have both because len() can be expensive for some types,
+    // whereas is_empty() is almost always cheap.
+    // (Also ask yourself whether len() is expensive for LinkedList)
+    pub fn is_empty(&self) -> bool {
+        unimplemented!()
+    }
+
     pub fn len(&self) -> usize {
         unimplemented!()
     }
