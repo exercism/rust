@@ -33,15 +33,8 @@ for dir in $changed_exercises; do
   # In CI, we may have already compiled using the example solution.
   # So we want to touch the src/lib.rs in some way,
   # so that we surely recompile using the stub.
-  if [ -n "$CLIPPY" ]; then
-    # We don't deny warnings in clippy mode,
-    # just because there are many we don't want to deal with right now.
-    # So in clippy mode it's just a touch.
-    touch "$dir/src/lib.rs"
-  else
-    # In non-clippy mode, we do want to compile without warnings.
-    sed -i -e '1i #![deny(warnings)]' "$dir/src/lib.rs"
-  fi
+  # Since we also want to deny warnings, that will also serve as the touch.
+  sed -i -e '1i #![deny(warnings)]' "$dir/src/lib.rs"
 
 	# Deny warnings in the tests that may result from compiling the stubs.
 	# This helps avoid, for example, an overflowing literal warning
@@ -49,13 +42,11 @@ for dir in $changed_exercises; do
 	sed -i -e '1i #![deny(warnings)]' $dir/tests/*.rs
 
   if [ -n "$CLIPPY" ]; then
-    if ! (cd $dir && cargo clippy --lib --tests --color always 2>clippy.log); then
+    # We don't find it useful in general to have students implement Default,
+    # since we're generally not going to test it.
+    if ! (cd $dir && cargo clippy --lib --tests --color always -- --allow clippy::new_without_default 2>clippy.log); then
       cat $dir/clippy.log
       broken="$broken\n$exercise"
-    elif grep -q warning $dir/clippy.log; then
-      # Warnings will be outputted, but do not fail the build.
-      echo "clippy $exercise WARN"
-      cat $dir/clippy.log
     else
       # Just to show progress
       echo "clippy $exercise OK"
