@@ -4,6 +4,5 @@ name = "decimal"
 version = "0.1.0"
 
 [dependencies]
-try_opt = "0.1.1"
 num-bigint = "0.1.40"
 num-traits = "0.1.40"

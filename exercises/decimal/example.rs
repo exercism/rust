@@ -2,9 +2,6 @@ use std::cmp::Ordering;
 use std::fmt;
 use std::ops::{Add, Mul, Sub};
 
-#[macro_use]
-extern crate try_opt;
-
 extern crate num_bigint;
 use num_bigint::BigInt;
 extern crate num_traits;
@@ -55,11 +52,8 @@ impl Decimal {
             }
         }
         Some(Decimal::new(
-            try_opt!(digits.parse::<BigInt>().ok()),
-            match decimal_index {
-                Some(idx) => idx,
-                None => 0,
-            },
+            digits.parse().ok()?,
+            decimal_index.unwrap_or_default(),
         ))
     }
 
