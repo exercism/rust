@@ -1,5 +1,4 @@
 use std::collections::BTreeSet;
-use std::iter::FromIterator;
 
 pub fn is_pangram(sentence: &str) -> bool {
     sentence
@@ -12,7 +11,7 @@ pub fn is_pangram(sentence: &str) -> bool {
 }
 
 fn english_letter_set() -> BTreeSet<char> {
-    BTreeSet::from_iter(ENGLISH_ALPHABET.chars())
+    ENGLISH_ALPHABET.chars().collect()
 }
 
 const ENGLISH_ALPHABET: &str = "abcdefghijklmnopqrstuvwxyz";
