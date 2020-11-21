@@ -56,10 +56,7 @@ impl Decimal {
         }
         Some(Decimal::new(
             try_opt!(digits.parse::<BigInt>().ok()),
-            match decimal_index {
-                Some(idx) => idx,
-                None => 0,
-            },
+            decimal_index.unwrap_or_default(),
         ))
     }
 
