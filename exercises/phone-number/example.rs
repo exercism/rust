@@ -3,8 +3,7 @@ pub fn number(user_number: &str) -> Option<String> {
 
     let number_len = filtered_number.len();
 
-    if number_len < 10
-        || number_len > 11
+    if !(10..=11).contains(&number_len)
         || (filtered_number.len() == 11 && !filtered_number.starts_with('1'))
     {
         return None;

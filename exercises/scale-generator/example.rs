@@ -244,7 +244,7 @@ pub mod note {
             let mut iter = lc.chars();
 
             let mut note = match iter.next() {
-                Some(c) if 'a' <= c && 'g' >= c => Note {
+                Some(c) if ('a'..='g').contains(&c) => Note {
                     tonic: match c {
                         'a' => Root::A,
                         'b' => Root::B,
