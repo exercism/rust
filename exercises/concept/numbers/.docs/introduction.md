@@ -1,10 +1,6 @@
-There are two different types of numbers in Rust:
+## numbers
 
-- Integers: numbers with no digits behind the decimal separator (whole numbers).
-  Integer types can either store only positive numbers (unsigned) or store either positive and negative numbers (signed).
-  Examples are -6, 0, 1, 25, 976 and 500000.
-- Floating-point numbers: numbers with zero or more digits behind the decimal separator.
-  Examples are -2.4, 0.1, 3.14, 16.984025 and 1024.0.
+There are two different categories of numbers in Rust.
 
 The name of a numeric type consists of two parts:
 
@@ -20,7 +16,18 @@ The following combinations are possible:
 - 64 bits: `u64`, `i64`, `f64`
 - 128 bits: `u128`, `i128`
 
-(note that there are only 32-bits and 64-bits variants for floating-point numbers)
+Note that there are only 32-bits and 64-bits variants for floating-point numbers.
+
+## integers
+
+- Integers: numbers with no digits behind the decimal separator (whole numbers).
+  Integer types can either store only positive numbers (unsigned) or store either positive and negative numbers (signed).
+  Examples are -6, 0, 1, 25, 976 and 500000.
+
+## floating-point-numbers
+
+- Floating-point numbers: numbers with zero or more digits behind the decimal separator.
+  Examples are -2.4, 0.1, 3.14, 16.984025 and 1024.0.
 
 ## Converting between number types
 
