@@ -814,7 +814,7 @@
       "uuid": "0520ad82-75d9-450c-9267-d9758b3b0513",
       "core": false,
       "unlocked_by": "luhn",
-      "difficulty": 7,
+      "difficulty": 10,
       "topics": [
         "bitwise",
         "generics",
