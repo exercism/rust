@@ -6,7 +6,48 @@ use std::io::{Read, Write};
 use xorcism::Xorcism;
 
 #[test]
-fn identity() {
+fn munge_in_place_identity() {
+    let mut xs = Xorcism::new(&[0]);
+    let input = "This is super-secret, cutting edge encryption, folks.".as_bytes();
+    let mut output = input.to_owned();
+    xs.munge_in_place(&mut output);
+
+    assert_eq!(&input, &output);
+}
+
+#[test]
+#[ignore]
+fn munge_in_place_roundtrip() {
+    let mut xs1 = Xorcism::new(&[1, 2, 3, 4, 5]);
+    let mut xs2 = Xorcism::new(&[1, 2, 3, 4, 5]);
+    let input = "This is super-secret, cutting edge encryption, folks.".as_bytes();
+    let mut cipher = input.to_owned();
+    xs1.munge_in_place(&mut cipher);
+    assert_ne!(&input, &cipher);
+    let mut output = cipher;
+    xs2.munge_in_place(&mut output);
+    assert_eq!(&input, &output);
+}
+
+#[test]
+#[ignore]
+fn munge_in_place_stateful() {
+    let mut xs = Xorcism::new(&[1, 2, 3, 4, 5]);
+    let input = "This is super-secret, cutting edge encryption, folks.".as_bytes();
+
+    let mut cipher1 = input.to_owned();
+    let mut cipher2 = input.to_owned();
+    xs.munge_in_place(&mut cipher1);
+    xs.munge_in_place(&mut cipher2);
+
+    assert_ne!(&input, &cipher1);
+    assert_ne!(&input, &cipher2);
+    assert_ne!(&cipher1, &cipher2);
+}
+
+#[test]
+#[ignore]
+fn munge_identity() {
     let mut xs = Xorcism::new(&[0]);
     let data = "This is super-secret, cutting edge encryption, folks.";
 
