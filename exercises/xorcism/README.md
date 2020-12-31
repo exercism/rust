@@ -51,7 +51,6 @@ These traits will be useful:
 
 - [`AsRef`](https://doc.rust-lang.org/std/convert/trait.AsRef.html)
 - [`Borrow`](https://doc.rust-lang.org/std/borrow/trait.Borrow.html)
-- [`ExactSizeIterator`](https://doc.rust-lang.org/std/iter/trait.ExactSizeIterator.html)
 - [`IntoIterator`](https://doc.rust-lang.org/std/iter/trait.IntoIterator.html)
 - [`Sized`](https://doc.rust-lang.org/std/marker/trait.Sized.html)
 

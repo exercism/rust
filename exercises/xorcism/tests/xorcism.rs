@@ -59,14 +59,6 @@ fn munge_identity() {
 
 #[test]
 #[ignore]
-fn munge_output_has_len() {
-    let mut xs = Xorcism::new(&[0]);
-    let data = "The output must have a definite length";
-    assert_eq!(xs.munge(data.as_bytes()).len(), 38);
-}
-
-#[test]
-#[ignore]
 fn statefulness() {
     // we expect Xorcism to be stateful: at the end of a munging run, the key has rotated.
     // this means that until the key has completely rotated around, equal inputs will produce
