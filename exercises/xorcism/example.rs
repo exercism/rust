@@ -61,7 +61,8 @@ impl<'a> Xorcism<'a> {
     {
         let key = self.key;
         let pos = &mut self.pos;
-        data.into_iter().map(move |d| d.borrow() ^ next_key_byte(key, pos))
+        data.into_iter()
+            .map(move |d| d.borrow() ^ next_key_byte(key, pos))
     }
 
     /// Convert this into a [`Writer`]
