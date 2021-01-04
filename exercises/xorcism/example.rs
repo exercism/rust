@@ -17,47 +17,17 @@ pub struct Xorcism<'a> {
     pos: usize,
 }
 
-/// For composability, it is important that `munge` returns an iterator compatible with its input.
-///
-/// However, `impl Trait` syntax can specify only a single non-auto trait.
-/// Therefore, we define this output trait with generic implementations on all compatible types,
-/// and return that instead.
-pub trait MungeOutput: Iterator<Item = u8> + ExactSizeIterator {}
-impl<T> MungeOutput for T where T: Iterator<Item = u8> + ExactSizeIterator {}
-
-/// WARNING: This could be construed as abusing the type system
-///
-/// We need to be able to assert that a particular iterator has
-/// an exact size. We need this because `iter::Zip` implements
-/// `ExactSizeIterator` only if both its inputs implement `ExactSizeIterator`, evne though
-/// it will always terminate on the shorter of them.
-///
-/// We wouldn't need this type if negative trait bounds were possible, but it looks like
-/// even in a post-chalk world, those are not likely to be added to the language, as they
-/// could make new trait implementations into a breaking change.
-///
-/// Essentially, this type is used to assert that an infinite iterator has an exact size,
-/// of "the biggest number".
-struct AssertExactSizeIterator<I>(I);
-
-impl<I> Iterator for AssertExactSizeIterator<I>
-where
-    I: Iterator,
-{
-    type Item = <I as Iterator>::Item;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        self.0.next()
+/// Ideally this would be a method, but we run into lifetime
+/// issues with that. For more information, see:
+/// https://github.com/rust-lang/rust/issues/80518
+fn next_key_byte(key: &[u8], pos: &mut usize) -> u8 {
+    let b = key[*pos];
+    *pos += 1;
+    if *pos >= key.len() {
+        *pos = 0;
     }
-
-    fn size_hint(&self) -> (usize, Option<usize>) {
-        // oops, all 1s
-        const SIZE: usize = !0;
-        (SIZE, Some(SIZE))
-    }
+    b
 }
-
-impl<I> ExactSizeIterator for AssertExactSizeIterator<I> where I: Iterator {}
 
 impl<'a> Xorcism<'a> {
     /// Create a new Xorcism munger from a key
@@ -69,29 +39,13 @@ impl<'a> Xorcism<'a> {
         Xorcism { key, pos: 0 }
     }
 
-    /// Increase the stored pos by the specified amount, returning the old value.
-    fn incr_pos(&mut self, by: usize) -> usize {
-        let old_pos = self.pos;
-        self.pos += by;
-        old_pos
-    }
-
-    /// Produce the key iterator, offset by `pos`.
-    fn key<'b>(&mut self, pos: usize) -> impl 'b + MungeOutput
-    where
-        'a: 'b,
-    {
-        AssertExactSizeIterator(self.key.iter().copied().cycle().skip(pos))
-    }
-
     /// XOR each byte of the input buffer with a byte from the key.
     ///
     /// Note that this is stateful: repeated calls are likely to produce different results,
     /// even with identical inputs.
     pub fn munge_in_place(&mut self, data: &mut [u8]) {
-        let pos = self.incr_pos(data.len());
-        for (d, k) in data.iter_mut().zip(self.key(pos)) {
-            *d ^= k;
+        for d in data.iter_mut() {
+            *d ^= next_key_byte(self.key, &mut self.pos);
         }
     }
 
@@ -99,16 +53,16 @@ impl<'a> Xorcism<'a> {
     ///
     /// Note that this is stateful: repeated calls are likely to produce different results,
     /// even with identical inputs.
-    pub fn munge<'b, Data, B>(&mut self, data: Data) -> impl 'b + MungeOutput
+    pub fn munge<'b, Data, B>(&'b mut self, data: Data) -> impl 'b + Iterator<Item = u8>
     where
-        'a: 'b,
         Data: IntoIterator<Item = B>,
-        <Data as IntoIterator>::IntoIter: 'b + ExactSizeIterator,
+        <Data as IntoIterator>::IntoIter: 'b,
         B: Borrow<u8>,
     {
-        let data = data.into_iter();
-        let pos = self.incr_pos(data.len());
-        data.zip(self.key(pos)).map(|(d, k)| d.borrow() ^ k)
+        let key = self.key;
+        let pos = &mut self.pos;
+        data.into_iter()
+            .map(move |d| d.borrow() ^ next_key_byte(key, pos))
     }
 
     /// Convert this into a [`Writer`]
