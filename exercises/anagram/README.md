@@ -15,6 +15,9 @@ The solution cannot contain the input word. A word is always an anagram of itsel
 
 You are going to have to adjust the function signature provided in the stub in order for the lifetimes to work out properly. This is intentional: what's there demonstrates the basics of lifetime syntax, and what's missing teaches how to interpret lifetime-related compiler errors.
 
+Try to limit case changes. Case changes are expensive in terms of time, so it's faster to minimize them.
+
+If sorting, consider [sort_unstable](https://doc.rust-lang.org/std/primitive.slice.html#method.sort_unstable) which is typically faster than stable sorting. When applicable, unstable sorting is preferred because it is generally faster than stable sorting and it doesn't allocate auxiliary memory.
 
 ## Rust Installation
 
