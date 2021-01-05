@@ -24,6 +24,9 @@ impl School {
     }
 
     pub fn grade(&self, grade: u32) -> Vec<String> {
-        self.grades.get(&grade).map(|v| v.to_vec()).unwrap_or_default()
+        self.grades
+            .get(&grade)
+            .map(|v| v.to_vec())
+            .unwrap_or_default()
     }
 }
