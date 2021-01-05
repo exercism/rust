@@ -3,5 +3,5 @@ use std::collections::HashMap;
 
 fn main() {
     // a single random comma is not valid
-    let _hm: ::std::collections::HashMap<(), ()> = hashmap!(,);
+    let _hm: HashMap<(), ()> = hashmap!(,);
 }
