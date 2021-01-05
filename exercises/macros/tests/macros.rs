@@ -162,6 +162,12 @@ fn test_compile_fails_leading_comma() {
     simple_trybuild::compile_fail("leading-comma.rs");
 }
 
+#[test]
+#[ignore]
+fn test_compile_fails_no_comma() {
+    simple_trybuild::compile_fail("no-comma.rs");
+}
+
 mod simple_trybuild {
     use std::path::PathBuf;
     use std::process::Command;

@@ -45,3 +45,7 @@ path = "two-arrows.rs"
 [[bin]]
 name = "leading-comma-rs"
 path = "leading-comma.rs"
+
+[[bin]]
+name = "no-comma-rs"
+path = "no-comma.rs"
