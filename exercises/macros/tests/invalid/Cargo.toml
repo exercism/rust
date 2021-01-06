@@ -49,3 +49,7 @@ path = "leading-comma.rs"
 [[bin]]
 name = "no-comma-rs"
 path = "no-comma.rs"
+
+[[bin]]
+name = "missing-argument-rs"
+path = "missing-argument.rs"

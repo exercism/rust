@@ -168,6 +168,12 @@ fn test_compile_fails_no_comma() {
     simple_trybuild::compile_fail("no-comma.rs");
 }
 
+#[test]
+#[ignore]
+fn test_compile_fails_missing_argument() {
+    simple_trybuild::compile_fail("missing-argument.rs");
+}
+
 mod simple_trybuild {
     use std::path::PathBuf;
     use std::process::Command;
