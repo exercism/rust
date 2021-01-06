@@ -12,6 +12,6 @@ Some Rust topics you may want to read about while solving this problem:
   be found at:
   
   - [The Macros chapter in The Rust Programming Language](https://doc.rust-lang.org/stable/book/ch19-06-macros.html)
-  - [an older version of the Macros chapter with helpful detail](https://doc.rust-lang.org/1.30.0/book/first-edition/macros.html).
+  - [an older version of the Macros chapter with helpful detail](https://doc.rust-lang.org/1.30.0/book/first-edition/macros.html)
   - [Rust By Example](https://doc.rust-lang.org/stable/rust-by-example/macros.html)
   
