@@ -23,7 +23,10 @@ impl School {
         s
     }
 
-    pub fn grade(&self, grade: u32) -> Option<Vec<String>> {
-        self.grades.get(&grade).map(|v| v.to_vec())
+    pub fn grade(&self, grade: u32) -> Vec<String> {
+        self.grades
+            .get(&grade)
+            .map(|v| v.to_vec())
+            .unwrap_or_default()
     }
 }
