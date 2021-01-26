@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://doc.rust-lang.org/book/ch08-01-vectors.html#creating-a-new-vector",
+    "description": "Creating a new Vector"
+  },
+  {
+    "url": "https://doc.rust-lang.org/stable/rust-by-example/std/vec.html",
+    "description": "Examples of vectors"
+  }
+]
