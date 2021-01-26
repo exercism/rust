@@ -12,7 +12,7 @@ The actual source of truth of problem order and topics is [config.json](config.j
 
 We order our problems for students who are learning Rust. With that audience in mind, we follow two rules when adding new problems.
 
-- A exercise should introduce one new concept
+- An exercise should introduce one new concept
 - Exercises should progress from Rust basics to advanced Rust concepts
 
 ### One New Concept
