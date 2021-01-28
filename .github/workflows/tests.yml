@@ -4,7 +4,7 @@ name: CI
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
   schedule:
     # Weekly.
@@ -40,11 +40,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks out master locally so that it is available to the scripts.
-      - name: Checkout master
+      # Checks out main locally so that it is available to the scripts.
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
 
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
@@ -74,11 +74,11 @@ jobs:
         deny_warnings: ['', '1']
 
     steps:
-      # Checks out master locally so that it is available to the scripts.
-      - name: Checkout master
+      # Checks out main locally so that it is available to the scripts.
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
 
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
@@ -145,10 +145,10 @@ jobs:
         rust: ["stable", "beta"]
 
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -180,11 +180,11 @@ jobs:
     continue-on-error: true # It's okay if the nightly job fails
 
     steps:
-      # Checks out master locally so that it is available to the scripts.
-      - name: Checkout master
+      # Checks out main locally so that it is available to the scripts.
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
 
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
