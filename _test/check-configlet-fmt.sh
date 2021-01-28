@@ -8,7 +8,7 @@ check_pattern="config.json\|config/maintainers.json"
 default_branch=$(curl --silent https://api.github.com/repos/exercism/rust  | jq --raw-output '.default_branch')
 
 if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-    # Check the changes on the current branch against master branch
+    # Check the changes on the current branch against the default branch
     if ! git diff --name-only remotes/origin/"$default_branch" | grep -q "$check_pattern"; then
         echo "config.json or maintainers.json were not changed - configlet fmt is aborted."
         exit 0
