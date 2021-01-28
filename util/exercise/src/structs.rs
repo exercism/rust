@@ -1,6 +1,6 @@
 //! Rust struct for canonical test data.
 //!
-//! See https://github.com/exercism/problem-specifications/blob/master/canonical-schema.json
+//! See https://github.com/exercism/problem-specifications/blob/main/canonical-schema.json
 //! for more details on the JSON schema, which makes it possible to implement
 //! `serde::Deserialize`.
 

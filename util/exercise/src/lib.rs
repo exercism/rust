@@ -165,7 +165,7 @@ pub fn run_configlet_command(command: &str, args: &[&str]) -> Result<()> {
 
 fn url_for(exercise: &str, file: &str) -> String {
     format!(
-        "https://raw.githubusercontent.com/exercism/problem-specifications/master/exercises/{}/{}",
+        "https://raw.githubusercontent.com/exercism/problem-specifications/main/exercises/{}/{}",
         exercise, file,
     )
 }

@@ -1,6 +1,6 @@
 # Exercism Rust Track
 
-[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=master)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=main)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amaster)
 [![Join the chat at https://gitter.im/exercism/rust](https://badges.gitter.im/exercism/rust.svg)](https://gitter.im/exercism/rust?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Exercism exercises in Rust
@@ -9,17 +9,17 @@ Exercism exercises in Rust
 
 Thank you so much for contributing! :tada:
 
-Please read about how to [get involved in a track](https://github.com/exercism/docs/tree/master/contributing-to-language-tracks). Be sure to read the Exercism [Code of Conduct](https://exercism.io/code-of-conduct).
+Please read about how to [get involved in a track](https://github.com/exercism/docs/tree/main/contributing-to-language-tracks). Be sure to read the Exercism [Code of Conduct](https://exercism.io/code-of-conduct).
 
 We welcome pull requests of all kinds. No contribution is too small.
 
-We encourage contributions that provide fixes and improvements to existing exercises. Please note that this track's exercises must conform to the Exercism-wide standards described in the [documentation](https://github.com/exercism/docs/tree/master/language-tracks/exercises). If you're unsure about how to make a change, then go ahead and open a GitHub issue, and we'll discuss it.
+We encourage contributions that provide fixes and improvements to existing exercises. Please note that this track's exercises must conform to the Exercism-wide standards described in the [documentation](https://github.com/exercism/docs/tree/main/language-tracks/exercises). If you're unsure about how to make a change, then go ahead and open a GitHub issue, and we'll discuss it.
 
-If you want to contribute but don't know where to start, the [issues](https://github.com/exercism/rust/issues) tab shows what items are currently of interest to the community. In addition, it is often worth checking the [track dashboard](https://tracks.exercism.io/rust/master), which flags any exercises whose version has fallen behind the version of the [canonical data](https://github.com/exercism/problem-specifications). PRs which keep the track up to date are particularly welcome!
+If you want to contribute but don't know where to start, the [issues](https://github.com/exercism/rust/issues) tab shows what items are currently of interest to the community. In addition, it is often worth checking the [track dashboard](https://tracks.exercism.io/rust/main), which flags any exercises whose version has fallen behind the version of the [canonical data](https://github.com/exercism/problem-specifications). PRs which keep the track up to date are particularly welcome!
 
 ## Exercise Tests
 
-At the most basic level, Exercism is all about the tests. You can read more about how we think about test suites in [the Exercism documentation](https://github.com/exercism/docs/blob/master/language-tracks/exercises/anatomy/test-suites.md).
+At the most basic level, Exercism is all about the tests. You can read more about how we think about test suites in [the Exercism documentation](https://github.com/exercism/docs/blob/main/language-tracks/exercises/anatomy/test-suites.md).
 
 Test files should use the following format:
 
@@ -46,7 +46,7 @@ If you plan to make significant or breaking changes, please open an issue so we 
 
 ## Submitting a Pull Request
 
-Pull requests should be focused on a single exercise, issue, or conceptually cohesive change. Please refer to Exercism's [pull request guidelines](https://github.com/exercism/docs/blob/master/contributing/pull-request-guidelines.md).
+Pull requests should be focused on a single exercise, issue, or conceptually cohesive change. Please refer to Exercism's [pull request guidelines](https://github.com/exercism/docs/blob/main/contributing/pull-request-guidelines.md).
 
 Please follow the coding standards for Rust.  [rustfmt](https://github.com/nrc/rustfmt) may help with this
 and can be installed with `cargo install rustfmt`.
@@ -64,25 +64,25 @@ All the tests for Rust exercises can be run from the top level of the repo with 
 
 Please note that the README of every exercise is formed using several templates, not all of which are necessarily present on this repo. The most important of these:
 
-- The `description.md` file in the exercise directory from the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises)
+- The `description.md` file in the exercise directory from the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/main/exercises)
 
 - The `.meta/hints.md` file in the exercise directory on this repository
 
-- The [Rust-specific instructions](https://github.com/exercism/rust/blob/master/config/exercise-readme-insert.md)
+- The [Rust-specific instructions](https://github.com/exercism/rust/blob/main/config/exercise-readme-insert.md)
 
 If you are modifying the section of the README that belongs to the template not from this repository, please consider [opening a PR](https://github.com/exercism/problem-specifications/pulls) on the `problem-specifications` repository first.
 
 ## Contributing a New Exercise
 
-Please see the documentation about [adding new exercises](https://github.com/exercism/docs/blob/master/you-can-help/make-up-new-exercises.md).
+Please see the documentation about [adding new exercises](https://github.com/exercism/docs/blob/main/you-can-help/make-up-new-exercises.md).
 
 Note that:
 
-- The simplest way to generate, update or configure an exercise is to use the [exercise](https://github.com/exercism/rust/tree/master/util/exercise) utility provided in this repository. To compile the utility you can use the [bin/build_exercise_crate.sh](https://github.com/exercism/rust/tree/master/bin/build_exercise_crate.sh) script or, if the script does not work for you, use the `cargo build --release` command in the `util/exercise/` directory and then copy the `exercise` binary from the `util/exercise/target/release/` directory into the `bin/` directory. Use `bin/exercise --help` to learn about the existing commands and their possible usage.
+- The simplest way to generate, update or configure an exercise is to use the [exercise](https://github.com/exercism/rust/tree/main/util/exercise) utility provided in this repository. To compile the utility you can use the [bin/build_exercise_crate.sh](https://github.com/exercism/rust/tree/master/bin/build_exercise_crate.sh) script or, if the script does not work for you, use the `cargo build --release` command in the `util/exercise/` directory and then copy the `exercise` binary from the `util/exercise/target/release/` directory into the `bin/` directory. Use `bin/exercise --help` to learn about the existing commands and their possible usage.
 
 - Each exercise must stand on its own. Do not reference files outside the exercise directory. They will not be included when the user fetches the exercise.
 
-- Exercises must conform to the Exercism-wide standards described in [the documentation](https://github.com/exercism/docs/tree/master/language-tracks/exercises).
+- Exercises must conform to the Exercism-wide standards described in [the documentation](https://github.com/exercism/docs/tree/main/language-tracks/exercises).
 
 - Each exercise should have:
 
@@ -108,8 +108,8 @@ Note that:
 
 - If the test suite is appreciably sped up by running in release mode, and there is reason to be confident that the example implementation does not contain any overflow errors, consider adding a file `.meta/test-in-release-mode`. This should contain brief comments explaining the situation.
 
-- If your exercise implements macro-based testing (see [#392](https://github.com/exercism/rust/issues/392#issuecomment-343865993) and [`perfect-numbers.rs`](https://github.com/exercism/rust/blob/master/exercises/perfect-numbers/tests/perfect-numbers.rs)), you will likely run afoul of a CI check which counts the `#[ignore]` lines and compares the result to the number of `#[test]` lines. To fix this, add a file `.meta/ignore-count-ignores` to disable that check for your exercise.
+- If your exercise implements macro-based testing (see [#392](https://github.com/exercism/rust/issues/392#issuecomment-343865993) and [`perfect-numbers.rs`](https://github.com/exercism/rust/blob/main/exercises/perfect-numbers/tests/perfect-numbers.rs)), you will likely run afoul of a CI check which counts the `#[ignore]` lines and compares the result to the number of `#[test]` lines. To fix this, add a file `.meta/ignore-count-ignores` to disable that check for your exercise.
 
-- `README.md` may be [regenerated](https://github.com/exercism/docs/blob/master/maintaining-a-track/regenerating-exercise-readmes.md) from Exercism data. The generator will use the `description.md` from the exercise directory in the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises), then any hints in `.meta/hints.md`, then the [Rust-specific instructions](https://github.com/exercism/rust/blob/master/config/exercise-readme-insert.md). The `## Source` section comes from the `metadata.yml` in the same directory.  Convention is that the description of the source remains text and the link is both name and hyperlink of the markdown link.
+- `README.md` may be [regenerated](https://github.com/exercism/docs/blob/main/maintaining-a-track/regenerating-exercise-readmes.md) from Exercism data. The generator will use the `description.md` from the exercise directory in the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises), then any hints in `.meta/hints.md`, then the [Rust-specific instructions](https://github.com/exercism/rust/blob/master/config/exercise-readme-insert.md). The `## Source` section comes from the `metadata.yml` in the same directory.  Convention is that the description of the source remains text and the link is both name and hyperlink of the markdown link.
 
 - Be sure to add the exercise to an appropriate place in the `config.json` file.  The position in the file determines the order exercises are sent.   Generate a unique UUID for the exercise.  Current difficulty levels in use are 1, 4, 7 and 10.
