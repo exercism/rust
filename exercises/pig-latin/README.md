@@ -92,7 +92,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-The Pig Latin exercise at Test First Teaching by Ultrasaurus [https://github.com/ultrasaurus/test-first-teaching/blob/main/learn_ruby/pig_latin/](https://github.com/ultrasaurus/test-first-teaching/blob/master/learn_ruby/pig_latin/)
+The Pig Latin exercise at Test First Teaching by Ultrasaurus [https://github.com/ultrasaurus/test-first-teaching/blob/main/learn_ruby/pig_latin/](https://github.com/ultrasaurus/test-first-teaching/blob/main/learn_ruby/pig_latin/)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

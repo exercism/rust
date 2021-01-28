@@ -1,6 +1,6 @@
 # Exercism Rust Track
 
-[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=main)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=main)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amain)
 [![Join the chat at https://gitter.im/exercism/rust](https://badges.gitter.im/exercism/rust.svg)](https://gitter.im/exercism/rust?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Exercism exercises in Rust
@@ -78,7 +78,7 @@ Please see the documentation about [adding new exercises](https://github.com/exe
 
 Note that:
 
-- The simplest way to generate, update or configure an exercise is to use the [exercise](https://github.com/exercism/rust/tree/main/util/exercise) utility provided in this repository. To compile the utility you can use the [bin/build_exercise_crate.sh](https://github.com/exercism/rust/tree/master/bin/build_exercise_crate.sh) script or, if the script does not work for you, use the `cargo build --release` command in the `util/exercise/` directory and then copy the `exercise` binary from the `util/exercise/target/release/` directory into the `bin/` directory. Use `bin/exercise --help` to learn about the existing commands and their possible usage.
+- The simplest way to generate, update or configure an exercise is to use the [exercise](https://github.com/exercism/rust/tree/main/util/exercise) utility provided in this repository. To compile the utility you can use the [bin/build_exercise_crate.sh](https://github.com/exercism/rust/tree/main/bin/build_exercise_crate.sh) script or, if the script does not work for you, use the `cargo build --release` command in the `util/exercise/` directory and then copy the `exercise` binary from the `util/exercise/target/release/` directory into the `bin/` directory. Use `bin/exercise --help` to learn about the existing commands and their possible usage.
 
 - Each exercise must stand on its own. Do not reference files outside the exercise directory. They will not be included when the user fetches the exercise.
 
@@ -110,6 +110,6 @@ Note that:
 
 - If your exercise implements macro-based testing (see [#392](https://github.com/exercism/rust/issues/392#issuecomment-343865993) and [`perfect-numbers.rs`](https://github.com/exercism/rust/blob/main/exercises/perfect-numbers/tests/perfect-numbers.rs)), you will likely run afoul of a CI check which counts the `#[ignore]` lines and compares the result to the number of `#[test]` lines. To fix this, add a file `.meta/ignore-count-ignores` to disable that check for your exercise.
 
-- `README.md` may be [regenerated](https://github.com/exercism/docs/blob/main/maintaining-a-track/regenerating-exercise-readmes.md) from Exercism data. The generator will use the `description.md` from the exercise directory in the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/master/exercises), then any hints in `.meta/hints.md`, then the [Rust-specific instructions](https://github.com/exercism/rust/blob/master/config/exercise-readme-insert.md). The `## Source` section comes from the `metadata.yml` in the same directory.  Convention is that the description of the source remains text and the link is both name and hyperlink of the markdown link.
+- `README.md` may be [regenerated](https://github.com/exercism/docs/blob/main/maintaining-a-track/regenerating-exercise-readmes.md) from Exercism data. The generator will use the `description.md` from the exercise directory in the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/main/exercises), then any hints in `.meta/hints.md`, then the [Rust-specific instructions](https://github.com/exercism/rust/blob/main/config/exercise-readme-insert.md). The `## Source` section comes from the `metadata.yml` in the same directory.  Convention is that the description of the source remains text and the link is both name and hyperlink of the markdown link.
 
 - Be sure to add the exercise to an appropriate place in the `config.json` file.  The position in the file determines the order exercises are sent.   Generate a unique UUID for the exercise.  Current difficulty levels in use are 1, 4, 7 and 10.
