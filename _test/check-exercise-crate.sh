@@ -4,9 +4,10 @@
 
 EXERCISE_CRATE_PATH="util/exercise"
 
+default_branch=$(curl --silent https://api.github.com/repos/exercism/rust  | jq --raw-output '.default_branch')
 if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-    # Check the changes on the current branch against master branch
-    if ! git diff --name-only remotes/origin/master | grep -q "$EXERCISE_CRATE_PATH"; then
+    # Check the changes on the current branch against the default branch
+    if ! git diff --name-only remotes/origin/"$default_branch" | grep -q "$EXERCISE_CRATE_PATH"; then
         echo "exercise crate was not modified. The script is aborted."
         exit 0
     fi
@@ -15,7 +16,7 @@ fi
 # Two scenarios:
 # 1. It's being run locally,
 #    in which case we assume the person running it really does want to run it.
-# 2. It's being run on CI for master,
+# 2. It's being run on CI for the default branch,
 #    in which case we should check regardless of changes to exercise crate,
 #    in case there's a new toolchain release, etc.
 

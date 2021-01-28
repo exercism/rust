@@ -27,9 +27,10 @@ else
 fi
 
 repo=$(cd "$(dirname "$0")/.." && pwd)
+default_branch=$(curl --silent https://api.github.com/repos/exercism/rust  | jq --raw-output '.default_branch')
 
 if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-   files="$(git diff --diff-filter=d --name-only remotes/origin/master | grep "exercises/" | cut -d '/' -f -2 | sort -u | awk -v repo=$repo '{print repo"/"$1}')"
+   files="$(git diff --diff-filter=d --name-only remotes/origin/"$default_branch" | grep "exercises/" | cut -d '/' -f -2 | sort -u | awk -v repo=$repo '{print repo"/"$1}')"
 else
 	files=$repo/exercises/*
 fi

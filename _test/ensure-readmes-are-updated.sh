@@ -12,7 +12,8 @@ newline=$'\n  '
 
 missing_readmes=""
 wrong_readmes=""
-for exercise in $(git diff --diff-filter=d --name-only remotes/origin/master..$(git rev-parse --abbrev-ref HEAD) | grep exercises/ | cut -d'/' -f2 -s | sort -fu); do
+default_branch=$(curl --silent https://api.github.com/repos/exercism/rust  | jq --raw-output '.default_branch')
+for exercise in $(git diff --diff-filter=d --name-only remotes/origin/"$default_branch"..$(git rev-parse --abbrev-ref HEAD) | grep exercises/ | cut -d'/' -f2 -s | sort -fu); do
    echo "Checking readme for $exercise"
    readme_path="exercises/${exercise}/README.md"
    if [ ! -f $readme_path ]; then
