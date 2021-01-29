@@ -1,39 +1,58 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -eo pipefail
 
-LATEST=https://github.com/exercism/configlet/releases/latest
+readonly LATEST='https://api.github.com/repos/exercism/configlet/releases/latest'
 
-OS=$(
-case $(uname) in
-    (Darwin*)
-        echo "mac";;
-    (Linux*)
-        echo "linux";;
-    (Windows*)
-        echo "windows";;
-    (*)
-        echo "linux";;
-esac)
+case "$(uname)" in
+  Darwin*)   os='mac'     ;;
+  Linux*)    os='linux'   ;;
+  Windows*)  os='windows' ;;
+  MINGW*)    os='windows' ;;
+  MSYS_NT-*) os='windows' ;;
+  *)         os='linux'   ;;
+esac
 
-ARCH=$(
-case $(uname -m) in
-    (*64*)
-        echo 64bit;;
-    (*686*)
-        echo 32bit;;
-    (*386*)
-        echo 32bit;;
-    (*)
-        echo 64bit;;
-esac)
+case "${os}" in
+  windows*) ext='zip' ;;
+  *)        ext='tgz' ;;
+esac
 
-VERSION="$(curl --head --silent $LATEST | awk -v FS=/ '/[lL]ocation:/{print $NF}' | tr -d '\r')"
-if [ -z "$VERSION" ]; then
-    echo "Latest configlet release could not be determined; aborting"
-    exit 1
+case "$(uname -m)" in
+  *64*)  arch='64bit' ;;
+  *686*) arch='32bit' ;;
+  *386*) arch='32bit' ;;
+  *)     arch='64bit' ;;
+esac
+
+curlopts=(
+  --silent
+  --show-error
+  --fail
+  --location
+  --retry 3
+)
+
+if [[ -n "${GITHUB_TOKEN}" ]]; then
+  curlopts+=(--header "authorization: Bearer ${GITHUB_TOKEN}")
 fi
 
-URL=https://github.com/exercism/configlet/releases/download/$VERSION/configlet-$OS-${ARCH}.tgz
+suffix="${os}-${arch}.${ext}"
 
-curl -sS --location $URL | tar xz -C bin/
+get_download_url() {
+  curl "${curlopts[@]}" --header 'Accept: application/vnd.github.v3+json' "${LATEST}" |
+    grep "\"browser_download_url\": \".*/download/.*/configlet.*${suffix}\"$" |
+    cut -d'"' -f4
+}
+
+download_url="$(get_download_url)"
+output_dir="bin"
+output_path="${output_dir}/latest-configlet.${ext}"
+curl "${curlopts[@]}" --output "${output_path}" "${download_url}"
+
+case "${ext}" in
+  *zip) unzip "${output_path}" -d "${output_dir}"   ;;
+  *)    tar xzf "${output_path}" -C "${output_dir}" ;;
+esac
+
+rm -f "${output_path}"
