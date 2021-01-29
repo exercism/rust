@@ -14,11 +14,6 @@
     "indent_style": "space",
     "indent_size": 2
   },
-  "foregone": [
-    "binary",
-    "octal",
-    "trinary"
-  ],
   "exercises": {
     "practice": [
       {
@@ -1186,6 +1181,11 @@
         ],
         "status": "deprecated"
       }
+    ],
+    "foregone": [
+      "binary",
+      "octal",
+      "trinary"
     ]
   }
 }
