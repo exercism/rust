@@ -1,5 +1,6 @@
 {
   "language": "Rust",
+  "slug": "rust",
   "active": true,
   "status": {
     "concept_exercises": false,
