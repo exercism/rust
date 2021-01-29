@@ -37,7 +37,7 @@ jobs:
         run: ./_test/check-exercises-for-authors.sh
 
   configlet:
-    name: Setup configlet
+    name: configlet lint
     runs-on: ubuntu-latest
 
     steps:
