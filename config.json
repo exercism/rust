@@ -22,6 +22,7 @@
   "exercises": [
     {
       "slug": "hello-world",
+      "name": "Hello World",
       "uuid": "13ec1ebe-d71b-436f-ab12-25305e814171",
       "difficulty": 1,
       "topics": [
@@ -31,6 +32,7 @@
     },
     {
       "slug": "reverse-string",
+      "name": "Reverse String",
       "uuid": "ecf8d1e3-9400-4d1a-8326-2e2820bce024",
       "difficulty": 1,
       "topics": [
@@ -41,6 +43,7 @@
     },
     {
       "slug": "gigasecond",
+      "name": "Gigasecond",
       "uuid": "f880b1ef-8f66-41f3-bb89-f39a4ed592a2",
       "difficulty": 1,
       "topics": [
@@ -49,6 +52,7 @@
     },
     {
       "slug": "clock",
+      "name": "Clock",
       "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
       "difficulty": 4,
       "topics": [
@@ -59,6 +63,7 @@
     },
     {
       "slug": "anagram",
+      "name": "Anagram",
       "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
       "difficulty": 4,
       "topics": [
@@ -72,6 +77,7 @@
     },
     {
       "slug": "space-age",
+      "name": "Space Age",
       "uuid": "fa94645d-14e1-422d-a832-d24efbb493d8",
       "difficulty": 7,
       "topics": [
@@ -82,6 +88,7 @@
     },
     {
       "slug": "sublist",
+      "name": "Sublist",
       "uuid": "644ffd17-548e-4405-bfd5-a58df74cc19d",
       "difficulty": 7,
       "topics": [
@@ -91,6 +98,7 @@
     },
     {
       "slug": "minesweeper",
+      "name": "Minesweeper",
       "uuid": "e0037ac4-ae5f-4622-b3ad-915648263495",
       "difficulty": 7,
       "topics": [
@@ -99,6 +107,7 @@
     },
     {
       "slug": "luhn",
+      "name": "Luhn",
       "uuid": "8d64bfc3-fc4b-45c4-85f0-e74dc2ea6812",
       "difficulty": 7,
       "topics": [
@@ -109,6 +118,7 @@
     },
     {
       "slug": "parallel-letter-frequency",
+      "name": "Parallel Letter Frequency",
       "uuid": "e114b19f-9a9a-402d-a5cb-1cad8de5088e",
       "difficulty": 10,
       "topics": [
@@ -117,6 +127,7 @@
     },
     {
       "slug": "macros",
+      "name": "Macros",
       "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
       "difficulty": 10,
       "topics": [
@@ -127,6 +138,7 @@
     },
     {
       "slug": "poker",
+      "name": "Poker",
       "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
       "difficulty": 10,
       "topics": [
@@ -140,6 +152,7 @@
     },
     {
       "slug": "forth",
+      "name": "Forth",
       "uuid": "55976c49-1be5-4170-8aa3-056c2223abbb",
       "difficulty": 10,
       "topics": [
@@ -148,6 +161,7 @@
     },
     {
       "slug": "armstrong-numbers",
+      "name": "Armstrong Numbers",
       "uuid": "e652139e-ff3f-4e03-9810-d21f8b0c9e60",
       "difficulty": 1,
       "topics": [
@@ -156,6 +170,7 @@
     },
     {
       "slug": "beer-song",
+      "name": "Beer Song",
       "uuid": "bb42bc3a-139d-4cab-8b3a-2eac2e1b77b6",
       "difficulty": 1,
       "topics": [
@@ -167,6 +182,7 @@
     },
     {
       "slug": "difference-of-squares",
+      "name": "Difference Of Squares",
       "uuid": "aee49878-f727-400b-8fb5-eaf83447cf87",
       "difficulty": 1,
       "topics": [
@@ -177,6 +193,7 @@
     },
     {
       "slug": "grains",
+      "name": "Grains",
       "uuid": "9e69dd5d-472d-43d7-a8bb-60e4a7bed175",
       "difficulty": 1,
       "topics": [
@@ -185,6 +202,7 @@
     },
     {
       "slug": "leap",
+      "name": "Leap",
       "uuid": "ef52f576-9c33-4cc1-a018-803ace8897f6",
       "difficulty": 1,
       "topics": [
@@ -194,6 +212,7 @@
     },
     {
       "slug": "nth-prime",
+      "name": "Nth Prime",
       "uuid": "ee5048a7-c625-434d-a0a2-4fd54757ee02",
       "difficulty": 1,
       "topics": [
@@ -204,6 +223,7 @@
     },
     {
       "slug": "prime-factors",
+      "name": "Prime Factors",
       "uuid": "9f649818-0c82-4b79-b912-4d65b9f60e10",
       "difficulty": 1,
       "topics": [
@@ -212,6 +232,7 @@
     },
     {
       "slug": "proverb",
+      "name": "Proverb",
       "uuid": "504f9033-6433-4508-aebb-60ee77b800b9",
       "difficulty": 1,
       "topics": [
@@ -220,6 +241,7 @@
     },
     {
       "slug": "raindrops",
+      "name": "Raindrops",
       "uuid": "2c12be9b-3a02-4161-8eac-050642ad791f",
       "difficulty": 1,
       "topics": [
@@ -231,6 +253,7 @@
     },
     {
       "slug": "sum-of-multiples",
+      "name": "Sum Of Multiples",
       "uuid": "be90fe16-9947-45ef-ab8e-eeca4ce3a8c8",
       "difficulty": 1,
       "topics": [
@@ -241,6 +264,7 @@
     },
     {
       "slug": "bob",
+      "name": "Bob",
       "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
       "difficulty": 1,
       "topics": [
@@ -250,6 +274,7 @@
     },
     {
       "slug": "high-scores",
+      "name": "High Scores",
       "uuid": "7e0f5d25-e1f2-4a25-b150-1c8b24f328d7",
       "difficulty": 1,
       "topics": [
@@ -260,6 +285,7 @@
     },
     {
       "slug": "matching-brackets",
+      "name": "Matching Brackets",
       "uuid": "40729822-4265-4c14-b03f-a00bff5f24bb",
       "difficulty": 1,
       "topics": [
@@ -268,6 +294,7 @@
     },
     {
       "slug": "acronym",
+      "name": "Acronym",
       "uuid": "26a9102f-26f6-4238-858e-ba20db66f1a9",
       "difficulty": 4,
       "topics": [
@@ -280,6 +307,7 @@
     },
     {
       "slug": "all-your-base",
+      "name": "All Your Base",
       "uuid": "54c11dae-3878-4bec-b8d6-775b7d4f317b",
       "difficulty": 4,
       "topics": [
@@ -292,6 +320,7 @@
     },
     {
       "slug": "allergies",
+      "name": "Allergies",
       "uuid": "94f040d6-3f41-4950-8fe6-acf0945ac83d",
       "difficulty": 4,
       "topics": [
@@ -304,6 +333,7 @@
     },
     {
       "slug": "alphametics",
+      "name": "Alphametics",
       "uuid": "7450bd80-2388-42ac-a61f-097e82581475",
       "difficulty": 4,
       "topics": [
@@ -315,6 +345,7 @@
     },
     {
       "slug": "binary-search",
+      "name": "Binary Search",
       "uuid": "dd74b65c-0d26-4821-9add-064e32e3a5bd",
       "difficulty": 4,
       "topics": [
@@ -325,6 +356,7 @@
     },
     {
       "slug": "bowling",
+      "name": "Bowling",
       "uuid": "fec447a5-cf11-4ddd-b0fd-63bcc4e245cd",
       "difficulty": 4,
       "topics": [
@@ -335,6 +367,7 @@
     },
     {
       "slug": "dot-dsl",
+      "name": "Dot Dsl",
       "uuid": "7bc60899-3b12-4c51-b23b-8dced5845e4c",
       "difficulty": 4,
       "topics": [
@@ -346,6 +379,7 @@
     },
     {
       "slug": "etl",
+      "name": "Etl",
       "uuid": "0c8eeef7-4bab-4cf9-9047-c208b5618312",
       "difficulty": 4,
       "topics": [
@@ -354,6 +388,7 @@
     },
     {
       "slug": "grade-school",
+      "name": "Grade School",
       "uuid": "5ca03812-c229-48db-b7fd-0889b22f8d1d",
       "difficulty": 4,
       "topics": [
@@ -365,6 +400,7 @@
     },
     {
       "slug": "hamming",
+      "name": "Hamming",
       "uuid": "2874216a-0822-4ec2-892e-d451fd89646a",
       "difficulty": 4,
       "topics": [
@@ -373,6 +409,7 @@
     },
     {
       "slug": "isbn-verifier",
+      "name": "Isbn Verifier",
       "uuid": "c986c240-46de-419c-8ed6-700eb68f8db6",
       "difficulty": 4,
       "topics": [
@@ -382,6 +419,7 @@
     },
     {
       "slug": "isogram",
+      "name": "Isogram",
       "uuid": "79613fd8-b7da-11e7-abc4-cec278b6b50a",
       "difficulty": 4,
       "topics": [
@@ -392,6 +430,7 @@
     },
     {
       "slug": "nucleotide-count",
+      "name": "Nucleotide Count",
       "uuid": "3f54853b-cc65-4282-ab25-8dc3fdf43c03",
       "difficulty": 4,
       "topics": [
@@ -404,6 +443,7 @@
     },
     {
       "slug": "paasio",
+      "name": "Paasio",
       "uuid": "8c24c151-d22a-4818-83b5-4fe0f919e3fd",
       "difficulty": 4,
       "topics": [
@@ -413,6 +453,7 @@
     },
     {
       "slug": "palindrome-products",
+      "name": "Palindrome Products",
       "uuid": "8cdc3424-51da-4cae-a065-9982859d5b55",
       "difficulty": 4,
       "topics": [
@@ -424,6 +465,7 @@
     },
     {
       "slug": "pangram",
+      "name": "Pangram",
       "uuid": "a24cb7bf-3aac-4051-bcd1-952c2a806187",
       "difficulty": 4,
       "topics": [
@@ -433,6 +475,7 @@
     },
     {
       "slug": "pascals-triangle",
+      "name": "Pascals Triangle",
       "uuid": "ddc0c1da-6b65-4ed1-8bdc-5e71cd05f720",
       "difficulty": 4,
       "topics": [
@@ -443,6 +486,7 @@
     },
     {
       "slug": "perfect-numbers",
+      "name": "Perfect Numbers",
       "uuid": "20e7d347-b80a-4656-ac34-0825126939ff",
       "difficulty": 4,
       "topics": [
@@ -451,6 +495,7 @@
     },
     {
       "slug": "pig-latin",
+      "name": "Pig Latin",
       "uuid": "c21c379b-fb23-449b-809a-3c6ef1c31221",
       "difficulty": 4,
       "topics": [
@@ -461,6 +506,7 @@
     },
     {
       "slug": "queen-attack",
+      "name": "Queen Attack",
       "uuid": "30c33e3d-8034-4618-8346-2ae906961579",
       "difficulty": 4,
       "topics": [
@@ -471,6 +517,7 @@
     },
     {
       "slug": "rna-transcription",
+      "name": "Rna Transcription",
       "uuid": "9a219d87-cd32-4e12-a879-bfb5747c2369",
       "difficulty": 4,
       "topics": [
@@ -483,6 +530,7 @@
     },
     {
       "slug": "run-length-encoding",
+      "name": "Run Length Encoding",
       "uuid": "4dc9b165-792a-4438-be80-df9aab6f6a9c",
       "difficulty": 4,
       "topics": [
@@ -494,6 +542,7 @@
     },
     {
       "slug": "saddle-points",
+      "name": "Saddle Points",
       "uuid": "ccebfa12-d224-11e7-8941-cec278b6b50a",
       "difficulty": 4,
       "topics": [
@@ -503,6 +552,7 @@
     },
     {
       "slug": "say",
+      "name": "Say",
       "uuid": "4ba35adb-230b-49a6-adc9-2d3cd9a4c538",
       "difficulty": 4,
       "topics": [
@@ -512,6 +562,7 @@
     },
     {
       "slug": "scrabble-score",
+      "name": "Scrabble Score",
       "uuid": "561cc4ff-5e74-4701-a7c2-c4edefa0d068",
       "difficulty": 4,
       "topics": [
@@ -521,6 +572,7 @@
     },
     {
       "slug": "sieve",
+      "name": "Sieve",
       "uuid": "da784b42-1cec-469e-8e48-0be232b17003",
       "difficulty": 4,
       "topics": [
@@ -532,6 +584,7 @@
     },
     {
       "slug": "simple-linked-list",
+      "name": "Simple Linked List",
       "uuid": "10923b0b-c726-44a7-9e02-b775e7b8b237",
       "difficulty": 4,
       "topics": [
@@ -542,6 +595,7 @@
     },
     {
       "slug": "spiral-matrix",
+      "name": "Spiral Matrix",
       "uuid": "8dea3473-36f4-4228-b24b-bee8d9389167",
       "difficulty": 4,
       "topics": [
@@ -551,6 +605,7 @@
     },
     {
       "slug": "tournament",
+      "name": "Tournament",
       "uuid": "9a2406cc-5037-4761-b820-bb25b1d397c8",
       "difficulty": 4,
       "topics": [
@@ -562,6 +617,7 @@
     },
     {
       "slug": "triangle",
+      "name": "Triangle",
       "uuid": "c0bc2af6-d7af-401f-9ed8-bbe31977666c",
       "difficulty": 4,
       "topics": [
@@ -570,6 +626,7 @@
     },
     {
       "slug": "two-bucket",
+      "name": "Two Bucket",
       "uuid": "1850fb3f-9dad-449a-90b6-9d90038cf34d",
       "difficulty": 4,
       "topics": [
@@ -579,6 +636,7 @@
     },
     {
       "slug": "variable-length-quantity",
+      "name": "Variable Length Quantity",
       "uuid": "f1371a9c-c2a4-4fc6-a5fd-3a57c4af16fa",
       "difficulty": 4,
       "topics": [
@@ -590,6 +648,7 @@
     },
     {
       "slug": "robot-simulator",
+      "name": "Robot Simulator",
       "uuid": "1beb8b0c-d06d-4569-80e5-866ed01a7a66",
       "difficulty": 7,
       "topics": [
@@ -599,6 +658,7 @@
     },
     {
       "slug": "robot-name",
+      "name": "Robot Name",
       "uuid": "ec7f66c2-749e-4d00-9c11-fa9d106632e4",
       "difficulty": 4,
       "topics": [
@@ -611,6 +671,7 @@
     },
     {
       "slug": "protein-translation",
+      "name": "Protein Translation",
       "uuid": "4e01efbc-51ce-4d20-b093-b3d44c4be5e8",
       "difficulty": 7,
       "topics": [
@@ -622,6 +683,7 @@
     },
     {
       "slug": "ocr-numbers",
+      "name": "Ocr Numbers",
       "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
       "difficulty": 10,
       "topics": [
@@ -632,6 +694,7 @@
     },
     {
       "slug": "react",
+      "name": "React",
       "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
       "difficulty": 10,
       "topics": [
@@ -642,6 +705,7 @@
     },
     {
       "slug": "wordy",
+      "name": "Wordy",
       "uuid": "620b55bb-058e-4c6f-a966-ced3b41736db",
       "difficulty": 4,
       "topics": [
@@ -653,6 +717,7 @@
     },
     {
       "slug": "custom-set",
+      "name": "Custom Set",
       "uuid": "9d652e63-6654-4dec-a99f-97e6bc8cf772",
       "difficulty": 4,
       "topics": [
@@ -664,6 +729,7 @@
     },
     {
       "slug": "circular-buffer",
+      "name": "Circular Buffer",
       "uuid": "6ff1a539-251b-49d4-81b5-a6b1e9ba66a4",
       "difficulty": 10,
       "topics": [
@@ -673,6 +739,7 @@
     },
     {
       "slug": "rectangles",
+      "name": "Rectangles",
       "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
       "difficulty": 10,
       "topics": [
@@ -684,6 +751,7 @@
     },
     {
       "slug": "collatz-conjecture",
+      "name": "Collatz Conjecture",
       "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
       "difficulty": 1,
       "topics": [
@@ -693,6 +761,7 @@
     },
     {
       "slug": "diffie-hellman",
+      "name": "Diffie Hellman",
       "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
       "difficulty": 1,
       "topics": [
@@ -701,6 +770,7 @@
     },
     {
       "slug": "series",
+      "name": "Series",
       "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
       "difficulty": 1,
       "topics": [
@@ -710,6 +780,7 @@
     },
     {
       "slug": "accumulate",
+      "name": "Accumulate",
       "uuid": "ddc45979-8a92-4313-a4f8-878562d5a483",
       "difficulty": 4,
       "topics": [
@@ -720,6 +791,7 @@
     },
     {
       "slug": "affine-cipher",
+      "name": "Affine Cipher",
       "uuid": "2a1dcf38-ec05-4b24-a2e2-2e5b3595f3f0",
       "difficulty": 4,
       "topics": [
@@ -733,6 +805,7 @@
     },
     {
       "slug": "atbash-cipher",
+      "name": "Atbash Cipher",
       "uuid": "53298a14-76a9-4bb9-943a-57c5e79d9cf7",
       "difficulty": 4,
       "topics": [
@@ -746,6 +819,7 @@
     },
     {
       "slug": "crypto-square",
+      "name": "Crypto Square",
       "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
       "difficulty": 4,
       "topics": [
@@ -761,6 +835,7 @@
     },
     {
       "slug": "diamond",
+      "name": "Diamond",
       "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
       "difficulty": 4,
       "topics": [
@@ -771,6 +846,7 @@
     },
     {
       "slug": "largest-series-product",
+      "name": "Largest Series Product",
       "uuid": "8679c221-d150-4230-b1cd-5ea78ae69db7",
       "difficulty": 4,
       "topics": [
@@ -783,6 +859,7 @@
     },
     {
       "slug": "luhn-from",
+      "name": "Luhn From",
       "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
       "difficulty": 4,
       "topics": [
@@ -794,6 +871,7 @@
     },
     {
       "slug": "luhn-trait",
+      "name": "Luhn Trait",
       "uuid": "c32c0124-873d-45f4-9287-402aea29f129",
       "difficulty": 4,
       "topics": [
@@ -805,6 +883,7 @@
     },
     {
       "slug": "phone-number",
+      "name": "Phone Number",
       "uuid": "6abac1d1-0d85-4b51-8001-97a07990630d",
       "difficulty": 4,
       "topics": [
@@ -817,6 +896,7 @@
     },
     {
       "slug": "rail-fence-cipher",
+      "name": "Rail Fence Cipher",
       "uuid": "9a8bae4f-2c0b-4e9e-aab2-b92f82dd3b87",
       "difficulty": 4,
       "topics": [
@@ -827,6 +907,7 @@
     },
     {
       "slug": "roman-numerals",
+      "name": "Roman Numerals",
       "uuid": "498be645-734a-49b7-aba7-aae1e051e1f0",
       "difficulty": 4,
       "topics": [
@@ -839,6 +920,7 @@
     },
     {
       "slug": "rotational-cipher",
+      "name": "Rotational Cipher",
       "uuid": "5dbecc83-2c8d-467d-be05-f28a08f7abcf",
       "difficulty": 4,
       "topics": [
@@ -852,6 +934,7 @@
     },
     {
       "slug": "simple-cipher",
+      "name": "Simple Cipher",
       "uuid": "f424a350-50bd-11e8-9c2d-fa7ae01bbebc",
       "difficulty": 4,
       "topics": [
@@ -863,6 +946,7 @@
     },
     {
       "slug": "word-count",
+      "name": "Word Count",
       "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
       "difficulty": 4,
       "topics": [
@@ -875,6 +959,7 @@
     },
     {
       "slug": "fizzy",
+      "name": "Fizzy",
       "uuid": "6b209749-d4af-45c2-bbdc-27603ce6979f",
       "difficulty": 7,
       "topics": [
@@ -885,6 +970,7 @@
     },
     {
       "slug": "pythagorean-triplet",
+      "name": "Pythagorean Triplet",
       "uuid": "6e7cac84-99d1-4f9f-b7d6-48ea43024bc0",
       "difficulty": 7,
       "topics": [
@@ -893,6 +979,7 @@
     },
     {
       "slug": "xorcism",
+      "name": "Xorcism",
       "uuid": "0520ad82-75d9-450c-9267-d9758b3b0513",
       "difficulty": 10,
       "topics": [
@@ -903,6 +990,7 @@
     },
     {
       "slug": "book-store",
+      "name": "Book Store",
       "uuid": "a78ed17a-b2c0-485c-814b-e13ccd1f4153",
       "difficulty": 7,
       "topics": [
@@ -913,6 +1001,7 @@
     },
     {
       "slug": "decimal",
+      "name": "Decimal",
       "uuid": "7cefed7c-37f4-46c5-9a45-68fe4d0fb326",
       "difficulty": 7,
       "topics": [
@@ -926,6 +1015,7 @@
     },
     {
       "slug": "grep",
+      "name": "Grep",
       "uuid": "1bce70ca-db1a-46c8-a314-07d3fda921c2",
       "difficulty": 7,
       "topics": [
@@ -940,6 +1030,7 @@
     },
     {
       "slug": "scale-generator",
+      "name": "Scale Generator",
       "uuid": "b9436a89-90cb-4fb7-95b0-758f17c309ff",
       "difficulty": 7,
       "topics": [
@@ -952,6 +1043,7 @@
     },
     {
       "slug": "dominoes",
+      "name": "Dominoes",
       "uuid": "5e6f6986-5011-427b-a992-d6d0c81f5101",
       "difficulty": 10,
       "topics": [
@@ -961,6 +1053,7 @@
     },
     {
       "slug": "doubly-linked-list",
+      "name": "Doubly Linked List",
       "uuid": "34738b66-28bb-41bc-85c6-68fcf4a09bc2",
       "difficulty": 10,
       "topics": [
@@ -971,6 +1064,7 @@
     },
     {
       "slug": "hexadecimal",
+      "name": "Hexadecimal",
       "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
       "difficulty": 0,
       "topics": null,
@@ -978,6 +1072,7 @@
     },
     {
       "slug": "nucleotide-codons",
+      "name": "Nucleotide Codons",
       "uuid": "8dae8f4d-368d-477d-907e-bf746921bfbf",
       "difficulty": 0,
       "topics": null,
@@ -985,6 +1080,7 @@
     },
     {
       "slug": "two-fer",
+      "name": "Two Fer",
       "uuid": "c6631a2c-4632-11e8-842f-0ed5f89f718b",
       "difficulty": 1,
       "topics": [
