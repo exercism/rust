@@ -1,5 +1,3 @@
-/// vec-macro for creating empty vectors, and vectors of particular size, with vec!
-
 /// Create an empty vector
 pub fn create_empty() -> Vec<u8> {
     vec![]
