@@ -6,6 +6,7 @@ on:
     branches:
     - main
   pull_request:
+  workflow_dispatch:
   schedule:
     # Weekly.
     - cron: "0 0 * * 0"
