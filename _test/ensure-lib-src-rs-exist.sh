@@ -14,7 +14,7 @@ IGNORED_EXERCISES=(
 	"hexadecimal" #deprecated
 )
 
-for dir in $repo/exercises/*/; do
+for dir in $repo/exercises/*/*/; do
 	exercise=$(basename "$dir")
 
 	if [ ! -f "$dir/src/lib.rs" ]; then

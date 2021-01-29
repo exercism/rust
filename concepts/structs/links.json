@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://learning-rust.github.io/docs/b2.structs.html#Tuple-structs",
+    "description": "more information about tuple structs"
+  },
+  {
+    "url": "https://doc.rust-lang.org/stable/rust-by-example/custom_types/structs.html",
+    "description": "examples of tuple and unit structs"
+  }
+]

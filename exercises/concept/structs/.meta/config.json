@@ -1,0 +1,13 @@
+{
+  "authors": [
+    {
+      "github_username": "seanchen1991",
+      "exercism_username": "seanchen1991"
+    }
+  ],
+  "files": {
+    "solution": [],
+    "test": [],
+    "exemplar": [".meta/exemplar.rs"]
+  }
+}

@@ -6,6 +6,7 @@ on:
     branches:
     - main
   pull_request:
+  workflow_dispatch:
   schedule:
     # Weekly.
     - cron: "0 0 * * 0"
@@ -36,7 +37,7 @@ jobs:
         run: ./_test/check-exercises-for-authors.sh
 
   configlet:
-    name: Setup configlet
+    name: configlet lint
     runs-on: ubuntu-latest
 
     steps:
@@ -53,14 +54,8 @@ jobs:
       - name: Fetch configlet
         run: ./bin/fetch-configlet
 
-      - name: Check configlet format
-        run: ./_test/check-configlet-fmt.sh
-
-      - name: Ensure readmes are updated
-        run: sh ./_test/ensure-readmes-are-updated.sh
-
       - name: Lint configlet
-        run: ./bin/configlet lint .
+        run: ./bin/configlet lint
 
 
   compilation:

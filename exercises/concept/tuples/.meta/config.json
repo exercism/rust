@@ -1,0 +1,13 @@
+{
+  "authors": [
+    {
+      "github_username": "coriolinus",
+      "exercism_username": "coriolinus"
+    }
+  ],
+  "files": {
+    "solution": [],
+    "test": [],
+    "exemplar": [".meta/exemplar.rs"]
+  }
+}
