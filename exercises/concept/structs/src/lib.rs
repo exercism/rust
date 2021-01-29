@@ -1,3 +1,7 @@
+// This stub file contains items which aren't used yet; feel free to remove this module attribute
+// to enable stricter warnings.
+#![allow(unused)]
+
 pub struct User {
     name: String,
     age: u32,

@@ -3,9 +3,15 @@
 repo=$(cd "$(dirname "$0")/.." && pwd)
 
 if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-	changed_exercises="$(git diff --diff-filter=d --name-only remotes/origin/main | grep "exercises/" | cut -d '/' -f -2 | sort -u | awk -v repo=$repo '{print repo"/"$1}')"
+  changed_exercises="$(
+    git diff --diff-filter=d --name-only remotes/origin/main |
+    grep "exercises/" |
+    cut -d '/' -f -3 |
+    sort -u |
+    awk -v repo=$repo '{print repo"/"$1}'
+  )"
 else
-	changed_exercises=$repo/exercises/*
+	changed_exercises=$repo/exercises/*/*
 fi
 
 if [ -z "$changed_exercises" ]; then
@@ -42,14 +48,18 @@ for dir in $changed_exercises; do
 	sed -i -e '1i #![deny(warnings)]' $dir/tests/*.rs
 
   if [ -n "$CLIPPY" ]; then
+    echo "clippy $exercise..."
     # We don't find it useful in general to have students implement Default,
     # since we're generally not going to test it.
-    if ! (cd $dir && cargo clippy --lib --tests --color always -- --allow clippy::new_without_default 2>clippy.log); then
+    if ! (
+      cd $dir &&
+      cargo clippy --lib --tests --color always -- --allow clippy::new_without_default 2>clippy.log
+    ); then
       cat $dir/clippy.log
       broken="$broken\n$exercise"
     else
       # Just to show progress
-      echo "clippy $exercise OK"
+      echo "... OK"
     fi
   elif ! (cd $dir && cargo test --quiet --no-run); then
     echo "$exercise's stub does not compile; please make it compile"

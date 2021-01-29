@@ -1,3 +1,7 @@
+// This stub file contains items which aren't used yet; feel free to remove this module attribute
+// to enable stricter warnings.
+#![allow(unused)]
+
 //! vec-macro for creating empty vectors, and vectors of particular size, with vec!
 
 /// Create an empty vector
