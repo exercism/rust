@@ -1,5 +1,5 @@
 fn process_rate_per_hour(speed: u8, expected_rate: f64) {
-    assert_eq!(numbers::production_rate_per_hour(speed), expected_rate);
+    assert!((numbers::production_rate_per_hour(speed) - expected_rate).abs() < f64::EPSILON);
 }
 
 fn process_rate_per_minute(speed: u8, expected_rate: u32) {

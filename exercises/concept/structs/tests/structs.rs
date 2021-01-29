@@ -39,5 +39,5 @@ fn test_set_weight() {
     let new_weight: f32 = 129.4;
     let mut user = User::new(NAME.into(), AGE, WEIGHT);
     user.set_weight(new_weight);
-    assert_eq!(user.weight(), new_weight);
+    assert!((user.weight() - new_weight).abs() < f32::EPSILON);
 }
