@@ -27,7 +27,8 @@
           "intro-fn",
           "intro-types",
           "option"
-        ]
+        ],
+        "status": "wip"
       },
       {
         "slug": "numbers",
@@ -38,7 +39,8 @@
         ],
         "prerequisites": [
           "intro-fn"
-        ]
+        ],
+        "status": "wip"
       },
       {
         "slug": "enums",
@@ -46,7 +48,8 @@
         "concepts": [
           "enums-basic"
         ],
-        "prerequisites": []
+        "prerequisites": [],
+        "status": "wip"
       },
       {
         "slug": "structs",
@@ -58,7 +61,8 @@
           "string-use",
           "floating-point-numbers",
           "integers"
-        ]
+        ],
+        "status": "wip"
       },
       {
         "slug": "options",
@@ -69,7 +73,8 @@
         "prerequisites": [
           "structs",
           "destructuring"
-        ]
+        ],
+        "status": "wip"
       },
       {
         "slug": "tuples",
@@ -81,7 +86,8 @@
         ],
         "prerequisites": [
           "structs"
-        ]
+        ],
+        "status": "wip"
       },
       {
         "slug": "vec-macro",
@@ -94,7 +100,8 @@
         "prerequisites": [
           "intro-fn",
           "numbers"
-        ]
+        ],
+        "status": "wip"
       }
     ],
     "practice": [
