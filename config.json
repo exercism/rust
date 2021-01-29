@@ -15,6 +15,88 @@
     "indent_size": 2
   },
   "exercises": {
+    "concept": [
+      {
+        "slug": "entry-api",
+        "uuid": "e7d8603e-97a9-11ea-9753-0242ac110002",
+        "concepts": [
+          "entry-api"
+        ],
+        "prerequisites": [
+          "hashmaps",
+          "intro-fn",
+          "intro-types",
+          "option"
+        ]
+      },
+      {
+        "slug": "numbers",
+        "uuid": "b042200f-5bdd-4010-981e-626e40fd2877",
+        "concepts": [
+          "integers",
+          "floating-point-numbers"
+        ],
+        "prerequisites": [
+          "intro-fn"
+        ]
+      },
+      {
+        "slug": "enums",
+        "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
+        "concepts": [
+          "enums-basic"
+        ],
+        "prerequisites": []
+      },
+      {
+        "slug": "structs",
+        "uuid": "3da2420e-9de3-42e0-9127-5ef185673dbb",
+        "concepts": [
+          "structs"
+        ],
+        "prerequisites": [
+          "string-use",
+          "floating-point-numbers",
+          "integers"
+        ]
+      },
+      {
+        "slug": "options",
+        "uuid": "2445b061-6622-47cb-a7ef-9040ec02458c",
+        "concepts": [
+          "option"
+        ],
+        "prerequisites": [
+          "structs",
+          "destructuring"
+        ]
+      },
+      {
+        "slug": "tuples",
+        "name": "Low-Power Embedded Game",
+        "uuid": "7f064e9b-f631-48b1-9ed0-a66e8393ceba",
+        "concepts": [
+          "tuples",
+          "destructuring"
+        ],
+        "prerequisites": [
+          "structs"
+        ]
+      },
+      {
+        "slug": "vec-macro",
+        "name": "vec-macro",
+        "blurb": "Rust macros come in handy for creating vectors.",
+        "uuid": "c481e318-ddd7-4f8a-91eb-dadb7315e304",
+        "concepts": [
+          "vec-macro"
+        ],
+        "prerequisites": [
+          "intro-fn",
+          "numbers"
+        ]
+      }
+    ],
     "practice": [
       {
         "slug": "hello-world",
