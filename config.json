@@ -1276,5 +1276,73 @@
       "octal",
       "trinary"
     ]
-  }
+  },
+  "concepts": [
+    {
+      "uuid": "37e85710-3e1d-40f4-aed9-72f43e8a2fcd",
+      "slug": "destructuring",
+      "name": "Destructuring",
+      "blurb": "Breaking tuples and structs into distinct named components"
+    },
+    {
+      "uuid": "a2e79ee4-8534-45ac-ad36-5dcde91a6bf4",
+      "slug": "entry-api",
+      "name": "Entry Api",
+      "blurb": "Entry API for accessing and editing possibly-missing values in maps"
+    },
+    {
+      "uuid": "40d727f1-d011-4305-b1c2-1b4380246d9b",
+      "slug": "enums-basic",
+      "name": "Enums Basic",
+      "blurb": "Basic enums: usage and creation with non-data-carrying variants"
+    },
+    {
+      "uuid": "cebb248b-b9d5-4189-a764-87b14e8dd603",
+      "slug": "floating-point-numbers",
+      "name": "Floating Point Numbers",
+      "blurb": "Non-integral numeric types and usage"
+    },
+    {
+      "uuid": "11d39059-0949-4bfe-a89c-0fd522c3baee",
+      "slug": "hashmaps",
+      "name": "Hashmaps",
+      "blurb": "Efficient map type provided by the stdlib for hashable keys"
+    },
+    {
+      "uuid": "8e399de6-f143-45fb-bb8e-1ce1f15dcf01",
+      "slug": "integers",
+      "name": "Integers",
+      "blurb": "Integral numeric types and usage"
+    },
+    {
+      "uuid": "4cd3ad94-0a2a-4f44-a0dc-0c7402225499",
+      "slug": "intro-fn",
+      "name": "Introductory Functions",
+      "blurb": "Introduction to the definition and use of functions"
+    },
+    {
+      "uuid": "9eb55d59-7953-46ab-a8cc-8525daddf1a9",
+      "slug": "intro-types",
+      "name": "Introductory Types",
+      "blurb": "Introduction to definition and use of custom types"
+    },
+    {
+      "uuid": "36bc26cf-dd54-4706-9abf-7a89e6a168e3",
+      "slug": "option",
+      "name": "Option",
+      "blurb": "Option<T>: a T which may or may not be there"
+    },
+    {
+      "uuid": "8dc3c89e-afd4-4155-a79a-9699852ea21e",
+      "slug": "string-use",
+      "name": "String Use",
+      "blurb": "Using Strings"
+    },
+    {
+      "uuid": "febd2cf9-e058-48ef-bdc7-7583fb67e053",
+      "slug": "structs",
+      "name": "Structs",
+      "blurb": "Structs: fixed-size collections of heterogenous data"
+    }
+  ]
 }
