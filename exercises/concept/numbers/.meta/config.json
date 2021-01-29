@@ -4,5 +4,10 @@
       "github_username": "LewisClement",
       "exercism_username": "LewisClement"
     }
-  ]
+  ],
+  "files": {
+    "solution": [],
+    "test": [],
+    "exemplar": [".meta/exemplar.rs"]
+  }
 }
