@@ -60,7 +60,16 @@ for dir in ${preserve_dirs[@]}; do
 done
 
 # Move example files to where Cargo expects them
-cp -f "$exercise/example.rs" "$exercise/src/lib.rs"
+if [ -f "$exercise/example.rs" ]; then
+   example="$exercise/example.rs"
+elif [ -f "$exercise/.meta/exemplar.rs" ]; then
+   example="$exercise/.meta/exemplar.rs"
+else
+   echo "Could not locate example implementation for $exercise"
+   exit 1
+fi
+
+cp -f "$example" "$exercise/src/lib.rs"
 if [ -f "$exercise/Cargo-example.toml" ]; then
    cp -f "$exercise/Cargo-example.toml" "$exercise/Cargo.toml"
 fi
