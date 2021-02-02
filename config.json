@@ -4,9 +4,9 @@
   "active": true,
   "status": {
     "concept_exercises": false,
-    "test_runner": false,
-    "representer": false,
-    "analyzer": false
+    "test_runner": true,
+    "representer": true,
+    "analyzer": true
   },
   "blurb": "Rust is a compiled programming language designed for speed, concurrency, and memory safety. Rust programs can run almost anywhere, from low-power embedded devices to web servers.",
   "version": 3,
@@ -1345,7 +1345,32 @@
       "blurb": "Structs: fixed-size collections of heterogenous data"
     }
   ],
-  "key_features": [],
+  "key_features": [
+    {
+      "title": "Performance",
+      "content": "Rust is blazingly fast and memory-efficient; it has no runtime or garbage collector."
+    },
+    {
+      "title": "Reliability",
+      "content": "Rust’s rich type system and ownership model guarantee memory-safety and thread-safety."
+    },
+    {
+      "title": "Productivity",
+      "content": "Rust has great documentation, a friendly compiler with useful error messages, and top-notch tooling."
+    },
+    {
+      "title": "Cargo",
+      "content": "Rust's package manager and build tool is best-in-class."
+    },
+    {
+      "title": "Write Once, Run Anywhere",
+      "content": "Rust compiles by default to a single static executable, and cross-compilation is easy."
+    },
+    {
+      "title": "❤︎",
+      "content": "Stack Overflow's most-loved language every year since 2016."
+    }
+  ],
   "tags": [
     "paradigm/functional",
     "paradigm/imperative",
