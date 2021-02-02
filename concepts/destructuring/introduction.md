@@ -1,4 +1,4 @@
-Destructuring is a way to break apart values in Rust. It is often used when extracting values from tupes or structs.
+Destructuring is a way to break apart compound values in Rust. It is often used to extract fields from tuples or structs.
 
 For example, the below snippet extracts two values from a tuple:
 ```rust
