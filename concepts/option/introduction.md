@@ -1,3 +1,2 @@
-TODO: the content below is copied from the exercise introduction and probably needs rewriting to a proper concept introduction
-
-## option
+The standard library provides an enum called `Option` to help you express when a value exists or does not exist.
+You'll see it referred to as `Option<T>` where `T` is the type of the value you are working with.
