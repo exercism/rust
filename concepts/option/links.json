@@ -1,1 +1,4 @@
-[]
+[
+	{"description": "Standard library documentation", "url": "https://doc.rust-lang.org/std/option/index.html"},
+	{"description": "The RPL Book discussion Option", "url": "https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html"}
+]
