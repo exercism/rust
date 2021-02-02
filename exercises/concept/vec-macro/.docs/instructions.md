@@ -1,6 +1,6 @@
 You are going to initialize empty buffers and list the first five numbers, or elements, of the Fibonacci sequence.
 
-The Fibonacci sequence is a set of numbers where the next element is the sum of the prior two. The first two elements are 1 and 2.
+The Fibonacci sequence is a set of numbers where the next element is the sum of the prior two. We start the sequence at one. So the first two elements are 1 and 1.
 
 ## 1. Create a buffer of `count` zeroes.
 
