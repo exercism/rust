@@ -1371,5 +1371,29 @@
       "content": "Stack Overflow's most-loved language every year since 2016."
     }
   ],
-  "tags": []
+  "tags": [
+    "paradigm/functional",
+    "paradigm/imperative",
+    "paradigm/procedural",
+    "typing/static",
+    "typing/strong",
+    "execution_mode/compiled",
+    "platform/windows",
+    "platform/mac",
+    "platform/linux",
+    "platform/ios",
+    "platform/android",
+    "platform/web",
+    "platform/wasm",
+    "runtime/standalone_executable",
+    "used_for/backends",
+    "used_for/cross_platform_development",
+    "used_for/embedded_systems",
+    "used_for/financial_systems",
+    "used_for/frontends",
+    "used_for/games",
+    "used_for/robotics",
+    "used_for/scientific_calculations",
+    "used_for/web_development"
+  ]
 }
