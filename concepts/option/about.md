@@ -18,9 +18,13 @@ There are several common idioms for using the value which might be present in an
 - `match optional { Some(t) => {...}, None => {...}}`
    
     The `match` operator also lets you unpack and handle `None` cases in one statement or expression. It is an alternative to a chain of if and else statements. Using `match` can increase the readability of some sections of code.
-- `optional.map(|t| ...)` **Note**: operates on the contained value if present. The binding becomes an `Option<U>`, where the given closure is `FnOnce(T) -> U`.
+- `optional.map(|t| ...)` 
+   `Option::map` creates an Option with a new type created from the provided function. 
+   
+   **Note**: operates on the contained value if present. The binding becomes an `Option<U>`, where the given closure is `FnOnce(T) -> U`.
 - `optional.unwrap()`. 
    Unwrapping an `Option<T>` extracts `T` but will panic if `T` is not there. It is expedient in some cases.
+   
    **Important**: Unwrapping can ease development in the short term or in test code, but it introduces the possibility of runtime panics. It should be avoided when possible.
 
 - `optional.expect("Unexpected None found! Aborting program.)`. 
