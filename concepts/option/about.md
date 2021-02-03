@@ -19,7 +19,7 @@ There are several common idioms for using the value which might be present in an
    
     The `match` operator also lets you unpack and handle `None` cases in one statement or expression. It is an alternative to a chain of if and else statements. Using `match` can increase the readability of some sections of code.
 - `optional.map(|t| ...)` 
-   `Option::map` creates an Option with a new type created from the provided function. 
+   `Option::map` updates an Option in place, potentially with a new type, from the provided function. 
    
    **Note**: operates on the contained value if present. The binding becomes an `Option<U>`, where the given closure is `FnOnce(T) -> U`.
 - `optional.unwrap()`. 
