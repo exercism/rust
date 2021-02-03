@@ -2,7 +2,7 @@ The `Option` type is an enum provided by the standard library. It is useful for 
 While this may sound like `null` or `nil`, it is quite different and special.
 `Option` is distinctive to Rust. It is also quite fun to work with!
 
-`Option<T>` holds other types and has two variants `Some` and `None`.
+`Option<T>` holds other types and has two variants: `Some(T)` and `None`.
 
 For example, `Option<u32>` holds the `u32` type.
 
