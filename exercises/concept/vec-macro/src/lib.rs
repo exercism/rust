@@ -1,7 +1,3 @@
-// This stub file contains items which aren't used yet; feel free to remove this module attribute
-// to enable stricter warnings.
-#![allow(unused)]
-
 /// Create an empty vector
 pub fn create_empty() -> Vec<u8> {
     unimplemented!()
