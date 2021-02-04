@@ -10,9 +10,8 @@ Structs collect a fixed, heterogeneous set of data into a single unit. Structs i
 
 # Structs Overview
 
-Structs come in three flavors: structs with named fields, tuple structs, and unit structs. 
-
-Structs are defined using the `struct` keyword, followed by the capitalized name of the type the struct is describing:
+Structs are defined using the `struct` keyword, followed by the name of the type the struct is describing.
+The name may then be followed by curly braces (for a standard struct), parentheses (for a tuple struct), or a semicolon (for a unit struct).
 
 ```rust
 struct Item {}
@@ -40,6 +39,8 @@ impl Item {
 ```
 
 # Struct Flavors 
+
+Structs come in three flavors: structs with named fields (standard structs), tuple structs, and unit structs. 
 
 Structs are very much like **Tuples**. In fact, the only difference between structs and tuples has to do with what is anonymous. The general form goes like this:
 
