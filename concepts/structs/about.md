@@ -1,20 +1,53 @@
 # Structs
 
-Structs collect a fixed, heterogenous set of data into a single unit. Structs in Rust have these properties:
+Structs collect a fixed, heterogeneous set of data into a single unit. Structs in Rust have these properties:
 
 - Every struct type has a particular name.
 - Every member of a struct is called a **field**.
 - Every field of a struct has a particular name.
 - Visibility is tracked at the field level: each field may be independently public, private, or other[^1].
 
-# Tuples etc.
+
+# Structs Overview
+
+Structs are defined using the `struct` keyword, followed by the name of the type the struct is describing.
+The name may then be followed by curly braces (for a standard struct), parentheses (for a tuple struct), or a semicolon (for a unit struct).
+
+```rust
+struct Item {}
+```
+
+Additional types are then brought into the struct body as _fields_ of the struct, each with their own type:
+
+```rust
+struct Item {
+    name: String,
+    weight: f32,
+    worth: u32,
+}
+```
+
+Lastly, methods can be defined on structs inside of an `impl` block:
+
+```rust
+impl Item {
+    // initializes and returns a new instance of our Item struct
+    fn new() -> Self {
+        unimplemented!()
+    }
+}
+```
+
+# Struct Flavors 
+
+Structs come in three flavors: structs with named fields (standard structs), tuple structs, and unit structs. 
 
 Structs are very much like **Tuples**. In fact, the only difference between structs and tuples has to do with what is anonymous. The general form goes like this:
 
 - Structs are named and have named fields:
 
   ```rust
-  struct Foo{
+  struct Foo {
       bar: Bar,
       bat: Bat,
   }
