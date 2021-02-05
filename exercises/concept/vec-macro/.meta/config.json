@@ -10,8 +10,8 @@
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": ["src/lib.rs"],
+    "test": ["tests/vec_macro.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }
