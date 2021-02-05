@@ -1,5 +1,5 @@
 {
-  "contributors": [
+  "authors": [
     {
       "github_username": "LewisClement",
       "exercism_username": "LewisClement"
@@ -7,7 +7,7 @@
   ],
   "files": {
     "solution": ["src/lib.rs"],
-    "test": [],
+    "test": ["tests/numbers.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }

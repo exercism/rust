@@ -1,5 +1,5 @@
 {
-  "contributors": [
+  "authors": [
     {
       "github_username": "efx",
       "exercism_username": "efx"
@@ -7,7 +7,7 @@
   ],
   "files": {
     "solution": ["src/lib.rs"],
-    "test": [],
+    "test": ["tests/enums.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }
