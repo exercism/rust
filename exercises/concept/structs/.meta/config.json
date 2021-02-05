@@ -7,7 +7,7 @@
   ],
   "files": {
     "solution": ["src/lib.rs"],
-    "test": [],
+    "test": ["tests/structs.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }

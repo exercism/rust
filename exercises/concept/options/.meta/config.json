@@ -11,7 +11,7 @@
   ],
   "files": {
     "solution": ["src/lib.rs"],
-    "test": [],
+    "test": ["tests/options.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }

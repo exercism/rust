@@ -7,7 +7,7 @@
   ],
   "files": {
     "solution": ["src/lib.rs"],
-    "test": [],
+    "test": ["tests/csv_builder.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }
