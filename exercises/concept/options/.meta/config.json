@@ -10,7 +10,7 @@
     }
   ],
   "files": {
-    "solution": [],
+    "solution": ["src/lib.rs"],
     "test": [],
     "exemplar": [".meta/exemplar.rs"]
   }
