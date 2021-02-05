@@ -1,5 +1,9 @@
 {
-  "authors": [],
+  "authors": [
+    {
+      "github_username": "matbesancon"
+    }
+  ],
   "files": {
     "solution": [],
     "test": [],
