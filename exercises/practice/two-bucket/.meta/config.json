@@ -1,0 +1,14 @@
+{
+  "authors": [
+    {
+      "github_username": "ktomsic"
+    }
+  ],
+  "files": {
+    "solution": [],
+    "test": [],
+    "example": []
+  },
+  "source": "Water Pouring Problem",
+  "source_url": "http://demonstrations.wolfram.com/WaterPouringProblem/"
+}

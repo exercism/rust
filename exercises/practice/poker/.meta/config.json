@@ -1,0 +1,14 @@
+{
+  "authors": [
+    {
+      "github_username": "coriolinus"
+    }
+  ],
+  "files": {
+    "solution": [],
+    "test": [],
+    "example": []
+  },
+  "source": "Inspired by the training course from Udacity.",
+  "source_url": "https://www.udacity.com/course/viewer#!/c-cs212/"
+}

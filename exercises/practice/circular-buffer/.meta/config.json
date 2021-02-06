@@ -1,0 +1,14 @@
+{
+  "authors": [
+    {
+      "github_username": "EduardoBautista"
+    }
+  ],
+  "files": {
+    "solution": [],
+    "test": [],
+    "example": []
+  },
+  "source": "Wikipedia",
+  "source_url": "http://en.wikipedia.org/wiki/Circular_buffer"
+}
