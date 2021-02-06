@@ -185,7 +185,7 @@ test_write!(
 test_read!(
     #[ignore]
     read_file(
-        ::std::fs::File::open("README.md").expect("readme must be present"),
+        ::std::fs::File::open("Cargo.toml").expect("Cargo.toml must be present"),
         |f: &::std::fs::File| f.metadata().expect("metadata must be present").len() as usize
     )
 );

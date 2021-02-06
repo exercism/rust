@@ -1,13 +1,13 @@
 {
-  "contributors": [
+  "authors": [
     {
       "github_username": "efx",
       "exercism_username": "efx"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": ["src/lib.rs"],
+    "test": ["tests/enums.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }

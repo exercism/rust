@@ -6,8 +6,8 @@
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": ["src/lib.rs"],
+    "test": ["tests/csv_builder.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }

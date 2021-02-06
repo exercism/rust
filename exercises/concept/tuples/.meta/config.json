@@ -6,8 +6,8 @@
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": ["src/lib.rs"],
+    "test": ["tests/tuples.rs"],
     "exemplar": [".meta/exemplar.rs"]
   }
 }
