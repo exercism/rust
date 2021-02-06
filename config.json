@@ -19,7 +19,7 @@
       {
         "slug": "entry-api",
         "uuid": "e7d8603e-97a9-11ea-9753-0242ac110002",
-				"name": "Entry API",
+        "name": "Entry API",
         "concepts": [
           "entry-api"
         ],
@@ -34,7 +34,7 @@
       {
         "slug": "numbers",
         "uuid": "b042200f-5bdd-4010-981e-626e40fd2877",
-				"name": "Numbers",
+        "name": "Numbers",
         "concepts": [
           "integers",
           "floating-point-numbers"
@@ -46,7 +46,7 @@
       },
       {
         "slug": "enums",
-				"name": "Enums",
+        "name": "Enums",
         "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
         "concepts": [
           "enums-basic"
@@ -57,7 +57,7 @@
       {
         "slug": "structs",
         "uuid": "3da2420e-9de3-42e0-9127-5ef185673dbb",
-				"name": "Structs",
+        "name": "Structs",
         "concepts": [
           "structs"
         ],
@@ -71,7 +71,7 @@
       {
         "slug": "options",
         "uuid": "2445b061-6622-47cb-a7ef-9040ec02458c",
-				"name": "Option",
+        "name": "Option",
         "concepts": [
           "option"
         ],
