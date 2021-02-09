@@ -60,8 +60,8 @@ for dir in ${preserve_dirs[@]}; do
 done
 
 # Move example files to where Cargo expects them
-if [ -f "$exercise/example.rs" ]; then
-   example="$exercise/example.rs"
+if [ -f "$exercise/.meta/example.rs" ]; then
+   example="$exercise/.meta/example.rs"
 elif [ -f "$exercise/.meta/exemplar.rs" ]; then
    example="$exercise/.meta/exemplar.rs"
 else
