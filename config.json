@@ -1835,12 +1835,6 @@
         "blurb": ""
     },
     {
-        "uuid": "ea9865a9-2ce4-4a3a-b568-0e0dc557a467",
-        "slug": "vec",
-        "name": "Vec",
-        "blurb": ""
-    },
-    {
         "uuid": "2ce37dbc-f8d7-4bb6-aa02-4bf77813fd55",
         "slug": "visibility",
         "name": "Visibility",
