@@ -1423,7 +1423,7 @@
     {
         "uuid": "154344c0-2fc0-4607-9834-9a4e5d4eb66a",
         "slug": "btreemap",
-        "name": "Btreemap",
+        "name": "BTreeMap",
         "blurb": ""
     },
     {
@@ -1435,7 +1435,7 @@
     {
         "uuid": "61922c2a-63cc-4fab-a924-5b0dbac7d452",
         "slug": "cell-and-refcell",
-        "name": "Cell and refcell",
+        "name": "Cell and Refcell",
         "blurb": ""
     },
     {
@@ -1457,12 +1457,6 @@
         "blurb": ""
     },
     {
-        "uuid": "daf92b42-f82f-4a9f-a709-a39e74843891",
-        "slug": "concept",
-        "name": "Concept",
-        "blurb": ""
-    },
-    {
         "uuid": "4e5ca742-379c-49da-9f57-54a740f3e632",
         "slug": "conditionals",
         "name": "Conditionals",
@@ -1471,13 +1465,13 @@
     {
         "uuid": "44644a80-8b1f-4a52-a999-97a3f5f9db6b",
         "slug": "const-and-static",
-        "name": "Const and static",
+        "name": "Const and Static",
         "blurb": ""
     },
     {
         "uuid": "992f5e5d-72a8-4f52-95e1-3bbe6c4f4689",
         "slug": "count-and-sum",
-        "name": "Count and sum",
+        "name": "Count and Sum",
         "blurb": ""
     },
     {
@@ -1537,7 +1531,7 @@
     {
         "uuid": "44d3d261-443d-4bbc-834e-5d35aca0cab8",
         "slug": "from-into-iterator",
-        "name": "From into iterator",
+        "name": "FromIterator, IntoIterator, and .collect()",
         "blurb": ""
     },
     {
@@ -1547,33 +1541,21 @@
         "blurb": ""
     },
     {
-        "uuid": "3848f069-afe9-4882-95ba-4112b565bdab",
-        "slug": "functions-anonymous",
-        "name": "Functions anonymous",
-        "blurb": ""
-    },
-    {
         "uuid": "bd7d1ccb-feac-482d-86bd-3d611172bb3f",
-        "slug": "functions-closures",
-        "name": "Functions closures",
+        "slug": "closures",
+        "name": "Closures",
         "blurb": ""
     },
     {
         "uuid": "99e5f5e4-c202-4ad2-917f-068ff56e1c03",
-        "slug": "functions-higher-order",
-        "name": "Functions higher order",
+        "slug": "higher-order-functions",
+        "name": "Higher order functions",
         "blurb": ""
     },
     {
         "uuid": "56648cbf-14ca-44e6-8848-ec1334478608",
         "slug": "futures",
         "name": "Futures",
-        "blurb": ""
-    },
-    {
-        "uuid": "9cb5cf22-eea4-4434-bfe9-1d05fe883c7b",
-        "slug": "generic",
-        "name": "Generic",
         "blurb": ""
     },
     {
@@ -1591,19 +1573,19 @@
     {
         "uuid": "aab1a247-8c64-48fd-bf76-3384957aadd6",
         "slug": "hashmap",
-        "name": "Hashmap",
+        "name": "HashMap",
         "blurb": ""
     },
     {
         "uuid": "8eaa0431-2743-4ff0-a7ba-2b2ba496fb92",
         "slug": "hashset",
-        "name": "Hashset",
+        "name": "HashSet",
         "blurb": ""
     },
     {
         "uuid": "dc958fc2-e1f6-4ff9-8f9c-9bde565d8ec9",
         "slug": "if-while-let",
-        "name": "If while let",
+        "name": "`if let` and `while let`",
         "blurb": ""
     },
     {
@@ -1645,13 +1627,13 @@
     {
         "uuid": "f16a9f91-7fbd-406a-9642-5cb5f9f52590",
         "slug": "macros-declarative",
-        "name": "Macros declarative",
+        "name": "Declarative Macros",
         "blurb": ""
     },
     {
         "uuid": "9e7b6f00-c30d-4a44-934f-e762203ebc2f",
         "slug": "macros-procedural",
-        "name": "Macros procedural",
+        "name": "Procedural Macros",
         "blurb": ""
     },
     {
@@ -1741,7 +1723,7 @@
     {
         "uuid": "5173a1e4-5909-4dd3-a348-1750c096f1de",
         "slug": "rwlock",
-        "name": "Rwlock",
+        "name": "RwLock",
         "blurb": ""
     },
     {
@@ -1771,37 +1753,7 @@
     {
         "uuid": "07a32f06-1268-4f17-abbe-7b9c7fcc7995",
         "slug": "std-thread",
-        "name": "Std thread",
-        "blurb": ""
-    },
-    {
-        "uuid": "fddea778-dba4-4f01-a76c-24bb425686d9",
-        "slug": "string",
-        "name": "String",
-        "blurb": ""
-    },
-    {
-        "uuid": "9fe8a452-a566-4910-807b-6a0fb69265ce",
-        "slug": "string-vs-str",
-        "name": "String vs str",
-        "blurb": ""
-    },
-    {
-        "uuid": "9793cca4-0bfa-4ed7-ab95-8542067aa5ae",
-        "slug": "structs-generic",
-        "name": "Structs generic",
-        "blurb": ""
-    },
-    {
-        "uuid": "b8d716b2-67bf-4690-ac4b-1f5e68bbacd9",
-        "slug": "structs-tuple",
-        "name": "Structs tuple",
-        "blurb": ""
-    },
-    {
-        "uuid": "46eeb655-ab71-4c04-bf6c-f87fd9753001",
-        "slug": "structs-zero-size",
-        "name": "Structs zero size",
+        "name": "std::thread",
         "blurb": ""
     },
     {
