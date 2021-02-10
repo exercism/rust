@@ -1,17 +1,17 @@
 #!/bin/sh
 # Format existing exercises using rustfmt
+set -e
 
 RUST_TRACK_REPO_PATH=$(cd "$(dirname "$0")/.." && pwd)
 
-EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/"
+EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/practice"
 
-for exercise_dir in ${EXERCISES_PATH}/*; do
-  exercise_name=$(basename $exercise_dir)
+for exercise_dir in "${EXERCISES_PATH}"/*; do
   (
     cd "$exercise_dir"
     cargo fmt
-    if [ -f example.rs ]; then
-      rustfmt example.rs
+    if [ -f .meta/example.rs ]; then
+      rustfmt .meta/example.rs
     fi
   )
 done
