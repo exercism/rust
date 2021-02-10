@@ -9,7 +9,7 @@ fn test_no_escaping() {
     builder.add("cat");
 
     let list = builder.build();
-    //Note that from now on we can do nothing now with builder.
+    // Note that builder has been consumed so we cannot use it
     assert_eq!("ant,bat,cat", &list);
 }
 
@@ -23,7 +23,6 @@ fn test_quote() {
     builder.add("cat");
 
     let list = builder.build();
-    //Note that from now on we can do nothing now with builder.
     assert_eq!(r#"ant,"ba""t",cat"#, &list);
 }
 
