@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 repo=$(cd "$(dirname "$0")/.." && pwd)
 config=$repo/config.json
 
@@ -8,8 +10,8 @@ es=0
 # ensure every exercise has a difficulty
 no_difficulty=$(
     jq --raw-output '
-        .exercises[] |
-        select((.deprecated | not) and (has("difficulty") | not)) |
+        .exercises.practice[] |
+        select((.status != "deprecated") and (has("difficulty") | not)) |
         .slug
     ' $config
 )
@@ -22,9 +24,9 @@ fi
 # ensure that all difficulties are one of 1, 4, 7, 10
 invalid_difficulty=$(
     jq --raw-output '
-        .exercises[] |
+        .exercises.practice[] |
         select(
-            (.deprecated | not) and
+            (.status != "deprecated") and
             has("difficulty") and
             (
                 .difficulty | tostring |
