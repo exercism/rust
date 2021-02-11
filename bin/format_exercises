@@ -4,14 +4,22 @@ set -e
 
 RUST_TRACK_REPO_PATH=$(cd "$(dirname "$0")/.." && pwd)
 
-EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/*"
+# traverse either concept or practice exercise
+# directory and run rustfmt on the appropriate file
+format_exercises() {
+    EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/$1"
+    source_file_name="$2"
+    for exercise_dir in "${EXERCISES_PATH}"/*; do
+        (
+        cd "$exercise_dir"
+        cargo fmt
+        file_name=".meta/$source_file_name.rs"
+        if [ -f "$file_name" ]; then
+            rustfmt "$file_name"
+        fi
+    )
+    done
+}
+format_exercises "concept" "exemplar"
+format_exercises "practice" "example"
 
-for exercise_dir in "${EXERCISES_PATH}"/*; do
-  (
-    cd "$exercise_dir"
-    cargo fmt
-    if [ -f .meta/example.rs ]; then
-      rustfmt .meta/example.rs
-    fi
-  )
-done
