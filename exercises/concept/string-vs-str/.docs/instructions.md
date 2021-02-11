@@ -1,4 +1,4 @@
-Your company has been hired to generate CSV documents from user input.
+Your company has been hired to generate CSV records from user input.
 
 While a formal specification exists, your company only needs to implement the following functionality:
 - create a new builder
