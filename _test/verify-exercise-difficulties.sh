@@ -10,7 +10,8 @@ es=0
 # ensure every exercise has a difficulty
 no_difficulty=$(
     jq --raw-output '
-        .exercises.practice[] |
+        .exercises | 
+        .concept[], .practice[] |
         select((.status != "deprecated") and (has("difficulty") | not)) |
         .slug
     ' $config
@@ -24,7 +25,8 @@ fi
 # ensure that all difficulties are one of 1, 4, 7, 10
 invalid_difficulty=$(
     jq --raw-output '
-        .exercises.practice[] |
+        .exercises |
+        .concept[], .practice[] |
         select(
             (.status != "deprecated") and
             has("difficulty") and
