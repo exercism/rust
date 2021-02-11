@@ -4,7 +4,7 @@ set -e
 
 RUST_TRACK_REPO_PATH=$(cd "$(dirname "$0")/.." && pwd)
 
-EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/practice"
+EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/*"
 
 for exercise_dir in "${EXERCISES_PATH}"/*; do
   (
