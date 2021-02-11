@@ -1,17 +1,36 @@
 #!/bin/sh
 # Format existing exercises using rustfmt
+set -e
 
 RUST_TRACK_REPO_PATH=$(cd "$(dirname "$0")/.." && pwd)
 
-EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/"
+# traverse either concept or practice exercise
+# directory and format Rust files
+format_exercises() {
+    EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/$1"
+    source_file_name="$2"
+    for exercise_dir in "${EXERCISES_PATH}"/*; do
+        (
+        cd "$exercise_dir"
+        allowed_file="$exercise_dir"/.meta/ALLOWED_TO_NOT_COMPILE
+        if [ -f "$allowed_file" ]; then
+            exercise=$(basename "$exercise_dir")
+            echo "$exercise's stub is allowed to not compile"
+            # we disable the below shellcheck lint
+            # because we want to exit this iteration
+            # shellcheck disable=SC2106
+            continue
+        fi
+        cargo fmt
+        file_name=".meta/$source_file_name.rs"
+        if [ -f "$file_name" ]; then
+            rustfmt "$file_name"
+        fi
+    )
+    done
+}
+# https://github.com/exercism/docs/blob/main/anatomy/tracks/concept-exercises.md#file-exemplar-implementation
+format_exercises "concept" "exemplar"
+# https://github.com/exercism/docs/blob/main/anatomy/tracks/practice-exercises.md#file-example-implementation
+format_exercises "practice" "example"
 
-for exercise_dir in ${EXERCISES_PATH}/*; do
-  exercise_name=$(basename $exercise_dir)
-  (
-    cd "$exercise_dir"
-    cargo fmt
-    if [ -f example.rs ]; then
-      rustfmt example.rs
-    fi
-  )
-done
