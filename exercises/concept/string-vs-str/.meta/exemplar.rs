@@ -5,7 +5,9 @@ pub struct CSVRecordBuilder {
 impl CSVRecordBuilder {
     // Create a new builder
     pub fn new() -> Self {
-        Self { content: String::new() }
+        Self {
+            content: String::new(),
+        }
     }
 
     /// Adds an item to the list separated by a space and a comma.
