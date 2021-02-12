@@ -76,7 +76,9 @@ fn test_cast_spell_with_no_mana_pool() {
         level: 6,
     };
 
-    let clone = Player { ..underleveled_player };
+    let clone = Player {
+        ..underleveled_player
+    };
 
     assert_eq!(underleveled_player.cast_spell(MANA_COST), 0);
     assert_eq!(underleveled_player.health, clone.health - MANA_COST);

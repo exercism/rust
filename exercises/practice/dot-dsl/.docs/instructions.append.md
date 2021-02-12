@@ -1,4 +1,4 @@
-## Builder pattern
+# Builder pattern
 
 This exercise expects you to build several structs using `builder pattern`.
 In short, this pattern allows you to split the construction function of your struct, that contains a lot of arguments, into 

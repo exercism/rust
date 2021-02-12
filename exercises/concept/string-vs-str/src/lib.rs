@@ -3,7 +3,7 @@
 #![allow(unused)]
 
 pub struct CSVRecordBuilder {
-    content: String
+    content: String,
 }
 
 impl CSVRecordBuilder {

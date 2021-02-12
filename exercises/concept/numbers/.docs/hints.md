@@ -1,3 +1,5 @@
+# Hints
+
 ## General
 
 - [cheats.rs - Basic Types](https://cheats.rs/#basic-types)

@@ -1,3 +1,5 @@
+# Design
+
 ## Learning objectives
 
 - Know how number literals are represented in Rust
