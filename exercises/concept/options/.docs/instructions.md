@@ -1,3 +1,5 @@
+# Instructions
+
 You're working on implementing a role-playing game. The player's character is represented by the following:
 
 ```rust

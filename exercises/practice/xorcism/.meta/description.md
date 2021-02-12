@@ -1,3 +1,5 @@
+# Description
+
 Write a streaming adaptor which contains a reference to a key, and bitwise-XORs
 it with arbitrary data.
 

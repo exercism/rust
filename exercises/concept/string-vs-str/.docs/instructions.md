@@ -1,4 +1,8 @@
+# Instructions
+
 Your company has been hired to generate CSV records from user input.
+
+We need a builder for a CSV record per the standard defined in [RFC 4180](https://tools.ietf.org/html/rfc4180).
 
 While a formal specification exists, your company only needs to implement the following functionality:
 - create a new record builder

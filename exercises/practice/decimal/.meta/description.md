@@ -1,3 +1,5 @@
+# Description
+
 Implement an arbitrary-precision `Decimal` class.
 
 Floating point numbers are the most common representation of non-integer real numbers in computing, and they're a common standard defined by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754). They're very flexible and versatile, but they do have some limitations. Famously, in floating point arithmetic, [`0.1 + 0.2 != 0.3`](http://0.30000000000000004.com/).

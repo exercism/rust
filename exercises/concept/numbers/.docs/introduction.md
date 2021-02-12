@@ -1,3 +1,5 @@
+# Introduction
+
 ## numbers
 
 There are two different categories of numbers in Rust.
