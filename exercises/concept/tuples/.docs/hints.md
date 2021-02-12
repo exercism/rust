@@ -1,3 +1,5 @@
+# Hints
+
 ## General
 
 - [Rust Book: The Tuple Type](https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type)

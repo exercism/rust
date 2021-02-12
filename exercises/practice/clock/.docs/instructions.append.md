@@ -1,4 +1,4 @@
-## Rust Traits for `.to_string()`
+# Rust Traits for `.to_string()`
 
 Did you implement `.to_string()` for the `Clock` struct?
 

@@ -1,4 +1,4 @@
-## Hints
+# Hints
 
 It may help to look at the Fn\* traits:
 [Fn](https://doc.rust-lang.org/std/ops/trait.Fn.html),

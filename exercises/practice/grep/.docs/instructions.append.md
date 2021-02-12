@@ -1,3 +1,5 @@
+# Instructions append
+
 ## Error handling
 
 This exercise introduces the `anyhow` crate, which makes it easy to handle arbitrary error types.

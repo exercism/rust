@@ -1,4 +1,4 @@
-## Writing the Code
+# Writing the Code
 
 Write your code in `src/lib.rs`. Some exercises come with a stub file in `src/lib.rs` that will show you the signatures of the code you'll need to write. If the exercise does not come with a `src/lib.rs` file, create one.
 

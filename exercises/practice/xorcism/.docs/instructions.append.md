@@ -1,4 +1,4 @@
-## Lifetime of `munge` return value
+# Lifetime of `munge` return value
 
 Due to the usage of the `impl Trait` feature, lifetime management may be a bit
 tricky when implementing the `munge` method. You may find it easier to write
