@@ -1,3 +1,5 @@
+# About
+
 The `Option` type is an enum provided by the standard library. It is useful for expressing a value which may not exist.
 While this may sound like `null` or `nil`, it is quite different and special.
 

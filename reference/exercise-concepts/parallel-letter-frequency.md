@@ -40,7 +40,7 @@ This exercise boasts a wide variety of possible solutions in combination with th
 - **Parallelism**
   - Spawning and joining
 
-#### Concepts related to parallelism
+### Concepts related to parallelism
 
 - **Channels**
 - **`Mutex` and `RwLock`**

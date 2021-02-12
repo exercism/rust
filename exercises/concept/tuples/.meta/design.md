@@ -1,3 +1,5 @@
+# Design
+
 ## Goal
 
 Introduce the student to tuples and how to work with them.

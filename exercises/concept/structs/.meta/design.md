@@ -1,3 +1,5 @@
+# Design
+
 ## Learning objectives
 
 - Know what the `struct` keyword means

@@ -1,4 +1,4 @@
-## Notes on Rust implementation
+# Notes on Rust implementation
 
 By using private fields in structs with public `new` functions returning
 `Option` or `Result` (as here with `DNA::new` & `RNA::new`), we can guarantee

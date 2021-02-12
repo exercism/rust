@@ -1,4 +1,4 @@
-## Implementation Hints
+# Implementation Hints
 
 Do not implement the struct `SimpleLinkedList` as a wrapper around a `Vec`. Instead, allocate nodes on the heap.  
 This might be implemented as:
@@ -17,7 +17,7 @@ struct Node<T> {
 ```
 `data` contains the stored data, and `next` points to the following node (if available) or None.  
 
-### Why `Option<Box<Node<T>>>` and not just `Option<Node<T>>`?
+## Why `Option<Box<Node<T>>>` and not just `Option<Node<T>>`?
 Try it on your own. You will get the following error.
 
 ```

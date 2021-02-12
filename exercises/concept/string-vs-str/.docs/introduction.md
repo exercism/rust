@@ -1,3 +1,5 @@
+# Introduction
+
 `String` is a potentially-mutable utf8-encoded representation of a sequence of Unicode codepoints. (In Java or C#, this type is called `StringBuilder`.)
 
 `&str` is a read only view of a well-formed utf8 sequence and because it's a reference it is `Copy` and can be shared.

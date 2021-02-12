@@ -1,3 +1,5 @@
+# About
+
 Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.
 It aims to bring modern language design and an advanced type system to systems programming.
 Rust does not use a garbage collector, using advanced static analysis to provide deterministic drops instead.
