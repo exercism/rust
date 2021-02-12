@@ -4,7 +4,7 @@ Write your code in `src/lib.rs`. Some exercises come with a stub file in `src/li
 
 The directory must be named `src` and the file must be named `lib.rs` otherwise your code will not compile. For more details, check out the rustlang book [chapter on modules](https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html)
 
-### Running Tests
+## Running Tests
 
 To run the tests, all you need to do is run the following command:
 

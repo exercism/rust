@@ -17,7 +17,7 @@ struct Node<T> {
 ```
 `data` contains the stored data, and `next` points to the following node (if available) or None.  
 
-### Why `Option<Box<Node<T>>>` and not just `Option<Node<T>>`?
+## Why `Option<Box<Node<T>>>` and not just `Option<Node<T>>`?
 Try it on your own. You will get the following error.
 
 ```
