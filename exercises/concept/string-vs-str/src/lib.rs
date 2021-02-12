@@ -3,7 +3,7 @@
 #![allow(unused)]
 
 pub struct CSVRecordBuilder {
-    content: String
+    content: String,
 }
 
 impl CSVRecordBuilder {
@@ -14,7 +14,10 @@ impl CSVRecordBuilder {
 
     /// Adds an item to the list separated by a space and a comma.
     pub fn add(&mut self, val: &str) {
-        unimplemented!("implement the `CSVRecordBuilder::add` method, adding {}", val)
+        unimplemented!(
+            "implement the `CSVRecordBuilder::add` method, adding {}",
+            val
+        )
     }
 
     /// Consumes the builder and returns the comma separated list
