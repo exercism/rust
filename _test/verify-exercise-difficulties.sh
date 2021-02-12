@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -10,7 +10,7 @@ es=0
 # ensure every exercise has a difficulty
 no_difficulty=$(
     jq --raw-output '
-        .exercises | 
+        .exercises |
         .concept[], .practice[] |
         select((.status != "deprecated") and (has("difficulty") | not)) |
         .slug

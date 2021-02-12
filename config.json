@@ -20,6 +20,7 @@
         "slug": "entry-api",
         "uuid": "e7d8603e-97a9-11ea-9753-0242ac110002",
         "name": "Entry API",
+        "difficulty": 1,
         "concepts": [
           "entry-api"
         ],
@@ -35,6 +36,7 @@
         "slug": "numbers",
         "uuid": "b042200f-5bdd-4010-981e-626e40fd2877",
         "name": "Numbers",
+        "difficulty": 1,
         "concepts": [
           "integers",
           "floating-point-numbers"
@@ -47,6 +49,7 @@
       {
         "slug": "enums",
         "name": "Enums",
+        "difficulty": 1,
         "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
         "concepts": [
           "enums-basic"
@@ -58,6 +61,7 @@
         "slug": "structs",
         "uuid": "3da2420e-9de3-42e0-9127-5ef185673dbb",
         "name": "Structs",
+        "difficulty": 1,
         "concepts": [
           "structs"
         ],
@@ -72,6 +76,7 @@
         "slug": "options",
         "uuid": "2445b061-6622-47cb-a7ef-9040ec02458c",
         "name": "Option",
+        "difficulty": 1,
         "concepts": [
           "option"
         ],
@@ -84,6 +89,7 @@
       {
         "slug": "tuples",
         "name": "Low-Power Embedded Game",
+        "difficulty": 1,
         "uuid": "7f064e9b-f631-48b1-9ed0-a66e8393ceba",
         "concepts": [
           "tuples",
@@ -97,6 +103,7 @@
       {
         "slug": "vec-macro",
         "name": "The Vec Macro",
+        "difficulty": 1,
         "uuid": "c481e318-ddd7-4f8a-91eb-dadb7315e304",
         "concepts": [
           "vec-macro"
