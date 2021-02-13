@@ -14,7 +14,7 @@ While a formal specification exists, your company only needs to implement the fo
 You'll need to implement the `new` method to create a new builder.
 
 ```rust
-let mut builder = CSVRecordBuilder::new();
+let mut builder = CsvRecordBuilder::new();
 ```
 
 ## 2. Add individual fields to the record.
