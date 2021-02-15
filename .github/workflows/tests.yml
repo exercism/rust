@@ -69,6 +69,8 @@ jobs:
 
       - name: Run markdown lint
         uses: actionshub/markdownlint@main
+        with:
+            filesToIgnoreRegex: '((practice|docs|reference)/.*|problem_ordering.md)'
 
 
   compilation:
