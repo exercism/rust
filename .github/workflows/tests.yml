@@ -66,6 +66,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Run markdown lint
         run: ./bin/markdown_lint.sh
