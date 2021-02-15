@@ -9,6 +9,13 @@ While a formal specification exists, your company only needs to implement the fo
 - add an individual field to the record
 - serialize the record with basic escaping
 
+Basic escaping means:
+
+- Fields containing line breaks, double-quotes, and commas should be enclosed in double-quotes.
+
+- If double-quotes are used to enclose fields, then a double-quote appearing inside a field must be escaped by preceding it with another double-quote.
+
+
 ## 1. Create a new builder
 
 You'll need to implement the `new` method to create a new builder.
