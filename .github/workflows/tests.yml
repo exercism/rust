@@ -68,7 +68,7 @@ jobs:
           ref: main
       - name: Run markdown lint
       - uses: xt0rted/markdownlint-problem-matcher@v1
-        run: ./bin/markdown_lint.sh
+      - run: ./bin/markdown_lint.sh
   compilation:
     name: Check compilation
     runs-on: ubuntu-latest

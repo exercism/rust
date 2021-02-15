@@ -23,3 +23,11 @@ MD013: false
 # MD014/commands-show-output - Dollar signs used before commands without showing output
 MD014: false
 
+# MD039/no-space-in-links - Spaces inside link text
+MD039: true
+
+# MD040/fenced-code-language - Fenced code blocks should have a language specified
+MD040: true
+# MD042/no-empty-links - No empty links
+MD042: true
+
