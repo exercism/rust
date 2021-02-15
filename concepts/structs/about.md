@@ -38,9 +38,9 @@ impl Item {
 }
 ```
 
-# Struct Flavors 
+# Struct Flavors
 
-Structs come in three flavors: structs with named fields (standard structs), tuple structs, and unit structs. 
+Structs come in three flavors: structs with named fields (standard structs), tuple structs, and unit structs.
 
 Structs are very much like **Tuples**. In fact, the only difference between structs and tuples has to do with what is anonymous. The general form goes like this:
 
