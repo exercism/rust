@@ -66,6 +66,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+
       - name: Run markdown lint
         uses: xt0rted/markdownlint-problem-matcher@v1
         run: ./bin/markdown_lint.sh
