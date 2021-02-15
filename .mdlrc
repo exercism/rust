@@ -1,0 +1,3 @@
+# opting in markdown linting rules per
+# https://github.com/exercism/docs/blob/main/contributing/standards/markdown.md
+rules "MD001", "MD002", "MD003"
