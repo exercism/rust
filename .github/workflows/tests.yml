@@ -57,6 +57,20 @@ jobs:
       - name: Lint configlet
         run: ./bin/configlet lint
 
+  markdownlint:
+    name: markdown lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run markdown lint
+        run: ./bin/markdown_lint.sh
 
   compilation:
     name: Check compilation
