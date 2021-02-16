@@ -1,4 +1,5 @@
 # Example markdownlint YAML configuration with all properties set to their default value
+# See here: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#rules
 
 # Default state for all rules
 default: false
@@ -19,6 +20,8 @@ MD003:
   style: "atx"
 
 MD009: true
+# no reversed links
+MD011: false
 MD013: false
 # MD014/commands-show-output - Dollar signs used before commands without showing output
 MD014: false
