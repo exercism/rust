@@ -21,7 +21,7 @@ MD003:
 
 MD009: true
 # no reversed links
-MD011: false
+MD011: true
 MD013: false
 # MD014/commands-show-output - Dollar signs used before commands without showing output
 MD014: false
