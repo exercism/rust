@@ -70,8 +70,8 @@ else
 fi
 
 cp -f "$example" "$exercise/src/lib.rs"
-if [ -f "$exercise/Cargo-example.toml" ]; then
-   cp -f "$exercise/Cargo-example.toml" "$exercise/Cargo.toml"
+if [ -f "$exercise/.meta/Cargo-example.toml" ]; then
+   cp -f "$exercise/.meta/Cargo-example.toml" "$exercise/Cargo.toml"
 fi
 
 # If deny warnings, insert a deny warnings compiler directive in the header
