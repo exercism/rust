@@ -15,10 +15,7 @@ fn hs_from<'a>(input: &[&'a str]) -> HashSet<&'a str> {
 /// Note that the output can be in any order. Here, we use a HashSet to
 /// abstract away the order of outputs.
 fn test<'a, 'b>(input: &[&'a str], expected: &[&'b str]) {
-    assert_eq!(
-        hs_from(&winning_hands(input).expect("This test should produce Some value")),
-        hs_from(expected)
-    )
+    assert_eq!(hs_from(&winning_hands(input)), hs_from(expected))
 }
 
 #[test]
@@ -30,10 +27,7 @@ fn test_single_hand_always_wins() {
 #[ignore]
 fn test_duplicate_hands_always_tie() {
     let input = &["3S 4S 5D 6H JH", "3S 4S 5D 6H JH", "3S 4S 5D 6H JH"];
-    assert_eq!(
-        &winning_hands(input).expect("This test should produce Some value"),
-        input
-    )
+    assert_eq!(&winning_hands(input), input)
 }
 
 #[test]
