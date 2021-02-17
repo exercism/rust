@@ -14,6 +14,20 @@
     "indent_style": "space",
     "indent_size": 4
   },
+  "files": {
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/%{snake_slug}.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
   "exercises": {
     "concept": [
       {
