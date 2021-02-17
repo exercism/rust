@@ -67,10 +67,10 @@ impl<T> FromIterator<T> for SimpleLinkedList<T> {
     }
 }
 
-impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
-    fn into(mut self) -> Vec<T> {
-        let mut vec = Vec::new();
-        while let Some(data) = self.pop() {
+impl<T> From<SimpleLinkedList<T>> for Vec<T> {
+    fn from(mut linked_list: SimpleLinkedList<T>) -> Vec<T> {
+        let mut vec: Vec<T> = Vec::with_capacity(linked_list.len());
+        while let Some(data) = linked_list.pop() {
             vec.push(data);
         }
         vec.reverse();

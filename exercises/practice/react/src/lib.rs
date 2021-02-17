@@ -1,29 +1,29 @@
-/// `InputCellID` is a unique identifier for an input cell.
+/// `InputCellId` is a unique identifier for an input cell.
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct InputCellID();
-/// `ComputeCellID` is a unique identifier for a compute cell.
-/// Values of type `InputCellID` and `ComputeCellID` should not be mutually assignable,
+pub struct InputCellId();
+/// `ComputeCellId` is a unique identifier for a compute cell.
+/// Values of type `InputCellId` and `ComputeCellId` should not be mutually assignable,
 /// demonstrated by the following tests:
 ///
 /// ```compile_fail
 /// let mut r = react::Reactor::new();
-/// let input: react::ComputeCellID = r.create_input(111);
+/// let input: react::ComputeCellId = r.create_input(111);
 /// ```
 ///
 /// ```compile_fail
 /// let mut r = react::Reactor::new();
 /// let input = r.create_input(111);
-/// let compute: react::InputCellID = r.create_compute(&[react::CellID::Input(input)], |_| 222).unwrap();
+/// let compute: react::InputCellId = r.create_compute(&[react::CellId::Input(input)], |_| 222).unwrap();
 /// ```
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct ComputeCellID();
+pub struct ComputeCellId();
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct CallbackID();
+pub struct CallbackId();
 
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CellID {
-    Input(InputCellID),
-    Compute(ComputeCellID),
+pub enum CellId {
+    Input(InputCellId),
+    Compute(ComputeCellId),
 }
 
 #[derive(Debug, PartialEq)]
@@ -45,7 +45,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
     }
 
     // Creates an input cell with the specified initial value, returning its ID.
-    pub fn create_input(&mut self, _initial: T) -> InputCellID {
+    pub fn create_input(&mut self, _initial: T) -> InputCellId {
         unimplemented!()
     }
 
@@ -64,20 +64,20 @@ impl<T: Copy + PartialEq> Reactor<T> {
     // time they will continue to exist as long as the Reactor exists.
     pub fn create_compute<F: Fn(&[T]) -> T>(
         &mut self,
-        _dependencies: &[CellID],
+        _dependencies: &[CellId],
         _compute_func: F,
-    ) -> Result<ComputeCellID, CellID> {
+    ) -> Result<ComputeCellId, CellId> {
         unimplemented!()
     }
 
     // Retrieves the current value of the cell, or None if the cell does not exist.
     //
-    // You may wonder whether it is possible to implement `get(&self, id: CellID) -> Option<&Cell>`
+    // You may wonder whether it is possible to implement `get(&self, id: CellId) -> Option<&Cell>`
     // and have a `value(&self)` method on `Cell`.
     //
     // It turns out this introduces a significant amount of extra complexity to this exercise.
     // We chose not to cover this here, since this exercise is probably enough work as-is.
-    pub fn value(&self, id: CellID) -> Option<T> {
+    pub fn value(&self, id: CellId) -> Option<T> {
         unimplemented!("Get the value of the cell whose id is {:?}", id)
     }
 
@@ -85,11 +85,11 @@ impl<T: Copy + PartialEq> Reactor<T> {
     //
     // Returns false if the cell does not exist.
     //
-    // Similarly, you may wonder about `get_mut(&mut self, id: CellID) -> Option<&mut Cell>`, with
+    // Similarly, you may wonder about `get_mut(&mut self, id: CellId) -> Option<&mut Cell>`, with
     // a `set_value(&mut self, new_value: T)` method on `Cell`.
     //
     // As before, that turned out to add too much extra complexity.
-    pub fn set_value(&mut self, _id: InputCellID, _new_value: T) -> bool {
+    pub fn set_value(&mut self, _id: InputCellId, _new_value: T) -> bool {
         unimplemented!()
     }
 
@@ -107,9 +107,9 @@ impl<T: Copy + PartialEq> Reactor<T> {
     //   set_value call.
     pub fn add_callback<F: FnMut(T)>(
         &mut self,
-        _id: ComputeCellID,
+        _id: ComputeCellId,
         _callback: F,
-    ) -> Option<CallbackID> {
+    ) -> Option<CallbackId> {
         unimplemented!()
     }
 
@@ -120,11 +120,11 @@ impl<T: Copy + PartialEq> Reactor<T> {
     // A removed callback should no longer be called.
     pub fn remove_callback(
         &mut self,
-        cell: ComputeCellID,
-        callback: CallbackID,
+        cell: ComputeCellId,
+        callback: CallbackId,
     ) -> Result<(), RemoveCallbackError> {
         unimplemented!(
-            "Remove the callback identified by the CallbackID {:?} from the cell {:?}",
+            "Remove the callback identified by the CallbackId {:?} from the cell {:?}",
             callback,
             cell,
         )

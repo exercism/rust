@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # test for existence and executability of the test-exercise script
 # this depends on that

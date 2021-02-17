@@ -58,8 +58,8 @@ impl<T> FromIterator<T> for SimpleLinkedList<T> {
 // of IntoIterator is that implementing that interface is fairly complicated, and
 // demands more of the student than we expect at this point in the track.
 
-impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
-    fn into(self) -> Vec<T> {
+impl<T> From<SimpleLinkedList<T>> for Vec<T> {
+    fn from(mut _linked_list: SimpleLinkedList<T>) -> Vec<T> {
         unimplemented!()
     }
 }
