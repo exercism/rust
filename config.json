@@ -16,16 +16,16 @@
   },
   "files": {
     "solution": [
-      "path/to/%{kebab_slug}.ext"
+      "src/lib.rs"
     ],
     "test": [
-      "path/to/%{kebab_slug}.ext"
+      "tests/%{snake_slug}.rs"
     ],
     "example": [
-      "path/to/%{kebab_slug}.ext"
+      ".meta/example.rs"
     ],
     "exemplar": [
-      "path/to/%{kebab_slug}.ext"
+      ".meta/exemplar.rs"
     ]
   },
   "exercises": {
