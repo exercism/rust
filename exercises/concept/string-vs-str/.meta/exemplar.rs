@@ -1,8 +1,8 @@
-pub struct CSVRecordBuilder {
+pub struct CsvRecordBuilder {
     content: String,
 }
 
-impl CSVRecordBuilder {
+impl CsvRecordBuilder {
     // Create a new builder
     pub fn new() -> Self {
         Self {

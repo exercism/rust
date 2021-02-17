@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "url": "https://fasterthanli.me/blog/2020/working-with-strings-in-rust/",
+    "description": "fasterthanli.me's Working with strings in Rust"
+  },
+  {
+    "url": "https://doc.rust-lang.org/book/ch08-02-strings.html#storing-utf-8-encoded-text-with-strings",
+    "description": "Storing UTF-8 encoded text with strings"
+  }
+]
