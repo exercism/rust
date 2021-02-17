@@ -60,8 +60,8 @@ for dir in ${preserve_dirs[@]}; do
 done
 
 # Move example files to where Cargo expects them
-if [ -f "$exercise/example.rs" ]; then
-   example="$exercise/example.rs"
+if [ -f "$exercise/.meta/example.rs" ]; then
+   example="$exercise/.meta/example.rs"
 elif [ -f "$exercise/.meta/exemplar.rs" ]; then
    example="$exercise/.meta/exemplar.rs"
 else
@@ -70,8 +70,8 @@ else
 fi
 
 cp -f "$example" "$exercise/src/lib.rs"
-if [ -f "$exercise/Cargo-example.toml" ]; then
-   cp -f "$exercise/Cargo-example.toml" "$exercise/Cargo.toml"
+if [ -f "$exercise/.meta/Cargo-example.toml" ]; then
+   cp -f "$exercise/.meta/Cargo-example.toml" "$exercise/Cargo.toml"
 fi
 
 # If deny warnings, insert a deny warnings compiler directive in the header
