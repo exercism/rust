@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Test an exercise
 
 # which exercise are we testing right now?
