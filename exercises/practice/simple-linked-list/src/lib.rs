@@ -58,7 +58,6 @@ impl<T> FromIterator<T> for SimpleLinkedList<T> {
 // of IntoIterator is that implementing that interface is fairly complicated, and
 // demands more of the student than we expect at this point in the track.
 
-#[allow(clippy::from_over_into)]
 impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
     fn into(self) -> Vec<T> {
         unimplemented!()
