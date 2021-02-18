@@ -168,7 +168,9 @@
         "slug": "gigasecond",
         "name": "Gigasecond",
         "uuid": "f880b1ef-8f66-41f3-bb89-f39a4ed592a2",
-        "practices": [],
+        "practices": [
+          "external-crates"
+        ],
         "prerequisites": [],
         "difficulty": 1,
         "topics": [
