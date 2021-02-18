@@ -1,4 +1,4 @@
 # About
 
 TODO
-- `PartialEq`, `PartialOrd`, `Debug`, `Display`, `Default`
+- `PartialEq`, `Eq`, `PartialOrd`, `Ord`, `Debug`, `Display`, `Default`
