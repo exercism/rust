@@ -148,8 +148,15 @@
         "slug": "reverse-string",
         "name": "Reverse String",
         "uuid": "ecf8d1e3-9400-4d1a-8326-2e2820bce024",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "char",
+          "from-into-iterator",
+          "string-use",
+          "unicode"
+        ],
+        "prerequisites": [
+          "string-use"
+        ],
         "difficulty": 1,
         "topics": [
           "iterators",
