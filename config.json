@@ -225,8 +225,15 @@
         "slug": "space-age",
         "name": "Space Age",
         "uuid": "fa94645d-14e1-422d-a832-d24efbb493d8",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "designing-custom-traits",
+          "implementing-traits",
+          "macros-declarative",
+          "traits"
+        ],
+        "prerequisites": [
+          "traits"
+        ],
         "difficulty": 7,
         "topics": [
           "from_trait",
