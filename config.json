@@ -181,8 +181,15 @@
         "slug": "clock",
         "name": "Clock",
         "uuid": "543a3ca2-fb9b-4f20-a873-ff23595d41df",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "derive",
+          "structs",
+          "traits"
+        ],
+        "prerequisites": [
+          "structs",
+          "traits"
+        ],
         "difficulty": 4,
         "topics": [
           "derive",
