@@ -134,7 +134,9 @@
         "slug": "hello-world",
         "name": "Hello World",
         "uuid": "13ec1ebe-d71b-436f-ab12-25305e814171",
-        "practices": [],
+        "practices": [
+          "functions"
+        ],
         "prerequisites": [],
         "difficulty": 1,
         "topics": [
