@@ -201,8 +201,16 @@
         "slug": "anagram",
         "name": "Anagram",
         "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "hashset",
+          "lifetimes",
+          "loops",
+          "string-use"
+        ],
+        "prerequisites": [
+          "hashset",
+          "loops"
+        ],
         "difficulty": 4,
         "topics": [
           "iterators",
