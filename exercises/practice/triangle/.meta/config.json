@@ -5,8 +5,12 @@
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/triangle.rs"
+    ],
     "example": [
       ".meta/example.rs"
     ]

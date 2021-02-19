@@ -5,8 +5,12 @@
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/nth_prime.rs"
+    ],
     "example": [
       ".meta/example.rs"
     ]
