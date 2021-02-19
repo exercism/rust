@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 repo=$(cd "$(dirname "$0")/.." && pwd)
 exitcode=0
