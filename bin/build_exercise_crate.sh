@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 # Compile the 'exercise' crate and put it in the 'bin/' folder
 
 TRACK_ROOT="$(git rev-parse --show-toplevel)"
@@ -8,7 +9,7 @@ EXERCISE_CRATE_PATH="$TRACK_ROOT/util/exercise"
 BIN_DIR_PATH="$TRACK_ROOT/bin"
 
 (
-	cd "$EXERCISE_CRATE_PATH" || exit 1
+	cd "$EXERCISE_CRATE_PATH"
 
 	echo "Building exercise crate"
 
