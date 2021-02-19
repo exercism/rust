@@ -8,7 +8,7 @@ EXERCISE_CRATE_PATH="$TRACK_ROOT/util/exercise"
 BIN_DIR_PATH="$TRACK_ROOT/bin"
 
 (
-	cd "$EXERCISE_CRATE_PATH"
+	cd "$EXERCISE_CRATE_PATH" || exit 1
 
 	echo "Building exercise crate"
 

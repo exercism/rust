@@ -14,7 +14,7 @@ no_difficulty=$(
         .concept[], .practice[] |
         select((.status != "deprecated") and (has("difficulty") | not)) |
         .slug
-    ' $config
+    ' "$config"
 )
 if [ -n "$no_difficulty" ]; then
     echo "Exercises without a difficulty in config.json:"
@@ -37,7 +37,7 @@ invalid_difficulty=$(
             )
         ) |
         "\(.slug) (\(.difficulty))"
-    ' $config
+    ' "$config"
 )
 if [ -n "$invalid_difficulty" ]; then
     echo "Exercises with invalid difficulty (must be in {1, 4, 7, 10})"
