@@ -17,6 +17,8 @@ This is non-exhaustive.
     ```
 - Prefer BASH for scripting
 - Adopt a Unix philosophy for tooling
-  - try to accomplish tooling needs using `jq` and pipelines of minimal utilities
+  - prefer using tools that do one thing well
+  - prefer using tools that are ubiquitous: `jq` or `sed` instead of `prettier` or `sd`
+  - write scripts to do one thing well
 - Scripts should use `#!/usr/bin/env bash` as their shebang
-  - This increases portability on NixOS and macOS because contributors may not have bash installed in `/bin/bash`.
+  - This increases portability on NixOS and macOS because contributors' preferred bash may not be installed in `/bin/bash`.
