@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Compile the 'exercise' crate and put it in the 'bin/' folder
 
 TRACK_ROOT="$(git rev-parse --show-toplevel)"
