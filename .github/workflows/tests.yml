@@ -72,6 +72,17 @@ jobs:
       - name: Run markdown lint
         run: ./bin/markdown_lint.sh
 
+  # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
+  shellcheck:
+    name: shellcheck internal tooling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # 2.3.4
+
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@d586102c117f97e63d7e3b56629d269efc9a7c60 # 1.0.0
+
   compilation:
     name: Check compilation
     runs-on: ubuntu-latest
