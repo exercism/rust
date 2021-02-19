@@ -5,7 +5,7 @@ This document captures informal policies, tips, and topics useful to maintaining
 ## Internal Tooling
 
 We have a number of scripts for CI tests.
-They live in `bin/` and `_test`.
+They live in `bin/` and `_test/`.
 
 ## Internal Tooling Style Guide
 
