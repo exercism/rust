@@ -3,7 +3,7 @@
 repo=$(cd "$(dirname "$0")/.." && pwd)
 exitcode=0
 
-for e in $repo/exercises/*; do
+for e in $repo/exercises/*/*; do
    if [ -f "$e/.meta/ignore-count-ignores" ]; then
       continue
    fi
