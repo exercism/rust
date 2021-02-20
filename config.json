@@ -1919,7 +1919,6 @@
     "platform/ios",
     "platform/android",
     "platform/web",
-    "platform/wasm",
     "runtime/standalone_executable",
     "used_for/backends",
     "used_for/cross_platform_development",
