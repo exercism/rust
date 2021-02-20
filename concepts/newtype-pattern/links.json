@@ -1,1 +1,6 @@
-[]
+[
+  {
+    "url": "https://doc.rust-lang.org/book/ch19-03-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits-on-external-types",
+    "description": "Discussion of newtype pattern"
+  }
+]
