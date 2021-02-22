@@ -98,9 +98,7 @@ done
      # For now, not the example solutions since they have many Clippy warnings,
      # and are not shown to students anyway.
      sed -i -e '1i #![deny(clippy::all)]' tests/*.rs
-     cargo clippy --tests --color always "$@" 2>clippy.log
-     # shellcheck disable=SC2181
-     if [ $? -ne 0 ]; then
+     if ! cargo clippy --tests --color always "$@" 2>clippy.log; then
        cat clippy.log
        exit 1
      else
