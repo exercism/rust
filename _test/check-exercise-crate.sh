@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+set -eo pipefail
 
 # A script to ensure that the util/exercise crate builds after it was modified.
 
@@ -22,12 +23,15 @@ fi
 
 TRACK_ROOT="$(git rev-parse --show-toplevel)"
 
-if !(cd "$TRACK_ROOT/$EXERCISE_CRATE_PATH" && cargo check); then
-	echo "\nAn error has occurred while building the exercise crate.\nPlease make it compile."
+if ! (cd "$TRACK_ROOT/$EXERCISE_CRATE_PATH" && cargo check); then
+    echo
+	echo "An error has occurred while building the exercise crate."
+    echo "Please make it compile."
 
 	exit 1
 else
-	echo "\nexercise crate has been successfully built."
+    echo
+	echo "exercise crate has been successfully built."
 
 	exit 0
 fi
