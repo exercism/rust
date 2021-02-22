@@ -14,7 +14,7 @@ IGNORED_EXERCISES=(
 	"hexadecimal" #deprecated
 )
 
-for dir in $repo/exercises/*/*/; do
+for dir in "$repo"/exercises/*/*/; do
 	exercise=$(basename "$dir")
 
 	if [ ! -f "$dir/src/lib.rs" ]; then
@@ -30,13 +30,16 @@ for dir in $repo/exercises/*/*/; do
 done
 
 if [ -n "$missing" ]; then
-	printf "\nExercises missing src/lib.rs:$missing\n"
+    # extra echo to generate a new line
+    echo
+	echo "Exercises missing src/lib.rs:$missing"
 
 	check_status=1
 fi
 
 if [ -n "$empty_stub" ]; then
-	printf "\nExercises with empty src/lib.rs stub file:$empty_stub\n"
+    echo
+	echo "Exercises with empty src/lib.rs stub file:$empty_stub"
 
 	check_status=1
 fi
