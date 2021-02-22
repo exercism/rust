@@ -29,3 +29,5 @@ This is non-exhaustive.
 You can run CI tools locally. 
 Scripts expect GNU versions of tooling, so you may see unexpected results on macOS.
 [Here](https://github.com/exercism/rust/issues/1138) is one example.
+Windows users can also run tooling locally using [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
+We recommend WSL 2 with the distribution of your choice.
