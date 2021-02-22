@@ -34,10 +34,10 @@ if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
       grep "exercises/" |
       cut -d '/' -f -3 |
       sort -u |
-      awk -v repo=$repo '{print repo"/"$1}'
+      awk -v repo="$repo" '{print repo"/"$1}'
    )"
 else
-	files=$repo/exercises/*/*
+	files="$repo/exercises/*/*"
 fi
 
 return_code=0
@@ -51,7 +51,7 @@ for exercise in $files; do
    directory=$(dirname "${exercise}")
 
    release=""
-   if [ -z "$BENCHMARK" -a -f "$directory/.meta/test-in-release-mode" ]; then
+   if [ -z "$BENCHMARK" ] && [ -f "$directory/.meta/test-in-release-mode" ]; then
       release="--release"
    fi
 
@@ -64,16 +64,16 @@ for exercise in $files; do
       # (such as "Compiling"/"Downloading").
       # Compiler errors will still be shown though.
       # Both flags are necessary to keep things quiet.
-      ./bin/test-exercise $directory --quiet --no-run
-      return_code=$(($return_code | $?))
+      ./bin/test-exercise "$directory" --quiet --no-run
+      return_code=$((return_code | $?))
    else
       # Run the test and get the status
       # We use release mode here because, while it somewhat increases
       # the compile time for all exercises, it substantially improves
       # the runtime for certain exercises such as alphametics.
       # Overall this should be an improvement.
-      ./bin/test-exercise $directory $release
-      return_code=$(($return_code | $?))
+      ./bin/test-exercise "$directory" $release
+      return_code=$((return_code | $?))
    fi
 done
 
