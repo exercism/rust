@@ -5,8 +5,12 @@
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/sum_of_multiples.rs"
+    ],
     "example": [
       ".meta/example.rs"
     ]

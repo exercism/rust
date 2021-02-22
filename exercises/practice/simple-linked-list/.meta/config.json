@@ -5,8 +5,12 @@
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/simple_linked_list.rs"
+    ],
     "example": [
       ".meta/example.rs"
     ]
