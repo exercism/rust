@@ -1,3 +1,3 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -e
-npx markdownlint-cli concepts/**/*.md exercises/**/*.md
+npx markdownlint-cli concepts/**/*.md exercises/**/*.md docs/maintaining.md

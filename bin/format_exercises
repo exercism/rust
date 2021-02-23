@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Format existing exercises using rustfmt
 set -e
 

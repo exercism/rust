@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+set -eo pipefail
 # Test an exercise
 
 # which exercise are we testing right now?
@@ -31,14 +33,14 @@ declare -a preserve_dirs=("tests")
 
 # reset instructions
 reset () {
-   for file in ${preserve_files[@]}; do
+   for file in "${preserve_files[@]}"; do
       if [ -f "$exercise/$file.orig" ]; then
          mv -f "$exercise/$file.orig" "$exercise/$file"
       fi
    done
-   for dir in ${preserve_dirs[@]}; do
+   for dir in "${preserve_dirs[@]}"; do
       if [ -d "$exercise/$dir.orig" ]; then
-         rm -rf "$exercise/$dir"
+         rm -rf "${exercise:?}/$dir"
          mv "$exercise/$dir.orig" "$exercise/$dir"
       fi
    done
@@ -48,12 +50,12 @@ reset () {
 trap reset EXIT INT TERM
 
 # preserve the files and directories we care about
-for file in ${preserve_files[@]}; do
+for file in "${preserve_files[@]}"; do
    if [ -f "$exercise/$file" ]; then
       cp "$exercise/$file" "$exercise/$file.orig"
    fi
 done
-for dir in ${preserve_dirs[@]}; do
+for dir in "${preserve_dirs[@]}"; do
    if [ -d "$exercise/$dir" ]; then
       cp -r "$exercise/$dir" "$exercise/$dir.orig"
    fi
@@ -80,11 +82,11 @@ if [ -n "$DENYWARNINGS" ]; then
 fi
 
 # eliminate #[ignore] lines from tests
-for test in "$exercise/tests/*.rs"; do
+for test in "$exercise/"tests/*.rs; do
    sed -i -e '/#\[ignore\]/{
       s/#\[ignore\]\s*//
       /^\s*$/d
-   }' $test
+   }' "$test"
 done
 
 # run tests from within exercise directory
@@ -96,8 +98,7 @@ done
      # For now, not the example solutions since they have many Clippy warnings,
      # and are not shown to students anyway.
      sed -i -e '1i #![deny(clippy::all)]' tests/*.rs
-     cargo clippy --tests --color always "$@" 2>clippy.log
-     if [ $? -ne 0 ]; then
+     if ! cargo clippy --tests --color always "$@" 2>clippy.log; then
        cat clippy.log
        exit 1
      else

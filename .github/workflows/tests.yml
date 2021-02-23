@@ -22,13 +22,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Ensure src/lib.rs files exist
-        run: bash ./_test/ensure-lib-src-rs-exist.sh
+        run: ./_test/ensure-lib-src-rs-exist.sh
 
       - name: Count ignores
-        run: sh ./_test/count-ignores.sh
+        run: ./_test/count-ignores.sh
 
       - name: Check UUIDs
-        run: sh ./_test/check-uuids.sh
+        run: ./_test/check-uuids.sh
 
       - name: Verify exercise difficulties
         run: ./_test/verify-exercise-difficulties.sh
@@ -72,6 +72,17 @@ jobs:
       - name: Run markdown lint
         run: ./bin/markdown_lint.sh
 
+  # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
+  shellcheck:
+    name: shellcheck internal tooling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # 2.3.4
+
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@d586102c117f97e63d7e3b56629d269efc9a7c60 # 1.0.0
+
   compilation:
     name: Check compilation
     runs-on: ubuntu-latest
@@ -109,13 +120,13 @@ jobs:
       - name: Ensure stubs compile
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: sh ./_test/ensure-stubs-compile.sh
+        run: ./_test/ensure-stubs-compile.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
       - name: Check exercise crate
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: sh ./_test/check-exercise-crate.sh
+        run: ./_test/check-exercise-crate.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
   rustformat:
@@ -136,7 +147,7 @@ jobs:
         run: rustfmt --version
 
       - name: Format
-        run: sh bin/format_exercises
+        run: bin/format_exercises
 
       - name: Diff
         run: |
@@ -181,7 +192,7 @@ jobs:
       - name: Clippy stubs
         env:
           CLIPPY: true
-        run: sh ./_test/ensure-stubs-compile.sh
+        run: ./_test/ensure-stubs-compile.sh
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
