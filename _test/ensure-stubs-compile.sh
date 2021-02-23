@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-repo=$(cd "$(dirname "$0")/.." && pwd)
+repo="$(cd "$(dirname "$0")/.." && pwd)"
 
 if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
   changed_exercises="$(
@@ -11,6 +11,8 @@ if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
     awk -v repo="$repo" '{print repo"/"$1}'
   )"
 else
+    # we want globbing and it does not actually assign locally
+    # shellcheck disable=SC2125
 	changed_exercises="$repo"/exercises/*/*
 fi
 
