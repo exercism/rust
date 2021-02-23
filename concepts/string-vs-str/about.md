@@ -11,7 +11,7 @@ This document discusses how they overlap and offers some basic advice.
 
 `String` is a potentially-mutable utf8-encoded representation of a sequence of Unicode codepoints. (In Java or C#, this type is called `StringBuilder`.)
 
-`&str` is a read only view of a well-formed utf8 sequence and because it's a reference it is `Copy` and can be shared.
+`&str` is a read only view of a well-formed utf8 sequence. Because it's a reference, it is `Copy` and can be shared.
 
 `String` and `&str` in rust can not be indexed into like you might in other languages.
 For example this will not work:
