@@ -15,7 +15,7 @@ There are several common idioms for using the value which might be present in an
 
 - `if let Some(t) = optional { ... }`.
 
-    The `if let` idiom extracts the value from an Option<T> and binds it to the variable `t`. This lets you use it directly in that block scope.
+    The `if let` idiom extracts the value from an `Option<T>` and binds it to the variable `t`. This lets you use it directly in that block scope.
 
 - `match optional { Some(t) => {...}, None => {...}}`
 
