@@ -9,7 +9,7 @@ This document discusses how they overlap and offers some basic advice.
 `&str` is immutable.
 
 The proper pronunciation of `&str` is "ref string".
-`String` is a potentially-mutable UTF-8-encoded representation of a sequence of Unicode code points. (In Java or C#, this type is called `StringBuilder`.)
+`String` is a potentially-mutable UTF-8-encoded representation of a sequence of Unicode code points.
 
 `&str` is a read only view of a well-formed UTF-8 sequence.
 Because it's a reference, it is `Copy` and can be shared.
