@@ -24,7 +24,7 @@ You'll need to implement the `new` method to create a new builder.
 let mut builder = CsvRecordBuilder::new();
 ```
 
-## 2. Add individual fields to the record.
+## 2. Add individual fields to the record
 
 You'll need to implement the `add` method to append fields to your record builder.
 `add` takes immutable string slices, `&str`, as the argument.
