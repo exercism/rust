@@ -56,8 +56,8 @@ for exercise in $files; do
    fi
 
    if [ -n "$DENYWARNINGS" ]; then
-      # Output a progress dot; otherwise Travis may assume we're hung,
-      # if we don't produce output in > 10 mins.
+      # Output a progress dot
+      # because we may not produce output in > 10 mins.
       echo -n '.'
       # No-run mode so we see no test output.
       # Quiet mode so we see no compile output
