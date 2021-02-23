@@ -37,7 +37,7 @@ if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
       awk -v repo="$repo" '{print repo"/"$1}'
    )"
 else
-	files="$repo/exercises/*/*"
+    files="$repo/exercises/*/*"
 fi
 
 return_code=0

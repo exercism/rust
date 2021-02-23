@@ -25,13 +25,13 @@ TRACK_ROOT="$(git rev-parse --show-toplevel)"
 
 if ! (cd "$TRACK_ROOT/$EXERCISE_CRATE_PATH" && cargo check); then
     echo
-	echo "An error has occurred while building the exercise crate."
+    echo "An error has occurred while building the exercise crate."
     echo "Please make it compile."
 
-	exit 1
+    exit 1
 else
     echo
-	echo "exercise crate has been successfully built."
+    echo "exercise crate has been successfully built."
 
-	exit 0
+    exit 0
 fi
