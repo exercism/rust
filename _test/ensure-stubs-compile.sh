@@ -11,7 +11,7 @@ if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
     awk -v repo="$repo" '{print repo"/"$1}'
   )"
 else
-	changed_exercises="$repo/exercises/*/*"
+	changed_exercises="$repo"/exercises/*/*
 fi
 
 if [ -z "$changed_exercises" ]; then
