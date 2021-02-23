@@ -11,7 +11,8 @@ This document discusses how they overlap and offers some basic advice.
 The proper pronunciation of `&str` is "ref string".
 `String` is a potentially-mutable UTF-8-encoded representation of a sequence of Unicode code points. (In Java or C#, this type is called `StringBuilder`.)
 
-`&str` is a read only view of a well-formed UTF-8 sequence. Because it's a reference, it is `Copy` and can be shared.
+`&str` is a read only view of a well-formed UTF-8 sequence.
+Because it's a reference, it is `Copy` and can be shared.
 
 `String` and `&str` in rust can not be indexed into like you might in other languages.
 For example this will not work:
@@ -44,7 +45,9 @@ println!("char of final byte: {}", final_byte as char);              // ¤
 
 ## Converting a `String` into a `&str`
 
-`String` implements `Deref<Target=str>`. This trait has some compiler special casing: it means that any reference to a `String` can automatically, transparently be coerced into an `&str`. This implies the following:
+`String` implements `Deref<Target=str>`.
+This trait has some compiler special casing: it means that any reference to a `String` can automatically, transparently be coerced into an `&str`.
+This implies the following:
 
 - Any code which expects, for example, an `&str` argument can accept an `&String` instead.
 - Any method implemented for `&str` can be called on a `String` as well.
@@ -82,7 +85,7 @@ struct Record {
 By using `String`, the struct owns the data.
 This makes the code easier to read and teach for beginners.
 But it also means heap allocations will occur for each field.
-`&str` borrows textual data so will perform better at the tradeoff of your struct needing to define lifetime parameters.
+`&str` borrows textual data so will perform better at the trade-off of your struct needing to define lifetime parameters.
 The [csv crate tutorial][csv-tutorial] practically demonstrates and explains these ideas quite nicely.
 
 ## Performance Notes
