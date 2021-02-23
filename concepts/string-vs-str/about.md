@@ -6,9 +6,9 @@ This document discusses how they overlap and offers some basic advice.
 `String` is an owned, vector of `u8` bytes.
 `String` is mutable.
 `&str`, is a borrowed reference to a String slice.
-`&str` is pronounced "and stir"
 `&str` is immutable.
 
+The proper pronunciation of `&str` is "ref string".
 `String` is a potentially-mutable utf8-encoded representation of a sequence of Unicode codepoints. (In Java or C#, this type is called `StringBuilder`.)
 
 `&str` is a read only view of a well-formed utf8 sequence. Because it's a reference, it is `Copy` and can be shared.
