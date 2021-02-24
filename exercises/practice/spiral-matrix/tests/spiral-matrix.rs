@@ -24,8 +24,8 @@ fn size_two_spiral() {
 fn size_three_spiral() {
     #[rustfmt::skip]
     let expected: Vec<Vec<u32>> = vec![
-        vec![1, 2, 3], 
-        vec![8, 9, 4], 
+        vec![1, 2, 3],
+        vec![8, 9, 4],
         vec![7, 6, 5],
     ];
     assert_eq!(spiral_matrix(3), expected);
