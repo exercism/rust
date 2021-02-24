@@ -3,7 +3,7 @@
 Thank you so much for contributing! :tada:
 We welcome pull requests of all kinds.
 No contribution is too small.
-This document articulates Exercism-wide as well as what maintainers expect from contributors.
+This document articulates Exercism and maintainers expectations of contributors.
 Be sure to read the Exercism [Code of Conduct](https://exercism.io/code-of-conduct).
 
 ## Ways to Contribute
