@@ -36,6 +36,9 @@ jobs:
       - name: Check exercises for authors
         run: ./_test/check-exercises-for-authors.sh
 
+      - name: Ensure relevant files do not have trailing whitespace
+        run: ./bin/lint_trailing_spaces.sh
+
   configlet:
     name: configlet lint
     runs-on: ubuntu-latest
@@ -74,7 +77,7 @@ jobs:
 
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
-    name: shellcheck internal tooling
+    name: shellcheck internal tooling lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
