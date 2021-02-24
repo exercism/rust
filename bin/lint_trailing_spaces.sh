@@ -4,11 +4,11 @@
 # so user can fix them
 set -eo pipefail
 
-files=$(find . -name '*.toml' -exec grep -l '[[:space:]]$' {} \;)
+files=$(find . \( -iname '*.toml' -o -iname '*.sh' -o -iname '*.rs' \) -exec grep -l '[[:space:]]$' {} \;)
 
 if [ -n "$files" ]; then
-	echo "These files have trailing whitespace:"
-	echo "$files"
-	echo "Our conventions disallow this so please remove the trailing whitespace."
-	exit 1
+    echo "These files have trailing whitespace:"
+    echo "$files"
+    echo "Our conventions disallow this so please remove the trailing whitespace."
+    exit 1
 fi
