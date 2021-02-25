@@ -73,7 +73,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run markdown lint
-        run: ./bin/markdown_lint.sh
+        run: ./bin/lint_markdown.sh
 
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
