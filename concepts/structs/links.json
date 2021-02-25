@@ -6,5 +6,9 @@
   {
     "url": "https://doc.rust-lang.org/stable/rust-by-example/custom_types/structs.html",
     "description": "examples of tuple and unit structs"
+  },
+  {
+    "url": "https://learning-rust.github.io/docs/b2.structs.html#C-like-structs",
+    "description": "good overview of the different types of structs and their syntax"
   }
 ]

@@ -1,4 +1,6 @@
-# General
+# Hints
+
+## General
 
 ## 1. Implement the `new()` method
 
@@ -28,6 +30,3 @@ fn foo() -> i32 {
 
 - As the signatures of these methods specify, the setter methods shouldn't return anything.
 
-## Additional Resources
-
-- [https://learning-rust.github.io/docs/b2.structs.html#C-like-structs](https://learning-rust.github.io/docs/b2.structs.html#C-like-structs) provides a good overview of the different types of structs and their syntax.
