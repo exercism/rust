@@ -7,7 +7,7 @@ Exercism exercises in Rust
 
 ## Contributing
 
-Check out our [contributor documentation](docs/contributing).
+Check out our [contributor documentation](docs/CONTRIBUTING.md).
 
 ## Exercise Tests
 
