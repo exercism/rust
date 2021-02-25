@@ -14,8 +14,13 @@ Be sure to read the Exercism [Code of Conduct](https://exercism.io/code-of-condu
 
 ## Merging Philosophy
 
-A merge request should address one logical change.
+A [pull request](https://docs.github.com/en/github/getting-started-with-github/github-glossary#pull-request) should address one logical change.
 This could be small or big.
-[#1174](https://github.com/exercism/rust/pull/1174) was an example of a small pull request.
-This could be small like fixing a typographical error.
 
+For example, [#1174](https://github.com/exercism/rust/pull/1174) fixed a single typo in a single file after minutes of collaboration.
+
+It was a small, short pull request with one logical change.
+
+[#653](https://github.com/exercism/rust/pull/653) introduced the doubly linked list exercise after months of collaboration.
+
+It was a big, long-running pull request with one logical change.
