@@ -1,6 +1,6 @@
-# check-exercises.sh for Windows Rust Developers
+# check_exercises.sh for Windows Rust Developers
 
-It is possible to run `check-exercises.sh` on Windows 10, pointing to the Windows location for your GitHub repository.  This is done with the Ubuntu on Windows subsystem.
+It is possible to run `check_exercises.sh` on Windows 10, pointing to the Windows location for your GitHub repository.  This is done with the Ubuntu on Windows subsystem.
 
 ## Enable Developer Mode
 To run Ubuntu on Windows, you need to be in Developer Mode.
@@ -39,6 +39,6 @@ You also need to install a cc linker for Rust.
 ## Running Tests
 
     cd /mnt/c/[path of github project]
-    _test/check-exercises.sh
+    _test/check_exercises.sh
 
 This will re-download and build any crates needed, as they only existed in your Windows Rust.

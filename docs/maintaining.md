@@ -16,20 +16,24 @@ This is non-exhaustive.
   - prefer using tools that are ubiquitous: `jq` or `sed` instead of `prettier` or `sd`
   - write scripts to do one thing well
   - prefer GNU versions of `sed` and other utilities
-- Prefer BASH for scripting
+- Prefer Bash for scripting
+  - Strive for compatibility. macOS still distributes Bash v3.x by default, despite v5.x being current; this means that the scripts can't depend on certain features like map.
 - Scripts should use `#!/usr/bin/env bash` as their shebang
   - This increases portability on NixOS and macOS because contributors' preferred bash may not be installed in `/bin/bash`.
-- Prefer snakecase for script file names
+- Prefer snake case for script file names
     ```sh
     hello_world.sh
     ```
+   - This simplifies development when upgrading a script into a proper language. *Rusty tooling anyone?*
 - Script file names should include the `.sh` extension
+- Set the executable bit on scripts that should be called directly.
 - Scripts should set the following options at the top
     ```bash
     set -eo pipefail
     ```
 
 ## Running CI Locally
+
 You can run CI tools locally.
 Scripts expect GNU versions of tooling, so you may see unexpected results on macOS.
 [Here](https://github.com/exercism/rust/issues/1138) is one example.
