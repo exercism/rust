@@ -37,7 +37,7 @@ jobs:
         run: ./_test/verify-exercise-difficulties.sh
 
       - name: Check exercises for authors
-        run: ./_test/check-exercises-for-authors.sh
+        run: ./_test/check_exercises_for_authors.sh
 
       - name: Ensure relevant files do not have trailing whitespace
         run: ./bin/lint_trailing_spaces.sh
