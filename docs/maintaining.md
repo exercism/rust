@@ -32,6 +32,7 @@ This is non-exhaustive.
     ```
 
 ## Running CI Locally
+
 You can run CI tools locally.
 Scripts expect GNU versions of tooling, so you may see unexpected results on macOS.
 [Here](https://github.com/exercism/rust/issues/1138) is one example.
