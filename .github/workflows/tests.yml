@@ -28,7 +28,7 @@ jobs:
         run: ./_test/ensure_lib_src_rs_exist.sh
 
       - name: Count ignores
-        run: ./_test/count-ignores.sh
+        run: ./_test/count_ignores.sh
 
       - name: Check UUIDs
         run: ./_test/check_uuids.sh
