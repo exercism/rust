@@ -25,7 +25,7 @@ jobs:
         run: ./bin/lint_tool_file_names.sh
 
       - name: Ensure src/lib.rs files exist
-        run: ./_test/ensure-lib-src-rs-exist.sh
+        run: ./_test/ensure_lib_src_rs_exist.sh
 
       - name: Count ignores
         run: ./_test/count-ignores.sh
