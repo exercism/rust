@@ -120,7 +120,7 @@ jobs:
       - name: Check exercises
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/check-exercises.sh
+        run: ./_test/check_exercises.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
       - name: Ensure stubs compile
@@ -193,7 +193,7 @@ jobs:
       - name: Clippy tests
         env:
           CLIPPY: true
-        run: ./_test/check-exercises.sh
+        run: ./_test/check_exercises.sh
 
       - name: Clippy stubs
         env:
@@ -225,4 +225,4 @@ jobs:
       - name: Check exercises
         env:
           BENCHMARK: '1'
-        run: ./_test/check-exercises.sh
+        run: ./_test/check_exercises.sh

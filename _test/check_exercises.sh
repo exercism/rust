@@ -19,7 +19,7 @@ if [ -z "$DENYWARNINGS" ] && [ -z "$CLIPPY" ]; then
 fi
 
 # can't benchmark with a stable compiler; to bench, use
-# $ BENCHMARK=1 rustup run nightly _test/check-exercises.sh
+# $ BENCHMARK=1 rustup run nightly _test/check_exercises.sh
 if [ -n "$BENCHMARK" ]; then
     target_dir=benches
 else
