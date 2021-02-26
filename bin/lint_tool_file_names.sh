@@ -4,7 +4,7 @@
 set -eo pipefail
 
 # find a list of files whose names do not match our convention
-errant_files=$(find bin/ _test/ -iname '*\.sh' -exec basename {} \; | grep '[^a-z_.]')
+errant_files=$(find bin/ _test/ -iname '*\.sh' -exec basename {} \; | grep '[^a-z_.]' || test 1)
 
 if [ -n "$errant_files" ]; then
     echo "These file names do not follow our snake case convention:"
