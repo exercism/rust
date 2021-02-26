@@ -21,6 +21,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Ensure tool names are snake cased
+        run: ./bin/lint_tool_file_names.sh
+
       - name: Ensure src/lib.rs files exist
         run: ./_test/ensure-lib-src-rs-exist.sh
 
