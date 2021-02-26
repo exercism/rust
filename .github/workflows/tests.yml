@@ -198,7 +198,7 @@ jobs:
       - name: Clippy stubs
         env:
           CLIPPY: true
-        run: ./_test/ensure-stubs-compile.sh
+        run: ./_test/ensure_stubs_compile.sh
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
