@@ -34,7 +34,7 @@ jobs:
         run: ./_test/check_uuids.sh
 
       - name: Verify exercise difficulties
-        run: ./_test/verify-exercise-difficulties.sh
+        run: ./_test/verify_exercise_difficulties.sh
 
       - name: Check exercises for authors
         run: ./_test/check_exercises_for_authors.sh
