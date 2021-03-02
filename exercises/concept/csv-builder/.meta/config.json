@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for csv-builder exercise",
   "authors": [
     {
       "github_username": "gilescope",
@@ -14,8 +15,14 @@
     }
   ],
   "files": {
-    "solution": ["src/lib.rs"],
-    "test": ["tests/csv_builder.rs"],
-    "exemplar": [".meta/exemplar.rs"]
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/csv_builder.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
   }
 }

@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for enums exercise",
   "authors": [
     {
       "github_username": "efx",
@@ -6,8 +7,14 @@
     }
   ],
   "files": {
-    "solution": ["src/lib.rs"],
-    "test": ["tests/enums.rs"],
-    "exemplar": [".meta/exemplar.rs"]
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/enums.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
   }
 }

@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for tuples exercise",
   "authors": [
     {
       "github_username": "coriolinus",
@@ -6,8 +7,14 @@
     }
   ],
   "files": {
-    "solution": ["src/lib.rs"],
-    "test": ["tests/tuples.rs"],
-    "exemplar": [".meta/exemplar.rs"]
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/tuples.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
   }
 }
