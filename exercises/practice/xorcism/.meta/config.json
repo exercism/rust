@@ -1,4 +1,5 @@
 {
+  "blurb": "Implement zero-copy streaming adaptors",
   "authors": [
     {
       "github_username": "coriolinus"
