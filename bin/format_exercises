@@ -16,10 +16,9 @@ format_exercises() {
         if [ -f "$allowed_file" ]; then
             exercise=$(basename "$exercise_dir")
             echo "$exercise's stub is allowed to not compile"
-            # we disable the below shellcheck lint
-            # because we want to exit this iteration
-            # shellcheck disable=SC2106
-            continue
+            # exit the subshell successfully to continue
+            # to the next exercise directory
+            exit 0
         fi
         cargo fmt
         file_name=".meta/$source_file_name.rs"
