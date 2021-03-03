@@ -16,12 +16,14 @@ format_exercises() {
         if [ -f "$allowed_file" ]; then
             exercise=$(basename "$exercise_dir")
             echo "$exercise's stub is allowed to not compile"
-        else
-            cargo fmt
-            file_name=".meta/$source_file_name.rs"
-            if [ -f "$file_name" ]; then
-                rustfmt "$file_name"
-            fi
+            # exit the subshell successfully to continue
+            # to the next exercise directory
+            exit 0
+        fi
+        cargo fmt
+        file_name=".meta/$source_file_name.rs"
+        if [ -f "$file_name" ]; then
+            rustfmt "$file_name"
         fi
     )
     done
