@@ -16,15 +16,12 @@ format_exercises() {
         if [ -f "$allowed_file" ]; then
             exercise=$(basename "$exercise_dir")
             echo "$exercise's stub is allowed to not compile"
-            # we disable the below shellcheck lint
-            # because we want to exit this iteration
-            # shellcheck disable=SC2106
-            continue
-        fi
-        cargo fmt
-        file_name=".meta/$source_file_name.rs"
-        if [ -f "$file_name" ]; then
-            rustfmt "$file_name"
+        else
+            cargo fmt
+            file_name=".meta/$source_file_name.rs"
+            if [ -f "$file_name" ]; then
+                rustfmt "$file_name"
+            fi
         fi
     )
     done
