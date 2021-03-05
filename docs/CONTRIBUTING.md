@@ -16,7 +16,7 @@ This document introduces the ways you can help and articulates maintainers expec
 A [pull request](https://docs.github.com/en/github/getting-started-with-github/github-glossary#pull-request) should address one logical change.
 This could be small or big.
 
-For example, [#1174](https://github.com/exercism/rust/pull/1174) fixed a single typo in a single file after minutes of collaboration.
+For example, [#1175](https://github.com/exercism/rust/pull/1175) fixed a single typo in a single file after minutes of collaboration.
 
 It was a small, short pull request with one logical change.
 
