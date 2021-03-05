@@ -3,8 +3,7 @@
 Thank you so much for contributing! :tada:
 We welcome pull requests of all kinds.
 As one of the many tracks in Exercism, contributions here should observe Exercism standards like the [Code of Conduct](https://exercism.io/code-of-conduct).
-This document articulates maintainers expectations of contributors.
-It describes what is specific about working on the Rust track and how you can help.
+This document introduces the ways you can help and articulates maintainers expectations of contributors.
 
 ## Ways to Contribute
 
