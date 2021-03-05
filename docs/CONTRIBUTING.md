@@ -1,14 +1,22 @@
 # Contributing to the Rust Exercism Track
 
+This document is a work-in-progress.
+Current maintainers are primarily preparing for the v3 launch of the Rust track.
+Nonetheless, feel free to peruse what we have written thus far!
+
+*Contributions welcome :)*
+
 Thank you so much for contributing! :tada:
 As one of the many tracks in Exercism, contributions here should observe Exercism standards like the [Code of Conduct](https://exercism.io/code-of-conduct).
 This document introduces the ways you can help and what maintainers expect of contributors.
 
 ## Ways to Contribute
 
+As with many Open Source Projects, work abounds.
+Here are a few categories of what contributions:
 - improving existing exercises
 - creating new exercises
-- internal tooling
+- improving internal tooling
 
 ## Merging Philosophy
 
