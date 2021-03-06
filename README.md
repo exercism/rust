@@ -50,7 +50,7 @@ Before submitting your pull request, you'll want to verify the changes in two wa
 * Run all the tests for the Rust exercises
 * Run an Exercism-specific linter to verify the track
 
-All the tests for Rust exercises can be run from the top level of the repo with `_test/check-exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
+All the tests for Rust exercises can be run from the top level of the repo with `_test/check_exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
 
 ### On modifying the exercises' README
 
@@ -86,7 +86,7 @@ Note that:
                               Cargo.lock              <- Auto generated
                               README.md               <- Instructions for the exercise (see notes below)
 
-- The stub file and test suite should use only the Rust core libraries. `Cargo.toml` should not list any external dependencies as we don't want to make the student assume required crates. If an `example.rs` uses external crates, include `Cargo-example.toml` so that `_tests/check-exercises.sh` can compile with these when testing.
+- The stub file and test suite should use only the Rust core libraries. `Cargo.toml` should not list any external dependencies as we don't want to make the student assume required crates. If an `example.rs` uses external crates, include `Cargo-example.toml` so that `_tests/check_exercises.sh` can compile with these when testing.
 
 - Except in extraordinary circumstances, the stub file should compile under `cargo test --no-run`.
   This allows us to check that the signatures in the stub file match the signatures expected by the tests.
