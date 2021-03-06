@@ -12,8 +12,8 @@ This document introduces the ways you can help and what maintainers expect of co
 
 ## Ways to Contribute
 
-As with many Open Source Projects, work abounds.
-Here are a few categories of what contributions:
+As with many Open Source projects, work abounds.
+Here are a few categories of welcome contribution:
 - improving existing exercises
 - creating new exercises
 - improving internal tooling
