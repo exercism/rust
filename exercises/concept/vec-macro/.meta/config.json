@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for vec-macro exercise",
   "authors": [
     {
       "github_username": "efx",
@@ -10,8 +11,14 @@
     }
   ],
   "files": {
-    "solution": ["src/lib.rs"],
-    "test": ["tests/vec_macro.rs"],
-    "exemplar": [".meta/exemplar.rs"]
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/vec_macro.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
   }
 }

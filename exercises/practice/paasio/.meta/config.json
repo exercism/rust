@@ -1,4 +1,5 @@
 {
+  "blurb": "Report network IO statistics",
   "authors": [
     {
       "github_username": "coriolinus"
