@@ -1,10 +1,11 @@
 # Introduction
 
-In Rust, there are are many specific types of numbers but they generally fall under one of two catorgies: integers or floating-point numbers.
+In Rust, there are are many specific types of numbers but they generally fall under one of two catorgies: integers or floating-point numbers. 
 
 Initializing an integer:
 ```rust
 let x = 5; // rust defaults to an i32
+```
 
 Initializing a large positive integer:
 ```rust
