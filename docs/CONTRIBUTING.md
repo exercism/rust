@@ -25,7 +25,6 @@ Here are a few categories of welcome contribution:
 - updating documentation
 - fixing typos, misspellings, and grammatical errors
 
-
 ## Merging Philosophy
 
 A [pull request](https://docs.github.com/en/github/getting-started-with-github/github-glossary#pull-request) should address one logical change.
