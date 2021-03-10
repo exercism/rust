@@ -22,6 +22,8 @@ MD003:
 MD009: true
 # no reversed links
 MD011: true
+# MD012/no-multiple-blanks https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md012
+MD012: true
 MD013: false
 # MD014/commands-show-output - Dollar signs used before commands without showing output
 MD014: false
