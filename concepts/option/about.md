@@ -35,12 +35,14 @@ There are several common idioms for using the value which might be present in an
 ## Examples
 
 When a value exists in an `Option<u32>`:
+
 ```rust
 let has_something: Option<u32> = Some(100);
 assert_eq!(has_something.unwrap(), 100);
 ```
 
 When a value *does not* exist in an `Option<u32>`:
+
 ```rust
 let has_nothing: Option<u32> = None;
 assert_eq!(has_nothing, None);

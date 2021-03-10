@@ -7,7 +7,6 @@ Structs collect a fixed, heterogeneous set of data into a single unit. Structs i
 - Every field of a struct has a particular name.
 - Visibility is tracked at the field level: each field may be independently public, private, or other[^1].
 
-
 # Structs Overview
 
 Structs are defined using the `struct` keyword, followed by the name of the type the struct is describing.
