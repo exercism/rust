@@ -73,6 +73,7 @@ strings in no_std.)
 
 This section discusses when to use `String` or `&str` for struct fields.
 You'll often see structs defined with `String` instead of `&str` for field values.
+
 ```rust
 struct Record {
     latitude: f64,
@@ -82,6 +83,7 @@ struct Record {
     state: String,
 }
 ```
+
 By using `String`, the struct owns the data.
 This makes the code easier to read and teach for beginners.
 But it also means heap allocations will occur for each field.
