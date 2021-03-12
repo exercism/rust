@@ -1934,6 +1934,7 @@
     "platform/android",
     "platform/web",
     "runtime/standalone_executable",
+    "runtime/wasmtime",
     "used_for/backends",
     "used_for/cross_platform_development",
     "used_for/embedded_systems",
