@@ -10,6 +10,9 @@
     "solution": [
       "src/lib.rs"
     ],
+    "test": [
+      "tests/semi-structured-logs.rs"
+    ],
     "exemplar": [
       ".meta/exemplar.rs"
     ]
