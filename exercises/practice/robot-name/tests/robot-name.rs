@@ -50,8 +50,8 @@ fn test_many_different_robots_have_different_names() {
     let vec: Vec<_> = (0..3529).map(|_| robot::Robot::new()).collect();
     let set: HashSet<_> = vec.iter().map(|robot| robot.name()).collect();
 
-    // If the lengths are different, there was a name collision
-    assert_eq!(set.len(), vec.len());
+    let number_of_collisions = vec.len() - set.len();
+    assert_eq!(number_of_collisions, 0);
 }
 
 #[test]
