@@ -61,15 +61,15 @@
         "status": "wip"
       },
       {
-        "slug": "enums",
-        "name": "Enums",
+        "slug": "semi-structured-logs",
+        "name": "Semi Structured Logs",
         "difficulty": 1,
         "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
         "concepts": [
           "enums-basic"
         ],
         "prerequisites": [],
-        "status": "wip"
+        "status": "active"
       },
       {
         "slug": "structs",
