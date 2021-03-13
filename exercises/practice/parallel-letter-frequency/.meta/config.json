@@ -1,12 +1,19 @@
 {
+  "blurb": "Count the frequency of letters in texts using parallel computation.",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/parallel_letter_frequency.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

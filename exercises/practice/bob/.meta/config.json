@@ -1,13 +1,20 @@
 {
+  "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/bob.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Inspired by the 'Deaf Grandma' exercise in Chris Pine's Learn to Program tutorial.",
   "source_url": "http://pine.fm/LearnToProgram/?Chapter=06"

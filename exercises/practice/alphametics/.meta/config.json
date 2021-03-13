@@ -1,12 +1,19 @@
 {
+  "blurb": "Write a function to solve alphametics puzzles.",
   "authors": [
     {
       "github_username": "ijanos"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/alphametics.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

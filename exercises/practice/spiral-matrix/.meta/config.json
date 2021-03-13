@@ -1,13 +1,20 @@
 {
+  "blurb": " Given the size, return a square matrix of numbers in spiral order.",
   "authors": [
     {
       "github_username": "Menkir"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/spiral_matrix.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Reddit r/dailyprogrammer challenge #320 [Easy] Spiral Ascension.",
   "source_url": "https://www.reddit.com/r/dailyprogrammer/comments/6i60lr/20170619_challenge_320_easy_spiral_ascension/"

@@ -1,13 +1,20 @@
 {
+  "blurb": "Calculate the number of grains of wheat on a chessboard given that the number on each square doubles.",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/grains.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "JavaRanch Cattle Drive, exercise 6",
   "source_url": "http://www.javaranch.com/grains.jsp"

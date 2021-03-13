@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for entry-api exercise",
   "authors": [
     {
       "github_username": "seanchen1991",
@@ -6,8 +7,14 @@
     }
   ],
   "files": {
-    "solution": ["src/lib.rs"],
-    "test": ["tests/entry_api.rs"],
-    "exemplar": [".meta/exemplar.rs"]
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/entry_api.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
   }
 }

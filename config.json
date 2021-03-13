@@ -14,6 +14,20 @@
     "indent_style": "space",
     "indent_size": 4
   },
+  "files": {
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/%{snake_slug}.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
   "exercises": {
     "concept": [
       {
@@ -111,6 +125,20 @@
         "prerequisites": [
           "intro-fn",
           "numbers"
+        ],
+        "status": "active"
+      },
+      {
+        "slug": "csv-builder",
+        "name": "CSV builder",
+        "difficulty": 1,
+        "uuid": "10c9f505-9aef-479f-b689-cb7959572482",
+        "concepts": [
+          "string-vs-str"
+        ],
+        "prerequisites": [
+          "string",
+          "&str"
         ],
         "status": "active"
       }
@@ -1905,8 +1933,8 @@
     "platform/ios",
     "platform/android",
     "platform/web",
-    "platform/wasm",
     "runtime/standalone_executable",
+    "runtime/wasmtime",
     "used_for/backends",
     "used_for/cross_platform_development",
     "used_for/embedded_systems",

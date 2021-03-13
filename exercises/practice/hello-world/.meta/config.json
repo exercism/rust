@@ -1,13 +1,20 @@
 {
+  "blurb": "The classical introductory exercise. Just say \"Hello, World!\"",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/hello_world.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "This is an exercise to introduce users to using Exercism",
   "source_url": "http://en.wikipedia.org/wiki/%22Hello,_world!%22_program"

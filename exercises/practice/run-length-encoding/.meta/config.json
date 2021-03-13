@@ -1,13 +1,20 @@
 {
+  "blurb": "Implement run-length encoding and decoding.",
   "authors": [
     {
       "github_username": "divagant-martian"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/run_length_encoding.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Run-length_encoding"

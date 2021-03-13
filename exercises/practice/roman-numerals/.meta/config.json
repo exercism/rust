@@ -1,13 +1,20 @@
 {
+  "blurb": "Write a function to convert from normal numbers to Roman Numerals.",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/roman_numerals.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "The Roman Numeral Kata",
   "source_url": "http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals"

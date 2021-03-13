@@ -1,13 +1,20 @@
 {
+  "blurb": "Given a word, compute the Scrabble score for that word.",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/scrabble_score.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Inspired by the Extreme Startup game",
   "source_url": "https://github.com/rchatley/extreme_startup"

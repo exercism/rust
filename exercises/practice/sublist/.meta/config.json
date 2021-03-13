@@ -1,12 +1,19 @@
 {
+  "blurb": "Write a function to determine if a list is a sublist of another list.",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/sublist.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

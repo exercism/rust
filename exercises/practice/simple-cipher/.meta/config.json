@@ -1,13 +1,20 @@
 {
+  "blurb": "Implement a simple shift cipher like Caesar and a more secure substitution cipher",
   "authors": [
     {
       "github_username": "miken500"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/simple_cipher.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Substitution Cipher at Wikipedia",
   "source_url": "http://en.wikipedia.org/wiki/Substitution_cipher"

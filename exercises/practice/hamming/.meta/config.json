@@ -1,13 +1,20 @@
 {
+  "blurb": "Calculate the Hamming difference between two DNA strands.",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/hamming.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "The Calculating Point Mutations problem at Rosalind",
   "source_url": "http://rosalind.info/problems/hamm/"

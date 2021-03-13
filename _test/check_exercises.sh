@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # test for existence and executability of the test-exercise script
 # this depends on that
@@ -19,7 +19,7 @@ if [ -z "$DENYWARNINGS" ] && [ -z "$CLIPPY" ]; then
 fi
 
 # can't benchmark with a stable compiler; to bench, use
-# $ BENCHMARK=1 rustup run nightly _test/check-exercises.sh
+# $ BENCHMARK=1 rustup run nightly _test/check_exercises.sh
 if [ -n "$BENCHMARK" ]; then
     target_dir=benches
 else
@@ -34,10 +34,10 @@ if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
       grep "exercises/" |
       cut -d '/' -f -3 |
       sort -u |
-      awk -v repo=$repo '{print repo"/"$1}'
+      awk -v repo="$repo" '{print repo"/"$1}'
    )"
 else
-	files=$repo/exercises/*/*
+    files="$repo/exercises/*/*"
 fi
 
 return_code=0
@@ -51,29 +51,28 @@ for exercise in $files; do
    directory=$(dirname "${exercise}")
 
    release=""
-   if [ -z "$BENCHMARK" -a -f "$directory/.meta/test-in-release-mode" ]; then
+   if [ -z "$BENCHMARK" ] && [ -f "$directory/.meta/test-in-release-mode" ]; then
       release="--release"
    fi
 
    if [ -n "$DENYWARNINGS" ]; then
-      # Output a progress dot; otherwise Travis may assume we're hung,
-      # if we don't produce output in > 10 mins.
+      # Output a progress dot, because we may not otherwise produce output in > 10 mins.
       echo -n '.'
       # No-run mode so we see no test output.
       # Quiet mode so we see no compile output
       # (such as "Compiling"/"Downloading").
       # Compiler errors will still be shown though.
       # Both flags are necessary to keep things quiet.
-      ./bin/test-exercise $directory --quiet --no-run
-      return_code=$(($return_code | $?))
+      ./bin/test-exercise "$directory" --quiet --no-run
+      return_code=$((return_code | $?))
    else
       # Run the test and get the status
       # We use release mode here because, while it somewhat increases
       # the compile time for all exercises, it substantially improves
       # the runtime for certain exercises such as alphametics.
       # Overall this should be an improvement.
-      ./bin/test-exercise $directory $release
-      return_code=$(($return_code | $?))
+      ./bin/test-exercise "$directory" $release
+      return_code=$((return_code | $?))
    fi
 done
 

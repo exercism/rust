@@ -1,13 +1,20 @@
 {
+  "blurb": "Given a year, report if it is a leap year.",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/leap.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "JavaRanch Cattle Drive, exercise 3",
   "source_url": "http://www.javaranch.com/leap.jsp"

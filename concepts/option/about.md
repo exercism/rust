@@ -15,7 +15,7 @@ There are several common idioms for using the value which might be present in an
 
 - `if let Some(t) = optional { ... }`.
 
-    The `if let` idiom extracts the value from an Option<T> and binds it to the variable `t`. This lets you use it directly in that block scope.
+    The `if let` idiom extracts the value from an `Option<T>` and binds it to the variable `t`. This lets you use it directly in that block scope.
 
 - `match optional { Some(t) => {...}, None => {...}}`
 
@@ -35,12 +35,14 @@ There are several common idioms for using the value which might be present in an
 ## Examples
 
 When a value exists in an `Option<u32>`:
+
 ```rust
 let has_something: Option<u32> = Some(100);
 assert_eq!(has_something.unwrap(), 100);
 ```
 
 When a value *does not* exist in an `Option<u32>`:
+
 ```rust
 let has_nothing: Option<u32> = None;
 assert_eq!(has_nothing, None);

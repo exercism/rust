@@ -1,13 +1,20 @@
 {
+  "blurb": "Score a bowling game",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/bowling.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "The Bowling Game Kata at but UncleBob",
   "source_url": "http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata"

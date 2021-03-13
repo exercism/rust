@@ -3,6 +3,7 @@
 Destructuring is a way to break apart compound values in Rust. It is often used to extract fields from tuples or structs.
 
 For example, the below snippet extracts two values from a tuple:
+
 ```rust
 let (first, second) = (1, 2);
 ```

@@ -1,12 +1,19 @@
 {
+  "blurb": "Luhn: Using the From Trait",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/luhn_from.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

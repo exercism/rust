@@ -1,13 +1,20 @@
 {
+  "blurb": "Implement encoding and decoding for the rail fence cipher.",
   "authors": [
     {
       "github_username": "coriolinus"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/rail_fence_cipher.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Transposition_cipher#Rail_Fence_cipher"

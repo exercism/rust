@@ -7,15 +7,7 @@ Exercism exercises in Rust
 
 ## Contributing
 
-Thank you so much for contributing! :tada:
-
-Please read about how to [get involved in a track](https://github.com/exercism/docs/tree/main/contributing-to-language-tracks). Be sure to read the Exercism [Code of Conduct](https://exercism.io/code-of-conduct).
-
-We welcome pull requests of all kinds. No contribution is too small.
-
-We encourage contributions that provide fixes and improvements to existing exercises. Please note that this track's exercises must conform to the Exercism-wide standards described in the [documentation](https://github.com/exercism/docs/tree/main/language-tracks/exercises). If you're unsure about how to make a change, then go ahead and open a GitHub issue, and we'll discuss it.
-
-If you want to contribute but don't know where to start, the [issues](https://github.com/exercism/rust/issues) tab shows what items are currently of interest to the community. In addition, it is often worth checking the [track dashboard](https://tracks.exercism.io/rust/main), which flags any exercises whose version has fallen behind the version of the [canonical data](https://github.com/exercism/problem-specifications). PRs which keep the track up to date are particularly welcome!
+Check out our [contributor documentation](docs/CONTRIBUTING.md).
 
 ## Exercise Tests
 
@@ -58,7 +50,7 @@ Before submitting your pull request, you'll want to verify the changes in two wa
 * Run all the tests for the Rust exercises
 * Run an Exercism-specific linter to verify the track
 
-All the tests for Rust exercises can be run from the top level of the repo with `_test/check-exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
+All the tests for Rust exercises can be run from the top level of the repo with `_test/check_exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
 
 ### On modifying the exercises' README
 
@@ -94,7 +86,7 @@ Note that:
                               Cargo.lock              <- Auto generated
                               README.md               <- Instructions for the exercise (see notes below)
 
-- The stub file and test suite should use only the Rust core libraries. `Cargo.toml` should not list any external dependencies as we don't want to make the student assume required crates. If an `example.rs` uses external crates, include `Cargo-example.toml` so that `_tests/check-exercises.sh` can compile with these when testing.
+- The stub file and test suite should use only the Rust core libraries. `Cargo.toml` should not list any external dependencies as we don't want to make the student assume required crates. If an `example.rs` uses external crates, include `Cargo-example.toml` so that `_tests/check_exercises.sh` can compile with these when testing.
 
 - Except in extraordinary circumstances, the stub file should compile under `cargo test --no-run`.
   This allows us to check that the signatures in the stub file match the signatures expected by the tests.

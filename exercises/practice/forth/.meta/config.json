@@ -1,12 +1,19 @@
 {
+  "blurb": "Implement an evaluator for a very simple subset of Forth",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/forth.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

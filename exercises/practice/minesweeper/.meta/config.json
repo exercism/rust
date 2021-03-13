@@ -1,12 +1,19 @@
 {
+  "blurb": "Add the numbers to a minesweeper board",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/minesweeper.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

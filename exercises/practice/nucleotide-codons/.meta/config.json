@@ -1,12 +1,19 @@
 {
+  "blurb": "Write a function that returns the name of an amino acid a particular codon, possibly using shorthand, encodes for.",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/nucleotide_codons.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

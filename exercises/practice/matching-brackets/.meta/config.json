@@ -1,13 +1,20 @@
 {
+  "blurb": "Make sure the brackets and braces all match.",
   "authors": [
     {
       "github_username": "petertseng"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/matching_brackets.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Ginna Baker"
 }

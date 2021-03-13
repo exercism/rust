@@ -1,13 +1,20 @@
 {
+  "blurb": "Create an implementation of the atbash cipher, an ancient encryption system created in the Middle East.",
   "authors": [
     {
       "github_username": "nikhilshagri"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/atbash_cipher.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Wikipedia",
   "source_url": "http://en.wikipedia.org/wiki/Atbash"

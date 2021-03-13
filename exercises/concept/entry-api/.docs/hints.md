@@ -1,4 +1,6 @@
-# General
+# Hints
+
+## General
 
 - Upon fetching an entry using the `entry` method, the entry can be modified in-place after dereferencing it.
 

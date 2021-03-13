@@ -1,12 +1,19 @@
 {
+  "blurb": "Implement a basic reactive system.",
   "authors": [
     {
       "github_username": "petertseng"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/react.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

@@ -1,12 +1,19 @@
 {
+  "blurb": "Convert a number, represented as a sequence of digits in one base, to any other base.",
   "authors": [
     {
       "github_username": "jonasbb"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/all_your_base.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

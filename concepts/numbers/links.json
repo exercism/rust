@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "url": "https://cheats.rs/#basic-types",
+    "description": "cheats.rs - Basic Types"
+  },
+  {
+    "url": "https://doc.rust-lang.org/stable/book/ch03-02-data-types.html?highlight=primitive#scalar-types",
+    "description": "Rust book - Scalar types"
+  },
+  {
+    "url": "https://doc.rust-lang.org/stable/reference/tokens.html#integer-literals",
+    "description": "Rust reference - Integer literals"
+  },
+  {
+    "url": "https://doc.rust-lang.org/stable/reference/tokens.html#floating-point-literals",
+    "description": "Rust reference - Floating point literals"
+  }
+]

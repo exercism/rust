@@ -1,13 +1,20 @@
 {
+  "blurb": "Search a file for lines matching a regular expression pattern. Return the line number and contents of each matching line.",
   "authors": [
     {
       "github_username": "ZapAnton"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/grep.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Conversation with Nate Foster.",
   "source_url": "http://www.cs.cornell.edu/Courses/cs3110/2014sp/hw/0/ps0.pdf"

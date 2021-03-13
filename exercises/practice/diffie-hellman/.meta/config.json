@@ -1,13 +1,20 @@
 {
+  "blurb": "Diffie-Hellman key exchange.",
   "authors": [
     {
       "github_username": "hekrause"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/diffie_hellman.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Wikipedia, 1024 bit key from www.cryptopp.com/wiki.",
   "source_url": "http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"

@@ -102,7 +102,7 @@ fn process_matches(matches: &ArgMatches<'_>) -> Result<()> {
         }
 
         ("", None) => {
-            println!("No subcommand was used.\nUse init_exercise --help to learn about the possible subcommands.");
+            println!("No subcommand was used.\nUse exercise --help to learn about the possible subcommands.");
         }
 
         _ => unreachable!(),

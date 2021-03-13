@@ -1,12 +1,19 @@
 {
+  "blurb": "Make a chain of dominoes.",
   "authors": [
     {
       "github_username": "EduardoBautista"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/dominoes.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   }
 }

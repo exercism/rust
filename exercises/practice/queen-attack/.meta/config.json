@@ -1,13 +1,20 @@
 {
+  "blurb": "Given the position of two queens on a chess board, indicate whether or not they are positioned so that they can attack each other.",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/queen_attack.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "J Dalbey's Programming Practice problems",
   "source_url": "http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html"

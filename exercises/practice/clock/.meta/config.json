@@ -1,13 +1,20 @@
 {
+  "blurb": "Implement a clock that handles times without dates.",
   "authors": [
     {
       "github_username": "sacherjj"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/clock.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Pairing session with Erin Drummond",
   "source_url": "https://twitter.com/ebdrummond"

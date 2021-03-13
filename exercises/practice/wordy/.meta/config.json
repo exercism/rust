@@ -1,13 +1,20 @@
 {
+  "blurb": "Parse and evaluate simple math word problems returning the answer as an integer.",
   "authors": [
     {
       "github_username": "IanWhitney"
     }
   ],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/wordy.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "source": "Inspired by one of the generated questions in the Extreme Startup game.",
   "source_url": "https://github.com/rchatley/extreme_startup"
