@@ -43,6 +43,19 @@ fn test_different_robots_have_different_names() {
 
 #[test]
 #[ignore]
+fn test_many_different_robots_have_different_names() {
+    use std::collections::HashSet;
+
+    // In 3,529 random robot names, there is ~99.99% chance of a name collision
+    let vec: Vec<_> = (0..3529).map(|_| robot::Robot::new()).collect();
+    let set: HashSet<_> = vec.iter().map(|robot| robot.name()).collect();
+
+    let number_of_collisions = vec.len() - set.len();
+    assert_eq!(number_of_collisions, 0);
+}
+
+#[test]
+#[ignore]
 fn test_new_name_should_match_expected_pattern() {
     let mut r = robot::Robot::new();
     assert_name_matches_pattern(r.name());
