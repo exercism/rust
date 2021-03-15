@@ -1,5 +1,5 @@
 {
-  "blurb": "TODO: add blurb for enums exercise",
+  "blurb": "Learn enums while building a logging utility.",
   "authors": [
     {
       "github_username": "efx",
@@ -11,7 +11,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/enums.rs"
+      "tests/semi-structured-logs.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"
