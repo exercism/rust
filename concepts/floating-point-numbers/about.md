@@ -1,6 +1,7 @@
 # Floating-point Numbers
 
 Floating-point numbers are real numbers: they may have a fractional part. They are represented in the machine as a pattern of binary bits, using the [IEEE-754 specification](https://en.wikipedia.org/wiki/IEEE_754).
+People refer to floating-point numbers as floats.
 
 Floating point numbers are always signed. Signedness means reserving one of the bits of the number to indicate
 whether or not that number is negative.
@@ -16,7 +17,7 @@ In general, use `f64`: it's as fast as `f32` on most modern consumer hardware, a
 
 If you need infinite-precision rational numbers, you might use the [`num-rational` crate](https://crates.io/crates/num-rational), which provides a `BigRational` type. If you need fixed-precision decimal numbers, you might use the [`rust_decimal` crate](https://crates.io/crates/rust_decimal), which provides a `Decimal` type.
 
-## Converting between floats
+## Converting between floating-point numbers
 
 Rust has no implicit numeric conversions. If you need to cast between float types, there are two basic strategies: the `as` keyword, and the `From` and `TryFrom` traits.
 
@@ -24,4 +25,4 @@ Using the `as` keyword is simple: `expr as Type`. However, there are a number of
 
 Trait-based casting is slightly more involved, but safer: conversion traits are only implemented where they are safe. For example, [`f32`](https://doc.rust-lang.org/std/primitive.f32.html) implements `From<u8>`, `From<u16>`, `From<i8>`, and `From<i16>`: any value representable by any of these types is guaranteed to be representable in an `f32`. It can be used like `f32::from(expr)`, or `expr.into()`, where `expr` resolves to one of those types.
 
-When converting floating-point values `as`-casting is often preferred simply because of the relative scarcity of trait-based cast implemementations. As of Oct 2020, `TryFrom` is not implemented for floating-point numbers. `as`-casting from `f32` to `f64` is lossless. The reverse is lossy, but has a defined casting protocol intended to minimize loss.
+When converting floating-point values `as`-casting is often preferred simply because of the relative scarcity of trait-based cast implementations. As of Oct 2020, `TryFrom` is not implemented for floating-point numbers. `as`-casting from `f32` to `f64` is lossless. The reverse is lossy, but has a defined casting protocol intended to minimize loss.
