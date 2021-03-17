@@ -1,9 +1,13 @@
 {
-  "blurb": "TODO: add blurb for numbers exercise",
+  "blurb": "Learn about numbers while working on an assembly line for cars.",
   "authors": [
     {
       "github_username": "LewisClement",
       "exercism_username": "LewisClement"
+    },
+    {
+      "github_username": "efx",
+      "exercism_username": "efx"
     }
   ],
   "files": {
@@ -11,7 +15,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/numbers.rs"
+      "tests/assembly-line.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"
