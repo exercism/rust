@@ -47,9 +47,9 @@
         "status": "wip"
       },
       {
-        "slug": "numbers",
+        "slug": "assembly-line",
         "uuid": "b042200f-5bdd-4010-981e-626e40fd2877",
-        "name": "Numbers",
+        "name": "Assembly Line",
         "difficulty": 1,
         "concepts": [
           "integers",
@@ -58,7 +58,7 @@
         "prerequisites": [
           "intro-fn"
         ],
-        "status": "wip"
+        "status": "active"
       },
       {
         "slug": "semi-structured-logs",
