@@ -3,7 +3,10 @@ fn process_rate_per_hour(speed: u8, expected_rate: f64) {
 }
 
 fn process_rate_per_minute(speed: u8, expected_rate: u32) {
-    assert_eq!(assembly_line::working_items_per_minute(speed), expected_rate);
+    assert_eq!(
+        assembly_line::working_items_per_minute(speed),
+        expected_rate
+    );
 }
 
 #[test]
