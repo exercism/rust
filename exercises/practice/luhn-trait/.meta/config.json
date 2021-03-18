@@ -1,5 +1,6 @@
 {
   "blurb": "Luhn: Using a Custom Trait",
+  "source": "The Rust track maintainers, based on the original Luhn exercise",
   "authors": [
     {
       "github_username": "IanWhitney"

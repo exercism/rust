@@ -1,5 +1,6 @@
 {
   "blurb": "Implement a Decimal type",
+  "source": "Peter Goodspeed-Niklaus",
   "authors": [
     {
       "github_username": "coriolinus"
