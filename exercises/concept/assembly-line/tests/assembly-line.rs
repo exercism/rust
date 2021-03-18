@@ -1,9 +1,12 @@
 fn process_rate_per_hour(speed: u8, expected_rate: f64) {
-    assert!((numbers::production_rate_per_hour(speed) - expected_rate).abs() < f64::EPSILON);
+    assert!((assembly_line::production_rate_per_hour(speed) - expected_rate).abs() < f64::EPSILON);
 }
 
 fn process_rate_per_minute(speed: u8, expected_rate: u32) {
-    assert_eq!(numbers::working_items_per_minute(speed), expected_rate);
+    assert_eq!(
+        assembly_line::working_items_per_minute(speed),
+        expected_rate
+    );
 }
 
 #[test]
