@@ -46,6 +46,12 @@ MD040: true
 # MD042/no-empty-links - No empty links
 MD042: true
 
+# low-hanging fruit to validate proper names
+# deprecate if a better solution via
+# https://github.com/exercism/docs/issues/29 is found
+MD044:
+  names: ["Rust", "UTF-8"]
+
 # MD048/code-fence-style - Code fence style
 MD048:
   # Code fence syle
