@@ -5,7 +5,7 @@ In Rust, there are are many specific types of numbers but they generally fall un
 Initializing an integer:
 
 ```rust
-let x = 5; // rust defaults to an i32
+let x = 5; // Rust defaults to an i32
 ```
 
 Initializing a large positive integer:
