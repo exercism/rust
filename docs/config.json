@@ -1,0 +1,32 @@
+{
+  "docs": [
+    {
+      "uuid": "d1341a2f-5454-4e90-914b-3bd20b4757d9",
+      "slug": "installation",
+      "path": "docs/INSTALLATION.md",
+      "title": "Installing Rust locally",
+      "blurb": "Learn how to install Rust locally to solve Exercism's exercises on your own machine"
+    },
+    {
+      "uuid": "5ba201af-b735-4c00-a96b-f2a087e00192",
+      "slug": "learning",
+      "path": "docs/LEARNING.md",
+      "title": "How to learn Rust",
+      "blurb": "An overview of how to get started from scratch with Rust"
+    },
+    {
+      "uuid": "fda5a94a-d0fa-410b-bae2-67ba02b7faf2",
+      "slug": "tests",
+      "path": "docs/TESTS.md",
+      "title": "Testing on the Rust track",
+      "blurb": "Learn how to test your Rust exercises on Exercism"
+    },
+    {
+      "uuid": "52d6f37f-0a64-435e-bd3d-3f35837ae9b5",
+      "slug": "resources",
+      "path": "docs/RESOURCES.md",
+      "title": "Useful Rust resources",
+      "blurb": "A collection of useful resources to help you master Rust"
+    }
+  ]
+}
