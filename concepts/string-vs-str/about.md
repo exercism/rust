@@ -14,7 +14,7 @@ The proper pronunciation of `&str` is "ref string".
 `&str` is a read only view of a well-formed UTF-8 sequence.
 Because it's a reference, it is `Copy` and can be shared.
 
-`String` and `&str` in rust can not be indexed into like you might in other languages.
+`String` and `&str` in Rust can not be indexed into like you might in other languages.
 For example this will not work:
 
 ```rust,invalid

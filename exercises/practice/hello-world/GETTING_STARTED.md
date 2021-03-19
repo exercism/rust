@@ -5,14 +5,14 @@ an exact match.
 
 The following steps assume that you are in the same directory as the exercise.
 
-You must have rust installed.
+You must have Rust installed.
 Follow the [Installation chapter in the Rust book](https://doc.rust-lang.org/book/ch01-01-installation.html).
 The [Rust language section](http://exercism.io/languages/rust)
 section from exercism is also useful.
 
 ## Step 1
 
-Run the test suite. It can be run with `cargo`, which is installed with rust.
+Run the test suite. It can be run with `cargo`, which is installed with Rust.
 
 ```sh
 $ cargo test
