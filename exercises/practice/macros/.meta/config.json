@@ -2,9 +2,7 @@
   "blurb": "Implement a macro using macros-by-example",
   "source": "Peter Goodspeed-Niklaus",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

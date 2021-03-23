@@ -1,9 +1,7 @@
 {
   "blurb": "Implement run-length encoding and decoding.",
   "authors": [
-    {
-      "github_username": "divagant-martian"
-    }
+    "divagant-martian"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Implement a simple shift cipher like Caesar and a more secure substitution cipher",
   "authors": [
-    {
-      "github_username": "miken500"
-    }
+    "miken500"
   ],
   "files": {
     "solution": [

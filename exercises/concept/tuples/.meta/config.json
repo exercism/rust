@@ -1,10 +1,7 @@
 {
   "blurb": "TODO: add blurb for tuples exercise",
   "authors": [
-    {
-      "github_username": "coriolinus",
-      "exercism_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

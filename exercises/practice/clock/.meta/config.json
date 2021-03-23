@@ -1,9 +1,7 @@
 {
   "blurb": "Implement a clock that handles times without dates.",
   "authors": [
-    {
-      "github_username": "sacherjj"
-    }
+    "sacherjj"
   ],
   "files": {
     "solution": [

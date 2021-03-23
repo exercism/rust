@@ -1,10 +1,7 @@
 {
   "blurb": "TODO: add blurb for entry-api exercise",
   "authors": [
-    {
-      "github_username": "seanchen1991",
-      "exercism_username": "seanchen1991"
-    }
+    "seanchen1991"
   ],
   "files": {
     "solution": [

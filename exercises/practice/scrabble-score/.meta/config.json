@@ -1,9 +1,7 @@
 {
   "blurb": "Given a word, compute the Scrabble score for that word.",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

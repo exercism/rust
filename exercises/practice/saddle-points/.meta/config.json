@@ -1,9 +1,7 @@
 {
   "blurb": "Detect saddle points in a matrix.",
   "authors": [
-    {
-      "github_username": "hekrause"
-    }
+    "hekrause"
   ],
   "files": {
     "solution": [

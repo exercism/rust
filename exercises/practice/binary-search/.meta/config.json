@@ -1,9 +1,7 @@
 {
   "blurb": "Implement a binary search algorithm.",
   "authors": [
-    {
-      "github_username": "shybyte"
-    }
+    "shybyte"
   ],
   "files": {
     "solution": [

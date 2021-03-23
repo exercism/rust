@@ -1,9 +1,7 @@
 {
   "blurb": "Translate RNA sequences into proteins.",
   "authors": [
-    {
-      "github_username": "petertseng"
-    }
+    "petertseng"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Compute Pascal's triangle up to a given number of rows.",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

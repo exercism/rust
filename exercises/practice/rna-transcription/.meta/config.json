@@ -1,9 +1,7 @@
 {
   "blurb": "Given a DNA strand, return its RNA Complement Transcription.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

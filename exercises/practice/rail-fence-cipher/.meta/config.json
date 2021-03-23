@@ -1,9 +1,7 @@
 {
   "blurb": "Implement encoding and decoding for the rail fence cipher.",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Write a function to convert from normal numbers to Roman Numerals.",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

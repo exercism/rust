@@ -1,9 +1,7 @@
 {
   "blurb": "Write a robot simulator.",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

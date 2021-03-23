@@ -1,9 +1,7 @@
 {
   "blurb": "Convert a long phrase to its acronym",
   "authors": [
-    {
-      "github_username": "gregcline"
-    }
+    "gregcline"
   ],
   "files": {
     "solution": [

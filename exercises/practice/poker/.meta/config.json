@@ -1,9 +1,7 @@
 {
   "blurb": "Pick the best hand(s) from a list of poker hands.",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

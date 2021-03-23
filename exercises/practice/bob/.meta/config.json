@@ -1,9 +1,7 @@
 {
   "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

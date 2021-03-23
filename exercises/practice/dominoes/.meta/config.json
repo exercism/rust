@@ -1,9 +1,7 @@
 {
   "blurb": "Make a chain of dominoes.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Count the rectangles in an ASCII diagram.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

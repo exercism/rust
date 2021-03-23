@@ -1,9 +1,7 @@
 {
   "blurb": "Write a function to solve alphametics puzzles.",
   "authors": [
-    {
-      "github_username": "ijanos"
-    }
+    "ijanos"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Add the numbers to a minesweeper board",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

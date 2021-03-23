@@ -2,9 +2,7 @@
   "blurb": "Implement zero-copy streaming adaptors",
   "source": "Peter Goodspeed-Niklaus",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Compute the prime factors of a given natural number.",
   "authors": [
-    {
-      "github_username": "sacherjj"
-    }
+    "sacherjj"
   ],
   "files": {
     "solution": [

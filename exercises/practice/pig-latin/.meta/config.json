@@ -1,9 +1,7 @@
 {
   "blurb": "Implement a program that translates from English to Pig Latin",
   "authors": [
-    {
-      "github_username": "sacherjj"
-    }
+    "sacherjj"
   ],
   "files": {
     "solution": [
