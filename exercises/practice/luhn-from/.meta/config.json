@@ -1,9 +1,7 @@
 {
   "blurb": "Luhn: Using the From Trait",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

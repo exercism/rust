@@ -1,9 +1,7 @@
 {
   "blurb": "Luhn: Using a Custom Trait",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

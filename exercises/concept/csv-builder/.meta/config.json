@@ -1,18 +1,9 @@
 {
   "blurb": "TODO: add blurb for csv-builder exercise",
   "authors": [
-    {
-      "github_username": "gilescope",
-      "exercism_username": "gilescope"
-    },
-    {
-      "github_username": "coriolinus",
-      "exercism_username": "coriolinus"
-    },
-    {
-      "github_username": "efx",
-      "exercism_username": "efx"
-    }
+    "gilescope",
+    "coriolinus",
+    "efx"
   ],
   "files": {
     "solution": [

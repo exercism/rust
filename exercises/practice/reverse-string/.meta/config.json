@@ -1,9 +1,7 @@
 {
   "blurb": "Reverse a string",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

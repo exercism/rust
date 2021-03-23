@@ -1,9 +1,7 @@
 {
   "blurb": "The classical introductory exercise. Just say \"Hello, World!\"",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Determine if a number is an Armstrong number",
   "authors": [
-    {
-      "github_username": "shingtaklam1324"
-    }
+    "shingtaklam1324"
   ],
   "files": {
     "solution": [

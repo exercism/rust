@@ -1,9 +1,7 @@
 {
   "blurb": "Implement variable length quantity encoding and decoding.",
   "authors": [
-    {
-      "github_username": "jonasbb"
-    }
+    "jonasbb"
   ],
   "files": {
     "solution": [

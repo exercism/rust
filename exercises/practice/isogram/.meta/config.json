@@ -1,9 +1,7 @@
 {
   "blurb": "Determine if a word or phrase is an isogram.",
   "authors": [
-    {
-      "github_username": "hekrause"
-    }
+    "hekrause"
   ],
   "files": {
     "solution": [

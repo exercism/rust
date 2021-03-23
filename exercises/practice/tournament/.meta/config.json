@@ -1,9 +1,7 @@
 {
   "blurb": "Tally the results of a small football competition.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

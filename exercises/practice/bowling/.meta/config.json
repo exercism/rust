@@ -1,9 +1,7 @@
 {
   "blurb": "Score a bowling game",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

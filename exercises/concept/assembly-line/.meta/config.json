@@ -1,14 +1,8 @@
 {
   "blurb": "Learn about numbers while working on an assembly line for cars.",
   "authors": [
-    {
-      "github_username": "LewisClement",
-      "exercism_username": "LewisClement"
-    },
-    {
-      "github_username": "efx",
-      "exercism_username": "efx"
-    }
+    "LewisClement",
+    "efx"
   ],
   "files": {
     "solution": [

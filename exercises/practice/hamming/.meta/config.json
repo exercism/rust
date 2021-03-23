@@ -1,9 +1,7 @@
 {
   "blurb": "Calculate the Hamming difference between two DNA strands.",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [

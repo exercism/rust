@@ -1,9 +1,7 @@
 {
   "blurb": "Implement a Decimal type",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

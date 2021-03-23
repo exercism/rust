@@ -1,10 +1,7 @@
 {
   "blurb": "Learn enums while building a logging utility.",
   "authors": [
-    {
-      "github_username": "efx",
-      "exercism_username": "efx"
-    }
+    "efx"
   ],
   "files": {
     "solution": [

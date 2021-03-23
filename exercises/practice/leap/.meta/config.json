@@ -1,9 +1,7 @@
 {
   "blurb": "Given a year, report if it is a leap year.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

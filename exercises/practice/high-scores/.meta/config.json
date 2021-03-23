@@ -1,9 +1,7 @@
 {
   "blurb": "Manage a player's High Score list",
   "authors": [
-    {
-      "github_username": "Br1ght0ne"
-    }
+    "Br1ght0ne"
   ],
   "files": {
     "solution": [

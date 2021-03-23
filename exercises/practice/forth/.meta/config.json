@@ -1,9 +1,7 @@
 {
   "blurb": "Implement an evaluator for a very simple subset of Forth",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

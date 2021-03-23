@@ -1,9 +1,7 @@
 {
   "blurb": "Count the frequency of letters in texts using parallel computation.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Detect palindrome products in a given range.",
   "authors": [
-    {
-      "github_username": "Menkir"
-    }
+    "Menkir"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "Implement a macro using macros-by-example",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

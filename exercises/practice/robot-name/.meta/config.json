@@ -1,9 +1,7 @@
 {
   "blurb": "Manage robot factory settings.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

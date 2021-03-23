@@ -1,9 +1,7 @@
 {
   "blurb": "Diffie-Hellman key exchange.",
   "authors": [
-    {
-      "github_username": "hekrause"
-    }
+    "hekrause"
   ],
   "files": {
     "solution": [

@@ -1,9 +1,7 @@
 {
   "blurb": "We are going to do the `Transform` step of an Extract-Transform-Load.",
   "authors": [
-    {
-      "github_username": "EduardoBautista"
-    }
+    "EduardoBautista"
   ],
   "files": {
     "solution": [

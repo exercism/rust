@@ -1,9 +1,7 @@
 {
   "blurb": "Implement FizzBuzz using advanced generics",
   "authors": [
-    {
-      "github_username": "coriolinus"
-    }
+    "coriolinus"
   ],
   "files": {
     "solution": [

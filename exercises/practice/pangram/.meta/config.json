@@ -1,9 +1,7 @@
 {
   "blurb": "Determine if a sentence is a pangram.",
   "authors": [
-    {
-      "github_username": "IanWhitney"
-    }
+    "IanWhitney"
   ],
   "files": {
     "solution": [
