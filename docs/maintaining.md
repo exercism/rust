@@ -42,3 +42,11 @@ Scripts expect GNU versions of tooling, so you may see unexpected results on mac
 [Here](https://github.com/exercism/rust/issues/1138) is one example.
 Windows users can also run tooling locally using [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
 We recommend WSL 2 with the distribution of your choice.
+
+## Maintainer Tips and Tricks
+
+Exercism tracks follow a specification that has evolved over time.
+Maintainers often need to make ad-hoc migrations to files in this repository.
+If you find yourself scripting such ad-hoc changes, include the source of your script using markdown codeblocks in a commit message.
+
+See [this commit](https://github.com/exercism/rust/commit/45eb8cc113a733636212394dee946ceff5949cc3) for an example.
