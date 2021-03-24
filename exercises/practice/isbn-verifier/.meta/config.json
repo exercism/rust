@@ -3,6 +3,22 @@
   "authors": [
     "ktomsic"
   ],
+  "contributors": [
+    "Baelyk",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "lutostag",
+    "nathanielknight",
+    "petertseng",
+    "rofrol",
+    "rpottsoh",
+    "stringparser",
+    "Teo-ShaoWei",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

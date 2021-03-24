@@ -3,6 +3,24 @@
   "authors": [
     "sacherjj"
   ],
+  "contributors": [
+    "AndrewKvalheim",
+    "attilahorvath",
+    "AvasDream",
+    "ClashTheBunny",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "f3rn0s",
+    "lutostag",
+    "nfiles",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

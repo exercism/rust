@@ -3,6 +3,22 @@
   "authors": [
     "matbesancon"
   ],
+  "contributors": [
+    "coriolinus",
+    "cwhakes",
+    "eddyp",
+    "efx",
+    "elbaro",
+    "ErikSchierboom",
+    "lutostag",
+    "navossoc",
+    "nfiles",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

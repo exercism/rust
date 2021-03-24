@@ -3,6 +3,25 @@
   "authors": [
     "nikhilshagri"
   ],
+  "contributors": [
+    "AvasDream",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "IanWhitney",
+    "lutostag",
+    "mkantor",
+    "navossoc",
+    "nfiles",
+    "nikhilshagri",
+    "ocstl",
+    "rofrol",
+    "stringparser",
+    "vadimkerr",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

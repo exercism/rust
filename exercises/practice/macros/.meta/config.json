@@ -4,6 +4,23 @@
   "authors": [
     "coriolinus"
   ],
+  "contributors": [
+    "bantic",
+    "cwhakes",
+    "DarthStrom",
+    "efx",
+    "Emerentius",
+    "ErikSchierboom",
+    "lutostag",
+    "pedantic79",
+    "petertseng",
+    "rofrol",
+    "ssomers",
+    "stringparser",
+    "tjade273",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

@@ -3,6 +3,14 @@
   "authors": [
     "Emerentius"
   ],
+  "contributors": [
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "petertseng",
+    "rofrol"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

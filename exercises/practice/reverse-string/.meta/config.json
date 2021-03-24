@@ -3,6 +3,23 @@
   "authors": [
     "coriolinus"
   ],
+  "contributors": [
+    "cbzehner",
+    "ccouzens",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "hunger",
+    "lutostag",
+    "ocstl",
+    "petertseng",
+    "rofrol",
+    "rrredface",
+    "stringparser",
+    "TheDarkula",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"
