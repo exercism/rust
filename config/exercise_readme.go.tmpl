@@ -23,10 +23,16 @@ and remove the `#[ignore]` flag from the next test and get the tests to pass
 again. Each separate test is a function with `#[test]` flag above it.
 Continue, until you pass every test.
 
-If you wish to run all ignored tests without editing the tests source file, use:
+If you wish to run _only ignored tests_ without editing the tests source file, use:
 
 ```bash
 $ cargo test -- --ignored
+```
+
+If you are using Rust 1.51 or later, you can run _all tests_ with
+
+```bash
+$ cargo test -- --include-ignored
 ```
 
 To run a specific test, for example `some_test`, you can use:
