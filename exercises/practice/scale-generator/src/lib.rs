@@ -9,7 +9,7 @@
 // One common idiom is to define an Error enum which wraps all potential
 // errors. Another common idiom is to use a helper type such as failure::Error
 // which does more or less the same thing but automatically.
-pub type Error = ();
+pub struct Error;
 
 pub struct Scale;
 
