@@ -1,5 +1,5 @@
 pub type Value = i32;
-pub type ForthResult = Result<(), Error>;
+pub type Result = std::result::Result<(), Error>;
 
 pub struct Forth;
 
@@ -20,7 +20,7 @@ impl Forth {
         unimplemented!()
     }
 
-    pub fn eval(&mut self, input: &str) -> ForthResult {
+    pub fn eval(&mut self, input: &str) -> Result {
         unimplemented!("result of evaluating '{}'", input)
     }
 }
