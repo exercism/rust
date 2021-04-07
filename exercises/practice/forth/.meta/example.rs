@@ -1,22 +1,12 @@
+//! This solution authored by exercism user `2deth`:
+//! https://exercism.io/mentor/solutions/b6f9f69b03df4b889c9930960cb4a358?iteration_idx=8
+
 use std::collections::HashMap;
-use std::collections::VecDeque;
-use std::str::FromStr;
 
-pub type Value = i32;
+pub type Value = i16;
 pub type ForthResult = Result<(), Error>;
-type StackResult<T> = Result<T, Error>;
 
-type Stack = Vec<Value>;
-type Code = VecDeque<Term>;
-type Definitions = HashMap<String, Code>;
-
-pub struct Forth {
-    code: Code,
-    defs: Definitions,
-    stack: Stack,
-}
-
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Error {
     DivisionByZero,
     StackUnderflow,
@@ -24,181 +14,160 @@ pub enum Error {
     InvalidWord,
 }
 
-#[derive(Debug, Clone)]
-enum Term {
-    Number(Value),
-    Word(String),
-    StartDefinition,
-    EndDefinition,
+#[derive(Default)]
+pub struct Forth {
+    stack: Vec<Value>,
+    words: HashMap<String, Id>,
+    definitions: Vec<Vec<Op>>,
 }
 
-impl FromStr for Term {
-    type Err = ();
+// Instead of `usize`, to reduce `size_of::<Op>`, we use `u16`. This puts a
+// maximum limit on the number of custom words this implementation can handle,
+// but as a practical matter, it's plenty.
+type Id = u16;
 
-    fn from_str(s: &str) -> Result<Term, ()> {
-        match s {
-            ":" => Ok(Term::StartDefinition),
-            ";" => Ok(Term::EndDefinition),
-            _ => Err(()),
-        }
-        .or_else(|_| Value::from_str(s).map(Term::Number))
-        .or_else(|_| Ok(Term::Word(s.to_ascii_lowercase())))
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum Op {
+    Add,
+    Sub,
+    Mul,
+    Div,
+    Dup,
+    Drop,
+    Swap,
+    Over,
+    Push(Value),
+    Call(Id),
 }
 
 impl Forth {
-    pub fn new() -> Forth {
-        Forth {
-            code: Code::new(),
-            defs: HashMap::new(),
-            stack: Stack::new(),
-        }
+    pub fn new() -> Self {
+        Self::default()
     }
 
     pub fn stack(&self) -> &[Value] {
-        self.stack.as_slice()
+        &self.stack
     }
 
     pub fn eval(&mut self, input: &str) -> ForthResult {
-        let mut new_code = Forth::into_code(input);
-        self.code.append(&mut new_code);
-        self.run()
-    }
-
-    fn run(&mut self) -> ForthResult {
-        while let Some(term) = self.code.pop_front() {
-            self.step_term(term)?;
+        #[derive(Debug, PartialEq, Eq)]
+        enum Mode {
+            Execution,
+            Word,
+            Definition(String, Vec<Op>),
         }
-        Forth::ok()
-    }
+        let mut mode = Mode::Execution;
 
-    fn step_term(&mut self, term: Term) -> ForthResult {
-        match term {
-            Term::Number(value) => self.push(value),
-            Term::Word(word) => self.step_word(&word),
-            Term::StartDefinition => self.store_definition(),
-            Term::EndDefinition => {
-                eprintln!("`;` without preceding `:`");
-                Err(Error::InvalidWord)
-            }
-        }
-    }
-
-    fn step_word(&mut self, word: &str) -> ForthResult {
-        if let Some(def) = self.defs.get(word) {
-            let mut def = def.clone();
-            while let Some(term) = def.pop_front() {
-                self.step_term(term)?;
-            }
-            Self::ok()
-        } else {
-            self.step_built_in(word)
-        }
-    }
-
-    fn divide((a, b): (Value, Value)) -> StackResult<Value> {
-        a.checked_div(b).ok_or_else(|| {
-            eprintln!("Cannot divide {} by {}", a, b);
-            Error::DivisionByZero
-        })
-    }
-
-    fn step_built_in(&mut self, word: &str) -> ForthResult {
-        match word {
-            "+" => self.bin_op(|(a, b)| Ok(a + b)),
-            "-" => self.bin_op(|(a, b)| Ok(a - b)),
-            "*" => self.bin_op(|(a, b)| Ok(a * b)),
-            "/" => self.bin_op(Self::divide),
-            "dup" => self.pop().and_then(|a| self.push(a).and(self.push(a))),
-            "drop" => self.pop().and(Forth::ok()),
-            "swap" => self
-                .pop_two()
-                .and_then(|(a, b)| self.push(b).and(self.push(a))),
-            "over" => self
-                .pop_two()
-                .and_then(|(a, b)| self.push(a).and(self.push(b)).and(self.push(a))),
-            _ => {
-                eprintln!("{} is undefined", word);
-                Err(Error::UnknownWord)
-            }
-        }
-    }
-
-    fn store_definition(&mut self) -> ForthResult {
-        let mut def = Code::new();
-
-        loop {
-            match self.code.pop_front() {
-                Some(Term::EndDefinition) => break,
-                Some(term) => def.push_back(term),
-                None => return Err(Error::InvalidWord),
-            }
-        }
-
-        if let Some(Term::Word(name)) = def.pop_front() {
-            self.store_word(name, def)
-        } else {
-            Err(Error::InvalidWord)
-        }
-    }
-
-    fn push(&mut self, value: Value) -> ForthResult {
-        self.stack.push(value);
-        Forth::ok()
-    }
-
-    fn pop(&mut self) -> StackResult<Value> {
-        self.stack.pop().ok_or_else(|| {
-            eprintln!("Stack underflow");
-            Error::StackUnderflow
-        })
-    }
-
-    fn pop_two(&mut self) -> StackResult<(Value, Value)> {
-        self.pop().and_then(|b| self.pop().map(|a| (a, b)))
-    }
-
-    fn bin_op<F>(&mut self, op: F) -> ForthResult
-    where
-        F: FnOnce((Value, Value)) -> StackResult<Value>,
-    {
-        self.pop_two()
-            .and_then(op)
-            .and_then(|value| self.push(value))
-    }
-
-    fn store_word(&mut self, name: String, code: Code) -> ForthResult {
-        let mut resolved_def = Code::new();
-        for t in code.iter() {
-            match t {
-                Term::Number(_) => resolved_def.push_back(t.clone()),
-                Term::Word(s) => {
-                    if let Some(cs) = self.defs.get(s) {
-                        resolved_def.append(&mut cs.clone());
+        for token in input.to_uppercase().split_whitespace() {
+            match mode {
+                Mode::Execution => {
+                    if token == ":" {
+                        mode = Mode::Word;
                     } else {
-                        resolved_def.push_back(t.clone());
+                        eval_op(
+                            parse_op(token, &self.words)?,
+                            &mut self.stack,
+                            &self.words,
+                            &self.definitions,
+                        )?;
                     }
                 }
-                _ => {
-                    eprintln!("Nested definition in {}", name);
-                    return Err(Error::InvalidWord);
+                Mode::Word => {
+                    if token.parse::<Value>().is_ok() {
+                        return Err(Error::InvalidWord);
+                    }
+                    mode = Mode::Definition(token.into(), Vec::new());
+                }
+                Mode::Definition(_, ref mut definition) => {
+                    if token == ";" {
+                        if let Mode::Definition(word, definition) =
+                            std::mem::replace(&mut mode, Mode::Execution)
+                        {
+                            self.definitions.push(definition);
+                            self.words.insert(word, self.definitions.len() as Id - 1);
+                        } else {
+                            unreachable!();
+                        }
+                    } else {
+                        definition.push(parse_op(token, &self.words)?);
+                    }
                 }
             }
         }
-        self.defs.insert(name, resolved_def);
-        Forth::ok()
-    }
 
-    fn into_code(input: &str) -> Code {
-        input
-            .split(|c: char| c.is_whitespace() || c.is_control())
-            .map(Term::from_str)
-            .filter(Result::is_ok)
-            .map(Result::unwrap)
-            .collect()
+        (mode == Mode::Execution)
+            .then(|| ())
+            .ok_or(Error::InvalidWord)
     }
+}
 
-    fn ok() -> ForthResult {
-        Ok(())
+fn parse_op(token: &str, words: &HashMap<String, Id>) -> Result<Op, Error> {
+    Ok(if let Some(id) = words.get(token) {
+        Op::Call(*id)
+    } else {
+        match token {
+            "+" => Op::Add,
+            "-" => Op::Sub,
+            "*" => Op::Mul,
+            "/" => Op::Div,
+            "DUP" => Op::Dup,
+            "DROP" => Op::Drop,
+            "SWAP" => Op::Swap,
+            "OVER" => Op::Over,
+            _ => Op::Push(token.parse::<Value>().map_err(|_| Error::UnknownWord)?),
+        }
+    })
+}
+
+fn eval_op(
+    op: Op,
+    stack: &mut Vec<Value>,
+    words: &HashMap<String, Id>,
+    definitions: &Vec<Vec<Op>>,
+) -> ForthResult {
+    let mut pop = || stack.pop().ok_or(Error::StackUnderflow);
+    match op {
+        Op::Add => {
+            let (rhs, lhs) = (pop()?, pop()?);
+            stack.push(lhs + rhs);
+        }
+        Op::Sub => {
+            let (rhs, lhs) = (pop()?, pop()?);
+            stack.push(lhs - rhs);
+        }
+        Op::Mul => {
+            let (rhs, lhs) = (pop()?, pop()?);
+            stack.push(lhs * rhs);
+        }
+        Op::Div => {
+            let (rhs, lhs) = (pop()?, pop()?);
+            let quotient = lhs.checked_div(rhs).ok_or(Error::DivisionByZero)?;
+            stack.push(quotient);
+        }
+        Op::Dup => {
+            let top = *stack.last().ok_or(Error::StackUnderflow)?;
+            stack.push(top);
+        }
+        Op::Drop => {
+            pop()?;
+        }
+        Op::Swap => {
+            let (top, below) = (pop()?, pop()?);
+            stack.push(top);
+            stack.push(below);
+        }
+        Op::Over => {
+            let below = *stack.iter().nth_back(1).ok_or(Error::StackUnderflow)?;
+            stack.push(below);
+        }
+        Op::Push(num) => {
+            stack.push(num);
+        }
+        Op::Call(fn_id) => {
+            for op in &definitions[fn_id as usize] {
+                eval_op(*op, stack, words, definitions)?;
+            }
+        }
     }
+    Ok(())
 }
