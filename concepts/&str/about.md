@@ -21,7 +21,7 @@ Fat pointers are of a known size, and so this line will compile
 const my_const: &str = "Hello, World!";
 ```
 
-A mutable string slice (`mut &str`) can have its valued replaced, but not modified in place.
+A mutable binding to a string slice can have its valued replaced, but not modified in place.
 
 Example
 
