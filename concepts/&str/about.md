@@ -53,7 +53,7 @@ A `&str` will not be [coerced][coercion] into a `&String`. But this will compile
 
 ```rust
 pub fn main() {
-    let my_string: String = String::from("Hello, World!");
+    let my_string = String::from("Hello, World!");
     say_hi(&my_string)
 }
 
