@@ -14,7 +14,7 @@ is only evaluated when the left-hand operand does not already determine the resu
 its right-hand operand when the left-hand operand evaluates to `false`, and `&&` only when it evaluates to `true`.
 
 ```rust
-true || false // == true
+true || false // == true; the right-hand side was not evaluated
 true && false // == false
 ```
 
