@@ -7,7 +7,7 @@ There are two ways that Rust implements an array of characters: [str][str] and [
 To know why, it may help to understand why the following line of code will not compile
 
 ```rust
-const my_const: str = "Hello, World!";
+const my_const: str = *"Hello, World!";
 
 // the size for values of type `str` cannot be known at compilation time
 // the trait `Sized` is not implemented for `str`
