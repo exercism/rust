@@ -1,6 +1,6 @@
 # About
 
-There are two ways that Rust implements an array of characters: [str][str] and [String][String].
+There are two ways that Rust implements an array of characters: [`str`][str] and [`String`][String].
 
 `str`, also known as a "string slice", is usually used with a reference as `&str`.
 
