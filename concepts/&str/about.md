@@ -7,7 +7,7 @@ There are two ways that Rust implements an array of characters: [`str`][str] and
 To know why, it may help to understand why the following line of code will not compile
 
 ```rust
-const my_const: str = *"Hello, World!";
+const MY_CONST: str = *"Hello, World!";
 
 // the size for values of type `str` cannot be known at compilation time
 // the trait `Sized` is not implemented for `str`
@@ -18,7 +18,7 @@ But as a _reference_ to a literal (`&str`), it has a "fat pointer" which holds t
 Fat pointers are of a known size, and so this line will compile
 
 ```rust
-const my_const: &str = "Hello, World!";
+const MY_CONST: &str = "Hello, World!";
 ```
 
 A mutable binding to a string slice can have its valued replaced, but not modified in place.
@@ -28,7 +28,7 @@ Example
 ```rust
 let mut my_str = "Hello, World!";
 my_str = "Hi!";
-let mut my_string: String = String::from("Hello");
+let mut my_string = String::from("Hello");
 my_string.push_str(", World!"); // there is no equivalent function to modify &str
 ```
 
