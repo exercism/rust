@@ -5,7 +5,19 @@ Booleans in Rust are represented by the `bool` type, which values can be either 
 Rust supports one [boolean negation operator][negation operators]: `!` (Not).
 
 Rust supports six [comparison operators][comparison operators]: `==` (Equal), `!=` (Not equal), `>` (Greater than), `<` (Less than), `>=`
-(Greater than or equal to), `<=` (Less than or equal to).
+(Greater than or equal to), `<=` (Less than or equal to). They can be used to evaluate the relationship of non-boolean
+values into a boolean value.
+
+```rust
+1 > 0 // true
+1 < 0 // false
+1 == 0 // false
+1 != 0 // true
+1 >= 0 // true
+1 <= 0 // false
+```
+
+Unlike some other languages, `0` is not `false` and non-zero is not `true`.
 
 Rust supports three [logical binary operators][logical binary operators]: `&` (Logical And), `|` (Logical Or), `^` (Logical Xor).
 
