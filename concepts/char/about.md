@@ -24,7 +24,7 @@ pub fn main() {
 
 prints
 
-```
+```rust
 2
 'u'
 '\u{308}'
