@@ -9,7 +9,7 @@ Rust supports six [comparison operators][comparison operators]: `==` (Equal), `!
 
 Rust supports three [logical binary operators][logical binary operators]: `&` (Logical And), `|` (Logical Or), `^` (Logical Xor).
 
-Rust supports two [lazy boolean operators][lazy boolean operators]: `||` (Or), `&&` (And). They differ from `|` and `&` in that the right-hand operand
+Rust supports two [boolean operators][lazy boolean operators]: `||` (Or), `&&` (And). They differ from `|` and `&` in that the right-hand operand
 is only evaluated when the left-hand operand does not already determine the result of the expression. That is, `||` only evaluates
 its right-hand operand when the left-hand operand evaluates to `false`, and `&&` only when it evaluates to `true`.
 
