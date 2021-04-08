@@ -1,7 +1,7 @@
 # About
 
 Rust implements the [char][char type] type to represent a single character. A `char` literal is placed within single quotes, like `'a'`.
-Each `char` is four bytes in size, which is large enough to represent most [Unicode][unicode] characters as [Unicode Scalar Values][unicode scalar].
+Each `char` is four bytes in size and represents a single [Unicode Scalar Value][unicode scalar].
 
 However, a [`char`][character type] is not always what we think of as a letter. There are some languages, e.g. Hindi,  that use [diacritics][diacritics],
 which are special symbols which modify the character they are attached to. Although the diacritic in Rust is a separate `char`, it is the diacritic and
