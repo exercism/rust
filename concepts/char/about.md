@@ -7,7 +7,7 @@ However, a [`char`][character type] is not always what we think of as a letter. 
 which are special symbols which modify the character they are attached to. Although the diacritic in Rust is a separate `char`, it is the diacritic and
 the character it modifies that we commonly think of as a letter.
 
-The term for a character and its diacritic is [`grapheme cluster`][grapheme cluster]. There are external crates that can be used to process grapheme clusters,
+The term for a character and its diacritic is [grapheme cluster][grapheme cluster]. There are external crates that can be used to process grapheme clusters,
 such as [unicode-segmentation][unicode-segmentation].
 
 Example
