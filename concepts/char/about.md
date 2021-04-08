@@ -21,7 +21,9 @@ pub fn main() {
     println!("{:?}", text_vec[1]); // this prints the second char in "ü"
 }
 ```
+
 prints
+
 ```
 2
 'u'
