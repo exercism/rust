@@ -68,7 +68,7 @@ fn annoy_me(time_of_day: TimeOfDay) -> impl Annoyance {
 
 ```
 
-The compiler, in all of its helpfullness, tells us exactly what to do, which is to return a boxed trait object. If you don't know what a trait object is,
+The compiler, in all of its helpfulness, tells us exactly what to do, which is to return a boxed trait object. If you don't know what a trait object is,
 a simple way to describe it is a way of returning a specific object via [dynamic dispatch][dynamic dispatch] from a function that could return any object
 implementing a specified trait. Since we need dynamic dispatch, we can try just putting a `dyn` in front of the trait name and see if we get away with it.
 
@@ -86,8 +86,11 @@ fn annoy_me(time_of_day: TimeOfDay) -> dyn Annoyance {
 // unsized locals are gated as an unstable feature
 ```
 
-One of the errors is that the size for `dyn Annoyance` cannot be known at compile time. And we are reminded that one of the uses for `Box` is for a type whose
-size can’t be known at compile time. So now we try using a `Box`ed return value, and we `Box`the values returned from the match expression, like so
+One of the errors is that the size for `dyn Annoyance` cannot be known at compile time. This is because annoy_me does not know what specific trait object
+it will return in advance of when it is called. Structs implementing Annoyance could have different fields and be different sizes. And we are reminded that
+one of the uses for `Box` is for a type whose size can’t be known at compile time. So now we try using a `Box`ed return value, and we `Box`the values returned
+from the match expression, like so
+
 
 ```rust
 fn annoy_me(time_of_day: TimeOfDay) -> Box<dyn Annoyance> {
