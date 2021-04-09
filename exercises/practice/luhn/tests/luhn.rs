@@ -125,3 +125,10 @@ fn test_using_ascii_value_for_nondoubled_nondigit_isnt_allowed() {
 fn test_valid_number_with_an_odd_number_of_spaces() {
     process_valid_case("234 567 891 234", true);
 }
+
+#[test]
+#[ignore]
+/// non-numeric, non-space char in the middle with a sum that's divisible by 10 isn't allowed
+fn test_invalid_char_in_middle_with_sum_divisible_by_10_isnt_allowed() {
+    process_valid_case("59%59", false);
+}
