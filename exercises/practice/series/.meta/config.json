@@ -3,6 +3,19 @@
   "authors": [
     "kedeggel"
   ],
+  "contributors": [
+    "Baelyk",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "lutostag",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

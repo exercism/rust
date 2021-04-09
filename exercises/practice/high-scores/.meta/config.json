@@ -3,6 +3,12 @@
   "authors": [
     "Br1ght0ne"
   ],
+  "contributors": [
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

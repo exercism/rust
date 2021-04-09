@@ -3,6 +3,20 @@
   "authors": [
     "jgilray"
   ],
+  "contributors": [
+    "coriolinus",
+    "cwhakes",
+    "eddyp",
+    "efx",
+    "ErikSchierboom",
+    "lutostag",
+    "nfiles",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

@@ -3,6 +3,26 @@
   "authors": [
     "IanWhitney"
   ],
+  "contributors": [
+    "ashleygwilliams",
+    "bobahop",
+    "coriolinus",
+    "cwhakes",
+    "durka",
+    "eddyp",
+    "efx",
+    "ErikSchierboom",
+    "IanWhitney",
+    "joshgoebel",
+    "lutostag",
+    "nfiles",
+    "ocstl",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

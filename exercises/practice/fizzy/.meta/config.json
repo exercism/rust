@@ -5,6 +5,16 @@
   "authors": [
     "coriolinus"
   ],
+  "contributors": [
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "insideoutclub",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

@@ -3,6 +3,26 @@
   "authors": [
     "hekrause"
   ],
+  "contributors": [
+    "bitfield",
+    "ClashTheBunny",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "Emerentius",
+    "ErikSchierboom",
+    "michalfita",
+    "mtodor",
+    "murlakatamenka",
+    "petertseng",
+    "RiderSargent",
+    "rofrol",
+    "scarvalhojr",
+    "stringparser",
+    "workingjubilee",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

@@ -3,6 +3,24 @@
   "authors": [
     "petertseng"
   ],
+  "contributors": [
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "go717franciswang",
+    "IanWhitney",
+    "lutostag",
+    "mkantor",
+    "navossoc",
+    "nertpinx",
+    "nfiles",
+    "piepero",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

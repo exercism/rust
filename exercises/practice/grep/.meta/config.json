@@ -3,6 +3,18 @@
   "authors": [
     "ZapAnton"
   ],
+  "contributors": [
+    "AndrewKvalheim",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "k33nice",
+    "lutostag",
+    "petertseng",
+    "rofrol",
+    "stringparser"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

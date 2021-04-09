@@ -3,6 +3,24 @@
   "authors": [
     "jonasbb"
   ],
+  "contributors": [
+    "AndrewKvalheim",
+    "ashleygwilliams",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "IanWhitney",
+    "lutostag",
+    "navossoc",
+    "nfiles",
+    "petertseng",
+    "quartsize",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

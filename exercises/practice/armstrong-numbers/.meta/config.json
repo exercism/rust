@@ -3,6 +3,22 @@
   "authors": [
     "shingtaklam1324"
   ],
+  "contributors": [
+    "AndrewKvalheim",
+    "coriolinus",
+    "cwhakes",
+    "eddyp",
+    "efx",
+    "ErikSchierboom",
+    "lutostag",
+    "ocstl",
+    "petertseng",
+    "rofrol",
+    "sputnick1124",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

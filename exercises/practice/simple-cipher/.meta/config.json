@@ -3,6 +3,21 @@
   "authors": [
     "miken500"
   ],
+  "contributors": [
+    "AndrewKvalheim",
+    "chivalry",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "lutostag",
+    "petertseng",
+    "rofrol",
+    "rpottsoh",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

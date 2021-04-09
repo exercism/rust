@@ -4,6 +4,19 @@
   "authors": [
     "coriolinus"
   ],
+  "contributors": [
+    "Baelyk",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "lutostag",
+    "nfiles",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

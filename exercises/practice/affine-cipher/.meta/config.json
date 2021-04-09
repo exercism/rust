@@ -3,6 +3,14 @@
   "authors": [
     "ktomsic"
   ],
+  "contributors": [
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "ffflorian",
+    "petertseng"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

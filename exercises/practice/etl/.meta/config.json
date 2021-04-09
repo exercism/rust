@@ -3,6 +3,28 @@
   "authors": [
     "EduardoBautista"
   ],
+  "contributors": [
+    "ashleygwilliams",
+    "ClashTheBunny",
+    "coriolinus",
+    "cwhakes",
+    "EduardoBautista",
+    "efx",
+    "ErikSchierboom",
+    "IanWhitney",
+    "kotp",
+    "kytrinyx",
+    "lutostag",
+    "mkantor",
+    "navossoc",
+    "nfiles",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "tushartyagi",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

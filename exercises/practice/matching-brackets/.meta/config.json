@@ -3,6 +3,25 @@
   "authors": [
     "petertseng"
   ],
+  "contributors": [
+    "ashleygwilliams",
+    "coriolinus",
+    "cwhakes",
+    "efx",
+    "Emerentius",
+    "ErikSchierboom",
+    "IanWhitney",
+    "ironhaven",
+    "lutostag",
+    "mkantor",
+    "nfiles",
+    "omer-g",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

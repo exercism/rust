@@ -3,6 +3,22 @@
   "authors": [
     "coriolinus"
   ],
+  "contributors": [
+    "Baelyk",
+    "CGMossa",
+    "cwhakes",
+    "efx",
+    "elektronaut0815",
+    "ErikSchierboom",
+    "lutostag",
+    "nfiles",
+    "PaulDance",
+    "petertseng",
+    "rofrol",
+    "stringparser",
+    "xakon",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"

@@ -3,6 +3,19 @@
   "authors": [
     "coriolinus"
   ],
+  "contributors": [
+    "ccouzens",
+    "ClashTheBunny",
+    "cwhakes",
+    "efx",
+    "ErikSchierboom",
+    "petertseng",
+    "rofrol",
+    "shenek",
+    "stringparser",
+    "TheDarkula",
+    "ZapAnton"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"
