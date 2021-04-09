@@ -6,25 +6,20 @@ The stack is an area of memory that works like a last-in-first-out (LIFO) buffer
 The data can include variables or function addresses, but the data must be of a known fixed size at compilation time.
 
 If the data is of an unknown size at compilation time or has a size that may change, then it must be allocated on the heap. The allocation process must find
-space in the heap big enough to store the data, and then the address of where that data starts in memory gets pushed onto the stack. Retrieving data from the
-heap is slower because we need to go through the address on the stack and follow that to the location of tha data on the heap.
+space in the heap big enough to store the data, write the data to the heap, and push the memory address of that data onto the stack, all of which takes
+significantly more time than simply putting data on the stack. Retrieving data from the heap is a bit slower because we need to go through the address on the
+stack and follow that to the location of the data on the heap.
 
-`Box` is a smart pointer which allocates data on the heap. The address is on the stack, pointing to the data on the heap. There are several
-[reasons][reasons] to use `Box` to put data on the heap:
-
-- When you have a type whose size can’t be known at compile time and you want to use a value of that type in a context that requires an exact size
-
-- When you have a large amount of data and you want to transfer ownership but ensure the data won’t be copied when you do so
-
-- When you want to own a value and you care only that it’s a type that implements a particular trait rather than being of a specific type
-
-A practical usage of `Box` is when you have multiple structs which you want to handle the same via a trait which they all implement.
+`Box` is a smart pointer which allocates data on the heap. The address is on the stack, pointing to the data on the heap. One [reason][reasons] to use `Box`
+is to put data on the heap when you have a type whose size can’t be known at compile time and you want to use a value of that type in a context that requires
+an exact size. One practical usage of that is when you have multiple structs which you want to handle in the same way via a trait which they all implement, as
+exampled below.
 
 Let's say we have two structs. Each struct is of something that can be annoying. We can have each struct implement an Annoyance trait like so
 
 ```rust
-struct WerewolfOfLondon {}
-struct Rooster {}
+struct WerewolfOfLondon;
+struct Rooster;
 
 trait Annoyance {
     fn annoy(&self) -> &'static str;
@@ -75,8 +70,8 @@ implementing a specified trait. Since we need dynamic dispatch, we can try just 
 ```rust
 fn annoy_me(time_of_day: TimeOfDay) -> dyn Annoyance {
     match time_of_day {
-        TimeOfDay::Midnight => WerewolfOfLondon {},
-        TimeOfDay::Morning => Rooster {},
+        TimeOfDay::Midnight => WerewolfOfLondon,
+        TimeOfDay::Morning => Rooster,
     }
 }
 
@@ -94,8 +89,8 @@ from the match expression, like so
 ```rust
 fn annoy_me(time_of_day: TimeOfDay) -> Box<dyn Annoyance> {
     match time_of_day {
-        TimeOfDay::Midnight => Box::new(WerewolfOfLondon {}),
-        TimeOfDay::Morning => Box::new(Rooster {}),
+        TimeOfDay::Midnight => Box::new(WerewolfOfLondon),
+        TimeOfDay::Morning => Box::new(Rooster),
     }
 }
 ```
@@ -124,11 +119,21 @@ which prints
 "errr-errr-errr-errr-ERRRRRRRRR!"
 ```
 
-Since my_annoyance is of type `Box<dyn Annoyance>` it must be dereferenced from the `Box` using the deref operator `*`. It is then referenced as a
-`dyn Annoyance` for the be_annoying function to borrow it.
+Since `my_annoyance` is of type `Box<dyn Annoyance>` it must be dereferenced from the `Box` using the deref operator `*`. It is then referenced as a
+`dyn Annoyance` for the `be_annoying` function to borrow it.
 
-Another way to implement it would be for the be_annoying function to accept a `Box<dyn Annoyance>` and use [deref coercion][deref coercion] to avoid
-having to dereference the `Box` manually.
+Another way to implement it would be to remove the requirement that the parameter be sized. In that case, compilation would create a separate function
+for each variant of Annoyance so it could be statically dispatched (a process called [monomorphization][monomorphization]), like so
+
+```rust
+fn be_annoying<A: Annoyance + ?Sized>(annoying_one: &A) {
+    println!("{:?}", annoying_one.annoy());
+}
+```
+
+Yet another way to implement it would be for the `be_annoying` function to accept a `Box<dyn Annoyance>` and use [deref coercion][deref coercion] to avoid
+having to dereference the `Box` manually. This would transfer ownership of the Annoyance trait object to the `be_annoying` function. It would go out of
+scope at the end of the function and no longer be available.
 
 ```rust
 fn be_annoying(annoying_one: Box<dyn Annoyance>) {
@@ -149,5 +154,6 @@ You can learn more about how to use `Box` in [its chapter][using box] in The Rus
 [stack and heap]: https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap
 [reasons]: https://doc.rust-lang.org/book/ch15-01-box.html#using-boxt-to-point-to-data-on-the-heap
 [dynamic dispatch]: https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch
+[monomorphization]: https://doc.rust-lang.org/book/ch10-01-syntax.html#performance-of-code-using-generics
 [deref coercion]: https://doc.rust-lang.org/book/ch15-02-deref.html?highlight=auto-deref#implicit-deref-coercions-with-functions-and-methods
 [using box]: https://doc.rust-lang.org/nightly/book/ch15-01-box.html
