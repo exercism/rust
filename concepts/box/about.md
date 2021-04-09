@@ -91,7 +91,6 @@ it will return in advance of when it is called. Structs implementing Annoyance c
 one of the uses for `Box` is for a type whose size can’t be known at compile time. So now we try using a `Box`ed return value, and we `Box`the values returned
 from the match expression, like so
 
-
 ```rust
 fn annoy_me(time_of_day: TimeOfDay) -> Box<dyn Annoyance> {
     match time_of_day {
