@@ -54,8 +54,8 @@ enum TimeOfDay {
 //return something that implements Annoyance
 fn annoy_me(time_of_day: TimeOfDay) -> impl Annoyance {
     match time_of_day {
-        TimeOfDay::Midnight => WerewolfOfLondon {},
-        TimeOfDay::Morning => Rooster {},
+        TimeOfDay::Midnight => WerewolfOfLondon,
+        TimeOfDay::Morning => Rooster,
     }
 }
 
