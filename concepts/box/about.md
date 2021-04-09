@@ -86,7 +86,7 @@ fn annoy_me(time_of_day: TimeOfDay) -> dyn Annoyance {
 // unsized locals are gated as an unstable feature
 ```
 
-One of the errors is that the size for `dyn Annoyance` cannot be known at compile time. This is because annoy_me does not know what specific trait object
+One of the errors is that the size for `dyn Annoyance` cannot be known at compile time. This is because `annoy_me` does not know what specific trait object
 it will return in advance of when it is called. Structs implementing Annoyance could have different fields and be different sizes. And we are reminded that
 one of the uses for `Box` is for a type whose size can’t be known at compile time. So now we try using a `Box`ed return value, and we `Box`the values returned
 from the match expression, like so
