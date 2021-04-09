@@ -9,7 +9,7 @@ If the data is of an unknown size at compilation time or has a size that may cha
 space in the heap big enough to store the data, and then the address of where that data starts in memory gets pushed onto the stack. Retrieving data from the
 heap is slower because we need to go through the address on the stack and follow that to the location of tha data on the heap.
 
-`Box` is essentially a smart pointer which allocates data on the heap. The address is on the stack, pointing to the data on the heap. There are several 
+`Box` is essentially a smart pointer which allocates data on the heap. The address is on the stack, pointing to the data on the heap. There are several
 [reasons][reasons] to use `Box` to put data on the heap:
 
 - When you have a type whose size can’t be known at compile time and you want to use a value of that type in a context that requires an exact size
