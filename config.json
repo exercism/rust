@@ -138,7 +138,7 @@
         ],
         "prerequisites": [
           "string",
-          "&str"
+          "string-slices"
         ],
         "status": "active"
       }
@@ -1415,8 +1415,8 @@
   "concepts": [
     {
       "uuid": "f7be1969-380e-4348-ac79-9b2834a526fd",
-      "slug": "&str",
-      "name": "&str"
+      "slug": "string-slices",
+      "name": "String Slices"
     },
     {
       "uuid": "53804676-e4f0-4faa-a8b8-68ff8314ccbe",
