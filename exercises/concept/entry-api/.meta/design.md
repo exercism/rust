@@ -25,7 +25,7 @@ Students who complete this exercise should not necessarily be able to...
 ## Prerequisites
 
 - Completion of the `HashMap`s concept exercise(s).
-- &str
+- string-slices
 - slices
 
 ## Resources to refer to
