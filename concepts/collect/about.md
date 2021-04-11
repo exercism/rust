@@ -43,7 +43,7 @@ we want a `Vec<char>` we could insert the type into our call to `collect` like s
 
 The double colons and outer angle brackets (i.e. `::<_>`) are known as the `turbofish`.
 In this case the turbofish is noisier syntax than we need. By specifying the type on the binding itself the `collect` can infer what
-collection it should create without the syntactical noise.
+collection it should create with less syntactical noise.
 
 ```rust
     let rev_chars: Vec<char> = "Hello, World!".chars().rev().collect();
