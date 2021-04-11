@@ -37,7 +37,7 @@ we want a `Vec<char>` we could insert the type into our call to `collect` like s
 
 ```rust
     let rev_chars = "Hello, World!".chars().rev().collect::<Vec<char>>();
-// or, since the collection can only be made of chars if it's a Vec, we don't have to specify them and just use
+// since the item type of the `String::chars()` iterator can be inferred to be `char`, we can omit that information
 // let rev_chars = "Hello, World!".chars().rev().collect::<Vec<_>>();
 ```
 
