@@ -40,13 +40,8 @@ fn get_reversed_chars(phrase: &str) -> Vec<char> {
 ```
 
 The return type of the `get_reversed_chars` function lets the `collect` function infer what collection to return. Here, though, we must specify the
-`Vec<char>` and not `Vec<_>` or we get the compilation error
-
-```rust
-// the type placeholder `_` is not allowed within types on item signatures
-// not allowed in type signatures
-// replace with the correct return type
-```
+`Vec<char>` and not `Vec<_>`, as Rust doesn't perform type inference for function signatures. This is to ensure that someone reading the code can quickly
+know what types a function consumes and returns.
 
 [from iterator]: https://doc.rust-lang.org/std/iter/trait.FromIterator.html
 [consuming adaptor]: https://doc.rust-lang.org/book/ch13-02-iterators.html?highlight=lazy#methods-that-consume-the-iterator
