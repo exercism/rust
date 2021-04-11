@@ -57,7 +57,7 @@ If we wanted a `String` instead we could do it like so
     let rev_chars: String = "Hello, World!".chars().rev().collect();
 ```
 
-But what if we want to return a collection from a function instead of letting a binding? We could do
+Rust's type inference is powerful enough that sometimes we don't need an explicit inline note:
 
 ```rust
 fn get_reversed_chars(phrase: &str) -> Vec<char> {
