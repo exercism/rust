@@ -1,8 +1,9 @@
 # About
 
 To understand the `collect` function it's important to know that it is used to resolve an iterator. Recall that an iterator is a sequence of items
-that can be chained with other iterators. Iterators are _lazy_, which means they do not execute until they are resolved by a
-[consuming adaptor][consuming adaptor]. Consuming adaptors process all items in the iterator to produce some kind of output.
+that can be chained with other iterators. Iterators are _lazy_, which means they do not execute until you call code that consumes the iterator.
+Such code includes `for` loops and [consuming adaptors][consuming adaptor]. Consuming adaptors process all items in the iterator to produce some
+kind of output.
 
 [`collect`][collect] is one such consuming adaptor, which can be used to produce an instance of any type implementing the
 [`FromIterator` trait][from iterator]. That trait is implemented for all of the collections in the standard library. Because `FromIterator` is
