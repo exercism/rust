@@ -41,8 +41,8 @@ we want a `Vec<char>` we could insert the type into our call to `collect` like s
 // let rev_chars = "Hello, World!".chars().rev().collect::<Vec<_>>();
 ```
 
-and `rev_chars` will now be a `Vec<char>`, but the double colons and outer angle brackets (also known as the `turbofish`) which passes the type
-information to the `collect` function is noisier syntax than we need. By specifying the type on the binding itself the `collect` can infer what
+The double colons and outer angle brackets (i.e. `::<_>`) are known as the `turbofish`.
+In this case the turbofish is noisier syntax than we need. By specifying the type on the binding itself the `collect` can infer what
 collection it should create without the syntactical noise.
 
 ```rust
