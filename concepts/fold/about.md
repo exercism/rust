@@ -1,6 +1,7 @@
 # About
 
-[`fold`][fold] takes in an iterator and optionally applies the results of processing each item to an accumulator, returning the accumulator.
+[`fold`][fold] is a [consuming iterator adaptor][consuming iterator adaptor] which applies a function to each element of the iteration, accumulating
+the result into a new value.
 
 Each iteration of `fold` takes two arguments. The first is an initial value for the accumulator. The second is a closure which itself takes
 two arguments: the accumulator and an item. The closure's return value is the subsequent value of the accumulator.
@@ -21,24 +22,25 @@ pub fn main() {
 
 Prints `30`.
 
+What can be done in `fold` can often be done by another function or functions. For the above, to `filter` on `(1..=10)` and then `sum` would
+be less verbose and evaluate the same result, like so
+
+```rust
+(0..=10).filter(|n| *n % 2 == 0).sum()
+```
+
 An accumulator can be used for other than numeric values. For example
 
 ```rust
-pub fn i_smell_the_blood(n: u32) -> String {
-    match [(3, "Fee"), (5, "Fi"), (4, "Fo"), (7, "Fum")].iter().fold(
-        "".to_string(),
-        |acc, factor| match n % factor.0 == 0 {
-            true => acc + factor.1,
-            _ => acc,
-        },
-    ) {
-        output if !output.is_empty() => output,
-        _ => "No Englishman!".to_string(),
-    }
+pub fn giant_grunts(initial: char) -> String {
+    ["Bee", "Fee", "Gee", "Fi", "Hi", "Fo", "Mo", "Fum", "Tum"].iter().fold(
+        String::new(),
+        |acc, grunt| if grunt.starts_with(initial) { acc + grunt } else { acc },
+    )
 }
 
 pub fn main() {
-    let song = i_smell_the_blood(420);
+    let song = giant_grunts('F');
     println!("{:?}", song);
 }
 ```
@@ -46,3 +48,4 @@ pub fn main() {
 Prints `FeeFiFoFum`
 
 [fold]: https://doc.rust-lang.org/beta/std/iter/trait.Iterator.html#method.fold
+[consuming iterator adaptor]: https://doc.rust-lang.org/book/ch13-02-iterators.html#methods-that-consume-the-iterator
