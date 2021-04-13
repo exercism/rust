@@ -17,7 +17,7 @@ an argument.
 The combination of parameters and return value is known as the function's signature. A function's signature requires that each parameter must
 have its type annotated.
 
-The curly braces enclose the body of the function. Inside the braces are where the function's statements and expressions are placed. Even if the
+The curly braces enclose the body of the function: its statements and expressions. Even if the
 function contains no statements or expressions the curly braces are still required for the function definition. Of course there is no point to
 having an empty function.
 
