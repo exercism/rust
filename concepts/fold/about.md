@@ -10,8 +10,7 @@ Once the iterator drains, the final value of the accumulator is returned.
 
 ```rust
 pub fn main() {
-    let even_sum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        .iter()
+    let even_sum = (1..=10)
         .fold(0, |acc, num| match num % 2 == 0 {
             true => acc + num,
             _ => acc,
