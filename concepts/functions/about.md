@@ -39,8 +39,9 @@ fn double_integer(value: i32) -> i32 {
 }
 ```
 
-The `-> i32` indicates that the function returns an `i32`. Unlike parameters, the returned value is not named. Note that the last expression
-in a function can be returned without the `return` keyword and a semicolon. `return` _is_ needed to return early from a function, like so
+The `-> i32` indicates that the function returns an `i32`. Unlike parameters, the returned value is not named. 
+
+It is possible to exit from a function early with the `return` keyword, like so:
 
 ```rust
 fn long_function() -> i32 {
