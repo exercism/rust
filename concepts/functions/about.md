@@ -54,20 +54,16 @@ fn long_function() -> i32 {
 }
 ```
 
-`const fn` is used to define a [constant function][constant function], which can be evaluated at compile time. Maing a function constant
-is a way of declaring that the function won't change in ways that are invalid for a `const fn`. Since this may prevent future optimizations,
-making a function `const` should be considered with care. Going back to `double_integer`, by making it a `const fn` we can now use it to set a
-constant, like so
+`const fn` is used to define a [constant function][constant function], which can be evaluated at compile time.
 
 ```rust
-const fn double_integer(value: i32) -> i32 {
-    value * 2
+const fn compute_data_checksum() -> u128 {
+  const DATA: &[u8] = include_bytes!("my_big_data_file");
+  // checksum implementation is left as an exercise for the reader
 }
 
-pub fn main() {
-    const DOUBLE_42: i32 = double_integer(42);
-    println!("{:?}", DOUBLE_42);
-}
+/// This checksum is used to validate that the user has not tampered with proprietary configuration.
+pub const DATA_CHECKSUM: u128 = compute_data_checksum();
 ```
 
 Because constant functions may be evaluated at compile time, they have some restrictions that normal functions do not.
