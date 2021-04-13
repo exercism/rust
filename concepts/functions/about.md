@@ -28,7 +28,7 @@ fn print_integer(value: i32) {
 }
 ```
 
-Note that the parameter needs to be given a name (`value` in this case) and be annotated with its type.
+Note the parameter's definition. Each parameter is defined in the format `name: Type`.
 
 A function can also return an expression. In the following example the function takes in one `i32` argument and returns it doubled
 
