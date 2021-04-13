@@ -90,3 +90,4 @@ There are anonymous functions which are covered in the `closures` topic.
 [statements or expressions]: https://doc.rust-lang.org/book/ch03-03-how-functions-work.html#function-bodies-contain-statements-and-expressions
 [return value]: https://doc.rust-lang.org/book/ch03-03-how-functions-work.html#functions-with-return-values
 [snake case]: https://en.wikipedia.org/wiki/Snake_case
+[constant function]: https://doc.rust-lang.org/reference/const_eval.html#const-functions
