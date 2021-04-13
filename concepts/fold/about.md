@@ -11,11 +11,7 @@ Once the iterator drains, the final value of the accumulator is returned.
 
 ```rust
 pub fn main() {
-    let even_sum = (1..=10)
-        .fold(0, |acc, num| {
-            acc += if num % 2 == 0 { num } else { 0 };
-            acc
-        });
+    let even_sum = (1..=10).fold(0, |acc, num| if num % 2 == 0 { acc + num } else { acc });
     println!("{:?}", even_sum);
 }
 ```
