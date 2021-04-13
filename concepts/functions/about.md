@@ -20,7 +20,7 @@ have its type annotated.
 The curly braces enclose the body of the function: its statements and expressions. Even if the
 function contains no statements or expressions the curly braces are still required for the function definition. 
 
-A function could contain a simple statement. In the following example the function takes in one `i32` argument and prints it
+In the following example the function takes in one parameter of type `i32`, binds it to the name `value`, and prints it.
 
 ```rust
 fn print_integer(value: i32) {
