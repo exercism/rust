@@ -91,8 +91,9 @@ pub fn main() {
 }
 ```
 
-The constraint for a constant function is that it must be able to be evaluated at compile time. If the function does not satify that constraint
-a compile error will result when using `const fn`, as exampled below
+Because constant functions may be evaluated at compile time, they have some restrictions that normal functions do not.
+In particular, a `const fn` can only call other functions also marked as `const`. 
+Failure to abide by that restriction will result in a compile error.
 
 ```rust
 const fn multiply_integer(value: i32) -> i32 {
