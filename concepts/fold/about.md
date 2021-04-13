@@ -22,12 +22,14 @@ pub fn main() {
 
 Prints `30`.
 
-What can be done in `fold` can often be done by another function or functions. For the above, to `filter` on `(1..=10)` and then `sum` would
+What can be done in `fold` can often be done by another function or functions. For the above, to [`filter`][filter] on `(1..=10)` and then [`sum`][sum] would
 be less verbose and evaluate the same result, like so
 
 ```rust
 (0..=10).filter(|n| *n % 2 == 0).sum()
 ```
+
+Other functions that are more commonly used than `fold` include [`product`][product] and [`collect`][collect].
 
 An accumulator can be used for other than numeric values. For example
 
@@ -49,3 +51,7 @@ Prints `FeeFiFoFum`
 
 [fold]: https://doc.rust-lang.org/beta/std/iter/trait.Iterator.html#method.fold
 [consuming iterator adaptor]: https://doc.rust-lang.org/book/ch13-02-iterators.html#methods-that-consume-the-iterator
+[filter]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter
+[sum]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.sum
+[product]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.product
+[collect]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect
