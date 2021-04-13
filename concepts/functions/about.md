@@ -10,7 +10,7 @@ fn do_nothing() {}
 
 ```
 
-The empty parentheses are a placeholder for zero or more parameters. A parameter is the definition of a value to be passed into the function.
+The parentheses surround zero or more parameters, separated by commas. A parameter is a binding to a value of a particular type which is passed into the function.
 Even if there are no parameters the parentheses are still required in the function definition. The actual value passed to a parameter is called
 an argument.
 
