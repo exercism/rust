@@ -104,7 +104,6 @@ const fn multiply_integer(value: i32) -> i32 {
     } else {
         value * 3
     }
-// calls in constant functions are limited to constant functions, tuple structs and tuple variants
 }
 ```
 
