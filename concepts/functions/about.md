@@ -77,8 +77,8 @@ Note that `fn main` is prefaced by `pub`, but `fn double_integer` is not. A `pub
 module. Functions defined without `pub` are private and can only be accessed from the current module. `pub(crate) fn` makes a function
 accessible only within the current crate.
 
-`const fn` is used to define a [constant function][constant function]. Going back to `double_integer`, by making it a `const fn` we can now use
-it to set a constant, like so
+`const fn` is used to define a [constant function][constant function], which can be evaluated at compile time.
+Going back to `double_integer`, by making it a `const fn` we can now use it to set a constant, like so
 
 ```rust
 const fn double_integer(value: i32) -> i32 {
