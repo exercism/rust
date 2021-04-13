@@ -7,7 +7,6 @@ Rust style is to use [snake case][snake case] for a function name, which is pref
 
 ```rust
 fn do_nothing() {}
-
 ```
 
 The parentheses surround zero or more parameters, separated by commas. A parameter is a binding to a value of a particular type which is passed into the function.
