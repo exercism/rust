@@ -3,8 +3,8 @@
 [`fold`][fold] takes in an iterator and optionally applies the results of processing each item to an accumulator, returning the accumulator.
 
 Each iteration of `fold` takes two arguments. The first is an initial value for the accumulator. The second is a closure which itself takes
-two arguments: the accumulator and an item. The closure returns the accumulator to either be passed into the next `fold` iteration, or returned
-as the result once every item in the iterator has been consumed.
+two arguments: the accumulator and an item. The closure's return value is the subsequent value of the accumulator.
+Once the iterator drains, the final value of the accumulator is returned.
 
 `fold` can be used when it is desired to transform a collection into a single value. For example, if the sum of all even-numbers is desired
 
