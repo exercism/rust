@@ -30,7 +30,8 @@ fn print_integer(value: i32) {
 
 Note the parameter's definition. Each parameter is defined in the format `name: Type`.
 
-A function can also return an expression. In the following example the function takes in one `i32` argument and returns it doubled
+A function can also return a value. By default, the output of the final expression is returned. 
+In the following example the function has one `i32` parameter and returns its double.
 
 ```rust
 fn double_integer(value: i32) -> i32 {
