@@ -1,8 +1,7 @@
 # About
 
 Functions are bodies of code containing one or more [statements or expressions][statements or expressions]. A function may optionally
-[return an expression][return value]. (Recall that a statement is an instruction that does not return a value. An expression evaluates to
-a resulting value.)
+[return an value][return value]. 
 
 Rust style is to use [snake case][snake case] for a function name, which is prefaced by the `fn` keyword for a function definition. For example
 
