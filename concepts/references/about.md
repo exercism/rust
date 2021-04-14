@@ -45,20 +45,21 @@ pub fn main() {
 A value at any given time can have multiple references to it as long as they are all immutable, as shown below
 
 ```rust
-fn check_shapes(constant: &[u8], linear: &[u8], superlinear: &[u8]) -> (bool, bool, bool) {
-    (
-        is_constant(constant),       // an immutable reference
-        is_linear(linear),           // another immutable reference, which is okay
-        is_superlinear(superlinear), // okay, all three references are immutable
-    )
-}
-
 fn main() {
     let fibonacci = vec![1, 1, 2, 3, 5, 8, 13];
+    // fibonacci is simultaneously passed by reference three times, which is okay because they are all immutable references
     println!(
         "{:#?}",
         check_shapes(&fibonacci[..=1], &fibonacci[1..=3], &fibonacci[2..],)
     );
+}
+
+fn check_shapes(constant: &[u8], linear: &[u8], superlinear: &[u8]) -> (bool, bool, bool) {
+    (
+        is_constant(constant),
+        is_linear(linear),
+        is_superlinear(superlinear),
+    )
 }
 
 fn is_constant(slice: &[u8]) -> bool { 
