@@ -59,7 +59,7 @@ Prints
 `0`
 `5`
 
-A value at any given time can have either one mutable reference or any number of immutable references to it, as exampled below
+A value at any given time can have either one mutable reference or any number of immutable references to it, as shown below
 
 ```rust
 fn add_five(counter: &mut i32) {
