@@ -2,7 +2,8 @@
 
 A [reference][reference] is a pointer: an address in memory where a value is stored.
 
-To understand references it is necessary to understand ownership. Every value has a single owner, which is a scope. When the scope is exited, the value is dropped. For example:
+To understand references it is necessary to understand ownership. Every value has a single owner, which is in a scope. When the scope is exited,
+the value is dropped. For example:
 
 ```rust
 fn log(msg: String) { // msg takes ownership of the value passed to it
@@ -19,11 +20,13 @@ pub fn main() {
 ```
 
 A [reference][borrow] represents a _borrow_ of an owned value. Instead of transferring ownership of `my_string`, we can have `log` borrow it and
-then give it back to `my_string` at the end of `log`.
+then give it back to `my_string` in `main` at the end of `log`.
 
-To do this, we define `msg` as a reference by prefixing an ampersand. The type `&String` is read as "reference to a `String`". 
+To do this, we define `msg` as a reference by prefixing an ampersand. The type `&String` is read as "reference to a `String`".
 
-As `log`'s argument is now a reference, we need to pass a reference. To get a reference to `my_string`, prefix it with an ampersand, which is the [borrow operator](https://doc.rust-lang.org/reference/expressions/operator-expr.html#borrow-operators). This lends `my_string` to `log` for the duration of that function.
+As `log`'s argument is now a reference, we need to pass a reference. To get a reference to `my_string`, prefix it with an ampersand, which is
+the [borrow operator](https://doc.rust-lang.org/reference/expressions/operator-expr.html#borrow-operators). This lends `my_string` to `log`
+for the duration of that function.
 
 ```rust
 fn log(msg: &String) { //msg is defined as a reference with an ampersand
@@ -39,8 +42,73 @@ pub fn main() {
 }
 ```
 
-References are immutable, but they can be made mutable by appending `mut` to the ampersand. To access the value, the dereference operator (`*`)
-is prepended to the reference, as exampled below
+## References are immutable by default
+
+A value at any given time can have multiple references to it as long as they are all immutable, as shown below
+
+```rust
+fn check_shapes(constant: &[u8], linear: &[u8], superlinear: &[u8]) -> (bool, bool, bool) {
+    (
+        is_constant(constant),       // an immutable reference
+        is_linear(linear),           // another immutable reference, which is okay
+        is_superlinear(superlinear), // okay, all three references are immutable
+    )
+}
+
+fn main() {
+    let fibonacci = vec![1, 1, 2, 3, 5, 8, 13];
+    println!(
+        "{:#?}",
+        check_shapes(&fibonacci[..=1], &fibonacci[1..=3], &fibonacci[2..],)
+    );
+}
+
+fn is_constant(slice: &[u8]) -> bool { 
+    slice
+        .first()
+        .map(|first| slice.iter().all(|v| v == first))
+        .unwrap_or_default()
+}
+
+fn is_linear(slice: &[u8]) -> bool {
+    let diffs: Vec<_> = slice
+        .windows(2)
+        .map(|window| window[1] - window[0])
+        .collect();
+    is_constant(&diffs)
+}
+
+fn is_superlinear(slice: &[u8]) -> bool {
+    let diffs: Vec<_> = slice
+        .windows(2)
+        .map(|window| window[1] - window[0])
+        .collect();
+    diffs.windows(2).all(|window| window[1] > window[0])
+}
+```
+
+## References can be dereferenced
+
+Sometimes a reference needs to be dereferenced to access its value.
+
+```rust
+fn is_meaning_of_life(value: &u8) -> bool {
+  value == 42
+}
+// oops! compiler error: `==` operator is not defined for `&u8`, `u8`
+```
+
+To access the value, the dereference operator (`*`) is prepended to the reference, as shown below
+
+```rust
+fn is_meaning_of_life(value: &u8) -> bool {
+  *value == 42 // okay, the reference is dereferenced from `&u8` to `u8` which `==` can compare with another `u8`
+}
+```
+
+## References can be mutable
+
+References can be made mutable by appending `mut` to the ampersand. as shown below
 
 ```rust
 fn add_five(counter: &mut i32) { //counter is defined as a mutable reference
