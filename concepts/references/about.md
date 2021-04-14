@@ -1,7 +1,5 @@
 # About
 
-A [reference][reference] is a pointer: an address in memory where a value is stored.
-
 To understand references it is necessary to understand ownership. Every value has a single owner, which is in a scope. When the scope is exited,
 the value is dropped. For example:
 
