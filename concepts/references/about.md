@@ -21,7 +21,9 @@ pub fn main() {
 A [reference][borrow] represents a _borrow_ of an owned value. Instead of transferring ownership of `my_string`, we can have `log` borrow it and
 then give it back to `my_string` at the end of `log`.
 
-To have `msg` borrow `my_string` we define `msg` as a reference and give it `my_string`'s address, not `my_string` itself, like so
+To do this, we define `msg` as a reference by prefixing an ampersand. The type `&String` is read as "reference to a `String`". 
+
+As `log`'s argument is now a reference, we need to pass a reference. To get a reference to `my_string`, prefix it with an ampersand, which is the [borrow operator](https://doc.rust-lang.org/reference/expressions/operator-expr.html#borrow-operators). This lends `my_string` to `log` for the duration of that function.
 
 ```rust
 fn log(msg: &String) { //msg is defined as a reference with an ampersand
