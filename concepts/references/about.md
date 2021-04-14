@@ -62,6 +62,9 @@ fn check_shapes(constant: &[u8], linear: &[u8], superlinear: &[u8]) -> (bool, bo
     )
 }
 
+// understanding the implementations of the following functions is not necessary for this example
+// but are provided should you be interested
+
 fn is_constant(slice: &[u8]) -> bool { 
     slice
         .first()
