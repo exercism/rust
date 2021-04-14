@@ -2,8 +2,7 @@
 
 A [reference][reference] is a pointer: an address in memory where a value is stored.
 
-To understand the use of references it is helpful to briefly review ownership. There is only one owner of a value at a time, and when the owner
-goes out of scope the value will be dropped, as exampled below
+To understand references it is necessary to understand ownership. Every value has a single owner, which is a scope. When the scope is exited, the value is dropped. For example:
 
 ```rust
 fn log(msg: String) { // msg takes ownership of the value passed to it
