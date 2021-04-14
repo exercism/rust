@@ -6,7 +6,7 @@ To understand references it is necessary to understand ownership. Every value ha
 
 ```rust
 fn log(msg: String) { // msg takes ownership of the value passed to it
-    let formatted_datetime: String;
+    let formatted_datetime = String::new();
     // code  to format current datetime snipped
     println!("{} at {}", msg, formatted_datetime);
 } // msg is dropped here
