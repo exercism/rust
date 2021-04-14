@@ -18,7 +18,7 @@ pub fn main() {
 }
 ```
 
-A [reference][borrow] represents a _borrow_ of an owned value. Instead of having `msg` own `my_string`'s value, we can have `msg` borrow it and
+A [reference][borrow] represents a _borrow_ of an owned value. Instead of transferring ownership of `my_string`, we can have `log` borrow it and
 then give it back to `my_string` at the end of `log`.
 
 To have `msg` borrow `my_string` we define `msg` as a reference and give it `my_string`'s address, not `my_string` itself, like so
