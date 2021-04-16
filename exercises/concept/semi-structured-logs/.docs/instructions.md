@@ -2,6 +2,8 @@
 
 In this exercise you'll be generating semi-structured log messages.
 
+## 1. Emit semi-structured messages
+
 You'll start with some stubbed functions and the following enum:
 
 ```rust
@@ -32,10 +34,15 @@ info("Timezone changed")
 
 Have fun!
 
-## further practice
+## 2. Optional further practice
 
-There is a feature-gated test in this suite. Feature gates disable compilation entirely for certain sections of your program. They will be covered later. For now just know that there is a test which is only built and run when you use a special testing invocation:
+There is a feature-gated test in this suite.
+Feature gates disable compilation entirely for certain sections of your program.
+They will be covered later.
+For now just know that there is a test which is only built and run when you use a special testing invocation:
 
-    cargo test --features add-a-variant
+```sh
+cargo test --features add-a-variant
+```
 
 This test is meant to show you how to add a variant to your enum.
