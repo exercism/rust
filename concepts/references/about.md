@@ -1,7 +1,7 @@
 # About
 
-To understand references it is necessary to understand ownership. Every value has a single owner, which is in a scope. When the scope is exited,
-the value is dropped. For example:
+To understand references it is necessary to understand ownership. Every value has a single owner. When its scope is exited, the value is dropped.
+For example:
 
 ```rust
 fn log(msg: String) { // msg takes ownership of the value passed to it
