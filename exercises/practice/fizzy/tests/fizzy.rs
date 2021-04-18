@@ -65,8 +65,7 @@ fn test_f64() {
     // have an older compiler, upgrade. If you have an older compiler and cannot upgrade,
     // feel free to ignore this test.
     let got = fizz_buzz::<f64>()
-        .apply(std::iter::successors(Some(1.0), |prev| Some(prev + 1.0)))
-        .take(16)
+        .apply(std::iter::successors(Some(1.0), |prev| Some(prev + 1.0)).take(16))
         .collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
@@ -115,10 +114,7 @@ fn test_minimal_generic_bounds() {
     }
 
     let got = fizz_buzz::<Fizzable>()
-        .apply(std::iter::successors(Some(Fizzable(1)), |prev| {
-            Some(*prev + 1.into())
-        }))
-        .take(16)
+        .apply(std::iter::successors(Some(Fizzable(1)), |prev| Some(*prev + 1.into())).take(16))
         .collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
