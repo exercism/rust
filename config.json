@@ -87,9 +87,9 @@
         "status": "wip"
       },
       {
-        "slug": "options",
+        "slug": "role-playing-game",
         "uuid": "2445b061-6622-47cb-a7ef-9040ec02458c",
-        "name": "Option",
+        "name": "Role-Playing Game",
         "difficulty": 1,
         "concepts": [
           "option"
@@ -98,7 +98,7 @@
           "structs",
           "destructuring"
         ],
-        "status": "wip"
+        "status": "active"
       },
       {
         "slug": "tuples",

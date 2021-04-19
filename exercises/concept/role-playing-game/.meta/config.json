@@ -1,5 +1,5 @@
 {
-  "blurb": "TODO: add blurb for options exercise",
+  "blurb": "Learn about the `Option` enum by creating a minimal role-playing game",
   "authors": [
     "seanchen1991",
     "coriolinus"
@@ -9,7 +9,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/options.rs"
+      "tests/role-playing-game.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

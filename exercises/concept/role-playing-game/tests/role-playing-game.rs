@@ -1,4 +1,4 @@
-use options::*;
+use role_playing_game::*;
 
 #[test]
 fn test_reviving_dead_player() {
