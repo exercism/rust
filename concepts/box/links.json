@@ -1,1 +1,6 @@
-[]
+[
+    {
+        "url": "https://fasterthanli.me/articles/whats-in-the-box",
+        "description": "Detailed description of `Box`'s implementation and how it differs from Go / Javascript"
+    }
+]
