@@ -1,5 +1,5 @@
 {
-  "blurb": "TODO: add blurb for structs exercise",
+  "blurb": "Learn structs to store statistics for a health-monitoring system.",
   "authors": [
     "seanchen1991"
   ],
@@ -8,7 +8,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/structs.rs"
+      "tests/health-statistics.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

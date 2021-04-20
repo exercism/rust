@@ -72,9 +72,9 @@
         "status": "active"
       },
       {
-        "slug": "structs",
+        "slug": "health-statistics",
         "uuid": "3da2420e-9de3-42e0-9127-5ef185673dbb",
-        "name": "Structs",
+        "name": "Health Statistics",
         "difficulty": 1,
         "concepts": [
           "structs"
@@ -84,7 +84,7 @@
           "floating-point-numbers",
           "integers"
         ],
-        "status": "wip"
+        "status": "active"
       },
       {
         "slug": "role-playing-game",
