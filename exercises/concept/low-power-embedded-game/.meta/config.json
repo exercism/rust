@@ -1,5 +1,5 @@
 {
-  "blurb": "TODO: add blurb for tuples exercise",
+  "blurb": "Learn tuples while writing convenience functions for a low-power embedded game",
   "authors": [
     "coriolinus"
   ],
@@ -8,7 +8,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/tuples.rs"
+      "tests/low-power-embedded-game.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

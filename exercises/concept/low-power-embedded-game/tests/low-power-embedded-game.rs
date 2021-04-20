@@ -3,7 +3,7 @@ mod divmod {
     //!
     //! note that we're only testing positive quantities; no need to get into the mod/rem distinction
 
-    use tuples::divmod;
+    use low_power_embedded_game::divmod;
 
     #[test]
     fn example() {
@@ -36,7 +36,7 @@ mod divmod {
 }
 
 mod evens {
-    use tuples::evens;
+    use low_power_embedded_game::evens;
 
     #[test]
     #[ignore]
@@ -70,7 +70,7 @@ mod evens {
 }
 
 mod manhattan {
-    use tuples::Position;
+    use low_power_embedded_game::Position;
 
     #[test]
     #[ignore]
