@@ -31,9 +31,9 @@
   "exercises": {
     "concept": [
       {
-        "slug": "entry-api",
+        "slug": "magazine-cutout",
         "uuid": "e7d8603e-97a9-11ea-9753-0242ac110002",
-        "name": "Entry API",
+        "name": "Magazine Cutout",
         "difficulty": 1,
         "concepts": [
           "entry-api"
@@ -44,7 +44,7 @@
           "intro-types",
           "option"
         ],
-        "status": "wip"
+        "status": "active"
       },
       {
         "slug": "assembly-line",
