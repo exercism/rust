@@ -1,5 +1,5 @@
 {
-  "blurb": "TODO: add blurb for vec-macro exercise",
+  "blurb": "Learn the `vec!` macro to build a short Fibonacci Sequence.",
   "authors": [
     "efx",
     "coriolinus"
@@ -9,7 +9,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/vec_macro.rs"
+      "tests/short-fibonacci.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"
