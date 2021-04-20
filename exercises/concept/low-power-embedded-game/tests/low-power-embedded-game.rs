@@ -3,7 +3,7 @@ mod divmod {
     //!
     //! note that we're only testing positive quantities; no need to get into the mod/rem distinction
 
-    use name = low_power_embedded_game::divmod;
+    use low_power_embedded_game::divmod;
 
     #[test]
     fn example() {
