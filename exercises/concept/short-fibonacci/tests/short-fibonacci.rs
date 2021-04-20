@@ -1,4 +1,4 @@
-use vec_macro::*;
+use short_fibonacci::*;
 
 #[test]
 fn test_empty() {

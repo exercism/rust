@@ -115,8 +115,8 @@
         "status": "wip"
       },
       {
-        "slug": "vec-macro",
-        "name": "The Vec Macro",
+        "slug": "short-fibonacci",
+        "name": "A Short Fibonacci Sequence",
         "difficulty": 1,
         "uuid": "c481e318-ddd7-4f8a-91eb-dadb7315e304",
         "concepts": [
