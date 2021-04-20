@@ -1,4 +1,4 @@
-use structs::*;
+use health_statistics::*;
 
 const NAME: &str = "Ebenezer";
 const AGE: u32 = 89;
