@@ -1,4 +1,4 @@
-use entry_api::*;
+use magazine_cutout::*;
 
 #[test]
 fn test_example_works() {

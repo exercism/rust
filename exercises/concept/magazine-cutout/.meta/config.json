@@ -1,5 +1,5 @@
 {
-  "blurb": "TODO: add blurb for entry-api exercise",
+  "blurb": "Use `HashMap` and the entry API methods to write an anonymous letter.",
   "authors": [
     "seanchen1991"
   ],
@@ -8,7 +8,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/entry_api.rs"
+      "tests/magazine-cutout.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"
