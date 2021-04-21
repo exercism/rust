@@ -129,6 +129,21 @@
         "status": "active"
       },
       {
+        "slug": "final-electric-bill",
+        "name": "Final Electric Bill",
+        "difficulty": 1,
+        "uuid": "8e063611-db3f-4991-adba-8f9565e98c71",
+        "concepts": [
+          "vec-stack"
+        ],
+        "prerequisites": [
+          "intro-fn",
+          "numbers",
+          "option"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "csv-builder",
         "name": "CSV builder",
         "difficulty": 1,
