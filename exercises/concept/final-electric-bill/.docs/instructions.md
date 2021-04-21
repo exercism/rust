@@ -7,7 +7,7 @@ Given a list of bills, write a function that replaces the last two bills with a 
 You'll start with the following stubbed function signature:
 
 ```rust
-pub fn fix_billing_summary(Vec<i32>) -> Vec<i32> {
+pub fn fix_billing_summary(summary: Vec<i32>) -> Vec<i32> {
 	todo!()
 }
 ```
@@ -28,7 +28,7 @@ This test is meant to show how you can modify your function to accept more compl
 Hint: replace the function signature with:
 
 ```rust
-pub fn fix_billing_summary<T: std::ops::Add>(Vec<T>) -> Vec<T> {
+pub fn fix_billing_summary<T: std::ops::Add>(summary: Vec<T>) -> Vec<T> {
 	todo!()
 }
 ```
