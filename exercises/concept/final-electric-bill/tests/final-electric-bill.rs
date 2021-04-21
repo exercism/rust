@@ -31,5 +31,5 @@ fn test_generic() {
     let bills: Vec<_> = vec![100, 200, 300].into_iter().map(Bill).collect();
     let mut fixed_bills = fix_billing_summary(bills);
 
-    assert_eq!(bills.pop(), Some(Bill(500)));
+    assert_eq!(bills, vec![100, 500].into_iter().map(Bill).collect());
 }
