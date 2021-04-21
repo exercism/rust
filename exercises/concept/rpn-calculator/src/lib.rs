@@ -1,7 +1,3 @@
-// This stub file contains items which aren't used yet; feel free to remove this module attribute
-// to enable stricter warnings.
-#![allow(unused)]
-
 #[derive(Debug)]
 pub enum CalculatorInput {
     Add,
