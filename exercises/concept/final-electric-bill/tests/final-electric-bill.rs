@@ -13,6 +13,7 @@ fn test_large_bill() {
     let summary = vec![100; 37];
     let mut fixed_summary = fix_billing_summary(summary);
     assert_eq!(fixed_summary.pop(), Some(200));
+    assert_eq!(fixed_summary, vec![100; 35]);
 }
 
 #[test]
