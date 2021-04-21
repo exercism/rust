@@ -1,10 +1,7 @@
-pub fn fix_billing_summary<T: std::ops::Add<Output = T>>(mut summary: Vec<T>) -> Vec<T> {
-    assert!(summary.len() >= 2);
-
-    let last_monthly_bill = summary.pop().unwrap();
-    let final_bill = summary.pop().unwrap();
-    let total_bill = last_monthly_bill + final_bill;
-    summary.push(total_bill);
-
-    summary
+/// Combines the final two elements of the input vector, or `None` if fewer than two elements present.
+pub fn fix_billing_summary<T: std::ops::Add<Output = T>>(mut summary: Vec<T>) -> Option<Vec<T>> {
+    let final_bill = summary.pop()?;
+    let last_monthly_bill = summary.pop()?;
+    summary.push(last_monthly_bill + final_bill);
+    Some(summary)
 }
