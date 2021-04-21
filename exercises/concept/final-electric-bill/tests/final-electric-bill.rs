@@ -1,17 +1,25 @@
 use final_electric_bill::*;
 
 #[test]
+fn test_too_small_bill() {
+    let summary = vec![100];
+    let fixed_summary = fix_billing_summary(summary);
+    assert_eq!(fixed_summary, None);
+}
+
+#[test]
+#[ignore]
 fn test_small_bill() {
     let summary = vec![100, 200];
     let fixed_summary = fix_billing_summary(summary);
-    assert_eq!(fixed_summary, vec![300]);
+    assert_eq!(fixed_summary, Some(vec![300]));
 }
 
 #[test]
 #[ignore]
 fn test_large_bill() {
     let summary = vec![100; 37];
-    let mut fixed_summary = fix_billing_summary(summary);
+    let mut fixed_summary = fix_billing_summary(summary).expect("Expected some bill");
     assert_eq!(fixed_summary.pop(), Some(200));
     assert_eq!(fixed_summary, vec![100; 35]);
 }
@@ -20,17 +28,20 @@ fn test_large_bill() {
 #[cfg(feature = "generic")]
 #[ignore]
 fn test_generic() {
-    #[derive(PartialEq)]
+    #[derive(Debug, PartialEq)]
     struct Bill(i64);
 
     impl std::ops::Add for Bill {
+        type Output = Self;
+
         fn add(self, rhs: Bill) -> Bill {
             Bill(self.0 + rhs.0)
         }
     }
 
     let bills: Vec<_> = vec![100, 200, 300].into_iter().map(Bill).collect();
-    let mut fixed_bills = fix_billing_summary(bills);
+    let fixed_bills = fix_billing_summary(bills).expect("Expected some bill");
+    let expected_bills: Vec<_> = vec![100, 500].into_iter().map(Bill).collect();
 
-    assert_eq!(bills, vec![100, 500].into_iter().map(Bill).collect());
+    assert_eq!(fixed_bills, expected_bills);
 }
