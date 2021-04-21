@@ -11,7 +11,7 @@ fn test_small_bill() {
 #[ignore]
 fn test_large_bill() {
     let summary = vec![100; 37];
-    let fixed_summary = fix_billing_summary(summary);
+    let mut fixed_summary = fix_billing_summary(summary);
     assert_eq!(fixed_summary.pop(), Some(200));
 }
 
@@ -29,7 +29,7 @@ fn test_generic() {
     }
 
     let bills: Vec<_> = vec![100, 200, 300].into_iter().map(Bill).collect();
-    let fixed_bills = fix_billing_summary(bills);
+    let mut fixed_bills = fix_billing_summary(bills);
 
     assert_eq!(bills.pop(), Some(Bill(500)));
 }
