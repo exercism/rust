@@ -1,0 +1,17 @@
+{
+  "blurb": "Use `push()` and `pop()` to fix electric bills.",
+  "authors": [
+    "cwhakes"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/final-electric-bill.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  }
+}
