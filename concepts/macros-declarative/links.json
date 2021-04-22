@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "url": "https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming",
+    "description": "TRPL introduction to declarative macros."
+  },
+  {
+    "url": "https://danielkeep.github.io/tlborm/book/README.html",
+    "description": "The Little Book of Rust Macros. Explains how they work and offers a practical introduction."
+  }
+]
+
