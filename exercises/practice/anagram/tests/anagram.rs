@@ -172,3 +172,15 @@ fn test_same_bytes_different_chars() {
 
     process_anagram_case(word, &inputs, &outputs);
 }
+
+#[test]
+#[ignore]
+fn test_different_words_but_same_ascii_sum() {
+    let word = "bc";
+
+    let inputs = ["ad"];
+
+    let outputs = vec![];
+
+    process_anagram_case(word, &inputs, &outputs);
+}
