@@ -32,7 +32,7 @@
     "concept": [
       {
         "slug": "magazine-cutout",
-        "uuid": "e7d8603e-97a9-11ea-9753-0242ac110002",
+        "uuid": "091c141b-6b68-43ad-b009-a27cd6741906",
         "name": "Magazine Cutout",
         "difficulty": 1,
         "concepts": [
@@ -618,7 +618,7 @@
       {
         "slug": "isogram",
         "name": "Isogram",
-        "uuid": "79613fd8-b7da-11e7-abc4-cec278b6b50a",
+        "uuid": "d141ec66-a161-4c3d-832b-439699bf0d4c",
         "practices": [],
         "prerequisites": [],
         "difficulty": 4,
@@ -763,7 +763,7 @@
       {
         "slug": "saddle-points",
         "name": "Saddle Points",
-        "uuid": "ccebfa12-d224-11e7-8941-cec278b6b50a",
+        "uuid": "e623afd9-f23f-4ab3-a427-c7071621be90",
         "practices": [],
         "prerequisites": [],
         "difficulty": 4,
@@ -1022,7 +1022,7 @@
       {
         "slug": "diffie-hellman",
         "name": "Diffie Hellman",
-        "uuid": "23d82e48-d074-11e7-8fab-cec278b6b50a",
+        "uuid": "ff9344b6-b185-4d53-bb03-f1d2bce8c959",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1,
@@ -1223,7 +1223,7 @@
       {
         "slug": "simple-cipher",
         "name": "Simple Cipher",
-        "uuid": "f424a350-50bd-11e8-9c2d-fa7ae01bbebc",
+        "uuid": "3aba9330-da46-48ee-bb9d-7e8f6c1ae7eb",
         "practices": [],
         "prerequisites": [],
         "difficulty": 4,
@@ -1395,7 +1395,7 @@
       {
         "slug": "two-fer",
         "name": "Two Fer",
-        "uuid": "c6631a2c-4632-11e8-842f-0ed5f89f718b",
+        "uuid": "585e963b-366c-48bc-b523-29b6be4175c8",
         "practices": [],
         "prerequisites": [],
         "difficulty": 1,
