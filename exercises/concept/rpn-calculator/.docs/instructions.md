@@ -35,6 +35,10 @@ In both cases, the expression evaluates to 6.
 ## 2. Example
 
 Lets manually evaluate that complex expression.
+As we learned in the introduction, evaluation of RPN requires a stack.
+This stack is used to hold numeric values that the operators operate on.
+We start our calculator with an empty stack and then evaluate each element one at a time.
+
 First, we encounter a `4`,
 so we push it onto our freshly created stack.
 
