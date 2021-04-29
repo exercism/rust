@@ -39,7 +39,7 @@ The `cast_spell` method takes a mutable reference to the Player as well as a `ma
   ```rust
   let not_a_wizard_yet = Player { health: 79, mana: None, level: 9 };
   assert_eq!(not_a_wizard_yet.cast_spell(5), 0)
-  assert_eq!(not_a_wizard_yet.health, 70);
+  assert_eq!(not_a_wizard_yet.health, 74);
   assert_eq!(not_a_wizard_yet.mana, None);
   ```
 
