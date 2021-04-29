@@ -1,0 +1,4 @@
+[package]
+name = "rpn_calculator"
+version = "0.1.0"
+edition = "2018"

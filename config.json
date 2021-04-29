@@ -129,6 +129,25 @@
         "status": "active"
       },
       {
+        "slug": "rpn-calculator",
+        "name": "RPN Calculator",
+        "difficulty": 4,
+        "uuid": "25cc722b-211d-4271-9381-fdfe16b41301",
+        "concepts": [
+          "vec-stack"
+        ],
+        "prerequisites": [
+          "intro-fn",
+          "numbers",
+          "option",
+          "enums",
+          "match-basics",
+          "loops",
+          "mutability"
+        ],
+        "status": "active"
+      },
+      {
         "slug": "csv-builder",
         "name": "CSV builder",
         "difficulty": 1,
