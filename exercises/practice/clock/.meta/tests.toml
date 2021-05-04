@@ -1,209 +1,53 @@
 [canonical-tests]
 
-# on the hour
-# this test may not be in the suite but has not been intentionally rejected
-# "a577bacc-106b-496e-9792-b3083ea8705e" = false
 
-# past the hour
-# this test may not be in the suite but has not been intentionally rejected
-# "b5d0c360-3b88-489b-8e84-68a1c7a4fa23" = false
 
-# midnight is zero hours
-# this test may not be in the suite but has not been intentionally rejected
-# "473223f4-65f3-46ff-a9f7-7663c7e59440" = false
 
-# hour rolls over
-# this test may not be in the suite but has not been intentionally rejected
-# "ca95d24a-5924-447d-9a96-b91c8334725c" = false
 
-# hour rolls over continuously
-# this test may not be in the suite but has not been intentionally rejected
-# "f3826de0-0925-4d69-8ac8-89aea7e52b78" = false
 
-# sixty minutes is next hour
-# this test may not be in the suite but has not been intentionally rejected
-# "a02f7edf-dfd4-4b11-b21a-86de3cc6a95c" = false
 
-# minutes roll over
-# this test may not be in the suite but has not been intentionally rejected
-# "8f520df6-b816-444d-b90f-8a477789beb5" = false
 
-# minutes roll over continuously
-# this test may not be in the suite but has not been intentionally rejected
-# "c75c091b-47ac-4655-8d40-643767fc4eed" = false
 
-# hour and minutes roll over
-# this test may not be in the suite but has not been intentionally rejected
-# "06343ecb-cf39-419d-a3f5-dcbae0cc4c57" = false
 
-# hour and minutes roll over continuously
-# this test may not be in the suite but has not been intentionally rejected
-# "be60810e-f5d9-4b58-9351-a9d1e90e660c" = false
 
-# hour and minutes roll over to exactly midnight
-# this test may not be in the suite but has not been intentionally rejected
-# "1689107b-0b5c-4bea-aad3-65ec9859368a" = false
 
-# negative hour
-# this test may not be in the suite but has not been intentionally rejected
-# "d3088ee8-91b7-4446-9e9d-5e2ad6219d91" = false
 
-# negative hour rolls over
-# this test may not be in the suite but has not been intentionally rejected
-# "77ef6921-f120-4d29-bade-80d54aa43b54" = false
 
-# negative hour rolls over continuously
-# this test may not be in the suite but has not been intentionally rejected
-# "359294b5-972f-4546-bb9a-a85559065234" = false
 
-# negative minutes
-# this test may not be in the suite but has not been intentionally rejected
-# "509db8b7-ac19-47cc-bd3a-a9d2f30b03c0" = false
 
-# negative minutes roll over
-# this test may not be in the suite but has not been intentionally rejected
-# "5d6bb225-130f-4084-84fd-9e0df8996f2a" = false
 
-# negative minutes roll over continuously
-# this test may not be in the suite but has not been intentionally rejected
-# "d483ceef-b520-4f0c-b94a-8d2d58cf0484" = false
 
-# negative sixty minutes is previous hour
-# this test may not be in the suite but has not been intentionally rejected
-# "1cd19447-19c6-44bf-9d04-9f8305ccb9ea" = false
 
-# negative hour and minutes both roll over
-# this test may not be in the suite but has not been intentionally rejected
-# "9d3053aa-4f47-4afc-bd45-d67a72cef4dc" = false
 
-# negative hour and minutes both roll over continuously
-# this test may not be in the suite but has not been intentionally rejected
-# "51d41fcf-491e-4ca0-9cae-2aa4f0163ad4" = false
 
-# add minutes
-# this test may not be in the suite but has not been intentionally rejected
-# "d098e723-ad29-4ef9-997a-2693c4c9d89a" = false
 
-# add no minutes
-# this test may not be in the suite but has not been intentionally rejected
-# "b6ec8f38-e53e-4b22-92a7-60dab1f485f4" = false
 
-# add to next hour
-# this test may not be in the suite but has not been intentionally rejected
-# "efd349dd-0785-453e-9ff8-d7452a8e7269" = false
 
-# add more than one hour
-# this test may not be in the suite but has not been intentionally rejected
-# "749890f7-aba9-4702-acce-87becf4ef9fe" = false
 
-# add more than two hours with carry
-# this test may not be in the suite but has not been intentionally rejected
-# "da63e4c1-1584-46e3-8d18-c9dc802c1713" = false
 
-# add across midnight
-# this test may not be in the suite but has not been intentionally rejected
-# "be167a32-3d33-4cec-a8bc-accd47ddbb71" = false
 
-# add more than one day (1500 min = 25 hrs)
-# this test may not be in the suite but has not been intentionally rejected
-# "6672541e-cdae-46e4-8be7-a820cc3be2a8" = false
 
-# add more than two days
-# this test may not be in the suite but has not been intentionally rejected
-# "1918050d-c79b-4cb7-b707-b607e2745c7e" = false
 
-# subtract minutes
-# this test may not be in the suite but has not been intentionally rejected
-# "37336cac-5ede-43a5-9026-d426cbe40354" = false
 
-# subtract to previous hour
-# this test may not be in the suite but has not been intentionally rejected
-# "0aafa4d0-3b5f-4b12-b3af-e3a9e09c047b" = false
 
-# subtract more than an hour
-# this test may not be in the suite but has not been intentionally rejected
-# "9b4e809c-612f-4b15-aae0-1df0acb801b9" = false
 
-# subtract across midnight
-# this test may not be in the suite but has not been intentionally rejected
-# "8b04bb6a-3d33-4e6c-8de9-f5de6d2c70d6" = false
 
-# subtract more than two hours
-# this test may not be in the suite but has not been intentionally rejected
-# "07c3bbf7-ce4d-4658-86e8-4a77b7a5ccd9" = false
 
-# subtract more than two hours with borrow
-# this test may not be in the suite but has not been intentionally rejected
-# "90ac8a1b-761c-4342-9c9c-cdc3ed5db097" = false
 
-# subtract more than one day (1500 min = 25 hrs)
-# this test may not be in the suite but has not been intentionally rejected
-# "2149f985-7136-44ad-9b29-ec023a97a2b7" = false
 
-# subtract more than two days
-# this test may not be in the suite but has not been intentionally rejected
-# "ba11dbf0-ac27-4acb-ada9-3b853ec08c97" = false
 
-# clocks with same time
-# this test may not be in the suite but has not been intentionally rejected
-# "f2fdad51-499f-4c9b-a791-b28c9282e311" = false
 
-# clocks a minute apart
-# this test may not be in the suite but has not been intentionally rejected
-# "5d409d4b-f862-4960-901e-ec430160b768" = false
 
-# clocks an hour apart
-# this test may not be in the suite but has not been intentionally rejected
-# "a6045fcf-2b52-4a47-8bb2-ef10a064cba5" = false
 
-# clocks with hour overflow
-# this test may not be in the suite but has not been intentionally rejected
-# "66b12758-0be5-448b-a13c-6a44bce83527" = false
 
-# clocks with hour overflow by several days
-# this test may not be in the suite but has not been intentionally rejected
-# "2b19960c-212e-4a71-9aac-c581592f8111" = false
 
-# clocks with negative hour
-# this test may not be in the suite but has not been intentionally rejected
-# "6f8c6541-afac-4a92-b0c2-b10d4e50269f" = false
 
-# clocks with negative hour that wraps
-# this test may not be in the suite but has not been intentionally rejected
-# "bb9d5a68-e324-4bf5-a75e-0e9b1f97a90d" = false
 
-# clocks with negative hour that wraps multiple times
-# this test may not be in the suite but has not been intentionally rejected
-# "56c0326d-565b-4d19-a26f-63b3205778b7" = false
 
-# clocks with minute overflow
-# this test may not be in the suite but has not been intentionally rejected
-# "c90b9de8-ddff-4ffe-9858-da44a40fdbc2" = false
 
-# clocks with minute overflow by several days
-# this test may not be in the suite but has not been intentionally rejected
-# "533a3dc5-59a7-491b-b728-a7a34fe325de" = false
 
-# clocks with negative minute
-# this test may not be in the suite but has not been intentionally rejected
-# "fff49e15-f7b7-4692-a204-0f6052d62636" = false
 
-# clocks with negative minute that wraps
-# this test may not be in the suite but has not been intentionally rejected
-# "605c65bb-21bd-43eb-8f04-878edf508366" = false
 
-# clocks with negative minute that wraps multiple times
-# this test may not be in the suite but has not been intentionally rejected
-# "b87e64ed-212a-4335-91fd-56da8421d077" = false
 
-# clocks with negative hours and minutes
-# this test may not be in the suite but has not been intentionally rejected
-# "822fbf26-1f3b-4b13-b9bf-c914816b53dd" = false
 
-# clocks with negative hours and minutes that wrap
-# this test may not be in the suite but has not been intentionally rejected
-# "e787bccd-cf58-4a1d-841c-ff80eaaccfaa" = false
 
-# full clock and zeroed clock
-# this test may not be in the suite but has not been intentionally rejected
-# "96969ca8-875a-48a1-86ae-257a528c44f5" = false

@@ -1,21 +1,6 @@
 [canonical-tests]
 
-# private key is in range 1 .. p
-# this test may not be in the suite but has not been intentionally rejected
-# "1b97bf38-4307-418e-bfd2-446ffc77588d" = false
 
-# private key is random
-# this test may not be in the suite but has not been intentionally rejected
-# "68b2a5f7-7755-44c3-97b2-d28d21f014a9" = false
 
-# can calculate public key using private key
-# this test may not be in the suite but has not been intentionally rejected
-# "b4161d8e-53a1-4241-ae8f-48cc86527f22" = false
 
-# can calculate secret using other party's public key
-# this test may not be in the suite but has not been intentionally rejected
-# "cd02ad45-3f52-4510-99cc-5161dad948a8" = false
 
-# key exchange
-# this test may not be in the suite but has not been intentionally rejected
-# "17f13c61-a111-4075-9a1f-c2d4636dfa60" = false

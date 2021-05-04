@@ -21,17 +21,8 @@
 # compute cells fire callbacks
 "abe33eaf-68ad-42a5-b728-05519ca88d2d" = true
 
-# callback cells only fire on change
-# this test may not be in the suite but has not been intentionally rejected
-# "9e5cb3a4-78e5-4290-80f8-a78612c52db2" = false
 
-# callbacks do not report already reported values
-# this test may not be in the suite but has not been intentionally rejected
-# "ada17cb6-7332-448a-b934-e3d7495c13d3" = false
 
-# callbacks can fire from multiple cells
-# this test may not be in the suite but has not been intentionally rejected
-# "ac271900-ea5c-461c-9add-eeebcb8c03e5" = false
 
 # callbacks can be added and removed
 "95a82dcc-8280-4de3-a4cd-4f19a84e3d6f" = true

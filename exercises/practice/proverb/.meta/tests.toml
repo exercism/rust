@@ -1,25 +1,7 @@
 [canonical-tests]
 
-# zero pieces
-# this test may not be in the suite but has not been intentionally rejected
-# "e974b73e-7851-484f-8d6d-92e07fe742fc" = false
 
-# one piece
-# this test may not be in the suite but has not been intentionally rejected
-# "2fcd5f5e-8b82-4e74-b51d-df28a5e0faa4" = false
 
-# two pieces
-# this test may not be in the suite but has not been intentionally rejected
-# "d9d0a8a1-d933-46e2-aa94-eecf679f4b0e" = false
 
-# three pieces
-# this test may not be in the suite but has not been intentionally rejected
-# "c95ef757-5e94-4f0d-a6cb-d2083f5e5a83" = false
 
-# full proverb
-# this test may not be in the suite but has not been intentionally rejected
-# "433fb91c-35a2-4d41-aeab-4de1e82b2126" = false
 
-# four pieces modernized
-# this test may not be in the suite but has not been intentionally rejected
-# "c1eefa5a-e8d9-41c7-91d4-99fab6d6b9f7" = false

@@ -1,21 +1,6 @@
 [canonical-tests]
 
-# first prime
-# this test may not be in the suite but has not been intentionally rejected
-# "75c65189-8aef-471a-81de-0a90c728160c" = false
 
-# second prime
-# this test may not be in the suite but has not been intentionally rejected
-# "2c38804c-295f-4701-b728-56dea34fd1a0" = false
 
-# sixth prime
-# this test may not be in the suite but has not been intentionally rejected
-# "56692534-781e-4e8c-b1f9-3e82c1640259" = false
 
-# big prime
-# this test may not be in the suite but has not been intentionally rejected
-# "fce1e979-0edb-412d-93aa-2c744e8f50ff" = false
 
-# there is no zeroth prime
-# this test may not be in the suite but has not been intentionally rejected
-# "bd0a9eae-6df7-485b-a144-80e13c7d55b2" = false

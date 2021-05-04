@@ -6,24 +6,12 @@
 # Recognizes 1
 "027ada25-17fd-4d78-aee6-35a19623639d" = true
 
-# Unreadable but correctly sized inputs return ?
-# this test may not be in the suite but has not been intentionally rejected
-# "3cce2dbd-01d9-4f94-8fae-419a822e89bb" = false
 
-# Input with a number of lines that is not a multiple of four raises an error
-# this test may not be in the suite but has not been intentionally rejected
-# "cb19b733-4e36-4cf9-a4a1-6e6aac808b9a" = false
 
-# Input with a number of columns that is not a multiple of three raises an error
-# this test may not be in the suite but has not been intentionally rejected
-# "235f7bd1-991b-4587-98d4-84206eec4cc6" = false
 
 # Recognizes 110101100
 "4a841794-73c9-4da9-a779-1f9837faff66" = true
 
-# Garbled numbers in a string are replaced with ?
-# this test may not be in the suite but has not been intentionally rejected
-# "70c338f9-85b1-4296-a3a8-122901cdfde8" = false
 
 # Recognizes 2
 "ea494ff4-3610-44d7-ab7e-72fdef0e0802" = true
@@ -52,6 +40,3 @@
 # Recognizes string of decimal numbers
 "f60cb04a-42be-494e-a535-3451c8e097a4" = true
 
-# Numbers separated by empty lines are recognized. Lines are joined by commas.
-# this test may not be in the suite but has not been intentionally rejected
-# "b73ecf8b-4423-4b36-860d-3710bdb8a491" = false

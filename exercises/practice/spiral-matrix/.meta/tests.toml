@@ -3,22 +3,7 @@
 # empty spiral
 "8f584201-b446-4bc9-b132-811c8edd9040" = true
 
-# trivial spiral
-# this test may not be in the suite but has not been intentionally rejected
-# "e40ae5f3-e2c9-4639-8116-8a119d632ab2" = false
 
-# spiral of size 2
-# this test may not be in the suite but has not been intentionally rejected
-# "cf05e42d-eb78-4098-a36e-cdaf0991bc48" = false
 
-# spiral of size 3
-# this test may not be in the suite but has not been intentionally rejected
-# "1c475667-c896-4c23-82e2-e033929de939" = false
 
-# spiral of size 4
-# this test may not be in the suite but has not been intentionally rejected
-# "05ccbc48-d891-44f5-9137-f4ce462a759d" = false
 
-# spiral of size 5
-# this test may not be in the suite but has not been intentionally rejected
-# "f4d2165b-1738-4e0c-bed0-c459045ae50d" = false

@@ -21,17 +21,8 @@
 # identifies that a value is not included in the array
 "da7db20a-354f-49f7-a6a1-650a54998aa6" = true
 
-# a value smaller than the array's smallest value is not found
-# this test may not be in the suite but has not been intentionally rejected
-# "95d869ff-3daf-4c79-b622-6e805c675f97" = false
 
-# a value larger than the array's largest value is not found
-# this test may not be in the suite but has not been intentionally rejected
-# "8b24ef45-6e51-4a94-9eac-c2bf38fdb0ba" = false
 
-# nothing is found in an empty array
-# this test may not be in the suite but has not been intentionally rejected
-# "f439a0fa-cf42-4262-8ad1-64bf41ce566a" = false
 
 # nothing is found when the left and right bounds cross
 "2c353967-b56d-40b8-acff-ce43115eed64" = true
