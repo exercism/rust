@@ -1,13 +1,3 @@
-[canonical-tests]
-
-# no name given
-# this test may not be in the suite but has not been intentionally rejected
-# "1cf3e15a-a3d7-4a87-aeb3-ba1b43bc8dce" = false
-
-# a name given
-# this test may not be in the suite but has not been intentionally rejected
-# "b4c6dbb8-b4fb-42c2-bafd-10785abe7709" = false
-
-# another name given
-# this test may not be in the suite but has not been intentionally rejected
-# "3549048d-1a6e-4653-9a79-b0bda163e8d5" = false
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.

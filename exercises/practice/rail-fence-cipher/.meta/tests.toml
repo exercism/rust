@@ -1,25 +1,3 @@
-[canonical-tests]
-
-# encode with two rails
-# this test may not be in the suite but has not been intentionally rejected
-# "46dc5c50-5538-401d-93a5-41102680d068" = false
-
-# encode with three rails
-# this test may not be in the suite but has not been intentionally rejected
-# "25691697-fbd8-4278-8c38-b84068b7bc29" = false
-
-# encode with ending in the middle
-# this test may not be in the suite but has not been intentionally rejected
-# "384f0fea-1442-4f1a-a7c4-5cbc2044002c" = false
-
-# decode with three rails
-# this test may not be in the suite but has not been intentionally rejected
-# "cd525b17-ec34-45ef-8f0e-4f27c24a7127" = false
-
-# decode with five rails
-# this test may not be in the suite but has not been intentionally rejected
-# "dd7b4a98-1a52-4e5c-9499-cbb117833507" = false
-
-# decode with six rails
-# this test may not be in the suite but has not been intentionally rejected
-# "93e1ecf4-fac9-45d9-9cd2-591f47d3b8d3" = false
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.

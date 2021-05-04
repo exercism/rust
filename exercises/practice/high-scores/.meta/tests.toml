@@ -1,33 +1,3 @@
-[canonical-tests]
-
-# List of scores
-# this test may not be in the suite but has not been intentionally rejected
-# "1035eb93-2208-4c22-bab8-fef06769a73c" = false
-
-# Latest score
-# this test may not be in the suite but has not been intentionally rejected
-# "6aa5dbf5-78fa-4375-b22c-ffaa989732d2" = false
-
-# Personal best
-# this test may not be in the suite but has not been intentionally rejected
-# "b661a2e1-aebf-4f50-9139-0fb817dd12c6" = false
-
-# Personal top three from a list of scores
-# this test may not be in the suite but has not been intentionally rejected
-# "3d996a97-c81c-4642-9afc-80b80dc14015" = false
-
-# Personal top highest to lowest
-# this test may not be in the suite but has not been intentionally rejected
-# "1084ecb5-3eb4-46fe-a816-e40331a4e83a" = false
-
-# Personal top when there is a tie
-# this test may not be in the suite but has not been intentionally rejected
-# "e6465b6b-5a11-4936-bfe3-35241c4f4f16" = false
-
-# Personal top when there are less than 3
-# this test may not be in the suite but has not been intentionally rejected
-# "f73b02af-c8fd-41c9-91b9-c86eaa86bce2" = false
-
-# Personal top when there is only one
-# this test may not be in the suite but has not been intentionally rejected
-# "16608eae-f60f-4a88-800e-aabce5df2865" = false
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.

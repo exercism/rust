@@ -1,29 +1,3 @@
-[canonical-tests]
-
-# triplets whose sum is 12
-# this test may not be in the suite but has not been intentionally rejected
-# "a19de65d-35b8-4480-b1af-371d9541e706" = false
-
-# triplets whose sum is 108
-# this test may not be in the suite but has not been intentionally rejected
-# "48b21332-0a3d-43b2-9a52-90b2a6e5c9f5" = false
-
-# triplets whose sum is 1000
-# this test may not be in the suite but has not been intentionally rejected
-# "dffc1266-418e-4daa-81af-54c3e95c3bb5" = false
-
-# no matching triplets for 1001
-# this test may not be in the suite but has not been intentionally rejected
-# "5f86a2d4-6383-4cce-93a5-e4489e79b186" = false
-
-# returns all matching triplets
-# this test may not be in the suite but has not been intentionally rejected
-# "bf17ba80-1596-409a-bb13-343bdb3b2904" = false
-
-# several matching triplets
-# this test may not be in the suite but has not been intentionally rejected
-# "9d8fb5d5-6c6f-42df-9f95-d3165963ac57" = false
-
-# triplets for large number
-# this test may not be in the suite but has not been intentionally rejected
-# "f5be5734-8aa0-4bd1-99a2-02adcc4402b4" = false
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.

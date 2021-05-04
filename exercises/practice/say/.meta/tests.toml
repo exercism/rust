@@ -1,57 +1,15 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# zero
-"5d22a120-ba0c-428c-bd25-8682235d83e8" = true
+[5d22a120-ba0c-428c-bd25-8682235d83e8]
+description = "zero"
 
-# one
-"9b5eed77-dbf6-439d-b920-3f7eb58928f6" = true
+[9b5eed77-dbf6-439d-b920-3f7eb58928f6]
+description = "one"
 
-# fourteen
-"7c499be1-612e-4096-a5e1-43b2f719406d" = true
+[7c499be1-612e-4096-a5e1-43b2f719406d]
+description = "fourteen"
 
-# twenty
-"f541dd8e-f070-4329-92b4-b7ce2fcf06b4" = true
-
-# twenty-two
-# this test may not be in the suite but has not been intentionally rejected
-# "d78601eb-4a84-4bfa-bf0e-665aeb8abe94" = false
-
-# one hundred
-# this test may not be in the suite but has not been intentionally rejected
-# "e417d452-129e-4056-bd5b-6eb1df334dce" = false
-
-# one hundred twenty-three
-# this test may not be in the suite but has not been intentionally rejected
-# "d6924f30-80ba-4597-acf6-ea3f16269da8" = false
-
-# one thousand
-# this test may not be in the suite but has not been intentionally rejected
-# "3d83da89-a372-46d3-b10d-de0c792432b3" = false
-
-# one thousand two hundred thirty-four
-# this test may not be in the suite but has not been intentionally rejected
-# "865af898-1d5b-495f-8ff0-2f06d3c73709" = false
-
-# one million
-# this test may not be in the suite but has not been intentionally rejected
-# "b6a3f442-266e-47a3-835d-7f8a35f6cf7f" = false
-
-# one million two thousand three hundred forty-five
-# this test may not be in the suite but has not been intentionally rejected
-# "2cea9303-e77e-4212-b8ff-c39f1978fc70" = false
-
-# one billion
-# this test may not be in the suite but has not been intentionally rejected
-# "3e240eeb-f564-4b80-9421-db123f66a38f" = false
-
-# a big number
-# this test may not be in the suite but has not been intentionally rejected
-# "9a43fed1-c875-4710-8286-5065d73b8a9e" = false
-
-# numbers below zero are out of range
-# this test may not be in the suite but has not been intentionally rejected
-# "49a6a17b-084e-423e-994d-a87c0ecc05ef" = false
-
-# numbers above 999,999,999,999 are out of range
-# this test may not be in the suite but has not been intentionally rejected
-# "4d6492eb-5853-4d16-9d34-b0f61b261fd9" = false
+[f541dd8e-f070-4329-92b4-b7ce2fcf06b4]
+description = "twenty"

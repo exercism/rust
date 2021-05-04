@@ -1,40 +1,6 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# puzzle with three letters
-# this test may not be in the suite but has not been intentionally rejected
-# "e0c08b07-9028-4d5f-91e1-d178fead8e1a" = false
-
-# solution must have unique value for each letter
-# this test may not be in the suite but has not been intentionally rejected
-# "a504ee41-cb92-4ec2-9f11-c37e95ab3f25" = false
-
-# leading zero solution is invalid
-# this test may not be in the suite but has not been intentionally rejected
-# "4e3b81d2-be7b-4c5c-9a80-cd72bc6d465a" = false
-
-# puzzle with two digits final carry
-"8a3e3168-d1ee-4df7-94c7-b9c54845ac3a" = true
-
-# puzzle with four letters
-# this test may not be in the suite but has not been intentionally rejected
-# "a9630645-15bd-48b6-a61e-d85c4021cc09" = false
-
-# puzzle with six letters
-# this test may not be in the suite but has not been intentionally rejected
-# "3d905a86-5a52-4e4e-bf80-8951535791bd" = false
-
-# puzzle with seven letters
-# this test may not be in the suite but has not been intentionally rejected
-# "4febca56-e7b7-4789-97b9-530d09ba95f0" = false
-
-# puzzle with eight letters
-# this test may not be in the suite but has not been intentionally rejected
-# "12125a75-7284-4f9a-a5fa-191471e0d44f" = false
-
-# puzzle with ten letters
-# this test may not be in the suite but has not been intentionally rejected
-# "fb05955f-38dc-477a-a0b6-5ef78969fffa" = false
-
-# puzzle with ten letters and 199 addends
-# this test may not be in the suite but has not been intentionally rejected
-# "9a101e81-9216-472b-b458-b513a7adacf7" = false
+[8a3e3168-d1ee-4df7-94c7-b9c54845ac3a]
+description = "puzzle with two digits final carry"

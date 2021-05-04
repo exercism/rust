@@ -1,20 +1,6 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# no primes under two
-# this test may not be in the suite but has not been intentionally rejected
-# "88529125-c4ce-43cc-bb36-1eb4ddd7b44f" = false
-
-# find first prime
-# this test may not be in the suite but has not been intentionally rejected
-# "4afe9474-c705-4477-9923-840e1024cc2b" = false
-
-# find primes up to 10
-# this test may not be in the suite but has not been intentionally rejected
-# "974945d8-8cd9-4f00-9463-7d813c7f17b7" = false
-
-# limit is prime
-"2e2417b7-3f3a-452a-8594-b9af08af6d82" = true
-
-# find primes up to 1000
-# this test may not be in the suite but has not been intentionally rejected
-# "92102a05-4c7c-47de-9ed0-b7d5fcd00f21" = false
+[2e2417b7-3f3a-452a-8594-b9af08af6d82]
+description = "limit is prime"

@@ -1,49 +1,15 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# empty string
-"a0e97d2d-669e-47c7-8134-518a1e2c4555" = true
+[a0e97d2d-669e-47c7-8134-518a1e2c4555]
+description = "empty string"
 
-# isogram with only lower case characters
-# this test may not be in the suite but has not been intentionally rejected
-# "9a001b50-f194-4143-bc29-2af5ec1ef652" = false
+[a15ff557-dd04-4764-99e7-02cc1a385863]
+description = "longest reported english isogram"
 
-# word with one duplicated character
-# this test may not be in the suite but has not been intentionally rejected
-# "8ddb0ca3-276e-4f8b-89da-d95d5bae78a4" = false
+[36b30e5c-173f-49c6-a515-93a3e825553f]
+description = "isogram with duplicated hyphen"
 
-# word with one duplicated character from the end of the alphabet
-# this test may not be in the suite but has not been intentionally rejected
-# "6450b333-cbc2-4b24-a723-0b459b34fe18" = false
-
-# longest reported english isogram
-"a15ff557-dd04-4764-99e7-02cc1a385863" = true
-
-# word with duplicated character in mixed case
-# this test may not be in the suite but has not been intentionally rejected
-# "f1a7f6c7-a42f-4915-91d7-35b2ea11c92e" = false
-
-# word with duplicated character in mixed case, lowercase first
-# this test may not be in the suite but has not been intentionally rejected
-# "14a4f3c1-3b47-4695-b645-53d328298942" = false
-
-# hypothetical isogrammic word with hyphen
-# this test may not be in the suite but has not been intentionally rejected
-# "423b850c-7090-4a8a-b057-97f1cadd7c42" = false
-
-# hypothetical word with duplicated character following hyphen
-# this test may not be in the suite but has not been intentionally rejected
-# "93dbeaa0-3c5a-45c2-8b25-428b8eacd4f2" = false
-
-# isogram with duplicated hyphen
-"36b30e5c-173f-49c6-a515-93a3e825553f" = true
-
-# made-up name that is an isogram
-# this test may not be in the suite but has not been intentionally rejected
-# "cdabafa0-c9f4-4c1f-b142-689c6ee17d93" = false
-
-# duplicated character in the middle
-"5fc61048-d74e-48fd-bc34-abfc21552d4d" = true
-
-# same first and last characters
-# this test may not be in the suite but has not been intentionally rejected
-# "310ac53d-8932-47bc-bbb4-b2b94f25a83e" = false
+[5fc61048-d74e-48fd-bc34-abfc21552d4d]
+description = "duplicated character in the middle"

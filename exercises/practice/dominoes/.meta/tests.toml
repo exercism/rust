@@ -1,44 +1,18 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# empty input = empty output
-# this test may not be in the suite but has not been intentionally rejected
-# "31a673f2-5e54-49fe-bd79-1c1dae476c9c" = false
+[91122d10-5ec7-47cb-b759-033756375869]
+description = "singleton that can't be chained"
 
-# singleton input = singleton output
-# this test may not be in the suite but has not been intentionally rejected
-# "4f99b933-367b-404b-8c6d-36d5923ee476" = false
+[99e615c6-c059-401c-9e87-ad7af11fea5c]
+description = "can reverse dominoes"
 
-# singleton that can't be chained
-"91122d10-5ec7-47cb-b759-033756375869" = true
+[2174fbdc-8b48-4bac-9914-8090d06ef978]
+description = "need backtrack"
 
-# three elements
-# this test may not be in the suite but has not been intentionally rejected
-# "be8bc26b-fd3d-440b-8e9f-d698a0623be3" = false
+[167bb480-dfd1-4318-a20d-4f90adb4a09f]
+description = "separate loops"
 
-# can reverse dominoes
-"99e615c6-c059-401c-9e87-ad7af11fea5c" = true
-
-# can't be chained
-# this test may not be in the suite but has not been intentionally rejected
-# "51f0c291-5d43-40c5-b316-0429069528c9" = false
-
-# disconnected - simple
-# this test may not be in the suite but has not been intentionally rejected
-# "9a75e078-a025-4c23-8c3a-238553657f39" = false
-
-# disconnected - double loop
-# this test may not be in the suite but has not been intentionally rejected
-# "0da0c7fe-d492-445d-b9ef-1f111f07a301" = false
-
-# disconnected - single isolated
-# this test may not be in the suite but has not been intentionally rejected
-# "b6087ff0-f555-4ea0-a71c-f9d707c5994a" = false
-
-# need backtrack
-"2174fbdc-8b48-4bac-9914-8090d06ef978" = true
-
-# separate loops
-"167bb480-dfd1-4318-a20d-4f90adb4a09f" = true
-
-# nine elements
-"cd061538-6046-45a7-ace9-6708fe8f6504" = true
+[cd061538-6046-45a7-ace9-6708fe8f6504]
+description = "nine elements"

@@ -1,21 +1,3 @@
-[canonical-tests]
-
-# Degenerate case with a single 'A' row
-# this test may not be in the suite but has not been intentionally rejected
-# "202fb4cc-6a38-4883-9193-a29d5cb92076" = false
-
-# Degenerate case with no row containing 3 distinct groups of spaces
-# this test may not be in the suite but has not been intentionally rejected
-# "bd6a6d78-9302-42e9-8f60-ac1461e9abae" = false
-
-# Smallest non-degenerate case with odd diamond side length
-# this test may not be in the suite but has not been intentionally rejected
-# "af8efb49-14ed-447f-8944-4cc59ce3fd76" = false
-
-# Smallest non-degenerate case with even diamond side length
-# this test may not be in the suite but has not been intentionally rejected
-# "e0c19a95-9888-4d05-86a0-fa81b9e70d1d" = false
-
-# Largest possible diamond
-# this test may not be in the suite but has not been intentionally rejected
-# "82ea9aa9-4c0e-442a-b07e-40204e925944" = false
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.

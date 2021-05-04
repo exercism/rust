@@ -1,33 +1,3 @@
-[canonical-tests]
-
-# first generic verse
-# this test may not be in the suite but has not been intentionally rejected
-# "5a02fd08-d336-4607-8006-246fe6fa9fb0" = false
-
-# last generic verse
-# this test may not be in the suite but has not been intentionally rejected
-# "77299ca6-545e-4217-a9cc-606b342e0187" = false
-
-# verse with 2 bottles
-# this test may not be in the suite but has not been intentionally rejected
-# "102cbca0-b197-40fd-b548-e99609b06428" = false
-
-# verse with 1 bottle
-# this test may not be in the suite but has not been intentionally rejected
-# "b8ef9fce-960e-4d85-a0c9-980a04ec1972" = false
-
-# verse with 0 bottles
-# this test may not be in the suite but has not been intentionally rejected
-# "c59d4076-f671-4ee3-baaa-d4966801f90d" = false
-
-# first two verses
-# this test may not be in the suite but has not been intentionally rejected
-# "7e17c794-402d-4ca6-8f96-4d8f6ee1ec7e" = false
-
-# last three verses
-# this test may not be in the suite but has not been intentionally rejected
-# "949868e7-67e8-43d3-9bb4-69277fe020fb" = false
-
-# all verses
-# this test may not be in the suite but has not been intentionally rejected
-# "bc220626-126c-4e72-8df4-fddfc0c3e458" = false
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.

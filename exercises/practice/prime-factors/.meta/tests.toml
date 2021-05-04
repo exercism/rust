@@ -1,29 +1,3 @@
-[canonical-tests]
-
-# no factors
-# this test may not be in the suite but has not been intentionally rejected
-# "924fc966-a8f5-4288-82f2-6b9224819ccd" = false
-
-# prime number
-# this test may not be in the suite but has not been intentionally rejected
-# "17e30670-b105-4305-af53-ddde182cb6ad" = false
-
-# square of a prime
-# this test may not be in the suite but has not been intentionally rejected
-# "f59b8350-a180-495a-8fb1-1712fbee1158" = false
-
-# cube of a prime
-# this test may not be in the suite but has not been intentionally rejected
-# "bc8c113f-9580-4516-8669-c5fc29512ceb" = false
-
-# product of primes and non-primes
-# this test may not be in the suite but has not been intentionally rejected
-# "00485cd3-a3fe-4fbe-a64a-a4308fc1f870" = false
-
-# product of primes
-# this test may not be in the suite but has not been intentionally rejected
-# "02251d54-3ca1-4a9b-85e1-b38f4b0ccb91" = false
-
-# factors include a large prime
-# this test may not be in the suite but has not been intentionally rejected
-# "070cf8dc-e202-4285-aa37-8d775c9cd473" = false
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
