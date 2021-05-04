@@ -1,17 +1,12 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[71b541bb-819c-4dc6-a9c3-132ef9bb737b]
+description = "rotate spaces"
 
+[ef32601d-e9ef-4b29-b2b5-8971392282e6]
+description = "rotate numbers"
 
-
-
-
-
-# rotate spaces
-"71b541bb-819c-4dc6-a9c3-132ef9bb737b" = true
-
-# rotate numbers
-"ef32601d-e9ef-4b29-b2b5-8971392282e6" = true
-
-# rotate punctuation
-"32dd74f6-db2b-41a6-b02c-82eb4f93e549" = true
-
+[32dd74f6-db2b-41a6-b02c-82eb4f93e549]
+description = "rotate punctuation"

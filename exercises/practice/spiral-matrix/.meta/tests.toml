@@ -1,9 +1,7 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# empty spiral
-"8f584201-b446-4bc9-b132-811c8edd9040" = true
-
-
-
-
+[8f584201-b446-4bc9-b132-811c8edd9040]
+description = "empty spiral"
 

@@ -1,13 +1,6 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-
-
-
-# puzzle with two digits final carry
-"8a3e3168-d1ee-4df7-94c7-b9c54845ac3a" = true
-
-
-
-
-
-
+[8a3e3168-d1ee-4df7-94c7-b9c54845ac3a]
+description = "puzzle with two digits final carry"

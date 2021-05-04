@@ -1,66 +1,28 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[90c8f484-456b-41c4-82ba-2d08d93231c6]
+description = "allergic to everything"
 
+[d2d71fd8-63d5-40f9-a627-fbdaf88caeab]
+description = "allergic to everything"
 
+[cc789c19-2b5e-4c67-b146-625dc8cfa34e]
+description = "allergic to everything"
 
+[74afaae2-13b6-43a2-837a-286cd42e7d7e]
+description = "allergic to everything"
 
-# allergic to everything
-"90c8f484-456b-41c4-82ba-2d08d93231c6" = true
+[b2414f01-f3ad-4965-8391-e65f54dad35f]
+description = "allergic to everything"
 
+[02debb3d-d7e2-4376-a26b-3c974b6595c6]
+description = "allergic to everything"
 
+[1dc3fe57-7c68-4043-9d51-5457128744b2]
+description = "allergic to everything"
 
-
-
-# allergic to everything
-"d2d71fd8-63d5-40f9-a627-fbdaf88caeab" = true
-
-
-
-
-
-# allergic to everything
-"cc789c19-2b5e-4c67-b146-625dc8cfa34e" = true
-
-
-
-
-
-# allergic to everything
-"74afaae2-13b6-43a2-837a-286cd42e7d7e" = true
-
-
-
-
-
-# allergic to everything
-"b2414f01-f3ad-4965-8391-e65f54dad35f" = true
-
-
-
-
-
-# allergic to everything
-"02debb3d-d7e2-4376-a26b-3c974b6595c6" = true
-
-
-
-
-
-# allergic to everything
-"1dc3fe57-7c68-4043-9d51-5457128744b2" = true
-
-
-
-
-
-# allergic to everything
-"1faabb05-2b98-4995-9046-d83e4a48a7c1" = true
-
-
-
-
-
-
-
-
+[1faabb05-2b98-4995-9046-d83e4a48a7c1]
+description = "allergic to everything"
 

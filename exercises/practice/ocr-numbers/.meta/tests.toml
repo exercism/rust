@@ -1,42 +1,39 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# Recognizes 0
-"5ee54e1a-b554-4bf3-a056-9a7976c3f7e8" = true
+[5ee54e1a-b554-4bf3-a056-9a7976c3f7e8]
+description = "Recognizes 0"
 
-# Recognizes 1
-"027ada25-17fd-4d78-aee6-35a19623639d" = true
+[027ada25-17fd-4d78-aee6-35a19623639d]
+description = "Recognizes 1"
 
+[4a841794-73c9-4da9-a779-1f9837faff66]
+description = "Recognizes 110101100"
 
+[ea494ff4-3610-44d7-ab7e-72fdef0e0802]
+description = "Recognizes 2"
 
+[1acd2c00-412b-4268-93c2-bd7ff8e05a2c]
+description = "Recognizes 3"
 
-# Recognizes 110101100
-"4a841794-73c9-4da9-a779-1f9837faff66" = true
+[eaec6a15-be17-4b6d-b895-596fae5d1329]
+description = "Recognizes 4"
 
+[440f397a-f046-4243-a6ca-81ab5406c56e]
+description = "Recognizes 5"
 
-# Recognizes 2
-"ea494ff4-3610-44d7-ab7e-72fdef0e0802" = true
+[f4c9cf6a-f1e2-4878-bfc3-9b85b657caa0]
+description = "Recognizes 6"
 
-# Recognizes 3
-"1acd2c00-412b-4268-93c2-bd7ff8e05a2c" = true
+[e24ebf80-c611-41bb-a25a-ac2c0f232df5]
+description = "Recognizes 7"
 
-# Recognizes 4
-"eaec6a15-be17-4b6d-b895-596fae5d1329" = true
+[b79cad4f-e264-4818-9d9e-77766792e233]
+description = "Recognizes 8"
 
-# Recognizes 5
-"440f397a-f046-4243-a6ca-81ab5406c56e" = true
+[5efc9cfc-9227-4688-b77d-845049299e66]
+description = "Recognizes 9"
 
-# Recognizes 6
-"f4c9cf6a-f1e2-4878-bfc3-9b85b657caa0" = true
-
-# Recognizes 7
-"e24ebf80-c611-41bb-a25a-ac2c0f232df5" = true
-
-# Recognizes 8
-"b79cad4f-e264-4818-9d9e-77766792e233" = true
-
-# Recognizes 9
-"5efc9cfc-9227-4688-b77d-845049299e66" = true
-
-# Recognizes string of decimal numbers
-"f60cb04a-42be-494e-a535-3451c8e097a4" = true
-
+[f60cb04a-42be-494e-a535-3451c8e097a4]
+description = "Recognizes string of decimal numbers"

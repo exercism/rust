@@ -1,20 +1,12 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[4185a902-bdb0-4074-864c-f416e42a0f19]
+description = "with apostrophes"
 
+[be72af2b-8afe-4337-b151-b297202e4a7b]
+description = "with quotations"
 
-
-
-
-
-
-
-# with apostrophes
-"4185a902-bdb0-4074-864c-f416e42a0f19" = true
-
-# with quotations
-"be72af2b-8afe-4337-b151-b297202e4a7b" = true
-
-
-# multiple spaces not detected as a word
-"c5f4ef26-f3f7-4725-b314-855c04fb4c13" = true
-
+[c5f4ef26-f3f7-4725-b314-855c04fb4c13]
+description = "multiple spaces not detected as a word"

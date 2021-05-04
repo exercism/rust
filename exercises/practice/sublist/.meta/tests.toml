@@ -1,22 +1,10 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[81f3d3f7-4f25-4ada-bcdc-897c403de1b6]
+description = "sublist in middle"
 
-
-
-
-
-
-
-
-# sublist in middle
-"81f3d3f7-4f25-4ada-bcdc-897c403de1b6" = true
-
-# sublist at end
-"43bcae1e-a9cf-470e-923e-0946e04d8fdd" = true
-
-
-
-
-
-
+[43bcae1e-a9cf-470e-923e-0946e04d8fdd]
+description = "sublist at end"
 

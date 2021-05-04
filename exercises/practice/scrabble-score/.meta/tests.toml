@@ -1,14 +1,7 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-
-
-
-
-
-# medium word
-"d3088ad9-570c-4b51-8764-c75d5a430e99" = true
-
-
-
-
+[d3088ad9-570c-4b51-8764-c75d5a430e99]
+description = "medium word"
 

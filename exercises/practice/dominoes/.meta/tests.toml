@@ -1,23 +1,18 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[91122d10-5ec7-47cb-b759-033756375869]
+description = "singleton that can't be chained"
 
+[99e615c6-c059-401c-9e87-ad7af11fea5c]
+description = "can reverse dominoes"
 
-# singleton that can't be chained
-"91122d10-5ec7-47cb-b759-033756375869" = true
+[2174fbdc-8b48-4bac-9914-8090d06ef978]
+description = "need backtrack"
 
+[167bb480-dfd1-4318-a20d-4f90adb4a09f]
+description = "separate loops"
 
-# can reverse dominoes
-"99e615c6-c059-401c-9e87-ad7af11fea5c" = true
-
-
-
-
-
-# need backtrack
-"2174fbdc-8b48-4bac-9914-8090d06ef978" = true
-
-# separate loops
-"167bb480-dfd1-4318-a20d-4f90adb4a09f" = true
-
-# nine elements
-"cd061538-6046-45a7-ace9-6708fe8f6504" = true
+[cd061538-6046-45a7-ace9-6708fe8f6504]
+description = "nine elements"

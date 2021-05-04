@@ -1,26 +1,15 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[37114c0b-c54d-45da-9f4b-3848201470b0]
+description = "Octatonic"
 
+[496466e7-aa45-4bbd-a64d-f41030feed9c]
+description = "Hexatonic"
 
+[bee5d9ec-e226-47b6-b62b-847a9241f3cc]
+description = "Pentatonic"
 
-
-
-
-
-
-
-
-
-
-
-# Octatonic
-"37114c0b-c54d-45da-9f4b-3848201470b0" = true
-
-# Hexatonic
-"496466e7-aa45-4bbd-a64d-f41030feed9c" = true
-
-# Pentatonic
-"bee5d9ec-e226-47b6-b62b-847a9241f3cc" = true
-
-# Enigmatic
-"dbee06a6-7535-4ab7-98e8-d8a36c8402d1" = true
+[dbee06a6-7535-4ab7-98e8-d8a36c8402d1]
+description = "Enigmatic"

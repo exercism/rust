@@ -1,33 +1,33 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# no rows
-"0c5ec4bd-dea7-4138-8651-1203e1cb9f44" = true
+[0c5ec4bd-dea7-4138-8651-1203e1cb9f44]
+description = "no rows"
 
-# no columns
-"650ac4c0-ad6b-4b41-acde-e4ea5852c3b8" = true
+[650ac4c0-ad6b-4b41-acde-e4ea5852c3b8]
+description = "no columns"
 
-# no mines
-"6fbf8f6d-a03b-42c9-9a58-b489e9235478" = true
+[6fbf8f6d-a03b-42c9-9a58-b489e9235478]
+description = "no mines"
 
+[84167147-c504-4896-85d7-246b01dea7c5]
+description = "mine surrounded by spaces"
 
-# mine surrounded by spaces
-"84167147-c504-4896-85d7-246b01dea7c5" = true
+[cb878f35-43e3-4c9d-93d9-139012cccc4a]
+description = "space surrounded by mines"
 
-# space surrounded by mines
-"cb878f35-43e3-4c9d-93d9-139012cccc4a" = true
+[7037f483-ddb4-4b35-b005-0d0f4ef4606f]
+description = "horizontal line"
 
-# horizontal line
-"7037f483-ddb4-4b35-b005-0d0f4ef4606f" = true
+[e359820f-bb8b-4eda-8762-47b64dba30a6]
+description = "horizontal line, mines at edges"
 
-# horizontal line, mines at edges
-"e359820f-bb8b-4eda-8762-47b64dba30a6" = true
+[c5198b50-804f-47e9-ae02-c3b42f7ce3ab]
+description = "vertical line"
 
-# vertical line
-"c5198b50-804f-47e9-ae02-c3b42f7ce3ab" = true
+[0c79a64d-703d-4660-9e90-5adfa5408939]
+description = "vertical line, mines at edges"
 
-# vertical line, mines at edges
-"0c79a64d-703d-4660-9e90-5adfa5408939" = true
-
-# cross
-"4b098563-b7f3-401c-97c6-79dd1b708f34" = true
-
+[4b098563-b7f3-401c-97c6-79dd1b708f34]
+description = "cross"

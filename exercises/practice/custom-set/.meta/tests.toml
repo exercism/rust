@@ -1,57 +1,31 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# sets with no elements are empty
-"20c5f855-f83a-44a7-abdd-fe75c6cf022b" = true
+[20c5f855-f83a-44a7-abdd-fe75c6cf022b]
+description = "sets with no elements are empty"
 
-# sets with elements are not empty
-"d506485d-5706-40db-b7d8-5ceb5acf88d2" = true
+[d506485d-5706-40db-b7d8-5ceb5acf88d2]
+description = "sets with elements are not empty"
 
-# nothing is contained in an empty set
-"759b9740-3417-44c3-8ca3-262b3c281043" = true
+[759b9740-3417-44c3-8ca3-262b3c281043]
+description = "nothing is contained in an empty set"
 
+[4bd24adb-45da-4320-9ff6-38c044e9dff8]
+description = "empty sets are equal"
 
+[d57c5d7c-a7f3-48cc-a162-6b488c0fbbd0]
+description = "sets with the same elements are equal"
 
+[dd61bafc-6653-42cc-961a-ab071ee0ee85]
+description = "sets with different elements are not equal"
 
+[8a677c3c-a658-4d39-bb88-5b5b1a9659f4]
+description = "add to empty set"
 
+[b5120abf-5b5e-41ab-aede-4de2ad85c34e]
+description = "intersection of two sets with no shared elements is an empty set"
 
-
-
-
-
-
-
-
-
-# empty sets are equal
-"4bd24adb-45da-4320-9ff6-38c044e9dff8" = true
-
-
-
-# sets with the same elements are equal
-"d57c5d7c-a7f3-48cc-a162-6b488c0fbbd0" = true
-
-# sets with different elements are not equal
-"dd61bafc-6653-42cc-961a-ab071ee0ee85" = true
-
-
-# add to empty set
-"8a677c3c-a658-4d39-bb88-5b5b1a9659f4" = true
-
-
-
-
-
-
-# intersection of two sets with no shared elements is an empty set
-"b5120abf-5b5e-41ab-aede-4de2ad85c34e" = true
-
-# intersection of two sets with shared elements is a set of the shared elements
-"af21ca1b-fac9-499c-81c0-92a591653d49" = true
-
-
-
-
-
-
-
+[af21ca1b-fac9-499c-81c0-92a591653d49]
+description = "intersection of two sets with shared elements is a set of the shared elements"
 

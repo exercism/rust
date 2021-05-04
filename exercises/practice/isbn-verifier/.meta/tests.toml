@@ -1,26 +1,15 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[737f4e91-cbba-4175-95bf-ae630b41fb60]
+description = "too short isbn"
 
+[94610459-55ab-4c35-9b93-ff6ea1a8e562]
+description = "empty isbn"
 
+[7bff28d4-d770-48cc-80d6-b20b3a0fb46c]
+description = "input is 9 characters"
 
-
-
-
-
-
-
-
-# too short isbn
-"737f4e91-cbba-4175-95bf-ae630b41fb60" = true
-
-
-
-# empty isbn
-"94610459-55ab-4c35-9b93-ff6ea1a8e562" = true
-
-# input is 9 characters
-"7bff28d4-d770-48cc-80d6-b20b3a0fb46c" = true
-
-# invalid characters are not ignored
-"ed6e8d1b-382c-4081-8326-8b772c581fec" = true
-
+[ed6e8d1b-382c-4081-8326-8b772c581fec]
+description = "invalid characters are not ignored"

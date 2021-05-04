@@ -1,22 +1,15 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# empty string
-"a0e97d2d-669e-47c7-8134-518a1e2c4555" = true
+[a0e97d2d-669e-47c7-8134-518a1e2c4555]
+description = "empty string"
 
+[a15ff557-dd04-4764-99e7-02cc1a385863]
+description = "longest reported english isogram"
 
+[36b30e5c-173f-49c6-a515-93a3e825553f]
+description = "isogram with duplicated hyphen"
 
-
-# longest reported english isogram
-"a15ff557-dd04-4764-99e7-02cc1a385863" = true
-
-
-
-
-
-# isogram with duplicated hyphen
-"36b30e5c-173f-49c6-a515-93a3e825553f" = true
-
-
-# duplicated character in the middle
-"5fc61048-d74e-48fd-bc34-abfc21552d4d" = true
-
+[5fc61048-d74e-48fd-bc34-abfc21552d4d]
+description = "duplicated character in the middle"

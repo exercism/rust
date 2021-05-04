@@ -1,71 +1,40 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-# numbers just get pushed onto the stack
-"9962203f-f00a-4a85-b404-8a8ecbcec09d" = true
+[9962203f-f00a-4a85-b404-8a8ecbcec09d]
+description = "numbers just get pushed onto the stack"
 
-# can add two numbers
-"9e69588e-a3d8-41a3-a371-ea02206c1e6e" = true
+[9e69588e-a3d8-41a3-a371-ea02206c1e6e]
+description = "can add two numbers"
 
+[09687c99-7bbc-44af-8526-e402f997ccbf]
+description = "can subtract two numbers"
 
+[5df0ceb5-922e-401f-974d-8287427dbf21]
+description = "can multiply two numbers"
 
-# can subtract two numbers
-"09687c99-7bbc-44af-8526-e402f997ccbf" = true
+[e74c2204-b057-4cff-9aa9-31c7c97a93f5]
+description = "can divide two numbers"
 
+[54f6711c-4b14-4bb0-98ad-d974a22c4620]
+description = "performs integer division"
 
+[a5df3219-29b4-4d2f-b427-81f82f42a3f1]
+description = "errors if dividing by zero"
 
-# can multiply two numbers
-"5df0ceb5-922e-401f-974d-8287427dbf21" = true
+[ee28d729-6692-4a30-b9be-0d830c52a68c]
+description = "addition and subtraction"
 
+[40b197da-fa4b-4aca-a50b-f000d19422c1]
+description = "multiplication and division"
 
+[2726ea44-73e4-436b-bc2b-5ff0c6aa014b]
+description = "execute in the right order"
 
-# can divide two numbers
-"e74c2204-b057-4cff-9aa9-31c7c97a93f5" = true
+[ac12aaaf-26c6-4a10-8b3c-1c958fa2914c]
+description = "can use different words with the same name"
 
-# performs integer division
-"54f6711c-4b14-4bb0-98ad-d974a22c4620" = true
-
-# errors if dividing by zero
-"a5df3219-29b4-4d2f-b427-81f82f42a3f1" = true
-
-
-
-# addition and subtraction
-"ee28d729-6692-4a30-b9be-0d830c52a68c" = true
-
-# multiplication and division
-"40b197da-fa4b-4aca-a50b-f000d19422c1" = true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# execute in the right order
-"2726ea44-73e4-436b-bc2b-5ff0c6aa014b" = true
-
-
-
-
-# can use different words with the same name
-"ac12aaaf-26c6-4a10-8b3c-1c958fa2914c" = true
-
-# can define word that uses word with the same name
-"53f82ef0-2750-4ccb-ac04-5d8c1aefabb1" = true
-
-
-
-
-
-
-
+[53f82ef0-2750-4ccb-ac04-5d8c1aefabb1]
+description = "can define word that uses word with the same name"
 

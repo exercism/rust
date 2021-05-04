@@ -1,43 +1,21 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
+[4d54d502-1565-4691-84cd-f29a09c65bea]
+description = "consecutive spares each get a one roll bonus"
 
+[75269642-2b34-4b72-95a4-9be28ab16902]
+description = "a strike earns ten points in a frame with a single roll"
 
+[037f978c-5d01-4e49-bdeb-9e20a2e6f9a6]
+description = "points scored in the two rolls after a strike are counted twice as a bonus"
 
+[1635e82b-14ec-4cd1-bce4-4ea14bd13a49]
+description = "consecutive strikes each get the two roll bonus"
 
-# consecutive spares each get a one roll bonus
-"4d54d502-1565-4691-84cd-f29a09c65bea" = true
+[72e24404-b6c6-46af-b188-875514c0377b]
+description = "a strike with the one roll bonus after a spare in the last frame does not get a bonus"
 
-
-# a strike earns ten points in a frame with a single roll
-"75269642-2b34-4b72-95a4-9be28ab16902" = true
-
-# points scored in the two rolls after a strike are counted twice as a bonus
-"037f978c-5d01-4e49-bdeb-9e20a2e6f9a6" = true
-
-# consecutive strikes each get the two roll bonus
-"1635e82b-14ec-4cd1-bce4-4ea14bd13a49" = true
-
-
-
-
-# a strike with the one roll bonus after a spare in the last frame does not get a bonus
-"72e24404-b6c6-46af-b188-875514c0377b" = true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# cannot roll after bonus roll for spare
-"9d4a9a55-134a-4bad-bae8-3babf84bd570" = true
-
+[9d4a9a55-134a-4bad-bae8-3babf84bd570]
+description = "cannot roll after bonus roll for spare"

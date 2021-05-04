@@ -1,8 +1,6 @@
-[canonical-tests]
+# This is an auto-generated file. Regular comments will be removed when this
+# file is regenerated. Regenerating will not touch any manually added keys,
+# so comments can be added in a "comment" key.
 
-
-
-
-# limit is prime
-"2e2417b7-3f3a-452a-8594-b9af08af6d82" = true
-
+[2e2417b7-3f3a-452a-8594-b9af08af6d82]
+description = "limit is prime"
