@@ -28,4 +28,3 @@ description = "intersection of two sets with no shared elements is an empty set"
 
 [af21ca1b-fac9-499c-81c0-92a591653d49]
 description = "intersection of two sets with shared elements is a set of the shared elements"
-
