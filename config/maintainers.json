@@ -93,7 +93,7 @@
     },
     {
       "github_username": "efx",
-      "alumnus": false,
+      "alumnus": true,
       "show_on_website": false,
       "name": "Eli Flanagan",
       "link_text": "tl;dr me",
