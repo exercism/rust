@@ -24,7 +24,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/prime_factors.rs"
+      "tests/prime-factors.rs"
     ],
     "example": [
       ".meta/example.rs"

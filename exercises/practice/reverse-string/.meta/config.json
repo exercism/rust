@@ -25,7 +25,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/reverse_string.rs"
+      "tests/reverse-string.rs"
     ],
     "example": [
       ".meta/example.rs"

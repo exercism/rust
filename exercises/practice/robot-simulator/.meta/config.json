@@ -23,7 +23,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/robot_simulator.rs"
+      "tests/robot-simulator.rs"
     ],
     "example": [
       ".meta/example.rs"

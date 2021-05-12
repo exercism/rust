@@ -1,5 +1,7 @@
 {
-  "blurb": "",
-  "authors": [],
+  "blurb": "Box stores values on the heap.",
+  "authors": [
+    "bobahop"
+  ],
   "contributors": []
 }

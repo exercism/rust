@@ -17,7 +17,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/rail_fence_cipher.rs"
+      "tests/rail-fence-cipher.rs"
     ],
     "example": [
       ".meta/example.rs"

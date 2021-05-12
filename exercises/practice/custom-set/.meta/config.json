@@ -28,7 +28,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/custom_set.rs"
+      "tests/custom-set.rs"
     ],
     "example": [
       ".meta/example.rs"

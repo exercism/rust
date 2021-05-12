@@ -28,7 +28,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/saddle_points.rs"
+      "tests/saddle-points.rs"
     ],
     "example": [
       ".meta/example.rs"

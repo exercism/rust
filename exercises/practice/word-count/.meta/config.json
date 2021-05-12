@@ -34,7 +34,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/word_count.rs"
+      "tests/word-count.rs"
     ],
     "example": [
       ".meta/example.rs"

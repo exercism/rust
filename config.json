@@ -21,7 +21,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/%{snake_slug}.rs"
+      "tests/%{kebab_slug}.rs"
     ],
     "example": [
       ".meta/example.rs"

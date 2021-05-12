@@ -1,5 +1,7 @@
 {
-  "blurb": "",
-  "authors": [],
+  "blurb": "Functions are fundamental units of code abstraction.",
+  "authors": [
+    "bobahop"
+  ],
   "contributors": []
 }

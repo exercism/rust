@@ -16,7 +16,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/doubly_linked_list.rs"
+      "tests/doubly-linked-list.rs"
     ],
     "example": [
       ".meta/example.rs"

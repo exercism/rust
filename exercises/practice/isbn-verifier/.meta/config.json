@@ -24,7 +24,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/isbn_verifier.rs"
+      "tests/isbn-verifier.rs"
     ],
     "example": [
       ".meta/example.rs"

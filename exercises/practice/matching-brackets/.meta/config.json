@@ -27,7 +27,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/matching_brackets.rs"
+      "tests/matching-brackets.rs"
     ],
     "example": [
       ".meta/example.rs"

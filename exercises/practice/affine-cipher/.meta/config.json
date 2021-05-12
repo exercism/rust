@@ -16,7 +16,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/affine_cipher.rs"
+      "tests/affine-cipher.rs"
     ],
     "example": [
       ".meta/example.rs"

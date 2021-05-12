@@ -34,7 +34,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/robot_name.rs"
+      "tests/robot-name.rs"
     ],
     "example": [
       ".meta/example.rs"

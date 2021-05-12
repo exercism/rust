@@ -31,7 +31,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/grade_school.rs"
+      "tests/grade-school.rs"
     ],
     "example": [
       ".meta/example.rs"

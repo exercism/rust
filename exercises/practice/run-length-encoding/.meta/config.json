@@ -24,7 +24,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/run_length_encoding.rs"
+      "tests/run-length-encoding.rs"
     ],
     "example": [
       ".meta/example.rs"

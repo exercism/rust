@@ -27,7 +27,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/atbash_cipher.rs"
+      "tests/atbash-cipher.rs"
     ],
     "example": [
       ".meta/example.rs"

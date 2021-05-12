@@ -28,7 +28,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/space_age.rs"
+      "tests/space-age.rs"
     ],
     "example": [
       ".meta/example.rs"

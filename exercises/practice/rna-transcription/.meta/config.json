@@ -35,7 +35,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/rna_transcription.rs"
+      "tests/rna-transcription.rs"
     ],
     "example": [
       ".meta/example.rs"
