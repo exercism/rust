@@ -18,7 +18,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/scale_generator.rs"
+      "tests/scale-generator.rs"
     ],
     "example": [
       ".meta/example.rs"

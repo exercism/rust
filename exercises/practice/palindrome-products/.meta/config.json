@@ -21,7 +21,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/palindrome_products.rs"
+      "tests/palindrome-products.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -1,5 +1,7 @@
 {
-  "blurb": "",
-  "authors": [],
+  "blurb": "References enable borrowing, a core Rust feature.",
+  "authors": [
+    "bobahop"
+  ],
   "contributors": []
 }

@@ -1,5 +1,7 @@
 {
-  "blurb": "",
-  "authors": [],
+  "blurb": "String slices are Rust's immutable string type.",
+  "authors": [
+    "bobahop"
+  ],
   "contributors": []
 }

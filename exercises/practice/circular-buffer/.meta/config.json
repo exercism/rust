@@ -29,7 +29,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/circular_buffer.rs"
+      "tests/circular-buffer.rs"
     ],
     "example": [
       ".meta/example.rs"

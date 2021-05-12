@@ -24,7 +24,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/rotational_cipher.rs"
+      "tests/rotational-cipher.rs"
     ],
     "example": [
       ".meta/example.rs"

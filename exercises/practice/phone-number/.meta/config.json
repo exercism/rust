@@ -33,7 +33,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/phone_number.rs"
+      "tests/phone-number.rs"
     ],
     "example": [
       ".meta/example.rs"

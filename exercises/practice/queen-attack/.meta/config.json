@@ -25,7 +25,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/queen_attack.rs"
+      "tests/queen-attack.rs"
     ],
     "example": [
       ".meta/example.rs"

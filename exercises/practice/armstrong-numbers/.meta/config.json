@@ -24,7 +24,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/armstrong_numbers.rs"
+      "tests/armstrong-numbers.rs"
     ],
     "example": [
       ".meta/example.rs"

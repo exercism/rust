@@ -1,5 +1,7 @@
 {
-  "blurb": "",
-  "authors": [],
+  "blurb": "Boolean values store either `true` or `false` and are fundamental to computing.",
+  "authors": [
+    "bobahop"
+  ],
   "contributors": []
 }

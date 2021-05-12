@@ -23,7 +23,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/simple_linked_list.rs"
+      "tests/simple-linked-list.rs"
     ],
     "example": [
       ".meta/example.rs"

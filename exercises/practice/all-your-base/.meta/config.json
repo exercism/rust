@@ -26,7 +26,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/all_your_base.rs"
+      "tests/all-your-base.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -32,7 +32,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/parallel_letter_frequency.rs"
+      "tests/parallel-letter-frequency.rs"
     ],
     "example": [
       ".meta/example.rs"
