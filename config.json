@@ -16,6 +16,9 @@
     "ace_editor_language": "rust",
     "highlightjs_language": "rust"
   },
+  "test_runner": {
+    "average_run_time": 2.0
+  },
   "files": {
     "solution": [
       "src/lib.rs"
