@@ -20,7 +20,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/book_store.rs"
+      "tests/book-store.rs"
     ],
     "example": [
       ".meta/example.rs"

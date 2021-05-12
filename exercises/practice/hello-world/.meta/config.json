@@ -30,7 +30,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/hello_world.rs"
+      "tests/hello-world.rs"
     ],
     "example": [
       ".meta/example.rs"

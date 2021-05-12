@@ -24,7 +24,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/pig_latin.rs"
+      "tests/pig-latin.rs"
     ],
     "example": [
       ".meta/example.rs"

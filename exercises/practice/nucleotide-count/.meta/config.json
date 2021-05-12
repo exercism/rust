@@ -30,7 +30,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/nucleotide_count.rs"
+      "tests/nucleotide-count.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -28,7 +28,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/scrabble_score.rs"
+      "tests/scrabble-score.rs"
     ],
     "example": [
       ".meta/example.rs"

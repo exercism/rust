@@ -26,7 +26,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/variable_length_quantity.rs"
+      "tests/variable-length-quantity.rs"
     ],
     "example": [
       ".meta/example.rs"

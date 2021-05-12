@@ -10,7 +10,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/csv_builder.rs"
+      "tests/csv-builder.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

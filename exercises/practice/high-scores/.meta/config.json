@@ -14,7 +14,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/high_scores.rs"
+      "tests/high-scores.rs"
     ],
     "example": [
       ".meta/example.rs"

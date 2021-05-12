@@ -27,7 +27,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/pythagorean_triplet.rs"
+      "tests/pythagorean-triplet.rs"
     ],
     "example": [
       ".meta/example.rs"

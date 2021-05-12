@@ -25,7 +25,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/luhn_from.rs"
+      "tests/luhn-from.rs"
     ],
     "example": [
       ".meta/example.rs"

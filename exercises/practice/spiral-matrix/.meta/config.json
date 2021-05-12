@@ -20,7 +20,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/spiral_matrix.rs"
+      "tests/spiral-matrix.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -32,7 +32,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/beer_song.rs"
+      "tests/beer-song.rs"
     ],
     "example": [
       ".meta/example.rs"

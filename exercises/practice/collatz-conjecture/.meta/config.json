@@ -22,7 +22,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/collatz_conjecture.rs"
+      "tests/collatz-conjecture.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -22,7 +22,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/two_bucket.rs"
+      "tests/two-bucket.rs"
     ],
     "example": [
       ".meta/example.rs"

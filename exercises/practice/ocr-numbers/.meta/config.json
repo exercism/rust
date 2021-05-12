@@ -25,7 +25,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/ocr_numbers.rs"
+      "tests/ocr-numbers.rs"
     ],
     "example": [
       ".meta/example.rs"

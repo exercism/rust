@@ -22,7 +22,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/binary_search.rs"
+      "tests/binary-search.rs"
     ],
     "example": [
       ".meta/example.rs"

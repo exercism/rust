@@ -29,7 +29,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/difference_of_squares.rs"
+      "tests/difference-of-squares.rs"
     ],
     "example": [
       ".meta/example.rs"

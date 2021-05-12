@@ -23,7 +23,7 @@
       "src/lib.rs"
     ],
     "test": [
-      "tests/largest_series_product.rs"
+      "tests/largest-series-product.rs"
     ],
     "example": [
       ".meta/example.rs"
