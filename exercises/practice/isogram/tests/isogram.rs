@@ -15,7 +15,7 @@ fn only_lower_case_characters() {
 #[ignore]
 fn one_duplicated_character() {
     assert!(
-        check("eleven"),
+        !check("eleven"),
         "\"eleven\" has more than one \'e\', therefore it is no isogram."
     )
 }
@@ -33,7 +33,7 @@ fn longest_reported_english_isogram() {
 #[ignore]
 fn one_duplicated_character_mixed_case() {
     assert!(
-        check("Alphabet"),
+        !check("Alphabet"),
         "\"Alphabet\" has more than one \'a\', therefore it is no isogram."
     )
 }
@@ -69,7 +69,7 @@ fn made_up_name_that_is_an_isogram() {
 #[ignore]
 fn duplicated_character_in_the_middle() {
     assert!(
-        check("accentor"),
+        !check("accentor"),
         "\"accentor\" has more than one \'c\', therefore it is no isogram."
     )
 }
