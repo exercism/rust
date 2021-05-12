@@ -22,7 +22,7 @@ Given the following input
 ```rust
 let magazine = "two times three is not four".split_whitespace().collect::<Vec<&str>>();
 let note = "two times two is four".split_whitespace().collect::<Vec<&str>>();
-assert_eq!(can_construct_note(&magazine, &note), false);
+assert!(!can_construct_note(&magazine, &note));
 ```
 
 The function returns `false` since the magazine only contains one instance of `"two"` when the note requires two of them.

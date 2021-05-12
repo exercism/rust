@@ -8,7 +8,7 @@ fn test_example_works() {
     let note = "two times two is four"
         .split_whitespace()
         .collect::<Vec<&str>>();
-    assert_eq!(can_construct_note(&magazine, &note), false);
+    assert!(!can_construct_note(&magazine, &note));
 }
 
 #[test]
@@ -18,7 +18,7 @@ fn test_fn_returns_true_for_good_input() {
     let note = "give one grand today."
         .split_whitespace()
         .collect::<Vec<&str>>();
-    assert_eq!(can_construct_note(&magazine, &note), true);
+    assert!(can_construct_note(&magazine, &note));
 }
 
 #[test]
@@ -30,7 +30,7 @@ fn test_fn_returns_false_for_bad_input() {
     let note = "I've got som coconuts"
         .split_whitespace()
         .collect::<Vec<&str>>();
-    assert_eq!(can_construct_note(&magazine, &note), false);
+    assert!(!can_construct_note(&magazine, &note));
 }
 
 #[test]
@@ -42,7 +42,7 @@ fn test_case_sensitivity() {
     let note = "I've got some coconuts"
         .split_whitespace()
         .collect::<Vec<&str>>();
-    assert_eq!(can_construct_note(&magazine, &note), false);
+    assert!(!can_construct_note(&magazine, &note));
 
     let magazine = "I've got some lovely coconuts"
         .split_whitespace()
@@ -50,5 +50,5 @@ fn test_case_sensitivity() {
     let note = "i've got some coconuts"
         .split_whitespace()
         .collect::<Vec<&str>>();
-    assert_eq!(can_construct_note(&magazine, &note), false);
+    assert!(!can_construct_note(&magazine, &note));
 }
