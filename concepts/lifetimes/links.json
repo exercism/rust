@@ -1,6 +1,0 @@
-[
-  {
-    "description": "Non-lexical lifetimes",
-    "url": "https://doc.rust-lang.org/edition-guide/rust-2018/ownership-and-lifetimes/non-lexical-lifetimes.html"
-  }
-]
