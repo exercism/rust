@@ -1,3 +1,3 @@
 pub fn twofer(name: &str) -> String {
-    "".to_string()
+    unimplemented!("how many for {}", name)
 }
