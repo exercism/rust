@@ -16,7 +16,7 @@ When counting words you can assume the following rules:
 4. The words can be separated by _any_ form of whitespace (i.e. "\t", "\n", " "), or
    external punctuation.
 
-For example, for the phrase `"That's the password: 'PASSWORD 123'!", cried the Special Agent.\nSo I fled."` the count would be:
+For example, for the phrase `"That's the password: 'PASSWORD 123'!", cried the Special Agent.\nSo I fled.` the count would be:
 
 ```text
 that's: 1
