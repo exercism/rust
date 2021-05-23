@@ -14,7 +14,7 @@ When counting words you can assume the following rules:
 2. The count is _unordered_; the tests will ignore how words and counts are ordered
 3. Other than the apostrophe in a _contraction_ all forms of _punctuation_ are ignored
 4. The words can be separated by _any_ form of whitespace (i.e. "\t", "\n", " "), or
-   punctuation (except for single apostrophe in the contraction which is part of the word).
+   external punctuation.
 
 For example, for the phrase `"That's the password: 'PASSWORD 123'!", cried the Special Agent.\nSo I fled."` the count would be:
 
