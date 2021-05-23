@@ -13,9 +13,10 @@ When counting words you can assume the following rules:
 1. The count is _case insensitive_ (ie "You", "you", and "YOU" are 3 uses of the same word)
 2. The count is _unordered_; the tests will ignore how words and counts are ordered
 3. Other than the apostrophe in a _contraction_ all forms of _punctuation_ are ignored
-4. The words can be separated by _any_ form of whitespace (ie "\t", "\n", " ")
+4. The words can be separated by _any_ form of whitespace (i.e. "\t", "\n", " "), or
+   punctutaion (except for single apostrophe in the contraction which is part of the word).
 
-For example, for the phrase `"That's the password: 'PASSWORD 123'!", cried the Special Agent.\nSo I fled.` the count would be:
+For example, for the phrase `"That's the password: 'PASSWORD 123'!", cried the Special Agent.\nSo I fled."` the count would be:
 
 ```text
 that's: 1
@@ -28,4 +29,12 @@ agent: 1
 so: 1
 i: 1
 fled: 1
+```
+
+For the phrase `"one,two,three"` the count would be:
+
+```text
+one: 1
+two: 1
+three: 1
 ```
