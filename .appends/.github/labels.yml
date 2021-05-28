@@ -1,0 +1,64 @@
+- name: "Hacktoberfest"
+  description: ""
+  color: "cc8744"
+
+- name: "New Problem"
+  description: ""
+  color: "006b75"
+
+- name: "PR addressing"
+  description: "A PR exists addressing this issue"
+  color: "fff7a0"
+
+- name: "Track Anatomy"
+  description: ""
+  color: "405ba5"
+
+- name: "dependencies"
+  description: "Pull requests that update a dependency file"
+  color: "0366d6"
+
+- name: "good first issue"
+  description: "An improvement or bug fix that favors new contributors"
+  color: "009248"
+
+- name: "help wanted"
+  description: "We need your help to improve the track! By taking on this task."
+  color: "4CB642"
+
+- name: "invalid"
+  description: "Hacktoberfest says if we apply this label to a PR, the PR doesn't count for Hacktoberfest!"
+  color: "e6e6e6"
+
+- name: "question"
+  description: ""
+  color: "cc317c"
+
+- name: "sync/readme"
+  description: "Keep a README in sync with exercism/problem-specifications"
+  color: "c5def5"
+
+- name: "sync/tests"
+  description: "Keep a test suite/version in sync with exercism/problem-specifications"
+  color: "c5def5"
+
+- name: "track meta"
+  description: "Issues about the track as opposed to about exercises"
+  color: "ada6fc"
+
+- name: "track meta/exercise crate"
+  description: "Issues dealing with the exercise crate"
+  color: "ff99af"
+
+- name: "track policy"
+  description: "Official pronouncements about What We Do Here"
+  color: "2333bc"
+
+- name: "v3"
+  description: "Temporary label to group v3 issues. Many were transferred from @exercism/v3."
+  color: "33A5AB"
+
+- name: "v3-migration 🤖"
+  description: "Preparing for Exercism v3"
+  color: "E99695"
+
