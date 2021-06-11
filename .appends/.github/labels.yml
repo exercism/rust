@@ -1,3 +1,8 @@
+# ----------------------------------------------------------------------------------------- #
+# These are the repository-specific labels that augment the Exercise-wide labels defined in #
+# https://github.com/exercism/org-wide-files/blob/main/global-files/.github/labels.yml.     #
+# ----------------------------------------------------------------------------------------- #
+
 - name: "Hacktoberfest"
   description: ""
   color: "cc8744"
@@ -57,8 +62,3 @@
 - name: "v3"
   description: "Temporary label to group v3 issues. Many were transferred from @exercism/v3."
   color: "33A5AB"
-
-- name: "v3-migration 🤖"
-  description: "Preparing for Exercism v3"
-  color: "E99695"
-
