@@ -1,0 +1,18 @@
+{
+  "blurb": "Learn about the basics of Rust by following a lasagna recipe.",
+  "icon": "lasagna",
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/lucians-luscious-lasagna.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  }
+}
