@@ -2,6 +2,7 @@
   "blurb": "Learn about the basics of Rust by following a lasagna recipe.",
   "icon": "lasagna",
   "authors": [
+    "coriolinus",
     "ErikSchierboom"
   ],
   "files": {
