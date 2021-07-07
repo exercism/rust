@@ -65,7 +65,7 @@ fn check(input: &[Domino]) -> CheckResult {
 }
 
 fn assert_correct(input: &[Domino]) {
-    match check(&input) {
+    match check(input) {
         Correct => (),
         GotInvalid => panic!("Unexpectedly got invalid on input {:?}", input),
         ChainingFailure(output) => panic!(

@@ -4,7 +4,7 @@ use sublist::{sublist, Comparison};
 fn empty_equals_empty() {
     let v: &[u32] = &[];
 
-    assert_eq!(Comparison::Equal, sublist(&v, &v));
+    assert_eq!(Comparison::Equal, sublist(v, v));
 }
 
 #[test]

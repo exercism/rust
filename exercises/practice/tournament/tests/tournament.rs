@@ -3,7 +3,7 @@ fn just_the_header_if_no_input() {
     let input = "";
     let expected = "Team                           | MP |  W |  D |  L |  P";
 
-    assert_eq!(tournament::tally(&input), expected);
+    assert_eq!(tournament::tally(input), expected);
 }
 
 #[test]
@@ -15,7 +15,7 @@ fn a_win_is_three_points_a_loss_is_zero_points() {
         + "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3\n"
         + "Blithering Badgers             |  1 |  0 |  0 |  1 |  0";
 
-    assert_eq!(tournament::tally(&input), expected);
+    assert_eq!(tournament::tally(input), expected);
 }
 
 #[test]
@@ -27,7 +27,7 @@ fn a_win_can_also_be_expressed_as_a_loss() {
         + "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3\n"
         + "Blithering Badgers             |  1 |  0 |  0 |  1 |  0";
 
-    assert_eq!(tournament::tally(&input), expected);
+    assert_eq!(tournament::tally(input), expected);
 }
 
 #[test]
@@ -39,7 +39,7 @@ fn a_different_team_can_win() {
         + "Blithering Badgers             |  1 |  1 |  0 |  0 |  3\n"
         + "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0";
 
-    assert_eq!(tournament::tally(&input), expected);
+    assert_eq!(tournament::tally(input), expected);
 }
 
 #[test]

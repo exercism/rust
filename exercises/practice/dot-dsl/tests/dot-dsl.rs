@@ -130,7 +130,7 @@ fn test_graph_stores_attributes() {
         &["a", "b", "c"]
             .iter()
             .zip(attributes.iter())
-            .map(|(name, &attr)| Node::new(&name).with_attrs(&[attr]))
+            .map(|(name, &attr)| Node::new(name).with_attrs(&[attr]))
             .collect::<Vec<_>>(),
     );
 
