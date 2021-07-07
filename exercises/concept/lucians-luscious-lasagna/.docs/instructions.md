@@ -9,7 +9,7 @@ You have four tasks, all related to the time spent cooking the lasagna.
 Define the `expected_minutes_in_oven` binding to check how many minutes the lasagna should be in the oven. According to the cooking book, the expected oven time in minutes is 40:
 
 ```rust
-lucians_luscious_lasagna::expected_minutes_in_oven()
+expected_minutes_in_oven()
 // Returns: 40
 ```
 
@@ -18,7 +18,7 @@ lucians_luscious_lasagna::expected_minutes_in_oven()
 Define the `remaining_minutes_in_oven` function that takes the actual minutes the lasagna has been in the oven as a parameter and returns how many minutes the lasagna still has to remain in the oven, based on the expected time oven time in minutes from the previous task.
 
 ```rust
-lucians_luscious_lasagna::remaining_minutes_in_oven(30)
+remaining_minutes_in_oven(30)
 // Returns: 10
 ```
 
@@ -27,7 +27,7 @@ lucians_luscious_lasagna::remaining_minutes_in_oven(30)
 Define the `preparation_time_in_minutes` function that takes the number of layers you added to the lasagna as a parameter and returns how many minutes you spent preparing the lasagna, assuming each layer takes you 2 minutes to prepare.
 
 ```rust
-lucians_luscious_lasagna::preparation_time_in_minutes(2)
+preparation_time_in_minutes(2)
 // Returns: 4
 ```
 
@@ -36,6 +36,6 @@ lucians_luscious_lasagna::preparation_time_in_minutes(2)
 Define the `elapsed_time_in_minutes` function that takes two parameters: the first parameter is the number of layers you added to the lasagna, and the second parameter is the number of minutes the lasagna has been in the oven. The function should return how many minutes you've worked on cooking the lasagna, which is the sum of the preparation time in minutes, and the time in minutes the lasagna has spent in the oven at the moment.
 
 ```rust
-lucians_luscious_lasagna::elapsed_time_in_minutes(3, 20)
+elapsed_time_in_minutes(3, 20)
 // Returns: 26
 ```
