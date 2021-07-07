@@ -127,7 +127,7 @@ macro_rules! set_up_test_case {
 
             let expected = vec![$($expected),*];
 
-            process_grep_case(&pattern, &flags, &files, &expected);
+            process_grep_case(pattern, &flags, &files, &expected);
         }
     };
     ($(#[$flag:meta])+ $test_case_name:ident(pattern=$pattern:expr, flags=[$($grep_flag:expr),*], files=[$($file:expr),+], prefix_expected=[$($expected:expr),*])) => {
@@ -141,7 +141,7 @@ macro_rules! set_up_test_case {
 
             let expected = vec![$(concat!(stringify!($test_case_name), "_", $expected)),*];
 
-            process_grep_case(&pattern, &flags, &files, &expected);
+            process_grep_case(pattern, &flags, &files, &expected);
         }
 
     }
@@ -169,7 +169,7 @@ fn test_nonexistent_file_returns_error() {
 
     let files = vec!["test_nonexistent_file_returns_error_iliad.txt"];
 
-    assert!(grep(&pattern, &flags, &files).is_err());
+    assert!(grep(pattern, &flags, &files).is_err());
 }
 
 #[test]
@@ -185,7 +185,7 @@ fn test_grep_returns_result() {
 
     test_fixture.set_up();
 
-    assert!(grep(&pattern, &flags, &files).is_ok());
+    assert!(grep(pattern, &flags, &files).is_ok());
 }
 
 // Test grepping a single file
