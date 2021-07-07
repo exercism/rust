@@ -35,6 +35,17 @@
   "exercises": {
     "concept": [
       {
+        "slug": "lucians-luscious-lasagna",        
+        "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
+        "name": "Lucian's Luscious Lasagna",
+        "difficulty": 1,
+        "concepts": [
+          "intro-fn"
+        ],
+        "prerequisites": [],
+        "status": "active"
+      },
+      {
         "slug": "magazine-cutout",
         "uuid": "091c141b-6b68-43ad-b009-a27cd6741906",
         "name": "Magazine Cutout",
