@@ -7,7 +7,7 @@
 
 ## Out of scope
 
--   TODO
+-   Know how to work with `const` values
 
 ## Concepts
 
@@ -21,11 +21,11 @@ None
 
 ### Hints
 
-TODO
+-   [Functions][https://doc.rust-lang.org/book/ch03-03-how-functions-work.html]
+-   [Return values][https://doc.rust-lang.org/book/ch03-03-how-functions-work.html#functions-with-return-values]
+-   [Operators][https://doc.rust-lang.org/book/appendix-02-operators.html]
 
 ### After
-
-TODO
 
 ## Representer
 
