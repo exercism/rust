@@ -23,10 +23,9 @@
 ## 4. Calculate the elapsed time in minutes
 
 -   You need to define a [function][functions] with two parameters.
--   You can [call][calling] one of the other functions you've defined previously.
+-   You can [call][functions] one of the other functions you've defined previously.
 -   You can use the [mathematical operator for addition][operators] to add values.
 
 [functions]: https://doc.rust-lang.org/book/ch03-03-how-functions-work.html
 [return-values]: https://doc.rust-lang.org/book/ch03-03-how-functions-work.html#functions-with-return-values
 [operators]: https://doc.rust-lang.org/book/appendix-02-operators.html
-[calling]: https://doc.rust-lang.org/book/ch03-03-how-functions-work.html#functions
