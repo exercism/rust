@@ -1,5 +1,4 @@
-// The &'static here means the return type has a static lifetime.
-// This is a Rust feature that you don't need to worry about now.
+// &'static is a "lifetime specifier", something you'll learn more about later
 pub fn hello() -> &'static str {
-    "Goodbye, World!"
+    "Goodbye, Mars!"
 }
