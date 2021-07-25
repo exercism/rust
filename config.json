@@ -1850,26 +1850,32 @@
   ],
   "key_features": [
     {
+      "icon": "fast",
       "title": "Performance",
       "content": "Rust is blazingly fast and memory-efficient; it has no runtime or garbage collector."
     },
     {
+      "icon": "stable",
       "title": "Reliability",
       "content": "Rust’s rich type system and ownership model guarantee memory-safety and thread-safety."
     },
     {
+      "icon": "productive",
       "title": "Productivity",
       "content": "Rust has great documentation, a friendly compiler with useful error messages, and top-notch tooling."
     },
     {
+      "icon": "tooling",
       "title": "Cargo",
       "content": "Rust's package manager and build tool is best-in-class."
     },
     {
+      "icon": "cross-platform",
       "title": "Write Once, Run Anywhere",
       "content": "Rust compiles by default to a single static executable, and cross-compilation is easy."
     },
     {
+      "icon": "fun",
       "title": "❤︎",
       "content": "Stack Overflow's most-loved language every year since 2016."
     }
