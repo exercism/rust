@@ -81,7 +81,7 @@
         "difficulty": 1,
         "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
         "concepts": [
-          "enums-basic"
+          "enums"
         ],
         "prerequisites": [],
         "status": "active"
@@ -1804,7 +1804,7 @@
     },
     {
       "uuid": "40d727f1-d011-4305-b1c2-1b4380246d9b",
-      "slug": "enums-basic",
+      "slug": "enums",
       "name": "Enums Basic"
     },
     {
