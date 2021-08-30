@@ -40,7 +40,7 @@
         "name": "Lucian's Luscious Lasagna",
         "difficulty": 1,
         "concepts": [
-          "intro-fn"
+          "functions"
         ],
         "prerequisites": [],
         "status": "active"
@@ -55,7 +55,7 @@
         ],
         "prerequisites": [
           "hashmaps",
-          "intro-fn",
+          "functions",
           "intro-types",
           "option"
         ],
@@ -71,7 +71,7 @@
           "floating-point-numbers"
         ],
         "prerequisites": [
-          "intro-fn"
+          "functions"
         ],
         "status": "active"
       },
@@ -138,7 +138,7 @@
           "vec-macro"
         ],
         "prerequisites": [
-          "intro-fn",
+          "functions",
           "numbers"
         ],
         "status": "active"
@@ -152,7 +152,7 @@
           "vec-stack"
         ],
         "prerequisites": [
-          "intro-fn",
+          "functions",
           "numbers",
           "option",
           "enums",
