@@ -83,7 +83,7 @@
         "concepts": [
           "enums"
         ],
-        "prerequisites": [],
+        "prerequisites": ["functions"],
         "status": "active"
       },
       {
