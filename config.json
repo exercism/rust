@@ -40,7 +40,7 @@
         "name": "Lucian's Luscious Lasagna",
         "difficulty": 1,
         "concepts": [
-          "intro-fn"
+          "functions"
         ],
         "prerequisites": [],
         "status": "active"
@@ -55,7 +55,7 @@
         ],
         "prerequisites": [
           "hashmaps",
-          "intro-fn",
+          "functions",
           "intro-types",
           "option"
         ],
@@ -71,7 +71,7 @@
           "floating-point-numbers"
         ],
         "prerequisites": [
-          "intro-fn"
+          "functions"
         ],
         "status": "active"
       },
@@ -81,9 +81,9 @@
         "difficulty": 1,
         "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
         "concepts": [
-          "enums-basic"
+          "enums"
         ],
-        "prerequisites": [],
+        "prerequisites": ["functions"],
         "status": "active"
       },
       {
@@ -138,7 +138,7 @@
           "vec-macro"
         ],
         "prerequisites": [
-          "intro-fn",
+          "functions",
           "numbers"
         ],
         "status": "active"
@@ -152,7 +152,7 @@
           "vec-stack"
         ],
         "prerequisites": [
-          "intro-fn",
+          "functions",
           "numbers",
           "option",
           "enums",
@@ -1804,7 +1804,7 @@
     },
     {
       "uuid": "40d727f1-d011-4305-b1c2-1b4380246d9b",
-      "slug": "enums-basic",
+      "slug": "enums",
       "name": "Enums Basic"
     },
     {
