@@ -165,6 +165,7 @@
       {
         "slug": "csv-builder",
         "name": "CSV builder",
+        "status": "wip",
         "difficulty": 1,
         "uuid": "10c9f505-9aef-479f-b689-cb7959572482",
         "concepts": [
