@@ -56,9 +56,9 @@ The `cast_spell` method takes a mutable reference to the Player as well as a `ma
 
   ```rust
   let wizard = Player { health: 123, mana: Some(30), level: 18 };
-  assert_eq!(low_mana_wizard.cast_spell(10), 20);
-  assert_eq!(low_mana_wizard.health, 123);
-  assert_eq!(low_mana_wizard.mana, Some(20));
+  assert_eq!(wizard.cast_spell(10), 20);
+  assert_eq!(wizard.health, 123);
+  assert_eq!(wizard.mana, Some(20));
   ```
 
 Have fun!
