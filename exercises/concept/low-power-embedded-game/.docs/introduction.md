@@ -23,7 +23,7 @@ Tuples can have an arbitrary number of elements.
 
 ### Access by destructuring
 
-It is possible to access the elements of a tuple by destruturing. This just means assigning variable
+It is possible to access the elements of a tuple by destructuring. This just means assigning variable
 names to the individual elements of the tuple, consuming it.
 
 ```rust
