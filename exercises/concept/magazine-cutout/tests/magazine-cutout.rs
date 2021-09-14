@@ -52,3 +52,13 @@ fn test_case_sensitivity() {
         .collect::<Vec<&str>>();
     assert!(!can_construct_note(&magazine, &note));
 }
+
+#[test]
+#[ignore]
+fn test_magzine_has_more_than_words_available_than_needed() {
+    let magazine = "Enough is enough when enough is enough"
+        .split_whitespace()
+        .collect::<Vec<&str>>();
+    let note = "enough is enough".split_whitespace().collect::<Vec<&str>>();
+    assert!(can_construct_note(&magazine, &note));
+}
