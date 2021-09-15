@@ -34,7 +34,6 @@ loops
 macros-declarative
 macros-procedural
 map-and-filter
-match-basics
 match-destructuring
 match-pattern-matching
 methods
