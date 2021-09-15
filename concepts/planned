@@ -12,7 +12,6 @@ count-and-sum
 deref-coercion
 derive
 designing-custom-traits
-enums
 explicit-return
 external-crates
 external-traits-as-bounds
@@ -39,7 +38,6 @@ move-semantics
 mutex
 newtype-pattern
 numeric-traits
-option
 overflow-and-underflow
 ranges
 rc
