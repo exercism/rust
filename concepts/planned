@@ -30,7 +30,6 @@ iterator-usage
 lazy-evaluation
 lifetimes
 logical-operators
-loops
 macros-declarative
 macros-procedural
 map-and-filter
