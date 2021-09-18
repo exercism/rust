@@ -62,3 +62,15 @@ fn test_magzine_has_more_than_words_available_than_needed() {
     let note = "enough is enough".split_whitespace().collect::<Vec<&str>>();
     assert!(can_construct_note(&magazine, &note));
 }
+
+#[test]
+#[ignore]
+fn test_magazine_has_one_good_word_many_times_but_still_cant_construct() {
+    let magazine = "A A A"
+        .split_whitespace()
+        .collect::<Vec<&str>>();
+    let note = "A nice day"
+        .split_whitespace()
+        .collect::<Vec<&str>>();
+    assert!(!can_construct_note(&magazine, &note));
+}
