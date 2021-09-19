@@ -20,7 +20,7 @@ fn main() {
     loop {
         println!("again!");
         count += 1;
-        if count > 10 { break ; }
+        if count > 10 { break; }
     }
 }
 ```
@@ -29,13 +29,23 @@ fn main() {
 
 Apart from the `loop` keyword, you can also make loops with `for` and `while`.
 
-A `for` loop is used to iterate over the elements of a collection.
+A `for` loop is used to iterate over the elements of a collection or iterator.
 
 ```rust
 fn main() {
     let a = [10, 20, 30, 40, 50];
 
     for x in a {
+        println!("the value is: {}", x);
+    }
+}
+```
+
+Ranges are itearators too, which makes itearating through them with the `for` loop very convenient:
+
+```rust
+fn main() {
+    for x in 0..10 {
         println!("the value is: {}", x);
     }
 }
