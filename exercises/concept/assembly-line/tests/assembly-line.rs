@@ -1,6 +1,6 @@
 fn process_rate_per_hour(speed: u8, expected_rate: f64) {
     let actual_rate = assembly_line::production_rate_per_hour(speed);
-    let actual_rate = (actual_rate * 100.0).floor()/100.0;
+    let actual_rate = (actual_rate * 100.0).round()/100.0;
     assert!((actual_rate - expected_rate).abs() < f64::EPSILON);
 }
 
