@@ -41,7 +41,7 @@ fn main() {
 }
 ```
 
-Ranges are itearators too, which makes itearating through them with the `for` loop very convenient:
+Ranges are iterators too, which makes iterating through them with the `for` loop very convenient:
 
 ```rust
 fn main() {
