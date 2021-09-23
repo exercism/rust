@@ -1,10 +1,10 @@
 # Hashmap
 
-Hashmap is a container that can be used to store "key-value pairs". This container is also known by the name associative array or Hashtable in other programming langauges. In short, there is a value stored in the hashmap and it is mapped to a key. The user can retrieve the stored value by passing in the key or store a value mapped to a specific key.
+Hashmap is a container that can be used to store "key-value pairs". This container is also known by the name associative array or Hashtable in other programming langauges. In short, the map contains a set of keys, each of which is mapped to a particular value. The user can retrieve a stored value by passing in the appropriate key. Users can also insert and delete keys and the associated values.
 
 Hashmap is a generic collection (like most of the collections in the standard library) and thus supports a broad variety of types as keys (including user-defined structs and tuples).
 
-# Creating a Hashmap
+## Creating a Hashmap
 
 A hashmap is created using the `HashMap::new()` function. The below snippet of code creates a Hashmap with scores mapped to team names.
 
@@ -23,7 +23,7 @@ To retrieve the score of the blue team, for example, we can use `scores["Blue"]`
 
 # Accessing values in Hashmap
 
-Other than using the `[]` operator, there are 2 other ways of accessing values stored in a Hashmap. The first is using the `get` member function:
+Other than using the indexing (`[]`) operator, there are two other ways of accessing values stored in a Hashmap. The first is using the `get` member function:
 
 ```rust
 fn main() {
@@ -58,4 +58,4 @@ fn main() {
 }
 ```
 
-This is a very useful API and makes it convenient to address common ways in which Hashmaps are used that it is very popular and has an entire concept dedicated to it.
+This API makes certain common access patterns very convenient; it has an entire concept (Entry API) dedicated to it.
