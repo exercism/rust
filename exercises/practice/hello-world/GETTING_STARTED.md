@@ -28,7 +28,7 @@ failures:
 
 ---- test_hello_world stdout ----
 thread 'test_hello_world' panicked at 'assertion failed: `(left == right)`
-(left: `"Hello, World!"`, right: `"Goodbye, World!"`)', tests/hello-world.rs:5
+(left: `"Hello, World!"`, right: `"Goodbye, Mars!"`)', tests/hello-world.rs:5
 
 failures:
     test_hello_world
