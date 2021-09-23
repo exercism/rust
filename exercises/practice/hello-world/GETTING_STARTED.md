@@ -45,13 +45,13 @@ The left side of the assertion (at line 5) should be equal to the right side.
 ```sh
 ---- test_hello_world stdout ----
 thread 'test_hello_world' panicked at 'assertion failed: `(left == right)`
-(left: `"Hello, World!"`, right: `"Goodbye, World!"`)', tests/hello-world.rs:5
+(left: `"Hello, World!"`, right: `"Goodbye, Mars!"`)', tests/hello-world.rs:5
 ```
 
 ### Fixing the Error
 
 To fix it, open up `src/lib.rs` and change the `hello` function to return
-`"Hello, World!"` instead of `"Goodbye, World!"`.
+`"Hello, World!"` instead of `"Goodbye, Mars!"`.
 
 ```rust
 pub fn hello() -> &'static str {
