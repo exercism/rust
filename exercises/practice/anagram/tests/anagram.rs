@@ -114,8 +114,8 @@ fn test_unicode_anagrams() {
 #[test]
 #[ignore]
 fn test_misleading_unicode_anagrams() {
-    // Despite what a human might think these words different letters, the input uses Greek A and B
-    // while the list of potential anagrams uses Latin A and B.
+    // Despite what a human might think these words contain different letters, the input uses Greek
+    // A and B while the list of potential anagrams uses Latin A and B.
     let word = "ΑΒΓ";
 
     let inputs = ["ABΓ"];
