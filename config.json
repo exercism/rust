@@ -82,7 +82,9 @@
         "concepts": [
           "enums"
         ],
-        "prerequisites": ["functions"],
+        "prerequisites": [
+          "functions"
+        ],
         "status": "active"
       },
       {
@@ -1520,6 +1522,11 @@
       "uuid": "febd2cf9-e058-48ef-bdc7-7583fb67e053",
       "slug": "structs",
       "name": "Structs"
+    },
+    {
+      "uuid": "ffb6842a-631b-42f5-bfa2-cb1dc2497250",
+      "slug": "vec-stack",
+      "name": "Vector as a Stack"
     }
   ],
   "key_features": [
