@@ -21,7 +21,7 @@ fn main() {
 
 To retrieve the score of the blue team, for example, we can use `scores["Blue"]`.
 
-# Accessing values in Hashmap
+## Accessing values in Hashmap
 
 Other than using the indexing (`[]`) operator, there are two other ways of accessing values stored in a Hashmap. The first is using the `get` member function:
 
