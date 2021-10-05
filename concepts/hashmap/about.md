@@ -62,20 +62,8 @@ This API makes certain common access patterns very convenient; it has an entire 
 
 ## Efficiency
 
-One of the reasons a Hashmap is popular is because it is fast.
-
-Below is a list of operations support by Hashmap and it's time-complexity:
-
-| Operation        | Time-Complexity                |
-| ---------------- | ------------------------------ |
-| Insertion        | O(1) (amortized constant-time) |
-| Removal          | O(1) (amortized constant-time) |
-| Lookup           | O(1) (amortized constant-time) |
-| Retrieve value   | O(1) (amortized constant-time) |
-| Set/Update value | O(1) (amortized constant-time) |
-
-In summary, all standard operations in hashmap have an amortized constant time-complexity, i.e., O(1) operations
+Hashmaps are relatively fast, and have amortized constant-time complexity (`O(1)`) for all operations involving a single key.
 
 ## Trait Bounds
 
-A Hashmap is a generic data structure, meaning it supports arbitrary types to be used as keys and values, with only one constraint - for a type to be used as the key type, it must have an implementation for two traits: `Eq` and `Hash`. These two traits allow the Hashmap to check for equality/ duplicate keys as well as to group similar keys for fast lookup using a hashing function (hence the name Hashmap). There are no trait bounds on the value type.
+A Hashmap is a generic data structure, meaning it supports arbitrary types to be used as keys and values, with only one constraint: for a type to be used as the key type, it must have an implementation for two traits: `Eq` and `Hash`. There are no trait bounds on the value type.
