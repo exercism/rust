@@ -17,6 +17,6 @@ fn main() {
 }
 ```
 
-The function above is special in the sense that it is used as an entry point of programs. From that function you can call on other functions. You can see functions can also take parameters, like ```name: &str``` in ```say_my_name()``` which allows for input into the function.
+The function named `main` is special because it is the entry point for programs. From that function you can call other functions. Functions can also take parameters, like ```name: &str``` in ```say_my_name()``` which allows for input into the function.
 
 
