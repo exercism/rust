@@ -1509,6 +1509,11 @@
       "name": "Floating Point Numbers"
     },
     {
+      "uuid": "e119467a-34f7-4841-9929-88d4317d904d",
+      "slug": "hashmap",
+      "name": "Hashmap"
+    },
+    {
       "uuid": "8e399de6-f143-45fb-bb8e-1ce1f15dcf01",
       "slug": "integers",
       "name": "Integers"
