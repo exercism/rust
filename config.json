@@ -1509,9 +1509,19 @@
       "name": "Floating Point Numbers"
     },
     {
+      "uuid": "e119467a-34f7-4841-9929-88d4317d904d",
+      "slug": "hashmap",
+      "name": "Hashmap"
+    },
+    {
       "uuid": "8e399de6-f143-45fb-bb8e-1ce1f15dcf01",
       "slug": "integers",
       "name": "Integers"
+    },
+    {
+      "uuid": "56c95d54-dacc-4a9f-b38f-7cca4fef6307",
+      "slug": "loops",
+      "name": "Loops"
     },
     {
       "uuid": "36bc26cf-dd54-4706-9abf-7a89e6a168e3",
@@ -1524,9 +1534,9 @@
       "name": "Structs"
     },
     {
-      "uuid": "56c95d54-dacc-4a9f-b38f-7cca4fef6307",
-      "slug": "loops",
-      "name": "Loops"
+      "uuid": "6ff479bf-d1a7-4ed8-af69-0e06aea921d5",
+      "slug": "vec-macro",
+      "name": "vec! macro"
     }
   ],
   "key_features": [
