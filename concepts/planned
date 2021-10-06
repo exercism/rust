@@ -52,7 +52,6 @@ shadowing
 slices
 static-lifetime
 std-thread
-string
 total-ordering
 turbofish
 typedefs

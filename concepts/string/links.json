@@ -1,0 +1,14 @@
+[
+    {
+        "url": "https://doc.rust-lang.org/book/ch08-02-strings.html",
+        "description": "introduction to String in the Rust book"
+    },
+    {
+        "url": "https://doc.rust-lang.org/rust-by-example/std/str.html",
+        "description": "Rust by Example section on String"
+    },
+    {
+        "url": "https://doc.rust-lang.org/std/string/struct.String.html",
+        "description": "Standard library documentation on String"
+    }
+]
