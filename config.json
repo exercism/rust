@@ -1519,6 +1519,11 @@
       "name": "Integers"
     },
     {
+      "uuid": "56c95d54-dacc-4a9f-b38f-7cca4fef6307",
+      "slug": "loops",
+      "name": "Loops"
+    },
+    {
       "uuid": "36bc26cf-dd54-4706-9abf-7a89e6a168e3",
       "slug": "option",
       "name": "Option"
