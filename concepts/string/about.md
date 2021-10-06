@@ -14,7 +14,7 @@ println!("{} {}", my_string, answer);
 
 ### The `format!` Macro
 
-Because producing a large string from a selection of smaller data types is a common operation, rust also has a shorthand which elides the details of calling `to_string`: the `format!` macro. For example, we could simplify the construction of the composite string above as follows:
+Because producing a large string from a selection of smaller data types is a common operation, Rust also has a shorthand which elides the details of calling `to_string`: the `format!` macro. For example, we could simplify the construction of the composite string above as follows:
 
 ```rust
 let the_answer = format!("{} {}.", "The answer is", 42);
@@ -25,7 +25,7 @@ assert_eq!("The answer is 42.", the_answer);
 
 Strings have a close relationship with string slices. String slices are immutable references to a region of memory of known size, containing a linear series of characters encoded as UTF-8. Any string can be coerced into a string slice by borrowing with the dereference (`&`) operator. To convert a string slice to a string, the `to_string()` method or `String::from` are both appropriate.
 
-In rust code, a literal string is enclosed in double-quotes. These string literals are always string slices, because they refer to an immutable region of memory within the program's executable.
+In Rust code, a literal string is enclosed in double-quotes. These string literals are always string slices, because they refer to an immutable region of memory within the program's executable.
 
 ```rust
 let string = String::from("string");
@@ -64,4 +64,4 @@ println!("{:?}", j); // prints Some('j')
 
 ## More
 
-String is a rich datatype with several methods and macros built around it. Check out [the standard library documentation](https://doc.rust-lang.org/std/string/struct.String.html) for all of member methods and functionality provided by String.
+String is a rich datatype with several methods and macros built around it. Check out [the standard library documentation](https://doc.rust-lang.org/std/string/struct.String.html) for all of the member methods and functionality provided by String.
