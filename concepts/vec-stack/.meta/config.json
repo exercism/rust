@@ -1,7 +1,7 @@
 {
-    "blurb": "Vectors in rust can be used as a stack.",
+    "blurb": "Vectors in Rust can be used as a stack",
     "authors": [
-        "koushik-ms"
+        "coriolinus"
     ],
     "contributors": []
 }
