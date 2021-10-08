@@ -1,0 +1,14 @@
+[
+    {
+        "url": "https://doc.rust-lang.org/book/ch08-03-hash-maps.html",
+        "description": "introduction to Hashmap in the Rust book"
+    },
+    {
+        "url": "https://doc.rust-lang.org/rust-by-example/std/hash.html",
+        "description": "Rust by Example section on Hashmap"
+    },
+    {
+        "url": "https://www.youtube.com/watch?v=Ovlt82Jz0GQ",
+        "description": "Easy Rust 051: Collection types (HashMap) video"
+    }
+]
