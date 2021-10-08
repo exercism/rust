@@ -1,6 +1,6 @@
 # Vectors as a Stack
 
-A stack is linear data structure optimized for access from one end. An appropriate metaphor is a pile of sheets of paper on a spindle: new pieces of paper are always added to the same end, and the sheets are removed in the opposite order that they were added. The sheets added first are removed last, and those added last are removed first.
+A stack is a linear data structure optimized for access from one end. An appropriate metaphor is a pile of sheets of paper on a spindle: new pieces of paper are always added to the same end, and the sheets are removed in the opposite order that they were added. The sheets added first are removed last, and those added last are removed first.
 
 Rust's `Vec` data structure is appropriate for use as a stack. The [`push` method](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push) adds items to the tail of the vector. The [`pop` method](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.pop) removes the final item from the vector. Both `push` and `pop` require only amortized `O(1)` time.
 
