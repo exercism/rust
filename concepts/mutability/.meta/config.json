@@ -1,7 +1,7 @@
 {
-    "blurb": "Mutability of variables",
+    "blurb": "Mutability of bindings",
     "authors": [
-        "koushik-ms"
+        "coriolinus"
     ],
     "contributors": []
 }
