@@ -58,5 +58,4 @@ typedefs
 unsafe
 use
 variable-assignment
-vec-stack
 visibility

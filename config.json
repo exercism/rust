@@ -1542,6 +1542,11 @@
       "uuid": "6ff479bf-d1a7-4ed8-af69-0e06aea921d5",
       "slug": "vec-macro",
       "name": "vec! macro"
+    },
+    {
+      "uuid": "ffb6842a-631b-42f5-bfa2-cb1dc2497250",
+      "slug": "vec-stack",
+      "name": "Vector as a Stack"
     }
   ],
   "key_features": [
