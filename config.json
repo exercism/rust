@@ -1539,6 +1539,11 @@
       "name": "Structs"
     },
     {
+      "uuid": "ea7b6b75-a0cd-4447-b791-3993c7635b05",
+      "slug": "tuples",
+      "name": "Tuples"
+    },
+    {
       "uuid": "6ff479bf-d1a7-4ed8-af69-0e06aea921d5",
       "slug": "vec-macro",
       "name": "vec! macro"
