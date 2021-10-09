@@ -29,6 +29,8 @@ fn print_integer(value: i32) {
 
 Note the parameter's definition. Each parameter is defined in the format `name: Type`.
 
+
+
 A function can also return a value. By default, the output of the final expression is returned.
 In the following example the function has one `i32` parameter and returns its double.
 
@@ -39,6 +41,14 @@ fn double_integer(value: i32) -> i32 {
 ```
 
 The `-> i32` indicates that the function returns an `i32`. Unlike parameters, the returned value is not named.
+
+```rust
+fn say_my_name(name: &str) {
+    println!("Hello, {}!", name);
+}
+```
+
+In the example above a string is taken as a parameter, or more specifically, a reference to a string. This is indicated by the `&str`, where the `&` indicates a reference, which refer to some value somewhere else. When you return a string literal it has type `&str`.
 
 It is possible to exit from a function early with the `return` keyword, like so:
 
