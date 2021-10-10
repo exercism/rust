@@ -37,7 +37,6 @@ match-destructuring
 match-pattern-matching
 methods
 move-semantics
-mutability
 mutex
 newtype-pattern
 numeric-traits

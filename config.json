@@ -1524,6 +1524,11 @@
       "name": "Loops"
     },
     {
+      "uuid": "76f4ccd0-c5ab-456b-a874-c70eb34c57f8",
+      "slug": "mutability",
+      "name": "Mutability"
+    },
+    {
       "uuid": "36bc26cf-dd54-4706-9abf-7a89e6a168e3",
       "slug": "option",
       "name": "Option"
