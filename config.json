@@ -96,7 +96,7 @@
           "structs"
         ],
         "prerequisites": [
-          "string",
+          "strings",
           "floating-point-numbers",
           "integers"
         ],
@@ -172,7 +172,7 @@
           "string-vs-str"
         ],
         "prerequisites": [
-          "string",
+          "strings",
           "string-slices"
         ],
         "status": "wip"
@@ -1535,8 +1535,8 @@
     },
     {
       "uuid": "7317fc9b-93b5-4712-aae3-e44d3b0fb451",
-      "slug": "string",
-      "name": "String"
+      "slug": "strings",
+      "name": "Strings"
     },
     {
       "uuid": "febd2cf9-e058-48ef-bdc7-7583fb67e053",
