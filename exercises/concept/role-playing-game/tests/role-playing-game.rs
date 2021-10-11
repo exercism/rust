@@ -17,6 +17,38 @@ fn test_reviving_dead_player() {
 
 #[test]
 #[ignore]
+fn test_reviving_dead_level9_player() {
+    let dead_player = Player {
+        health: 0,
+        mana: Some(0),
+        level: 9,
+    };
+    let revived_player = dead_player
+        .revive()
+        .expect("reviving a dead player must return Some(player)");
+    assert_eq!(revived_player.health, 100);
+    assert_eq!(revived_player.mana, None);
+    assert_eq!(revived_player.level, dead_player.level);
+}
+
+#[test]
+#[ignore]
+fn test_reviving_dead_level10_player() {
+    let dead_player = Player {
+        health: 0,
+        mana: Some(0),
+        level: 10,
+    };
+    let revived_player = dead_player
+        .revive()
+        .expect("reviving a dead player must return Some(player)");
+    assert_eq!(revived_player.health, 100);
+    assert_eq!(revived_player.mana, Some(100));
+    assert_eq!(revived_player.level, dead_player.level);
+}
+
+#[test]
+#[ignore]
 fn test_reviving_alive_player() {
     let alive_player = Player {
         health: 1,
