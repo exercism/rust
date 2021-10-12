@@ -32,8 +32,7 @@ logical-operators
 macros-declarative
 macros-procedural
 map-and-filter
-match-destructuring
-match-pattern-matching
+match-advanced
 methods
 move-semantics
 mutex
