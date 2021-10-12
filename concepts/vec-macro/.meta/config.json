@@ -1,5 +1,5 @@
 {
-    "blurb": "Rust has two string types: `String` and `&str`.",
+    "blurb": "Create vectors using vec! macro.",
     "authors": [
         "efx"
     ],

@@ -20,7 +20,6 @@ format-macro
 from-into-iterator
 futures
 generics
-hashmap
 hashset
 higher-order-functions
 if-while-let
@@ -30,7 +29,6 @@ iterator-usage
 lazy-evaluation
 lifetimes
 logical-operators
-loops
 macros-declarative
 macros-procedural
 map-and-filter
@@ -38,7 +36,6 @@ match-destructuring
 match-pattern-matching
 methods
 move-semantics
-mutability
 mutex
 newtype-pattern
 numeric-traits
@@ -53,12 +50,10 @@ shadowing
 slices
 static-lifetime
 std-thread
-string
 total-ordering
 turbofish
 typedefs
 unsafe
 use
 variable-assignment
-vec-stack
 visibility

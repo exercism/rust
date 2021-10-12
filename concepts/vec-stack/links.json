@@ -1,0 +1,10 @@
+[
+    {
+        "url": "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)",
+        "description": "description of the stack abstract data type"
+    },
+    {
+        "url": "https://doc.rust-lang.org/std/vec/struct.Vec.html",
+        "description": "vector documentation"
+    }
+]

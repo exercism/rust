@@ -1,0 +1,10 @@
+[
+    {
+        "url": "https://doc.rust-lang.org/book/ch03-05-control-flow.html#repetition-with-loops",
+        "description": "introduction to loops in the Rust book"
+    },
+    {
+        "url": "https://doc.rust-lang.org/rust-by-example/flow_control/loop.html",
+        "description": "Rust by Example section on Loops"
+    }
+]
