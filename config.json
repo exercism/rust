@@ -1524,6 +1524,11 @@
       "name": "Loops"
     },
     {
+      "uuid": "5f133f11-050d-47e7-9b32-ba3258929eb8",
+      "slug": "match-basics",
+      "name": "Match Basics"
+    },
+    {
       "uuid": "76f4ccd0-c5ab-456b-a874-c70eb34c57f8",
       "slug": "mutability",
       "name": "Mutability"
