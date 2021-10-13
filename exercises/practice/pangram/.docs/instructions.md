@@ -6,4 +6,4 @@ The best known English pangram is:
 > The quick brown fox jumps over the lazy dog.
 
 The alphabet used consists of ASCII letters `a` to `z`, inclusive, and is case
-insensitive. Non-ASCII letters, like punctuation, are meant to be ignored.
+insensitive. Any characters which are not an ASCII letter should be ignored.
