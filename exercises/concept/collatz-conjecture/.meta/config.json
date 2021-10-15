@@ -1,0 +1,17 @@
+{
+  "blurb": "Learn about loops and mutability while working on mathematical toy.",
+  "authors": [
+    "coriolinus"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs"
+    ],
+    "test": [
+      "tests/collatz-conjecture.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  }
+}

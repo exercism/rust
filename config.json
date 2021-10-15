@@ -176,6 +176,21 @@
           "string-slices"
         ],
         "status": "wip"
+      },
+      {
+        "slug": "collatz-conjecture",
+        "name": "Collatz Conjecture",
+        "difficulty": 1,
+        "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
+        "concepts": [
+          "loops",
+          "mutability"
+        ],
+        "prerequisites": [
+          "functions",
+          "integers"
+        ],
+        "status": "active"
       }
     ],
     "practice": [
@@ -1040,18 +1055,6 @@
           "enums",
           "structs",
           "traits"
-        ]
-      },
-      {
-        "slug": "collatz-conjecture",
-        "name": "Collatz Conjecture",
-        "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "math",
-          "option_type"
         ]
       },
       {
