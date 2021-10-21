@@ -54,7 +54,6 @@
           "entry-api"
         ],
         "prerequisites": [
-          "hashmap",
           "functions",
           "option"
         ],
@@ -96,7 +95,6 @@
           "structs"
         ],
         "prerequisites": [
-          "strings",
           "floating-point-numbers",
           "integers"
         ],
@@ -156,10 +154,7 @@
           "functions",
           "integers",
           "option",
-          "enums",
-          "match-basics",
-          "loops",
-          "mutability"
+          "enums"
         ],
         "status": "active"
       },
@@ -1452,6 +1447,11 @@
       "uuid": "f7be1969-380e-4348-ac79-9b2834a526fd",
       "slug": "string-slices",
       "name": "String Slices"
+    },
+    {
+      "uuid": "1d635be5-fcfa-4a2d-b78d-60e8d1895e19",
+      "slug": "string-vs-str",
+      "name": "String vs str"
     },
     {
       "uuid": "d29b735e-26fb-4eea-9f2d-0e738d2571ca",
