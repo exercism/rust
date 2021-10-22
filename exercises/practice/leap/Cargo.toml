@@ -1,4 +1,4 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "leap"
 version = "1.6.0"

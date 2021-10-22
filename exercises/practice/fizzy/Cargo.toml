@@ -1,7 +1,6 @@
 [package]
 name = "fizzy"
 version = "0.0.0"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-

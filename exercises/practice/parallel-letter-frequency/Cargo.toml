@@ -1,4 +1,4 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "parallel-letter-frequency"
 version = "0.0.0"

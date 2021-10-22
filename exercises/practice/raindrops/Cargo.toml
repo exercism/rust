@@ -1,4 +1,4 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "raindrops"
 version = "1.1.0"

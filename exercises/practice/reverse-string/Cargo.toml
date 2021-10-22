@@ -4,6 +4,6 @@
 grapheme = []
 
 [package]
-edition = "2018"
+edition = "2021"
 name = "reverse_string"
 version = "1.2.0"

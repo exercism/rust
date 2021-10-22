@@ -1,4 +1,4 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "protein-translation"
 version = "0.1.0"

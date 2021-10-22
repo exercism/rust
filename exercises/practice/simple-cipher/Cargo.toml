@@ -1,5 +1,5 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "simple-cipher"
 version = "0.0.0"
 
