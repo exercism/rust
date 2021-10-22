@@ -1,5 +1,4 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "spiral-matrix"
 version = "1.1.0"
-

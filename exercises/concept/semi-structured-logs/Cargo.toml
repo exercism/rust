@@ -1,7 +1,7 @@
 [package]
 name = "semi_structured_logs"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 
 [features]
 add-a-variant = []

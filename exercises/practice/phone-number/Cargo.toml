@@ -1,4 +1,4 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "phone-number"
 version = "1.6.1"

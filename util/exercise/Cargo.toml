@@ -2,7 +2,7 @@
 name = "exercise"
 version = "1.6.2"
 description = "An utility for creating or updating the exercises on the Exercism Rust track"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 clap = "2.32.0"
