@@ -72,7 +72,7 @@ fn test_cast_spell_with_enough_mana() {
         level: LEVEL,
     };
 
-    assert_eq!(accomplished_wizard.cast_spell(MANA_COST), MANA_COST * 2);
+    assert_eq!(accomplished_wizard.cast_spell(MANA_COST), MANA - MANA_COST);
     assert_eq!(accomplished_wizard.health, HEALTH);
     assert_eq!(accomplished_wizard.mana, Some(MANA - MANA_COST));
     assert_eq!(accomplished_wizard.level, LEVEL);
