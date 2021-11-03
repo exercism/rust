@@ -15,7 +15,7 @@ jobs:
     name: Sync labels
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97
+      - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
       - uses: micnncim/action-label-syncer@3abd5ab72fda571e69fffd97bd4e0033dd5f495c
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
