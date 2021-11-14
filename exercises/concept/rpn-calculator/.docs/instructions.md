@@ -87,6 +87,9 @@ we can say the expression evaluated to 6.
 ## 3. Goal
 
 Your goal is to write a calculator to evaluate a list of inputs ordered by Reverse Polish notation.
+
+If there is more than one element in the stack at the end, return `None`.
+
 You are given the following enum and stubbed function as a starting point.
 
 ```rust
@@ -98,7 +101,7 @@ pub enum CalculatorInput {
     Divide,
     Value(i32),
 }
-  
+
 pub fn evaluate(inputs: &[CalculatorInput]) -> Option<i32> {
     unimplemented!(
 		"Given the inputs: {:?}, evaluate them as though they were a Reverse Polish notation expression",
