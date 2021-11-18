@@ -85,3 +85,12 @@ fn queens_on_the_same_diagonal_can_attack_four() {
 
     assert!(white_queen.can_attack(&black_queen));
 }
+
+#[test]
+#[ignore]
+fn queens_that_cannot_attack_with_equal_difference() {
+    let white_queen = Queen::new(ChessPosition::new(4, 1).unwrap());
+    let black_queen = Queen::new(ChessPosition::new(2, 5).unwrap());
+
+    assert!(!white_queen.can_attack(&black_queen));
+}
