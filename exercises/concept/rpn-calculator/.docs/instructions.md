@@ -86,9 +86,11 @@ we can say the expression evaluated to 6.
 
 ## 3. Goal
 
-Your goal is to write a calculator to evaluate a list of inputs ordered by Reverse Polish notation.
+Your goal is to write a calculator to evaluate a list of inputs ordered by Reverse Polish notation and return the final element on the stack.
 
-If there is more than one element in the stack at the end, return `None`.
+If there is not exactly one element in the stack at the end, return `None`.
+
+If there is an operator with too few operands (such as the input `2 +`), return `None`.
 
 You are given the following enum and stubbed function as a starting point.
 
