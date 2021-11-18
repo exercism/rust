@@ -15,7 +15,7 @@ expected_minutes_in_oven()
 
 ## 2. Calculate the remaining oven time in minutes
 
-Define the `remaining_minutes_in_oven` function that takes the actual minutes the lasagna has been in the oven as a parameter and returns how many minutes the lasagna still has to remain in the oven, based on the expected time oven time in minutes from the previous task.
+Define the `remaining_minutes_in_oven` function that takes the actual minutes the lasagna has been in the oven as a parameter and returns how many minutes the lasagna still has to remain in the oven, based on the expected oven time in minutes from the previous task.
 
 ```rust
 remaining_minutes_in_oven(30)
