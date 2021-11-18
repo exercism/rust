@@ -20,7 +20,7 @@ fn test_reviving_dead_player() {
 fn test_reviving_dead_level9_player() {
     let dead_player = Player {
         health: 0,
-        mana: Some(0),
+        mana: None,
         level: 9,
     };
     let revived_player = dead_player
