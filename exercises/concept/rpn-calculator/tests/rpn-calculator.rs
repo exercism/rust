@@ -76,7 +76,14 @@ fn test_too_many_operands_returns_none() {
 
 #[test]
 #[ignore]
-fn test_missing_operands_returns_none() {
+fn test_zero_operands_returns_none() {
+    let input = calculator_input("+");
+    assert_eq!(evaluate(&input), None);
+}
+
+#[test]
+#[ignore]
+fn test_intermediate_error_returns_none() {
     let input = calculator_input("+ 2 2 *");
     assert_eq!(evaluate(&input), None);
 }
