@@ -20,9 +20,7 @@ pub fn color_to_value(color: ResistorColor) -> u8 {
 }
 
 pub fn value_to_color_string(value: u8) -> String {
-    if !(0..=9).contains(&value) { return String::from("value out of range"); }
-    // because we've tested the value above, it's safe to unwrap
-    format!("{:?}", ResistorColor::from_int(value).unwrap_or(ResistorColor::Black))
+    ResistorColor::from_int(value).map(|color| format!("{:?}", color)).unwrap_or("value out of range".into())
 }
 
 pub fn colors() -> Vec<ResistorColor> {
