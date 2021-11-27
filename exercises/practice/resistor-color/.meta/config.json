@@ -3,9 +3,7 @@
   "authors": [
     ""
   ],
-  "contributors": [
-    ""
-  ],
+  "contributors": [],
   "files": {
     "solution": [
       "src/lib.rs"
