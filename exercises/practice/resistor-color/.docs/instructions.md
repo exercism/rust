@@ -31,7 +31,7 @@ The goal of this exercise is to create a way:
 - to convert the numerical value into a string representing color
 - to list the different band colors
 
-For tasks number two and three, you will need an external crate [`int-enum`](https://crates.io/crates/int-enum), which is included in this exercise's `Cargo.toml`. Be sure to check the crate's documentation to learn how to use it.
+For tasks number two and three, you will need an external crate [`int-enum`](https://docs.rs/int-enum/0.4.0/int_enum/), which is included in this exercise's `Cargo.toml`. Be sure to check the crate's documentation to learn how to use it.
 
 Mnemonics map the colors to the numbers, that, when stored as an array, happen to map to their index in the array: Better Be Right Or Your Great Big Values Go Wrong.
 

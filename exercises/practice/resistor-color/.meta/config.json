@@ -1,7 +1,8 @@
 {
   "blurb": "Convert a resistor band's color to its numeric representation",
   "authors": [
-    ""
+    "still-flow",
+    "coriolinus"
   ],
   "contributors": [],
   "files": {
