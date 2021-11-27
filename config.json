@@ -1403,6 +1403,19 @@
         ]
       },
       {
+        "slug": "resistor-colors",
+        "name": "Resistor Colors",
+        "uuid": "51c31e6a-b7ec-469d-8a28-dd821fd857d2",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": [
+          "enums",
+          "external_crates",
+          "format"
+        ]
+      },
+      {
         "slug": "hexadecimal",
         "name": "Hexadecimal",
         "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
