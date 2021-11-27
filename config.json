@@ -1403,8 +1403,8 @@
         ]
       },
       {
-        "slug": "resistor-colors",
-        "name": "Resistor Colors",
+        "slug": "resistor-color",
+        "name": "Resistor Color",
         "uuid": "51c31e6a-b7ec-469d-8a28-dd821fd857d2",
         "practices": [],
         "prerequisites": [],
