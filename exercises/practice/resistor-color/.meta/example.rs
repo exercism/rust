@@ -16,7 +16,7 @@ pub enum ResistorColor {
 }
 
 pub fn color_to_value(color: ResistorColor) -> u8 {
-    color as u8
+    color.int_value()
 }
 
 pub fn value_to_color_string(value: u8) -> String {
