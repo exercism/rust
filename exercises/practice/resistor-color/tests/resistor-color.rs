@@ -20,30 +20,45 @@ fn test_white() {
 #[test]
 #[ignore]
 fn test_2() {
-    assert_eq!(resistor_color::value_to_color_string(2), String::from("Red"));
+    assert_eq!(
+        resistor_color::value_to_color_string(2),
+        String::from("Red")
+    );
 }
 
 #[test]
 #[ignore]
 fn test_6() {
-    assert_eq!(resistor_color::value_to_color_string(6), String::from("Blue"));
+    assert_eq!(
+        resistor_color::value_to_color_string(6),
+        String::from("Blue")
+    );
 }
 
 #[test]
 #[ignore]
 fn test_8() {
-    assert_eq!(resistor_color::value_to_color_string(8), String::from("Grey"));
+    assert_eq!(
+        resistor_color::value_to_color_string(8),
+        String::from("Grey")
+    );
 }
 
 #[test]
 #[ignore]
 fn test_11_out_of_range() {
-    assert_eq!(resistor_color::value_to_color_string(11), String::from("value out of range"));
+    assert_eq!(
+        resistor_color::value_to_color_string(11),
+        String::from("value out of range")
+    );
 }
 
 #[test]
 #[ignore]
 fn test_all_colors() {
     use ResistorColor::*;
-    assert_eq!(resistor_color::colors(), vec![Black, Brown, Red, Orange, Yellow, Green, Blue, Violet, Grey, White]);
+    assert_eq!(
+        resistor_color::colors(),
+        vec![Black, Brown, Red, Orange, Yellow, Green, Blue, Violet, Grey, White]
+    );
 }

@@ -20,9 +20,13 @@ pub fn color_to_value(color: ResistorColor) -> u8 {
 }
 
 pub fn value_to_color_string(value: u8) -> String {
-    ResistorColor::from_int(value).map(|color| format!("{:?}", color)).unwrap_or("value out of range".into())
+    ResistorColor::from_int(value)
+        .map(|color| format!("{:?}", color))
+        .unwrap_or("value out of range".into())
 }
 
 pub fn colors() -> Vec<ResistorColor> {
-    (0..=9).map(|i| ResistorColor::from_int(i).unwrap_or(ResistorColor::Black)).collect()
+    (0..=9)
+        .map(|i| ResistorColor::from_int(i).unwrap_or(ResistorColor::Black))
+        .collect()
 }
