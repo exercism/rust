@@ -13,6 +13,15 @@ fn test_private_key_in_range_key() {
 }
 
 #[test]
+fn test_private_key_is_prime() {
+    let primes: Vec<u64> = vec![2, 3, 5, 7, 11, 13];
+    for _ in 0..10 {
+        let private_key: u64 = private_key(15);
+        assert!(primes.contains(&private_key));
+    }
+}
+
+#[test]
 #[ignore]
 fn test_public_key_correct() {
     let p: u64 = 23;
