@@ -346,9 +346,10 @@ impl Scale {
         let mut out = Vec::with_capacity(self.intervals.len());
 
         let mut note = self.tonic;
+        out.push(note.canonicalize(self.lean).to_string());
         for &interval in self.intervals.iter() {
-            out.push(note.canonicalize(self.lean).to_string());
             note += interval;
+            out.push(note.canonicalize(self.lean).to_string());
         }
 
         out
