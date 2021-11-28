@@ -132,7 +132,7 @@ fn test_locrian_mode() {
 #[ignore]
 /// Harmonic minor
 ///
-/// Note that this case introduces the accidental interval (A)
+/// Note that this case introduces the augmented second interval (A)
 fn test_harmonic_minor() {
     process_interval_case("d", "MmMMmAm", &["D", "E", "F", "G", "A", "Bb", "Db"]);
 }
