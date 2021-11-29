@@ -27,6 +27,6 @@ pub fn value_to_color_string(value: u8) -> String {
 
 pub fn colors() -> Vec<ResistorColor> {
     (0..=9)
-        .map(|i| ResistorColor::from_int(i).unwrap_or(ResistorColor::Black))
+        .map(|i| ResistorColor::from_int(i).unwrap())
         .collect()
 }
