@@ -240,6 +240,20 @@
         ]
       },
       {
+        "slug": "resistor-color",
+        "name": "Resistor Color",
+        "uuid": "51c31e6a-b7ec-469d-8a28-dd821fd857d2",
+        "practices": [
+          "enums"
+        ],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": [
+          "external_crates",
+          "format"
+        ]
+      },
+      {
         "slug": "space-age",
         "name": "Space Age",
         "uuid": "fa94645d-14e1-422d-a832-d24efbb493d8",
@@ -1400,19 +1414,6 @@
           "generics",
           "lists",
           "unsafe"
-        ]
-      },
-      {
-        "slug": "resistor-color",
-        "name": "Resistor Color",
-        "uuid": "51c31e6a-b7ec-469d-8a28-dd821fd857d2",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 4,
-        "topics": [
-          "enums",
-          "external_crates",
-          "format"
         ]
       },
       {
