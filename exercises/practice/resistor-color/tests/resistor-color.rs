@@ -1,4 +1,4 @@
-use resistor_color::ResistorColor;
+use resistor_color::{colors, color_to_value, value_to_color_string, ResistorColor};
 
 #[test]
 fn test_black() {
