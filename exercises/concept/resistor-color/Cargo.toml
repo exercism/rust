@@ -4,4 +4,4 @@ name = "resistor-color"
 version = "1.0.0"
 
 [dependencies]
-int-enum = "0.4"
+enum-iterator = "0.7.0"

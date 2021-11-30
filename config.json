@@ -87,6 +87,20 @@
         "status": "active"
       },
       {
+        "slug": "resistor-color",
+        "name": "Resistor Color",
+        "uuid": "51c31e6a-b7ec-469d-8a28-dd821fd857d2",
+        "difficulty": 1,
+        "concepts": [
+          "external-crates"
+        ],
+        "prerequisites": [
+          "functions",
+          "enums"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "health-statistics",
         "uuid": "3da2420e-9de3-42e0-9127-5ef185673dbb",
         "name": "Health Statistics",
@@ -237,20 +251,6 @@
           "str_vs_string",
           "strings",
           "vectors"
-        ]
-      },
-      {
-        "slug": "resistor-color",
-        "name": "Resistor Color",
-        "uuid": "51c31e6a-b7ec-469d-8a28-dd821fd857d2",
-        "practices": [
-          "enums"
-        ],
-        "prerequisites": [],
-        "difficulty": 4,
-        "topics": [
-          "external_crates",
-          "format"
         ]
       },
       {
@@ -1516,6 +1516,11 @@
       "uuid": "40d727f1-d011-4305-b1c2-1b4380246d9b",
       "slug": "enums",
       "name": "Enums Basic"
+    },
+    {
+      "uuid": "8109754d-fdb4-4e92-bba2-ed763bfdf539",
+      "slug": "external-crates",
+      "name": "External crates"
     },
     {
       "uuid": "cebb248b-b9d5-4189-a764-87b14e8dd603",

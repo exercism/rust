@@ -12,11 +12,11 @@ pub enum ResistorColor {
     Yellow,
 }
 
-pub fn color_to_value(_color: ResistorColor) -> u8 {
+pub fn color_to_value(_color: ResistorColor) -> usize {
     unimplemented!("convert a color into a numerical representation")
 }
 
-pub fn value_to_color_string(value: u8) -> String {
+pub fn value_to_color_string(value: usize) -> String {
     unimplemented!(
         "convert the value {} into a string representation of color",
         value

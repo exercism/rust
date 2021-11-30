@@ -1,5 +1,5 @@
 {
-  "blurb": "Convert a resistor band's color to its numeric representation",
+  "blurb": "Convert a resistor band's color to its numeric representation and back, using external crates",
   "authors": [
     "still-flow",
     "coriolinus"
@@ -12,8 +12,8 @@
     "test": [
       "tests/resistor-color.rs"
     ],
-    "example": [
-      ".meta/example.rs"
+    "exemplar": [
+      ".meta/exemplar.rs"
     ]
   },
   "source": "Maud de Vries, Erik Schierboom",
