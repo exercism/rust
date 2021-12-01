@@ -1,0 +1,8 @@
+[package]
+edition = "2021"
+name = "resistor-color"
+version = "1.0.0"
+
+[dependencies]
+int-enum = "0.4.0"
+enum-iterator = "0.7.0"

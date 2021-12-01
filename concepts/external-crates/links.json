@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html",
+    "description": "intro to package management in the Rust book"
+  },
+  {
+    "url": "https://doc.rust-lang.org/stable/rust-by-example/cargo.html",
+    "description": "cargo by example"
+  },
+  {
+    "url": "https://doc.rust-lang.org/cargo/",
+    "description": "the cargo book"
+  }
+]
