@@ -24,5 +24,5 @@ pub fn value_to_color_string(value: usize) -> String {
 }
 
 pub fn colors() -> Vec<ResistorColor> {
-    unimplemented!("return a list of all the colors in order")
+    unimplemented!("return a list of all the colors ordered by resistance")
 }
