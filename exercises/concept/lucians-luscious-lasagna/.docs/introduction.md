@@ -51,7 +51,7 @@ let b = a;
 let a = x + y
 ```
 
-Rust uses curly braces (`{}`) to define a scope. A binding defined within a scope can't escape from it. This means that scope is defined by indenting the code with spaces, relative to the line declaring the binding.
+Rust uses curly braces (`{}`) to define a scope. A binding defined within a scope can't escape from it.
 
 ```rust
 let a = 1;
