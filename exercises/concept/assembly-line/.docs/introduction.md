@@ -7,7 +7,7 @@ There are two different categories of numbers in Rust.
 The name of a numeric type consists of two parts:
 
 - A letter to specify whether it's a floating-point number (f), unsigned integer (u) or signed integer (i)
-- A number to specify the numbers size in bits. Larger types have a greater range between minimum and maximum values.
+- A number to specify the type's size in bits. Larger types have a greater range between minimum and maximum values.
   For floating points it will also allow for more numbers behind the decimal separator.
 
 The following combinations are possible:
