@@ -1,15 +1,15 @@
 #[derive(Debug, PartialEq)]
 pub enum ResistorColor {
     Black,
-    Blue,
     Brown,
-    Green,
-    Grey,
-    Orange,
     Red,
-    Violet,
-    White,
+    Orange,
     Yellow,
+    Green,
+    Blue,
+    Violet,
+    Grey,
+    White,
 }
 
 pub fn color_to_value(_color: ResistorColor) -> usize {
