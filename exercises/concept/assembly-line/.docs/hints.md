@@ -9,5 +9,4 @@
 
 ## 2. Calculate the number of working items produced per minute
 
-
 - Just like multiplication, division is only possible between numbers of the same type. By writing a number with a decimal point (e.g. `1.0` instead of `1`) we can write inline constants with a floating point type.
