@@ -10,6 +10,6 @@ edition = "2021"
 io = []
 
 [dev-dependencies]
-hexlit = "0.3.0"
+hexlit = "0.5.0"
 rstest = "0.6.4"
 rstest_reuse = "0.1.0"
