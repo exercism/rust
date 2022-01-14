@@ -71,8 +71,8 @@ impl Decimal {
         }
         match one.decimal_index.cmp(&two.decimal_index) {
             std::cmp::Ordering::Equal => {}
-            std::cmp::Ordering::Less => expand(&mut one, &two),
-            std::cmp::Ordering::Greater => expand(&mut two, &one),
+            std::cmp::Ordering::Less => expand(one, two),
+            std::cmp::Ordering::Greater => expand(two, one),
         }
         assert_eq!(one.decimal_index, two.decimal_index);
     }
