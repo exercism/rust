@@ -189,7 +189,7 @@ mod simple_trybuild {
             file_path.into_os_string()
         );
 
-        let test_name = file_name.replace(".", "-");
+        let test_name = file_name.replace('.', "-");
         let macros_dir = ["..", "..", "target", "tests", "macros"]
             .iter()
             .collect::<PathBuf>();

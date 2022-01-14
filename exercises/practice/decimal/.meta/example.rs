@@ -60,7 +60,7 @@ impl Decimal {
     /// Add precision to the less-precise value until precisions match
     ///
     /// Precision, in this case, is defined as the decimal index.
-    fn equalize_precision(mut one: &mut Decimal, mut two: &mut Decimal) {
+    fn equalize_precision(one: &mut Decimal, two: &mut Decimal) {
         fn expand(lower_precision: &mut Decimal, higher_precision: &Decimal) {
             let precision_difference =
                 (higher_precision.decimal_index - lower_precision.decimal_index) as usize;
@@ -71,8 +71,8 @@ impl Decimal {
         }
         match one.decimal_index.cmp(&two.decimal_index) {
             std::cmp::Ordering::Equal => {}
-            std::cmp::Ordering::Less => expand(&mut one, &two),
-            std::cmp::Ordering::Greater => expand(&mut two, &one),
+            std::cmp::Ordering::Less => expand(one, two),
+            std::cmp::Ordering::Greater => expand(two, one),
         }
         assert_eq!(one.decimal_index, two.decimal_index);
     }
