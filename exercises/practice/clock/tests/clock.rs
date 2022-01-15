@@ -318,35 +318,35 @@ fn test_compare_clocks_with_minutes_overflow_by_several_days() {
 #[test]
 #[ignore]
 fn test_compare_clocks_with_negative_minute() {
-    assert_eq!(Clock::new(3, -20), Clock::new(2, 40))
+    assert_eq!(Clock::new(3, -20), Clock::new(2, 40));
 }
 
 #[test]
 #[ignore]
 fn test_compare_clocks_with_negative_minute_that_wraps() {
-    assert_eq!(Clock::new(5, -1490), Clock::new(4, 10))
+    assert_eq!(Clock::new(5, -1490), Clock::new(4, 10));
 }
 
 #[test]
 #[ignore]
 fn test_compare_clocks_with_negative_minute_that_wraps_multiple() {
-    assert_eq!(Clock::new(6, -4305), Clock::new(6, 15))
+    assert_eq!(Clock::new(6, -4305), Clock::new(6, 15));
 }
 
 #[test]
 #[ignore]
 fn test_compare_clocks_with_negative_hours_and_minutes() {
-    assert_eq!(Clock::new(-12, -268), Clock::new(7, 32))
+    assert_eq!(Clock::new(-12, -268), Clock::new(7, 32));
 }
 
 #[test]
 #[ignore]
 fn test_compare_clocks_with_negative_hours_and_minutes_that_wrap() {
-    assert_eq!(Clock::new(-54, -11_513), Clock::new(18, 7))
+    assert_eq!(Clock::new(-54, -11_513), Clock::new(18, 7));
 }
 
 #[test]
 #[ignore]
 fn test_compare_full_clock_and_zeroed_clock() {
-    assert_eq!(Clock::new(24, 0), Clock::new(0, 0))
+    assert_eq!(Clock::new(24, 0), Clock::new(0, 0));
 }
