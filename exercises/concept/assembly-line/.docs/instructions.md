@@ -15,7 +15,7 @@ You have two tasks.
 Implement a method to calculate the assembly line's production rate per hour, taking into account its success rate:
 
 ```rust
-numbers::production_rate_per_hour(6)
+assembly_line::production_rate_per_hour(6)
 // Returns: 1193.4
 ```
 
@@ -26,7 +26,7 @@ Note that the value returned is an `f64`.
 Implement a method to calculate how many working cars are produced per minute:
 
 ```rust
-numbers::working_items_per_minute(6)
+assembly_line::working_items_per_minute(6)
 // Returns: 19
 ```
 
