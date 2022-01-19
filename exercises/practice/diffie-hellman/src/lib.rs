@@ -1,3 +1,5 @@
+use rand::Rng;
+
 pub fn private_key(p: u64) -> u64 {
     unimplemented!("Pick a private key greater than 1 and less than {}", p)
 }
