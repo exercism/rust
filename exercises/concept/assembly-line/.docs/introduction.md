@@ -1,6 +1,6 @@
 # Introduction
 
-## numbers
+## Numbers
 
 There are two different categories of numbers in Rust.
 
@@ -31,7 +31,7 @@ Note that there are only 32-bits and 64-bits variants for floating-point numbers
 - Floating-point numbers: numbers with zero or more digits behind the decimal separator.
   Examples are -2.4, 0.1, 3.14, 16.984025 and 1024.0.
 
-## Converting between number types
+## Converting Between Number Types
 
 Rust doesn't do any implicit type conversion.
 This means that if you need to turn one numeric type into another, you have to do so explicitly.
