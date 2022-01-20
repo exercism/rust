@@ -25,7 +25,7 @@ enum Option<T> {
 }
 ```
 
-You can think of `Option` as an added layer of safety between you and the problems that null-references can cause, while still retaining their conceptual usefulness.
+You can think of `Option` as a layer of safety between you and the problems that null-references can cause, while still retaining their conceptual usefulness.
 
 ## Using Option
 
