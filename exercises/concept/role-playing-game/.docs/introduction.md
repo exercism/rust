@@ -74,7 +74,7 @@ match some_words {
 } // Prints "I've got nothing to say"
 ```
 
-In Rust, there are other ways besides `match` that you can check for and access values contained within `Option`, but `match` should be familiar to you by now.
+Besides `match`, Rust has other tools available for checking and accessing values contained within `Option`, but `match` should be familiar to you by now.
 
 Additionally, consider this a demonstration of why Rust uses `Option` instead of a null-reference.
 The point is that **you _must_ check** whether or not the `Option` variable is `Some` (in which case you can go ahead and extract and use the value contained within), or `None`.
