@@ -78,4 +78,4 @@ In Rust, there are other ways besides `match` that you can check for and access 
 
 Additionally, consider this a demonstration of why Rust uses `Option` instead of a null-reference.
 The point is that **you _must_ check** whether or not the `Option` variable is `Some` (in which case you can go ahead and extract and use the value contained within), or `None`.
-Anything else, and compiler will yell at you - it's trying to keep you safe from `null`.
+Anything else, and your program will not compile; the compiler is keeping you safe from `null`.
