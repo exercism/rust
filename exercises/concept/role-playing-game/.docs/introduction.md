@@ -8,7 +8,7 @@ However, this makes accidentally using a variable that points to `null` an easy 
 As you might imagine, trying to call a function that isn't there, or access a value that doesn't exist can lead to all sorts of bugs and crashes. 
 The creator of `null` went so far as to call it his ['billion-dollar mistake'.](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/)
 
-## The Option Type
+## The `Option` Type
 
 To avoid these problems, Rust does not use null-references.
 However, it still needs a (safe) way to indicate that a particular variable has no value.
