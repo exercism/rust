@@ -4,6 +4,9 @@
     "seanchen1991",
     "coriolinus"
   ],
+  "contributors": [
+    "PaulT89"
+  ],
   "files": {
     "solution": [
       "src/lib.rs"
