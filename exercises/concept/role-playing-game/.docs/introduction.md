@@ -11,7 +11,7 @@ The creator of `null` went so far as to call it his ['billion-dollar mistake'.](
 ## The `Option` Type
 
 To avoid these problems, Rust does not use null-references.
-However, it still needs a (safe) way to indicate that a particular variable has no value.
+However, it still needs a safe way to indicate that a particular variable has no value.
 This is where `Option` comes in.
 Instead of having a variable referencing `null` directly, Rust variables can point to the special `Option` enum.
 This enum, in turn, contains two possible variants: `None` - Rust's null-equivalent; and `Some(T)` - where T is any value of any type.
