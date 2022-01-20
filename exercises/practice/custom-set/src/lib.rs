@@ -34,14 +34,17 @@ impl<T> CustomSet<T> {
         unimplemented!();
     }
 
+    #[must_use]
     pub fn intersection(&self, _other: &Self) -> Self {
         unimplemented!();
     }
 
+    #[must_use]
     pub fn difference(&self, _other: &Self) -> Self {
         unimplemented!();
     }
 
+    #[must_use]
     pub fn union(&self, _other: &Self) -> Self {
         unimplemented!();
     }

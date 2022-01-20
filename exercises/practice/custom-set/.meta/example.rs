@@ -43,6 +43,7 @@ impl<T: Ord + Clone> CustomSet<T> {
         !self.collection.iter().any(|x| other.contains(x))
     }
 
+    #[must_use]
     pub fn intersection(&self, other: &Self) -> CustomSet<T> {
         CustomSet::new(
             &self
@@ -54,6 +55,7 @@ impl<T: Ord + Clone> CustomSet<T> {
         )
     }
 
+    #[must_use]
     pub fn union(&self, other: &Self) -> CustomSet<T> {
         CustomSet::new(
             &self
@@ -65,6 +67,7 @@ impl<T: Ord + Clone> CustomSet<T> {
         )
     }
 
+    #[must_use]
     pub fn difference(&self, other: &Self) -> CustomSet<T> {
         CustomSet::new(
             &self

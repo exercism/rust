@@ -16,18 +16,22 @@ impl Robot {
         unimplemented!("Create a robot at (x, y) ({}, {}) facing {:?}", x, y, d,)
     }
 
+    #[must_use]
     pub fn turn_right(self) -> Self {
         unimplemented!()
     }
 
+    #[must_use]
     pub fn turn_left(self) -> Self {
         unimplemented!()
     }
 
+    #[must_use]
     pub fn advance(self) -> Self {
         unimplemented!()
     }
 
+    #[must_use]
     pub fn instructions(self, instructions: &str) -> Self {
         unimplemented!(
             "Follow the given sequence of instructions: {}",

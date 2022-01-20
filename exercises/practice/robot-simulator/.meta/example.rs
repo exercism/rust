@@ -65,18 +65,22 @@ impl Robot {
         }
     }
 
+    #[must_use]
     pub fn turn_right(&self) -> Self {
         Self::build(self.position, self.direction.next_clockwise())
     }
 
+    #[must_use]
     pub fn turn_left(&self) -> Self {
         Self::build(self.position, self.direction.previous_clockwise())
     }
 
+    #[must_use]
     pub fn advance(&self) -> Self {
         Self::build(self.position.advance(&self.direction), self.direction)
     }
 
+    #[must_use]
     pub fn instructions(&self, instructions: &str) -> Self {
         instructions
             .chars()
@@ -93,6 +97,7 @@ impl Robot {
         &self.direction
     }
 
+    #[must_use]
     fn execute(self, command: char) -> Self {
         match command {
             'R' => self.turn_right(),

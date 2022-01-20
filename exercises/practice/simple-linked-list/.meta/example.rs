@@ -47,6 +47,7 @@ impl<T> SimpleLinkedList<T> {
         self.head.as_ref().map(|node| &node.data)
     }
 
+    #[must_use]
     pub fn rev(self) -> SimpleLinkedList<T> {
         let mut rev_list = SimpleLinkedList::new();
         let mut vec: Vec<_> = self.into();
