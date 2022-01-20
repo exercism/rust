@@ -36,6 +36,7 @@ impl<T> SimpleLinkedList<T> {
         unimplemented!()
     }
 
+    #[must_use]
     pub fn rev(self) -> SimpleLinkedList<T> {
         unimplemented!()
     }

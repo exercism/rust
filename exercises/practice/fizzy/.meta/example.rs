@@ -31,6 +31,7 @@ where
         Fizzy(Vec::new())
     }
 
+    #[must_use]
     pub fn add_matcher(mut self, matcher: Matcher<T>) -> Self {
         let Fizzy(ref mut matchers) = self;
         matchers.push(matcher);
