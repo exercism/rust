@@ -12,6 +12,7 @@
     "hunger",
     "lutostag",
     "ocstl",
+    "PaulT89",
     "petertseng",
     "rofrol",
     "rrredface",
@@ -22,7 +23,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/reverse-string.rs"
