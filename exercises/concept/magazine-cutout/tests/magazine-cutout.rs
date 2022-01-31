@@ -1,7 +1,7 @@
 use magazine_cutout::*;
 
 #[test]
-fn test_example_works() {
+fn test_magzine_has_less_than_words_available_than_needed() {
     let magazine = "two times three is not four"
         .split_whitespace()
         .collect::<Vec<&str>>();
