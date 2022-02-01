@@ -27,11 +27,11 @@ assert!(!can_construct_note(&magazine, &note));
 
 The function returns `false` since the magazine only contains one instance of `"two"` when the note requires two of them.
 
-And the following input will success 
+The following input will succeed: 
 
 ```rust
-let magazine = "The metro orchestra unveiled its new grand piano today. Its donor paraphrased Nathn Hale: \"I only regret that I have but one to give \"".split_whitespace().collect::<Vec<&str>>();
-let note = "give one grand today."
+let magazine = "Astronomer Amy Mainzer spent hours chatting with Leonardo DiCaprio for Netflix's 'Don't Look Up'".split_whitespace().collect::<Vec<&str>>();
+let note = "Amy Mainzer chatting with Leonardo DiCaprio."
     .split_whitespace()
     .collect::<Vec<&str>>();
 assert!(can_construct_note(&magazine, &note));
