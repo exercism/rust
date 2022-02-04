@@ -123,6 +123,9 @@ jobs:
         run: ./_test/check_exercises.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
+      - name: Cargo clean (to prevent previous compilation from unintentionally interfering with later ones)
+        run: ./_test/cargo_clean_all.sh
+
       - name: Ensure stubs compile
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
