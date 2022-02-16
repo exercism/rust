@@ -25,3 +25,37 @@ _ _ _ _ _ _ _ _
 You'd also be able to answer whether the queens can attack each other.
 In this case, that answer would be yes, they can, because both pieces
 share a diagonal.
+
+### Examples of queens attacking:
+
+```text
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ W _ _ _ _
+_ _ _ W _ _ _ _     _ B _ _ _ W _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ B _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ B _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+```
+
+### Examples of queens not interacting:
+
+```text
+
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ W _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ W _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ W _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ B _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ B _ _ _ _ _     _ _ _ _ _ _ B _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+```
+
+<!-- Should this be included? It is not relevant info to
+     solving the puzzle. -->
+B and W stand for **Black** and **White**, the two sides competing
+against each other in a game of chess, which is why each queen
+is labelled B and W; though you do not need to know which side
+the queens are on to solve this challenge.
