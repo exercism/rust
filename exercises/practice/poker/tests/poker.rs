@@ -222,3 +222,8 @@ fn test_straight_flush_ranks() {
     // both hands have straight flush, tie goes to highest-ranked card
     test(&["4H 6H 7H 8H 5H", "5S 7S 8S 9S 6S"], &["5S 7S 8S 9S 6S"])
 }
+
+fn test_flush_discriminants() {
+    // both hands have straight flush, tie goes to highest-ranked card
+    test(&["AH KH QH 2H 2H", "7H 6H 5H 4H 3H"], &["AH KH QH 2H 2H"])
+}
