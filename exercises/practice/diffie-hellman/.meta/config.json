@@ -20,8 +20,7 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs",
-      "Cargo.toml"
+      "src/lib.rs"
     ],
     "test": [
       "tests/diffie-hellman.rs"

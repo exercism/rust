@@ -23,8 +23,7 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs",
-      "Cargo.toml"
+      "src/lib.rs"
     ],
     "test": [
       "tests/reverse-string.rs"
