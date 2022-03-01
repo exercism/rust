@@ -4,4 +4,4 @@ name = "simple-cipher"
 version = "0.0.0"
 
 [dependencies]
-rand = "0.4.2"
+rand = "0.8"
