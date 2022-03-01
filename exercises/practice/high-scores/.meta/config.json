@@ -11,7 +11,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/high-scores.rs"

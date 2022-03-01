@@ -23,7 +23,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/all-your-base.rs"
