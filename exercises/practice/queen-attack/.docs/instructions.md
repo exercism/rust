@@ -53,8 +53,6 @@ _ _ _ _ _ _ _ _     _ _ B _ _ _ _ _     _ _ _ _ _ _ B _
 _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
 ```
 
-<!-- Should this be included? It is not relevant info to
-     solving the puzzle. -->
 B and W stand for **Black** and **White**, the two sides competing
 against each other in a game of chess, which is why each queen
 is labelled B and W; though you do not need to know which side
