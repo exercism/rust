@@ -54,6 +54,5 @@ _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
 ```
 
 B and W stand for **Black** and **White**, the two sides competing
-against each other in a game of chess, which is why each queen
-is labelled B and W; though you do not need to know which side
-the queens are on to solve this challenge.
+against each other in a game of chess. For this exercise you do not need to know which side
+the queens are on.
