@@ -48,7 +48,7 @@ fn add(x: i32, y: i32) -> i32 {
 ```rust
 // this won't compile; `a` is used before its binding is defined
 let b = a;
-let a = x + y
+let a = x + y;
 ```
 
 Rust uses curly braces (`{}`) to define a scope. A binding defined within a scope can't escape from it.
