@@ -1,65 +1,41 @@
-#[derive(Debug, PartialEq, Eq)]
-pub struct Palindrome {
-    pub factors: Vec<(u64, u64)>,
-}
+/// `Palindrome` is a newtype which only exists when the contained value is a palindrome number in base ten.
+///
+/// A struct with a single field which is used to constrain behavior like this is called a "newtype", and its use is
+/// often referred to as the "newtype pattern". This is a fairly common pattern in Rust.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Ord, PartialOrd)]
+pub struct Palindrome(u64);
 
 impl Palindrome {
-    /// Create a palindrome with the given factors
-    pub fn new(mut a: u64, mut b: u64) -> Palindrome {
-        if a > b {
-            std::mem::swap(&mut a, &mut b);
-        }
-        Palindrome {
-            factors: vec![(a, b)],
-        }
+    /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
+    pub fn new(value: u64) -> Option<Palindrome> {
+        is_palindrome(value).then(move || Palindrome(value))
     }
 
-    /// Return the palindrome's value
-    pub fn value(&self) -> u64 {
-        // this could in theory panic with a bounds error, but the length of
-        // self.factors is known to start at 1 and is only ever increased
-        self.factors[0].0 * self.factors[0].1
-    }
-
-    /// Insert a new set of factors into an existing palindrome
-    pub fn insert(&mut self, mut a: u64, mut b: u64) {
-        if a > b {
-            std::mem::swap(&mut a, &mut b);
-        }
-        self.factors.push((a, b));
-        self.factors.sort_unstable();
-        self.factors.dedup();
+    /// Get the value of this palindrome.
+    pub fn into_inner(self) -> u64 {
+        self.0
     }
 }
 
-/// return the (min, max) palindrome pair comprised of the products of numbers in the input range
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
-    let mut result = None;
-
-    for a in min..=max {
-        for b in min..=a {
-            if is_palindrome(a * b) {
-                result = match result {
-                    None => Some((Palindrome::new(a, b), Palindrome::new(a, b))),
-                    Some((mut minp, mut maxp)) => {
-                        match (a * b).cmp(&minp.value()) {
-                            std::cmp::Ordering::Greater => {}
-                            std::cmp::Ordering::Less => minp = Palindrome::new(a, b),
-                            std::cmp::Ordering::Equal => minp.insert(a, b),
-                        }
-                        match (a * b).cmp(&maxp.value()) {
-                            std::cmp::Ordering::Less => {}
-                            std::cmp::Ordering::Greater => maxp = Palindrome::new(a, b),
-                            std::cmp::Ordering::Equal => maxp.insert(a, b),
-                        }
-                        Some((minp, maxp))
-                    }
+    let mut pmin: Option<Palindrome> = None;
+    let mut pmax: Option<Palindrome> = None;
+    for i in min..=max {
+        for j in i..=max {
+            if let Some(palindrome) = Palindrome::new(i * j) {
+                pmin = match pmin {
+                    None => Some(palindrome),
+                    Some(prev) => Some(prev.min(palindrome)),
+                };
+                pmax = match pmax {
+                    None => Some(palindrome),
+                    Some(prev) => Some(prev.max(palindrome)),
                 };
             }
         }
     }
 
-    result
+    pmin.zip(pmax)
 }
 
 #[inline]
