@@ -10,8 +10,8 @@ fn expected_minutes_in_oven_is_correct() {
 
 #[ignore]
 #[test]
-fn remaining_minutes_in_oven_after_fifteen_minutes() {
-    assert_eq!(15, remaining_minutes_in_oven(25));
+fn remaining_minutes_in_oven_after_ten_minutes() {
+    assert_eq!(10, remaining_minutes_in_oven(30));
 }
 
 #[ignore]
