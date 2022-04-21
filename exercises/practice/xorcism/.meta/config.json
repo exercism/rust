@@ -22,5 +22,8 @@
     "example": [
       ".meta/example.rs"
     ]
+  },
+  "config": {
+    "ignore-count-ignores": true
   }
 }
