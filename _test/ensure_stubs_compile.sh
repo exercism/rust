@@ -27,9 +27,9 @@ broken=""
 for dir in $changed_exercises; do
     exercise=$(basename "$dir")
 
-    allowed_file=$dir/.meta/ALLOWED_TO_NOT_COMPILE
+    config_file="$dir/.meta/config.json"
 
-    if [ -f "$allowed_file" ]; then
+    if jq --exit-status '.custom?."allowed-to-not-compile"?' "$config_file"; then
       echo "$exercise's stub is allowed to not compile"
       continue
     fi

@@ -35,5 +35,8 @@
     "example": [
       ".meta/example.rs"
     ]
+  },
+  "custom": {
+    "test-in-release-mode": true
   }
 }

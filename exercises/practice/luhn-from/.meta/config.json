@@ -30,5 +30,8 @@
     "example": [
       ".meta/example.rs"
     ]
+  },
+  "custom": {
+    "allowed-to-not-compile": "Stub doesn't compile because the From trait is not implemented for every type in the test suite. This exercise is an introduction to the From trait and fully implementing this trait for the test suite reduces learning."
   }
 }

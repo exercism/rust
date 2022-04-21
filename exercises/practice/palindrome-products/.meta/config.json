@@ -30,5 +30,8 @@
     ]
   },
   "source": "Problem 4 at Project Euler",
-  "source_url": "http://projecteuler.net/problem=4"
+  "source_url": "http://projecteuler.net/problem=4",
+  "custom": {
+    "test-in-release-mode": true
+  }
 }

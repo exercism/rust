@@ -32,5 +32,8 @@
     ]
   },
   "source": "Conversation with James Edward Gray II",
-  "source_url": "https://twitter.com/jeg2"
+  "source_url": "https://twitter.com/jeg2",
+  "custom": {
+    "allowed-to-not-compile": "Stub doesn't compile because there is no type specified for _function and _closure arguments. This exercise teaches students about the use of function pointers and closures, therefore specifying the type of arguments for them would reduce learning."
+  }
 }

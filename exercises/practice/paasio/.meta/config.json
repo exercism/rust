@@ -29,5 +29,8 @@
     ]
   },
   "source": "Brian Matsuo",
-  "source_url": "https://github.com/bmatsuo"
+  "source_url": "https://github.com/bmatsuo",
+  "custom": {
+    "ignore-count-ignores": true
+  }
 }

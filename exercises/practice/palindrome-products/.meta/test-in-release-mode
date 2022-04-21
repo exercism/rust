@@ -1,1 +1,0 @@
-Takes very long time in debug mode because of the nested loops which compute the palindrome products.
