@@ -91,7 +91,7 @@ Note that:
 - Except in extraordinary circumstances, the stub file should compile under `cargo test --no-run`.
   This allows us to check that the signatures in the stub file match the signatures expected by the tests.
   Use `unimplemented!()` as the body of each function to achieve this.
-  If there is a justified reason why this is not possible, instead include a `.meta/ALLOWED_TO_NOT_COMPILE` containing the reason.
+  If there is a justified reason why this is not possible, instead include a `.custom."allowed-to-not-compile"` key in the exercise's `.meta/config.json` containing the reason.
 
 - If porting an existing exercise from problem-specifications that has a `canonical-data.json` file, use the version in `canonical-data.json` for that exercise as your `Cargo.toml` version.  Otherwise, use "0.0.0".
 
