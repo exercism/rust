@@ -30,6 +30,6 @@
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/DOT_(graph_description_language)",
   "custom": {
-    "allowed-to-not-compile": "Stub does not compile because not every module and struct method were implemented. This exercise is an introduction to modules system and builder pattern, therefore implementing very module in the stub reduces student learning."
+    "allowed-to-not-compile": "Stub does not compile because not every module and struct method were implemented. This exercise is an introduction to modules system and builder pattern, therefore implementing every module in the stub reduces student learning."
   }
 }
