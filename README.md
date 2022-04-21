@@ -98,7 +98,7 @@ Note that:
 - An exercise may contain `.meta/hints.md`.  This is optional and will appear after the normal exercise
   instructions if present.  Rust is different in many ways from other languages.  This is a place where the differences required for Rust are explained.  If it is a large change, you may want to call this out as a comment at the top of `src/lib.rs`, so the user recognizes to read this section before starting.
 
-- If the test suite is appreciably sped up by running in release mode, and there is reason to be confident that the example implementation does not contain any overflow errors, consider adding a file `.meta/test-in-release-mode`. This should contain brief comments explaining the situation.
+- If the test suite is appreciably sped up by running in release mode, and there is reason to be confident that the test suite appropriately detects any overflow errors, consider adding a marker to the exercise's `.meta/config.json`: `.custom."test-in-release-mode"` should be `true`. This can particularly impact the online editor experience.
 
 - If your exercise implements macro-based testing (see [#392](https://github.com/exercism/rust/issues/392#issuecomment-343865993) and [`perfect-numbers.rs`](https://github.com/exercism/rust/blob/main/exercises/practice/perfect-numbers/tests/perfect-numbers.rs)), you will likely run afoul of a CI check which counts the `#[ignore]` lines and compares the result to the number of `#[test]` lines. To fix this, add a file `.meta/ignore-count-ignores` to disable that check for your exercise.
 

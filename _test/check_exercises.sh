@@ -51,7 +51,8 @@ for exercise in $files; do
    directory=$(dirname "${exercise}")
 
    release=""
-   if [ -z "$BENCHMARK" ] && [ -f "$directory/.meta/test-in-release-mode" ]; then
+   if [ -z "$BENCHMARK" ] && jq --exit-status '.custom?."test-in-release-mode"?' "$directory"/.meta/config.json; then
+      # release mode is enabled if not benchmarking and the appropriate key is neither `false` nor `null`.
       release="--release"
    fi
 
@@ -67,10 +68,6 @@ for exercise in $files; do
       return_code=$((return_code | $?))
    else
       # Run the test and get the status
-      # We use release mode here because, while it somewhat increases
-      # the compile time for all exercises, it substantially improves
-      # the runtime for certain exercises such as alphametics.
-      # Overall this should be an improvement.
       ./bin/test-exercise "$directory" $release
       return_code=$((return_code | $?))
    fi
