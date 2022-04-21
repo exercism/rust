@@ -23,10 +23,8 @@
       ".meta/example.rs"
     ]
   },
-  "config": {
-    "ignore-count-ignores": true
-  },
   "custom": {
-    "allowed-to-not-compile": "The point of this exercise is for students to figure out the appropriate function signatures and generic bounds for their implementations, so we cannot provide those."
+    "allowed-to-not-compile": "The point of this exercise is for students to figure out the appropriate function signatures and generic bounds for their implementations, so we cannot provide those.",
+    "ignore-count-ignores": true
   }
 }
