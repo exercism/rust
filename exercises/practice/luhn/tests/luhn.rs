@@ -132,3 +132,10 @@ fn test_valid_number_with_an_odd_number_of_spaces() {
 fn test_invalid_char_in_middle_with_sum_divisible_by_10_isnt_allowed() {
     process_valid_case("59%59", false);
 }
+
+#[test]
+#[ignore]
+/// unicode numeric characters are not allowed in a otherwise valid number
+fn test_valid_strings_with_numeric_unicode_characters_become_invalid() {
+    process_valid_case("1249①", false);
+}
