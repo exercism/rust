@@ -1,5 +1,5 @@
 //! This solution authored by exercism user `2deth`:
-//! https://exercism.io/mentor/solutions/b6f9f69b03df4b889c9930960cb4a358?iteration_idx=8
+//! https://exercism.org/mentor/solutions/b6f9f69b03df4b889c9930960cb4a358?iteration_idx=8
 
 use std::collections::HashMap;
 

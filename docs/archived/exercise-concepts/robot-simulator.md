@@ -27,7 +27,7 @@
 
 ## Example solution
 
-Taken from ["CodeGradox"](https://exercism.io/tracks/rust/exercises/robot-simulator/solutions/2464130c2440427f98aae078a91e803d)
+Taken from ["CodeGradox"](https://exercism.org/tracks/rust/exercises/robot-simulator/solutions/2464130c2440427f98aae078a91e803d)
 
 ```rust
 use Direction::*;
