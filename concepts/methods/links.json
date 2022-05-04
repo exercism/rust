@@ -1,0 +1,10 @@
+[
+    {
+        "url": "https://doc.rust-lang.org/book/ch05-03-method-syntax.html",
+        "description": "official rust-lang book's chapter on methods"
+    },
+    {
+        "url": "https://doc.rust-lang.org/rust-by-example/fn/methods.html",
+        "description": "examples of methods"
+    }
+]
