@@ -4,7 +4,13 @@ repo=$(cd "$(dirname "$0")/.." && pwd)
 exitcode=0
 
 for e in "$repo"/exercises/*/*; do
-   if jq --exit-status '.custom?."ignore-count-ignores"?' "$e"/.meta/config.json; then
+   # An exercise must have a .meta/config.json
+   metaconf="$e/.meta/config.json"
+   if [ ! -f "$metaconf" ]; then
+      continue
+   fi
+
+   if jq --exit-status '.custom?."ignore-count-ignores"?' "$metaconf"; then
       continue
    fi
    if [ -d "$e/tests" ]; then
