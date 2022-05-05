@@ -107,6 +107,7 @@
         "name": "Health Statistics",
         "difficulty": 1,
         "concepts": [
+          "methods",
           "structs"
         ],
         "prerequisites": [
