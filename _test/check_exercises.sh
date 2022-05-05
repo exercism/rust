@@ -42,7 +42,7 @@ fi
 
 return_code=0
 # An exercise worth testing is defined here as any top level directory with
-# a 'tests' directory
+# a 'tests' directory and a .meta/config.json. 
 for exercise in $files; do
    exercise="$exercise/$target_dir"
 
