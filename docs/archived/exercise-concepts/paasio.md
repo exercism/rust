@@ -26,7 +26,7 @@ types, with appropriate trait bounds.
 
 ## Example using a single wrapper struct
 
-Taken from ["sophie-cyborg"](https://exercism.io/tracks/rust/exercises/paasio/solutions/a2255eb1cc73491184cf88edd982a8d0)
+Taken from ["sophie-cyborg"](https://exercism.org/tracks/rust/exercises/paasio/solutions/a2255eb1cc73491184cf88edd982a8d0)
 
 ```rust
 use std::io::{Read, Result, Write};
@@ -99,7 +99,7 @@ impl<T: Write> Write for IoStats<T> {
 
 ## Example using two separate structs
 
-Taken from ["fdumontmd"](https://exercism.io/tracks/rust/exercises/paasio/solutions/95344f0ee9ec43a0b152ca2d56c44519)
+Taken from ["fdumontmd"](https://exercism.org/tracks/rust/exercises/paasio/solutions/95344f0ee9ec43a0b152ca2d56c44519)
 
 ```rust
 use std::io::{Read, Result, Write};

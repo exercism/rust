@@ -12,7 +12,7 @@ Nonetheless, feel free to peruse what we have written thus far!
 
 *Contributions welcome :)*
 
-As one of the many tracks in Exercism, contributions here should observe Exercism standards like the [Code of Conduct](https://exercism.io/code-of-conduct).
+As one of the many tracks in Exercism, contributions here should observe Exercism standards like the [Code of Conduct](https://exercism.org/code-of-conduct).
 This document introduces the ways you can help and what maintainers expect of contributors.
 
 ## Ways to Contribute

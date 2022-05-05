@@ -85,7 +85,7 @@ This includes all concepts shown in the examples, and some related concepts not 
 
 ## Example exercise 1
 
-Taken from ["lewisclement"](https://exercism.io/my/solutions/c87d24f45c284c83b0da780d132f1c4b)
+Taken from ["lewisclement"](https://exercism.org/my/solutions/c87d24f45c284c83b0da780d132f1c4b)
 
 ```rust
 use std::str::FromStr;
@@ -179,7 +179,7 @@ impl Decimal {
 
 ## Example exercise 2
 
-Taken from ["yawpitch"](https://exercism.io/tracks/rust/exercises/decimal/solutions/16d3747cccca4ee9aeba5a0e8f0ed429)
+Taken from ["yawpitch"](https://exercism.org/tracks/rust/exercises/decimal/solutions/16d3747cccca4ee9aeba5a0e8f0ed429)
 
 ```rust
 use num_bigint::{BigInt, BigUint, Sign, ToBigInt};

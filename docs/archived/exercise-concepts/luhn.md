@@ -23,7 +23,7 @@ Luhn is a validation algorithm that combines textual and numeric assertions. Rus
 
 ## Example Solution 1
 
-york's [solution](https://exercism.io/tracks/rust/exercises/luhn/solutions/7038c269a4af4f5b95ca35a99c5c3b4d)
+york's [solution](https://exercism.org/tracks/rust/exercises/luhn/solutions/7038c269a4af4f5b95ca35a99c5c3b4d)
 
 ```rust
 pub fn is_valid(code: &str) -> bool {

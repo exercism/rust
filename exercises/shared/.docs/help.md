@@ -18,6 +18,6 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
 
-[help-page]: https://exercism.io/tracks/rust/learning
+[help-page]: https://exercism.org/tracks/rust/learning
 [github]: https://github.com/exercism/rust
-[contribution guide]: https://exercism.io/docs/community/contributors
+[contribution guide]: https://exercism.org/docs/community/contributors
