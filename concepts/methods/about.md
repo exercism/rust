@@ -37,7 +37,7 @@ impl Wizard { }
 Everything within this `impl` block will be associated with the `Wizard` type.
 Note that a struct is allowed to have multiple `impl` blocks.
 
-## Using `self`
+### Using `self`
 
 A method must have a parameter named `self` of type `Self` as its first parameter.
 The type `Self` is an alias for the type that the `impl` block is for.
@@ -46,14 +46,14 @@ In our example, `Self` represents `Wizard`.
 Rust allows us to abbreviate this with only the name `self` in the first parameter spot for convenience.
 Common `self` types for methods include:
 
-- `self`: Abbreviates `self: Self`. The bare `self` signature consumes the instance
+- `self`: Abbreviates `self: Self`. The bare `self` signature consumes the instance.
 - `&self`: Abbreviates `self: &Self`. This borrows the instance immutably.
 - `&mut self`: Abbreviates `self: &mut Self`. This borrows the instance mutably.
 
 In more advanced code you might also see signatures such as `self: Pin<&self>`, `self: Rc<Self>`, etc.
 This is, however, beyond the scope of the current tutorial.
 
-### Defining method with `&self`
+### Defining a method with `&self`
 
 If we wish to implement an `info` method to display the basic information of the wizard,
 we could define this method inside an `impl` block for `Wizard`:
@@ -72,15 +72,17 @@ impl Wizard {
 
 Note that in the signature for `info`, we borrow the instance immutably with `&self`.
 This way, we could read the `age` and `house` fields of a `Wizard` instance without changing them.
+If we had used a consuming `self` instead of borrowing, the instance would be inaccessable after the method was called.
 
-With the `info` method implemented, we could read a wizard's basic information:
+With the `info` method implemented, we could print a wizard's basic information:
+
 ```rust
 let harry = Wizard { age: 11, house: House::Gryffindor };
 harry.info();
 // => A wizard of age 11 who studies in House Gryffindor at Hogwarts
 ```
 
-### Defining method with `&mut self`
+### Defining a method with `&mut self`
 
 If we wish to implement a method that mutates the fields of a struct instance,
 we borrow the instance mutably with `&mut self` in the signature for the method.
@@ -100,7 +102,7 @@ Now we can switch houses for a wizard who studies at Hogwarts:
 
 ```rust
 // Note that the variable must be mutable
-let mut cedric = Wizard::new(14, House::Hufflepuff);
+let mut cedric = Wizard {age: 14, house: House::Hufflepuff};
 cedric.info();
 // => A wizard of age 14 who studies in House Hufflepuff at Hogwarts
 cedric.switch_house(House::Slytherin);
@@ -108,9 +110,9 @@ cedric.info()
 // => A wizard of age 14 who studies in House Slytherin at Hogwarts
 ```
 
-### Multiple 'impl' blocks
+## Multiple 'impl' blocks
 
-In Rust, each struct is allowed to have multiple `impl` blocks.
+In Rust, each item is allowed to have multiple `impl` blocks.
 So we can group all methods in the same `impl` block or have multiple `impl` blocks for different groups of methods.
 Both approaches are valid syntax, but typical project organization uses a single `impl` block per unique set of `impl`-level `where` bounds.
 
@@ -122,6 +124,7 @@ However, they are still associated with the implemented type, and called by nami
 For that reason, they are called associated functions (or type-associated functions).
 
 You have already seen some associated functions, such as `String::from()`:
+
 ```rust
 let some_string = String::from("This is an associated function but not a method");
 ```
