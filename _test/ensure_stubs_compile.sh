@@ -29,6 +29,11 @@ for dir in $changed_exercises; do
 
     config_file="$dir/.meta/config.json"
 
+    # An exercise must have a .meta/config.json
+    if [ ! -f "$config_file" ]; then
+       continue
+    fi
+
     if jq --exit-status '.custom?."allowed-to-not-compile"?' "$config_file"; then
       echo "$exercise's stub is allowed to not compile"
       continue

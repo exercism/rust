@@ -42,7 +42,7 @@ fi
 
 return_code=0
 # An exercise worth testing is defined here as any top level directory with
-# a 'tests' directory
+# a 'tests' directory and a .meta/config.json.
 for exercise in $files; do
    exercise="$exercise/$target_dir"
 
@@ -50,8 +50,14 @@ for exercise in $files; do
    # and that the primary module is named the same as the directory
    directory=$(dirname "${exercise}")
 
+   # An exercise must have a .meta/config.json
+   metaconf="$directory/.meta/config.json"
+   if [ ! -f "$metaconf" ]; then
+      continue
+   fi
+
    release=""
-   if [ -z "$BENCHMARK" ] && jq --exit-status '.custom?."test-in-release-mode"?' "$directory"/.meta/config.json; then
+   if [ -z "$BENCHMARK" ] && jq --exit-status '.custom?."test-in-release-mode"?' "$metaconf"; then
       # release mode is enabled if not benchmarking and the appropriate key is neither `false` nor `null`.
       release="--release"
    fi
