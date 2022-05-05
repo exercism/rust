@@ -1583,6 +1583,11 @@
       "name": "Match Basics"
     },
     {
+      "uuid": "1991fcd2-ee16-4fea-9fd9-041e0ff64f19",
+      "slug": "methods",
+      "name": "Methods"
+    },
+    {
       "uuid": "76f4ccd0-c5ab-456b-a874-c70eb34c57f8",
       "slug": "mutability",
       "name": "Mutability"
