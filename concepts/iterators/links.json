@@ -1,0 +1,14 @@
+[
+    {
+        "url": "https://doc.rust-lang.org/rust-by-example/flow_control/for.html",
+        "description": "examples of using iterators"
+    },
+    {
+        "url": "https://doc.rust-lang.org/book/ch13-02-iterators.html",
+        "description": "official book's chapter on iterators"
+    },
+    {
+        "url": "https://stackoverflow.com/questions/34733811/what-is-the-difference-between-iter-and-into-iter/34745885#34745885",
+        "description": "difference between iter and into_iter"
+    }
+]
