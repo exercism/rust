@@ -52,6 +52,7 @@ for people in &lor {
 
 Fundamentally, a `for` loop is just shorthand for calling its argument's `into_iter` method,
 and then calling `next()` until it stops producing items. In other words, the previous loop desugars as:
+
 ```rust
 {
     let mut iterator = (&lor).into_iter();
@@ -97,7 +98,7 @@ If `iter`, `iter_mut`, and `into_iter` all produce iterators, what are the diffe
 What is the context for an `into_iter` invocation?
 Its `self` type.
 Recall that there are `IntoIterator` implementations for `Vec`, `&'a Vec`, and `&'a mut Vec`.
-Therefore: 
+Therefore:
 
 - `(&v).into_iter()` is equal to `v.iter()` => returns `&T`
 - `(&mut v).into_iter()` is equal to `v.iter_mut()` => returns `&mut T`
