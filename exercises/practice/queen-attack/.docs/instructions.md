@@ -6,7 +6,7 @@ are positioned so that they can attack each other.
 In the game of chess, a queen can attack pieces which are on the same
 row, column, or diagonal.
 
-A chessboard can be represented by an 8 by 8 array.
+A chessboard can be represented by an 8 by 8 array. The rows of a chessboard are known as ranks and columns are known as files.
 
 So if you're told the white queen is at (2, 3) and the black queen at
 (5, 6), then you'd know you've got a set-up like so:
