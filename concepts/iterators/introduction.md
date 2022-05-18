@@ -60,6 +60,7 @@ and then calling `next()` until it stops producing items. In other words, the pr
         println!("{people}");
     }
 }
+```
 
 ## `iter` and `iter_mut` methods
 
@@ -80,11 +81,11 @@ assert_eq!(iterator.next(), Some(&3));
 assert_eq!(iterator.next(), None);
 
 // Using `iter_mut` method
-let mut muterator = v.iter_mut();
-assert_eq!(muterator.next(), Some(&mut 1));
-assert_eq!(muterator.next(), Some(&mut 2));
-assert_eq!(muterator.next(), Some(&mut 3));
-assert_eq!(muterator.next(), None);
+for value in v.iter_mut() {
+     *value *= *value;
+}
+println!("{v:?}");
+// => [1, 4, 9]
 ```
 
 ## Difference between `iter`, `iter_mut`, and `into_iter`

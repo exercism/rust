@@ -4,6 +4,10 @@
         "description": "examples of using iterators"
     },
     {
+        "url": "https://doc.rust-lang.org/std/iter/trait.Iterator.html",
+        "description": "official iterator trait documentaion"
+    },
+    {
         "url": "https://doc.rust-lang.org/book/ch13-02-iterators.html",
         "description": "official book's chapter on iterators"
     },
