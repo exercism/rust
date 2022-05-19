@@ -1574,6 +1574,11 @@
       "name": "Integers"
     },
     {
+      "uuid": "722c2a9c-e617-4946-b9f4-d1b7b13f51ee",
+      "slug": "iterators",
+      "name": "Iterators"
+    },
+    {
       "uuid": "56c95d54-dacc-4a9f-b38f-7cca4fef6307",
       "slug": "loops",
       "name": "Loops"
