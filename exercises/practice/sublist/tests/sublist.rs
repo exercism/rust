@@ -96,8 +96,8 @@ fn superlist_at_end() {
 
 #[test]
 #[ignore]
-fn longer_list_not_superlist() {
-    assert_eq!(Comparison::Unequal, sublist(&[1, 2, 3, 4, 5], &[1, 3, 4]));
+fn second_list_missing_element_from_first_list() {
+    assert_eq!(Comparison::Unequal, sublist(&[1, 2, 3], &[1, 3]));
 }
 
 #[test]
