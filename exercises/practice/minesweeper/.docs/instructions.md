@@ -38,11 +38,11 @@ And your code will transform it into this:
 
 ## Performance Hint
 
-All the inputs and outputs are in Ascii. Rust `String`s and `&str` are utf8,
+All the inputs and outputs are in ASCII. Rust `String`s and `&str` are utf8,
 so while one might expect "Hello".chars() to be simple, it actually has to
 check each char to see if it's 1, 2, 3 or 4 `u8`s long. If we know a `&str`
-is ascii then we can call `.as_bytes()` and refer to the underlying data via a `&[u8]` slice.
-Iterating over a u8 slice of ascii is much quicker as there are no codepoints
-involved - every ascii char is one u8 long.
+is ASCII then we can call `.as_bytes()` and refer to the underlying data via a `&[u8]` slice.
+Iterating over a u8 slice of ASCII is much quicker as there are no codepoints
+involved - every ASCII char is one u8 long.
 
 Can you complete the challenge without cloning the input?
