@@ -69,7 +69,7 @@ fn ascii_type(ch: u8) -> &'static str {
         0..=31 => "non-printable control code",
         32..=126 => "printable character",
         127 => "DEL",
-        _ => "extended ascii; region-specific",
+        _ => "extended ASCII; region-specific",
     }
 }
 ```
