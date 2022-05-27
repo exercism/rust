@@ -13,7 +13,7 @@ This exercise boasts a wide variety of possible solutions in combination with th
 - **Strings**
   - `&str` type
 - **Unicode**
-  - Unicode methods vs ascii methods
+  - Unicode methods vs ASCII methods
 - **Slices**
 - **Tuples**
 - **Destructuring**
@@ -52,7 +52,7 @@ This exercise boasts a wide variety of possible solutions in combination with th
 ## General
 
 - Strings: specifically the `str` is always a factor here
-- Unicode: performance/feature concessions of ascii vs unicode methods. Benchmarking is skewed when benchmark uses unicode methods and the solution uses ascii methods.
+- Unicode: performance/feature concessions of ASCII vs unicode methods. Benchmarking is skewed when benchmark uses unicode methods and the solution uses ASCII methods.
 - Iterators: iterating over input or chunks of it.
 - Collections: Iterating over a `HashMap` and using `Entry`. Commonly handles are collected into `Vec`.
 - References
