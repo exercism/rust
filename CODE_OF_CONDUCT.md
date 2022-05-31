@@ -42,16 +42,16 @@ Exercism should be a safe place for everybody regardless of
 - Race
 - Age
 - Religion
-- Anything else you can think of.
+- Anything else you can think of
 
 As someone who is part of this community, you agree that:
 
-- We are collectively and individually committed to safety and inclusivity.
-- We have zero tolerance for abuse, harassment, or discrimination.
-- We respect people’s boundaries and identities.
+- We are collectively and individually committed to safety and inclusivity
+- We have zero tolerance for abuse, harassment, or discrimination
+- We respect people’s boundaries and identities
 - We refrain from using language that can be considered offensive or oppressive (systemically or otherwise), eg. sexist, racist, homophobic, transphobic, ableist, classist, etc.
   - this includes (but is not limited to) various slurs.
-- We avoid using offensive topics as a form of humor.
+- We avoid using offensive topics as a form of humor
 
 We actively work towards:
 
@@ -64,13 +64,13 @@ We condemn:
 - Stalking, doxxing, or publishing private information
 - Violence, threats of violence or violent language
 - Anything that compromises people’s safety
-- Conduct or speech which might be considered sexist, racist, homophobic, transphobic, ableist or otherwise discriminatory or offensive in nature.
-- The use of unwelcome, suggestive, derogatory or inappropriate nicknames or terms.
-- Disrespect towards others (jokes, innuendo, dismissive attitudes) and towards differences of opinion.
+- Conduct or speech which might be considered sexist, racist, homophobic, transphobic, ableist or otherwise discriminatory or offensive in nature
+- The use of unwelcome, suggestive, derogatory or inappropriate nicknames or terms
+- Disrespect towards others (jokes, innuendo, dismissive attitudes) and towards differences of opinion
 - Intimidation or harassment (online or in-person).
-  Please read the [Citizen Code of Conduct](https://github.com/stumpsyn/policies/blob/master/citizen_code_of_conduct.md) for how we interpret harassment.
-- Inappropriate attention or contact.
-- Not understanding the differences between constructive criticism and disparagement.
+  Please read the [Citizen Code of Conduct](https://github.com/stumpsyn/policies/blob/master/citizen_code_of_conduct.md) for how we interpret harassment
+- Inappropriate attention or contact
+- Not understanding the differences between constructive criticism and disparagement
 
 These things are NOT OK.
 
@@ -79,10 +79,10 @@ If it makes someone uncomfortable, stop.
 
 If you say something that is found offensive, and you are called out on it, try to:
 
-- Listen without interruption.
-- Believe what the person is saying & do not attempt to disqualify what they have to say.
-- Ask for tips / help with avoiding making the offense in the future.
-- Apologize and ask forgiveness.
+- Listen without interruption
+- Believe what the person is saying & do not attempt to disqualify what they have to say
+- Ask for tips / help with avoiding making the offense in the future
+- Apologize and ask forgiveness
 
 ## History
 
