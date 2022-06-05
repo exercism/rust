@@ -149,3 +149,17 @@ fn test_large_input_with_many_rectangles() {
     ];
     assert_eq!(60, count(lines))
 }
+
+#[test]
+#[ignore]
+fn test_three_rectangles_no_shared_parts() {
+    #[rustfmt::skip]
+    let lines = &[
+        "  +-+  ",
+        "  | |  ",
+        "+-+-+-+",
+        "| | | |",
+        "+-+ +-+",
+    ];
+    assert_eq!(3, count(lines))
+}
