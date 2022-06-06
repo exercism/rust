@@ -10,7 +10,7 @@ failure = "0.1.5"
 failure_derive = "0.1.5"
 flate2 = "1.0.7"
 lazy_static = "1.2.0"
-tar = "0.4.25"
+tar = "0.4.36"
 tera = "1.0.2"
 toml = "0.4.10"
 uuid = { version = "0.7", features = ["v4"] }
