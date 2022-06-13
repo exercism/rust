@@ -1,8 +1,8 @@
-use enum_iterator::IntoEnumIterator;
+use enum_iterator::{all, Sequence};
 use int_enum::IntEnum;
 
 #[repr(usize)]
-#[derive(Clone, Copy, Debug, Eq, PartialEq, IntEnum, IntoEnumIterator)]
+#[derive(Clone, Copy, Debug, PartialEq, IntEnum, Sequence)]
 pub enum ResistorColor {
     Black = 0,
     Brown = 1,
@@ -27,5 +27,5 @@ pub fn value_to_color_string(value: usize) -> String {
 }
 
 pub fn colors() -> Vec<ResistorColor> {
-    ResistorColor::into_enum_iter().collect()
+    all::<ResistorColor>().collect()
 }
