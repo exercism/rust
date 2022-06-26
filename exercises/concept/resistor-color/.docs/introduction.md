@@ -6,4 +6,4 @@ You will often see external packages being referred to as "crates" in Rust. A cr
 
 Most of the time, adding an external dependency is as simple as adding a line to your `Cargo.toml` file.
 
-In this exercise, [`enum-iterator`](https://docs.rs/enum-iterator/0.7.0/enum_iterator/) and [`int-enum`](https://docs.rs/int-enum/0.4.0/int_enum/) dependencies were added for you.
+In this exercise, [`enum-iterator`](https://docs.rs/enum-iterator/1.1.1/enum_iterator/) and [`int-enum`](https://docs.rs/int-enum/0.4.0/int_enum/) dependencies were added for you.
