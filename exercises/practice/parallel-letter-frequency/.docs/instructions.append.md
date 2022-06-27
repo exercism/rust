@@ -28,5 +28,5 @@ rustup run nightly cargo bench
 
 Learn more about nightly Rust:
 
-- [Nightly Rust](https://doc.rust-lang.org/stable/book/2018-edition/appendix-06-nightly-rust.html)
-- [Rustup: Working with nightly](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust)
+- [Nightly Rust](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html)
+- [Installing Rust nightly](https://www.oreilly.com/library/view/rust-programming-by/9781788390637/e07dc768-de29-482e-804b-0274b4bef418.xhtml)
