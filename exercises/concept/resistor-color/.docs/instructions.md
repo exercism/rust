@@ -31,7 +31,7 @@ The goal of this exercise is to create a way:
 - to convert the numerical value into a string representing color
 - to list the different band colors
 
-For tasks number two and three, you will need external crates [`enum-iterator`](https://docs.rs/enum-iterator/0.7.0/enum_iterator/) and [`int-enum`](https://docs.rs/int-enum/0.4.0/int_enum/), which are included in this exercise's `Cargo.toml`. Be sure to check the crates' documentation to learn how to use them.
+For tasks number two and three, you will need external crates [`enum-iterator`](https://docs.rs/enum-iterator/1.1.1/enum_iterator/) and [`int-enum`](https://docs.rs/int-enum/0.4.0/int_enum/), which are included in this exercise's `Cargo.toml`. Be sure to check the crates' documentation to learn how to use them.
 
 Mnemonics map the colors to the numbers, that, when stored as an array, happen to map to their index in the array: Better Be Right Or Your Great Big Values Go Wrong.
 
