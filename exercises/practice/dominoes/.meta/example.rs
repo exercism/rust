@@ -57,6 +57,11 @@ impl AvailabilityTable {
     }
 
     fn pop_first(&mut self, x: u8) -> Option<u8> {
+        if self.get(x, x) > 0 {
+            self.remove(x, x);
+            return Some(x);
+        }
+
         for y in 1..7 {
             if self.get(x, y) > 0 {
                 self.remove(x, y);

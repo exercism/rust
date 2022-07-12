@@ -159,6 +159,13 @@ fn separate_loops() {
 
 #[test]
 #[ignore]
+fn pop_same_value_first() {
+    let input = &[(2, 3), (3, 1), (1, 1), (2, 2), (3, 3), (2, 1)];
+    assert_correct(input);
+}
+
+#[test]
+#[ignore]
 fn nine_elements() {
     let input = &[
         (1, 2),
