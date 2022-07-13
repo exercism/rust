@@ -8,7 +8,7 @@ pub struct CircularBuffer<T> {
     field: PhantomData<T>,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Error {
     EmptyBuffer,
     FullBuffer,

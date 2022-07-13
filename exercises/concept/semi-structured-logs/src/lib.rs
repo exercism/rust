@@ -3,7 +3,7 @@
 #![allow(unused)]
 
 /// various log levels
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub enum LogLevel {
     Info,
     Warning,

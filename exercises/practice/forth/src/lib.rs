@@ -3,7 +3,7 @@ pub type Result = std::result::Result<(), Error>;
 
 pub struct Forth;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Error {
     DivisionByZero,
     StackUnderflow,

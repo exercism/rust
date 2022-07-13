@@ -1,6 +1,6 @@
 use std::marker::PhantomData;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct CustomSet<T> {
     // This field is here to make the template compile and not to
     // complain about unused type parameter 'T'. Once you start
