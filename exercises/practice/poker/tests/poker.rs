@@ -117,6 +117,12 @@ fn test_three_of_a_kind_ranks() {
 
 #[test]
 #[ignore]
+fn test_low_three_of_a_kind_beats_high_two_pair() {
+    test(&["2H 2D 2C 8H 5H", "AS AC KS KC 6S"], &["2H 2D 2C 8H 5H"])
+}
+
+#[test]
+#[ignore]
 fn test_three_of_a_kind_cascade_ranks() {
     // with multiple decks, two players can have same three of a kind,
     // ties go to highest remaining cards
