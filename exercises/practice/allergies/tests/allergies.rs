@@ -34,7 +34,7 @@ fn is_allergic_to_eggs() {
 
 #[test]
 #[ignore]
-fn is_allergic_to_egg_shellfish_and_strawberries() {
+fn is_allergic_to_eggs_and_shellfish_but_not_strawberries() {
     let allergies = Allergies::new(5);
     assert!(allergies.is_allergic_to(&Allergen::Eggs));
     assert!(allergies.is_allergic_to(&Allergen::Shellfish));
