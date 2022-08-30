@@ -31,3 +31,10 @@ fn test_too_long() {
     let expected: Vec<String> = vec![];
     assert_eq!(series("92017", 6), expected);
 }
+
+#[test]
+#[ignore]
+fn test_way_too_long() {
+    let expected: Vec<String> = vec![];
+    assert_eq!(series("92017", 42), expected);
+}
