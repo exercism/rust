@@ -1,5 +1,3 @@
-use std::marker::PhantomData;
-
 pub struct CodonsInfo<'a> {
     // We fake using 'a here, so the compiler does not complain that
     // "parameter `'a` is never used". Delete when no longer needed.
