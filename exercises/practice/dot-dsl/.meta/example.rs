@@ -71,6 +71,10 @@ pub mod graph {
 
                     self
                 }
+
+                pub fn attr(&self, name: &str) -> Option<&str> {
+                    self.attrs.get(name).map(|v| v.as_ref())
+                }
             }
         }
 
