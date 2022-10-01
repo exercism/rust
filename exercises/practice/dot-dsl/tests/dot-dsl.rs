@@ -135,10 +135,7 @@ fn test_graph_stores_attributes() {
     );
 
     assert_eq!(
-        graph
-            .get_node("c")
-            .expect("node must be stored")
-            .get_attr("bim"),
+        graph.node("c").expect("node must be stored").attr("bim"),
         Some("bef")
     );
 }
