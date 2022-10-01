@@ -1,5 +1,5 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "pig-latin"
 version = "1.0.0"
 
