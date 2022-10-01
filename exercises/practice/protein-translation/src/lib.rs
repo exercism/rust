@@ -1,11 +1,7 @@
-use std::marker::PhantomData;
-
 pub struct CodonsInfo<'a> {
-    // This field is here to make the template compile and not to
-    // complain about unused type lifetime parameter "'a". Once you start
-    // solving the exercise, delete this field and the 'std::marker::PhantomData'
-    // import.
-    phantom: PhantomData<&'a ()>,
+    // We fake using 'a here, so the compiler does not complain that
+    // "parameter `'a` is never used". Delete when no longer needed.
+    phantom: std::marker::PhantomData<&'a ()>,
 }
 
 impl<'a> CodonsInfo<'a> {
