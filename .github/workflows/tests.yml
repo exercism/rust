@@ -122,6 +122,35 @@ jobs:
           CLIPPY: true
         run: ./_test/check_exercises.sh
 
+  clippy_stubs:
+    name: Clippy stubs
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        rust: ["stable", "beta"]
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+        with:
+          ref: main
+
+      - name: Checkout code
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+
+      - name: Setup toolchain
+        uses: actions-rs/toolchain@v1.0.7
+        with:
+          toolchain: ${{ matrix.rust }}
+          default: true
+
+      # Clippy already installed on Stable, but not Beta.
+      # So, we must install here.
+      - name: Install Clippy
+        run: rustup component add clippy
+
       - name: Clippy stubs
         env:
           CLIPPY: true
