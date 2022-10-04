@@ -2,7 +2,7 @@
 
 repo="$(cd "$(dirname "$0")/.." && pwd)"
 
-if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+if false; then
   changed_exercises="$(
     git diff --diff-filter=d --name-only remotes/origin/main |
     grep "exercises/" |
