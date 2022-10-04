@@ -91,6 +91,7 @@ jobs:
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     strategy:
       matrix:
