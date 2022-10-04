@@ -61,6 +61,23 @@ fn test_graph_with_one_edge() {
 
 #[test]
 #[ignore]
+fn test_graph_with_one_edge_with_keywords() {
+    let edges = vec![Edge::new("a", "b").with_attrs(&[("color", "blue")])];
+
+    let graph = Graph::new().with_edges(&edges);
+
+    assert!(graph.nodes.is_empty());
+
+    assert!(graph.attrs.is_empty());
+
+    assert_eq!(
+        graph.edges,
+        vec![Edge::new("a", "b").with_attrs(&[("color", "blue")])]
+    );
+}
+
+#[test]
+#[ignore]
 fn test_graph_with_one_attribute() {
     let graph = Graph::new().with_attrs(&[("foo", "1")]);
 
@@ -124,7 +141,44 @@ fn test_graph_with_attributes() {
 
 #[test]
 #[ignore]
-fn test_graph_stores_attributes() {
+fn test_edges_store_attributes() {
+    let nodes = vec![
+        Node::new("a").with_attrs(&[("color", "green")]),
+        Node::new("c"),
+        Node::new("b").with_attrs(&[("label", "Beta!")]),
+    ];
+
+    let edges = vec![
+        Edge::new("b", "c"),
+        Edge::new("a", "b").with_attrs(&[("color", "blue"), ("fill", "darkblue")]),
+    ];
+
+    let attrs = vec![("foo", "1"), ("title", "Testing Attrs"), ("bar", "true")];
+
+    let graph = Graph::new()
+        .with_nodes(&nodes)
+        .with_edges(&edges)
+        .with_attrs(&attrs);
+
+    assert_eq!(
+        graph.edges,
+        vec![
+            Edge::new("b", "c"),
+            Edge::new("a", "b").with_attrs(&[("color", "blue"), ("fill", "darkblue")]),
+        ]
+    );
+
+    assert_eq!(graph.edges[1].attr("color"), Some("blue"));
+    assert_eq!(graph.edges[1].attr("fill"), Some("darkblue"));
+    assert_eq!(graph.edges[1].attr("foo"), None);
+    assert_eq!(graph.edges[0].attr("color"), None);
+    assert_eq!(graph.edges[0].attr("fill"), None);
+    assert_eq!(graph.edges[0].attr("foo"), None);
+}
+
+#[test]
+#[ignore]
+fn test_graph_nodes_store_attributes() {
     let attributes = [("foo", "bar"), ("bat", "baz"), ("bim", "bef")];
     let graph = Graph::new().with_nodes(
         &["a", "b", "c"]
@@ -134,11 +188,18 @@ fn test_graph_stores_attributes() {
             .collect::<Vec<_>>(),
     );
 
-    assert_eq!(
-        graph
-            .get_node("c")
-            .expect("node must be stored")
-            .get_attr("bim"),
-        Some("bef")
-    );
+    let a = graph.node("a").expect("node a must be stored");
+    assert_eq!(a.attr("foo"), Some("bar"));
+    assert_eq!(a.attr("bat"), None);
+    assert_eq!(a.attr("bim"), None);
+
+    let b = graph.node("b").expect("node b must be stored");
+    assert_eq!(b.attr("foo"), None);
+    assert_eq!(b.attr("bat"), Some("baz"));
+    assert_eq!(b.attr("bim"), None);
+
+    let c = graph.node("c").expect("node c must be stored");
+    assert_eq!(c.attr("foo"), None);
+    assert_eq!(c.attr("bat"), None);
+    assert_eq!(c.attr("bim"), Some("bef"));
 }

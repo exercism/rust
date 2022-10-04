@@ -1,3 +1,8 @@
+// 1.65.0 says these &[] borrows are needless borrows,
+// but 1.64.0 requires them.
+// The Rust track will reevaluate this after 1.65.0 is released.
+#![allow(clippy::needless_borrow)]
+
 use binary_search::find;
 
 #[test]
