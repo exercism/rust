@@ -1,6 +1,6 @@
 # Integers
 
-Integers are whole numbers. They have no factional or decimal part. They are represented in the machine as a pattern of binary bits.
+Integers are whole numbers. They have no fractional or decimal part. They are represented in the machine as a pattern of binary bits.
 
 Integers may or may not be signed. Signedness means reserving one of the bits of the number to indicate
 whether or not that number is negative.
