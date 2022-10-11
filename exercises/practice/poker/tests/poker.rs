@@ -144,14 +144,21 @@ fn test_aces_can_end_a_straight_high() {
 
 #[test]
 #[ignore]
-fn test_aces_can_end_a_straight_low() {
+fn test_aces_can_start_a_straight_low() {
     // aces can start a straight (A 2 3 4 5)
     test(&["4S 5H 4C 8D 4H", "4D AH 3S 2D 5C"], &["4D AH 3S 2D 5C"])
 }
 
 #[test]
 #[ignore]
-fn test_straight_cascade() {
+fn test_no_ace_in_middle_of_straight() {
+    // aces cannot be in the middle of a straight (Q K A 2 3)
+    test(&["2C 3D 7H 5H 2S", "QS KH AC 2D 3S"], &["2C 3D 7H 5H 2S"])
+}
+
+#[test]
+#[ignore]
+fn test_straight_ranks() {
     // both hands with a straight, tie goes to highest ranked card
     test(&["4S 6C 7S 8D 5H", "5S 7H 8S 9D 6H"], &["5S 7H 8S 9D 6H"])
 }
@@ -224,7 +231,35 @@ fn test_straight_flush_beats_four_of_a_kind() {
 
 #[test]
 #[ignore]
+fn test_aces_can_end_a_straight_flush_high() {
+    // aces can end a straight flush (10 J Q K A)
+    test(&["KC AH AS AD AC", "10C JC QC KC AC"], &["10C JC QC KC AC"])
+}
+
+#[test]
+#[ignore]
+fn test_aces_can_start_a_straight_flush_low() {
+    // aces can start a straight flush (A 2 3 4 5)
+    test(&["KS AH AS AD AC", "4H AH 3H 2H 5H"], &["4H AH 3H 2H 5H"])
+}
+
+#[test]
+#[ignore]
+fn test_no_ace_in_middle_of_straight_flush() {
+    // aces cannot be in the middle of a straight flush (Q K A 2 3)
+    test(&["2C AC QC 10C KC", "QH KH AH 2H 3H"], &["2C AC QC 10C KC"])
+}
+
+#[test]
+#[ignore]
 fn test_straight_flush_ranks() {
-    // both hands have straight flush, tie goes to highest-ranked card
+    // both hands have a straight flush, tie goes to highest-ranked card
     test(&["4H 6H 7H 8H 5H", "5S 7S 8S 9S 6S"], &["5S 7S 8S 9S 6S"])
+}
+
+#[test]
+#[ignore]
+fn test_straight_flush_scoring() {
+    // even though an ace is usually high, a 5-high straight flush is the lowest-scoring straight flush
+    test(&["2H 3H 4H 5H 6H", "4D AD 3D 2D 5D"], &["2H 3H 4H 5H 6H"])
 }
