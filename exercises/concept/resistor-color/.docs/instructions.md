@@ -32,7 +32,7 @@ The goal of this exercise is to create a way:
 - to list the different band colors
 
 For task number one, you will need the external crate [`int-enum`](https://docs.rs/int-enum/0.4.0/int_enum/) and for task number three, you'll need [`enum-iterator`](https://docs.rs/enum-iterator/1.1.1/enum_iterator/).
-They're both already included in this exercise's `Cargo.toml`. 
+They're both already included in this exercise's `Cargo.toml`.
 Be sure to check the crates' documentation to learn how to use them.
 You can look into the default implementation of the Debug trait for Enums to complete task number two.
 
