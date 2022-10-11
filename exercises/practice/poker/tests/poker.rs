@@ -144,14 +144,14 @@ fn test_aces_can_end_a_straight_high() {
 
 #[test]
 #[ignore]
-fn test_aces_can_end_a_straight_low() {
+fn test_aces_can_start_a_straight_low() {
     // aces can start a straight (A 2 3 4 5)
     test(&["4S 5H 4C 8D 4H", "4D AH 3S 2D 5C"], &["4D AH 3S 2D 5C"])
 }
 
 #[test]
 #[ignore]
-fn test_straight_cascade() {
+fn test_straight_ranks() {
     // both hands with a straight, tie goes to highest ranked card
     test(&["4S 6C 7S 8D 5H", "5S 7H 8S 9D 6H"], &["5S 7H 8S 9D 6H"])
 }
