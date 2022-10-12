@@ -389,7 +389,7 @@
       },
       {
         "slug": "difference-of-squares",
-        "name": "Difference Of Squares",
+        "name": "Difference of Squares",
         "uuid": "aee49878-f727-400b-8fb5-eaf83447cf87",
         "practices": [
           "fold"
@@ -478,7 +478,7 @@
       },
       {
         "slug": "sum-of-multiples",
-        "name": "Sum Of Multiples",
+        "name": "Sum of Multiples",
         "uuid": "be90fe16-9947-45ef-ab8e-eeca4ce3a8c8",
         "practices": [],
         "prerequisites": [],
@@ -618,7 +618,7 @@
       },
       {
         "slug": "dot-dsl",
-        "name": "Dot Dsl",
+        "name": "DOT DSL",
         "uuid": "7bc60899-3b12-4c51-b23b-8dced5845e4c",
         "practices": [
           "structs"
@@ -633,7 +633,7 @@
       },
       {
         "slug": "etl",
-        "name": "Etl",
+        "name": "ETL",
         "uuid": "0c8eeef7-4bab-4cf9-9047-c208b5618312",
         "practices": [],
         "prerequisites": [],
@@ -670,7 +670,7 @@
       },
       {
         "slug": "isbn-verifier",
-        "name": "Isbn Verifier",
+        "name": "ISBN Verifier",
         "uuid": "c986c240-46de-419c-8ed6-700eb68f8db6",
         "practices": [
           "loops"
@@ -713,7 +713,7 @@
       },
       {
         "slug": "paasio",
-        "name": "Paasio",
+        "name": "PaaS I/O",
         "uuid": "8c24c151-d22a-4818-83b5-4fe0f919e3fd",
         "practices": [],
         "prerequisites": [],
@@ -752,7 +752,7 @@
       },
       {
         "slug": "pascals-triangle",
-        "name": "Pascals Triangle",
+        "name": "Pascal's Triangle",
         "uuid": "ddc0c1da-6b65-4ed1-8bdc-5e71cd05f720",
         "practices": [],
         "prerequisites": [],
@@ -803,7 +803,7 @@
       },
       {
         "slug": "rna-transcription",
-        "name": "Rna Transcription",
+        "name": "RNA Transcription",
         "uuid": "9a219d87-cd32-4e12-a879-bfb5747c2369",
         "practices": [
           "structs"
@@ -819,7 +819,7 @@
       },
       {
         "slug": "run-length-encoding",
-        "name": "Run Length Encoding",
+        "name": "Run-Length Encoding",
         "uuid": "4dc9b165-792a-4438-be80-df9aab6f6a9c",
         "practices": [
           "loops"
@@ -1006,7 +1006,7 @@
       },
       {
         "slug": "ocr-numbers",
-        "name": "Ocr Numbers",
+        "name": "OCR Numbers",
         "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
         "practices": [],
         "prerequisites": [],
@@ -1099,7 +1099,7 @@
       },
       {
         "slug": "diffie-hellman",
-        "name": "Diffie Hellman",
+        "name": "Diffie-Hellman",
         "uuid": "ff9344b6-b185-4d53-bb03-f1d2bce8c959",
         "practices": [],
         "prerequisites": [],
