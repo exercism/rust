@@ -1,3 +1,4 @@
+#![cfg(nightly)]
 #![feature(test)]
 extern crate parallel_letter_frequency;
 extern crate test;
