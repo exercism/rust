@@ -12,3 +12,9 @@ $ cargo test --features grapheme
 You will need to use external libraries (a `crate` in rust lingo) for the bonus task. A good place to look for those is [crates.io](https://crates.io/), the official repository of crates.
 
 [Check the documentation](https://doc.rust-lang.org/cargo/guide/dependencies.html) for instructions on how to use external crates in your projects.
+
+---
+**NOTE**
+
+If the tests pass locally but not on Exercism then try using an older version of the crate
+---
