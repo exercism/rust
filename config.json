@@ -209,13 +209,12 @@
         "uuid": "ecf8d1e3-9400-4d1a-8326-2e2820bce024",
         "practices": [
           "iterators",
+          "string-vs-str",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": [
-          "str_vs_string"
-        ]
+        "topics": []
       },
       {
         "slug": "gigasecond",
@@ -249,13 +248,13 @@
         "practices": [
           "iterators",
           "loops",
+          "string-vs-str",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "lifetimes",
-          "str_vs_string",
           "vectors"
         ]
       },
@@ -806,6 +805,7 @@
         "name": "RNA Transcription",
         "uuid": "9a219d87-cd32-4e12-a879-bfb5747c2369",
         "practices": [
+          "string-vs-str",
           "structs"
         ],
         "prerequisites": [],
@@ -813,7 +813,6 @@
         "topics": [
           "match",
           "result_type",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1140,14 +1139,14 @@
         "uuid": "2a1dcf38-ec05-4b24-a2e2-2e5b3595f3f0",
         "practices": [
           "char",
-          "iterators"
+          "iterators",
+          "string-vs-str"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
           "primitive_types",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1157,14 +1156,14 @@
         "uuid": "53298a14-76a9-4bb9-943a-57c5e79d9cf7",
         "practices": [
           "char",
-          "iterators"
+          "iterators",
+          "string-vs-str"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
           "primitive_types",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1174,7 +1173,8 @@
         "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
         "practices": [
           "char",
-          "iterators"
+          "iterators",
+          "string-vs-str"
         ],
         "prerequisites": [],
         "difficulty": 4,
@@ -1182,7 +1182,6 @@
           "arrays",
           "ascii",
           "primitive_types",
-          "str_vs_string",
           "strings",
           "transforming"
         ]
@@ -1191,12 +1190,13 @@
         "slug": "diamond",
         "name": "Diamond",
         "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
-        "practices": [],
+        "practices": [
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "parsing",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1295,7 +1295,8 @@
         "name": "Rotational Cipher",
         "uuid": "5dbecc83-2c8d-467d-be05-f28a08f7abcf",
         "practices": [
-          "char"
+          "char",
+          "string-vs-str"
         ],
         "prerequisites": [],
         "difficulty": 4,
@@ -1303,7 +1304,6 @@
           "ascii",
           "iterators",
           "primitive_types",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1312,13 +1312,13 @@
         "name": "Simple Cipher",
         "uuid": "3aba9330-da46-48ee-bb9d-7e8f6c1ae7eb",
         "practices": [
-          "char"
+          "char",
+          "string-vs-str"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1326,14 +1326,15 @@
         "slug": "word-count",
         "name": "Word Count",
         "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
-        "practices": [],
+        "practices": [
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "char",
           "entry_api",
           "hashmaps",
-          "str_vs_string",
           "strings"
         ]
       },
