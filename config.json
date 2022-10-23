@@ -494,13 +494,12 @@
         "name": "Bob",
         "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
         "practices": [
+          "char",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": [
-          "chars"
-        ]
+        "topics": []
       },
       {
         "slug": "high-scores",
@@ -686,12 +685,12 @@
         "name": "Isogram",
         "uuid": "d141ec66-a161-4c3d-832b-439699bf0d4c",
         "practices": [
+          "char",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
           "iterators"
         ]
       },
@@ -822,12 +821,12 @@
         "name": "Run-Length Encoding",
         "uuid": "4dc9b165-792a-4438-be80-df9aab6f6a9c",
         "practices": [
+          "char",
           "loops"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
           "int_string_conversion",
           "strings"
         ]
@@ -1137,12 +1136,13 @@
         "slug": "affine-cipher",
         "name": "Affine Cipher",
         "uuid": "2a1dcf38-ec05-4b24-a2e2-2e5b3595f3f0",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
           "iterators",
           "primitive_types",
           "str_vs_string",
@@ -1153,12 +1153,13 @@
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "53298a14-76a9-4bb9-943a-57c5e79d9cf7",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
           "iterators",
           "primitive_types",
           "str_vs_string",
@@ -1169,13 +1170,14 @@
         "slug": "crypto-square",
         "name": "Crypto Square",
         "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "arrays",
           "ascii",
-          "chars",
           "iterators",
           "primitive_types",
           "str_vs_string",
@@ -1200,11 +1202,12 @@
         "slug": "largest-series-product",
         "name": "Largest Series Product",
         "uuid": "8679c221-d150-4230-b1cd-5ea78ae69db7",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
           "higher_order_functions",
           "math",
           "result_type",
@@ -1258,11 +1261,12 @@
         "slug": "rail-fence-cipher",
         "name": "Rail Fence Cipher",
         "uuid": "9a8bae4f-2c0b-4e9e-aab2-b92f82dd3b87",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
           "cipher",
           "strings"
         ]
@@ -1287,12 +1291,13 @@
         "slug": "rotational-cipher",
         "name": "Rotational Cipher",
         "uuid": "5dbecc83-2c8d-467d-be05-f28a08f7abcf",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
           "iterators",
           "primitive_types",
           "str_vs_string",
@@ -1303,12 +1308,13 @@
         "slug": "simple-cipher",
         "name": "Simple Cipher",
         "uuid": "3aba9330-da46-48ee-bb9d-7e8f6c1ae7eb",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
           "str_vs_string",
           "strings"
         ]
@@ -1321,7 +1327,7 @@
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
+          "char",
           "entry_api",
           "hashmaps",
           "str_vs_string",
