@@ -36,6 +36,8 @@ They're both already included in this exercise's `Cargo.toml`.
 Be sure to check the crates' documentation to learn how to use them.
 You can look into the default implementation of the Debug trait for Enums to complete task number two.
 
+Note that because of these external crates, online tests are disabled. They use procedural macros, which can increase compile time significantly. Long compile times may trigger the two second timeout, making the tests fail. That's why they are disabled for this exercise. It's recommended you test your code locally. Once the tests pass, you can mark the exercise as completed manually.
+
 Mnemonics map the colors to the numbers, that, when stored as an array, happen to map to their index in the array: Better Be Right Or Your Great Big Values Go Wrong.
 
 More information on the color encoding of resistors can be found in the [Electronic color code Wikipedia article](https://en.wikipedia.org/wiki/Electronic_color_code)
