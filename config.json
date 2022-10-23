@@ -324,11 +324,12 @@
         "slug": "macros",
         "name": "Macros",
         "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
-        "practices": [],
+        "practices": [
+          "hashmap"
+        ],
         "prerequisites": [],
         "difficulty": 10,
         "topics": [
-          "hashmaps",
           "macros",
           "macros_by_example"
         ]
@@ -860,11 +861,12 @@
         "slug": "scrabble-score",
         "name": "Scrabble Score",
         "uuid": "561cc4ff-5e74-4701-a7c2-c4edefa0d068",
-        "practices": [],
+        "practices": [
+          "hashmap"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "hashmaps",
           "higher_order_functions"
         ]
       },
@@ -913,12 +915,12 @@
         "name": "Tournament",
         "uuid": "9a2406cc-5037-4761-b820-bb25b1d397c8",
         "practices": [
-          "enums"
+          "enums",
+          "hashmap"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "hashmaps",
           "sorting",
           "structs"
         ]
@@ -994,11 +996,12 @@
         "slug": "protein-translation",
         "name": "Protein Translation",
         "uuid": "4e01efbc-51ce-4d20-b093-b3d44c4be5e8",
-        "practices": [],
+        "practices": [
+          "hashmap"
+        ],
         "prerequisites": [],
         "difficulty": 7,
         "topics": [
-          "hashmaps",
           "lifetimes",
           "result_type",
           "structs"
@@ -1327,6 +1330,7 @@
         "name": "Word Count",
         "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
         "practices": [
+          "hashmap",
           "string-vs-str"
         ],
         "prerequisites": [],
@@ -1334,7 +1338,6 @@
         "topics": [
           "char",
           "entry_api",
-          "hashmaps",
           "strings"
         ]
       },
