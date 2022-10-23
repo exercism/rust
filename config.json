@@ -208,12 +208,12 @@
         "name": "Reverse String",
         "uuid": "ecf8d1e3-9400-4d1a-8326-2e2820bce024",
         "practices": [
+          "iterators",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 1,
         "topics": [
-          "iterators",
           "str_vs_string"
         ]
       },
@@ -247,13 +247,13 @@
         "name": "Anagram",
         "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
         "practices": [
+          "iterators",
           "loops",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "iterators",
           "lifetimes",
           "str_vs_string",
           "vectors"
@@ -300,12 +300,13 @@
         "slug": "luhn",
         "name": "Luhn",
         "uuid": "8d64bfc3-fc4b-45c4-85f0-e74dc2ea6812",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 7,
         "topics": [
           "higher_order_functions",
-          "iterators",
           "str_to_digits"
         ]
       },
@@ -505,11 +506,12 @@
         "slug": "high-scores",
         "name": "High Scores",
         "uuid": "7e0f5d25-e1f2-4a25-b150-1c8b24f328d7",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 1,
         "topics": [
-          "iterators",
           "lifetimes",
           "vectors"
         ]
@@ -686,13 +688,12 @@
         "uuid": "d141ec66-a161-4c3d-832b-439699bf0d4c",
         "practices": [
           "char",
+          "iterators",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
-        "topics": [
-          "iterators"
-        ]
+        "topics": []
       },
       {
         "slug": "nucleotide-count",
@@ -835,11 +836,12 @@
         "slug": "saddle-points",
         "name": "Saddle Points",
         "uuid": "e623afd9-f23f-4ab3-a427-c7071621be90",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "iterators",
           "vectors"
         ]
       },
@@ -1137,13 +1139,13 @@
         "name": "Affine Cipher",
         "uuid": "2a1dcf38-ec05-4b24-a2e2-2e5b3595f3f0",
         "practices": [
-          "char"
+          "char",
+          "iterators"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "iterators",
           "primitive_types",
           "str_vs_string",
           "strings"
@@ -1154,13 +1156,13 @@
         "name": "Atbash Cipher",
         "uuid": "53298a14-76a9-4bb9-943a-57c5e79d9cf7",
         "practices": [
-          "char"
+          "char",
+          "iterators"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "iterators",
           "primitive_types",
           "str_vs_string",
           "strings"
@@ -1171,14 +1173,14 @@
         "name": "Crypto Square",
         "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
         "practices": [
-          "char"
+          "char",
+          "iterators"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "arrays",
           "ascii",
-          "iterators",
           "primitive_types",
           "str_vs_string",
           "strings",
@@ -1218,13 +1220,14 @@
         "slug": "luhn-from",
         "name": "Luhn From",
         "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "from_trait",
           "higher_order_functions",
-          "iterators",
           "str_to_digits"
         ]
       },
