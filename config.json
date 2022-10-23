@@ -220,12 +220,12 @@
         "slug": "gigasecond",
         "name": "Gigasecond",
         "uuid": "f880b1ef-8f66-41f3-bb89-f39a4ed592a2",
-        "practices": [],
+        "practices": [
+          "external-crates"
+        ],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": [
-          "crates"
-        ]
+        "topics": []
       },
       {
         "slug": "clock",
@@ -580,13 +580,13 @@
         "name": "Alphametics",
         "uuid": "7450bd80-2388-42ac-a61f-097e82581475",
         "practices": [
+          "external-crates",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "combinations",
-          "external_crates",
           "parsing"
         ]
       },
@@ -1395,12 +1395,13 @@
         "slug": "decimal",
         "name": "Decimal",
         "uuid": "7cefed7c-37f4-46c5-9a45-68fe4d0fb326",
-        "practices": [],
+        "practices": [
+          "external-crates"
+        ],
         "prerequisites": [],
         "difficulty": 7,
         "topics": [
           "bigint",
-          "external_crates",
           "parsing",
           "strings",
           "structs",
