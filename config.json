@@ -648,12 +648,12 @@
         "name": "Grade School",
         "uuid": "5ca03812-c229-48db-b7fd-0889b22f8d1d",
         "practices": [
+          "entry-api",
           "structs"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "entry_api",
           "option_type",
           "vectors"
         ]
@@ -700,12 +700,12 @@
         "name": "Nucleotide Count",
         "uuid": "3f54853b-cc65-4282-ab25-8dc3fdf43c03",
         "practices": [
+          "entry-api",
           "mutability"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "entry_api",
           "filter",
           "match",
           "result_type"
@@ -1330,6 +1330,7 @@
         "name": "Word Count",
         "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
         "practices": [
+          "entry-api",
           "hashmap",
           "string-vs-str"
         ],
@@ -1337,7 +1338,6 @@
         "difficulty": 4,
         "topics": [
           "char",
-          "entry_api",
           "strings"
         ]
       },
