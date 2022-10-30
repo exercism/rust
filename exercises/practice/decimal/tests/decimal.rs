@@ -41,10 +41,26 @@ fn test_gt() {
 
 #[test]
 #[ignore]
+fn test_gt_2() {
+    assert!(decimal("3.14") > decimal("3.13"));
+    assert!(decimal("3.14") > decimal("3.131"));
+    assert!(decimal("3.14") > decimal("3.1"));
+}
+
+#[test]
+#[ignore]
 fn test_lt() {
     for slice_2 in BIGS.windows(2) {
         assert!(decimal(slice_2[0]) < decimal(slice_2[1]));
     }
+}
+
+#[test]
+#[ignore]
+fn test_lt_2() {
+    assert!(decimal("3.13") < decimal("3.14"));
+    assert!(decimal("3.131") < decimal("3.14"));
+    assert!(decimal("3.1") < decimal("3.14"));
 }
 
 #[test]
