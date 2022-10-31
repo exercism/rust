@@ -59,6 +59,7 @@ main() {
     return 1
   fi
 
+  echo "Fetching configlet..." >&2
   download_url="$(get_download_url)"
   output_path="${output_dir}/latest-configlet.${ext}"
   curl "${curlopts[@]}" --output "${output_path}" "${download_url}"
@@ -69,6 +70,15 @@ main() {
   esac
 
   rm -f "${output_path}"
+
+  case "${os}" in
+    windows*) executable_ext='.exe' ;;
+    *)        executable_ext=''     ;;
+  esac
+
+  configlet_path="${output_dir}/configlet${executable_ext}"
+  configlet_version="$(${configlet_path} --version)"
+  echo "Downloaded configlet ${configlet_version} to ${configlet_path}"
 }
 
 main
