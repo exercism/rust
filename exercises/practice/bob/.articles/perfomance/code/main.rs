@@ -6,7 +6,7 @@ fn main() {
     println!("Hello, world!");
 }
 
-pub fn reply_switch(msg: &str) -> &str {
+pub fn reply_match(msg: &str) -> &str {
     let message = msg.trim_end();
     if message.is_empty() {
         return "Fine. Be that way!";
@@ -73,8 +73,8 @@ pub fn reply_array(msg: &str) -> &str {
 
 #[bench]
 /// multiple line question
-fn test_multiple_line_question_switch(b: &mut Bencher) {
-    b.iter(|| reply_switch("\rDoes this cryogenic chamber make me look fat?\rNo."));
+fn test_multiple_line_question_match(b: &mut Bencher) {
+    b.iter(|| reply_match("\rDoes this cryogenic chamber make me look fat?\rNo."));
 }
 
 #[bench]
