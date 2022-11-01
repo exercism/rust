@@ -13,9 +13,9 @@
     },
     {
       "uuid": "145a190e-b9ab-4dc2-8a94-b945c35f967f",
-      "slug": "switch-on-tuple",
-      "title": "Switch on a tuple",
-      "blurb": "Use switch on a tuple to return the answer.",
+      "slug": "match-on-tuple",
+      "title": "Match on a tuple",
+      "blurb": "Use match on a tuple to return the answer.",
       "authors": ["bobahop"]
     },
     {
