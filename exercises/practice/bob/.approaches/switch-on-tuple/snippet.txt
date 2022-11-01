@@ -1,0 +1,6 @@
+match (is_yelling, is_questioning) {
+    (true, true) => "Calm down, I know what I'm doing!",
+    (true, _) => "Whoa, chill out!",
+    (_, true) => "Sure.",
+    _ => "Whatever.",
+}
