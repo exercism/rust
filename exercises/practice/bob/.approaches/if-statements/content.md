@@ -28,9 +28,9 @@ pub fn reply(msg: &str) -> &str {
 In this approach you have a series of `if` statements to evaluate the conditions.
 As soon as the right condition is found, the correct response is returned.
 
-- First, the [str][str] method [trim_end][trim-end] is ued to remove whitespace from the end of the input.
-- If the trimmed input [is_empty][is-empty], then the response for nothing said is returned.
-- The [ends_with][ends-with] method is used to determine if the input ends with a question mark.
+- First, the [`str`][str] method [`trim_end`][trim-end] is used to remove whitespace from the end of the input.
+- If the trimmed input [`is_empty`][is-empty], then the response for nothing said is returned.
+- The [`ends_with`][ends-with] method is used to determine if the input ends with a question mark.
 - The first half of the yell condition
 
 ```rust
