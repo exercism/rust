@@ -1,0 +1,10 @@
+# `time::Date` addition
+
+```rust
+use time::{Date, Duration, Month};
+
+pub fn is_leap_year(year: u64) -> bool {
+    (Date::from_calendar_date(year as i32, Month::February, 28).unwrap() + Duration::DAY).day()
+        == 29
+}
+```
