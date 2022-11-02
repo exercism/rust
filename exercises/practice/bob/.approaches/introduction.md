@@ -87,7 +87,8 @@ For more information, check the [Answer array approach][approach-answer-array].
 
 ## Which approach to use?
 
-Which to use is pretty much a matter of personal preference.
+Which to use is pretty much a matter of personal preference,
+but the `if` statements and `match` approaches may be considered to be more idiomatic.
 
 - To compare the performance of the approaches, check out the [Performance article][article-performance].
 
