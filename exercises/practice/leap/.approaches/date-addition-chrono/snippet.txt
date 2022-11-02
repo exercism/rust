@@ -1,0 +1,5 @@
+use chrono::{prelude::*, Duration};
+
+pub fn is_leap_year(year: u64) -> bool {
+    (Utc.ymd(year as i32, 2, 28) + Duration::days(1)).day() == 29
+}
