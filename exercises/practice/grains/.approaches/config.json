@@ -1,0 +1,28 @@
+{
+  "introduction": {
+    "authors": ["bobahop"]
+  },
+  "approaches": [
+    {
+      "uuid": "319aa2eb-512d-4133-b3da-7df83e48c87f",
+      "slug": "pow",
+      "title": "pow",
+      "blurb": "Use pow to raise 2 by a specified power.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "84e5365f-3928-46b4-9750-49575dc924ae",
+      "slug": "bit-shifting",
+      "title": "Bit-shifting",
+      "blurb": "Use bit-shifting to raise 2 by a specified power.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "c245c1f7-7d8c-4a73-81c4-d91ff50a5986",
+      "slug": "max-value",
+      "title": "Max value",
+      "blurb": "Use u64::MAX for Total.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
