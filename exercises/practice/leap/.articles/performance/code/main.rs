@@ -41,6 +41,10 @@ pub fn is_leap_year_chrono(year: u64) -> bool {
     (Utc.ymd(year as i32, 2, 28) + chrono::Duration::days(1)).day() == 29
 }
 
+pub fn is_leap_year_naive(year: u64) -> bool {
+    (NaiveDate::from_ymd(year as i32, 2, 28) + chrono::Duration::days(1)).day() == 29
+}
+
 #[bench]
 fn test_ternary(b: &mut Bencher) {
     b.iter(|| is_leap_year(2000));
@@ -64,4 +68,9 @@ fn test_time(b: &mut Bencher) {
 #[bench]
 fn test_chrono(b: &mut Bencher) {
     b.iter(|| is_leap_year_chrono(2000));
+}
+
+#[bench]
+fn test_naive(b: &mut Bencher) {
+    b.iter(|| is_leap_year_naive(2000));
 }
