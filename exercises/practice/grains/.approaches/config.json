@@ -21,7 +21,7 @@
       "uuid": "c245c1f7-7d8c-4a73-81c4-d91ff50a5986",
       "slug": "max-value",
       "title": "Max value",
-      "blurb": "Use u64::MAX for Total.",
+      "blurb": "Use u64::MAX for total.",
       "authors": ["bobahop"]
     }
   ]
