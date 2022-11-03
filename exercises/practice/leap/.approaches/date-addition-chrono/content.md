@@ -8,7 +8,9 @@ pub fn is_leap_year(year: u64) -> bool {
 }
 ```
 
+```exercism/caution
 This approach may be considered a "cheat" for this exercise.
+```
 By adding a day to February 28th for the year, you can see if the new day is the 29th or the 1st.
 If it is the 29th, then the year is a leap year.
 This is done by using the [`Duration::days(1)`][day-duration] method to add a day to a [`chrono::Date`][chrono-date] `struct` and comparing it to `29` with the [`day`][day-method] method.
