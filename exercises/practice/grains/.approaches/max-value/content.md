@@ -1,4 +1,4 @@
-# `u64::MAX` for Total
+# `u64::MAX` for total
 
 ```rust
 pub fn total() -> u64 {
