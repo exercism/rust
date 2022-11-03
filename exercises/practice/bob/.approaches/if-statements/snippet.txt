@@ -1,0 +1,7 @@
+if is_yelling {
+    return if is_questioning {
+        "Calm down, I know what I'm doing!"
+    } else {
+        "Whoa, chill out!"
+    };
+}

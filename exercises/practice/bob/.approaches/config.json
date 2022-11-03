@@ -1,0 +1,29 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "e10b9315-dcf5-42b8-bed9-5c0be9803101",
+      "slug": "if-statements",
+      "title": "If statements",
+      "blurb": "Use if statements to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "145a190e-b9ab-4dc2-8a94-b945c35f967f",
+      "slug": "match-on-tuple",
+      "title": "Match on a tuple",
+      "blurb": "Use match on a tuple to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "13e83490-9b33-407a-8d22-843aa0c351e4",
+      "slug": "answer-array",
+      "title": "Answer array",
+      "blurb": "Index into an array to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
