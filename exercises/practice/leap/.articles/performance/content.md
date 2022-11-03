@@ -22,8 +22,12 @@ test test_ternary  ... bench:           0 ns/iter (+/- 0)
 test test_one_line ... bench:           0 ns/iter (+/- 0)
 test test_match    ... bench:           0 ns/iter (+/- 0)
 test test_time     ... bench:          30 ns/iter (+/- 9)
-test test_chrono   ... bench:          19 ns/iter (+/- 1)
+test test_chrono   ... bench:          18 ns/iter (+/- 3)
+test test_naive    ... bench:          18 ns/iter (+/- 1)
 ```
+
+The three main approaches were identical in measurable performance.
+Of the two date addition approaches, the `chrono` crate delivered a solution that was 40% faster than the `time` crate.
 
 [approaches]: https://exercism.org/tracks/rust/exercises/leap/approaches
 [approach-boolean-line]: https://exercism.org/tracks/rust/exercises/leap/approaches/boolean-one-line
