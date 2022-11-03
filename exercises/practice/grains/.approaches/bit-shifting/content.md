@@ -32,7 +32,7 @@ The result is binary `10`, which is decimal `2`.
 |       3 |             2 |         0100 |             4 |
 |       4 |             3 |         1000 |             8 |
 
-For `Total` we want all of the 64 bits set to `1` to get the sum of grains on all sixty-four squares.
+For `total` we want all of the 64 bits set to `1` to get the sum of grains on all sixty-four squares.
 The easy way to do this is to set the 65th bit to `1` and then subtract `1`.
 However, we can't do this with a `u64` which has only `64` bits, so we need to use a `u128`.
 To go back to our two-square example, if we can grow to three squares, then we can shift `1_u128` two positions to the left for binary `100`,
