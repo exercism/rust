@@ -1,12 +1,12 @@
 # `filter` with `all` on a `HashSet`
 
 ```rust
-pub fn check(candidate: &str) -> bool {
+pub fn check_hash(candidate: &str) -> bool {
     let mut hs = HashSet::new();
     candidate
         .to_lowercase()
-        .chars()
-        .filter(|&c| c.is_alphabetic())
+        .bytes()
+        .filter(|&c| c.is_ascii_alphabetic())
         .all(|c| hs.insert(c))
 }
 ```
