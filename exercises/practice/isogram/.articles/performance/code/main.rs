@@ -11,9 +11,9 @@ use std::collections::HashSet;
 pub fn check_hash(candidate: &str) -> bool {
     let mut hs = HashSet::new();
     candidate
-        .to_lowercase()
         .bytes()
         .filter(|&c| c.is_ascii_alphabetic())
+        .map(|c| c.to_ascii_lowercase())
         .all(|c| hs.insert(c))
 }
 
