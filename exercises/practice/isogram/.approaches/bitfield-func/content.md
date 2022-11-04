@@ -3,7 +3,7 @@
 ```rust
 const A_LCASE: u8 = 97;
 
-pub fn check_bits_func(candidate: &str) -> bool {
+pub fn check(candidate: &str) -> bool {
     candidate
         .bytes()
         .filter_map(|c| {
