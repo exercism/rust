@@ -1,4 +1,4 @@
-pub fn check_hash(candidate: &str) -> bool {
+pub fn check(candidate: &str) -> bool {
     let mut hs = HashSet::new();
     candidate
         .bytes()
