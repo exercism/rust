@@ -1,0 +1,43 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "6772ef04-12db-4388-82f2-3e3486998665",
+      "slug": "boolean-one-line",
+      "title": "Boolean one line",
+      "blurb": "Use one line of boolean conditions.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "5c072736-3d9a-4a20-877e-8108ccaa59bd",
+      "slug": "ternary-expression",
+      "title": "Ternary operator",
+      "blurb": "Use a ternary expression of boolean conditions.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "a66c7016-c697-4b03-b05c-4febaca07dfc",
+      "slug": "match-on-a-tuple",
+      "title": "match on a tuple",
+      "blurb": "Use a match on a tuple made from boolean conditions.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "07b68663-d4e4-4ec2-ab0b-9f1366eba06c",
+      "slug": "date-addition-time",
+      "title": "Date addition with time crate",
+      "blurb": "Use time::Date addition.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "232280a3-37a4-4e7c-bfcc-ade90fd85586",
+      "slug": "date-addition-chrono",
+      "title": "Date addition with chrono crate",
+      "blurb": "Use chrono::Date addition.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
