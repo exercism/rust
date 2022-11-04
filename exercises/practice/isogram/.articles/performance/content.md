@@ -21,7 +21,7 @@ test test_check_bits_func ... bench:          21 ns/iter (+/- 0)
 ```
 All of the approaches are idiomatic.
 The two approaches using a bit field are more than thirty-five times faster than the one using a `HashSet`.
-Of the two bit field approaches, the `for` loop is few nanoseconds faster than the one using a chain of functions.
+Of the two bit field approaches, the `for` loop is a few nanoseconds faster than the one using a chain of functions.
 Since they are so close in performance, choosing between them would be a matter of stylistic preference.
 
 [approaches]: https://exercism.org/tracks/rust/exercises/isogram/approaches
