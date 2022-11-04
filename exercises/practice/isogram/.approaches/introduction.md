@@ -1,7 +1,7 @@
 # Introduction
 
 There are various idiomatic ways to solve Isogram.
-You can use `filter` with `all` on a `HashSet`.
+You can use `filter` and `map` with `all` on a `HashSet`.
 Or you could use a bit field.
 The bitfield could use a `for` loop or a chain of functions.
 
@@ -15,6 +15,8 @@ At the time of this writing, all tests use [ASCII][ascii] characters, so the let
 ## Approach: `filter` and `map` with `all` on a `HashSet`
 
 ```rust
+use std::collections::HashSet;
+
 pub fn check(candidate: &str) -> bool {
     let mut hs = HashSet::new();
     candidate
@@ -82,7 +84,7 @@ For more information, check the [bit field used functionally approach][approach-
 
 All three approaches are idiomatic.
 The two approaches using a bit field are more than thirty-five times faster than the one using a `HashSet`.
-Of the two bit field approaches, the `for` loop is few nanoseconds faster than the one using a chain of functions.
+Of the two bit field approaches, the `for` loop is a few nanoseconds faster than the one using a chain of functions.
 Since they are so close in performance, choosing between them would be a matter of stylistic preference.
 
 To compare performance of the approaches, check the [Performance article][article-performance].
