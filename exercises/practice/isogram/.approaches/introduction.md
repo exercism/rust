@@ -12,20 +12,19 @@ A repeated letter means the `&str` is not an Isogram.
 The occurrence of the letter `a` and the letter `A` count as a repeated letter, so `Alpha` would not be an isogram.
 At the time of this writing, all tests use [ASCII][ascii] characters, so the letters can be processed as bytes instead of Unicode characters.
 
-## Approach: `filter` with `all` on a `HashSet`
+## Approach: `filter` and `map` with `all` on a `HashSet`
 
 ```rust
-pub fn check_hash(candidate: &str) -> bool {
+pub fn check(candidate: &str) -> bool {
     let mut hs = HashSet::new();
     candidate
-        .to_lowercase()
         .bytes()
         .filter(|&c| c.is_ascii_alphabetic())
+        .map(|c| c.to_ascii_lowercase())
         .all(|c| hs.insert(c))
-}
 ```
 
-For more information, check the [`filter` with `all` on a `HashSet` approach][approach-filter-all]
+For more information, check the [`filter` and `map` with `all` on a `HashSet` approach][approach-filter-all]
 
 ## Approach: bit field using a `for` loop
 
@@ -63,7 +62,7 @@ For more information, check the [bit field using a `for` loop approach][approach
 ```rust
 const A_LCASE: u8 = 97;
 
-pub fn check_bits_func(candidate: &str) -> bool {
+pub fn check(candidate: &str) -> bool {
     candidate
         .bytes()
         .filter_map(|c| {
