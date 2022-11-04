@@ -29,3 +29,4 @@ Since they are so close in performance, choosing between them would be a matter 
 [approach-bitfield]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield
 [approach-bitfield-func]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield-func
 [benchmark-application]: https://github.com/exercism/rust/blob/main/exercises/practice/isogram/.articles/performance/code/main.rs
+[ascii]: https://www.asciitable.com/
