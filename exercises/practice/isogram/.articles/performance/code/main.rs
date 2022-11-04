@@ -56,6 +56,25 @@ pub fn check_bits_func(candidate: &str) -> bool {
         .is_some()
 }
 
+pub fn check_hash_filtermap(candidate: &str) -> bool {
+    let mut hs = HashSet::new();
+    candidate
+        .bytes()
+        .filter_map(|c| c.is_ascii_alphabetic().then(|| c.to_ascii_lowercase()))
+        .all(|c| hs.insert(c))
+}
+
+pub fn check_bits_func_filter_map(candidate: &str) -> bool {
+    candidate
+        .bytes()
+        .filter(|c| c.is_ascii_alphabetic())
+        .map(|c| 1u32 << (c.to_ascii_lowercase() - A_LCASE))
+        .try_fold(0u32, |ltr_flags, ltr| {
+            (ltr_flags & ltr == 0).then(|| ltr_flags | ltr)
+        })
+        .is_some()
+}
+
 #[bench]
 fn test_check_hash(b: &mut Bencher) {
     b.iter(|| check_hash("thumbscrew-japingly"));
@@ -69,4 +88,14 @@ fn test_check_bits(b: &mut Bencher) {
 #[bench]
 fn test_check_bits_func(b: &mut Bencher) {
     b.iter(|| check_bits_func("thumbscrew-japingly"));
+}
+
+#[bench]
+fn test_check_hash_filter_map(b: &mut Bencher) {
+    b.iter(|| check_hash_filtermap("thumbscrew-japingly"));
+}
+
+#[bench]
+fn test_check_bits_func_filter_map(b: &mut Bencher) {
+    b.iter(|| check_bits_func_filter_map("thumbscrew-japingly"));
 }
