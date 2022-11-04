@@ -65,7 +65,7 @@ For more information, check the [`u64::MAX` for Total Approach][approach-max-val
 
 ## Which approach to use?
 
-`Pow` may be considered the most readable solution.
+`pow` may be considered the most readable solution.
 
 Bit-shifting is the same measurable performance as `pow`, but may be considered less readable.
 
