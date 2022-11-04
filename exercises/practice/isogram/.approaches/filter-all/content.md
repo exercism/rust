@@ -1,7 +1,7 @@
 # `filter` with `all` on a `HashSet`
 
 ```rust
-pub fn check_hash(candidate: &str) -> bool {
+pub fn check(candidate: &str) -> bool {
     let mut hs = HashSet::new();
     candidate
         .to_lowercase()
