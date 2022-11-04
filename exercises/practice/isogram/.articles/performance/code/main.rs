@@ -91,7 +91,7 @@ fn test_check_bits_func(b: &mut Bencher) {
 }
 
 #[bench]
-fn test_check_hash_filter_map(b: &mut Bencher) {
+fn test_check_hash_filtermap(b: &mut Bencher) {
     b.iter(|| check_hash_filtermap("thumbscrew-japingly"));
 }
 
