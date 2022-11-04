@@ -1,0 +1,3 @@
+pub fn total() -> u64 {
+    u64::MAX
+}
