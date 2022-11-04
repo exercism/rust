@@ -13,7 +13,7 @@
     {
       "uuid": "ee6b5efb-7780-45f3-ae85-9a6ba4142e57",
       "slug": "bitfied",
-      "title": "Bit field on a for loop",
+      "title": "Bit field using a for loop",
       "blurb": "Use a bit field with a for loop to keep track of used letters.",
       "authors": ["bobahop"]
     },
