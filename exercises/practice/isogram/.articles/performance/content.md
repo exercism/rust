@@ -17,10 +17,10 @@ At the time of this writing, all tests use [ASCII][ascii] characters, so the let
 To benchmark the approaches, we wrote a [small benchmark application][benchmark-application].
 
 ```
-test test_check_hash                 ... bench:         792 ns/iter (+/- 104) // using filter, then map
+test test_check_hash                 ... bench:         791 ns/iter (+/- 59) // using filter, then map
 test test_check_bits                 ... bench:          17 ns/iter (+/- 3)
-test test_check_bits_func            ... bench:          22 ns/iter (+/- 4)   // using filter_map
-test test_check_hash_filtermap       ... bench:         801 ns/iter (+/- 125) // using filter_map
+test test_check_bits_func            ... bench:          22 ns/iter (+/- 4)  // using filter_map
+test test_check_hash_filtermap       ... bench:         799 ns/iter (+/- 48) // using filter_map
 test test_check_bits_func_filter_map ... bench:          37 ns/iter (+/- 7)   // using filter, then map
 ```
 
