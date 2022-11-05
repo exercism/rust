@@ -12,7 +12,7 @@ pub fn check_hash(candidate: &str) -> bool {
     let mut hs = HashSet::new();
     candidate
         .bytes()
-        .filter(|&c| c.is_ascii_alphabetic())
+        .filter(|c| c.is_ascii_alphabetic())
         .map(|c| c.to_ascii_lowercase())
         .all(|c| hs.insert(c))
 }
@@ -75,6 +75,15 @@ pub fn check_bits_func_filter_map(candidate: &str) -> bool {
         .is_some()
 }
 
+pub fn check_hash_unicode(candidate: &str) -> bool {
+    let mut hs = std::collections::HashSet::new();
+    candidate
+        .to_lowercase()
+        .chars()
+        .filter(|c| c.is_alphabetic())
+        .all(|c| hs.insert(c))
+}
+
 #[bench]
 fn test_check_hash(b: &mut Bencher) {
     b.iter(|| check_hash("thumbscrew-japingly"));
@@ -98,4 +107,9 @@ fn test_check_hash_filtermap(b: &mut Bencher) {
 #[bench]
 fn test_check_bits_func_filter_map(b: &mut Bencher) {
     b.iter(|| check_bits_func_filter_map("thumbscrew-japingly"));
+}
+
+#[bench]
+fn test_check_hash_unicode(b: &mut Bencher) {
+    b.iter(|| check_hash_unicode("thumbscrew-japingly"));
 }
