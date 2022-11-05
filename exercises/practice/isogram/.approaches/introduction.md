@@ -37,7 +37,7 @@ const A_UCASE: u8 = 65;
 const Z_UCASE: u8 = 90;
 
 pub fn check(candidate: &str) -> bool {
-    let mut letter_flags = 0;
+    let mut letter_flags: u32 = 0;
 
     for letter in candidate.bytes() {
         if letter >= A_LCASE && letter <= Z_LCASE {
