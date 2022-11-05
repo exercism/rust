@@ -18,10 +18,10 @@ At the time of this writing, all tests use [ASCII][ascii] characters, so the let
 use std::collections::HashSet;
 
 pub fn check(candidate: &str) -> bool {
-    let mut hs = HashSet::new();
+    let mut hs = std::collections::HashSet::new();
     candidate
         .bytes()
-        .filter(|&c| c.is_ascii_alphabetic())
+        .filter(|c| c.is_ascii_alphabetic())
         .map(|c| c.to_ascii_lowercase())
         .all(|c| hs.insert(c))
 ```
