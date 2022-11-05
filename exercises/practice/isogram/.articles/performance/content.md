@@ -17,11 +17,12 @@ At the time of this writing, all tests use [ASCII][ascii] characters, so the let
 To benchmark the approaches, we wrote a [small benchmark application][benchmark-application].
 
 ```
-test test_check_hash                 ... bench:         791 ns/iter (+/- 59) // using filter, then map
+test test_check_hash                 ... bench:         952 ns/iter (+/- 176) // using filter, then map
 test test_check_bits                 ... bench:          17 ns/iter (+/- 3)
-test test_check_bits_func            ... bench:          22 ns/iter (+/- 4)  // using filter_map
-test test_check_hash_filtermap       ... bench:         799 ns/iter (+/- 48) // using filter_map
+test test_check_bits_func            ... bench:          22 ns/iter (+/- 4)   // using filter_map
+test test_check_hash_filtermap       ... bench:         970 ns/iter (+/- 216) // using filter_map
 test test_check_bits_func_filter_map ... bench:          37 ns/iter (+/- 7)   // using filter, then map
+test test_check_hash_unicode         ... bench:       1,052 ns/iter (+/- 327)
 ```
 
 The `HashSet` approach was also benchmarked using [`filter_map`][filter-map] instead of `filter` and `map`.
