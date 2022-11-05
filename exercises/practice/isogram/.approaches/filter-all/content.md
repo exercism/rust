@@ -98,7 +98,7 @@ pub fn check(candidate: &str) -> bool {
 Usually an approach that supports Unicode will be slower than one that supports only bytes.
 However the benchmark for this approach was significantly slower, taking more than twice as long as the bytes approach.
 It can be further refactored to use the `str` [to_lowercase][str-to-lowercase] method
-to cut the time down to only slightly slower than the byte approach.
+to cut the benchmark down closer to the byte approach.
 
 ```rust
 use std::collections::HashSet;
