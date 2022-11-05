@@ -1,4 +1,4 @@
-let mut letter_flags = 0;
+let mut letter_flags: u32 = 0;
 
 for letter in candidate.bytes() {
     if letter >= A_LCASE && letter <= Z_LCASE {
