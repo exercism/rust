@@ -38,6 +38,22 @@ but will return `false` when the second `'a'` is inserted.
 
 ## Refactoring
 
+## using the `str` method [to_ascii_lowercase][str-to-ascii-lowercase] and no `map`
+
+You might want to to call the `str` method [to_ascii_lowercase][str-to-ascii-lowercase] and save calling `map`,
+like so
+
+```rust
+    candidate
+        .to_ascii_lowercase()
+        .bytes()
+        .filter(|c| c.is_ascii_alphabetic())
+        .all(|c| hs.insert(c))
+```
+
+However, changing the case of all characters in a `str` raised the average benchmark a few nanoseconds.
+It is a bit faster to `filter` out non-ASCII letters and to change the case of each byte.
+Since the performance is fairly close, either may be prefered. 
 
 ### using `filter_map`
 
@@ -80,8 +96,9 @@ pub fn check(candidate: &str) -> bool {
 ```
 
 Usually an approach that supports Unicode will be slower than one that supports only bytes.
-However the benchmark for this approach was significantly slower, taking almost three microseconds.
-It can be further refactored to use the `str` [to_lowercase][str-to-lowercase] method to cut the time down to about one microsecond.
+However the benchmark for this approach was significantly slower, taking more than twice as long as the bytes approach.
+It can be further refactored to use the `str` [to_lowercase][str-to-lowercase] method
+to cut the time down to only slightly slower than the byte approach.
 
 ```rust
 use std::collections::HashSet;
@@ -111,6 +128,7 @@ pub fn check(candidate: &str) -> bool {
 [to-ascii-lowercase]: https://doc.rust-lang.org/std/primitive.u8.html#method.to_ascii_lowercase
 [all]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.all
 [insert]: https://doc.rust-lang.org/std/collections/struct.HashSet.html#method.insert
+[str-to-ascii-lowercase]: https://doc.rust-lang.org/std/primitive.str.html#method.to_ascii_lowercase
 [filter-map]: https://doc.rust-lang.org/core/iter/trait.Iterator.html#method.filter_map
 [then]: https://doc.rust-lang.org/core/primitive.bool.html#method.then
 [chars]: https://doc.rust-lang.org/core/primitive.str.html#method.chars
