@@ -86,6 +86,7 @@ All three approaches are idiomatic.
 The two approaches using a bit field are more than thirty-five times faster than the one using a `HashSet`.
 Of the two bit field approaches, the `for` loop is a few nanoseconds faster than the one using a chain of functions.
 Since they are so close in performance, choosing between them would be a matter of stylistic preference.
+The `HashSet` approach would be most easily adaptable to support [Unicode][unicode].
 
 To compare performance of the approaches, check the [Performance article][article-performance].
 
@@ -94,3 +95,4 @@ To compare performance of the approaches, check the [Performance article][articl
 [approach-bitfield-func]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield-func
 [article-performance]: https://exercism.org/tracks/rust/exercises/isogram/articles/performance
 [ascii]: https://www.asciitable.com/
+[unicode]: https://en.wikipedia.org/wiki/Unicode
