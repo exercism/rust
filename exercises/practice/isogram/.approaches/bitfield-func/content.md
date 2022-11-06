@@ -58,7 +58,7 @@ and the value for `z` would look like
 
 - The `try_fold` has its accumulator set to a `u32` initialized to `0`.
 The closure inside `try_fold` uses the [bitwise AND operator][and] to check if the bit for the letter position has not already been set.
-- If it has been set, we know the letter is duplicated and `try_fold` will "short circuit"
+- If it has been set, you know the letter is duplicated and `try_fold` will "short circuit"
 and immediately pass [`None`][none] to the [`is_some`][is-some] method, which willl return `false`.
 - If it has not been set, the [bitwise OR operator][or] is used in the `then` method to set the bit.
 If all of the iterations of `try_fold` complete without finding a duplicate letter (and returning `None`),
