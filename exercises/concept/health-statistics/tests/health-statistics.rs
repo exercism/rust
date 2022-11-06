@@ -5,7 +5,6 @@ const AGE: u32 = 89;
 const WEIGHT: f32 = 131.6;
 
 #[test]
-#[ignore]
 fn test_name() {
     let user = User::new(NAME.into(), AGE, WEIGHT);
     assert_eq!(user.name(), NAME);
