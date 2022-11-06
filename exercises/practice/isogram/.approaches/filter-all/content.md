@@ -4,7 +4,7 @@
 use std::collections::HashSet;
 
 pub fn check(candidate: &str) -> bool {
-    let mut hs = std::collections::HashSet::new();
+    let mut hs = HashSet::new();
     candidate
         .bytes()
         .filter(|c| c.is_ascii_alphabetic())
@@ -33,8 +33,8 @@ Only bytes which are ASCII letters will survive the `filter` to be passed on to 
 `all` will return `true` if every call to `insert` returns true.
 If a call to `insert` returns `false` then `all` will "short-circuit" and immediately return `false`.
 The `insert` method returns whether the value is _newly_ inserted.
-So, for the word `"alpha"`, `insert` will return `true` when the first `'a'` is inserted,
-but will return `false` when the second `'a'` is inserted.
+So, for the word `"alpha"`, `insert` will return `true` when the first `a` is inserted,
+but will return `false` when the second `a` is inserted.
 
 ## Refactoring
 
@@ -52,7 +52,7 @@ like so
 ```
 
 However, changing the case of all characters in a `str` raised the average benchmark a few nanoseconds.
-It is a bit faster to `filter` out non-ASCII letters and to change the case of each byte.
+It is a bit faster to `filter` out non-ASCII letters and to change the case of each surviving byte.
 Since the performance is fairly close, either may be prefered. 
 
 ### using `filter_map`
@@ -79,7 +79,7 @@ In benchmarking, this approach was slightly slower, but its style may be prefere
 ### supporting [Unicode][unicode]
 
 By substituting the [`chars`][chars] method for the `bytes` method,
-and by using the Unicode methods [`is_alphabetic`][is-alphabetic] and [`to_lowercase`][char-to-lowercase],
+and by using the [`char`][char] methods [`is_alphabetic`][is-alphabetic] and [`to_lowercase`][char-to-lowercase],
 this approach can support Unicode characters.
 
 ```rust
@@ -97,7 +97,7 @@ pub fn check(candidate: &str) -> bool {
 
 Usually an approach that supports Unicode will be slower than one that supports only bytes.
 However the benchmark for this approach was significantly slower, taking more than twice as long as the bytes approach.
-It can be further refactored to use the `str` [to_lowercase][str-to-lowercase] method
+It can be further refactored to use the `str` [to_lowercase][str-to-lowercase] method and remove the `map` method
 to cut the benchmark down closer to the byte approach.
 
 ```rust
@@ -115,7 +115,7 @@ pub fn check(candidate: &str) -> bool {
 
 To more completely support Unicode, an external crate, such as [unicode-segmentation][unicode-segmentation],
 could be used.
-The [std::char][char] can not fully handle things such as [grapheme clusters][grapheme-clusters].
+This is becasue the [std::char][char] can not fully handle things such as [grapheme clusters][grapheme-clusters].
 
 [hashset]: https://doc.rust-lang.org/std/collections/struct.HashSet.html
 [use]: https://doc.rust-lang.org/reference/items/use-declarations.html
@@ -136,6 +136,7 @@ The [std::char][char] can not fully handle things such as [grapheme clusters][gr
 [filter-map]: https://doc.rust-lang.org/core/iter/trait.Iterator.html#method.filter_map
 [then]: https://doc.rust-lang.org/core/primitive.bool.html#method.then
 [chars]: https://doc.rust-lang.org/core/primitive.str.html#method.chars
+[char]: https://doc.rust-lang.org/std/primitive.char.html
 [is-alphabetic]: https://doc.rust-lang.org/core/primitive.char.html#method.is_alphabetic
 [char-to-lowercase]: https://doc.rust-lang.org/core/primitive.char.html#method.to_lowercase
 [str-to-lowercase]: https://doc.rust-lang.org/std/primitive.str.html#method.to_lowercase
