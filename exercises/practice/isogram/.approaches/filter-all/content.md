@@ -73,7 +73,7 @@ pub fn check(candidate: &str) -> bool {
 
 By chaining the [`then`][then] method to the result of `is_ascii_alphabetic`,
 and calling `to_ascii_lowercase` in the closure for `then`,
-the `filter map` returns only lowercased ASCII letter bytes.
+the `filter map` passes only lowercased ASCII letter bytes to the `all` method.
 In benchmarking, this approach was slightly slower, but its style may be prefered.
 
 ### supporting Unicode
