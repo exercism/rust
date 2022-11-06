@@ -76,7 +76,7 @@ and calling `to_ascii_lowercase` in the closure for `then`,
 the `filter map` passes only lowercased ASCII letter bytes to the `all` method.
 In benchmarking, this approach was slightly slower, but its style may be prefered.
 
-### supporting Unicode
+### supporting [Unicode][unicode]
 
 By substituting the [`chars`][chars] method for the `bytes` method,
 and by using the Unicode methods [`is_alphabetic`][is-alphabetic] and [`to_lowercase`][char-to-lowercase],
@@ -113,6 +113,10 @@ pub fn check(candidate: &str) -> bool {
 }
 ```
 
+To more completely support Unicode, an external crate, such as [unicode-segmentation][unicode-segmentation],
+could be used.
+The [std::char][char] can not fully handle things such as [grapheme clusters][grapheme-clusters].
+
 [hashset]: https://doc.rust-lang.org/std/collections/struct.HashSet.html
 [use]: https://doc.rust-lang.org/reference/items/use-declarations.html
 [namespaces]: https://doc.rust-lang.org/reference/names/namespaces.html
@@ -135,3 +139,7 @@ pub fn check(candidate: &str) -> bool {
 [is-alphabetic]: https://doc.rust-lang.org/core/primitive.char.html#method.is_alphabetic
 [char-to-lowercase]: https://doc.rust-lang.org/core/primitive.char.html#method.to_lowercase
 [str-to-lowercase]: https://doc.rust-lang.org/std/primitive.str.html#method.to_lowercase
+[unicode]: https://en.wikipedia.org/wiki/Unicode
+[unicode-segmentation]: https://crates.io/crates/unicode-segmentation
+[char]: https://doc.rust-lang.org/std/primitive.char.html
+[grapheme-clusters]: https://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
