@@ -19,7 +19,7 @@ pub fn check(candidate: &str) -> bool {
 
 This solution uses the [ASCII][ascii] value of the letter to set the corresponding bit position.
 
-First, a [`const`][const] value is set with the ASCII value for `'a'`.
+First, a [`const`][const] value is set with the ASCII value for `a`.
 
 - Since all of the characters are [ASCII][ascii], they can be iterated with the [`bytes`][bytes] method.
 Each byte is iterated as a [`u8`][u8], which is an unsigned 8-bit integer, and is passed to the [filter_map][filter-map] method.
