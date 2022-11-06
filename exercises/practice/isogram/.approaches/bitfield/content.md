@@ -58,8 +58,8 @@ So, for an unsigned thirty-two bit integer, if the values for `a` and `Z` were b
 00000010000000000000000000000001
 ```
 
-We can use the [bitwise AND operator][and] to check if a bit has already been set.
-If it has been set, you know the letter is duplicated and we can immediately return `false`.
+You can use the [bitwise AND operator][and] to check if a bit has already been set.
+If it has been set, you know the letter is duplicated and you can immediately return `false`.
 If it has not been set, you can use the [bitwise OR operator][or] to set the bit.
 If the loop completes without finding a duplicate letter (and returning `false`), the function returns `true`.
 
