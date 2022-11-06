@@ -8,7 +8,7 @@ The [approaches page][approaches] lists three idiomatic approaches to this exerc
 2. [Using a bit field in a `for` loop][approach-bitfield]
 3. [Using a bit field functionally][approach-bitfield-func]
 
-In addition. variants of two of the approaches were benchmarked.
+In addition, variants of two of the approaches were benchmarked.
 
 At the time of this writing, all tests use [ASCII][ascii] characters, so the letters can be processed as bytes instead of Unicode characters.
 
