@@ -1,6 +1,6 @@
 # Performance
 
-In this approach, we'll find out how to most efficiently determine if a string is a Pangram in C#.
+In this approach, we'll find out how to most efficiently determine if a string is a Pangram in Rust.
 
 The [approaches page][approaches] lists four  idiomatic approaches to this exercise:
 
