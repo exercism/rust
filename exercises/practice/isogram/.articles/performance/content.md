@@ -6,7 +6,7 @@ The [approaches page][approaches] lists three idiomatic approaches to this exerc
 
 1. [Using `filter` and `map` with `all` on a `HashSet`][approach-filter-all]
 2. [Using a bit field in a `for` loop][approach-bitfield]
-3. [Using a bit field functionally][approach-bitfield-func]
+3. [Using a bit field functionally][approach-bitfield-functionally]
 
 In addition, variants of two of the approaches were benchmarked.
 
@@ -66,7 +66,7 @@ Since they are so close in performance, choosing between them would be a matter 
 [approaches]: https://exercism.org/tracks/rust/exercises/isogram/approaches
 [approach-filter-all]: https://exercism.org/tracks/rust/exercises/isogram/approaches/filter-all
 [approach-bitfield]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield
-[approach-bitfield-func]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield-func
+[approach-bitfield-functionally]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield-functionally
 [benchmark-application]: https://github.com/exercism/rust/blob/main/exercises/practice/isogram/.articles/performance/code/main.rs
 [ascii]: https://www.asciitable.com/
 [filter-map]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter_map
