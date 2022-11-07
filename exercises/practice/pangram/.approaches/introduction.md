@@ -82,10 +82,10 @@ For more information, check the [Bit field approach][approach-bitfield].
 
 The fastest is the `Bit field` approach.
 
-To compare performance of the approaches, check the [Performance approach][approach-performance].
+To compare performance of the approaches, check the [Performance article][article-performance].
 
 [approach-all-contains]: https://exercism.org/tracks/rust/exercises/pangram/approaches/all-contains
 [approach-hashset-is-subset]: https://exercism.org/tracks/rust/exercises/pangram/approaches/hashset-is-subset
 [approach-hashset-len]: https://exercism.org/tracks/rust/exercises/pangram/approaches/hashset-len
 [approach-bitfield]: https://exercism.org/tracks/rust/exercises/pangram/approaches/bitfield
-[approach-performance]: https://exercism.org/tracks/rust/exercises/pangram/approaches/performance
+[article-performance]: https://exercism.org/tracks/rust/exercises/pangram/articles/performance
