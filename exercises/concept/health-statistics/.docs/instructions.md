@@ -28,10 +28,10 @@ bob.weight();
 // Returns: 155.2
 ```
 
-The `age_mut` method should set the age of the `User`.
+The `set_age` method should set the age of the `User`.
 
 ```rust
-bob.age_mut(33);
+bob.set_age(33);
 // Updates Bob's age to 33; happy birthday Bob!
 ```
 
