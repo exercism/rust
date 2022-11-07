@@ -78,7 +78,7 @@ pub fn check(candidate: &str) -> bool {
 }
 ```
 
-For more information, check the [bit field used functionally approach][approach-bitfield-func].
+For more information, check the [bit field used functionally approach][approach-bitfield-functionally].
 
 ## Which approach to use?
 
@@ -92,7 +92,7 @@ To compare performance of the approaches, check the [Performance article][articl
 
 [approach-filter-all]: https://exercism.org/tracks/rust/exercises/isogram/approaches/filter-all
 [approach-bitfield]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield
-[approach-bitfield-func]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield-func
+[approach-bitfield-functionally]: https://exercism.org/tracks/rust/exercises/isogram/approaches/bitfield-functionally
 [article-performance]: https://exercism.org/tracks/rust/exercises/isogram/articles/performance
 [ascii]: https://www.asciitable.com/
 [unicode]: https://en.wikipedia.org/wiki/Unicode
