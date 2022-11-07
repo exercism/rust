@@ -1,0 +1,8 @@
+    for letter in sentence.chars() {
+        if letter >= 'a' && letter <= 'z' {
+            letter_flags |= 1 << (letter as u8 - A_LCASE);
+        } else if letter >= 'A' && letter <= 'Z' {
+            letter_flags |= 1 << (letter as u8 - A_UCASE);
+        }
+    }
+    letter_flags == ALL_26_BITS_SET
