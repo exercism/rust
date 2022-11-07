@@ -26,8 +26,9 @@ The ASCII value for `a` is `97`.
 The ASCII value for `A` is `65`.
 The value for all of the rightmost `26` bits being set in a [`u32`][u32] is `67108863`.
 
-The [`for` loop][for-loop] loops through the [chars][chars] of `sentence`.
-
+- The [`for` loop][for-loop] loops through the [chars][chars] of `sentence`.
+We don't iterate by bytes because, as of this writing, some tests may include multi-byte characters in `sentence`.
+- Each letter is tested for being `a` through `z` or `A` through `Z`.
 - If the lower-cased letter is subtracted by `a`, then `a` will result in `0`, because `97` minus `97`  equals `0`.
 `z` would result in `25`, because `122` minus `97` equals `25`.
 So `a` would have `1` [shifted left][shift-left] 0 places (so not shifted at all) and `z` would have `1` shifted left 25 places.
