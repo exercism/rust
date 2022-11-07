@@ -44,11 +44,11 @@ You might want to to call the `str` method [to_ascii_lowercase][str-to-ascii-low
 like so
 
 ```rust
-    candidate
-        .to_ascii_lowercase()
-        .bytes()
-        .filter(|c| c.is_ascii_alphabetic())
-        .all(|c| hs.insert(c))
+candidate
+    .to_ascii_lowercase()
+    .bytes()
+    .filter(|c| c.is_ascii_alphabetic())
+    .all(|c| hs.insert(c))
 ```
 
 However, changing the case of all characters in a `str` raised the average benchmark a few nanoseconds.
