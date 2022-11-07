@@ -26,6 +26,6 @@ fn foo() -> i32 {
 
 ## 3. Implement the setter methods
 
-- The `age_mut()` and `weight_mut()` methods are setters, responsible for mutating (updating) the corresponding field on a struct instance with the input argument.
+- The `set_age()` and `set_weight()` methods are setters, responsible for updating the corresponding field on a struct instance with the input argument.
 
 - As the signatures of these methods specify, the setter methods shouldn't return anything.

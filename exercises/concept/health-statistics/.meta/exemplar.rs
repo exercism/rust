@@ -21,11 +21,11 @@ impl User {
         self.weight
     }
 
-    pub fn age_mut(&mut self, new_age: u32) {
+    pub fn set_age(&mut self, new_age: u32) {
         self.age = new_age;
     }
 
-    pub fn weight_mut(&mut self, new_weight: f32) {
+    pub fn set_weight(&mut self, new_weight: f32) {
         self.weight = new_weight;
     }
 }
