@@ -25,11 +25,11 @@ impl User {
         unimplemented!()
     }
 
-    pub fn set_age(&mut self, new_age: u32) {
+    pub fn age_mut(&mut self, new_age: u32) {
         unimplemented!()
     }
 
-    pub fn set_weight(&mut self, new_weight: f32) {
+    pub fn weight_mut(&mut self, new_weight: f32) {
         unimplemented!()
     }
 }

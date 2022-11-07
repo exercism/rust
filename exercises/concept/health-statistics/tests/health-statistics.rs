@@ -29,7 +29,7 @@ fn test_weight() {
 fn test_set_age() {
     let new_age: u32 = 90;
     let mut user = User::new(NAME.into(), AGE, WEIGHT);
-    user.set_age(new_age);
+    user.age_mut(new_age);
     assert_eq!(user.age(), new_age);
 }
 
@@ -38,6 +38,6 @@ fn test_set_age() {
 fn test_set_weight() {
     let new_weight: f32 = 129.4;
     let mut user = User::new(NAME.into(), AGE, WEIGHT);
-    user.set_weight(new_weight);
+    user.weight_mut(new_weight);
     assert!((user.weight() - new_weight).abs() < f32::EPSILON);
 }
