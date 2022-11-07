@@ -1,9 +1,7 @@
 # `all` with `contains` on lowercased letters
 
 ```rust
-use std::collections::HashSet;
-
-pub fn is_pangram_all_contains(sentence: &str) -> bool {
+pub fn is_pangram(sentence: &str) -> bool {
     let sentence_lowered = sentence.to_lowercase();
     ('a'..='z').all(|ltr| sentence_lowered.contains(ltr))
 }
