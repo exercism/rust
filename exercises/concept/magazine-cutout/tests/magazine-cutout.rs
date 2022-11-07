@@ -55,7 +55,7 @@ fn test_case_sensitivity() {
 
 #[test]
 #[ignore]
-fn test_magzine_has_more_than_words_available_than_needed() {
+fn test_magazine_has_more_words_available_than_needed() {
     let magazine = "Enough is enough when enough is enough"
         .split_whitespace()
         .collect::<Vec<&str>>();
