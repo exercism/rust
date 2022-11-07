@@ -1,8 +1,8 @@
 # Introduction
 
 There are various idomatic approaches to Pangram.
-You can use the `all` method with the `contains` method on lower-cased letters.
-You can see if the `HashSet` of the alphabet `is_substring` of a `HashSet` of the lower-cased `sentence`.
+You can use the `all` method with the `contains` method on lowercased letters.
+You can see if the `HashSet` of the alphabet `is_substring` of a `HashSet` of the lowercased `sentence`.
 Or you can see if the `HashSet` `len` of the lowercased `sentence` filtered to just ASCII letters is `26`.
 Or you can use a bit field to keep track of used letters.
 
