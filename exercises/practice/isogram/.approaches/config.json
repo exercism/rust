@@ -19,7 +19,7 @@
     },
     {
       "uuid": "2a1c6080-2dfc-4d5b-841e-d26b22e1d061",
-      "slug": "bitfield-func",
+      "slug": "bitfield-functionally",
       "title": "Bit field used functionally",
       "blurb": "Use a bit field functionally to keep track of used letters.",
       "authors": ["bobahop"]
