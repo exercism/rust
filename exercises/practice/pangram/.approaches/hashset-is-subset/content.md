@@ -11,7 +11,7 @@ pub fn is_pangram(sentence: &str) -> bool {
 ```
 
 In this approach a [HashSet][hashset] is made of the lowercase alphabet [chars][chars] using the [from_iter][from-iter] method,
-and another `HashSet` is made from the [to_lowercased][to-lowercase] `sentence` `chars`.
+and another `HashSet` is made from the [to_lowercase][to-lowercase] `sentence` `chars`.
 
 The function returns if the alphabet `HashSet` [is_subset][is-subset] of the `sentence` `HashSet`.
 If all of the letters in the alphabet are a subset of the letters in the `sentence`,
