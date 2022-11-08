@@ -1,0 +1,28 @@
+{
+  "introduction": {
+    "authors": ["bobahop"]
+  },
+  "approaches": [
+    {
+      "uuid": "345b3d89-55e6-4723-9f9f-9507c416207e",
+      "slug": "filter-all",
+      "title": "Filter with All on a HashSet",
+      "blurb": "Use Filter with All on a HashSet to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "ee6b5efb-7780-45f3-ae85-9a6ba4142e57",
+      "slug": "bitfied",
+      "title": "Bit field using a for loop",
+      "blurb": "Use a bit field with a for loop to keep track of used letters.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "2a1c6080-2dfc-4d5b-841e-d26b22e1d061",
+      "slug": "bitfield-functionally",
+      "title": "Bit field used functionally",
+      "blurb": "Use a bit field functionally to keep track of used letters.",
+      "authors": ["bobahop"]
+    }
+  ]
+}

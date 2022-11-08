@@ -1,0 +1,8 @@
+let mut letter_flags: u32 = 0;
+
+for letter in candidate.bytes() {
+    if letter >= A_LCASE && letter <= Z_LCASE {
+        if letter_flags & (1 << (letter - A_LCASE)) != 0 {
+            return false;
+        } else {
+            letter_flags |= 1 << (letter - A_LCASE);
