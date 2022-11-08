@@ -46,7 +46,7 @@ So, for an unsigned thirty-two bit integer, if the values for `a` and `Z` were b
 ```
 
 We can use the [bitwise OR operator][or] to set the bit.
-After the loop completes, the function returns if the `letter_flags` value is the same value as when all of the rightmost  `26` bits are set,
+After the loop completes, the function returns `true` if the `letter_flags` value is the same value as when all of the rightmost  `26` bits are set,
 which is `67108863`.
 
 This approach is relatively very fast compared with other approaches.
