@@ -20,7 +20,10 @@ test test_is_pangram_hashset_len    ... bench:       1,737 ns/iter (+/- 331)
 test test_is_pangram_bitfield       ... bench:          76 ns/iter (+/- 12)
 ```
 
-Using a bit field is the fastest approach.
+- The `HashSet` `len` approach is not quite twice as fast as the `HashSet` `is_subset` approach.
+- The `all` `contains` approach is about twice as fast as the `HashSet` `len`approach.
+- The bit field approach is more than ten times as fast as the `all` `contains` approach.
+- So, the bit field approach is about forty times faster than the `HashSet` `is_subset` approach.
 
 [benchmark-application]: https://github.com/exercism/rust/blob/main/exercises/practice/pangram/.articles/performance/code/main.rs
 [approaches]: https://exercism.org/tracks/rust/exercises/pangram/approaches
