@@ -81,7 +81,7 @@ pub fn check_bits(candidate: &str) -> bool {
 }
 ```
 
-In benchmarking, this approach was slightly slower, but its style may be prefered.
+In benchmarking, this approach was slightly slower, but its style may be preferred.
 
 [ascii]: https://www.asciitable.com/
 [const]: https://doc.rust-lang.org/std/keyword.const.html
