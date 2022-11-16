@@ -63,6 +63,12 @@ fn test_high_card_can_be_low_card_in_an_otherwise_tie() {
 
 #[test]
 #[ignore]
+fn test_winning_high_card_hand_also_has_lowest_card() {
+    test(&["2S 5H 6S 8D 7H", "3S 4D 6D 8C 7S"], &["2S 5H 6S 8D 7H"])
+}
+
+#[test]
+#[ignore]
 fn test_one_pair_beats_high_card() {
     test(&["4S 5H 6C 8D KH", "2S 4H 6S 4D JH"], &["2S 4H 6S 4D JH"])
 }
@@ -71,6 +77,12 @@ fn test_one_pair_beats_high_card() {
 #[ignore]
 fn test_highest_pair_wins() {
     test(&["4S 2H 6S 2D JH", "2S 4H 6C 4D JD"], &["2S 4H 6C 4D JD"])
+}
+
+#[test]
+#[ignore]
+fn test_high_card_pair_wins() {
+    test(&["4H 4S AH JC 3D", "4C 4D AS 5D 6C"], &["4H 4S AH JC 3D"])
 }
 
 #[test]
@@ -126,7 +138,7 @@ fn test_low_three_of_a_kind_beats_high_two_pair() {
 fn test_three_of_a_kind_cascade_ranks() {
     // with multiple decks, two players can have same three of a kind,
     // ties go to highest remaining cards
-    test(&["4S AH AS 7C AD", "4S AH AS 8C AD"], &["4S AH AS 8C AD"])
+    test(&["5S AH AS 7C AD", "4S AH AS 8C AD"], &["4S AH AS 8C AD"])
 }
 
 #[test]
@@ -180,7 +192,7 @@ fn test_flush_beats_a_straight() {
 #[ignore]
 fn test_flush_cascade() {
     // both hands have a flush, tie goes to high card, down to the last one if necessary
-    test(&["4H 7H 8H 9H 6H", "2S 4S 5S 6S 7S"], &["4H 7H 8H 9H 6H"])
+    test(&["2H 7H 8H 9H 6H", "3S 5S 6S 7S 8S"], &["2H 7H 8H 9H 6H"])
 }
 
 #[test]
