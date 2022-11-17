@@ -162,6 +162,11 @@
   description: "Preparing for Exercism v3"
   color: "e99695"
 
+# This Exercism-wide label can be used to bulk-close issues in preparation for pausing community contributions
+- name: "paused"
+  description: "Work paused until further notice"
+  color: "e4e669"
+
 # ----------------------------------------------------------------------------------------- #
 # These are the repository-specific labels that augment the Exercise-wide labels defined in #
 # https://github.com/exercism/org-wide-files/blob/main/global-files/.github/labels.yml.     #
