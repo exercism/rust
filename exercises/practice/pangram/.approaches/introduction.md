@@ -2,7 +2,7 @@
 
 There are various idomatic approaches to Pangram.
 You can use the `all` method on the alphabet letters with the `contains` method on the lowercased letters of sentence.
-You can see if the `HashSet` of the alphabet `is_substring` of a `HashSet` of the lowercased `sentence`.
+You can see if the `HashSet` of the alphabet `is_subset` of a `HashSet` of the lowercased `sentence`.
 Or you can see if the `HashSet` `len` of the lowercased `sentence` filtered to just ASCII letters is `26`.
 Or you can use a bit field to keep track of used letters.
 
