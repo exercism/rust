@@ -21,6 +21,7 @@ fn test_bird_count() {
 }
 
 #[test]
+#[ignore]
 fn test_birds_in_week() {
     let observations = [
         (
@@ -56,6 +57,7 @@ fn test_birds_in_week() {
 }
 
 #[test]
+#[ignore]
 fn test_fix_bird_count() {
     let observations = [
         (
@@ -86,6 +88,7 @@ fn test_fix_bird_count() {
 }
 
 #[test]
+#[ignore]
 fn test_birds_today() {
     let observations = [
         (
@@ -112,6 +115,7 @@ fn test_birds_today() {
 }
 
 #[test]
+#[ignore]
 fn test_day_without_birds() {
     let observations = [
         (
@@ -137,6 +141,7 @@ fn test_day_without_birds() {
 }
 
 #[test]
+#[ignore]
 fn test_busy_days_number() {
     let observations = [
         (
@@ -163,6 +168,7 @@ fn test_busy_days_number() {
 }
 
 #[test]
+#[ignore]
 fn test_birds_in_first_days() {
     let observations = [
         (
