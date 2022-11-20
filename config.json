@@ -111,7 +111,7 @@
         ],
         "prerequisites": [
           "basics",
-          "signed-and-unsigned-integers"
+          "signed-and-unsigned-integers",
           "loops",
           "conditionals",
         ],
