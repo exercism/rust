@@ -24,7 +24,11 @@ pub fn fix_bird_count(mut observation_log: Vec<u16>) -> Vec<u16> {
 
 pub fn birds_today(observation_log: Vec<u8>) -> i16 {
     if let Some(birds) = observation_log.last() {
-        (*birds).into()
+        if birds == &0 {
+            -1
+        } else {
+            (*birds).into()
+        }
     } else {
         -1
     }
