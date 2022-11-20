@@ -1,0 +1,18 @@
+{
+  "blurb": "Learn commonly used operations for vectors",
+  "authors": [
+    "saurami"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/bird-watcher.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  }
+}
