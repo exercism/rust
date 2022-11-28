@@ -52,3 +52,27 @@ fn test_seven_digit_armstrong_number() {
 fn test_seven_digit_non_armstrong_number() {
     assert!(!is_armstrong_number(9_926_316))
 }
+
+#[test]
+#[ignore]
+fn test_nine_digit_armstrong_number() {
+    assert!(is_armstrong_number(912_985_153));
+}
+
+#[test]
+#[ignore]
+fn test_nine_digit_non_armstrong_number() {
+    assert!(!is_armstrong_number(999_999_999));
+}
+
+#[test]
+#[ignore]
+fn test_ten_digit_non_armstrong_number() {
+    assert!(!is_armstrong_number(3_999_999_999));
+}
+
+#[test]
+#[ignore]
+fn test_ten_digit_fake_armstrong_number() {
+    assert!(!is_armstrong_number(4_106_098_957));
+}
