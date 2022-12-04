@@ -102,6 +102,22 @@
         "status": "active"
       },
       {
+        "slug": "bird-watcher",
+        "uuid": "48d267b5-d5e3-4e19-b475-887a4185c482",
+        "name": "Bird Watcher",
+        "difficulty": 1,
+        "concepts": [
+          "vectors"
+        ],
+        "prerequisites": [
+          "basics",
+          "signed-and-unsigned-integers",
+          "loops",
+          "conditionals"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "health-statistics",
         "uuid": "3da2420e-9de3-42e0-9127-5ef185673dbb",
         "name": "Health Statistics",
