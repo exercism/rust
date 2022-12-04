@@ -1,5 +1,4 @@
 {
-  "blurb": "Make a chain of dominoes.",
   "authors": [
     "EduardoBautista"
   ],
@@ -37,5 +36,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Make a chain of dominoes."
 }

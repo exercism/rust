@@ -1,5 +1,4 @@
 {
-  "blurb": "We are going to do the `Transform` step of an Extract-Transform-Load.",
   "authors": [
     "EduardoBautista"
   ],
@@ -37,6 +36,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "We are going to do the `Transform` step of an Extract-Transform-Load.",
   "source": "The Jumpstart Lab team",
   "source_url": "http://jumpstartlab.com"
 }

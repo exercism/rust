@@ -1,5 +1,4 @@
 {
-  "blurb": "Write a function to solve alphametics puzzles.",
   "authors": [
     "ijanos"
   ],
@@ -36,6 +35,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Write a function to solve alphametics puzzles.",
   "custom": {
     "test-in-release-mode": true
   }

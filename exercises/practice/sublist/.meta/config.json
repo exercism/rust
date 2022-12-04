@@ -1,5 +1,4 @@
 {
-  "blurb": "Write a function to determine if a list is a sublist of another list.",
   "authors": [
     "EduardoBautista"
   ],
@@ -33,5 +32,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Write a function to determine if a list is a sublist of another list."
 }

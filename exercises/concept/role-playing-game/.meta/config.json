@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn about the `Option` enum by creating a minimal role-playing game",
   "authors": [
     "seanchen1991",
     "coriolinus"
@@ -18,5 +17,6 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn about the `Option` enum by creating a minimal role-playing game"
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Determine if a sentence is a pangram.",
   "authors": [
     "IanWhitney"
   ],
@@ -33,6 +32,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Determine if a sentence is a pangram.",
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Pangram"
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Count the rectangles in an ASCII diagram.",
   "authors": [
     "EduardoBautista"
   ],
@@ -34,5 +33,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Count the rectangles in an ASCII diagram."
 }

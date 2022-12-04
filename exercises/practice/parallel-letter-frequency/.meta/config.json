@@ -1,5 +1,4 @@
 {
-  "blurb": "Count the frequency of letters in texts using parallel computation.",
   "authors": [
     "EduardoBautista"
   ],
@@ -38,5 +37,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Count the frequency of letters in texts using parallel computation."
 }

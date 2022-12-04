@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn enums while building a logging utility.",
   "authors": [
     "efx"
   ],
@@ -14,5 +13,6 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn enums while building a logging utility."
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Tally the results of a small football competition.",
   "authors": [
     "EduardoBautista"
   ],
@@ -37,5 +36,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Tally the results of a small football competition."
 }

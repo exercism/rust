@@ -1,5 +1,4 @@
 {
-  "blurb": "Generate musical scales, given a starting note and a set of intervals.",
   "authors": [
     "coriolinus"
   ],
@@ -24,5 +23,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Generate musical scales, given a starting note and a set of intervals."
 }

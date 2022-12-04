@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn about numbers while working on an assembly line for cars.",
   "authors": [
     "LewisClement",
     "efx"
@@ -15,5 +14,6 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn about numbers while working on an assembly line for cars."
 }

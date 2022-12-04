@@ -1,6 +1,4 @@
 {
-  "blurb": "Implement a Decimal type",
-  "source": "Peter Goodspeed-Niklaus",
   "authors": [
     "coriolinus"
   ],
@@ -29,6 +27,8 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement a Decimal type",
+  "source": "Peter Goodspeed-Niklaus",
   "custom": {
     "allowed-to-not-compile": "Stub doesn't compile because operations like +, - are not found. However, giving stubs to the traits would reduce the student's learning."
   }
