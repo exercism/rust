@@ -1,5 +1,4 @@
 {
-  "blurb": "Given a DNA string, compute how many times each nucleotide occurs in the string.",
   "authors": [
     "EduardoBautista"
   ],
@@ -37,6 +36,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Given a DNA string, compute how many times each nucleotide occurs in the string.",
   "source": "The Calculating DNA Nucleotides_problem at Rosalind",
   "source_url": "http://rosalind.info/problems/dna/"
 }

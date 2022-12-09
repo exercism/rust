@@ -1,5 +1,4 @@
 {
-  "blurb": "Use `HashMap` and the entry API methods to write an anonymous letter.",
   "authors": [
     "seanchen1991"
   ],
@@ -14,5 +13,6 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Use `HashMap` and the entry API methods to write an anonymous letter."
 }

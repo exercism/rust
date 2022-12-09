@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn structs to store statistics for a health-monitoring system.",
   "authors": [
     "seanchen1991"
   ],
@@ -14,5 +13,6 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn structs to store statistics for a health-monitoring system."
 }

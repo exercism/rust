@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement run-length encoding and decoding.",
   "authors": [
     "divagant-martian"
   ],
@@ -31,6 +30,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement run-length encoding and decoding.",
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Run-length_encoding"
 }

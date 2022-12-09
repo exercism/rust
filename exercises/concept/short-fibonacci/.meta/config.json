@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn the `vec!` macro to build a short Fibonacci Sequence.",
   "authors": [
     "efx",
     "coriolinus"
@@ -15,5 +14,6 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn the `vec!` macro to build a short Fibonacci Sequence."
 }

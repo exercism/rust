@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn about strings and string slices while working on a CSV builder",
   "authors": [
     "gilescope",
     "coriolinus",
@@ -16,5 +15,6 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn about strings and string slices while working on a CSV builder"
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Add the numbers to a minesweeper board.",
   "authors": [
     "EduardoBautista"
   ],
@@ -34,5 +33,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Add the numbers to a minesweeper board."
 }

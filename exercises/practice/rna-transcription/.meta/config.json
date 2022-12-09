@@ -1,5 +1,4 @@
 {
-  "blurb": "Given a DNA strand, return its RNA Complement Transcription.",
   "authors": [
     "EduardoBautista"
   ],
@@ -42,6 +41,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Given a DNA strand, return its RNA Complement Transcription.",
   "source": "Hyperphysics",
   "source_url": "http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html"
 }

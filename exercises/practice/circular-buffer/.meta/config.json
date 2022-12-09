@@ -1,5 +1,4 @@
 {
-  "blurb": "A data structure that uses a single, fixed-size buffer as if it were connected end-to-end.",
   "authors": [
     "EduardoBautista"
   ],
@@ -36,6 +35,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "A data structure that uses a single, fixed-size buffer as if it were connected end-to-end.",
   "source": "Wikipedia",
   "source_url": "http://en.wikipedia.org/wiki/Circular_buffer"
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Manage a player's High Score list.",
   "authors": [
     "Br1ght0ne"
   ],
@@ -21,5 +20,6 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Manage a player's High Score list.",
   "source": "Tribute to the eighties' arcade game Frogger"
 }

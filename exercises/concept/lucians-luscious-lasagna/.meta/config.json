@@ -1,6 +1,4 @@
 {
-  "blurb": "Learn about the basics of Rust by following a lasagna recipe.",
-  "icon": "lasagna",
   "authors": [
     "coriolinus",
     "ErikSchierboom"
@@ -16,5 +14,7 @@
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "icon": "lasagna",
+  "blurb": "Learn about the basics of Rust by following a lasagna recipe."
 }

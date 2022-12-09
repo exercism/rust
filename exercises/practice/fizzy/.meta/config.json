@@ -1,7 +1,4 @@
 {
-  "blurb": "Implement FizzBuzz using advanced generics",
-  "source": "Peter Goodspeed-Niklaus",
-  "source_url": "https://github.com/coriolinus/fizzy",
   "authors": [
     "coriolinus"
   ],
@@ -26,5 +23,8 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Implement FizzBuzz using advanced generics",
+  "source": "Peter Goodspeed-Niklaus",
+  "source_url": "https://github.com/coriolinus/fizzy"
 }

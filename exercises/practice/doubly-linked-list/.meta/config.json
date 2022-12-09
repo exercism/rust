@@ -1,5 +1,4 @@
 {
-  "blurb": "linked-list",
   "authors": [
     "Emerentius"
   ],
@@ -23,6 +22,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "linked-list",
   "custom": {
     "allowed-to-not-compile": "Stub allowed to not compile because pre_implemented module cannot be resolved by rustfmt in exercism v3 track structure"
   }
