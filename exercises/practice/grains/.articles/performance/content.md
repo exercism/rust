@@ -52,5 +52,5 @@ and benched much slower than the two main approaches.
 
 [approaches]: https://exercism.org/tracks/rust/exercises/grains/approaches
 [approach-pow]: https://exercism.org/tracks/rust/exercises/grains/approaches/pow
-[approach-bit-shifting]: https://exercism.org/rust/csharp/exercises/grains/approaches/bit-shifting
+[approach-bit-shifting]: https://exercism.org/tracks/rust/exercises/grains/approaches/bit-shifting
 [benchmark-application]: https://github.com/exercism/rust/blob/main/exercises/practice/grains/.articles/performance/code/main.rs
