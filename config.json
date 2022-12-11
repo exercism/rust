@@ -208,25 +208,24 @@
         "name": "Reverse String",
         "uuid": "ecf8d1e3-9400-4d1a-8326-2e2820bce024",
         "practices": [
+          "iterators",
+          "string-vs-str",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": [
-          "iterators",
-          "str_vs_string"
-        ]
+        "topics": []
       },
       {
         "slug": "gigasecond",
         "name": "Gigasecond",
         "uuid": "f880b1ef-8f66-41f3-bb89-f39a4ed592a2",
-        "practices": [],
+        "practices": [
+          "external-crates"
+        ],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": [
-          "crates"
-        ]
+        "topics": []
       },
       {
         "slug": "clock",
@@ -247,15 +246,15 @@
         "name": "Anagram",
         "uuid": "f3172997-91f5-4941-a76e-91c4b8eed401",
         "practices": [
+          "iterators",
           "loops",
+          "string-vs-str",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "iterators",
           "lifetimes",
-          "str_vs_string",
           "vectors"
         ]
       },
@@ -300,12 +299,13 @@
         "slug": "luhn",
         "name": "Luhn",
         "uuid": "8d64bfc3-fc4b-45c4-85f0-e74dc2ea6812",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 7,
         "topics": [
           "higher_order_functions",
-          "iterators",
           "str_to_digits"
         ]
       },
@@ -324,11 +324,12 @@
         "slug": "macros",
         "name": "Macros",
         "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
-        "practices": [],
+        "practices": [
+          "hashmap"
+        ],
         "prerequisites": [],
         "difficulty": 10,
         "topics": [
-          "hashmaps",
           "macros",
           "macros_by_example"
         ]
@@ -494,23 +495,23 @@
         "name": "Bob",
         "uuid": "38ef1802-2730-4f94-bafe-d2cd6b3e7f95",
         "practices": [
+          "char",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": [
-          "chars"
-        ]
+        "topics": []
       },
       {
         "slug": "high-scores",
         "name": "High Scores",
         "uuid": "7e0f5d25-e1f2-4a25-b150-1c8b24f328d7",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 1,
         "topics": [
-          "iterators",
           "lifetimes",
           "vectors"
         ]
@@ -579,13 +580,13 @@
         "name": "Alphametics",
         "uuid": "7450bd80-2388-42ac-a61f-097e82581475",
         "practices": [
+          "external-crates",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "combinations",
-          "external_crates",
           "parsing"
         ]
       },
@@ -647,12 +648,12 @@
         "name": "Grade School",
         "uuid": "5ca03812-c229-48db-b7fd-0889b22f8d1d",
         "practices": [
+          "entry-api",
           "structs"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "entry_api",
           "option_type",
           "vectors"
         ]
@@ -686,26 +687,25 @@
         "name": "Isogram",
         "uuid": "d141ec66-a161-4c3d-832b-439699bf0d4c",
         "practices": [
+          "char",
+          "iterators",
           "strings"
         ],
         "prerequisites": [],
         "difficulty": 4,
-        "topics": [
-          "chars",
-          "iterators"
-        ]
+        "topics": []
       },
       {
         "slug": "nucleotide-count",
         "name": "Nucleotide Count",
         "uuid": "3f54853b-cc65-4282-ab25-8dc3fdf43c03",
         "practices": [
+          "entry-api",
           "mutability"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "entry_api",
           "filter",
           "match",
           "result_type"
@@ -806,6 +806,7 @@
         "name": "RNA Transcription",
         "uuid": "9a219d87-cd32-4e12-a879-bfb5747c2369",
         "practices": [
+          "string-vs-str",
           "structs"
         ],
         "prerequisites": [],
@@ -813,7 +814,6 @@
         "topics": [
           "match",
           "result_type",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -822,12 +822,12 @@
         "name": "Run-Length Encoding",
         "uuid": "4dc9b165-792a-4438-be80-df9aab6f6a9c",
         "practices": [
+          "char",
           "loops"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
           "int_string_conversion",
           "strings"
         ]
@@ -836,11 +836,12 @@
         "slug": "saddle-points",
         "name": "Saddle Points",
         "uuid": "e623afd9-f23f-4ab3-a427-c7071621be90",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "iterators",
           "vectors"
         ]
       },
@@ -860,11 +861,12 @@
         "slug": "scrabble-score",
         "name": "Scrabble Score",
         "uuid": "561cc4ff-5e74-4701-a7c2-c4edefa0d068",
-        "practices": [],
+        "practices": [
+          "hashmap"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "hashmaps",
           "higher_order_functions"
         ]
       },
@@ -913,12 +915,12 @@
         "name": "Tournament",
         "uuid": "9a2406cc-5037-4761-b820-bb25b1d397c8",
         "practices": [
-          "enums"
+          "enums",
+          "hashmap"
         ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "hashmaps",
           "sorting",
           "structs"
         ]
@@ -994,11 +996,12 @@
         "slug": "protein-translation",
         "name": "Protein Translation",
         "uuid": "4e01efbc-51ce-4d20-b093-b3d44c4be5e8",
-        "practices": [],
+        "practices": [
+          "hashmap"
+        ],
         "prerequisites": [],
         "difficulty": 7,
         "topics": [
-          "hashmaps",
           "lifetimes",
           "result_type",
           "structs"
@@ -1137,15 +1140,16 @@
         "slug": "affine-cipher",
         "name": "Affine Cipher",
         "uuid": "2a1dcf38-ec05-4b24-a2e2-2e5b3595f3f0",
-        "practices": [],
+        "practices": [
+          "char",
+          "iterators",
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
-          "iterators",
           "primitive_types",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1153,15 +1157,16 @@
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "53298a14-76a9-4bb9-943a-57c5e79d9cf7",
-        "practices": [],
+        "practices": [
+          "char",
+          "iterators",
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
-          "iterators",
           "primitive_types",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1169,16 +1174,17 @@
         "slug": "crypto-square",
         "name": "Crypto Square",
         "uuid": "0cc485e9-43ba-4d97-a622-ee4cb8b9f1f7",
-        "practices": [],
+        "practices": [
+          "char",
+          "iterators",
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "arrays",
           "ascii",
-          "chars",
-          "iterators",
           "primitive_types",
-          "str_vs_string",
           "strings",
           "transforming"
         ]
@@ -1187,12 +1193,13 @@
         "slug": "diamond",
         "name": "Diamond",
         "uuid": "c6878b91-70dd-49a0-b7c1-06364fa3d80b",
-        "practices": [],
+        "practices": [
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "parsing",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1200,11 +1207,12 @@
         "slug": "largest-series-product",
         "name": "Largest Series Product",
         "uuid": "8679c221-d150-4230-b1cd-5ea78ae69db7",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
           "higher_order_functions",
           "math",
           "result_type",
@@ -1215,13 +1223,14 @@
         "slug": "luhn-from",
         "name": "Luhn From",
         "uuid": "f9131b5d-91dd-4514-983d-4abc22bb5d5c",
-        "practices": [],
+        "practices": [
+          "iterators"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "from_trait",
           "higher_order_functions",
-          "iterators",
           "str_to_digits"
         ]
       },
@@ -1258,11 +1267,12 @@
         "slug": "rail-fence-cipher",
         "name": "Rail Fence Cipher",
         "uuid": "9a8bae4f-2c0b-4e9e-aab2-b92f82dd3b87",
-        "practices": [],
+        "practices": [
+          "char"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
           "cipher",
           "strings"
         ]
@@ -1287,15 +1297,16 @@
         "slug": "rotational-cipher",
         "name": "Rotational Cipher",
         "uuid": "5dbecc83-2c8d-467d-be05-f28a08f7abcf",
-        "practices": [],
+        "practices": [
+          "char",
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
           "iterators",
           "primitive_types",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1303,13 +1314,14 @@
         "slug": "simple-cipher",
         "name": "Simple Cipher",
         "uuid": "3aba9330-da46-48ee-bb9d-7e8f6c1ae7eb",
-        "practices": [],
+        "practices": [
+          "char",
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
           "ascii",
-          "chars",
-          "str_vs_string",
           "strings"
         ]
       },
@@ -1317,14 +1329,15 @@
         "slug": "word-count",
         "name": "Word Count",
         "uuid": "6c5c0dc3-4f5b-4f83-bf67-a45bf4ea6be4",
-        "practices": [],
+        "practices": [
+          "entry-api",
+          "hashmap",
+          "string-vs-str"
+        ],
         "prerequisites": [],
         "difficulty": 4,
         "topics": [
-          "chars",
-          "entry_api",
-          "hashmaps",
-          "str_vs_string",
+          "char",
           "strings"
         ]
       },
@@ -1382,12 +1395,13 @@
         "slug": "decimal",
         "name": "Decimal",
         "uuid": "7cefed7c-37f4-46c5-9a45-68fe4d0fb326",
-        "practices": [],
+        "practices": [
+          "external-crates"
+        ],
         "prerequisites": [],
         "difficulty": 7,
         "topics": [
           "bigint",
-          "external_crates",
           "parsing",
           "strings",
           "structs",
