@@ -1,8 +1,10 @@
 {
+  "blurb": "Convert a resistor band's color to its numeric representation and back, using external crates",
   "authors": [
     "still-flow",
     "coriolinus"
   ],
+  "contributors": [],
   "files": {
     "solution": [
       "src/lib.rs",
@@ -15,7 +17,7 @@
       ".meta/exemplar.rs"
     ]
   },
-  "blurb": "Convert a resistor band's color to its numeric representation and back, using external crates",
   "source": "Maud de Vries, Erik Schierboom",
-  "source_url": "https://github.com/exercism/problem-specifications/issues/1458"
+  "source_url": "https://github.com/exercism/problem-specifications/issues/1458",
+  "test_runner": false
 }
