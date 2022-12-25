@@ -124,3 +124,15 @@ fn test_y_is_treated_like_a_vowel_at_the_end_of_a_consonant_cluster() {
 fn test_a_whole_phrase() {
     assert_eq!(pl::translate("quick fast run"), "ickquay astfay unray");
 }
+
+#[test]
+#[ignore]
+fn test_single_letters() {
+    assert_eq!(pl::translate("a t"), "aay tay");
+}
+
+#[test]
+#[ignore]
+fn test_double_space() {
+    assert_eq!(pl::translate("double  space"), "oubleday acespay");
+}
