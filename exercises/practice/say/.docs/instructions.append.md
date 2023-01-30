@@ -14,6 +14,6 @@ Adding 'and' into number text has not been implemented in test cases.
 
 ### Extension
 
-Add capability of converting up to the max value for u64: 9,223,372,036,854,775,807.
+Add capability of converting up to the max value for u64: 18,446,744,073,709,551,615.
 
 For hints at the output this should have, look at the last test case.
