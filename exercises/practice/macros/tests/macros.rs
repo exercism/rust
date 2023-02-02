@@ -207,8 +207,7 @@ mod simple_trybuild {
         if let Ok(result) = result {
             assert!(
                 !result.status.success(),
-                "Expected {:?} to fail to compile, but it succeeded.",
-                file_path
+                "Expected {file_path:?} to fail to compile, but it succeeded."
             );
         } else {
             panic!("Running subprocess failed.");

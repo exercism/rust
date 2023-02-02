@@ -4,10 +4,7 @@ fn assert_in_delta(expected: f64, actual: f64) {
     let diff: f64 = (expected - actual).abs();
     let delta: f64 = 0.01;
     if diff > delta {
-        panic!(
-            "Your result of {} should be within {} of the expected result {}",
-            actual, delta, expected
-        )
+        panic!("Your result of {actual} should be within {delta} of the expected result {expected}")
     }
 }
 

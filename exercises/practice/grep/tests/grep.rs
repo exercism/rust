@@ -87,8 +87,7 @@ fn set_up_files(files: &[(&str, &str)]) {
     for (file_name, file_content) in files {
         fs::write(file_name, file_content).unwrap_or_else(|_| {
             panic!(
-                "Error setting up file '{}' with the following content:\n{}",
-                file_name, file_content
+                "Error setting up file '{file_name}' with the following content:\n{file_content}"
             )
         });
     }
@@ -97,7 +96,7 @@ fn set_up_files(files: &[(&str, &str)]) {
 fn tear_down_files(files: &[&str]) {
     for file_name in files {
         fs::remove_file(file_name)
-            .unwrap_or_else(|_| panic!("Could not delete file '{}'", file_name));
+            .unwrap_or_else(|_| panic!("Could not delete file '{file_name}'"));
     }
 }
 

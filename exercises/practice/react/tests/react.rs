@@ -155,8 +155,7 @@ impl CallbackRecorder {
         assert_eq!(
             self.value.replace(Some(v)),
             None,
-            "Callback was called too many times; can't be called with {}",
-            v
+            "Callback was called too many times; can't be called with {v}"
         );
     }
 }

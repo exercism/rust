@@ -38,24 +38,19 @@ fn test_is_empty() {
             list.push(i);
             assert!(
                 !list.is_empty(),
-                "List was empty after having inserted {}/{} elements",
-                i,
-                inserts
+                "List was empty after having inserted {i}/{inserts} elements"
             );
         }
         for i in 0..inserts {
             assert!(
                 !list.is_empty(),
-                "List was empty before removing {}/{} elements",
-                i,
-                inserts
+                "List was empty before removing {i}/{inserts} elements"
             );
             list.pop();
         }
         assert!(
             list.is_empty(),
-            "List wasn't empty after having removed {} elements",
-            inserts
+            "List wasn't empty after having removed {inserts} elements"
         );
     }
 }

@@ -67,16 +67,15 @@ fn check(input: &[Domino]) -> CheckResult {
 fn assert_correct(input: &[Domino]) {
     match check(input) {
         Correct => (),
-        GotInvalid => panic!("Unexpectedly got invalid on input {:?}", input),
-        ChainingFailure(output) => panic!(
-            "Chaining failure for input {:?}, output {:?}",
-            input, output
-        ),
+        GotInvalid => panic!("Unexpectedly got invalid on input {input:?}"),
+        ChainingFailure(output) => {
+            panic!("Chaining failure for input {input:?}, output {output:?}")
+        }
         LengthMismatch(output) => {
-            panic!("Length mismatch for input {:?}, output {:?}", input, output)
+            panic!("Length mismatch for input {input:?}, output {output:?}")
         }
         DominoMismatch(output) => {
-            panic!("Domino mismatch for input {:?}, output {:?}", input, output)
+            panic!("Domino mismatch for input {input:?}, output {output:?}")
         }
     }
 }
