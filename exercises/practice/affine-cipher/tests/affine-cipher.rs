@@ -62,13 +62,9 @@ fn encode_with_a_not_coprime_to_m() {
     const EXPECTED_ERROR: AffineCipherError = AffineCipherError::NotCoprime(6);
     match encode("This is a test.", 6, 17) {
         Err(EXPECTED_ERROR) => (),
-        Err(err) => panic!(
-            "Incorrect error: expected: {:?}, actual: {:?}.",
-            EXPECTED_ERROR, err
-        ),
+        Err(err) => panic!("Incorrect error: expected: {EXPECTED_ERROR:?}, actual: {err:?}."),
         Ok(r) => panic!(
-            "Cannot encode/decode when a is coprime to m: expected: {:?}, actual: {:?}.",
-            EXPECTED_ERROR, r
+            "Cannot encode/decode when a is coprime to m: expected: {EXPECTED_ERROR:?}, actual: {r:?}.",
         ),
     }
 }
@@ -134,13 +130,9 @@ fn decode_with_a_not_coprime_to_m() {
     const EXPECTED_ERROR: AffineCipherError = AffineCipherError::NotCoprime(13);
     match decode("Test", 13, 11) {
         Err(EXPECTED_ERROR) => (),
-        Err(e) => panic!(
-            "Incorrect error: expected: {:?}, actual: {:?}.",
-            EXPECTED_ERROR, e
-        ),
+        Err(e) => panic!("Incorrect error: expected: {EXPECTED_ERROR:?}, actual: {e:?}."),
         Ok(r) => panic!(
-            "Cannot encode/decode when a is coprime to m: expected: {:?}, actual: {:?}.",
-            EXPECTED_ERROR, r
+            "Cannot encode/decode when a is coprime to m: expected: {EXPECTED_ERROR:?}, actual: {r:?}.",
         ),
     }
 }

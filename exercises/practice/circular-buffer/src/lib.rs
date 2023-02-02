@@ -16,7 +16,7 @@ impl<T> CircularBuffer<T> {
             "Construct a new CircularBuffer with the capacity to hold {}.",
             match capacity {
                 1 => "1 element".to_string(),
-                _ => format!("{} elements", capacity),
+                _ => format!("{capacity} elements"),
             }
         );
     }

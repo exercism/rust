@@ -6,7 +6,7 @@ pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
         input,
         match worker_count {
             1 => "1 worker".to_string(),
-            _ => format!("{} workers", worker_count),
+            _ => format!("{worker_count} workers"),
         }
     );
 }
