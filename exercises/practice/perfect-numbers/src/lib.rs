@@ -6,5 +6,5 @@ pub enum Classification {
 }
 
 pub fn classify(num: u64) -> Option<Classification> {
-    unimplemented!("classify {}", num);
+    unimplemented!("classify {num}");
 }

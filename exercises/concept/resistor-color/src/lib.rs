@@ -17,10 +17,7 @@ pub fn color_to_value(color: ResistorColor) -> u32 {
 }
 
 pub fn value_to_color_string(value: u32) -> String {
-    unimplemented!(
-        "convert the value {} into a string representation of color",
-        value
-    )
+    unimplemented!("convert the value {value} into a string representation of color")
 }
 
 pub fn colors() -> Vec<ResistorColor> {

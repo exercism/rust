@@ -10,6 +10,6 @@ impl Player {
     }
 
     pub fn cast_spell(&mut self, mana_cost: u32) -> u32 {
-        unimplemented!("Cast a spell of cost {}", mana_cost)
+        unimplemented!("Cast a spell of cost {mana_cost}")
     }
 }

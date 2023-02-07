@@ -21,6 +21,6 @@ impl Forth {
     }
 
     pub fn eval(&mut self, input: &str) -> Result {
-        unimplemented!("result of evaluating '{}'", input)
+        unimplemented!("result of evaluating '{input}'")
     }
 }

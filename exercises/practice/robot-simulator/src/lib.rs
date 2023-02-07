@@ -13,7 +13,7 @@ pub struct Robot;
 
 impl Robot {
     pub fn new(x: i32, y: i32, d: Direction) -> Self {
-        unimplemented!("Create a robot at (x, y) ({}, {}) facing {:?}", x, y, d,)
+        unimplemented!("Create a robot at (x, y) ({x}, {y}) facing {d:?}")
     }
 
     #[must_use]
@@ -33,10 +33,7 @@ impl Robot {
 
     #[must_use]
     pub fn instructions(self, instructions: &str) -> Self {
-        unimplemented!(
-            "Follow the given sequence of instructions: {}",
-            instructions
-        )
+        unimplemented!("Follow the given sequence of instructions: {instructions}")
     }
 
     pub fn position(&self) -> (i32, i32) {

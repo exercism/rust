@@ -14,17 +14,11 @@ pub enum Allergen {
 
 impl Allergies {
     pub fn new(score: u32) -> Self {
-        unimplemented!(
-            "Given the '{}' score, construct a new Allergies struct.",
-            score
-        );
+        unimplemented!("Given the '{score}' score, construct a new Allergies struct.");
     }
 
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
-        unimplemented!(
-            "Determine if the patient is allergic to the '{:?}' allergen.",
-            allergen
-        );
+        unimplemented!("Determine if the patient is allergic to the '{allergen:?}' allergen.");
     }
 
     pub fn allergies(&self) -> Vec<Allergen> {

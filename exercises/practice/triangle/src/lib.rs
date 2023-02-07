@@ -2,7 +2,7 @@ pub struct Triangle;
 
 impl Triangle {
     pub fn build(sides: [u64; 3]) -> Option<Triangle> {
-        unimplemented!("Construct new Triangle from following sides: {:?}. Return None if the sides are invalid.", sides);
+        unimplemented!("Construct new Triangle from following sides: {sides:?}. Return None if the sides are invalid.");
     }
 
     pub fn is_equilateral(&self) -> bool {

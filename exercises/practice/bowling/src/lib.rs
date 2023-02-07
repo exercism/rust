@@ -12,7 +12,7 @@ impl BowlingGame {
     }
 
     pub fn roll(&mut self, pins: u16) -> Result<(), Error> {
-        unimplemented!("Record that {} pins have been scored", pins);
+        unimplemented!("Record that {pins} pins have been scored");
     }
 
     pub fn score(&self) -> Option<u16> {

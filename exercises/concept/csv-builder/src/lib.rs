@@ -14,10 +14,7 @@ impl CsvRecordBuilder {
 
     /// Adds an item to the list separated by a space and a comma.
     pub fn add(&mut self, val: &str) {
-        unimplemented!(
-            "implement the `CsvRecordBuilder::add` method, adding {}",
-            val
-        )
+        unimplemented!("implement the `CsvRecordBuilder::add` method, adding {val}")
     }
 
     /// Consumes the builder and returns the comma separated list

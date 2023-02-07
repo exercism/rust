@@ -78,7 +78,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
     // It turns out this introduces a significant amount of extra complexity to this exercise.
     // We chose not to cover this here, since this exercise is probably enough work as-is.
     pub fn value(&self, id: CellId) -> Option<T> {
-        unimplemented!("Get the value of the cell whose id is {:?}", id)
+        unimplemented!("Get the value of the cell whose id is {id:?}")
     }
 
     // Sets the value of the specified input cell.
@@ -124,9 +124,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
         callback: CallbackId,
     ) -> Result<(), RemoveCallbackError> {
         unimplemented!(
-            "Remove the callback identified by the CallbackId {:?} from the cell {:?}",
-            callback,
-            cell,
+            "Remove the callback identified by the CallbackId {callback:?} from the cell {cell:?}"
         )
     }
 }

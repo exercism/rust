@@ -25,7 +25,7 @@ impl<R: Read> ReadStats<R> {
 
 impl<R: Read> Read for ReadStats<R> {
     fn read(&mut self, buf: &mut [u8]) -> Result<usize> {
-        unimplemented!("Collect statistics about this call reading {:?}", buf)
+        unimplemented!("Collect statistics about this call reading {buf:?}")
     }
 }
 
@@ -54,7 +54,7 @@ impl<W: Write> WriteStats<W> {
 
 impl<W: Write> Write for WriteStats<W> {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
-        unimplemented!("Collect statistics about this call writing {:?}", buf)
+        unimplemented!("Collect statistics about this call writing {buf:?}")
     }
 
     fn flush(&mut self) -> Result<()> {

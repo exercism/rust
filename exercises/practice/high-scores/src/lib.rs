@@ -3,10 +3,7 @@ pub struct HighScores;
 
 impl HighScores {
     pub fn new(scores: &[u32]) -> Self {
-        unimplemented!(
-            "Construct a HighScores struct, given the scores: {:?}",
-            scores
-        )
+        unimplemented!("Construct a HighScores struct, given the scores: {scores:?}")
     }
 
     pub fn scores(&self) -> &[u32] {
