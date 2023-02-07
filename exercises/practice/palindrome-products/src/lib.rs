@@ -8,10 +8,7 @@ pub struct Palindrome(u64);
 impl Palindrome {
     /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
     pub fn new(value: u64) -> Option<Palindrome> {
-        unimplemented!(
-            "if the value {} is a palindrome return Some, otherwise return None",
-            value
-        );
+        unimplemented!("if the value {value} is a palindrome return Some, otherwise return None");
     }
 
     /// Get the value of this palindrome.
@@ -22,7 +19,6 @@ impl Palindrome {
 
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
     unimplemented!(
-        "returns the minimum and maximum number of palindromes of the products of two factors in the range {} to {}",
-        min, max
+        "returns the minimum and maximum number of palindromes of the products of two factors in the range {min} to {max}"
     );
 }

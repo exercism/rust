@@ -10,6 +10,6 @@ impl Display for Roman {
 
 impl From<u32> for Roman {
     fn from(num: u32) -> Self {
-        unimplemented!("Construct a Roman object from the '{}' number", num);
+        unimplemented!("Construct a Roman object from the '{num}' number");
     }
 }

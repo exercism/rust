@@ -92,7 +92,7 @@ fn test_minimal_generic_bounds() {
     impl fmt::Display for Fizzable {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             let Fizzable(ref n) = self;
-            write!(f, "{}", n)
+            write!(f, "{n}")
         }
     }
 

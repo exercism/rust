@@ -7,13 +7,13 @@ For example:
 fn log(msg: String) { // msg takes ownership of the value passed to it
     let formatted_datetime = String::new();
     // code  to format current datetime snipped
-    println!("{} at {}", msg, formatted_datetime);
+    println!("{msg} at {formatted_datetime}");
 } // msg is dropped here
 
 pub fn main() {
     let my_string = "Something happened".to_string();
     log(my_string); // passing my_string transfers ownership of its value to msg
-    //println!("{:?}", my_string); // uncommenting this line will error because my_string's value has been dropped while owned by msg
+    //println!("{my_string:?}"); // uncommenting this line will error because my_string's value has been dropped while owned by msg
 }
 ```
 
@@ -30,13 +30,13 @@ for the duration of that function.
 fn log(msg: &String) { //msg is defined as a reference with an ampersand
     let formatted_datetime: String;
     // code  to format current datetime snipped
-    println!("{} at {}", msg, formatted_datetime);
+    println!("{msg} at {formatted_datetime}");
 }
 
 pub fn main() {
     let my_string = "Something happened".to_string();
     log(&my_string); // my_string is passed as a reference with an ampersand
-    println!("{:?}", my_string);
+    println!("{my_string:?}");
 }
 ```
 
@@ -119,9 +119,9 @@ fn add_five(counter: &mut i32) { //counter is defined as a mutable reference
 
 pub fn main() {
     let mut my_count = 0; // my_count must be defined as mutable
-    println!("{:?}", my_count);
+    println!("{my_count:?}");
     add_five(&mut my_count); // my_count is passed as a mutable reference
-    println!("{:?}", my_count);
+    println!("{my_count:?}");
 }
 ```
 
@@ -138,11 +138,11 @@ fn add_five(counter: &mut i32) {
 
 pub fn main() {
     let mut my_count = 0;
-    println!("{:?}", my_count);
+    println!("{my_count:?}");
     let mut my_count2 = &mut my_count; // first mutable reference to my_count
     add_five(&mut my_count); // this errors because my_count's mutable borrow by my_count2 will be used on the next line
     add_five(my_count2);
-    println!("{:?}", my_count);
+    println!("{my_count:?}");
 }
 ```
 
@@ -155,11 +155,11 @@ fn add_five(counter: &mut i32) {
 
 pub fn main() {
     let mut my_count = 0;
-    println!("{:?}", my_count);
+    println!("{my_count:?}");
     let mut my_count2 = &mut my_count; // first mutable reference to my_count
     add_five(my_count2); // my_count2's borrow of my_count is not used afer this point
     add_five(&mut my_count); // compiler allows second mutable borrow of my_count
-    println!("{:?}", my_count); // because it does not conflict with first mutable borrow
+    println!("{my_count:?}"); // because it does not conflict with first mutable borrow
 }
 ```
 

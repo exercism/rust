@@ -22,7 +22,7 @@ pub fn color_to_value(color: ResistorColor) -> usize {
 
 pub fn value_to_color_string(value: usize) -> String {
     ResistorColor::from_int(value)
-        .map(|color| format!("{:?}", color))
+        .map(|color| format!("{color:?}"))
         .unwrap_or_else(|_| "value out of range".into())
 }
 

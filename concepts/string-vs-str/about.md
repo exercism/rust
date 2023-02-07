@@ -39,7 +39,7 @@ println!("n_chars = {}", n_chars);             // 25
 println!("example.len() = {}", example.len()); // 27
 
 println!("final char: {}", example.chars().nth(n_chars-1).unwrap()); // ❤
-println!("final byte: {}", final_byte);                              // 164
+println!("final byte: {final_byte}");                                // 164
 println!("char of final byte: {}", final_byte as char);              // ¤
 ```
 

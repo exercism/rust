@@ -14,7 +14,7 @@ fn hs_from<'a>(input: &[&'a str]) -> HashSet<&'a str> {
 ///
 /// Note that the output can be in any order. Here, we use a HashSet to
 /// abstract away the order of outputs.
-fn test<'a, 'b>(input: &[&'a str], expected: &[&'b str]) {
+fn test(input: &[&str], expected: &[&str]) {
     assert_eq!(hs_from(&winning_hands(input)), hs_from(expected))
 }
 

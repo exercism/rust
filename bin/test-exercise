@@ -92,7 +92,7 @@ done
 # run tests from within exercise directory
 # (use subshell so we auto-reset to current pwd after)
 (
-   cd $exercise
+   cd "$exercise"
    if [ -n "$CLIPPY" ]; then
      # Consider any Clippy to be an error in tests only.
      # For now, not the example solutions since they have many Clippy warnings,

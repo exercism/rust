@@ -41,7 +41,7 @@ pub fn main() {
 }
 
 fn say_hi(phrase: &String) {
-    println!("{:?}", phrase);
+    println!("{phrase:?}");
 }
 
 // mismatched types
@@ -58,7 +58,7 @@ pub fn main() {
 }
 
 fn say_hi(phrase: &str) {
-    println!("{:?}", phrase);
+    println!("{phrase:?}");
 }
 ```
 

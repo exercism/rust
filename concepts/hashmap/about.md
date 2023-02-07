@@ -25,7 +25,7 @@ Other than the indexing operator, there are two other ways of accessing values s
 
 ```rust
 if let Some(blue_score) = scores.get("Blue") {
-    println!("Blue scored: {} \n", blue_score);
+    println!("Blue scored: {blue_score} \n");
 }
 ```
 
@@ -41,7 +41,7 @@ for vote in votes {
     *count += 1;
 }
 
-println!("{:#?}", vote_counter);
+println!("{vote_counter:#?}");
 ```
 
 This API makes certain common access patterns very convenient; it has an entire concept (Entry API) dedicated to it.

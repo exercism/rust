@@ -13,7 +13,7 @@ impl School {
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
-        unimplemented!("Add {} to the roster for {}", student, grade)
+        unimplemented!("Add {student} to the roster for {grade}")
     }
 
     pub fn grades(&self) -> Vec<u32> {
@@ -25,6 +25,6 @@ impl School {
     // the internal structure can be completely arbitrary. The tradeoff is that some data
     // must be copied each time `grade` is called.
     pub fn grade(&self, grade: u32) -> Vec<String> {
-        unimplemented!("Return the list of students in {}", grade)
+        unimplemented!("Return the list of students in {grade}")
     }
 }

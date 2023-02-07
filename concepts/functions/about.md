@@ -23,7 +23,7 @@ In the following example the function takes in one parameter of type `i32`, bind
 
 ```rust
 fn print_integer(value: i32) {
-    println!("{:?}", value);
+    println!("{value:?}");
 }
 ```
 

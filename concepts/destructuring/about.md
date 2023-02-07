@@ -32,7 +32,7 @@ struct ArabianNights {
 let teller = ArabianNights { name: "Scheherazade".into(), stories: 1001 };
 {
     let ArabianNights { name, stories } = teller;
-    println!("{} told {} stories", name, stories);
+    println!("{name} told {stories} stories");
 }
 ```
 
@@ -42,7 +42,7 @@ The `..` operator can be used to ignore some fields when destructuring:
 
 ```rust
 let ArabianNights { name, .. } = teller;
-println!("{} survived by her wits", name);
+println!("{name} survived by her wits");
 ```
 
 ## Conditional Destructuring
@@ -51,6 +51,6 @@ Destructuring structs and tuples is infallible. However, enums can also be destr
 
 ```rust
 if let Some(foo) = foo {
-    println!("{:?}", foo);
+    println!("{foo:?}");
 }
 ```

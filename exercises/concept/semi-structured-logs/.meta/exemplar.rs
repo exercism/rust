@@ -10,15 +10,15 @@ pub fn log(level: LogLevel, message: &str) -> String {
         LogLevel::Info => info(message),
         LogLevel::Warning => warn(message),
         LogLevel::Error => error(message),
-        LogLevel::Debug => format!("[DEBUG]: {}", message),
+        LogLevel::Debug => format!("[DEBUG]: {message}"),
     }
 }
 pub fn info(message: &str) -> String {
-    format!("[INFO]: {}", message)
+    format!("[INFO]: {message}")
 }
 pub fn warn(message: &str) -> String {
-    format!("[WARNING]: {}", message)
+    format!("[WARNING]: {message}")
 }
 pub fn error(message: &str) -> String {
-    format!("[ERROR]: {}", message)
+    format!("[ERROR]: {message}")
 }

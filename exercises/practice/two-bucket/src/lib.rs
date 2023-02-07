@@ -24,10 +24,6 @@ pub fn solve(
     start_bucket: &Bucket,
 ) -> Option<BucketStats> {
     unimplemented!(
-        "Given one bucket of capacity {}, another of capacity {}, starting with {:?}, find pours to reach {}, or None if impossible",
-        capacity_1,
-        capacity_2,
-        start_bucket,
-        goal,
+        "Given one bucket of capacity {capacity_1}, another of capacity {capacity_2}, starting with {start_bucket:?}, find pours to reach {goal}, or None if impossible"
     );
 }

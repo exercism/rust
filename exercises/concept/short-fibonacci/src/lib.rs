@@ -7,7 +7,7 @@ pub fn create_empty() -> Vec<u8> {
 ///
 /// Applications often use buffers when serializing data to send over the network.
 pub fn create_buffer(count: usize) -> Vec<u8> {
-    unimplemented!("create a zeroized buffer of {} bytes", count)
+    unimplemented!("create a zeroized buffer of {count} bytes")
 }
 
 /// Create a vector containing the first five elements of the Fibonacci sequence.

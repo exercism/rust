@@ -9,7 +9,7 @@ A String can be created using the `String::new()` or `String::from()` associated
 ```rust
 let my_string = String::from("The answer is");
 let answer = 42.to_string();
-println!("{} {}", my_string, answer);
+println!("{my_string} {answer}");
 ```
 
 ### The `format!` Macro
@@ -45,7 +45,7 @@ fn main() {
     let s3 = String::from("toe");
 
     let s = s1 + "-" + &s2 + "-" + &s3;
-    println!("{}", s);
+    println!("{s}");
 }
 ```
 
@@ -56,10 +56,10 @@ Since Rust strings are UTF-8 encoded individual characters are not all of the sa
 ```rust
 let alphabet: String = ('a'..='z').collect();
 for c in alphabet.chars() {
-    println!("{}", c);
+    println!("{c}");
 }
 let j = alphabet.chars().nth(9);
-println!("{:?}", j); // prints Some('j')
+println!("{j:?}"); // prints Some('j')
 ```
 
 ## More

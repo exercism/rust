@@ -8,5 +8,5 @@ pub enum Error {
 }
 
 pub fn convert(input: &str) -> Result<String, Error> {
-    unimplemented!("Convert the input '{}' to a string", input);
+    unimplemented!("Convert the input '{input}' to a string");
 }

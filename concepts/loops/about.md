@@ -36,7 +36,7 @@ fn main() {
     let a = [10, 20, 30, 40, 50];
 
     for x in a {
-        println!("the value is: {}", x);
+        println!("the value is: {x}");
     }
 }
 ```
@@ -46,7 +46,7 @@ Ranges are iterators too, which makes iterating through them with the `for` loop
 ```rust
 fn main() {
     for x in 0..10 {
-        println!("the value is: {}", x);
+        println!("the value is: {x}");
     }
 }
 ```

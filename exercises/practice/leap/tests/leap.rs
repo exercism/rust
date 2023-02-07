@@ -95,6 +95,6 @@ fn test_years_1600_to_1699() {
         .collect::<Vec<_>>();
 
     if !incorrect_years.is_empty() {
-        panic!("incorrect result for years: {:?}", incorrect_years);
+        panic!("incorrect result for years: {incorrect_years:?}");
     }
 }
