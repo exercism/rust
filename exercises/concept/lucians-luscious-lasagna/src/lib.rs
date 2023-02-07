@@ -1,7 +1,3 @@
-// This stub file contains items that aren't used yet; feel free to remove this module attribute
-// to enable stricter warnings.
-#![allow(unused)]
-
 pub fn expected_minutes_in_oven() -> i32 {
     unimplemented!("return expected minutes in the oven")
 }
