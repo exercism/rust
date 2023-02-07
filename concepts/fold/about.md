@@ -12,7 +12,7 @@ Once the iterator drains, the final value of the accumulator is returned.
 ```rust
 pub fn main() {
     let even_sum = (1..=10).fold(0, |acc, num| if num % 2 == 0 { acc + num } else { acc });
-    println!("{:?}", even_sum);
+    println!("{even_sum:?}");
 }
 ```
 
@@ -39,7 +39,7 @@ pub fn giant_grunts(initial: char) -> String {
 
 pub fn main() {
     let song = giant_grunts('F');
-    println!("{:?}", song);
+    println!("{song:?}");
 }
 ```
 

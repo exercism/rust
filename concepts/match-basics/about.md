@@ -36,7 +36,7 @@ fn ordinal(n: u32) -> String {
         3 => "rd",
         _ => "th",
     };
-    format!("{}{}", n, ordinal)
+    format!("{n}{ordinal}")
 }
 ```
 
@@ -105,7 +105,7 @@ impl<E: std::fmt::Display> OrLog for Result<(), E> {
             // discard Ok results
             Ok(()) => {},
             // log errors
-            Err(err) => println!("ERROR: {}", err),
+            Err(err) => println!("ERROR: {err}"),
         }
     }
 }

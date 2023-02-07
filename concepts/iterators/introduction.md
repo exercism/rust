@@ -23,6 +23,6 @@ assert_eq!(None, iter.next());
 
 // Loop over iterators with built-in methods, such as `map` and `collect`
 let w: HashMap<_, _> = v.into_iter().map(|x| (x, x + 1)).collect();
-println!("{:?}", w);
+println!("{w:?}");
 // => {1: 2, 0: 1, 2: 3}
 ```
