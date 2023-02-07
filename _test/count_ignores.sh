@@ -25,6 +25,12 @@ for e in "$repo"/exercises/*/*; do
       done
       want_ignores=$((total_tests - 1))
       if [ "$total_ignores" != "$want_ignores" ]; then
+        # ShellCheck wants us to use printf,
+        # but there are no other uses of printf in this repo,
+        # so printf hasn't been tested to work yet.
+        # (We would not be opposed to using printf and removing this disable;
+        # we just haven't tested it to confirm it works yet).
+        # shellcheck disable=SC2028
         echo "\033[1;31m$e: Has $total_tests tests and $total_ignores ignores (should be $want_ignores)\033[0m"
         exitcode=1
       fi
