@@ -22,11 +22,11 @@ A [tuple][tuple] is made from the conditions for the year being evenly divisible
 This is similar to `default` used in `switch` statements in other languages.
 It returns `false` no matter what the values in the tuple are.
 
-| year | year % 4 | year % 100 | year % 400 == 0 | is leap year |
+| year | year % 4 | year % 100 |   year % 400    | is leap year |
 | ---- | -------- | ---------- | --------------- | ------------ |
 | 2020 |        0 |         20 |              20 |         true |
 | 2019 |        3 |         19 |              19 |        false |
-| 2020 |        0 |          0 |               0 |         true |
+| 2000 |        0 |          0 |               0 |         true |
 | 1900 |        0 |          0 |             300 |        false |
 
 Although some may consider it to be a more "functional" approach, the `switch` on a `tuple` approach is somewhat more verbose than other approaches,
