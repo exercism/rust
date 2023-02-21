@@ -1467,6 +1467,15 @@
         ]
       },
       {
+        "slug": "secret-handshake",
+        "name": "Secret Handshake",
+        "uuid": "8c044530-9deb-4ff7-a638-98d6c05ebbb8",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": []
+      },
+      {
         "slug": "hexadecimal",
         "name": "Hexadecimal",
         "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",

@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "dem4ron"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/secret-handshake.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
+  },
+  "blurb": "Given a decimal number, convert it to the appropriate sequence of events for a secret handshake.",
+  "source": "Bert, in Mary Poppins",
+  "source_url": "https://www.imdb.com/title/tt0058331/quotes/qt0437047"
+}
