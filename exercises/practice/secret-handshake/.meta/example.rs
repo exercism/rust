@@ -1,7 +1,9 @@
-const COMMANDS:[&str; 4] = ["wink", "double blink", "close your eyes", "jump"];
+const COMMANDS: [&str; 4] = ["wink", "double blink", "close your eyes", "jump"];
 
 pub fn commands(n: u8) -> Option<Vec<&'static str>> {
-    let result: Vec<&str> = COMMANDS.iter().enumerate()
+    let result: Vec<&str> = COMMANDS
+        .iter()
+        .enumerate()
         .filter(|(i, _)| (1u8 << *i) & n != 0)
         .map(|(_, &c)| c)
         .collect();
