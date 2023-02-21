@@ -68,5 +68,5 @@ fn reverse_all_possible_actions() {
 #[test]
 #[ignore]
 fn do_nothing_for_zero() {
-    assert_eq!(commands(0),  Vec::<&'static str>::new())
+    assert_eq!(commands(0), Vec::<&'static str>::new())
 }
