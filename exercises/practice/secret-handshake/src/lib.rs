@@ -1,3 +1,3 @@
-pub fn commands(n: u8) -> Option<Vec<&'static str>> {
+pub fn commands(n: u8) -> Vec<&'static str> {
     unimplemented!("What is the secret handshake for {n}?")
 }
