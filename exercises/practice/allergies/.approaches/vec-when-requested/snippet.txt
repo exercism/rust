@@ -1,0 +1,7 @@
+pub fn allergies(&self) -> Vec<Allergen> {
+    ALLERGENS
+        .iter()
+        .filter(|a| self.is_allergic_to(a))
+        .cloned()
+        .collect()
+}
