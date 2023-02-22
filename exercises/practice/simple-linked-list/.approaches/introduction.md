@@ -7,7 +7,7 @@ Another approach is to calculate the length every time it is asked for.
 ## General guidance
 
 One thing to keep in mind is to not mutate the list when it is not necessary.
-If you find yourself using `mut self` for  `rev()` or `into()`, that is an indication that the list is being mutated when it is not necessary.
+For instance, if you find yourself using `mut self` for  `rev()` or `into()`, that is an indication that the list is being mutated when it is not necessary.
 
 ## Approach: Keep track of length
 
