@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "648219f8-b4a6-4131-860c-c93ea80042b1",
+      "slug": "keep-track-of-length",
+      "title": "Keep track of length",
+      "blurb": "Keep track of length as you go.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "aba9f9ae-f7a5-4620-9a28-6a2bb0b240a9",
+      "slug": "do-not-keep-track-of-length",
+      "title": "Do not keep track of length",
+      "blurb": "Do not keep track of length as you go.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
