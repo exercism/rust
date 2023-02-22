@@ -1,8 +1,8 @@
 # Introduction
 
 There is more than one way to solve Allergies.
-One approach can be to create a [`Vec`][vec] of `Allergen`s when the `Allergies` struct is created.
-Another approach can be to store the `Allergen`s as a [`u32`][u32] and only output a `Vec` of `Allergen`s when requested.
+One approach can be to create a [`Vec`][vec] of `Allergen` values when the `Allergies` struct is created.
+Another approach can be to store the `Allergen` values as a [`u32`][u32] and only output a `Vec` of `Allergen` values when requested.
 
 ## General guidance
 
@@ -99,13 +99,16 @@ const ALLERGENS: [Allergen; 8] = [
 pub struct Allergies {
     allergens: u32,
 }
+
 impl Allergies {
     pub fn new(n: u32) -> Allergies {
         Allergies { allergens: n }
     }
+    
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
         self.allergens & *allergen as u32 != 0
     }
+    
     pub fn allergies(&self) -> Vec<Allergen> {
         ALLERGENS
             .iter()
