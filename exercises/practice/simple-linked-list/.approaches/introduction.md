@@ -9,6 +9,8 @@ Another approach is to calculate the length every time it is asked for.
 One thing to keep in mind is to not mutate the list when it is not necessary.
 For instance, if you find yourself using `mut self` for  `rev()` or `into()`, that is an indication that the list is being mutated when it is not necessary.
 
+A well-known treatment of writing linked lists in Rust is [`Learn Rust With Entirely Too Many Linked Lists`][too-many-lists].
+
 ## Approach: Keep track of length
 
 ```rust
@@ -202,7 +204,11 @@ For more information, check the [do not keep track of length appproach][approach
 
 ## Which approach to use?
 
-Which to use is pretty much a matter of personal preference.
+Since benchmarking is currently outside the scope of this document, which to use is pretty much a matter of personal preference.
+To keep track of the length as you go may seem wasteful if the length is never requested.
+On the other hand, if the the length is requested more than once on an unchanged list, it may seem wasteful to calculate the same length
+multiple times.
 
+[too-many-lists]: https://rust-unofficial.github.io/too-many-lists/
 [approach-keep-track-of-length]: https://exercism.org/tracks/rust/exercises/simple-linked-list/approaches/keep-track-of-length
 [approach-do-not-keep-track-of-length]: https://exercism.org/tracks/rust/exercises/simple-linked-list/approaches/do-not-keep-track-of-length
