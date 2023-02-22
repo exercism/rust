@@ -92,7 +92,7 @@ impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
 }
 ```
 
-This approach starts be defining a `Link` type which will be used for the `head` field of `SimpleLinkedList` and the `next` field of `Node`.
+This approach starts by defining a `Link` type which will be used for the `head` field of `SimpleLinkedList` and the `next` field of `Node`.
 Defining `Link<T>` as an `Option<Box<Node<T>>>` in one place helps to keep the code [DRY][dry].
 
 A `len` field is defined for `SimpleLinkedList`.
