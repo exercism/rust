@@ -56,14 +56,14 @@ impl Allergies {
     }
 
     fn calculate_allergens(score: u32) -> Vec<Allergen> {
-        let mut allergies = Vec::<Allergen>::new();
+        let mut allergens = Vec::<Allergen>::new();
 
         for flag in 0..=7 {
             if score & 1 << flag != 0 {
-                allergies.push(ALLERGENS[flag as usize]);
+                allergens.push(ALLERGENS[flag as usize]);
             }
         }
-        allergies
+        allergens
     }
 }
 ```
