@@ -43,7 +43,7 @@ const ALLERGENS: [Allergen; 8] = [
 impl Allergies {
     pub fn new(score: u32) -> Self {
         Self {
-            allergens: Self::calculate_allergies(score),
+            allergens: Self::calculate_allergens(score),
         }
     }
 
@@ -55,7 +55,7 @@ impl Allergies {
         self.allergens.clone()
     }
 
-    fn calculate_allergies(score: u32) -> Vec<Allergen> {
+    fn calculate_allergens(score: u32) -> Vec<Allergen> {
         let mut allergies = Vec::<Allergen>::new();
 
         for flag in 0..=7 {
