@@ -1,0 +1,8 @@
+fn calculate_allergies(score: u32) -> Vec<Allergen> {
+    let mut allergies = Vec::<Allergen>::new();
+    for flag in 0..=7 {
+        if score & 1 << flag != 0 {
+            allergies.push(ALLERGENS[flag as usize]);
+        }
+    }
+    allergies
