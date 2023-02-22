@@ -76,11 +76,11 @@ Next, the methods for the `Allergies` struct are implemented.
 
 The `new()` method uses the `calculate_allergens()` method to set the `allergens` field for a new `Allergies` struct.
 
-The `is_allergic_to()` method uses the [`any(`][any] method to see if the passed-in `Allergen` is contained in the `allergens`
-field, which is a `Vec` of `Allergen`s.
+The `is_allergic_to()` method uses the [`any()`][any] method to see if the passed-in `Allergen` is contained in the `allergens`
+field, which is a `Vec` of `Allergen` values.
 
 The `allergies()` method uses the [`clone()`][clone-method] method to return a copy of the `allergens` `Vec`.
-Since the `Allergen` values derive from `Copy`, they can be inexpensively copied.
+Since the `Allergen` values derive from `Copy`, they are inexpensively copied.
 
 The `calculate_allergens()` method uses [`for` and `range`][for-and-range] to iterate through the indexes of the `ALLERGENS` array.
 The [bitwise AND operator][bitand] (`&`) is used to compare the score with `1` [shifted left][shl] (`<<`) for the value of the `flag`.
