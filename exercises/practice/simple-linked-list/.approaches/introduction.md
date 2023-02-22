@@ -103,7 +103,7 @@ impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
 }
 ```
 
-For more information, check the [keep track of length][approach-keep-track-of-length].
+For more information, check the [keep track of length appproach][approach-keep-track-of-length].
 
 ## Approach: Do not keep track of length
 
@@ -186,6 +186,8 @@ impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
     }
 }
 ```
+
+For more information, check the [do not keep track of length appproach][approach-do-not-keep-track-of-length].
 
 ## Which approach to use?
 
