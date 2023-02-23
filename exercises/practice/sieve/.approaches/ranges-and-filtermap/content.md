@@ -25,9 +25,9 @@ A [Range][range] is defined that goes from `2` through the length of the `Vec`.
 Each number from the range is passed to the [`filter_map()`][filtermap].
 
 The [closure][closure] (also known as a lambda) in the body of `filter_map()` uses the [`take()`][take] method, combined with the
-unwrap operator (`?`) to get the element in the `Vec` at the index of the number passed in from the range.
+unwrap operator (`?`), to get the element in the `Vec` at the index of the number passed in from the range.
 If the element value is `None`, then no further processing happens in the lambda for that iteration.
-If the element value is `Some` number, then another range is defined, starting from the number plus itself and going through the upper bound.
+If the element value is `Some` number, then an inner range is defined, starting from the number plus itself and going through the upper bound.
 
 The [`step_by()`][stepby] method is used to traverse the range in steps the size of the element value.
 
