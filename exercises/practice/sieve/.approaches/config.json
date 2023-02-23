@@ -6,9 +6,9 @@
   "approaches": [
     {
       "uuid": "32faf3d8-5035-4242-992b-be92a248184b",
-      "slug": "range-and-filtermap",
-      "title": "range and filter_map",
-      "blurb": "Use a range and filter_map to iterate to the result.",
+      "slug": "ranges-and-filtermap",
+      "title": "ranges and filter_map",
+      "blurb": "Use two ranges and filter_map to iterate to the result.",
       "authors": ["bobahop"]
     },
     {
