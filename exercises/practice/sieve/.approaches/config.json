@@ -13,9 +13,9 @@
     },
     {
       "uuid": "d3deae2e-fa6c-42d9-9e94-6af5de090090",
-      "slug": "for-in-ranges",
-      "title": "for in ranges",
-      "blurb": "Use two for in ranges to iterate to the result.",
+      "slug": "for-in-ranges-with-filter",
+      "title": "for in ranges  with filter",
+      "blurb": "Use two for in ranges with filter to iterate to the result.",
       "authors": ["bobahop"]
     }
   ]
