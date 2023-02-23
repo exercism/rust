@@ -33,7 +33,7 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
 For more information, check the [`Range` and `filter_map()` approach][approach-range-and-filtermap].
 
 
-## Approach: `for` in range with `filter()`
+## Approach: `for` in ranges with `filter()`
 
 ```rust
 pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
@@ -52,7 +52,7 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
 }
 ```
 
-For more information, check the [`for` in range with `filter()` approach][approach-for-in-range-with-filter].
+For more information, check the [`for` in ranges with `filter()` approach][approach-for-in-ranges-with-filter].
 
 ## Which approach to use?
 
@@ -70,10 +70,10 @@ fn limit_of_1000(b: &mut Bencher) {
 Results
 
 ```
-// for in range
+// for in ranges with filter
 test limit_of_1000 ... bench:       5,678 ns/iter (+/- 773)
 
-// filter_map
+// range and filter_map
 test limit_of_1000 ... bench:       6,448 ns/iter (+/- 430)
 ```
 
@@ -83,4 +83,4 @@ test limit_of_1000 ... bench:       6,448 ns/iter (+/- 430)
 [filter]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter
 [mutability]: https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/mutability.html
 [approach-range-and-filtermap]: https://exercism.org/tracks/rust/exercises/sieve/approaches/range-and-filtermap
-[approach-for-in-range-with-filter]: https://exercism.org/tracks/rust/exercises/sieve/approaches/for-in-range-with-filter
+[approach-for-in-ranges-with-filter]: https://exercism.org/tracks/rust/exercises/sieve/approaches/for-in-ranges-with-filter
