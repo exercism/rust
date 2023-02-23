@@ -1,9 +1,8 @@
-# `Range` and `filter-map()`
+# `Range`s and `filter-map()`
 
 ```rust
 pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
     let mut numbers: Vec<_> = (0..=upper_bound).map(Option::from).collect();
-    numbers[1] = None;
     let upper_bound = upper_bound as usize;
     (2..numbers.len())
         .filter_map(|i| {
@@ -18,7 +17,6 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
 ```
 
 This approach starts by defining a `Vec` of [`Some`][some] values from `0` through the upper bound.
-Since no primes are valid below `2`, the value at index `1` is set to [`None`][none].
 To minimize type conversions, the upper bound is redefined as a [`usize`][usize].
 
 A [Range][range] is defined that goes from `2` through the length of the `Vec`.
@@ -32,9 +30,10 @@ If the element value is `Some` number, then an inner range is defined, starting 
 The [`step_by()`][stepby] method is used to traverse the range in steps the size of the element value.
 
 Each number from the inner range is passed to the [`for_each()`][foreach] method.
-The lambda inside the `for_each` sets the element in the `Vec` at the index of the value passed in to `None`.
+The lambda inside the `for_each` sets `None` as the value for the element in the `Vec` at the index of the value passed in.
 
-After the inner range is done, the `filter_map()` lambda returns the value passed in from the outer range re-wrapped in a `Some`.
+After the inner range is done, the `filter_map()` lambda returns the value passed in from the outer range re-wrapped in a `Some`
+as type `u64`.
 
 After the outer range is done, all of the `Some` values are [collect][collect]ed from the `Vec` and returned.
 [Type inference][type-inference] is used to return the values as a type `Vec<u64>`.
