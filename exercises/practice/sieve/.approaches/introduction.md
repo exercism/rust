@@ -16,7 +16,6 @@ If using `mut` for anything than the `Vec`, then the solution may use more mutab
 ```rust
 pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
     let mut numbers: Vec<_> = (0..=upper_bound).map(Option::from).collect();
-    numbers[1] = None;
     let upper_bound = upper_bound as usize;
     (2..numbers.len())
         .filter_map(|i| {
@@ -57,8 +56,7 @@ For more information, check the [`for` in ranges with `filter()` approach][appro
 ## Which approach to use?
 
 The `filter_map` approach may be considered a bit more idiomatic.
-Using the following benchmark, the `for` loops approach averaged a bit faster,
-but the `filter_map()` approach was more consistent.
+Using the following benchmark, the `filter_map()` approach was also faster.
 
 ```rust
 #[bench]
@@ -71,10 +69,10 @@ Results
 
 ```
 // for in ranges with filter
-test limit_of_1000 ... bench:       5,678 ns/iter (+/- 773)
+test limit_of_1000 ... bench:       5,945 ns/iter (+/- 310)
 
 // range and filter_map
-test limit_of_1000 ... bench:       6,448 ns/iter (+/- 430)
+test limit_of_1000 ... bench:       5,164 ns/iter (+/- 206)
 ```
 
 [range]: https://doc.rust-lang.org/reference/expressions/range-expr.html
