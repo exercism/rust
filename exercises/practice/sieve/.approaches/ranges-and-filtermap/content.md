@@ -22,7 +22,7 @@ To minimize type conversions, the upper bound is redefined as a [`usize`][usize]
 A [Range][range] is defined that goes from `2` through the length of the `Vec`.
 Each number from the range is passed to the [`filter_map()`][filtermap].
 
-The [closure][closure] (also known as a lambda) in the body of `filter_map()` uses the [`take()`][take] method, combined with the
+The [closure][closure] (also known as a lambda) in the body of the `filter_map()` uses the [`take()`][take] method, combined with the
 unwrap operator (`?`), to get the element in the `Vec` at the index of the number passed in from the range.
 If the element value is `None`, then no further processing happens in the lambda for that iteration.
 If the element value is `Some` number, then an inner range is defined, starting from the number plus itself and going through the upper bound.
