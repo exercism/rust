@@ -1,17 +1,17 @@
 # Introduction
 
 There are many ways to implement Sieve.
-One approach can use a [`Range`][range] to iterate the indexes of the `Vec`, passing each index to the [`filter_map()`][filtermap] method,
-which processes the numbers.
-Another approach could use a couple of [for in range][for-in-range] loops to process the numbers, and then use the [`filter()`][filter] method
-to return the `Vec`.
+One approach can use a couple of  [`Range`][range]s to iterate the indexes of the `Vec`, both outside and inside a [`filter_map()`][filtermap] method,
+to process the numbers.
+Another approach could use a couple of [for in range][for-in-range] loops to iterate and process the numbers,
+and then use the [`filter()`][filter] method to return the `Vec`.
 
 ## General guidance
 
-One of the things to try to minimize is mutability.
-If using `mut` for anything than the `Vec`, then the solution may have more mutability than required.
+One of the things to try to minimize is [mutability][mutability].
+If using `mut` for anything than the `Vec`, then the solution may use more mutability than required.
 
-## Approach: `Range` and `filter-map()`
+## Approach: `Range`s and `filter-map()`
 
 ```rust
 pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
@@ -30,7 +30,7 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
 }
 ```
 
-For more information, check the [`Range` and `filter_map()` approach][approach-range-and-filtermap].
+For more information, check the [`Range`s and `filter_map()` approach][approach-ranges-and-filtermap].
 
 
 ## Approach: `for` in ranges with `filter()`
@@ -82,5 +82,5 @@ test limit_of_1000 ... bench:       6,448 ns/iter (+/- 430)
 [for-in-range]: https://doc.rust-lang.org/rust-by-example/flow_control/for.html
 [filter]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter
 [mutability]: https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/mutability.html
-[approach-range-and-filtermap]: https://exercism.org/tracks/rust/exercises/sieve/approaches/range-and-filtermap
+[approach-ranges-and-filtermap]: https://exercism.org/tracks/rust/exercises/sieve/approaches/ranges-and-filtermap
 [approach-for-in-ranges-with-filter]: https://exercism.org/tracks/rust/exercises/sieve/approaches/for-in-ranges-with-filter
