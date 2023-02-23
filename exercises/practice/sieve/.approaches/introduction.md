@@ -68,11 +68,11 @@ fn limit_of_1000(b: &mut Bencher) {
 Results
 
 ```
-// for in ranges with filter
-test limit_of_1000 ... bench:       5,945 ns/iter (+/- 310)
-
 // range and filter_map
 test limit_of_1000 ... bench:       5,164 ns/iter (+/- 206)
+
+// for in ranges with filter
+test limit_of_1000 ... bench:       5,945 ns/iter (+/- 310)
 ```
 
 [range]: https://doc.rust-lang.org/reference/expressions/range-expr.html
