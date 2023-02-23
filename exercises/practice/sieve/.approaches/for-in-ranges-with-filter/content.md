@@ -28,7 +28,7 @@ A [`for` in range][for-in-range] is defined from `2` up to but not including the
 Each number in the range is used inside the loop as an index to test if the element in the `Vec` at that index is not `0`.
 
 If the element value is not `0`, then an inner `for` in range is defined, starting with the number times itself and going through the upper bound.
-The [`step_by()`][stepby] method is used to traverse the range in steps the size of the element value.
+The [`step_by()`][stepby] method is used to traverse the range in steps the size of the outer range number.
 
 Each number from the inner range is used as an index to set to `0` the element in the `Vec` at that index.
 
@@ -39,7 +39,7 @@ It dereferences the number to convert it from a "reference to a reference" to a 
 
 The surviving values are chained to the [`copied()`][copied] method, which changes the iterator of references to an iterator of the copied values.
 
-The copied values ae chained to the [`collect()`][collect] method which uses [type inference][type-inference] to return the `Vec<u64>`.
+The copied values ae chained to the [`collect()`][collect] method, which uses [type inference][type-inference] to return the `Vec<u64>`.
 
 [sqrt]: https://doc.rust-lang.org/std/primitive.f64.html#method.sqrt
 [usize]: https://doc.rust-lang.org/std/primitive.usize.html
