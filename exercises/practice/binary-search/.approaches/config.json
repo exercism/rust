@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "d440403a-cc86-4464-b230-b8bfef7206b6",
+      "slug": "looping",
+      "title": "Looping",
+      "blurb": "Loop and match to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "8cd50244-9897-4ab9-a53e-463efe279812",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Recurse and match to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
