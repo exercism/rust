@@ -55,7 +55,7 @@ For more information, check the [`for` in ranges with `filter()` approach][appro
 
 ## Which approach to use?
 
-The `filter_map` approach may be considered a bit more idiomatic.
+The `filter_map` approach may be considered more idiomatic.
 Using the following benchmark, the `filter_map()` approach was also faster.
 
 ```rust
