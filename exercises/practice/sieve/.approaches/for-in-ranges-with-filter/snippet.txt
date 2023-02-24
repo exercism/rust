@@ -1,0 +1,8 @@
+for i in 2..stop {
+    if (work[i]) != 0 {
+        for idx in (i * i..=upper_bound).step_by(i) {
+            work[idx] = 0;
+        }
+    }
+}
+work.iter().filter(|num| *num != &0u64).copied().collect()

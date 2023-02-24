@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "32faf3d8-5035-4242-992b-be92a248184b",
+      "slug": "ranges-and-filtermap",
+      "title": "ranges and filter_map",
+      "blurb": "Use two ranges and filter_map to iterate to the result.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "d3deae2e-fa6c-42d9-9e94-6af5de090090",
+      "slug": "for-in-ranges-with-filter",
+      "title": "for in ranges  with filter",
+      "blurb": "Use two for in ranges with filter to iterate to the result.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
