@@ -23,17 +23,16 @@ A [Range][range] is defined that goes from `2` through the length of the `Vec`.
 Each number from the range is passed to the [`filter_map()`][filtermap].
 
 The [closure][closure] (also known as a lambda) in the body of the `filter_map()` uses the [`take()`][take] method, combined with the
-unwrap operator (`?`), to get the element in the `Vec` at the index of the number passed in from the range.
+unwrap operator (`?`), to get the element value in the `Vec` at the index of the number passed in from the range.
 If the element value is `None`, then no further processing happens in the lambda for that iteration.
-If the element value is `Some` number, then an inner range is defined, starting from the number plus itself and going through the upper bound.
+If the element value is `Some` number, then an inner range is defined, starting from the element value plus itself and going through the upper bound.
 
 The [`step_by()`][stepby] method is used to traverse the range in steps the size of the element value.
 
 Each number from the inner range is passed to the [`for_each()`][foreach] method.
 The lambda inside the `for_each` sets `None` as the value for the element in the `Vec` at the index of the value passed in.
 
-After the inner range is done, the `filter_map()` lambda returns the value passed in from the outer range re-wrapped in a `Some`
-as type `u64`.
+After the inner range is done, the `filter_map()` lambda returns the element value rewrapped in a `Some` as type `u64`.
 
 After the outer range is done, all of the `Some` values are [collect][collect]ed from the `Vec` and returned.
 [Type inference][type-inference] is used to return the values as a type `Vec<u64>`.
