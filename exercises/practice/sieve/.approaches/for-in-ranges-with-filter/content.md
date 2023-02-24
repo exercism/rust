@@ -20,12 +20,12 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
 This approach starts by defining a `Vec` of values from `0` through the upper bound.
 Since numbers below `2` are not valid primes, the element at index `1` is set to `0`.
 
-Since squares of numbers are processed, the [sqrt][sqrt] method is used to determine when iterating the `Vec` indexes will stop.
+Since squares of numbers are processed, the [`sqrt()`][sqrt] method is used to determine when iterating the `Vec` indexes will stop.
 
 To minimize type conversions, the upper bound is redefined as a [`usize`][usize].
 
 A [`for` in range][for-in-range] is defined from `2` up to but not including the `stop` value.
-Each number in the range is used inside the loop as an index to test if the element in the `Vec` at that index is not `0`.
+Each number in the range is used inside the loop as an index to test if the element value in the `Vec` at that index is not `0`.
 
 If the element value is not `0`, then an inner `for` in range is defined, starting with the number times itself and going through the upper bound.
 The [`step_by()`][stepby] method is used to traverse the range in steps the size of the outer range number.
