@@ -30,7 +30,7 @@ Each number in the range is used inside the loop as an index to test if the elem
 If the element value is not `0`, then an inner `for` in range is defined, starting with the number times itself and going through the upper bound.
 The [`step_by()`][stepby] method is used to traverse the range in steps the size of the outer range number.
 
-Each number from the inner range is used as an index to set to `0` the element in the `Vec` at that index.
+Each number from the inner range is used as an index to set the element value at that index in the `Vec` to `0`.
 
 When the outer range is done, the `Vec` is passed through the [`iter()`][iter] method to the [`filter()`][filter] method.
 The [closure][closure] (also known as a lambda) in the body of the `filter()` tests that the element is not `0`.
