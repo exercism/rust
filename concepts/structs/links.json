@@ -1,6 +1,6 @@
 [
   {
-    "url": "https://learning-rust.github.io/docs/b2.structs.html#Tuple-structs",
+    "url": "https://learning-rust.github.io/docs/structs/#tuple-structs",
     "description": "more information about tuple structs"
   },
   {
@@ -8,7 +8,7 @@
     "description": "examples of tuple and unit structs"
   },
   {
-    "url": "https://learning-rust.github.io/docs/b2.structs.html#C-like-structs",
+    "url": "https://learning-rust.github.io/docs/structs/#c-like-structs",
     "description": "good overview of the different types of structs and their syntax"
   }
 ]

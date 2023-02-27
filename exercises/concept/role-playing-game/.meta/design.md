@@ -34,7 +34,7 @@ The concepts this exercise unlocks are:
 
 - <https://doc.rust-lang.org/std/option/>
 - <https://doc.rust-lang.org/rust-by-example/std/option.html>
-- <https://learning-rust.github.io/docs/e3.option_and_result.html>
+- <https://learning-rust.github.io/docs/option-and-result/>
 - [The Billion-Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/)
 
 ### After
