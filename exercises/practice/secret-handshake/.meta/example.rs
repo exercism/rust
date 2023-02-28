@@ -1,7 +1,7 @@
-const COMMANDS: [&str; 4] = ["wink", "double blink", "close your eyes", "jump"];
+const ACTIONS: [&str; 4] = ["wink", "double blink", "close your eyes", "jump"];
 
-pub fn commands(n: u8) -> Vec<&'static str> {
-    let result: Vec<&str> = COMMANDS
+pub fn actions(n: u8) -> Vec<&'static str> {
+    let result: Vec<&str> = ACTIONS
         .iter()
         .enumerate()
         .filter(|(i, _)| (1u8 << *i) & n != 0)
