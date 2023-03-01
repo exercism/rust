@@ -23,31 +23,27 @@ command -v curl >/dev/null 2>&1 || { echo >&2 "curl is required but not installe
 function message() {
     local flag=$1
     local message=$2
-
-    case "$flag" in
-        "success")
-            if [ $? -eq 0 ]; then
+    
+    if [ $? -eq 0 ]; then
+        case "$flag" in
+            "success")
                 printf "\033[32m%s\033[0m\n" "[success]: $message"
-            fi
             ;;
-        "info")
-            if [ $? -eq 0 ]; then
+            "info")
                 printf "\033[34m%s\033[0m\n" "[info]: $message"
-            fi
             ;;
-        "done")
-            echo
-            cols=$(tput cols)
-            printf "%*s\n" $cols | tr " " "-"
-            echo
-            if [ $? -eq 0 ]; then
+            "done")
+                echo
+                cols=$(tput cols)
+                printf "%*s\n" "$cols" | tr " " "-"
+                echo
                 printf "\033[1;32m%s\033[0m\n" "[done]: $message"
-            fi
             ;;
-        *)
-            echo "Invalid flag: $flag"
+            *)
+                echo "Invalid flag: $flag"
             ;;
-    esac
+        esac
+    fi
 }
 
 
@@ -105,7 +101,7 @@ message "success" "Created instructions and config files"
 
 
 
-NAME=$(echo $SLUG | sed 's/-/_/g' )
+NAME=$(echo "$SLUG" | sed 's/-/_/g' )
 sed -i "s/name = \".*\"/name = \"$NAME\"/" "$EXERCISE_DIR"/Cargo.toml
 
 
