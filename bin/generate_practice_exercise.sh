@@ -19,18 +19,37 @@ fi
 command -v jq >/dev/null 2>&1 || { echo >&2 "jq is required but not installed. Aborting."; exit 1; }
 command -v curl >/dev/null 2>&1 || { echo >&2 "curl is required but not installed. Aborting."; exit 1; }
 
-# Shows a success message if process is successful
-function success() {
-    if [ $? -eq 0 ]; then
-        printf "\033[32m%s\033[0m\n" "[success]: $1"
-    fi
+
+function message() {
+    local flag=$1
+    local message=$2
+
+    case "$flag" in
+        "success")
+            if [ $? -eq 0 ]; then
+                printf "\033[32m%s\033[0m\n" "[success]: $message"
+            fi
+            ;;
+        "info")
+            if [ $? -eq 0 ]; then
+                printf "\033[34m%s\033[0m\n" "[info]: $message"
+            fi
+            ;;
+        "done")
+            echo
+            cols=$(tput cols)
+            printf "%*s\n" $cols | tr " " "-"
+            echo
+            if [ $? -eq 0 ]; then
+                printf "\033[1;32m%s\033[0m\n" "[done]: $message"
+            fi
+            ;;
+        *)
+            echo "Invalid flag: $flag"
+            ;;
+    esac
 }
 
-function all_done() {
-    if [ $? -eq 0 ]; then
-        printf "\033[1;32m%s\033[0m\n" "[done]: $1"
-    fi
-}
 
 
 
@@ -52,7 +71,7 @@ cat <<EOT > "$EXERCISE_DIR"/.gitignore
 # More information here http://doc.crates.io/guide.html#cargotoml-vs-cargolock
 Cargo.lock
 EOT
-success "Created Rust files, tests dir and updated gitignore!"
+message "success" "Created Rust files, tests dir and updated gitignore!"
 
 download() {
     local FILE="$1"
@@ -62,9 +81,8 @@ download() {
 }
 
 # build configlet
-echo "Fetching configlet"
 ./bin/fetch-configlet
-success "Fetched configlet successfully!"
+message "success" "Fetched configlet successfully!"
 
 
 # Preparing config.json
@@ -76,14 +94,14 @@ config.json > config.json.tmp
 # jq always rounds whole numbers, but average_run_time needs to be a float
 sed -i 's/"average_run_time": \([0-9]\+\)$/"average_run_time": \1.0/' config.json.tmp
 mv config.json.tmp config.json
-success "Added instructions and configuration files successfully!"
+message "success" "Added instructions and configuration files successfully!"
 
 # Create instructions and config files
 echo "Creating instructions and config files"
 ./bin/configlet sync --update --yes --docs --metadata --exercise "$SLUG"
 ./bin/configlet sync --update --yes --filepaths --exercise "$SLUG"
 ./bin/configlet sync --update --tests include --exercise "$SLUG"
-success "Created instructions and config files"
+message "success" "Created instructions and config files"
 
 
 
@@ -92,13 +110,8 @@ sed -i "s/name = \".*\"/name = \"$NAME\"/" "$EXERCISE_DIR"/Cargo.toml
 
 
 
-echo
-# Prints a line of dashes that's as wide as the screen
-cols=$(tput cols)
-printf "%*s\n" $cols | tr " " "-"
-echo
 
-all_done "All stub files were created."
+message "done" "All stub files were created."
 
-echo "After implementing the solution, tests and configuration, please run:"
+message "info" "After implementing the solution, tests and configuration, please run:"
 echo "./bin/configlet fmt --update --yes --exercise ${SLUG}"
