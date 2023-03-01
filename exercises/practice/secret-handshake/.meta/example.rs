@@ -14,5 +14,4 @@ pub fn actions(n: u8) -> Vec<&'static str> {
         result
     }
 }
-
    
