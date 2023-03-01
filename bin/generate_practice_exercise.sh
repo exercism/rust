@@ -23,7 +23,7 @@ command -v curl >/dev/null 2>&1 || { echo >&2 "curl is required but not installe
 function message() {
     local flag=$1
     local message=$2
-    
+
     case "$flag" in
         "success")
             printf "\033[32m%s\033[0m\n" "[success]: $message"
