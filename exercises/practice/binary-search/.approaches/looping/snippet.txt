@@ -1,0 +1,8 @@
+let array = array.as_ref();
+let mut left = 0usize;
+let mut right = array.len();
+let mut mid: usize;
+
+while left < right {
+    mid = (left + right) / 2;
+    match array[mid].cmp(&key) {

@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "78997b92-fed7-484d-a6bf-aece9df9ab59",
+      "slug": "vec-on-new",
+      "title": "Create Vec on new",
+      "blurb": "Create and store Vec on new.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "019c4a1a-e690-480c-96a2-e1221d48baff",
+      "slug": "vec-when-requested",
+      "title": "Create Vec when requested",
+      "blurb": "Store as u32 and create Vec when requested.",
+      "authors": ["bobahop"]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+pub fn len(&self) -> usize {
+    let mut current_node = &self.head;
+    let mut size = 0;
+    while let Some(x) = current_node {
+        size += 1;
+        current_node = &x.next;
+    }
+    size
