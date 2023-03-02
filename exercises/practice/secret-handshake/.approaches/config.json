@@ -1,0 +1,15 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "cd0c0a31-0905-47f0-815c-02597a7cdf40",
+      "slug": "loop-once",
+      "title": "Loop once",
+      "blurb": "Loop once whether reversed or not.",
+      "authors": ["bobahop"]
+    },
+  ]
+}
