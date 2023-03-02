@@ -41,13 +41,11 @@ EOT
 #[test] $([[ "$first_iteration" == false ]] && printf "\n#[ignore]")
 fn ${desc}(){
     /*
-
     Input:
     ${input}
 
     Expected output:
     ${expected}
-
     */
 
     // TODO: Add assertion
