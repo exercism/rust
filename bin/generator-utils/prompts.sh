@@ -16,8 +16,6 @@ function get_exercise_difficulty() {
     echo "$EXERCISE_DIFFICULTY"
 }
 
-
-
 function get_exercise_name {
     DEFAULT_EXERCISE_NAME=$(echo "$1" | sed 's/-/ /g; s/\b\(.\)/\u\1/g')
     read -rp "Enter exercise name or use default (${YELLOW}${DEFAULT_EXERCISE_NAME}${RESET}): " EXERCISE_NAME
@@ -29,7 +27,6 @@ function get_exercise_name {
 
     echo "$EXERCISE_NAME"
 }
-
 
 function get_author_name {
     DEFAULT_AUTHOR_NAME="$(git config --get-regexp user.name | sed 's/user.name //g')"
