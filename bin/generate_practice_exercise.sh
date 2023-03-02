@@ -49,16 +49,11 @@ touch "${EXERCISE_DIR}/tests/${SLUG}.rs"
 
 create_test_file_template "$EXERCISE_DIR" "$SLUG"
 create_lib_rs_template "$EXERCISE_DIR" "$SLUG"
-create_gitignore_template "$EXERCISE_DIR"
+create_example_rs_template "$EXERCISE_DIR"
+overwrite_gitignore "$EXERCISE_DIR"
 
-message "success" "Created Rust files, tests dir and updated gitignore!"
+message "success" "Created Rust files succesfully!"
 
-mkdir "${EXERCISE_DIR}/.meta"
-touch "${EXERCISE_DIR}/.meta/example.rs"
-cat <<EOT >"${EXERCISE_DIR}/.meta/example.rs"
-// Create a solution that passes all the tests
-EOT
-message "success" "Created example.rs file"
 
 # ==================================================
 
