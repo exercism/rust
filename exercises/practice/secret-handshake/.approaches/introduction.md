@@ -35,6 +35,6 @@ pub fn actions(n: u8) -> Vec<&'static str> {
 }
 ```
 
-For more information, check the [Iterate once approach][approach-iterate once].
+For more information, check the [Iterate once approach][approach-iterate-once].
 
-[approach-iterate once]: https://exercism.org/tracks/rust/exercises/secret-handshake/approaches/iterate once
+[approach-iterate-once]: https://exercism.org/tracks/rust/exercises/secret-handshake/approaches/iterate-once
