@@ -15,11 +15,10 @@ const SIGNS: [&'static str; 4] = ["wink", "double blink", "close your eyes", "ju
 const REVERSE_SIGNS: u8 = 16;
 
 pub fn actions(n: u8) -> Vec<&'static str> {
-    let (mut action, mut action_incr, mut end) = (0, 1, 4);
-
-    if n & REVERSE_SIGNS != 0 {
-        (action, action_incr, end) = (3, -1, -1);
-    }
+    let (mut action, action_incr, end) = match n & REVERSE_SIGNS {
+        0 => (0, 1, 4),
+        _ => (3, -1, -1),
+    };
     let mut output: Vec<&'static str> = Vec::new();
     
     loop {
