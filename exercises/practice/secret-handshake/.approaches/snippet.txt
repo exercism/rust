@@ -1,0 +1,5 @@
+let (mut action, mut action_incr, mut end) = (0, 1, 4);
+
+if n & REVERSE_SIGNS != 0 {
+    (action, action_incr, end) = (3, -1, -1);
+}
