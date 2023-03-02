@@ -47,8 +47,8 @@ cargo new --lib "$EXERCISE_DIR" -q
 mkdir -p "$EXERCISE_DIR"/tests
 touch "${EXERCISE_DIR}/tests/${SLUG}.rs"
 
-create_test_file_template "$SLUG" "$EXERCISE_DIR"
-create_lib_rs_template "$SLUG" "$EXERCISE_DIR"
+create_test_file_template "$EXERCISE_DIR" "$SLUG"
+create_lib_rs_template "$EXERCISE_DIR" "$SLUG"
 create_gitignore_template "$EXERCISE_DIR"
 
 message "success" "Created Rust files, tests dir and updated gitignore!"
@@ -85,7 +85,8 @@ echo "Creating instructions and config files"
 ./bin/configlet sync --update --tests include --exercise "$SLUG"
 message "success" "Created instructions and config files"
 
-jq '.authors += ["$AUTHOR_NAME"]' "$EXERCISE_DIR"/.meta/config.json
+META_CONFIG="$EXERCISE_DIR"/.meta/config.json
+jq --arg author "$AUTHOR_NAME" '.authors += [$author]' "$META_CONFIG" >"$META_CONFIG".tmp && mv "$META_CONFIG".tmp "$META_CONFIG"
 message "success" "You've been added as the author of this exercise."
 
 sed -i "s/name = \".*\"/name = \"$UNDERSCORED_SLUG\"/" "$EXERCISE_DIR"/Cargo.toml
