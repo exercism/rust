@@ -5,11 +5,10 @@ const SIGNS: [&'static str; 4] = ["wink", "double blink", "close your eyes", "ju
 const REVERSE_SIGNS: u8 = 16;
 
 pub fn actions(n: u8) -> Vec<&'static str> {
-    let (mut action, mut action_incr, mut end) = (0, 1, 4);
-
-    if n & REVERSE_SIGNS != 0 {
-        (action, action_incr, end) = (3, -1, -1);
-    }
+    let (mut action, action_incr, end) = match n & REVERSE_SIGNS {
+        0 => (0, 1, 4),
+        _ => (3, -1, -1),
+    };
     let mut output: Vec<&'static str> = Vec::new();
     
     loop {
@@ -34,8 +33,8 @@ the elements itself.
 
 The value of `16` is defined as a `const` with a meaningful name so it won't be used as a [magic number][magic-number].
 
-The `actions` function uses multiple assignment to define the variables that control iterating through the signals array,
-setting their values to iterate in the normal order.
+The `actions` function uses multiple assignment with a `match` expression to define the variables that control iterating through the signals array,
+setting their values to iterate in either the normal or reverse order.
 
 The [bitwise AND operator][bitand] is used to check if the input number contains the signal for reversing the order of the other signals.
 
@@ -51,7 +50,8 @@ The `1` in `10000` is not at the same position in `00011`, so the two values AND
 - `10000` =
 - `00000`
 
-If the number passed in contains the signal for reverse, then the iteration variables are set to iterate backwards through the array of signals.
+If the number passed in does not contain the signal for reverse, then the iteration variables are set to iterate through the array of signals
+in their normal order, otherwise they are set to iterate through the arrray backwards..
 
 The output `vector` is defined, and then the [`loop`][loop] begins.
 
