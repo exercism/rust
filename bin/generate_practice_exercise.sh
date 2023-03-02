@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# shellcheck source=/dev/null
+source ./bin/generator-utils/utils.sh;
+source ./bin/generator-utils/prompts.sh;
+
 # Exit if anything fails.
 set -euo pipefail
 
@@ -19,76 +23,18 @@ fi
 command -v jq >/dev/null 2>&1 || { echo >&2 "jq is required but not installed. Aborting."; exit 1; }
 command -v curl >/dev/null 2>&1 || { echo >&2 "curl is required but not installed. Aborting."; exit 1; }
 
-
-function message() {
-    local flag=$1
-    local message=$2
-
-    case "$flag" in
-        "success")
-            printf "\033[32m%s\033[0m\n" "[success]: $message"
-        ;;
-        "info")
-            printf "\033[34m%s\033[0m\n" "[info]: $message"
-        ;;
-        "done")
-            echo
-            cols=$(tput cols)
-            printf "%*s\n" "$cols" "" | tr " " "-"
-            echo
-            printf "\033[1;32m%s\033[0m\n" "[done]: $message"
-        ;;
-        *)
-            echo "Invalid flag: $flag"
-        ;;
-    esac
-}
-
-function dash_to_underscore(){
-    # shellcheck disable=SC2001
-    echo "$1" | sed 's/-/_/g'
-}
-
-
-# by default capitalizes the words and replaces dashes with whitespace
-#TODO: turn it into a function
-DEFAULT_EXERCISE_NAME=$(echo "$1" | sed 's/-/ /g; s/\b\(.\)/\u\1/g')
-printf "Please provide a display name for the exercise or press enter if default is fine for you.\nDefault: %s\nNew name: " "${DEFAULT_EXERCISE_NAME}"
-read -er EXERCISE_NAME
-
-# If the user didn't input anything, set EXERCISE_NAME to a pregenerated default
-if [[ -z "$EXERCISE_NAME" ]]; then
-    EXERCISE_NAME="$DEFAULT_EXERCISE_NAME"
-fi
-message "info" "You entered: $EXERCISE_NAME. You can edit this later in config.json"
-
-
-
-# function prompt_exercise_difficulty(){
-#TODO: fix this function
-VALID_INPUT=false
-while ! $VALID_INPUT; do
-    read -rp "Difficulty of exercise (1-10): "  EXERCISE_DIFFICULTY
-    if [[ "$EXERCISE_DIFFICULTY" =~ ^[1-9]$|^10$ ]]; then
-        VALID_INPUT=true
-    else
-        printf "Invalid input. Please enter an integer between 1 and 10."
-    fi
-done
-
-message "info" "EXERCISE_DIFFICULTY is set to $EXERCISE_DIFFICULTY. You can edit this later in config.json"
-
-# }
-
-
+# ==================================================
 
 
 SLUG="$1"
 UNDERSCORED_SLUG=$(dash_to_underscore "$SLUG")
 EXERCISE_DIR="exercises/practice/${SLUG}"
-AUTHOR_NAME="$(git config --get-regexp user.name | sed 's/user.name //g')"
-
-echo "Author name: ${AUTHOR_NAME}"
+AUTHOR_NAME=$(get_author_name)
+message "info" "You entered: $AUTHOR_NAME. You can edit this later in .meta/config.json.authors"
+EXERCISE_NAME=$(get_exercise_name "$SLUG")
+message "info" "You entered: $EXERCISE_NAME. You can edit this later in config.json"
+EXERCISE_DIFFICULTY=$(get_exercise_difficulty)
+message "info" "EXERCISE_DIFFICULTY is set to $EXERCISE_DIFFICULTY. You can edit this later in config.json"
 
 
 echo "Creating Rust files"
@@ -131,13 +77,6 @@ message "success" "Created example.rs file"
 
 # ==================================================
 
-download() {
-    local FILE="$1"
-    local URL="$2"
-    curl --silent --show-error --fail --retry 3 --max-time 3 \
-    --output "$FILE" "$URL"
-}
-
 # build configlet
 ./bin/fetch-configlet
 message "success" "Fetched configlet successfully!"
@@ -146,9 +85,6 @@ message "success" "Fetched configlet successfully!"
 # Preparing config.json
 echo "Adding instructions and configuration files..."
 UUID=$(bin/configlet uuid)
-# FIX this
-# EXERCISE_NAME=$(prompt_exercise_name "$SLUG")
-# EXERCISE_DIFFICULTY=$(prompt_exercise_difficulty)
 
 jq --arg slug "$SLUG" --arg uuid "$UUID" --arg name "$EXERCISE_NAME" --arg difficulty "$EXERCISE_DIFFICULTY" \
 '.exercises.practice += [{slug: $slug, name: $name, uuid: $uuid, practices: [], prerequisites: [], difficulty: $difficulty}]' \
