@@ -3,6 +3,7 @@
 # shellcheck source=/dev/null
 source ./bin/generator-utils/utils.sh;
 source ./bin/generator-utils/prompts.sh;
+source ./bin/generator-utils/parse_canonical_data.sh;
 
 # Exit if anything fails.
 set -euo pipefail
@@ -40,13 +41,15 @@ message "info" "EXERCISE_DIFFICULTY is set to $EXERCISE_DIFFICULTY. You can edit
 echo "Creating Rust files"
 cargo new --lib "$EXERCISE_DIR" -q
 mkdir -p "$EXERCISE_DIR"/tests
-touch "${EXERCISE_DIR}/tests/${SLUG}.rs"
+TEST_FILE="${EXERCISE_DIR}/tests/${SLUG}.rs"
+touch "$TEST_FILE"
 
-cat <<EOT > "${EXERCISE_DIR}/tests/${SLUG}.rs"
+cat <<EOT > "$TEST_FILE"
 use ${UNDERSCORED_SLUG}::*
 // Add tests here
 EOT
 
+fill_test_file_with_canonical_data "$SLUG" "$TEST_FILE"
 
 cat <<EOT > "${EXERCISE_DIR}/src/lib.rs"
 fn ${UNDERSCORED_SLUG}(){
@@ -100,6 +103,9 @@ echo "Creating instructions and config files"
 ./bin/configlet sync --update --yes --filepaths --exercise "$SLUG"
 ./bin/configlet sync --update --tests include --exercise "$SLUG"
 message "success" "Created instructions and config files"
+
+jq '.authors += ["$AUTHOR_NAME"]' "$EXERCISE_DIR"/.meta/config.json
+message "success" "You've been added as the author of this exercise."
 
 
 sed -i "s/name = \".*\"/name = \"$UNDERSCORED_SLUG\"/" "$EXERCISE_DIR"/Cargo.toml
