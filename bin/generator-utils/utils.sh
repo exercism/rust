@@ -6,7 +6,7 @@ source ./bin/generator-utils/colors.sh
 function message() {
     local flag=$1
     local message=$2
-    
+
     case "$flag" in
         "success")
             printf "${GREEN}%s${RESET}\n" "[success]: $message"
