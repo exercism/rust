@@ -14,8 +14,16 @@ use $(dash_to_underscore "$slug")::*;
 
 EOT
 
+    curlopts=(
+        --silent
+        --show-error
+        --fail
+        --location
+        --retry 3
+        --max-time 4 
+    )
     # fetch canonical_data
-    canonical_json=$(curl https://raw.githubusercontent.com/exercism/problem-specifications/main/exercises/"$slug"/canonical-data.json)
+    canonical_json=$(curl "${curlopts[@]}" "https://raw.githubusercontent.com/exercism/problem-specifications/main/exercises/${slug}/canonical-data.json")
 
     if [ "${canonical_json}" == "404: Not Found" ]; then
         canonical_json=$(jq --null-input '{cases: []}')
