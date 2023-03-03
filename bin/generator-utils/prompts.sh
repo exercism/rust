@@ -29,8 +29,8 @@ function get_exercise_name {
 }
 
 function get_author_name {
-    DEFAULT_AUTHOR_NAME="$(git config --get-regexp user.name | sed 's/user.name //g')"
-    read -rp "Hey! Are you ${YELLOW}${DEFAULT_AUTHOR_NAME}${RESET}? If not, please enter your github handle: " AUTHOR_NAME
+    DEFAULT_AUTHOR_NAME="$(git config user.name)"
+    read -rp "Hey! Is your GitHub handle ${YELLOW}${DEFAULT_AUTHOR_NAME}${RESET}? If not, please enter your Github handle: " AUTHOR_NAME
 
     # If the user didn't input anything, set AUTHOR_NAME to a pregenerated default
     if [[ -z "$AUTHOR_NAME" ]]; then
