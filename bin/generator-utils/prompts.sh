@@ -4,15 +4,7 @@
 source ./bin/generator-utils/colors.sh
 
 function get_exercise_difficulty() {
-    local valid_input=false
-    while ! $valid_input; do
-        read -rp "Difficulty of exercise (1-10): " exercise_difficulty
-        if [[ "$exercise_difficulty" =~ ^[1-9]$|^10$ ]]; then
-            valid_input=true
-        else
-            printf "Invalid input. Please enter an integer between 1 and 10."
-        fi
-    done
+    read -rp "Difficulty of exercise (1-10): " exercise_difficulty
     echo "$exercise_difficulty"
 }
 
@@ -31,7 +23,6 @@ function validate_difficulty_input() {
     done
     echo "$exercise_difficulty"
 }
-
 
 function get_author_handle {
     DEFAULT_AUTHOR_HANDLE="$(git config user.name)"
