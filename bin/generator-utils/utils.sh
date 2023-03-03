@@ -51,6 +51,11 @@ function check_exercise_existence() {
         message "error" "Exercise doesn't exist!"
         message "info" "These are the unimplemented practice exercises:
 ${unimplemented_exercises}"
+
+        # this is a compiled, tiny Rust program
+        # this fn uses the ngram algorithm to find the closest match to an exercise
+        # I'm using the ngrammatic crate to achieve this
+        bin/generator-utils/ngram "${unimplemented_exercises}" "$slug"
         exit 1
     fi
 }
