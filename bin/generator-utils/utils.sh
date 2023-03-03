@@ -41,7 +41,7 @@ function check_exercise_existence() {
     if echo "$unimplemented_exercises" | grep -q "^$slug$"; then
         message "success" "Exercise has been found!"
     else
-        message "error" "Exercise is either implemented or doesn't exist"
+        message "error" "Exercise doesn't exist!"
         message "info" "These are the unimplemented practice exercises:
 ${unimplemented_exercises}"
         exit 1

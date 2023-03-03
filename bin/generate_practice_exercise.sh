@@ -22,13 +22,19 @@ fi
 
 # Check if jq and curl are installed
 command -v jq >/dev/null 2>&1 || {
-    echo >&2 "jq is required but not installed. Aborting."
+    echo >&2 "jq is required but not installed. Please install it and make sure it's in your PATH."
     exit 1
 }
 command -v curl >/dev/null 2>&1 || {
-    echo >&2 "curl is required but not installed. Aborting."
+    echo >&2 "curl is required but not installed. Please install it and make sure it's in your PATH."
     exit 1
 }
+
+# Check if exercise is already in config.json
+if jq '.exercises.practice | map(.slug)' config.json | grep -q "$1"; then
+    echo "${1} has already been implemented."
+    exit 1
+fi
 
 # Check if exercise exists in configlet info
 check_exercise_existence "$1"
