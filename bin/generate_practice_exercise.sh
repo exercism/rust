@@ -9,8 +9,8 @@ source ./bin/generator-utils/templates.sh
 set -euo pipefail
 
 # If argument not provided, print usage and exit
-if [ $# -ne 1 ]; then
-    echo "Usage: bin/generate_practice_exercise.sh <exercise-slug>"
+if [ $# -ne 1 ] && [ $# -ne 2 ] && [ $# -ne 3 ]; then
+    echo "Usage: bin/generate_practice_exercise.sh <exercise-slug> [difficulty] [author-github-handle]"
     exit 1
 fi
 
@@ -38,21 +38,23 @@ check_exercise_existence "$1"
 SLUG="$1"
 UNDERSCORED_SLUG=$(dash_to_underscore "$SLUG")
 EXERCISE_DIR="exercises/practice/${SLUG}"
-AUTHOR_NAME=$(get_author_name)
-message "info" "You entered: $AUTHOR_NAME. You can edit this later in the 'authors' field in the .meta/config.json file"
-EXERCISE_NAME=$(get_exercise_name "$SLUG")
-message "info" "You entered: $EXERCISE_NAME. You can edit this later in the config.json file"
-EXERCISE_DIFFICULTY=$(get_exercise_difficulty)
-message "info" "EXERCISE_DIFFICULTY is set to $EXERCISE_DIFFICULTY. You can edit this later in the config.json file"
+EXERCISE_NAME=$(format_exercise_name "$SLUG")
+message "info" "Using ${YELLOW}${EXERCISE_NAME}${BLUE} as a default exercise name. You can edit this later in the config.json file"
+# using default value for difficulty
+EXERCISE_DIFFICULTY=$(validate_difficulty_input "${2:-$(get_exercise_difficulty)}")
+message "info" "The exercise difficulty has been set to ${YELLOW}${EXERCISE_DIFFICULTY}${BLUE}. You can edit this later in the config.json file"
+# using default value for author
+AUTHOR_HANDLE=${3:-$(get_author_handle)}
+message "info" "Using ${YELLOW}${AUTHOR_HANDLE}${BLUE} as author's handle. You can edit this later in the 'authors' field in the ${EXERCISE_DIR}/.meta/config.json file"
 
-echo "Creating Rust files"
+message "info" "Creating Rust files"
 cargo new --lib "$EXERCISE_DIR" -q
 mkdir -p "$EXERCISE_DIR"/tests
 touch "${EXERCISE_DIR}/tests/${SLUG}.rs"
 
 create_test_file_template "$EXERCISE_DIR" "$SLUG"
 create_lib_rs_template "$EXERCISE_DIR" "$SLUG"
-create_example_rs_template "$EXERCISE_DIR"
+create_example_rs_template "$EXERCISE_DIR" "$SLUG"
 overwrite_gitignore "$EXERCISE_DIR"
 
 message "success" "Created Rust files succesfully!"
@@ -64,7 +66,7 @@ message "success" "Created Rust files succesfully!"
 message "success" "Fetched configlet successfully!"
 
 # Preparing config.json
-echo "Adding instructions and configuration files..."
+message "info" "Adding instructions and configuration files..."
 UUID=$(bin/configlet uuid)
 
 jq --arg slug "$SLUG" --arg uuid "$UUID" --arg name "$EXERCISE_NAME" --arg difficulty "$EXERCISE_DIFFICULTY" \
@@ -83,7 +85,7 @@ echo "Creating instructions and config files"
 message "success" "Created instructions and config files"
 
 META_CONFIG="$EXERCISE_DIR"/.meta/config.json
-jq --arg author "$AUTHOR_NAME" '.authors += [$author]' "$META_CONFIG" >"$META_CONFIG".tmp && mv "$META_CONFIG".tmp "$META_CONFIG"
+jq --arg author "$AUTHOR_HANDLE" '.authors += [$author]' "$META_CONFIG" >"$META_CONFIG".tmp && mv "$META_CONFIG".tmp "$META_CONFIG"
 message "success" "You've been added as the author of this exercise."
 
 sed -i "s/name = \".*\"/name = \"$UNDERSCORED_SLUG\"/" "$EXERCISE_DIR"/Cargo.toml

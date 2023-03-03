@@ -20,7 +20,7 @@ EOT
         --fail
         --location
         --retry 3
-        --max-time 4 
+        --max-time 4
     )
     # fetch canonical_data
     canonical_json=$(curl "${curlopts[@]}" "https://raw.githubusercontent.com/exercism/problem-specifications/main/exercises/${slug}/canonical-data.json")
@@ -33,22 +33,23 @@ EOT
 // If you happen to devise some outstanding tests, do contemplate sharing them with the community by contributing to this repository:
 // https://github.com/exercism/problem-specifications/tree/main/exercises/${slug}
 EOT
-    fi
+        message "info" "This exercise doesn't have canonical data."
+        message "success" "Stub file for tests has been created!"
+    else
+        # sometimes canonical data has multiple levels with multiple `cases` arrays.
+        #(see kindergarten-garden https://github.com/exercism/problem-specifications/blob/main/exercises/kindergarten-garden/canonical-data.json)
+        # so let's flatten it
+        cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected"))) | select(. != {}) | select(has("uuid")) ]')
 
-    # sometimes canonical data has multiple levels with multiple `cases` arrays.
-    #(see kindergarten-garden https://github.com/exercism/problem-specifications/blob/main/exercises/kindergarten-garden/canonical-data.json)
-    # so let's flatten it
-    cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected"))) | select(. != {}) | select(has("uuid")) ]')
+        first_iteration=true
+        # loop through each object
+        jq -c '.[]' <<<"$cases" | while read -r case; do
+            desc=$(echo "$case" | jq '.description' | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_' | sed 's/^/test_/')
+            input=$(echo "$case" | jq '.input')
+            expected=$(echo "$case" | jq '.expected')
 
-    first_iteration=true
-    # loop through each object
-    jq -c '.[]' <<<"$cases" | while read -r case; do
-        desc=$(echo "$case" | jq '.description' | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_' | sed 's/^/test_/')
-        input=$(echo "$case" | jq '.input')
-        expected=$(echo "$case" | jq '.expected')
-
-        # append each test fn to the test file
-        cat <<EOT >>"$test_file"
+            # append each test fn to the test file
+            cat <<EOT >>"$test_file"
 #[test] $([[ "$first_iteration" == false ]] && printf "\n#[ignore]")
 fn ${desc}() {
     /*
@@ -64,21 +65,22 @@ fn ${desc}() {
 }
 
 EOT
-        first_iteration=false
-    done
+            first_iteration=false
+        done
+        message "success" "Stub file for tests has been created and populated with canonical data!"
+    fi
 
-    message "success" "Created test file template successfully!"
 }
 
 function create_lib_rs_template() {
     local exercise_dir=$1
     local slug=$2
     cat <<EOT >"${exercise_dir}/src/lib.rs"
-fn $(dash_to_underscore "$slug")(){
-    unimplemented!("implement ${slug} exercise")
+fn $(dash_to_underscore "$slug")() {
+    unimplemented!("implement "$slug" exercise")
 }
 EOT
-    message "success" "Created lib.rs template successfully!"
+    message "success" "Stub file for lib.rs has been created!"
 }
 
 function overwrite_gitignore() {
@@ -93,15 +95,19 @@ function overwrite_gitignore() {
 # More information here http://doc.crates.io/guide.html#cargotoml-vs-cargolock
 Cargo.lock
 EOT
-    message "success" "Overwrote .gitignore successfully!"
+    message "success" ".gitignore has been overwritten!"
 }
 
 function create_example_rs_template() {
     exercise_dir=$1
+    slug=$2
     mkdir "${exercise_dir}/.meta"
-    touch "${exercise_dir}/.meta/example.rs"
     cat <<EOT >"${exercise_dir}/.meta/example.rs"
-// Create a solution that passes all the tests
+fn $(dash_to_underscore "$slug")() {
+   // TODO: Create a solution that passes all the tests
+   unimplemented!("implement ${slug} exercise")
+}
+
 EOT
-    message "success" "Created example.rs file"
+    message "success" "Stub file for example.rs has been created!"
 }

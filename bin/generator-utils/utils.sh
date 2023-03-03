@@ -8,15 +8,9 @@ function message() {
     local message=$2
 
     case "$flag" in
-    "success")
-        printf "${GREEN}%s${RESET}\n" "[success]: $message"
-        ;;
-    "info")
-        printf "${BLUE}%s${RESET}\n" "[info]: $message"
-        ;;
-    "error")
-        printf "${RED}%s${RESET}\n" "[error]: $message"
-        ;;
+    "success") printf "${GREEN}%s${RESET}\n" "[success]: $message" ;;
+    "info") printf "${BLUE}%s${RESET}\n" "[info]: $message" ;;
+    "error") printf "${RED}%s${RESET}\n" "[error]: $message" ;;
     "done")
         echo
         cols=$(tput cols)
@@ -35,12 +29,17 @@ function dash_to_underscore() {
     echo "$1" | sed 's/-/_/g'
 }
 
+# exercise_name -> Exercise Name
+function format_exercise_name {
+    echo "$1" | sed 's/-/ /g; s/\b\(.\)/\u\1/g'
+}
+
 function check_exercise_existence() {
-    message "info" "Looking for exercise"
+    message "info" "Looking for exercise.."
     slug="$1"
     unimplemented_exercises=$(bin/configlet info | sed -n '/With canonical data:/,/Track summary:/p' | sed -e '/\(With\(out\)\? canonical data:\|Track summary:\)/d' -e '/^$/d')
     if echo "$unimplemented_exercises" | grep -q "^$slug$"; then
-        message "success" "Found exercise successfully"
+        message "success" "Exercise has been found!"
     else
         message "error" "Exercise is either implemented or doesn't exist"
         message "info" "These are the unimplemented practice exercises:

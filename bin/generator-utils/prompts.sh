@@ -4,38 +4,44 @@
 source ./bin/generator-utils/colors.sh
 
 function get_exercise_difficulty() {
-    local VALID_INPUT=false
-    while ! $VALID_INPUT; do
-        read -rp "Difficulty of exercise (1-10): " EXERCISE_DIFFICULTY
-        if [[ "$EXERCISE_DIFFICULTY" =~ ^[1-9]$|^10$ ]]; then
-            VALID_INPUT=true
+    local valid_input=false
+    while ! $valid_input; do
+        read -rp "Difficulty of exercise (1-10): " exercise_difficulty
+        if [[ "$exercise_difficulty" =~ ^[1-9]$|^10$ ]]; then
+            valid_input=true
         else
             printf "Invalid input. Please enter an integer between 1 and 10."
         fi
     done
-    echo "$EXERCISE_DIFFICULTY"
+    echo "$exercise_difficulty"
 }
 
-function get_exercise_name {
-    DEFAULT_EXERCISE_NAME=$(echo "$1" | sed 's/-/ /g; s/\b\(.\)/\u\1/g')
-    read -rp "Enter exercise name or use default (${YELLOW}${DEFAULT_EXERCISE_NAME}${RESET}): " EXERCISE_NAME
+function validate_difficulty_input() {
 
-    # If the user didn't input anything, set EXERCISE_NAME to a pregenerated default
-    if [[ -z "$EXERCISE_NAME" ]]; then
-        EXERCISE_NAME="$DEFAULT_EXERCISE_NAME"
-    fi
+    valid_input=false
+    while ! $valid_input; do
+        if [[ "$1" =~ ^[1-9]$|^10$ ]]; then
+            exercise_difficulty=$1
+            valid_input=true
+        else
+            read -rp "${RED}Invalid input. ${RESET}Please enter an integer between 1 and 10. " exercise_difficulty
+            [[ "$exercise_difficulty" =~ ^[1-9]$|^10$ ]] && valid_input=true
 
-    echo "$EXERCISE_NAME"
+        fi
+    done
+    echo "$exercise_difficulty"
 }
 
-function get_author_name {
-    DEFAULT_AUTHOR_NAME="$(git config user.name)"
-    read -rp "Hey! Is your GitHub handle ${YELLOW}${DEFAULT_AUTHOR_NAME}${RESET}? If not, please enter your Github handle: " AUTHOR_NAME
 
-    # If the user didn't input anything, set AUTHOR_NAME to a pregenerated default
-    if [[ -z "$AUTHOR_NAME" ]]; then
-        AUTHOR_NAME="$DEFAULT_AUTHOR_NAME"
+function get_author_handle {
+    DEFAULT_AUTHOR_HANDLE="$(git config user.name)"
+
+    if [ -z "$DEFAULT_AUTHOR_HANDLE" ]; then
+        read -rp "Hey! Couldn't find your Github handle. Add it now or skip with enter and add it later in the .meta.config.json file: " AUTHOR_HANDLE
+    else
+        AUTHOR_HANDLE="$DEFAULT_AUTHOR_HANDLE"
+
     fi
+    echo "$AUTHOR_HANDLE"
 
-    echo "$AUTHOR_NAME"
 }
