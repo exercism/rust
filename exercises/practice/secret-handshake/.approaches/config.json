@@ -1,0 +1,15 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "cd0c0a31-0905-47f0-815c-02597a7cdf40",
+      "slug": "iterate-once",
+      "title": "Iterate once",
+      "blurb": "Iterate once even when reversed.",
+      "authors": ["bobahop"]
+    }
+  ]
+}

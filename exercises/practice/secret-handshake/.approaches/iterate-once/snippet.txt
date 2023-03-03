@@ -1,0 +1,4 @@
+let (mut action, action_incr, end) = match n & REVERSE_SIGNS {
+    0 => (0, 1, 4),
+    _ => (3, -1, -1),
+};
