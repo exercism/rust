@@ -6,7 +6,7 @@ One approach is to iterate only once, even when the signs are to be reversed.
 ## General guidance
 
 Something to consider is to keep the number of iterations at a minimum to get the best performance.
-However, if that is felt to adversely impact readability, then to iterate and then reverse is also valid.
+However, if that is felt to adversely impact readability, then to use a series of `if` statements and then reverse is also valid.
 
 ## Approach: Iterate once
 
