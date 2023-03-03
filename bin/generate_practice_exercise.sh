@@ -30,6 +30,9 @@ command -v curl >/dev/null 2>&1 || {
     exit 1
 }
 
+# Check if exercise exists in configlet info
+check_exercise_existence "$1"
+
 # ==================================================
 
 SLUG="$1"
@@ -53,7 +56,6 @@ create_example_rs_template "$EXERCISE_DIR"
 overwrite_gitignore "$EXERCISE_DIR"
 
 message "success" "Created Rust files succesfully!"
-
 
 # ==================================================
 
