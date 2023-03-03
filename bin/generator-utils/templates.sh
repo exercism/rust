@@ -42,7 +42,7 @@ EOT
         # append each test fn to the test file
         cat <<EOT >>"$test_file"
 #[test] $([[ "$first_iteration" == false ]] && printf "\n#[ignore]")
-fn ${desc}(){
+fn ${desc}() {
     /*
     Input:
     ${input}

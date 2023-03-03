@@ -39,11 +39,11 @@ SLUG="$1"
 UNDERSCORED_SLUG=$(dash_to_underscore "$SLUG")
 EXERCISE_DIR="exercises/practice/${SLUG}"
 AUTHOR_NAME=$(get_author_name)
-message "info" "You entered: $AUTHOR_NAME. You can edit this later in .meta/config.json.authors"
+message "info" "You entered: $AUTHOR_NAME. You can edit this later in the 'authors' field in the .meta/config.json file"
 EXERCISE_NAME=$(get_exercise_name "$SLUG")
-message "info" "You entered: $EXERCISE_NAME. You can edit this later in config.json"
+message "info" "You entered: $EXERCISE_NAME. You can edit this later in the config.json file"
 EXERCISE_DIFFICULTY=$(get_exercise_difficulty)
-message "info" "EXERCISE_DIFFICULTY is set to $EXERCISE_DIFFICULTY. You can edit this later in config.json"
+message "info" "EXERCISE_DIFFICULTY is set to $EXERCISE_DIFFICULTY. You can edit this later in the config.json file"
 
 echo "Creating Rust files"
 cargo new --lib "$EXERCISE_DIR" -q
