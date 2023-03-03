@@ -37,6 +37,13 @@ function format_exercise_name {
 function check_exercise_existence() {
     message "info" "Looking for exercise.."
     slug="$1"
+    # Check if exercise is already in config.json
+    if jq '.exercises.practice | map(.slug)' config.json | grep -q "$slug"; then
+        echo "${1} has already been implemented."
+        exit 1
+    fi
+
+    # fetch configlet and crop out exercise list
     unimplemented_exercises=$(bin/configlet info | sed -n '/With canonical data:/,/Track summary:/p' | sed -e '/\(With\(out\)\? canonical data:\|Track summary:\)/d' -e '/^$/d')
     if echo "$unimplemented_exercises" | grep -q "^$slug$"; then
         message "success" "Exercise has been found!"

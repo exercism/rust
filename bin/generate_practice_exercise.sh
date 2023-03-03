@@ -30,13 +30,7 @@ command -v curl >/dev/null 2>&1 || {
     exit 1
 }
 
-# Check if exercise is already in config.json
-if jq '.exercises.practice | map(.slug)' config.json | grep -q "$1"; then
-    echo "${1} has already been implemented."
-    exit 1
-fi
-
-# Check if exercise exists in configlet info
+# Check if exercise exists in configlet info or in config.json
 check_exercise_existence "$1"
 
 # ==================================================
