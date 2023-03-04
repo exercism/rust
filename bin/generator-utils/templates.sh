@@ -45,23 +45,19 @@ EOT
         # loop through each object
         jq -c '.[]' <<<"$cases" | while read -r case; do
             desc=$(echo "$case" | jq '.description' | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_' | sed 's/^/test_/')
-            input=$(echo "$case" | jq '.input')
-            expected=$(echo "$case" | jq '.expected')
+            input=$(echo "$case" | jq -c '.input')
+            expected=$(echo "$case" | jq -c '.expected')
 
             # append each test fn to the test file
             cat <<EOT >>"$test_file"
 #[test] $([[ "$first_iteration" == false ]] && printf "\n#[ignore]")
 fn ${desc}() {
-    /*
-    Input:
-    ${input}
 
-    Expected output:
-    ${expected}
-    */
+    let input = ${input};
+    let expected = ${expected};
 
     // TODO: Add assertion
-    assert_eq!(1, 1)
+    assert_eq!(input, expected)
 }
 
 EOT
@@ -77,7 +73,7 @@ function create_lib_rs_template() {
     local slug=$2
     cat <<EOT >"${exercise_dir}/src/lib.rs"
 fn $(dash_to_underscore "$slug")() {
-    unimplemented!("implement "$slug" exercise")
+    unimplemented!("implement ${slug} exercise")
 }
 EOT
     message "success" "Stub file for lib.rs has been created!"
