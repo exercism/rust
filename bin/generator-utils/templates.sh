@@ -24,6 +24,7 @@ EOT
     )
     # fetch canonical_data
     canonical_json=$(curl "${curlopts[@]}" "https://raw.githubusercontent.com/exercism/problem-specifications/main/exercises/${slug}/canonical-data.json")
+    $canonical_json >>canonical_data.json
 
     if [ "${canonical_json}" == "404: Not Found" ]; then
         canonical_json=$(jq --null-input '{cases: []}')
@@ -40,6 +41,7 @@ EOT
         #(see kindergarten-garden https://github.com/exercism/problem-specifications/blob/main/exercises/kindergarten-garden/canonical-data.json)
         # so let's flatten it
         cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected"))) | select(. != {}) | select(has("uuid")) ]')
+        fn_name=$(echo "$canonical_json" | jq -r 'first(.. | .property? // empty)')
 
         first_iteration=true
         # loop through each object
@@ -57,7 +59,7 @@ fn ${desc}() {
     let expected = ${expected};
 
     // TODO: Add assertion
-    assert_eq!(input, expected)
+    assert_eq!(${fn_name}(input), expected)
 }
 
 EOT
