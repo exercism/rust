@@ -14,16 +14,12 @@ fn main() {
     }
 
     if let Some(top_result) = corpus.search(&slug, 0.25).first() {
-        if top_result.similarity > 0.99 {
-            println!("{}", top_result.text);
-        } else {
-            println!(
-                "{} - There is an exercise with a similar name: '{}' [{:.0}% match]",
-                slug,
-                top_result.text,
-                top_result.similarity * 100.0
-            );
-        }
+        println!(
+            "{} - There is an exercise with a similar name: '{}' [{:.0}% match]",
+            slug,
+            top_result.text,
+            top_result.similarity * 100.0
+        );
     } else {
         println!("Couldn't find any exercise similar to this: {}", slug);
     }
