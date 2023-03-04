@@ -25,6 +25,6 @@ fn main() {
             );
         }
     } else {
-        println!("{}", slug);
+        println!("Couldn't find any exercise similar to this: {}", slug);
     }
 }
