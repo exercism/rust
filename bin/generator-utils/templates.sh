@@ -74,7 +74,7 @@ function create_lib_rs_template() {
     local exercise_dir=$1
     local slug=$2
     cat <<EOT >"${exercise_dir}/src/lib.rs"
-fn $(dash_to_underscore "$slug")() {
+pub fn $(dash_to_underscore "$slug")() {
     unimplemented!("implement ${slug} exercise")
 }
 EOT
@@ -101,7 +101,7 @@ function create_example_rs_template() {
     slug=$2
     mkdir "${exercise_dir}/.meta"
     cat <<EOT >"${exercise_dir}/.meta/example.rs"
-fn $(dash_to_underscore "$slug")() {
+pub fn $(dash_to_underscore "$slug")() {
    // TODO: Create a solution that passes all the tests
    unimplemented!("implement ${slug} exercise")
 }

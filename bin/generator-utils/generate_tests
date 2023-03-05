@@ -24,6 +24,8 @@ use $(dash_to_underscore "$SLUG")::*;
 // Add tests here
 
 EOT
+
+# Flattens canonical json, extracts only the objects with a uuid
 cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
 
 # shellcheck disable=SC2034
@@ -38,7 +40,7 @@ jq -c '.[]' <<<"$cases" | while read -r case; do
   # Push to file
 
   echo "$formatted_template" >>"$TEST_FILE"
-  printf "\\n" >> "$TEST_FILE"
+  printf "\\n" >>"$TEST_FILE"
 
 done
 
