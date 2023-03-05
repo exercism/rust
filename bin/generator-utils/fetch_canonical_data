@@ -15,9 +15,6 @@ slug=$1
 
 curlopts=(
   --silent
-  --show-error
-  --fail
-  --location
   --retry 3
   --max-time 4
 )
