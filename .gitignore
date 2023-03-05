@@ -9,3 +9,4 @@ bin/exercise
 bin/exercise.exe
 exercises/*/*/Cargo.lock
 exercises/*/*/clippy.log
+canonical_data.json

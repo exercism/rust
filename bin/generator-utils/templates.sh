@@ -24,7 +24,7 @@ EOT
     )
     # fetch canonical_data
     canonical_json=$(curl "${curlopts[@]}" "https://raw.githubusercontent.com/exercism/problem-specifications/main/exercises/${slug}/canonical-data.json")
-    $canonical_json >>canonical_data.json
+    echo "$canonical_json" >>canonical_data.json
 
     if [ "${canonical_json}" == "404: Not Found" ]; then
         canonical_json=$(jq --null-input '{cases: []}')
