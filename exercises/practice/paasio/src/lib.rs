@@ -1,5 +1,8 @@
 use std::io::{Read, Result, Write};
 
+// the PhantomData instances in this file are just to stop compiler complaints
+// about missing generics; feel free to remove them
+
 pub struct ReadStats<R>(::std::marker::PhantomData<R>);
 
 impl<R: Read> ReadStats<R> {
