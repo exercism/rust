@@ -8,6 +8,7 @@ bin/configlet.exe
 bin/exercise
 bin/exercise.exe
 bin/generator-utils/ngram
+bin/test_template
 exercises/*/*/Cargo.lock
 exercises/*/*/clippy.log
 canonical_data.json

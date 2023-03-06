@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
+# This script fetches the canonical data of the exercise.
 
 if [ $# -ne 1 ]; then
-  echo "Usage: bin/generator-utils/fetch_canonical_data <exercise-slug>"
+  echo "Usage: bin/fetch_canonical_data <exercise-slug>"
   exit 1
 fi
 

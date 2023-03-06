@@ -6,6 +6,7 @@ source ./bin/generator-utils/utils.sh
 function create_test_file_template() {
     local exercise_dir=$1
     local slug=$2
+    local has_canonical_data=$3
     local test_file="${exercise_dir}/tests/${slug}.rs"
 
     cat <<EOT >"$test_file"
@@ -14,11 +15,7 @@ use $(dash_to_underscore "$slug")::*;
 
 EOT
 
-    canonical_json=$(bin/generator-utils/fetch_canonical_data "$slug")
-    echo "$canonical_json" >canonical_data.json
-
-    if [ "${canonical_json}" == "404: Not Found" ]; then
-        canonical_json=$(jq --null-input '{cases: []}')
+    if [ "$has_canonical_data" == false ]; then
 
         cat <<EOT >>"$test_file"
 // As there isn't a canonical data file for this exercise, you will need to craft your own tests.
@@ -28,6 +25,8 @@ EOT
         message "info" "This exercise doesn't have canonical data."
         message "success" "Stub file for tests has been created!"
     else
+        canonical_json=$(cat canonical_data.json)
+
         # sometimes canonical data has multiple levels with multiple `cases` arrays.
         #(see kindergarten-garden https://github.com/exercism/problem-specifications/blob/main/exercises/kindergarten-garden/canonical-data.json)
         # so let's flatten it
@@ -64,6 +63,8 @@ EOT
 function create_lib_rs_template() {
     local exercise_dir=$1
     local slug=$2
+    local has_canonical_data=$3
+    fn_name=$(create_fn_name "$slug" "$has_canonical_data")
     cat <<EOT >"${exercise_dir}/src/lib.rs"
 pub fn $(dash_to_underscore "$slug")() {
     unimplemented!("implement ${slug} exercise")
@@ -88,15 +89,33 @@ EOT
 }
 
 function create_example_rs_template() {
-    exercise_dir=$1
-    slug=$2
+    local exercise_dir=$1
+    local slug=$2
+    local has_canonical_data=$3
+
+    fn_name=$(create_fn_name "$slug" "$has_canonical_data")
+
     mkdir "${exercise_dir}/.meta"
     cat <<EOT >"${exercise_dir}/.meta/example.rs"
-pub fn $(dash_to_underscore "$slug")() {
+pub fn ${fn_name}() {
    // TODO: Create a solution that passes all the tests
    unimplemented!("implement ${slug} exercise")
 }
 
 EOT
     message "success" "Stub file for example.rs has been created!"
+}
+
+function create_fn_name() {
+    slug=$1
+    has_canonical_data=$2
+
+    if [ "$has_canonical_data" == true ]; then
+        fn_name=$(dash_to_underscore "$slug")
+    else
+        fn_name=$(jq -r 'first(.. | .property? // empty)' canonical_data.json)
+    fi
+
+    echo "$fn_name"
+
 }

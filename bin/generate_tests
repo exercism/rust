@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
 # shellcheck source=/dev/null
 source ./bin/generator-utils/utils.sh
 
 function digest_template() {
-  template=$(cat bin/generator-utils/test_template)
+  template=$(cat bin/test_template)
   # shellcheck disable=SC2001
   # turn every token into a jq command
   echo "$template" | sed 's/${\([^}]*\)\}\$/$(echo $case | jq -r '\''.\1'\'')/g'

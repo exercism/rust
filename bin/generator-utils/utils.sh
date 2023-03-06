@@ -10,6 +10,7 @@ function message() {
     case "$flag" in
     "success") printf "${GREEN}%s${RESET}\n" "[success]: $message" ;;
     "info") printf "${BLUE}%s${RESET}\n" "[info]: $message" ;;
+    "warning") printf "${YELLOW}%s${RESET}\n" "[warning]: $message" ;;
     "error") printf "${RED}%s${RESET}\n" "[error]: $message" ;;
     "done")
         echo
