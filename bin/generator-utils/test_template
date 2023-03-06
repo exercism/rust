@@ -1,9 +1,0 @@
-#[test]
-#[ignore]
-fn ${description}$() {
-
-    let expected = vec!${expected}$;
-
-    assert_eq!(${property}$(${input.startVerse}$, ${input.endVerse}$), expected)
-}
-
