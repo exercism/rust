@@ -58,6 +58,8 @@ ${unimplemented_exercises}"
         if [ -e bin/generator-utils/ngram ]; then
             echo "${YELLOW}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${RESET}"
         else
+            message "info" "Building typo-checker binary for $(uname -m) system."
+            
             cd util/ngram && ./build && cd ../.. && echo "${YELLOW}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${RESET}"
         fi
 
