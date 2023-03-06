@@ -54,7 +54,12 @@ ${unimplemented_exercises}"
 
         # Find closest match to typed-in not-found slug
         # see util/ngram for source
-        echo "${YELLOW}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${RESET}"
+        # First it builds a binary for the system of the contributor
+        if [ -e bin/generator-utils/ngram ]; then
+            echo "${YELLOW}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${RESET}"
+        else
+            cd util/ngram && ./build && cd ../.. && echo "${YELLOW}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${RESET}"
+        fi
 
         exit 1
     fi
