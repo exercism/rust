@@ -3,6 +3,20 @@
 # shellcheck source=/dev/null
 source ./bin/generator-utils/utils.sh
 
+function create_fn_name() {
+    slug=$1
+    has_canonical_data=$2
+
+    if [ "$has_canonical_data" == false ]; then
+        fn_name=$(dash_to_underscore "$slug")
+    else
+        fn_name=$(jq -r 'first(.. | .property? // empty)' canonical_data.json)
+    fi
+
+    echo "$fn_name"
+
+}
+
 function create_test_file_template() {
     local exercise_dir=$1
     local slug=$2
@@ -49,7 +63,7 @@ fn ${desc}() {
     let expected = ${expected};
 
     // TODO: Add assertion
-    assert_eq!(${fn_name}(input), expected)
+    assert_eq!(${fn_name}(input), expected);
 }
 
 EOT
@@ -66,8 +80,8 @@ function create_lib_rs_template() {
     local has_canonical_data=$3
     fn_name=$(create_fn_name "$slug" "$has_canonical_data")
     cat <<EOT >"${exercise_dir}/src/lib.rs"
-pub fn $(dash_to_underscore "$slug")() {
-    unimplemented!("implement ${slug} exercise")
+pub fn ${fn_name}() {
+    unimplemented!("implement ${slug} exercise");
 }
 EOT
     message "success" "Stub file for lib.rs has been created!"
@@ -99,23 +113,28 @@ function create_example_rs_template() {
     cat <<EOT >"${exercise_dir}/.meta/example.rs"
 pub fn ${fn_name}() {
    // TODO: Create a solution that passes all the tests
-   unimplemented!("implement ${slug} exercise")
+   unimplemented!("implement ${slug} exercise");
 }
 
 EOT
     message "success" "Stub file for example.rs has been created!"
 }
 
-function create_fn_name() {
-    slug=$1
-    has_canonical_data=$2
+function create_rust_files() {
+    local exercise_dir=$1
+    local slug=$2
+    local has_canonical_data=$3
 
-    if [ "$has_canonical_data" == true ]; then
-        fn_name=$(dash_to_underscore "$slug")
-    else
-        fn_name=$(jq -r 'first(.. | .property? // empty)' canonical_data.json)
-    fi
+    message "info" "Creating Rust files"
+    cargo new --lib "$exercise_dir" -q
+    mkdir -p "$exercise_dir"/tests
+    touch "${exercise_dir}/tests/${slug}.rs"
 
-    echo "$fn_name"
+    create_test_file_template "$exercise_dir" "$slug" "$has_canonical_data"
+    create_lib_rs_template "$exercise_dir" "$slug" "$has_canonical_data"
+    create_example_rs_template "$exercise_dir" "$slug" "$has_canonical_data"
+    overwrite_gitignore "$exercise_dir"
+
+    message "success" "Created Rust files succesfully!"
 
 }

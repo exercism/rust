@@ -60,17 +60,9 @@ message "info" "The exercise difficulty has been set to ${YELLOW}${EXERCISE_DIFF
 AUTHOR_HANDLE=${3:-$(get_author_handle)}
 message "info" "Using ${YELLOW}${AUTHOR_HANDLE}${BLUE} as author's handle. You can edit this later in the 'authors' field in the ${EXERCISE_DIR}/.meta/config.json file"
 
-message "info" "Creating Rust files"
-cargo new --lib "$EXERCISE_DIR" -q
-mkdir -p "$EXERCISE_DIR"/tests
-touch "${EXERCISE_DIR}/tests/${SLUG}.rs"
 
-create_test_file_template "$EXERCISE_DIR" "$SLUG" "$HAS_CANONICAL_DATA"
-create_lib_rs_template "$EXERCISE_DIR" "$SLUG" "$HAS_CANONICAL_DATA"
-create_example_rs_template "$EXERCISE_DIR" "$SLUG" "$HAS_CANONICAL_DATA"
-overwrite_gitignore "$EXERCISE_DIR"
+create_rust_files "$EXERCISE_DIR" "$SLUG" "$HAS_CANONICAL_DATA"
 
-message "success" "Created Rust files succesfully!"
 
 # ==================================================
 
