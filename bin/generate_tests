@@ -11,6 +11,7 @@ function digest_template() {
   echo "$template" | sed 's/${\([^}]*\)\}\$/$(echo $case | jq -r '\''.\1'\'')/g'
 }
 
+message "info" "Generating tests.."
 canonical_json=$(cat canonical_data.json)
 SLUG=$(echo "$canonical_json" | jq '.exercise')
 # shellcheck disable=SC2001
@@ -18,7 +19,6 @@ SLUG=$(echo "$canonical_json" | jq '.exercise')
 SLUG=$(echo "$SLUG" | sed 's/"//g')
 EXERCISE_DIR="exercises/practice/$SLUG"
 TEST_FILE="$EXERCISE_DIR/tests/$SLUG.rs"
-rm "$TEST_FILE"
 
 cat <<EOT >"$TEST_FILE"
 use $(dash_to_underscore "$SLUG")::*;
@@ -46,3 +46,5 @@ jq -c '.[]' <<<"$cases" | while read -r case; do
 done
 
 rustfmt "$TEST_FILE"
+
+message "success" "Generated tests successfully! Check out ${TEST_FILE}"
