@@ -85,6 +85,19 @@ fn test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three() {
 
 #[test]
 #[ignore]
+/// Two groups of four is cheaper than groups of five and three
+fn test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three() {
+    process_total_case(
+        (
+            vec![1, 1, 2, 3, 4, 4, 5, 5],
+            vec![vec![1, 2, 4, 5], vec![1, 3, 4, 5]],
+        ),
+        5_120,
+    );
+}
+
+#[test]
+#[ignore]
 /// Group of four plus group of two is cheaper than two groups of three
 fn test_group_of_four_plus_group_of_two_is_cheaper_than_two_groups_of_three() {
     process_total_case(
