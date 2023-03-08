@@ -83,7 +83,7 @@ fn test_two_pairs_beats_one_pair() {
 #[ignore]
 fn test_two_pair_ranks() {
     // both hands have two pairs, highest ranked pair wins
-    test(&["2S 8H 2D 8D 3H", "4S 5H 4C 8S 5D"], &["2S 8H 2D 8D 3H"])
+    test(&["2S 8H 2D 8D 3H", "4S 5H 4C 9S 5D"], &["2S 8H 2D 8D 3H"])
 }
 
 #[test]
@@ -91,7 +91,7 @@ fn test_two_pair_ranks() {
 fn test_two_pairs_second_pair_cascade() {
     // both hands have two pairs, with the same highest ranked pair,
     // tie goes to low pair
-    test(&["2S QS 2C QD JH", "JD QH JS 8D QC"], &["JD QH JS 8D QC"])
+    test(&["2S QS 2C QD KH", "JD QH JS 8D QC"], &["JD QH JS 8D QC"])
 }
 
 #[test]
@@ -112,7 +112,7 @@ fn test_three_of_a_kind_beats_two_pair() {
 #[ignore]
 fn test_three_of_a_kind_ranks() {
     //both hands have three of a kind, tie goes to highest ranked triplet
-    test(&["2S 2H 2C 8D JH", "4S AH AS 8C AD"], &["4S AH AS 8C AD"])
+    test(&["2S 2H 2C 8D JH", "4S 3H 3S 8C 3D"], &["4S 3H 3S 8C 3D"])
 }
 
 #[test]
