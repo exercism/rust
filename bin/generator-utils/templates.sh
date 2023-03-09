@@ -42,7 +42,6 @@ EOT
     else
         local canonical_json
         canonical_json=$(cat canonical_data.json)
-        local canonical_json
 
         # sometimes canonical data has multiple levels with multiple `cases` arrays.
         #(see kindergarten-garden https://github.com/exercism/problem-specifications/blob/main/exercises/kindergarten-garden/canonical-data.json)
@@ -115,7 +114,6 @@ create_example_rs_template() {
 
     local fn_name
     fn_name=$(create_fn_name "$slug" "$has_canonical_data")
-    local fn_name
 
     mkdir "${exercise_dir}/.meta"
     cat <<EOT >"${exercise_dir}/.meta/example.rs"
