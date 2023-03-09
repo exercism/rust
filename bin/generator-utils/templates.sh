@@ -40,16 +40,16 @@ EOT
         message "info" "This exercise doesn't have canonical data."
         message "success" "Stub file for tests has been created!"
     else
-        canonical_json=$(cat canonical_data.json)
         local canonical_json
+        canonical_json=$(cat canonical_data.json)
 
         # sometimes canonical data has multiple levels with multiple `cases` arrays.
         #(see kindergarten-garden https://github.com/exercism/problem-specifications/blob/main/exercises/kindergarten-garden/canonical-data.json)
         # so let's flatten it
-        cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected"))) | select(. != {}) | select(has("uuid")) ]')
         local cases
-        fn_name=$(echo "$canonical_json" | jq -r 'first(.. | .property? // empty)')
+        cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected"))) | select(. != {}) | select(has("uuid")) ]')
         local fn_name
+        fn_name=$(echo "$canonical_json" | jq -r 'first(.. | .property? // empty)')
 
         first_iteration=true
         # loop through each object
@@ -82,6 +82,7 @@ function create_lib_rs_template() {
     local exercise_dir=$1
     local slug=$2
     local has_canonical_data=$3
+    local fn_name
     fn_name=$(create_fn_name "$slug" "$has_canonical_data")
     cat <<EOT >"${exercise_dir}/src/lib.rs"
 pub fn ${fn_name}() {
@@ -111,8 +112,8 @@ function create_example_rs_template() {
     local slug=$2
     local has_canonical_data=$3
 
-    fn_name=$(create_fn_name "$slug" "$has_canonical_data")
     local fn_name
+    fn_name=$(create_fn_name "$slug" "$has_canonical_data")
 
     mkdir "${exercise_dir}/.meta"
     cat <<EOT >"${exercise_dir}/.meta/example.rs"
