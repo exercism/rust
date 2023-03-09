@@ -12,7 +12,7 @@ set -euo pipefail
 
 # If argument not provided, print usage and exit
 if [ $# -ne 1 ] && [ $# -ne 2 ] && [ $# -ne 3 ]; then
-    echo "Usage: bin/generate_practice_exercise.sh <exercise-slug> [difficulty] [author-github-handle]"
+    echo "Usage: bin/add_practice_exercise <exercise-slug> [difficulty] [author-github-handle]"
     exit 1
 fi
 
