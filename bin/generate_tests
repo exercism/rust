@@ -29,15 +29,15 @@ use $(dash_to_underscore "$slug")::*;
 EOT
 
 # Flattens canonical json, extracts only the objects with a uuid
-cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
+CASES=$(echo "$CANONICAL_JSON" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
 
 # Shellcheck doesn't recognize that `case` is not unused
 # shellcheck disable=SC2034
-jq -c '.[]' <<<"$cases" | while read -r case; do
+jq -c '.[]' <<<"$CASES" | while read -r case; do
 
   # Evaluate the bash parts and replace them with their return values
-  eval_template="$(digest_template | sed -e "s/\$(\(.*\))/\$\(\1\)/g")"
-  eval_template="$(eval "echo \"$eval_template\"")"
+  EVAL_TEMPLATE="$(digest_template | sed -e "s/\$(\(.*\))/\$\(\1\)/g")"
+  EVAL_TEMPLATE="$(eval "echo \"$EVAL_TEMPLATE\"")"
 
   # Turn function name into snake_case
   formatted_template=$(echo "$eval_template" | sed -e ':loop' -e 's/\(fn[^(]*\)[ -]/\1_/g' -e 't loop' | sed 's/fn_/fn /')
