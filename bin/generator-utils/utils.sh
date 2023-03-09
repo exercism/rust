@@ -3,7 +3,7 @@
 # shellcheck source=./colors.sh
 source ./bin/generator-utils/colors.sh
 
-function message() {
+message() {
     local flag=$1
     local message=$2
 
