@@ -1,23 +1,26 @@
 #!/usr/bin/env bash
 
-# shellcheck source=/dev/null
+# shellcheck source=./colors.sh
 source ./bin/generator-utils/colors.sh
 
-function message() {
+message() {
     local flag=$1
     local message=$2
 
     case "$flag" in
-    "success") printf "${GREEN}%s${RESET}\n" "[success]: $message" ;;
-    "info") printf "${BLUE}%s${RESET}\n" "[info]: $message" ;;
-    "warning") printf "${YELLOW}%s${RESET}\n" "[warning]: $message" ;;
-    "error") printf "${RED}%s${RESET}\n" "[error]: $message" ;;
+    "success") printf "${green}%s${reset_color}\n" "[success]: $message" ;;
+    "task") printf "${cyan}%s${reset_color}\n" "[task]: $message" ;;
+    "info") printf "${blue}%s${reset_color}\n" "[info]: $message" ;;
+    "warning") printf "${yellow}%s${reset_color}\n" "[warning]: $message" ;;
+    "error") printf "${red}%s${reset_color}\n" "[error]: $message" ;;
     "done")
         echo
+        # Generate a dashed line that spans the entire width of the screen.
+        local cols
         cols=$(tput cols)
         printf "%*s\n" "$cols" "" | tr " " "-"
         echo
-        printf "${BOLD_GREEN}%s${RESET}\n" "[done]: $message"
+        printf "${bold_green}%s${reset_color}\n" "[done]: $message"
         ;;
     *)
         echo "Invalid flag: $flag"
@@ -25,26 +28,26 @@ function message() {
     esac
 }
 
-function dash_to_underscore() {
-    # shellcheck disable=SC2001
+dash_to_underscore() {
     echo "$1" | sed 's/-/_/g'
 }
 
 # exercise_name -> Exercise Name
-function format_exercise_name {
+format_exercise_name() {
     echo "$1" | sed 's/-/ /g; s/\b\(.\)/\u\1/g'
 }
 
-function check_exercise_existence() {
+check_exercise_existence() {
     message "info" "Looking for exercise.."
-    slug="$1"
+    local slug="$1"
     # Check if exercise is already in config.json
     if jq '.exercises.practice | map(.slug)' config.json | grep -q "$slug"; then
         echo "${1} has already been implemented."
         exit 1
     fi
 
-    # fetch configlet and crop out exercise list
+    # Fetch configlet and crop out exercise list
+    local unimplemented_exercises
     unimplemented_exercises=$(bin/configlet info | sed -n '/With canonical data:/,/Track summary:/p' | sed -e '/\(With\(out\)\? canonical data:\|Track summary:\)/d' -e '/^$/d')
     if echo "$unimplemented_exercises" | grep -q "^$slug$"; then
         message "success" "Exercise has been found!"
@@ -54,14 +57,14 @@ function check_exercise_existence() {
 ${unimplemented_exercises}"
 
         # Find closest match to typed-in not-found slug
-        # see util/ngram for source
+        # See util/ngram for source
         # First it builds a binary for the system of the contributor
         if [ -e bin/generator-utils/ngram ]; then
-            echo "${YELLOW}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${RESET}"
+            echo "${yellow}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${reset_color}"
         else
             message "info" "Building typo-checker binary for $(uname -m) system."
 
-            cd util/ngram && ./build && cd ../.. && echo "${YELLOW}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${RESET}"
+            cd util/ngram && ./build && cd ../.. && echo "${yellow}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${reset_color}"
         fi
 
         exit 1
