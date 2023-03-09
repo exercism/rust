@@ -9,44 +9,44 @@ source ./bin/generator-utils/utils.sh
 
 digest_template() {
   template=$(cat bin/test_template)
-  # turn every token into a jq command
+  # Turn every token into a jq command
   echo "$template" | sed 's/${\([^}]*\)\}\$/$(echo $case | jq -r '\''.\1'\'')/g'
 }
 
 message "info" "Generating tests.."
 canonical_json=$(cat canonical_data.json)
-SLUG=$(echo "$canonical_json" | jq '.exercise')
-# shellcheck disable=SC2001
+slug=$(echo "$canonical_json" | jq '.exercise')
 # Remove double quotes
-SLUG=$(echo "$SLUG" | sed 's/"//g')
-EXERCISE_DIR="exercises/practice/$SLUG"
-TEST_FILE="$EXERCISE_DIR/tests/$SLUG.rs"
+slug=$(echo "$slug" | sed 's/"//g')
+exercise_dir="exercises/practice/$slug"
+test_file="$exercise_dir/tests/$slug.rs"
 
-cat <<EOT >"$TEST_FILE"
-use $(dash_to_underscore "$SLUG")::*;
+cat <<EOT >"$test_file"
+use $(dash_to_underscore "$slug")::*;
 // Add tests here
 
 EOT
 
 # Flattens canonical json, extracts only the objects with a uuid
-CASES=$(echo "$CANONICAL_JSON" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
+cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
 
+# Shellcheck doesn't recognize that `case` is not unused
 # shellcheck disable=SC2034
-jq -c '.[]' <<<"$CASES" | while read -r case; do
+jq -c '.[]' <<<"$cases" | while read -r case; do
 
   # Evaluate the bash parts and replace them with their return values
-  EVAL_TEMPLATE="$(digest_template | sed -e "s/\$(\(.*\))/\$\(\1\)/g")"
-  EVAL_TEMPLATE="$(eval "echo \"$EVAL_TEMPLATE\"")"
+  eval_template="$(digest_template | sed -e "s/\$(\(.*\))/\$\(\1\)/g")"
+  eval_template="$(eval "echo \"$eval_template\"")"
 
-  # Turn function name unto snake_case
-  FORMATTED_TEMPLATE=$(echo "$EVAL_TEMPLATE" | sed -e ':loop' -e 's/\(fn[^(]*\)[ -]/\1_/g' -e 't loop' | sed 's/fn_/fn /')
-  # Push to file
+  # Turn function name into snake_case
+  formatted_template=$(echo "$eval_template" | sed -e ':loop' -e 's/\(fn[^(]*\)[ -]/\1_/g' -e 't loop' | sed 's/fn_/fn /')
 
-  echo "$FORMATTED_TEMPLATE" >>"$TEST_FILE"
-  printf "\\n" >>"$TEST_FILE"
+  # Push to test file
+  echo "$formatted_template" >>"$test_file"
+  printf "\\n" >>"$test_file"
 
 done
 
-rustfmt "$TEST_FILE"
+rustfmt "$test_file"
 
-message "success" "Generated tests successfully! Check out ${TEST_FILE}"
+message "success" "Generated tests successfully! Check out ${test_file}"

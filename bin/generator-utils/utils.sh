@@ -15,7 +15,7 @@ function message() {
     "error") printf "${red}%s${reset_color}\n" "[error]: $message" ;;
     "done")
         echo
-        # Create a dashed-line as wide as the screen
+        # Generate a dashed line that spans the entire width of the screen.
         local cols
         cols=$(tput cols)
         printf "%*s\n" "$cols" "" | tr " " "-"
@@ -46,7 +46,7 @@ check_exercise_existence() {
         exit 1
     fi
 
-    # fetch configlet and crop out exercise list
+    # Fetch configlet and crop out exercise list
     local unimplemented_exercises
     unimplemented_exercises=$(bin/configlet info | sed -n '/With canonical data:/,/Track summary:/p' | sed -e '/\(With\(out\)\? canonical data:\|Track summary:\)/d' -e '/^$/d')
     if echo "$unimplemented_exercises" | grep -q "^$slug$"; then
@@ -57,7 +57,7 @@ check_exercise_existence() {
 ${unimplemented_exercises}"
 
         # Find closest match to typed-in not-found slug
-        # see util/ngram for source
+        # See util/ngram for source
         # First it builds a binary for the system of the contributor
         if [ -e bin/generator-utils/ngram ]; then
             echo "${yellow}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${reset_color}"
