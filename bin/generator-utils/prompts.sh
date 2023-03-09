@@ -25,8 +25,8 @@ validate_difficulty_input() {
 }
 
 get_author_handle() {
-    default_author_handle="$(git config user.name)"
     local default_author_handle
+    default_author_handle="$(git config user.name)"
 
     if [ -z "$default_author_handle" ]; then
         read -rp "Hey! Couldn't find your Github handle. Add it now or skip with enter and add it later in the .meta.config.json file: " author_handle

@@ -16,8 +16,8 @@ function message() {
     "done")
         echo
         # Create a dashed-line as wide as the screen
-        cols=$(tput cols)
         local cols
+        cols=$(tput cols)
         printf "%*s\n" "$cols" "" | tr " " "-"
         echo
         printf "${bold_green}%s${reset_color}\n" "[done]: $message"
