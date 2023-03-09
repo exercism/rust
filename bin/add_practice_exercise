@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# shellcheck source=/dev/null
+# shellcheck source=./generator-utils/utils.sh 
+# shellcheck source=./generator-utils/prompts.sh 
+# shellcheck source=./generator-utils/templates.sh 
 source ./bin/generator-utils/utils.sh
 source ./bin/generator-utils/prompts.sh
 source ./bin/generator-utils/templates.sh
@@ -35,13 +37,13 @@ check_exercise_existence "$1"
 
 # ==================================================
 
-SLUG="$1"
-HAS_CANONICAL_DATA=true
+slug="$1"
 # Fetch canonical data
-canonical_json=$(bin/fetch_canonical_data "$SLUG")
+canonical_json=$(bin/fetch_canonical_data "$slug")
 
+has_canonical_data=true
 if [ "${canonical_json}" == "404: Not Found" ]; then
-    HAS_CANONICAL_DATA=false
+    has_canonical_data=false
     message "warning" "This exercise doesn't have canonical data"
 
 else
@@ -49,32 +51,31 @@ else
     message "success" "Fetched canonical data successfully!"
 fi
 
-UNDERSCORED_SLUG=$(dash_to_underscore "$SLUG")
-EXERCISE_DIR="exercises/practice/${SLUG}"
-EXERCISE_NAME=$(format_exercise_name "$SLUG")
-message "info" "Using ${YELLOW}${EXERCISE_NAME}${BLUE} as a default exercise name. You can edit this later in the config.json file"
+underscored_slug=$(dash_to_underscore "$slug")
+exercise_dir="exercises/practice/${slug}"
+exercise_name=$(format_exercise_name "$slug")
+message "info" "Using ${yellow}${exercise_name}${blue} as a default exercise name. You can edit this later in the config.json file"
 # using default value for difficulty
-EXERCISE_DIFFICULTY=$(validate_difficulty_input "${2:-$(get_exercise_difficulty)}")
-message "info" "The exercise difficulty has been set to ${YELLOW}${EXERCISE_DIFFICULTY}${BLUE}. You can edit this later in the config.json file"
+exercise_difficulty=$(validate_difficulty_input "${2:-$(get_exercise_difficulty)}")
+message "info" "The exercise difficulty has been set to ${yellow}${exercise_difficulty}${blue}. You can edit this later in the config.json file"
 # using default value for author
-AUTHOR_HANDLE=${3:-$(get_author_handle)}
-message "info" "Using ${YELLOW}${AUTHOR_HANDLE}${BLUE} as author's handle. You can edit this later in the 'authors' field in the ${EXERCISE_DIR}/.meta/config.json file"
+author_handle=${3:-$(get_author_handle)}
+message "info" "Using ${yellow}${author_handle}${blue} as author's handle. You can edit this later in the 'authors' field in the ${exercise_dir}/.meta/config.json file"
 
-
-create_rust_files "$EXERCISE_DIR" "$SLUG" "$HAS_CANONICAL_DATA"
-
+create_rust_files "$exercise_dir" "$slug" "$has_canonical_data"
 
 # ==================================================
 
-# build configlet
+# Build configlet
 ./bin/fetch-configlet
 message "success" "Fetched configlet successfully!"
 
 # Preparing config.json
 message "info" "Adding instructions and configuration files..."
-UUID=$(bin/configlet uuid)
+uuid=$(bin/configlet uuid)
 
-jq --arg slug "$SLUG" --arg uuid "$UUID" --arg name "$EXERCISE_NAME" --arg difficulty "$EXERCISE_DIFFICULTY" \
+# Add exercise-data to global config.json
+jq --arg slug "$slug" --arg uuid "$uuid" --arg name "$exercise_name" --arg difficulty "$exercise_difficulty" \
     '.exercises.practice += [{slug: $slug, name: $name, uuid: $uuid, practices: [], prerequisites: [], difficulty: $difficulty}]' \
     config.json >config.json.tmp
 # jq always rounds whole numbers, but average_run_time needs to be a float
@@ -84,18 +85,19 @@ message "success" "Added instructions and configuration files"
 
 # Create instructions and config files
 echo "Creating instructions and config files"
-./bin/configlet sync --update --yes --docs --metadata --exercise "$SLUG"
-./bin/configlet sync --update --yes --filepaths --exercise "$SLUG"
-./bin/configlet sync --update --tests include --exercise "$SLUG"
+./bin/configlet sync --update --yes --docs --metadata --exercise "$slug"
+./bin/configlet sync --update --yes --filepaths --exercise "$slug"
+./bin/configlet sync --update --tests include --exercise "$slug"
 message "success" "Created instructions and config files"
 
-META_CONFIG="$EXERCISE_DIR"/.meta/config.json
-jq --arg author "$AUTHOR_HANDLE" '.authors += [$author]' "$META_CONFIG" >"$META_CONFIG".tmp && mv "$META_CONFIG".tmp "$META_CONFIG"
+# Push author to "authors" array in ./meta/config.json
+meta_config="$exercise_dir"/.meta/config.json
+jq --arg author "$author_handle" '.authors += [$author]' "$meta_config" >"$meta_config".tmp && mv "$meta_config".tmp "$meta_config"
 message "success" "You've been added as the author of this exercise."
 
-sed -i "s/name = \".*\"/name = \"$UNDERSCORED_SLUG\"/" "$EXERCISE_DIR"/Cargo.toml
+sed -i "s/name = \".*\"/name = \"$underscored_slug\"/" "$exercise_dir"/Cargo.toml
 
 message "done" "All stub files were created."
 
 message "info" "After implementing the solution, tests and configuration, please run:"
-echo "./bin/configlet fmt --update --yes --exercise ${SLUG}"
+echo "./bin/configlet fmt --update --yes --exercise ${slug}"
