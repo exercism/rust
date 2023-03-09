@@ -1,0 +1,3 @@
+shell=bash
+external-sources=true 
+disable=SC2001 # https://www.shellcheck.net/wiki/SC2001 - effects most of the sed commands
