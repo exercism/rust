@@ -8,6 +8,7 @@ set -euo pipefail
 source ./bin/generator-utils/utils.sh
 
 digest_template() {
+  local template
   template=$(cat bin/test_template)
   # Turn every token into a jq command
   echo "$template" | sed 's/${\([^}]*\)\}\$/$(echo $case | jq -r '\''.\1'\'')/g'
