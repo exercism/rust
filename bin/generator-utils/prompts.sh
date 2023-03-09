@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
-# shellcheck source=/dev/null
+# shellcheck source=./colors.sh
 source ./bin/generator-utils/colors.sh
 
-function get_exercise_difficulty() {
+get_exercise_difficulty() {
     read -rp "Difficulty of exercise (1-10): " exercise_difficulty
     echo "$exercise_difficulty"
 }
 
-function validate_difficulty_input() {
+validate_difficulty_input() {
 
-    valid_input=false
+    local valid_input=false
     while ! $valid_input; do
         if [[ "$1" =~ ^[1-9]$|^10$ ]]; then
-            exercise_difficulty=$1
-            valid_input=true
+            local exercise_difficulty=$1
+            local valid_input=true
         else
-            read -rp "${RED}Invalid input. ${RESET}Please enter an integer between 1 and 10. " exercise_difficulty
+            read -rp "${red}Invalid input. ${reset_color}Please enter an integer between 1 and 10. " exercise_difficulty
             [[ "$exercise_difficulty" =~ ^[1-9]$|^10$ ]] && valid_input=true
 
         fi
@@ -24,15 +24,16 @@ function validate_difficulty_input() {
     echo "$exercise_difficulty"
 }
 
-function get_author_handle {
-    DEFAULT_AUTHOR_HANDLE="$(git config user.name)"
+get_author_handle() {
+    default_author_handle="$(git config user.name)"
+    local default_author_handle
 
-    if [ -z "$DEFAULT_AUTHOR_HANDLE" ]; then
-        read -rp "Hey! Couldn't find your Github handle. Add it now or skip with enter and add it later in the .meta.config.json file: " AUTHOR_HANDLE
+    if [ -z "$default_author_handle" ]; then
+        read -rp "Hey! Couldn't find your Github handle. Add it now or skip with enter and add it later in the .meta.config.json file: " author_handle
     else
-        AUTHOR_HANDLE="$DEFAULT_AUTHOR_HANDLE"
+        local author_handle="$default_author_handle"
 
     fi
-    echo "$AUTHOR_HANDLE"
+    echo "$author_handle"
 
 }
