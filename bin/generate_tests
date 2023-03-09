@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
+# Exit if anything fails.
 set -euo pipefail
-# shellcheck source=/dev/null
+
+
+# shellcheck source=./generator-utils/utils.sh
 source ./bin/generator-utils/utils.sh
 
-function digest_template() {
+digest_template() {
   template=$(cat bin/test_template)
-  # shellcheck disable=SC2001
   # turn every token into a jq command
   echo "$template" | sed 's/${\([^}]*\)\}\$/$(echo $case | jq -r '\''.\1'\'')/g'
 }
@@ -27,20 +29,20 @@ use $(dash_to_underscore "$SLUG")::*;
 EOT
 
 # Flattens canonical json, extracts only the objects with a uuid
-cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
+CASES=$(echo "$CANONICAL_JSON" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
 
 # shellcheck disable=SC2034
-jq -c '.[]' <<<"$cases" | while read -r case; do
+jq -c '.[]' <<<"$CASES" | while read -r case; do
 
   # Evaluate the bash parts and replace them with their return values
-  eval_template="$(digest_template | sed -e "s/\$(\(.*\))/\$\(\1\)/g")"
-  eval_template="$(eval "echo \"$eval_template\"")"
+  EVAL_TEMPLATE="$(digest_template | sed -e "s/\$(\(.*\))/\$\(\1\)/g")"
+  EVAL_TEMPLATE="$(eval "echo \"$EVAL_TEMPLATE\"")"
 
   # Turn function name unto snake_case
-  formatted_template=$(echo "$eval_template" | sed -e ':loop' -e 's/\(fn[^(]*\)[ -]/\1_/g' -e 't loop' | sed 's/fn_/fn /')
+  FORMATTED_TEMPLATE=$(echo "$EVAL_TEMPLATE" | sed -e ':loop' -e 's/\(fn[^(]*\)[ -]/\1_/g' -e 't loop' | sed 's/fn_/fn /')
   # Push to file
 
-  echo "$formatted_template" >>"$TEST_FILE"
+  echo "$FORMATTED_TEMPLATE" >>"$TEST_FILE"
   printf "\\n" >>"$TEST_FILE"
 
 done

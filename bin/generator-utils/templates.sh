@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-# shellcheck source=/dev/null
+# shellcheck source=./utils.sh
 source ./bin/generator-utils/utils.sh
 
-function create_fn_name() {
-    slug=$1
-    has_canonical_data=$2
+create_fn_name() {
+    local slug=$1
+    local has_canonical_data=$2
 
     if [ "$has_canonical_data" == false ]; then
         fn_name=$(dash_to_underscore "$slug")
+        local fn_name
     else
         fn_name=$(jq -r 'first(.. | .property? // empty)' canonical_data.json)
     fi
@@ -17,7 +18,7 @@ function create_fn_name() {
 
 }
 
-function create_test_file_template() {
+create_test_file_template() {
     local exercise_dir=$1
     local slug=$2
     local has_canonical_data=$3
@@ -40,12 +41,15 @@ EOT
         message "success" "Stub file for tests has been created!"
     else
         canonical_json=$(cat canonical_data.json)
+        local canonical_json
 
         # sometimes canonical data has multiple levels with multiple `cases` arrays.
         #(see kindergarten-garden https://github.com/exercism/problem-specifications/blob/main/exercises/kindergarten-garden/canonical-data.json)
         # so let's flatten it
         cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected"))) | select(. != {}) | select(has("uuid")) ]')
+        local cases
         fn_name=$(echo "$canonical_json" | jq -r 'first(.. | .property? // empty)')
+        local fn_name
 
         first_iteration=true
         # loop through each object
@@ -108,6 +112,7 @@ function create_example_rs_template() {
     local has_canonical_data=$3
 
     fn_name=$(create_fn_name "$slug" "$has_canonical_data")
+    local fn_name
 
     mkdir "${exercise_dir}/.meta"
     cat <<EOT >"${exercise_dir}/.meta/example.rs"
