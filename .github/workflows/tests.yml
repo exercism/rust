@@ -89,7 +89,7 @@ jobs:
       - name: Run shellcheck
         uses: ludeeus/action-shellcheck@master
         env: 
-          SHELLCHECK_OPTS: --shell=bash --external-sources=true --exclude=SC2001 --norc
+          SHELLCHECK_OPTS: -shell bash -x -e SC2001 --norc
 
   compilation:
     name: Check compilation
