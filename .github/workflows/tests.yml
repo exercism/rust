@@ -78,7 +78,7 @@ jobs:
       - name: Run markdown lint
         run: ./bin/lint_markdown.sh
 
-#   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
+  # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
     name: shellcheck internal tooling lint
     runs-on: ubuntu-latest
