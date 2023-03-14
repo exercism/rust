@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+
 # shellcheck source=./generator-utils/utils.sh 
 # shellcheck source=./generator-utils/prompts.sh 
 # shellcheck source=./generator-utils/templates.sh 
+
 source ./bin/generator-utils/utils.sh
 source ./bin/generator-utils/prompts.sh
 source ./bin/generator-utils/templates.sh
@@ -37,6 +39,7 @@ check_exercise_existence "$1"
 
 # ==================================================
 
+
 slug="$1"
 # Fetch canonical data
 canonical_json=$(bin/fetch_canonical_data "$slug")
@@ -44,12 +47,14 @@ canonical_json=$(bin/fetch_canonical_data "$slug")
 has_canonical_data=true
 if [ "${canonical_json}" == "404: Not Found" ]; then
     has_canonical_data=false
+
     message "warning" "This exercise doesn't have canonical data"
 
 else
     echo "$canonical_json" >canonical_data.json
     message "success" "Fetched canonical data successfully!"
 fi
+
 
 underscored_slug=$(dash_to_underscore "$slug")
 exercise_dir="exercises/practice/${slug}"
@@ -67,15 +72,18 @@ create_rust_files "$exercise_dir" "$slug" "$has_canonical_data"
 # ==================================================
 
 # Build configlet
+
 ./bin/fetch-configlet
 message "success" "Fetched configlet successfully!"
 
 # Preparing config.json
 message "info" "Adding instructions and configuration files..."
+
 uuid=$(bin/configlet uuid)
 
 # Add exercise-data to global config.json
 jq --arg slug "$slug" --arg uuid "$uuid" --arg name "$exercise_name" --arg difficulty "$exercise_difficulty" \
+
     '.exercises.practice += [{slug: $slug, name: $name, uuid: $uuid, practices: [], prerequisites: [], difficulty: $difficulty}]' \
     config.json >config.json.tmp
 # jq always rounds whole numbers, but average_run_time needs to be a float
@@ -85,6 +93,7 @@ message "success" "Added instructions and configuration files"
 
 # Create instructions and config files
 echo "Creating instructions and config files"
+
 ./bin/configlet sync --update --yes --docs --metadata --exercise "$slug"
 ./bin/configlet sync --update --yes --filepaths --exercise "$slug"
 ./bin/configlet sync --update --tests include --exercise "$slug"
@@ -97,7 +106,10 @@ message "success" "You've been added as the author of this exercise."
 
 sed -i "s/name = \".*\"/name = \"$underscored_slug\"/" "$exercise_dir"/Cargo.toml
 
+
 message "done" "All stub files were created."
 
 message "info" "After implementing the solution, tests and configuration, please run:"
+
 echo "./bin/configlet fmt --update --yes --exercise ${slug}"
+
