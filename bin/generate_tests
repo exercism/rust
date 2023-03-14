@@ -30,8 +30,6 @@ test_file="$exercise_dir/tests/$slug.rs"
 cat <<EOT >"$test_file"
 use $(dash_to_underscore "$slug")::*;
 
-// Add tests here
-
 EOT
 
 # Flattens canonical json, extracts only the objects with a uuid

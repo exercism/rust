@@ -3,7 +3,7 @@
 # top one gets evaluated
 # relative one is needed for .shellcheckrc to test if files exist in local env
 # absolute one is needed for CI to test if files exist
-# before commit - swap these accordingly
+# before commit swap these accordingly
 # shellcheck source=bin/generator-utils/colors.sh
 # shellcheck source=./colors.sh
 source ./bin/generator-utils/colors.sh

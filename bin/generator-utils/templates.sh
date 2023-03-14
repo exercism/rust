@@ -70,11 +70,10 @@ EOT
             cat <<EOT >>"$test_file"
 #[test] $([[ "$first_iteration" == false ]] && printf "\n#[ignore]")
 fn ${desc}() {
-
     let input = ${input};
     let expected = ${expected};
 
-    // TODO: Add assertion
+    // TODO: Verify assertion
     assert_eq!(${fn_name}(input), expected);
 }
 
