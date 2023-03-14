@@ -89,7 +89,7 @@ jobs:
       - name: Run shellcheck
         uses: ludeeus/action-shellcheck@master
         env: 
-          SHELLCHECK_OPTS: echo $(cat ./bin/.shellcheckrc)
+          SHELLCHECK_OPTS: echo $(cat ../../bin/.shellcheckrc) 
 
   compilation:
     name: Check compilation
