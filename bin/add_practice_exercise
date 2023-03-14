@@ -37,14 +37,9 @@ command -v curl >/dev/null 2>&1 || {
     exit 1
 }
 
-# Check if configlet is already fetched
-if [ -e bin/configlet ]; then
-    message "success" "Configlet found!"
-else
-    message "info" "Fetching configlet"
-    bin/fetch-configlet
-    message "success" "Fetched configlet successfully!"
-fi
+# Build configlet
+bin/fetch-configlet
+message "success" "Fetched configlet successfully!"
 
 # Check if exercise exists in configlet info or in config.json
 check_exercise_existence "$1"
@@ -80,9 +75,6 @@ create_rust_files "$exercise_dir" "$slug" "$has_canonical_data"
 
 # ==================================================
 
-# Build configlet
-./bin/fetch-configlet
-message "success" "Fetched configlet successfully!"
 
 # Preparing config.json
 message "info" "Adding instructions and configuration files..."
