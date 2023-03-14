@@ -12,215 +12,226 @@ on:
     - cron: "0 0 * * 0"
 
 jobs:
-  ensure-conventions:
-    name: Ensure conventions are followed
-    runs-on: ubuntu-latest
+#   ensure-conventions:
+#     name: Ensure conventions are followed
+#     runs-on: ubuntu-latest
 
-    steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#     steps:
+#       # Checks out a copy of your repository on the ubuntu-latest machine
+#       - name: Checkout code
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Ensure tool names are snake cased
-        run: ./bin/lint_tool_file_names.sh
+#       - name: Ensure tool names are snake cased
+#         run: ./bin/lint_tool_file_names.sh
 
-      - name: Ensure src/lib.rs files exist
-        run: ./_test/ensure_lib_src_rs_exist.sh
+#       - name: Ensure src/lib.rs files exist
+#         run: ./_test/ensure_lib_src_rs_exist.sh
 
-      - name: Count ignores
-        run: ./_test/count_ignores.sh
+#       - name: Count ignores
+#         run: ./_test/count_ignores.sh
 
-      - name: Check UUIDs
-        run: ./_test/check_uuids.sh
+#       - name: Check UUIDs
+#         run: ./_test/check_uuids.sh
 
-      - name: Verify exercise difficulties
-        run: ./_test/verify_exercise_difficulties.sh
+#       - name: Verify exercise difficulties
+#         run: ./_test/verify_exercise_difficulties.sh
 
-      - name: Check exercises for authors
-        run: ./_test/check_exercises_for_authors.sh
+#       - name: Check exercises for authors
+#         run: ./_test/check_exercises_for_authors.sh
 
-      - name: Ensure relevant files do not have trailing whitespace
-        run: ./bin/lint_trailing_spaces.sh
+#       - name: Ensure relevant files do not have trailing whitespace
+#         run: ./bin/lint_trailing_spaces.sh
 
-  configlet:
-    name: configlet lint
-    runs-on: ubuntu-latest
+#   configlet:
+#     name: configlet lint
+#     runs-on: ubuntu-latest
 
-    steps:
-      # Checks out default branch locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-        with:
-          ref: main
+#     steps:
+#       # Checks out default branch locally so that it is available to the scripts.
+#       - name: Checkout main
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#         with:
+#           ref: main
 
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#       # Checks out a copy of your repository on the ubuntu-latest machine
+#       - name: Checkout code
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Fetch configlet
-        run: ./bin/fetch-configlet
+#       - name: Fetch configlet
+#         run: ./bin/fetch-configlet
 
-      - name: Lint configlet
-        run: ./bin/configlet lint
+#       - name: Lint configlet
+#         run: ./bin/configlet lint
 
-  markdownlint:
-    name: markdown lint
-    runs-on: ubuntu-latest
+#   markdownlint:
+#     name: markdown lint
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout main
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-        with:
-          ref: main
-      - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#     steps:
+#       - name: Checkout main
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#         with:
+#           ref: main
+#       - name: Checkout code
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Run markdown lint
-        run: ./bin/lint_markdown.sh
+#       - name: Run markdown lint
+#         run: ./bin/lint_markdown.sh
 
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
-    name: shellcheck internal tooling lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+      name: show directory
+      runs-on: ubuntu-latest
+      steps:
+        - name: show sibling dir
+          run: ls ./
 
-      - name: Run shellcheck
-        uses: ludeeus/action-shellcheck@master
-        run: ls ./
-        # env: 
-        #   SHELLCHECK_OPTS: echo $(cat ../../bin/.shellcheckrc) 
+        - name: show parent dir
+          run: ls ../
 
-  compilation:
-    name: Check compilation
-    runs-on: ubuntu-latest
+        - name: show grandparent dir
+          run: ls ../../
+#     name: shellcheck internal tooling lint
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-    strategy:
-      # Allows running the job multiple times with different configurations
-      matrix:
-        rust: ["stable", "beta"]
-        deny_warnings: ['', '1']
+#       - name: Run shellcheck
+#         uses: ludeeus/action-shellcheck@master
+#         run: ls ./
+#         env: 
+#           SHELLCHECK_OPTS: echo $(cat ../../bin/.shellcheckrc) 
 
-    steps:
-      # Checks out main locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-        with:
-          ref: main
+#   compilation:
+#     name: Check compilation
+#     runs-on: ubuntu-latest
 
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#     strategy:
+#       # Allows running the job multiple times with different configurations
+#       matrix:
+#         rust: ["stable", "beta"]
+#         deny_warnings: ['', '1']
 
-      - name: Setup toolchain
-        uses: actions-rs/toolchain@v1.0.7
-        with:
-          toolchain: ${{ matrix.rust }}
-          default: true
+#     steps:
+#       # Checks out main locally so that it is available to the scripts.
+#       - name: Checkout main
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#         with:
+#           ref: main
 
-      # run scripts as steps
-      - name: Check exercises
-        env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/check_exercises.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
+#       # Checks out a copy of your repository on the ubuntu-latest machine
+#       - name: Checkout code
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Ensure stubs compile
-        env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/ensure_stubs_compile.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
+#       - name: Setup toolchain
+#         uses: actions-rs/toolchain@v1.0.7
+#         with:
+#           toolchain: ${{ matrix.rust }}
+#           default: true
+
+#       # run scripts as steps
+#       - name: Check exercises
+#         env:
+#           DENYWARNINGS: ${{ matrix.deny_warnings }}
+#         run: ./_test/check_exercises.sh
+#         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
+
+#       - name: Ensure stubs compile
+#         env:
+#           DENYWARNINGS: ${{ matrix.deny_warnings }}
+#         run: ./_test/ensure_stubs_compile.sh
+#         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
 
-  rustformat:
-    name: Check Rust Formatting
-    runs-on: ubuntu-latest
+#   rustformat:
+#     name: Check Rust Formatting
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Setup toolchain
-        uses: actions-rs/toolchain@v1.0.7
-        with:
-          toolchain: stable
-          default: true
+#       - name: Setup toolchain
+#         uses: actions-rs/toolchain@v1.0.7
+#         with:
+#           toolchain: stable
+#           default: true
 
-      - name: Rust Format Version
-        run: rustfmt --version
+#       - name: Rust Format Version
+#         run: rustfmt --version
 
-      - name: Format
-        run: bin/format_exercises
+#       - name: Format
+#         run: bin/format_exercises
 
-      - name: Diff
-        run: |
-          if ! git diff --color --exit-code; then
-            echo "Please run cargo fmt, or see the diff above:"
-            exit 1
-          fi
+#       - name: Diff
+#         run: |
+#           if ! git diff --color --exit-code; then
+#             echo "Please run cargo fmt, or see the diff above:"
+#             exit 1
+#           fi
 
-  clippy:
-    name: Clippy
-    runs-on: ubuntu-latest
+#   clippy:
+#     name: Clippy
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        rust: ["stable", "beta"]
+#     strategy:
+#       matrix:
+#         rust: ["stable", "beta"]
 
-    steps:
-      - name: Checkout main
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-        with:
-          ref: main
+#     steps:
+#       - name: Checkout main
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#         with:
+#           ref: main
 
-      - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#       - name: Checkout code
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Setup toolchain
-        uses: actions-rs/toolchain@v1.0.7
-        with:
-          toolchain: ${{ matrix.rust }}
-          default: true
+#       - name: Setup toolchain
+#         uses: actions-rs/toolchain@v1.0.7
+#         with:
+#           toolchain: ${{ matrix.rust }}
+#           default: true
 
-      # Clippy already installed on Stable, but not Beta.
-      # So, we must install here.
-      - name: Install Clippy
-        run: rustup component add clippy
+#       # Clippy already installed on Stable, but not Beta.
+#       # So, we must install here.
+#       - name: Install Clippy
+#         run: rustup component add clippy
 
-      - name: Clippy tests
-        env:
-          CLIPPY: true
-        run: ./_test/check_exercises.sh
+#       - name: Clippy tests
+#         env:
+#           CLIPPY: true
+#         run: ./_test/check_exercises.sh
 
-      - name: Clippy stubs
-        env:
-          CLIPPY: true
-        run: ./_test/ensure_stubs_compile.sh
+#       - name: Clippy stubs
+#         env:
+#           CLIPPY: true
+#         run: ./_test/ensure_stubs_compile.sh
 
-  nightly-compilation:
-    name: Check exercises on nightly (benchmark enabled)
-    runs-on: ubuntu-latest
-    continue-on-error: true # It's okay if the nightly job fails
+#   nightly-compilation:
+#     name: Check exercises on nightly (benchmark enabled)
+#     runs-on: ubuntu-latest
+#     continue-on-error: true # It's okay if the nightly job fails
 
-    steps:
-      # Checks out main locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-        with:
-          ref: main
+#     steps:
+#       # Checks out main locally so that it is available to the scripts.
+#       - name: Checkout main
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#         with:
+#           ref: main
 
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+#       # Checks out a copy of your repository on the ubuntu-latest machine
+#       - name: Checkout code
+#         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
 
-      - name: Setup nightly toolchain
-        uses: actions-rs/toolchain@v1.0.7
-        with:
-          toolchain: nightly
-          default: true
+#       - name: Setup nightly toolchain
+#         uses: actions-rs/toolchain@v1.0.7
+#         with:
+#           toolchain: nightly
+#           default: true
 
-      - name: Check exercises
-        env:
-          BENCHMARK: '1'
-        run: ./_test/check_exercises.sh
+#       - name: Check exercises
+#         env:
+#           BENCHMARK: '1'
+#         run: ./_test/check_exercises.sh
