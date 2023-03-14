@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-
 # see comment in generator-utils/utils.sh
-# shellcheck source=bin/generator-utils/utils.sh 
-# shellcheck source=bin/generator-utils/templates.sh 
-# shellcheck source=bin/generator-utils/prompts.sh 
-# shellcheck source=./generator-utils/utils.sh 
-# shellcheck source=./generator-utils/prompts.sh 
-# shellcheck source=./generator-utils/templates.sh 
+# shellcheck source=bin/generator-utils/utils.sh
+# shellcheck source=bin/generator-utils/templates.sh
+# shellcheck source=bin/generator-utils/prompts.sh
+# shellcheck source=./generator-utils/utils.sh
+# shellcheck source=./generator-utils/prompts.sh
+# shellcheck source=./generator-utils/templates.sh
 
 source ./bin/generator-utils/utils.sh
 source ./bin/generator-utils/prompts.sh
@@ -38,11 +37,18 @@ command -v curl >/dev/null 2>&1 || {
     exit 1
 }
 
+if [ -e bin/configlet ]; then
+    message "success" "Configlet found!"
+else
+    message "info" "Fetching configlet"
+    bin/fetch-configlet
+    message "success" "Fetched configlet successfully!"
+fi
+
 # Check if exercise exists in configlet info or in config.json
 check_exercise_existence "$1"
 
 # ==================================================
-
 
 slug="$1"
 # Fetch canonical data
@@ -58,7 +64,6 @@ else
     echo "$canonical_json" >canonical_data.json
     message "success" "Fetched canonical data successfully!"
 fi
-
 
 underscored_slug=$(dash_to_underscore "$slug")
 exercise_dir="exercises/practice/${slug}"
@@ -87,7 +92,6 @@ uuid=$(bin/configlet uuid)
 
 # Add exercise-data to global config.json
 jq --arg slug "$slug" --arg uuid "$uuid" --arg name "$exercise_name" --arg difficulty "$exercise_difficulty" \
-
     '.exercises.practice += [{slug: $slug, name: $name, uuid: $uuid, practices: [], prerequisites: [], difficulty: $difficulty}]' \
     config.json >config.json.tmp
 # jq always rounds whole numbers, but average_run_time needs to be a float
@@ -110,10 +114,8 @@ message "success" "You've been added as the author of this exercise."
 
 sed -i "s/name = \".*\"/name = \"$underscored_slug\"/" "$exercise_dir"/Cargo.toml
 
-
 message "done" "All stub files were created."
 
 message "info" "After implementing the solution, tests and configuration, please run:"
 
 echo "./bin/configlet fmt --update --yes --exercise ${slug}"
-
