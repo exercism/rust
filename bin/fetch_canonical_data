@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script fetches the canonical data of the exercise.
+
+if [ $# -ne 1 ]; then
+  echo "Usage: bin/fetch_canonical_data <exercise-slug>"
+  exit 1
+fi
+
+# check if curl is installed
+command -v curl >/dev/null 2>&1 || {
+  echo >&2 "curl is required but not installed. Please install it and make sure it's in your PATH."
+  exit 1
+}
+
+slug=$1
+
+curlopts=(
+  --silent
+  --retry 3
+  --max-time 4
+)
+curl "${curlopts[@]}" "https://raw.githubusercontent.com/exercism/problem-specifications/main/exercises/${slug}/canonical-data.json"
