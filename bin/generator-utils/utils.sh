@@ -26,11 +26,8 @@ message() {
         printf "%*s\n" "$cols" "" | tr " " "-"
         echo
         printf "${bold_green}%s${reset_color}\n" "[done]: $message"
-
         ;;
-    *)
-        echo "Invalid flag: $flag"
-        ;;
+    *) echo "Invalid flag: $flag" ;;
     esac
 }
 
