@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# see comment in utils.sh
+# shellcheck source=bin/generator-utils/utils.sh
 # shellcheck source=./utils.sh
 source ./bin/generator-utils/utils.sh
 

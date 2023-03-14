@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 
+# see comment in generator-utils/utils.sh
+# shellcheck source=bin/generator-utils/utils.sh 
+# shellcheck source=bin/generator-utils/templates.sh 
+# shellcheck source=bin/generator-utils/prompts.sh 
 # shellcheck source=./generator-utils/utils.sh 
 # shellcheck source=./generator-utils/prompts.sh 
 # shellcheck source=./generator-utils/templates.sh 

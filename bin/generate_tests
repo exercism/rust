@@ -5,6 +5,8 @@
 set -euo pipefail
 
 
+# see comment in generator-utils/utils.sh
+# shellcheck source=bin/generator-utils/utils.sh
 # shellcheck source=./generator-utils/utils.sh
 source ./bin/generator-utils/utils.sh
 

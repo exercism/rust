@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 
+# see comment in utils.sh
+# shellcheck source=bin/generator-utils/colors.sh
 # shellcheck source=./colors.sh
 source ./bin/generator-utils/colors.sh
 
