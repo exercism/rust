@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # This script fetches the canonical data of the exercise.
 
+
+# Exit if anything fails.
+set -euo pipefail
+
+
 if [ $# -ne 1 ]; then
   echo "Usage: bin/fetch_canonical_data <exercise-slug>"
   exit 1
