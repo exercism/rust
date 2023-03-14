@@ -89,7 +89,7 @@ jobs:
       - name: Run shellcheck
         uses: ludeeus/action-shellcheck@master
         env: 
-          SHELLCHECK_OPTS: echo $(cat ../rust/bin/.shellcheckrc) 
+          SHELLCHECK_OPTS: --shell:bash --external-sources:true --disable:SC2001
 
   compilation:
     name: Check compilation
