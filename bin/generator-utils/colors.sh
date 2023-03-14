@@ -10,5 +10,4 @@ cyan=$(echo -e '\033[0;36m')
 
 bold_green=$(echo -e '\033[1;32m')
 
-
 export red green blue yellow bold_green reset_color cyan

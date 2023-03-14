@@ -22,7 +22,6 @@ create_fn_name() {
 }
 
 create_test_file_template() {
-
     local exercise_dir=$1
     local slug=$2
     local has_canonical_data=$3
@@ -116,13 +115,11 @@ EOT
     message "success" ".gitignore has been overwritten!"
 }
 
-
 create_example_rs_template() {
 
     local exercise_dir=$1
     local slug=$2
     local has_canonical_data=$3
-
 
     local fn_name
 
@@ -138,7 +135,6 @@ pub fn ${fn_name}() {
 EOT
     message "success" "Stub file for example.rs has been created!"
 }
-
 
 create_rust_files() {
 

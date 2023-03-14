@@ -9,12 +9,10 @@
 source ./bin/generator-utils/colors.sh
 
 message() {
-
     local flag=$1
     local message=$2
 
     case "$flag" in
-
     "success") printf "${green}%s${reset_color}\n" "[success]: $message" ;;
     "task") printf "${cyan}%s${reset_color}\n" "[task]: $message" ;;
     "info") printf "${blue}%s${reset_color}\n" "[info]: $message" ;;
@@ -36,9 +34,7 @@ message() {
     esac
 }
 
-
 dash_to_underscore() {
-
     echo "$1" | sed 's/-/_/g'
 }
 
@@ -58,10 +54,8 @@ check_exercise_existence() {
         exit 1
     fi
 
-
     # Fetch configlet and crop out exercise list
     local unimplemented_exercises
-
     unimplemented_exercises=$(bin/configlet info | sed -n '/With canonical data:/,/Track summary:/p' | sed -e '/\(With\(out\)\? canonical data:\|Track summary:\)/d' -e '/^$/d')
     if echo "$unimplemented_exercises" | grep -q "^$slug$"; then
         message "success" "Exercise has been found!"
@@ -78,11 +72,8 @@ ${unimplemented_exercises}"
             echo "${yellow}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${reset_color}"
         else
             message "info" "Building typo-checker binary for $(uname -m) system."
-
             cd util/ngram && ./build && cd ../.. && echo "${yellow}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${reset_color}"
-
         fi
-
         exit 1
     fi
 }

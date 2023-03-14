@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
 
-
 # see comment in utils.sh
 # shellcheck source=bin/generator-utils/colors.sh
 # shellcheck source=./colors.sh
 source ./bin/generator-utils/colors.sh
 
 get_exercise_difficulty() {
-
     read -rp "Difficulty of exercise (1-10): " exercise_difficulty
     echo "$exercise_difficulty"
 }
 
-
 validate_difficulty_input() {
-
     local valid_input=false
     while ! $valid_input; do
         if [[ "$1" =~ ^[1-9]$|^10$ ]]; then
@@ -29,7 +25,6 @@ validate_difficulty_input() {
     done
     echo "$exercise_difficulty"
 }
-
 
 get_author_handle() {
     local default_author_handle

@@ -37,6 +37,7 @@ command -v curl >/dev/null 2>&1 || {
     exit 1
 }
 
+# Check if configlet is already fetched
 if [ -e bin/configlet ]; then
     message "success" "Configlet found!"
 else
@@ -57,7 +58,6 @@ canonical_json=$(bin/fetch_canonical_data "$slug")
 has_canonical_data=true
 if [ "${canonical_json}" == "404: Not Found" ]; then
     has_canonical_data=false
-
     message "warning" "This exercise doesn't have canonical data"
 
 else
@@ -81,7 +81,6 @@ create_rust_files "$exercise_dir" "$slug" "$has_canonical_data"
 # ==================================================
 
 # Build configlet
-
 ./bin/fetch-configlet
 message "success" "Fetched configlet successfully!"
 
