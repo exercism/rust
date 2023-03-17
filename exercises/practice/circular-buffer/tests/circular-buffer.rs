@@ -106,6 +106,29 @@ fn clear_actually_frees_up_its_elements() {
 
 #[test]
 #[ignore]
+fn overwrite_frees_up_the_cleared_elements() {
+    let mut buffer = CircularBuffer::new(1);
+    let element_to_replace = Rc::new(());
+    let new_element = Rc::new(());
+    assert!(buffer.write(Rc::clone(&element_to_replace)).is_ok());
+    assert_eq!(Rc::strong_count(&element_to_replace), 2);
+    buffer.overwrite(Rc::clone(&new_element));
+    assert_eq!(Rc::strong_count(&element_to_replace), 1);
+}
+
+#[test]
+#[ignore]
+fn read_frees_up_the_read_element() {
+    let mut buffer = CircularBuffer::new(1);
+    let element = Rc::new(());
+    assert!(buffer.write(Rc::clone(&element)).is_ok());
+    assert_eq!(Rc::strong_count(&element), 2);
+    assert!(buffer.read().is_ok());
+    assert_eq!(Rc::strong_count(&element), 1);
+}
+
+#[test]
+#[ignore]
 fn overwrite_acts_like_write_on_non_full_buffer() {
     let mut buffer = CircularBuffer::new(2);
     assert!(buffer.write('1').is_ok());
