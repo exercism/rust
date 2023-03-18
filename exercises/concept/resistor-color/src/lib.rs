@@ -13,13 +13,13 @@ pub enum ResistorColor {
 }
 
 pub fn color_to_value(color: ResistorColor) -> u32 {
-    unimplemented!("convert color {color:?} into a numerical representation")
+    todo!("convert color {color:?} into a numerical representation")
 }
 
 pub fn value_to_color_string(value: u32) -> String {
-    unimplemented!("convert the value {value} into a string representation of color")
+    todo!("convert the value {value} into a string representation of color")
 }
 
 pub fn colors() -> Vec<ResistorColor> {
-    unimplemented!("return a list of all the colors ordered by resistance")
+    todo!("return a list of all the colors ordered by resistance")
 }

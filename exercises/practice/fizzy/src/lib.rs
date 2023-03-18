@@ -7,7 +7,7 @@ pub struct Matcher<T>(std::marker::PhantomData<T>);
 
 impl<T> Matcher<T> {
     pub fn new<F, S>(_matcher: F, _subs: S) -> Matcher<T> {
-        unimplemented!()
+        todo!()
     }
 }
 
@@ -24,18 +24,18 @@ pub struct Fizzy<T>(std::marker::PhantomData<T>);
 
 impl<T> Fizzy<T> {
     pub fn new() -> Self {
-        unimplemented!()
+        todo!()
     }
 
     // feel free to change the signature to `mut self` if you like
     #[must_use]
     pub fn add_matcher(self, _matcher: Matcher<T>) -> Self {
-        unimplemented!()
+        todo!()
     }
 
     /// map this fizzy onto every element of an iterator, returning a new iterator
     pub fn apply<I>(self, _iter: I) -> impl Iterator<Item = String> {
-        // unimplemented!() doesn't actually work, here; () is not an Iterator
+        // todo!() doesn't actually work, here; () is not an Iterator
         // that said, this is probably not the actual implementation you desire
         Vec::new().into_iter()
     }
@@ -43,5 +43,5 @@ impl<T> Fizzy<T> {
 
 /// convenience function: return a Fizzy which applies the standard fizz-buzz rules
 pub fn fizz_buzz<T>() -> Fizzy<T> {
-    unimplemented!()
+    todo!()
 }

@@ -13,34 +13,34 @@ pub struct Robot;
 
 impl Robot {
     pub fn new(x: i32, y: i32, d: Direction) -> Self {
-        unimplemented!("Create a robot at (x, y) ({x}, {y}) facing {d:?}")
+        todo!("Create a robot at (x, y) ({x}, {y}) facing {d:?}")
     }
 
     #[must_use]
     pub fn turn_right(self) -> Self {
-        unimplemented!()
+        todo!()
     }
 
     #[must_use]
     pub fn turn_left(self) -> Self {
-        unimplemented!()
+        todo!()
     }
 
     #[must_use]
     pub fn advance(self) -> Self {
-        unimplemented!()
+        todo!()
     }
 
     #[must_use]
     pub fn instructions(self, instructions: &str) -> Self {
-        unimplemented!("Follow the given sequence of instructions: {instructions}")
+        todo!("Follow the given sequence of instructions: {instructions}")
     }
 
     pub fn position(&self) -> (i32, i32) {
-        unimplemented!()
+        todo!()
     }
 
     pub fn direction(&self) -> &Direction {
-        unimplemented!()
+        todo!()
     }
 }

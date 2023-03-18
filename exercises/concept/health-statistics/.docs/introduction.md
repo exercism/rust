@@ -32,7 +32,7 @@ Lastly, methods can be defined on structs inside of an `impl` block:
 impl Item {
     // initializes and returns a new instance of our Item struct
     fn new() -> Self {
-        unimplemented!()
+        todo!()
     }
 }
 ```

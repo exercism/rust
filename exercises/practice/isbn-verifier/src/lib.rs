@@ -1,4 +1,4 @@
 /// Determines whether the supplied string is a valid ISBN number
 pub fn is_valid_isbn(isbn: &str) -> bool {
-    unimplemented!("Is {isbn:?} a valid ISBN number?");
+    todo!("Is {isbn:?} a valid ISBN number?");
 }

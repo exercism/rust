@@ -3,7 +3,7 @@ pub mod graph {
 
     impl Graph {
         pub fn new() -> Self {
-            unimplemented!("Construct a new Graph struct.");
+            todo!("Construct a new Graph struct.");
         }
     }
 }

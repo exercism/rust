@@ -11,7 +11,7 @@ impl<'a> Xorcism<'a> {
     ///
     /// Should accept anything which has a cheap conversion to a byte slice.
     pub fn new<Key>(key: &Key) -> Xorcism<'a> {
-        unimplemented!()
+        todo!()
     }
 
     /// XOR each byte of the input buffer with a byte from the key.
@@ -19,7 +19,7 @@ impl<'a> Xorcism<'a> {
     /// Note that this is stateful: repeated calls are likely to produce different results,
     /// even with identical inputs.
     pub fn munge_in_place(&mut self, data: &mut [u8]) {
-        unimplemented!()
+        todo!()
     }
 
     /// XOR each byte of the data with a byte from the key.
@@ -30,7 +30,7 @@ impl<'a> Xorcism<'a> {
     /// Should accept anything which has a cheap conversion to a byte iterator.
     /// Shouldn't matter whether the byte iterator's values are owned or borrowed.
     pub fn munge<Data>(&mut self, data: Data) -> impl Iterator<Item = u8> {
-        unimplemented!();
+        todo!();
         // this empty iterator silences a compiler complaint that
         // () doesn't implement ExactSizeIterator
         std::iter::empty()

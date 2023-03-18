@@ -6,10 +6,10 @@ pub struct Player {
 
 impl Player {
     pub fn revive(&self) -> Option<Player> {
-        unimplemented!("Revive this player")
+        todo!("Revive this player")
     }
 
     pub fn cast_spell(&mut self, mana_cost: u32) -> u32 {
-        unimplemented!("Cast a spell of cost {mana_cost}")
+        todo!("Cast a spell of cost {mana_cost}")
     }
 }
