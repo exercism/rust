@@ -55,3 +55,9 @@ fn you_can_validate_from_a_usize() {
     assert!(valid.valid_luhn());
     assert!(!invalid.valid_luhn());
 }
+
+#[test]
+#[ignore]
+fn test_input_digit_9_is_still_correctly_converted_to_output_digit_9() {
+    assert!("091".valid_luhn());
+}
