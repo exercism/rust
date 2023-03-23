@@ -4,7 +4,7 @@
 // Normally, it's good practice to just do what Clippy tells you, but in this
 // case, we want to keep things relatively simple. The `Default` trait is not the point
 // of this exercise.
-#[allow(clippy::new_without_default)]
+#![allow(clippy::new_without_default)]
 pub struct School {}
 
 impl School {
