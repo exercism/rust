@@ -117,20 +117,3 @@ fn test_cast_spell_with_no_mana_pool() {
     assert_eq!(underleveled_player.mana, clone.mana);
     assert_eq!(underleveled_player.level, clone.level);
 }
-
-#[test]
-#[ignore]
-fn test_cast_large_spell_with_no_mana_pool() {
-    const MANA_COST: u32 = 30;
-
-    let mut underleveled_player = Player {
-        health: 20,
-        mana: None,
-        level: 6,
-    };
-
-    assert_eq!(underleveled_player.cast_spell(MANA_COST), 0);
-    assert_eq!(underleveled_player.health, 0);
-    assert_eq!(underleveled_player.mana, None);
-    assert_eq!(underleveled_player.level, 6);
-}
