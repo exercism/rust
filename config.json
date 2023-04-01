@@ -3,7 +3,7 @@
   "slug": "rust",
   "active": true,
   "status": {
-    "concept_exercises": true,
+    "concept_exercises": false,
     "test_runner": true,
     "representer": true,
     "analyzer": true
