@@ -1,7 +1,6 @@
 #[test]
 #[ignore]
 fn ${description}$() {
-
-    assert_eq!(${property}$(${input}$), ${expected}$);
+let expected = vec!${expected}$;
+    assert_eq!(${property}$(${input.startVerse}$, ${input.endVerse}$), expected);
 }
-
