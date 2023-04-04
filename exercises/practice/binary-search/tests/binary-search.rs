@@ -12,13 +12,13 @@ fn finds_a_value_in_an_array_with_one_element() {
 
 #[test]
 #[ignore]
-fn finds_first_value_in_an_array_with_two_element() {
+fn finds_first_value_in_an_array_with_two_elements() {
     assert_eq!(find(&[1, 2], 1), Some(0));
 }
 
 #[test]
 #[ignore]
-fn finds_second_value_in_an_array_with_two_element() {
+fn finds_second_value_in_an_array_with_two_elements() {
     assert_eq!(find(&[1, 2], 2), Some(1));
 }
 
