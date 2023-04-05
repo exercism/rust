@@ -37,10 +37,10 @@ impl Character {
         rolls
     }
 
-    pub fn calculate_ability_score(dice: [u8; 4]) -> u8 {
-        let mut dice = dice;
-        dice.sort();
-        dice[1..].iter().sum()
+    pub fn calculate_ability_score(ability_dice_rolls: [u8; 4]) -> u8 {
+        let mut ability_dice_rolls = ability_dice_rolls;
+        ability_dice_rolls.sort();
+        ability_dice_rolls[1..].iter().sum()
     }
 
     pub fn strength(&self) -> u8 {
