@@ -1,7 +1,6 @@
 use dnd_character::*;
 
 #[test]
-#[ignore]
 fn test_ability_modifier_for_score_3_is_4() {
     let input = 3;
     let expected: f32 = -4.0;
