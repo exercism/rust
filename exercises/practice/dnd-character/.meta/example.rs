@@ -16,19 +16,19 @@ pub struct Character {
 
 impl Character {
     pub fn new() -> Self {
-        let constitution = Character::calculate_ability_score(Character::roll_four_dices());
+        let constitution = Character::calculate_ability_score(Character::roll_four_dice());
         Character {
-            strength: Character::calculate_ability_score(Character::roll_four_dices()),
-            dexterity: Character::calculate_ability_score(Character::roll_four_dices()),
+            strength: Character::calculate_ability_score(Character::roll_four_dice()),
+            dexterity: Character::calculate_ability_score(Character::roll_four_dice()),
             constitution,
-            intelligence: Character::calculate_ability_score(Character::roll_four_dices()),
-            wisdom: Character::calculate_ability_score(Character::roll_four_dices()),
-            charisma: Character::calculate_ability_score(Character::roll_four_dices()),
+            intelligence: Character::calculate_ability_score(Character::roll_four_dice()),
+            wisdom: Character::calculate_ability_score(Character::roll_four_dice()),
+            charisma: Character::calculate_ability_score(Character::roll_four_dice()),
             hitpoints: 10 + modifier(constitution) as u8,
         }
     }
 
-    pub fn roll_four_dices() -> [u8; 4] {
+    pub fn roll_four_dice() -> [u8; 4] {
         let mut rng = thread_rng();
         let mut rolls = [0; 4];
         for i in 0..4 {
@@ -37,10 +37,10 @@ impl Character {
         rolls
     }
 
-    pub fn calculate_ability_score(dices: [u8; 4]) -> u8 {
-        let mut dices = dices;
-        dices.sort();
-        dices[1..].iter().sum()
+    pub fn calculate_ability_score(dice: [u8; 4]) -> u8 {
+        let mut dice = dice;
+        dice.sort();
+        dice[1..].iter().sum()
     }
 
     pub fn strength(&self) -> u8 {

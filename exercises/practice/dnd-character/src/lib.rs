@@ -9,12 +9,12 @@ impl Character {
         unimplemented!("Create a function that generates a new random character with the following ability scores and hitpoints")
     }
 
-    pub fn roll_four_dices() -> [u8; 4] {
-        unimplemented!("Create a utility function that rolls four dices")
+    pub fn roll_four_dice() -> [u8; 4] {
+        unimplemented!("Create a utility function that rolls four dice")
     }
 
-    pub fn calculate_ability_score(_dices: [u8; 4]) -> u8 {
-        unimplemented!("Calculate the ability score from the given rolled dices")
+    pub fn calculate_ability_score(_dice: [u8; 4]) -> u8 {
+        unimplemented!("Calculate the ability score from the given rolled dice")
     }
 
     pub fn strength(&self) -> u8 {

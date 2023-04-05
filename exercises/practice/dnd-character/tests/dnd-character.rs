@@ -131,7 +131,7 @@ fn test_ability_modifier_for_score_18_is_4() {
 #[test]
 #[ignore]
 fn test_random_ability_is_within_range() {
-    let score = Character::calculate_ability_score(Character::roll_four_dices());
+    let score = Character::calculate_ability_score(Character::roll_four_dice());
     assert!(score >= 3 && score <= 18);
 }
 
@@ -153,7 +153,7 @@ fn test_random_character_is_valid() {
 
 #[test]
 #[ignore]
-fn test_dices_are_rolled_for_each_stat() {
+fn test_dice_are_rolled_for_each_stat() {
     // there is a low chance that this might be equal
     let character = Character::new();
     assert_ne!(
