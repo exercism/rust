@@ -131,7 +131,7 @@ fn test_ability_modifier_for_score_18_is_4() {
 #[ignore]
 fn test_random_ability_is_within_range() {
     let score = Character::calculate_ability_score(Character::roll_four_dice());
-    assert!(score >= 3 && score <= 18);
+    assert!((3..=18).contains(&score));
 }
 
 #[test]

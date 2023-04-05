@@ -71,5 +71,3 @@ impl Character {
         self.hitpoints
     }
 }
-
-
