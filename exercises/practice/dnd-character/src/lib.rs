@@ -13,7 +13,7 @@ impl Character {
         unimplemented!("Create a utility function that rolls four dice")
     }
 
-    pub fn calculate_ability_score(_dice: [u8; 4]) -> u8 {
+    pub fn calculate_ability_score(_ability_dice_rolls: [u8; 4]) -> u8 {
         unimplemented!("Calculate the ability score from the given rolled dice")
     }
 
