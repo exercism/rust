@@ -138,12 +138,12 @@ fn test_random_ability_is_within_range() {
 #[ignore]
 fn test_random_character_is_valid() {
     let character = Character::new();
-    assert!(character.strength() >= 3 && character.strength() <= 18);
-    assert!(character.dexterity() >= 3 && character.dexterity() <= 18);
-    assert!(character.constitution() >= 3 && character.constitution() <= 18);
-    assert!(character.intelligence() >= 3 && character.intelligence() <= 18);
-    assert!(character.wisdom() >= 3 && character.wisdom() <= 18);
-    assert!(character.charisma() >= 3 && character.charisma() <= 18);
+    assert!((3..=18).contains(&character.strength()));
+    assert!((3..=18).contains(&character.dexterity()));
+    assert!((3..=18).contains(&character.constitution()));
+    assert!((3..=18).contains(&character.intelligence()));
+    assert!((3..=18).contains(&character.wisdom()));
+    assert!((3..=18).contains(&character.charisma()));
     assert_eq!(
         character.hitpoints(),
         10 + modifier(character.constitution()) as u8
