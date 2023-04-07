@@ -1507,6 +1507,14 @@
           "strings"
         ],
         "status": "deprecated"
+      },
+      {
+        "slug": "kindergarten-garden",
+        "name": "Kindergarten Garden",
+        "uuid": "c27e4878-28a4-4637-bde2-2af681a7ff0d",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
       }
     ],
     "foregone": [
