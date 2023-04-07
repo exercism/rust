@@ -16,32 +16,4 @@ impl Character {
     pub fn calculate_ability_score(_ability_dice_rolls: [u8; 4]) -> u8 {
         unimplemented!("Calculate the ability score from the given rolled dice")
     }
-
-    pub fn strength(&self) -> u8 {
-        unimplemented!("Return the strength score of the character")
-    }
-
-    pub fn dexterity(&self) -> u8 {
-        unimplemented!("Return the dexterity score of the character")
-    }
-
-    pub fn constitution(&self) -> u8 {
-        unimplemented!("Return the constitution score of the character")
-    }
-
-    pub fn intelligence(&self) -> u8 {
-        unimplemented!("Return the intelligence score of the character")
-    }
-
-    pub fn wisdom(&self) -> u8 {
-        unimplemented!("Return the wisdom score of the character")
-    }
-
-    pub fn charisma(&self) -> u8 {
-        unimplemented!("Return the charisma score of the character")
-    }
-
-    pub fn hitpoints(&self) -> u8 {
-        unimplemented!("Return the hitpoints of the character")
-    }
 }

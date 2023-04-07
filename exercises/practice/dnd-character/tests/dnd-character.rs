@@ -138,15 +138,15 @@ fn test_random_ability_is_within_range() {
 #[ignore]
 fn test_random_character_is_valid() {
     let character = Character::new();
-    assert!((3..=18).contains(&character.strength()));
-    assert!((3..=18).contains(&character.dexterity()));
-    assert!((3..=18).contains(&character.constitution()));
-    assert!((3..=18).contains(&character.intelligence()));
-    assert!((3..=18).contains(&character.wisdom()));
-    assert!((3..=18).contains(&character.charisma()));
+    assert!((3..=18).contains(&character.strength));
+    assert!((3..=18).contains(&character.dexterity));
+    assert!((3..=18).contains(&character.constitution));
+    assert!((3..=18).contains(&character.intelligence));
+    assert!((3..=18).contains(&character.wisdom));
+    assert!((3..=18).contains(&character.charisma));
     assert_eq!(
-        character.hitpoints(),
-        10 + modifier(character.constitution()) as u8
+        character.hitpoints,
+        10 + modifier(character.constitution) as u8
     );
 }
 
@@ -157,20 +157,20 @@ fn test_dice_are_rolled_for_each_stat() {
     let character = Character::new();
     assert_ne!(
         (
-            character.strength(),
-            character.dexterity(),
-            character.constitution(),
-            character.intelligence(),
-            character.wisdom(),
-            character.charisma()
+            character.strength,
+            character.dexterity,
+            character.constitution,
+            character.intelligence,
+            character.wisdom,
+            character.charisma
         ),
         (
-            character.strength(),
-            character.strength(),
-            character.strength(),
-            character.strength(),
-            character.strength(),
-            character.strength()
+            character.strength,
+            character.strength,
+            character.strength,
+            character.strength,
+            character.strength,
+            character.strength
         )
     );
 }
@@ -179,5 +179,5 @@ fn test_dice_are_rolled_for_each_stat() {
 #[ignore]
 fn test_each_ability_is_only_calculated_once() {
     let character = Character::new();
-    assert_eq!(character.strength(), character.strength());
+    assert_eq!(character.strength, character.strength);
 }
