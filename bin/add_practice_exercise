@@ -82,7 +82,7 @@ message "info" "Adding instructions and configuration files..."
 uuid=$(bin/configlet uuid)
 
 # Add exercise-data to global config.json
-jq --arg slug "$slug" --arg uuid "$uuid" --arg name "$exercise_name" --arg difficulty "$exercise_difficulty" \
+jq --arg slug "$slug" --arg uuid "$uuid" --arg name "$exercise_name" --argjson difficulty "$exercise_difficulty" \
     '.exercises.practice += [{slug: $slug, name: $name, uuid: $uuid, practices: [], prerequisites: [], difficulty: $difficulty}]' \
     config.json >config.json.tmp
 # jq always rounds whole numbers, but average_run_time needs to be a float

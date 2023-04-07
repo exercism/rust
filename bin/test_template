@@ -1,7 +1,6 @@
 #[test]
 #[ignore]
 fn ${description}$() {
-
-    assert_eq!(${property}$(${input}$), ${expected}$);
+let expected = "${expected}$";
+    assert_eq!(${property}$(${input}$), expected);
 }
-
