@@ -179,5 +179,5 @@ fn test_dice_are_rolled_for_each_stat() {
 #[ignore]
 fn test_each_ability_is_only_calculated_once() {
     let character = Character::new();
-    assert!(character.strength() == character.strength());
+    assert_eq!(character.strength(), character.strength());
 }
