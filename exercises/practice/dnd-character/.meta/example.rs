@@ -14,7 +14,7 @@ pub struct Character {
     hitpoints: u8,
 }
 
-macro_rules! get_attribute {
+macro_rules! create_getter_for {
     ($name:ident) => {
         pub fn $name(&self) -> u8 {
             self.$name
@@ -51,11 +51,11 @@ impl Character {
         ability_dice_rolls[1..].iter().sum()
     }
 
-    get_attribute!(strength);
-    get_attribute!(dexterity);
-    get_attribute!(constitution);
-    get_attribute!(intelligence);
-    get_attribute!(wisdom);
-    get_attribute!(charisma);
-    get_attribute!(hitpoints);
+    create_getter_for!(strength);
+    create_getter_for!(dexterity);
+    create_getter_for!(constitution);
+    create_getter_for!(intelligence);
+    create_getter_for!(wisdom);
+    create_getter_for!(charisma);
+    create_getter_for!(hitpoints);
 }
