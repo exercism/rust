@@ -14,6 +14,14 @@ pub struct Character {
     hitpoints: u8,
 }
 
+macro_rules! get_attribute {
+    ($name:ident) => {
+        pub fn $name(&self) -> u8 {
+            self.$name
+        }
+    };
+}
+
 impl Character {
     pub fn new() -> Self {
         let constitution = Character::calculate_ability_score(Character::roll_four_dice());
@@ -43,31 +51,11 @@ impl Character {
         ability_dice_rolls[1..].iter().sum()
     }
 
-    pub fn strength(&self) -> u8 {
-        self.strength
-    }
-
-    pub fn dexterity(&self) -> u8 {
-        self.dexterity
-    }
-
-    pub fn constitution(&self) -> u8 {
-        self.constitution
-    }
-
-    pub fn intelligence(&self) -> u8 {
-        self.intelligence
-    }
-
-    pub fn wisdom(&self) -> u8 {
-        self.wisdom
-    }
-
-    pub fn charisma(&self) -> u8 {
-        self.charisma
-    }
-
-    pub fn hitpoints(&self) -> u8 {
-        self.hitpoints
-    }
+    get_attribute!(strength);
+    get_attribute!(dexterity);
+    get_attribute!(constitution);
+    get_attribute!(intelligence);
+    get_attribute!(wisdom);
+    get_attribute!(charisma);
+    get_attribute!(hitpoints);
 }
