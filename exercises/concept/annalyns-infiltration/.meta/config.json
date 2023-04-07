@@ -1,0 +1,22 @@
+{
+  "forked_from": [
+    "fsharp/annalyns-infiltration"
+  ],
+  "blurb": "Learn about booleans while helping Annalyn rescue her friend.",
+  "authors": [
+    "devkabiir"
+  ],
+  "contributors": [],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/annalyns-infiltration.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  }
+}

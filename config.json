@@ -36,6 +36,17 @@
   "exercises": {
     "concept": [
       {
+        "slug": "annalyns-infiltration",
+        "name": "Annalyn's Infiltration",
+        "uuid": "897fa2ea-c29c-4d4e-9469-ff661a9b838a",
+        "difficulty": 1,
+        "concepts": [
+          "booleans"
+        ],
+        "prerequisites": [],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",
