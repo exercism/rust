@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 
-
 # Exit if anything fails.
 set -euo pipefail
-
 
 # see comment in generator-utils/utils.sh
 # shellcheck source=bin/generator-utils/utils.sh
 # shellcheck source=./generator-utils/utils.sh
 source ./bin/generator-utils/utils.sh
 
+if [ ! -e bin/generator-utils/escape_double_quotes ]; then
+  message "info" "Building util function"
+  cd util/escape_double_quotes && ./build && cd ../..
+fi
+
 digest_template() {
   local template
-  template=$(cat bin/test_template)
+  template=$(bin/generator-utils/escape_double_quotes bin/test_template)
   # Turn every token into a jq command
 
   echo "$template" | sed 's/${\([^}]*\)\}\$/$(echo $case | jq -r '\''.\1'\'')/g'
@@ -35,7 +38,6 @@ EOT
 # Flattens canonical json, extracts only the objects with a uuid
 cases=$(echo "$canonical_json" | jq '[ .. | objects | with_entries(select(.key | IN("uuid", "description", "input", "expected", "property"))) | select(. != {}) | select(has("uuid")) ]')
 
-
 # Shellcheck doesn't recognize that `case` is not unused
 
 # shellcheck disable=SC2034
@@ -45,9 +47,8 @@ jq -c '.[]' <<<"$cases" | while read -r case; do
   eval_template="$(digest_template | sed -e "s/\$(\(.*\))/\$\(\1\)/g")"
   eval_template="$(eval "echo \"$eval_template\"")"
 
-
   # Turn function name into snake_case
-  formatted_template=$(echo "$eval_template" | sed -e ':loop' -e 's/\(fn[^(]*\)[ -]/\1_/g' -e 't loop' | sed 's/fn_/fn /')
+  formatted_template=$(echo "$eval_template" | sed -E -e '/^fn/!b' -e 's/[^a-zA-Z0-9_{}()[:space:]-]//g' -e 's/([[:upper:]])/ \L\1/g' -e 's/(fn[[:space:]]+)([a-z0-9_-]+)/\1\L\2/g' -e 's/ /_/g' -e 's/_\{/\{/g' -e 's/-/_/g' | sed 's/fn_/fn /' | sed 's/__\+/_/g')
 
   # Push to test file
   echo "$formatted_template" >>"$test_file"
@@ -58,4 +59,3 @@ done
 rustfmt "$test_file"
 
 message "success" "Generated tests successfully! Check out ${test_file}"
-
