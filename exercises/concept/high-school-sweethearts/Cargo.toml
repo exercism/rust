@@ -1,0 +1,4 @@
+[package]
+edition = "2021"
+name = "high_school_sweethearts"
+version = "1.0.0"

@@ -36,6 +36,19 @@
   "exercises": {
     "concept": [
       {
+        "slug": "high-school-sweethearts",
+        "uuid": "eddace47-6d09-446f-92a7-c562349bbd31",
+        "name": "High School Sweethearts",
+        "difficulty": 1,
+        "concepts": [
+          "string-formatting"
+        ],
+        "prerequisites": [
+          "strings"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",

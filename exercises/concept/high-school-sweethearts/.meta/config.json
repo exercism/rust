@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "devkabiir"
+  ],
+  "contributors": [],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/high-school-sweethearts.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
+  "forked_from": [
+    "elixir/high-school-sweetheart"
+  ],
+  "blurb": "Learn about string formatting by helping high school sweethearts profess their love on social media."
+}
