@@ -1523,6 +1523,15 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1
+      },
+      {
+        "slug": "dnd-character",
+        "name": "D&D Character",
+        "uuid": "8f52127a-ad81-46a2-b734-a76117138aae",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics":["structs", "randomness"]
       }
     ],
     "foregone": [
