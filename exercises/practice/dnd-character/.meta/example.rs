@@ -5,13 +5,13 @@ pub fn modifier(ability_score: u8) -> f32 {
 }
 
 pub struct Character {
-    strength: u8,
-    dexterity: u8,
-    constitution: u8,
-    intelligence: u8,
-    wisdom: u8,
-    charisma: u8,
-    hitpoints: u8,
+    pub strength: u8,
+    pub dexterity: u8,
+    pub constitution: u8,
+    pub intelligence: u8,
+    pub wisdom: u8,
+    pub charisma: u8,
+    pub hitpoints: u8,
 }
 
 impl Character {
