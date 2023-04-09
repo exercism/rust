@@ -1,7 +1,6 @@
 use yacht::*;
 
 #[test]
-#[ignore]
 fn test_yacht() {
     let expected = 50;
     assert_eq!(score([5, 5, 5, 5, 5], Category::Yacht), expected);

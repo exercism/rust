@@ -1,4 +1,3 @@
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Category {
     Ones,
     Twos,
@@ -14,6 +13,7 @@ pub enum Category {
     Yacht,
 }
 
-pub fn score(dice: [u8; 5], category: Category) -> u8 {
-    unimplemented!("implement yacht exercise");
+type Dice = [u8; 5];
+pub fn score(_dice: Dice, _category: Category) -> u8 {
+    unimplemented!("Solve the Yacht exercise");
 }
