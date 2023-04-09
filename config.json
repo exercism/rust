@@ -36,6 +36,21 @@
   "exercises": {
     "concept": [
       {
+        "slug": "cars-assemble",
+        "uuid": "1d0e6e2c-c319-48bc-8626-7b3c98473f42",
+        "name": "Cars Assemble",
+        "difficulty": 1,
+        "concepts": [
+          "if-statements",
+          "assignment",
+          "numbers"
+        ],
+        "prerequisites": [
+          "booleans"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",
