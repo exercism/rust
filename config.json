@@ -36,6 +36,21 @@
   "exercises": {
     "concept": [
       {
+        "slug": "logs-logs-logs",
+        "uuid": "94478bc3-6073-47ab-8bee-e31c1e471f58",
+        "name": "Logs Logs Logs",
+        "difficulty": 1,
+        "concepts": [
+          "enums"
+        ],
+        "prerequisites": [
+          "strings",
+          "string-formatting",
+          "if-statements"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",

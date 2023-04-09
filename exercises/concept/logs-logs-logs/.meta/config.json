@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "devkabiir"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/logs-logs-logs.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
+  "blurb": "Learn about enums by parsing logs."
+}
