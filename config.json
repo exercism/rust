@@ -36,6 +36,21 @@
   "exercises": {
     "concept": [
       {
+        "slug": "elons-toys",
+        "uuid": "b6f7e6bf-34af-414a-a535-22a58ec7be3f",
+        "name": "Elon's Toys",
+        "difficulty": 1,
+        "concepts": [
+          "structs"
+        ],
+        "prerequisites": [
+          "if-statements",
+          "strings",
+          "string-formatting"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",

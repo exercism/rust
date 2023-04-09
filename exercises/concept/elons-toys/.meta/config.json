@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "devkabiir"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/elons-toys.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
+  "blurb": "Learn about structs by working on a remote controlled car."
+}
