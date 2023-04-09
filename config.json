@@ -36,6 +36,23 @@
   "exercises": {
     "concept": [
       {
+        "slug": "tim-from-marketing",
+        "uuid": "60794e3f-69a4-42b3-891a-922a1df4efce",
+        "name": "Tim from Marketing",
+        "difficulty": 1,
+        "concepts": [
+          "option",
+          "nullability"
+        ],
+        "prerequisites": [
+          "assignment",
+          "enum",
+          "string-formatting",
+          "if-statements"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",
