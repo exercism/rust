@@ -36,6 +36,20 @@
   "exercises": {
     "concept": [
       {
+        "slug": "phone-number-analysis",
+        "uuid": "eabea697-cc15-472f-ab4e-5b2720a180d1",
+        "name": "Phone Number Analysis",
+        "difficulty": 1,
+        "concepts": [
+          "tuples"
+        ],
+        "prerequisites": [
+          "strings",
+          "booleans"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",

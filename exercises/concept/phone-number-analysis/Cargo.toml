@@ -1,0 +1,4 @@
+[package]
+name = "phone_number_analysis"
+version = "0.1.0"
+edition = "2021"
