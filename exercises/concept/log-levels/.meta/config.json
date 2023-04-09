@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "devkabiir"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/log-levels.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
+  "blurb": "Learn about strings by processing logs."
+}

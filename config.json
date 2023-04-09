@@ -36,6 +36,21 @@
   "exercises": {
     "concept": [
       {
+        "slug": "log-levels",
+        "uuid": "3745adbd-f511-4104-90c8-2f04145ce6bf",
+        "name": "Log Levels",
+        "difficulty": 1,
+        "concepts": [
+          "strings"
+        ],
+        "prerequisites": [
+          "assignment",
+          "if-statements",
+          "for-loops"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",
