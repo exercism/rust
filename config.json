@@ -36,6 +36,22 @@
   "exercises": {
     "concept": [
       {
+        "slug": "bird-watcher",
+        "uuid": "ef6bdeea-56d5-44d9-8971-1ac3b3a8f624",
+        "name": "Bird Watcher",
+        "difficulty": 1,
+        "concepts": [
+          "for-loops",
+          "ranges",
+          "arrays"
+        ],
+        "prerequisites": [
+          "if-statements",
+          "assignment"
+        ],
+        "status": "wip"
+      },
+      {
         "slug": "lucians-luscious-lasagna",
         "uuid": "29a2d3bd-eec8-454d-9dba-4b2d7d071925",
         "name": "Lucian's Luscious Lasagna",

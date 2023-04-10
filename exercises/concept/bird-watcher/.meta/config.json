@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "devkabiir"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/bird-watcher.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
+  "blurb": "Learn about for loops and arrays by keeping track of how many birds visit your garden."
+}
