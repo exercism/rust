@@ -3,7 +3,7 @@ use knapsack::*;
 #[test]
 fn test_example_knapsack() {
     let max_weight = 10;
-    let items = vec![
+    let items = [
         Item {
             weight: 5,
             value: 10,
@@ -38,7 +38,7 @@ fn test_no_items() {
 #[ignore]
 fn test_one_item_too_heavy() {
     let max_weight = 10;
-    let items = vec![Item {
+    let items = [Item {
         weight: 100,
         value: 1,
     }];
@@ -50,7 +50,7 @@ fn test_one_item_too_heavy() {
 #[ignore]
 fn test_five_items_cannot_be_greedy_by_weight() {
     let max_weight = 10;
-    let items = vec![
+    let items = [
         Item {
             weight: 2,
             value: 5,
@@ -80,7 +80,7 @@ fn test_five_items_cannot_be_greedy_by_weight() {
 #[ignore]
 fn test_five_items_cannot_be_greedy_by_value() {
     let max_weight = 10;
-    let items = vec![
+    let items = [
         Item {
             weight: 2,
             value: 20,
@@ -110,7 +110,7 @@ fn test_five_items_cannot_be_greedy_by_value() {
 #[ignore]
 fn test_8_items() {
     let max_weight = 104;
-    let items = vec![
+    let items = [
         Item {
             weight: 25,
             value: 350,
@@ -152,7 +152,7 @@ fn test_8_items() {
 #[ignore]
 fn test_15_items() {
     let max_weight = 750;
-    let items = vec![
+    let items = [
         Item {
             weight: 70,
             value: 135,
