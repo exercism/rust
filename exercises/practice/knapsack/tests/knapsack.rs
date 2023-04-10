@@ -22,7 +22,7 @@ fn test_example_knapsack() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 90);
+    assert_eq!(maximum_value(max_weight, &items), 90);
 }
 
 #[test]
@@ -31,7 +31,7 @@ fn test_no_items() {
     let max_weight = 100;
     let items = vec![];
 
-    assert_eq!(maximum_value(max_weight, items), 0);
+    assert_eq!(maximum_value(max_weight, &items), 0);
 }
 
 #[test]
@@ -43,7 +43,7 @@ fn test_one_item_too_heavy() {
         value: 1,
     }];
 
-    assert_eq!(maximum_value(max_weight, items), 0);
+    assert_eq!(maximum_value(max_weight, &items), 0);
 }
 
 #[test]
@@ -73,7 +73,7 @@ fn test_five_items_cannot_be_greedy_by_weight() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 21);
+    assert_eq!(maximum_value(max_weight, &items), 21);
 }
 
 #[test]
@@ -103,7 +103,7 @@ fn test_five_items_cannot_be_greedy_by_value() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 80);
+    assert_eq!(maximum_value(max_weight, &items), 80);
 }
 
 #[test]
@@ -145,7 +145,7 @@ fn test_8_items() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 900);
+    assert_eq!(maximum_value(max_weight, &items), 900);
 }
 
 #[test]
@@ -215,5 +215,5 @@ fn test_15_items() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 1458);
+    assert_eq!(maximum_value(max_weight, &items), 1458);
 }
