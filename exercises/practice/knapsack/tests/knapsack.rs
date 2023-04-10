@@ -29,7 +29,7 @@ fn test_example_knapsack() {
 #[ignore]
 fn test_no_items() {
     let max_weight = 100;
-    let items = vec![];
+    let items = [];
 
     assert_eq!(maximum_value(max_weight, &items), 0);
 }
