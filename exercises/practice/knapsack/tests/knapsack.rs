@@ -3,7 +3,7 @@ use knapsack::*;
 #[test]
 fn test_example_knapsack() {
     let max_weight = 10;
-    let items = vec![
+    let items = [
         Item {
             weight: 5,
             value: 10,
@@ -22,35 +22,35 @@ fn test_example_knapsack() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 90);
+    assert_eq!(maximum_value(max_weight, &items), 90);
 }
 
 #[test]
 #[ignore]
 fn test_no_items() {
     let max_weight = 100;
-    let items = vec![];
+    let items = [];
 
-    assert_eq!(maximum_value(max_weight, items), 0);
+    assert_eq!(maximum_value(max_weight, &items), 0);
 }
 
 #[test]
 #[ignore]
 fn test_one_item_too_heavy() {
     let max_weight = 10;
-    let items = vec![Item {
+    let items = [Item {
         weight: 100,
         value: 1,
     }];
 
-    assert_eq!(maximum_value(max_weight, items), 0);
+    assert_eq!(maximum_value(max_weight, &items), 0);
 }
 
 #[test]
 #[ignore]
 fn test_five_items_cannot_be_greedy_by_weight() {
     let max_weight = 10;
-    let items = vec![
+    let items = [
         Item {
             weight: 2,
             value: 5,
@@ -73,14 +73,14 @@ fn test_five_items_cannot_be_greedy_by_weight() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 21);
+    assert_eq!(maximum_value(max_weight, &items), 21);
 }
 
 #[test]
 #[ignore]
 fn test_five_items_cannot_be_greedy_by_value() {
     let max_weight = 10;
-    let items = vec![
+    let items = [
         Item {
             weight: 2,
             value: 20,
@@ -103,14 +103,14 @@ fn test_five_items_cannot_be_greedy_by_value() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 80);
+    assert_eq!(maximum_value(max_weight, &items), 80);
 }
 
 #[test]
 #[ignore]
 fn test_8_items() {
     let max_weight = 104;
-    let items = vec![
+    let items = [
         Item {
             weight: 25,
             value: 350,
@@ -145,14 +145,14 @@ fn test_8_items() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 900);
+    assert_eq!(maximum_value(max_weight, &items), 900);
 }
 
 #[test]
 #[ignore]
 fn test_15_items() {
     let max_weight = 750;
-    let items = vec![
+    let items = [
         Item {
             weight: 70,
             value: 135,
@@ -215,5 +215,5 @@ fn test_15_items() {
         },
     ];
 
-    assert_eq!(maximum_value(max_weight, items), 1458);
+    assert_eq!(maximum_value(max_weight, &items), 1458);
 }
