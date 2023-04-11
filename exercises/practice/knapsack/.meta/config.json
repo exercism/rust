@@ -2,6 +2,9 @@
   "authors": [
     "dem4ron"
   ],
+  "contributors": [
+    "victor-prokhorov"
+  ],
   "files": {
     "solution": [
       "src/lib.rs",
