@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "devkabiir"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/tracks-on-tracks-on-tracks.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
+  "forked_from": [
+    "csharp/tracks-on-tracks-on-tracks"
+  ],
+  "blurb": "Learn about vectors by keeping track of programming languages you want to learn."
+}
