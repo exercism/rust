@@ -91,6 +91,17 @@ fn test_numbers_dont_count() {
 
 #[test]
 #[ignore]
+fn test_different_letter_in_each_worker() {
+    let v = vec!["aa", "bbb", "cccc"];
+    let mut hm = HashMap::new();
+    hm.insert('a', 2);
+    hm.insert('b', 3);
+    hm.insert('c', 4);
+    assert_eq!(frequency::frequency(&v[..], 2), hm)
+}
+
+#[test]
+#[ignore]
 fn test_all_three_anthems_1_worker() {
     let mut v = Vec::new();
     for anthem in [ODE_AN_DIE_FREUDE, WILHELMUS, STAR_SPANGLED_BANNER].iter() {
