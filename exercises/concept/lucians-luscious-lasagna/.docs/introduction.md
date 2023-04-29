@@ -21,14 +21,20 @@ A parameter consist of its name and type, separated by a colon.
 Multiple parameters are separated by commas.
 
 The return type is specified after an arrow `->`.
-It is optional if the function doesn't return anything.
+It is omitted if the function doesn't return anything.
+This is common when the function's purpose is to perform a side effect.
+```rust
+fn perform_side_effect() {
+    // body
+}
+```
 
 Lastly, the body of the function is enclosed in curly braces `{}`.
 A function automatically returns the result of its last expression.
 Simple functions like the one above can therefore consist of just an expression.
 
 Invoking a function is done by specifying its name followed by parentheses.
-If the function requires parameters, they must be specified within the parentheses.
+If the function requires arguments, they must be specified within the parentheses.
 
 ```rust
 add(2, 3) // evaluates to 5
