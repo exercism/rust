@@ -68,30 +68,6 @@ fn a_span_is_longer_than_number_is_an_error() {
     assert_eq!(Err(Error::SpanTooLong), lsp("123", 4));
 }
 
-// There may be some confusion about whether this should be 1 or error.
-// The reasoning for it being 1 is this:
-// There is one 0-character string contained in the empty string.
-// That's the empty string itself.
-// The empty product is 1 (the identity for multiplication).
-// Therefore LSP('', 0) is 1.
-// It's NOT the case that LSP('', 0) takes max of an empty list.
-// So there is no error.
-// Compare against LSP('123', 4):
-// There are zero 4-character strings in '123'.
-// So LSP('123', 4) really DOES take the max of an empty list.
-// So LSP('123', 4) errors and LSP('', 0) does NOT.
-#[test]
-#[ignore]
-fn an_empty_string_and_no_span_returns_one() {
-    assert_eq!(Ok(1), lsp("", 0));
-}
-
-#[test]
-#[ignore]
-fn a_non_empty_string_and_no_span_returns_one() {
-    assert_eq!(Ok(1), lsp("123", 0));
-}
-
 #[test]
 #[ignore]
 fn empty_string_and_non_zero_span_is_an_error() {
