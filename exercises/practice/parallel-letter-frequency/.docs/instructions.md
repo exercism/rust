@@ -1,6 +1,8 @@
 # Instructions
 
-Count the frequency of letters in texts using parallel computation.
+Count the frequency of letters in texts, ignoring case sensitivity
+using parallel computation.
+
 
 Parallelism is about doing things in parallel that can also be done
 sequentially. A common example is counting the frequency of letters.
