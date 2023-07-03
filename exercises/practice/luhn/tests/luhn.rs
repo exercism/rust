@@ -139,3 +139,17 @@ fn test_invalid_char_in_middle_with_sum_divisible_by_10_isnt_allowed() {
 fn test_valid_strings_with_numeric_unicode_characters_become_invalid() {
     process_valid_case("1249①", false);
 }
+
+#[test]
+#[ignore]
+/// valid number with an odd number of digits not starting with 0
+fn test_odd_number_digits_not_starting_with_zero_accept() {
+    assert_eq!(is_valid("6282339"), true);
+}
+
+#[test]
+#[ignore]
+/// invalid number with an odd number of digits not starting with 0
+fn test_odd_number_digits_not_starting_with_zero_reject() {
+    assert_eq!(is_valid("342"), false);
+}
