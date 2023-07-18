@@ -1,6 +1,8 @@
-// 1.65.0 says these &[] borrows are needless borrows,
-// but 1.64.0 requires them.
-// The Rust track will reevaluate this after 1.65.0 is released.
+// The &[] borrows are required for the base exercise,
+// where `find` is not generic. Once `find` is made generic,
+// the borrows become needless. Since we want the tests to work
+// without clippy warnings for both people who take on the
+// additional challenge and people who don't, we disable this lint.
 #![allow(clippy::needless_borrow)]
 
 use binary_search::find;
