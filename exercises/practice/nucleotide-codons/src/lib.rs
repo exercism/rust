@@ -1,46 +1,35 @@
-use std::collections::HashMap;
+// This exercise is deprecated.
+// Consider working on protein-translation instead.
 
-pub struct CodonInfo<'a> {
-    actual_codons: HashMap<&'a str, &'a str>,
+use std::marker::PhantomData;
+
+pub struct CodonsInfo<'a> {
+    // This field is here to make the template compile and not to
+    // complain about unused type lifetime parameter "'a". Once you start
+    // solving the exercise, delete this field and the 'std::marker::PhantomData'
+    // import.
+    phantom: PhantomData<&'a ()>,
 }
 
-pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonInfo<'a> {
-    CodonInfo {
-        actual_codons: pairs.into_iter().collect(),
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Error;
+
+impl<'a> CodonsInfo<'a> {
+    pub fn name_for(&self, codon: &str) -> Result<&'a str, Error> {
+        unimplemented!(
+            "Return the protein name for a '{}' codon or Err, if codon string is invalid",
+            codon
+        );
+    }
+
+    pub fn of_rna(&self, rna: &str) -> Result<Vec<&'a str>, Error> {
+        unimplemented!("Return a list of protein names that correspond to the '{}' RNA string or Err if the RNA string is invalid", rna);
     }
 }
 
-impl<'a> CodonInfo<'a> {
-    pub fn name_for(&self, codon: &str) -> Result<&'a str, &'static str> {
-        if codon.len() != 3 {
-            return Err("invalid length");
-        }
-
-        let mut valid = true;
-        let lookup: String = codon
-            .chars()
-            .map(|l| {
-                // Get an example of a "letter" represented by the possibly encoded letter.
-                // Since every codon represented by the compressed notation has to be of
-                // the desired amino acid just picking one at random will do.
-                match l {
-                    'A' | 'W' | 'M' | 'R' | 'D' | 'H' | 'V' | 'N' => 'A',
-                    'C' | 'S' | 'Y' | 'B' => 'C',
-                    'G' | 'K' => 'G',
-                    'T' => 'T',
-                    _ => {
-                        valid = false;
-                        ' '
-                    }
-                }
-            })
-            .collect();
-        if !valid {
-            return Err("invalid char");
-        }
-
-        // If the input table is correct (which it is) every valid codon is in it
-        // so unwrap() shouldn't panic.
-        Ok(self.actual_codons.get(&lookup.as_ref()).unwrap())
-    }
+pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonsInfo<'a> {
+    unimplemented!(
+        "Construct a new CodonsInfo struct from given pairs: {:?}",
+        pairs
+    );
 }
