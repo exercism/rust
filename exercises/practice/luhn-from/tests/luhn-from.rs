@@ -97,3 +97,9 @@ fn invalid_credit_card_is_invalid() {
 fn strings_that_contain_non_digits_are_invalid() {
     assert!(!Luhn::from("046a 454 286").is_valid());
 }
+
+#[test]
+#[ignore]
+fn test_input_digit_9_is_still_correctly_converted_to_output_digit_9() {
+    assert!(Luhn::from("091").is_valid());
+}
