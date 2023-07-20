@@ -11,7 +11,8 @@ macro_rules! test_read {
             #[test]
             fn test_read_passthrough() {
                 let data = $input;
-                let size = $len(&data);
+                let len = $len;
+                let size = len(&data);
                 let mut reader = ReadStats::new(data);
 
                 let mut buffer = Vec::with_capacity(size);
@@ -31,7 +32,8 @@ macro_rules! test_read {
             #[test]
             fn test_read_chunks() {
                 let data = $input;
-                let size = $len(&data);
+                let len = $len;
+                let size = len(&data);
                 let mut reader = ReadStats::new(data);
 
                 let mut buffer = [0_u8; CHUNK_SIZE];
@@ -51,7 +53,8 @@ macro_rules! test_read {
             #[test]
             fn test_read_buffered_chunks() {
                 let data = $input;
-                let size = $len(&data);
+                let len = $len;
+                let size = len(&data);
                 let mut reader = BufReader::new(ReadStats::new(data));
 
                 let mut buffer = [0_u8; CHUNK_SIZE];
@@ -84,7 +87,8 @@ macro_rules! test_write {
             #[test]
             fn test_write_passthrough() {
                 let data = $input;
-                let size = $len(&data);
+                let len = $len;
+                let size = len(&data);
                 let mut writer = WriteStats::new(Vec::with_capacity(size));
                 let written = writer.write(data);
                 assert!(written.is_ok());
@@ -98,7 +102,8 @@ macro_rules! test_write {
             #[test]
             fn test_sink_oneshot() {
                 let data = $input;
-                let size = $len(&data);
+                let len = $len;
+                let size = len(&data);
                 let mut writer = WriteStats::new(io::sink());
                 let written = writer.write(data);
                 assert!(written.is_ok());
@@ -111,7 +116,8 @@ macro_rules! test_write {
             #[test]
             fn test_sink_windowed() {
                 let data = $input;
-                let size = $len(&data);
+                let len = $len;
+                let size = len(&data);
                 let mut writer = WriteStats::new(io::sink());
 
                 let mut chunk_count = 0;
@@ -129,7 +135,8 @@ macro_rules! test_write {
             #[test]
             fn test_sink_buffered_windowed() {
                 let data = $input;
-                let size = $len(&data);
+                let len = $len;
+                let size = len(&data);
                 let mut writer = BufWriter::new(WriteStats::new(io::sink()));
 
                 for chunk in data.chunks(CHUNK_SIZE) {
