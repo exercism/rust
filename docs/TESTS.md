@@ -30,3 +30,13 @@ Then, when you're ready to work on that test, you can un-comment it.
 Rust also has a special macro called `todo!()`, which you can use on unfinished code paths to make your program compile.
 
 [comments]: https://doc.rust-lang.org/book/ch03-04-comments.html
+
+## Using libraries
+
+You should be able to solve most exercises without using any external libraries.
+Nevertheless, you can add libraries (the Rust community calls them **crates**) by running `cargo add crate-name` in the directory of an exercise.
+
+The automatic tests on the website only support a predefined set of crates, which can be found [here][local-registry] under the section `[dependencies]`.
+Feel free to open an issue or pull request if you would like support for a specific crate to be added.
+
+[local-registry]: https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
