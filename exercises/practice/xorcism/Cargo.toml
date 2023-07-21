@@ -8,6 +8,3 @@ edition = "2021"
 
 [features]
 io = []
-
-[dev-dependencies]
-hexlit = "0.5.0"

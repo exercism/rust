@@ -1,4 +1,3 @@
-use hexlit::hex;
 #[cfg(feature = "io")]
 use std::io::{Read, Write};
 use xorcism::Xorcism;
@@ -79,13 +78,13 @@ fn statefulness() {
 }
 
 macro_rules! test_cases {
-    ($($name:ident, $key:literal, $input:literal, $expect:literal);+) => {
+    ($($name:ident, $key:literal, $input:literal, $expect:expr);+) => {
         $(mod $name {
             use super::*;
 
             const KEY: &str = $key;
             const INPUT: &str = $input;
-            const EXPECT: &[u8] = &hex!($expect);
+            const EXPECT: &[u8] = $expect;
 
             /// tests where the key is expressed as `&str`, and input is expressed as `&[u8]`
             mod str_slice {
@@ -290,42 +289,42 @@ macro_rules! test_cases {
 }
 
 test_cases!(
-    key_shorter_than_data, "abcde", "123455", "5050 5050 5054"
+    key_shorter_than_data, "abcde", "123455", &[80,80,80,80,80,84]
     ;
     key_len_equal_to_data,
         "The quick brown fox jumped over the lazy dog.",
         "Wait, oops, this is not the pangram exercise!",
-        "0309 0c54 5d55 060c 1b53 4e52 1b1f 0753 4606 0b00 041a 1950 110c 454f 0604 1c47 0609 0800 0919 1f0b 430d 1c02 0f"
+        &[3,9,12,84,93,85,6,12,27,83,78,82,27,31,7,83,70,6,11,0,4,26,25,80,17,12,69,79,6,4,28,71,6,9,8,0,9,25,31,11,67,13,28,2,15]
     ;
     key_longer_than_data,
         "A properly cryptographically random key longer than the data can actually be fairly secure.",
         "Text is not cryptographically random.",
-        "1545 0806 4f19 1652 0216 5443 110b 0904 1b08 1513 1118 010a 020d 0015 5952 130f 0a0b 024d 45"
+        &[21,69,8,6,79,25,22,82,2,22,84,67,17,11,9,4,27,8,21,19,17,24,1,10,2,13,0,21,89,82,19,15,10,11,2,77,69]
     ;
     shakespearean,
         "Forsooth, let us never break our trust!",
         "The sacred brothership in which we share shall never from our hearts be lost.",
-        "1207 1753 1c0e 171a 4944 4c07 064f 011b 451c 161e 0c02 000b 1c45 1603 490c 1d52 5711 5206 1b15 5323 4f01 1b0e 0318 4842 451a 0006 0013 014f 0345 1910 0000 0a17 0413 1f53 4f17 1700 181d 0607 5a"
+        &[18,7,23,83,28,14,23,26,73,68,76,7,6,79,1,27,69,28,22,30,12,2,0,11,28,69,22,3,73,12,29,82,87,17,82,6,27,21,83,35,79,1,27,14,3,24,72,66,69,26,0,6,0,19,1,79,3,69,25,16,0,0,10,23,4,19,31,83,79,23,23,0,24,29,6,7,90]
     ;
     comics,
         "Who knows what evil lurks in the hearts of men?",
         "Spiderman! It's spiderman! Not a bird, or a plane, or a fireman! Just spiderman!",
-        "0418 0644 0e1c 0216 1d01 5721 1553 5345 0519 0544 0907 1f0a 1d01 4920 4f00 4804 000a 0c13 1658 534f 1d46 414d 1502 5e39 0d43 0004 1c4f 1653 461e 1a04 1941 0b57 4926 551f 0152 1803 490d 0b52 1909 0b01"
+        &[4,24,6,68,14,28,2,22,29,1,87,33,21,83,83,69,5,25,5,68,9,7,31,10,29,1,73,32,79,0,72,4,0,10,12,19,22,88,83,79,29,70,65,77,21,2,94,57,13,67,0,4,28,79,22,83,70,30,26,4,25,65,11,87,73,38,85,31,1,82,24,3,73,13,11,82,25,9,11,1]
     ;
     mad_science,
         "TRANSMUTATION_NOTES_1",
         "If wishes were horses, beggars would ride.",
-        "1d34 6139 3a3e 3d31 3274 3e2a 3c3a 6e27 3b37 203a 4278 7223 2b34 2a34 2632 743e 203b 332a 6f26 2c37 3a1f"
+        &[29,52,97,57,58,62,61,49,50,116,62,42,60,58,110,39,59,55,32,58,66,120,114,35,43,52,42,52,38,50,116,62,32,59,51,42,111,38,44,55,58,31]
     ;
     metaphor,
         "Contextualism",
         "The globe is text, its people prose; all the world's a page.",
-        "1707 0b54 0214 1b17 044c 0000 4d37 0a16 0049 581d 0112 4c19 1602 3303 0b54 150a 1b06 0457 4912 012f 4f1a 1c00 5803 1a13 000d 541e 630e 4e04 041f 115b"
+        &[23,7,11,84,2,20,27,23,4,76,0,0,77,55,10,22,0,73,88,29,1,18,76,25,22,2,51,3,11,84,21,10,27,6,4,87,73,18,1,47,79,26,28,0,88,3,26,19,0,13,84,30,99,14,78,4,4,31,17,91]
     ;
     emoji,
         "🔑🗝️… 🎹?",
         "⌨️! 🔒+💻+🧠=🔓",
-        "1213 3c7e 4810 b6bd 1f27 1b70 ab56 bf62 24a5 49a0 573f a961 6f0b 04"
+        &[18,19,60,126,72,16,182,189,31,39,27,112,171,86,191,98,36,165,73,160,87,63,169,97,111,11,4]
 );
 // note the emoji case above. Most exercism tests don't test emoji, because we like to use strings
 // as input, but in this case, they're fine: they're arbitrary binary data that _just happen_ to
