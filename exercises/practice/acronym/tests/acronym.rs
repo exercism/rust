@@ -5,6 +5,12 @@ fn empty() {
 
 #[test]
 #[ignore]
+fn one_char_string(){
+    assert_eq!(acronym::abbreviate("z", "Z");
+}
+
+#[test]
+#[ignore]
 fn basic() {
     assert_eq!(acronym::abbreviate("Portable Network Graphics"), "PNG");
 }
