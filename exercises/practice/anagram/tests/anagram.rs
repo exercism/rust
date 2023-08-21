@@ -184,3 +184,15 @@ fn test_different_words_but_same_ascii_sum() {
 
     process_anagram_case(word, &inputs, &outputs);
 }
+
+#[test]
+#[ignore]
+fn test_does_not_return_early_after_own_anagram() {
+    let word = "hello";
+
+    let inputs = ["nothing", "hello", "banana", "olleh", "zombies"];
+
+    let outputs = vec!["olleh"];
+
+    process_anagram_case(word, &inputs, &outputs);
+}
