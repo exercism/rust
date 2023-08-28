@@ -1,6 +1,0 @@
-#[test]
-#[ignore]
-fn ${description}$() {
-let expected = "${expected}$";
-    assert_eq!(${property}$(${input}$), expected);
-}
