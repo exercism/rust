@@ -1482,7 +1482,7 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": null,
+        "topics": [],
         "status": "deprecated"
       },
       {
@@ -1492,7 +1492,7 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 1,
-        "topics": null,
+        "topics": [],
         "status": "deprecated"
       },
       {
@@ -1514,7 +1514,8 @@
         "uuid": "cbccd0c5-eb15-4705-9a4c-0209861f078c",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 4
+        "difficulty": 4,
+        "topics": []
       },
       {
         "slug": "kindergarten-garden",
@@ -1522,7 +1523,8 @@
         "uuid": "c27e4878-28a4-4637-bde2-2af681a7ff0d",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 1,
+        "topics": []
       },
       {
         "slug": "yacht",
@@ -1530,7 +1532,8 @@
         "uuid": "1a0e8e34-f578-4a53-91b0-8a1260446553",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 4
+        "difficulty": 4,
+        "topics": []
       }
     ],
     "foregone": [
