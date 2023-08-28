@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # see comment in utils.sh
-# shellcheck source=bin/generator-utils/colors.sh
+# shellcheck source=dev/scripts/generator-utils/colors.sh
 # shellcheck source=./colors.sh
-source ./bin/generator-utils/colors.sh
+source ./dev/scripts/generator-utils/colors.sh
 
 get_exercise_difficulty() {
     read -rp "Difficulty of exercise (1-10): " exercise_difficulty

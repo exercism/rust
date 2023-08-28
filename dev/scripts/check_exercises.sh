@@ -2,12 +2,12 @@
 
 # test for existence and executability of the test-exercise script
 # this depends on that
-if [ ! -f "./bin/test-exercise" ]; then
-   echo "bin/test-exercise does not exist"
+if [ ! -f "./dev/scripts/test-exercise" ]; then
+   echo "dev/scripts/test-exercise does not exist"
    exit 1
 fi
-if [ ! -x "./bin/test-exercise" ]; then
-   echo "bin/test-exercise does not have its executable bit set"
+if [ ! -x "./dev/scripts/test-exercise" ]; then
+   echo "dev/scripts/test-exercise does not have its executable bit set"
    exit 1
 fi
 
@@ -19,7 +19,7 @@ if [ -z "$DENYWARNINGS" ] && [ -z "$CLIPPY" ]; then
 fi
 
 # can't benchmark with a stable compiler; to bench, use
-# $ BENCHMARK=1 rustup run nightly _test/check_exercises.sh
+# $ BENCHMARK=1 rustup run nightly dev/scripts/check_exercises.sh
 if [ -n "$BENCHMARK" ]; then
     target_dir=benches
 else
@@ -70,11 +70,11 @@ for exercise in $files; do
       # (such as "Compiling"/"Downloading").
       # Compiler errors will still be shown though.
       # Both flags are necessary to keep things quiet.
-      ./bin/test-exercise "$directory" --quiet --no-run
+      ./dev/scripts/test-exercise "$directory" --quiet --no-run
       return_code=$((return_code | $?))
    else
       # Run the test and get the status
-      ./bin/test-exercise "$directory" $release
+      ./dev/scripts/test-exercise "$directory" $release
       return_code=$((return_code | $?))
    fi
 done

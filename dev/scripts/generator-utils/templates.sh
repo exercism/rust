@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # see comment in utils.sh
-# shellcheck source=bin/generator-utils/utils.sh
+# shellcheck source=dev/scripts/generator-utils/utils.sh
 # shellcheck source=./utils.sh
-source ./bin/generator-utils/utils.sh
+source ./dev/scripts/generator-utils/utils.sh
 
 create_fn_name() {
     local slug=$1

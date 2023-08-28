@@ -7,7 +7,7 @@ set -euo pipefail
 
 
 if [ $# -ne 1 ]; then
-  echo "Usage: bin/fetch_canonical_data <exercise-slug>"
+  echo "Usage: dev/scripts/fetch_canonical_data <exercise-slug>"
   exit 1
 fi
 

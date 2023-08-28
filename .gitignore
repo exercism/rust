@@ -3,10 +3,7 @@
 .DS_Store
 **/target
 tmp
-bin/configlet
-bin/configlet.exe
-bin/exercise
-bin/exercise.exe
+bin
 exercises/*/*/Cargo.lock
 exercises/*/*/clippy.log
 canonical_data.json

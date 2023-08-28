@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
 # see comment in generator-utils/utils.sh
-# shellcheck source=bin/generator-utils/utils.sh
-# shellcheck source=bin/generator-utils/templates.sh
-# shellcheck source=bin/generator-utils/prompts.sh
+# shellcheck source=dev/scripts/generator-utils/utils.sh
+# shellcheck source=dev/scripts/generator-utils/templates.sh
+# shellcheck source=dev/scripts/generator-utils/prompts.sh
 # shellcheck source=./generator-utils/utils.sh
 # shellcheck source=./generator-utils/prompts.sh
 # shellcheck source=./generator-utils/templates.sh
 
-source ./bin/generator-utils/utils.sh
-source ./bin/generator-utils/prompts.sh
-source ./bin/generator-utils/templates.sh
+source ./dev/scripts/generator-utils/utils.sh
+source ./dev/scripts/generator-utils/prompts.sh
+source ./dev/scripts/generator-utils/templates.sh
 
 # Exit if anything fails.
 set -euo pipefail
 
 # If argument not provided, print usage and exit
 if [ $# -ne 1 ] && [ $# -ne 2 ] && [ $# -ne 3 ]; then
-    echo "Usage: bin/add_practice_exercise <exercise-slug> [difficulty] [author-github-handle]"
+    echo "Usage: dev/scripts/add_practice_exercise <exercise-slug> [difficulty] [author-github-handle]"
     exit 1
 fi
 
@@ -38,7 +38,7 @@ command -v curl >/dev/null 2>&1 || {
 }
 
 # Build configlet
-bin/fetch-configlet
+dev/scripts/fetch-configlet
 message "success" "Fetched configlet successfully!"
 
 # Check if exercise exists in configlet info or in config.json
@@ -48,7 +48,7 @@ check_exercise_existence "$1"
 
 slug="$1"
 # Fetch canonical data
-canonical_json=$(bin/fetch_canonical_data "$slug")
+canonical_json=$(dev/scripts/fetch_canonical_data "$slug")
 
 has_canonical_data=true
 if [ "${canonical_json}" == "404: Not Found" ]; then

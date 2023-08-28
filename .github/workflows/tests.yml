@@ -22,13 +22,13 @@ jobs:
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Verify exercise difficulties
-        run: ./_test/verify_exercise_difficulties.sh
+        run: ./dev/scripts/verify_exercise_difficulties.sh
 
       - name: Check exercises for authors
-        run: ./_test/check_exercises_for_authors.sh
+        run: ./dev/scripts/check_exercises_for_authors.sh
 
       - name: Ensure relevant files do not have trailing whitespace
-        run: ./bin/lint_trailing_spaces.sh
+        run: ./dev/scripts/lint_trailing_spaces.sh
 
   configlet:
     name: configlet lint
@@ -46,10 +46,10 @@ jobs:
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Fetch configlet
-        run: ./bin/fetch-configlet
+        run: ./dev/scripts/fetch-configlet
 
       - name: Lint configlet
-        run: ./bin/configlet lint
+        run: ./dev/scripts/configlet lint
 
   markdownlint:
     name: markdown lint
@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Run markdown lint
-        run: ./bin/lint_markdown.sh
+        run: ./dev/scripts/lint_markdown.sh
 
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
@@ -109,13 +109,13 @@ jobs:
       - name: Check exercises
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/check_exercises.sh
+        run: ./dev/scripts/check_exercises.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
       - name: Ensure stubs compile
         env:
           DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/ensure_stubs_compile.sh
+        run: ./dev/scripts/ensure_stubs_compile.sh
         continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
 
@@ -136,7 +136,7 @@ jobs:
         run: rustfmt --version
 
       - name: Format
-        run: bin/format_exercises
+        run: dev/scripts/format_exercises
 
       - name: Diff
         run: |
@@ -175,12 +175,12 @@ jobs:
       - name: Clippy tests
         env:
           CLIPPY: true
-        run: ./_test/check_exercises.sh
+        run: ./dev/scripts/check_exercises.sh
 
       - name: Clippy stubs
         env:
           CLIPPY: true
-        run: ./_test/ensure_stubs_compile.sh
+        run: ./dev/scripts/ensure_stubs_compile.sh
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
@@ -206,4 +206,4 @@ jobs:
       - name: Check exercises
         env:
           BENCHMARK: '1'
-        run: ./_test/check_exercises.sh
+        run: ./dev/scripts/check_exercises.sh
