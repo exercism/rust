@@ -49,8 +49,6 @@ Before submitting your pull request, you'll want to verify the changes in two wa
 * Run all the tests for the Rust exercises
 * Run an Exercism-specific linter to verify the track
 
-All the tests for Rust exercises can be run from the top level of the repo with `_test/check_exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
-
 ### On modifying the exercises' README
 
 Please note that the README of every exercise is formed using several templates, not all of which are necessarily present on this repo. The most important of these:
