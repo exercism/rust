@@ -9,7 +9,7 @@ def main():
     concepts = {c['slug'] for c in config['concepts']}
 
     for practice_exercise in config['exercises']['practice']:
-        if practice_exercise['topics'] is None:
+        if 'topics' not in practice_exercise or practice_exercise['topics'] is None:
             continue
 
         practice_exercise['practices'].extend((topic for topic in practice_exercise['topics'] if topic in concepts))
@@ -25,6 +25,9 @@ def main():
                     practice_exercise['topics'].append(concept)
 
     for practice_exercise in config['exercises']['practice']:
+        if 'topics' not in practice_exercise:
+            continue
+
         practice_exercise['practices'].sort()
 
         if practice_exercise['topics'] is not None:
