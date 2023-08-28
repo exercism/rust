@@ -53,24 +53,15 @@ check_exercise_existence() {
 
     # Fetch configlet and crop out exercise list
     local unimplemented_exercises
-    unimplemented_exercises=$(bin/configlet info | sed -n '/With canonical data:/,/Track summary:/p' | sed -e '/\(With\(out\)\? canonical data:\|Track summary:\)/d' -e '/^$/d')
+    unimplemented_exercises=$(
+        bin/configlet info \
+        | sed -n '/With canonical data:/,/Track summary:/p' \
+        | sed -e '/\(With\(out\)\? canonical data:\|Track summary:\)/d' -e '/^$/d'
+    )
     if echo "$unimplemented_exercises" | grep -q "^$slug$"; then
         message "success" "Exercise has been found!"
     else
         message "error" "Exercise doesn't exist!"
-        message "info" "These are the unimplemented practice exercises:
-${unimplemented_exercises}"
-
-        # Find closest match to typed-in not-found slug
-
-        # See util/ngram for source
-        # First it builds a binary for the system of the contributor
-        if [ -e bin/generator-utils/ngram ]; then
-            echo "${yellow}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${reset_color}"
-        else
-            message "info" "Building typo-checker binary for $(uname -m) system."
-            cd util/ngram && ./build && cd ../.. && echo "${yellow}$(bin/generator-utils/ngram "${unimplemented_exercises}" "$slug")${reset_color}"
-        fi
         exit 1
     fi
 }
