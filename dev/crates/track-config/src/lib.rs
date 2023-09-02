@@ -45,6 +45,13 @@ pub struct ExercisesConfig {
 }
 
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum ConceptExerciseStatus {
+    Active,
+    Wip,
+}
+
+#[derive(Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConceptExerciseConfig {
     pub slug: String,
@@ -53,7 +60,7 @@ pub struct ConceptExerciseConfig {
     pub difficulty: u8,
     pub concepts: Vec<String>,
     pub prerequisites: Vec<String>,
-    pub status: String,
+    pub status: ConceptExerciseStatus,
 }
 
 #[derive(Serialize, Deserialize)]
