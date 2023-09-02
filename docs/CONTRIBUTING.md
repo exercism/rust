@@ -21,22 +21,9 @@ and what maintainers expect of contributors.
 
 ## Internal Tooling Style Guide
 
-- prefer using tools that do one thing well
-- prefer using tools that are ubiquitous:
-  `jq` or `sed` instead of `prettier` or `sd`
-- write scripts to do one thing well
-- prefer GNU versions of `sed` and other utilities
-- Prefer Bash for scripting
-- Strive for compatibility.
-  macOS still distributes Bash v3.x by default, despite v5.x being current;
-  this means that the scripts can't depend on certain features like map.
-- Scripts should use `#!/usr/bin/env bash` as their shebang
-  This increases portability on NixOS and macOS,
-  because contributors' preferred bash may not be installed in `/bin/bash`.
-- Prefer snake case for script file names
-- Script file names should include the `.sh` extension
-- Set the executable bit on scripts that should be called directly.
-- Scripts should set the following options at the top
+- Prefer Rust tests over shell scripts for anything non-trivial.
+    `dev/crates/repo-conventions` is a great place for general-purpose tests.
+- Bash scripts should set the following options at the top:
     ```bash
     set -eo pipefail
     ```
