@@ -2,7 +2,7 @@
 
 set -e
 
-repo=$(cd "$(dirname "$0")/.." && pwd)
+repo=$(git rev-parse --show-toplevel)
 config=$repo/config.json
 
 es=0

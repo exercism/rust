@@ -26,7 +26,7 @@ else
     target_dir=tests
 fi
 
-repo=$(cd "$(dirname "$0")/.." && pwd)
+repo=$(git rev-parse --show-toplevel)
 
 if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
    files="$(

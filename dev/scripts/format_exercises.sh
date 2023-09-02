@@ -2,14 +2,14 @@
 # Format existing exercises using rustfmt
 set -e
 
-RUST_TRACK_REPO_PATH=$(cd "$(dirname "$0")/.." && pwd)
+repo=$(git rev-parse --show-toplevel)
 
 # traverse either concept or practice exercise
 # directory and format Rust files
 format_exercises() {
-    EXERCISES_PATH="${RUST_TRACK_REPO_PATH}/exercises/$1"
+    exercises_path="$repo/exercises/$1"
     source_file_name="$2"
-    for exercise_dir in "${EXERCISES_PATH}"/*; do
+    for exercise_dir in "$exercises_path"/*; do
         (
         cd "$exercise_dir"
         config_file="$exercise_dir/.meta/config.json"
