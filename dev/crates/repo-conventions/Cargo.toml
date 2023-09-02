@@ -1,13 +1,11 @@
 [package]
-name = "track-config"
+name = "repo-conventions"
 version = "0.1.0"
 edition.workspace = true
 
-description = "De-/Serialization of track configuration"
+description = "Tests to enforce various repository conventions"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-once_cell.workspace = true
-serde.workspace = true
-serde_json.workspace = true
+track-config.workspace = true

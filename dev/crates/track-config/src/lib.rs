@@ -1,14 +1,20 @@
 //! This crate provides a data structure for the track configuration.
 //! It is capable of serializing and deserializing the configuration,
 //! for example with `serde_json`.
-//! 
+//!
 //! Some definitions are not yet perfectly precise,
 //! because we don't anticipate they will be needed much.
 //! Feel free to improve this if need be.
 
 use std::collections::HashMap;
 
+use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
+
+pub static TRACK_CONFIG: Lazy<TrackConfig> = Lazy::new(|| {
+    let config = include_str!("../../../../config.json");
+    serde_json::from_str(config).expect("should deserialize the track config")
+});
 
 #[derive(Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
