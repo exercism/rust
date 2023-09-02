@@ -2,10 +2,10 @@
 
 ## Null-References
 
-If you have ever used another programming language (C/C++, Python, Java, Ruby, Lisp, etc.), it is likely that you have encountered `null` or `nil` before. 
-The use of `null` or `nil` is the way that these languages indicate that a particular variable has no value. 
-However, this makes accidentally using a variable that points to `null` an easy (and frequent) mistake to make. 
-As you might imagine, trying to call a function that isn't there, or access a value that doesn't exist can lead to all sorts of bugs and crashes. 
+If you have ever used another programming language (C/C++, Python, Java, Ruby, Lisp, etc.), it is likely that you have encountered `null` or `nil` before.
+The use of `null` or `nil` is the way that these languages indicate that a particular variable has no value.
+However, this makes accidentally using a variable that points to `null` an easy (and frequent) mistake to make.
+As you might imagine, trying to call a function that isn't there, or access a value that doesn't exist can lead to all sorts of bugs and crashes.
 The creator of `null` went so far as to call it his ['billion-dollar mistake'.](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/)
 
 ## The `Option` Type

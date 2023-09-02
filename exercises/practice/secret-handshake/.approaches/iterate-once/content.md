@@ -10,7 +10,7 @@ pub fn actions(n: u8) -> Vec<&'static str> {
         _ => (3, -1, -1),
     };
     let mut output: Vec<&'static str> = Vec::new();
-    
+
     loop {
         if action == end {
             break;
@@ -40,12 +40,14 @@ The [bitwise AND operator][bitand] is used to check if the input number contains
 
 For example, if the number passed in is `19`, which is `10011` in binary, then it is ANDed with `16`, which is `10000` in binary.
 The `1` in `10000` is also at the same position in `10011`, so the two values ANDed will not be `0`.
+
 - `10011` AND
 - `10000` =
 - `10000`
 
 If the number passed in is `3`, which is `00011` in binary, then it is ANDed with `16`, which is `10000` in binary.
 The `1` in `10000` is not at the same position in `00011`, so the two values ANDed will be `0`.
+
 - `00011` AND
 - `10000` =
 - `00000`

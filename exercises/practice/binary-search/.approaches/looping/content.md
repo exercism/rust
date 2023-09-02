@@ -39,7 +39,7 @@ The `T` is constrained to be anything which implements the [`Ord`][ord] trait, w
 So, the `key` is of type `T` (orderable), and the `array` is of type `U` (a reference to an indexable container of orderable values
 of the same type as the `key`.)
 
-Although `array` is defined as generic type `U`, which is constrained to be of type `AsRef`, 
+Although `array` is defined as generic type `U`, which is constrained to be of type `AsRef`,
 the [`as_ref()`][asref] method is used to get the reference to the actual type.
 Without it, the compiler would complain that "no method named `len` found for type parameter `U` in the current scope" and
 "cannot index into a value of type `U`".
@@ -54,6 +54,7 @@ The [`cmp()`][cmp] method of the `Ord` trait is used to compare that element val
 Since the element is a reference, the `key` must also be referenced.
 
 The [`match`][match] arms each use a value from the `Ordering` enum.
+
 - If the midpoint element value equals the `key`, then the midpoint is returned from the function wrapped in a [`Some`][some].
 - If the midpoint element value is less than the `key`, then the `left` value is adjusted to be one to the right of the midpoint.
 - If the midpoint element value is greater than the `key`, then the `right` value is adjusted to be the midpoint.

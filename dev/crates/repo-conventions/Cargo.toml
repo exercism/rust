@@ -9,3 +9,4 @@ description = "Tests to enforce various repository conventions"
 
 [dependencies]
 track-config.workspace = true
+walkdir.workspace = true

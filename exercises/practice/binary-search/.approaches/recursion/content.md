@@ -39,7 +39,7 @@ of the same type as the `key`.)
 Since slices of the `array` will keep getting shorter with each recursive call to itself, `find_rec()` has an `offset` parameter
 to keep track of the actual midpoint as it relates to the original `array`.
 
-Although `array` is defined as generic type `U`, which is constrained to be of type `AsRef`, 
+Although `array` is defined as generic type `U`, which is constrained to be of type `AsRef`,
 the [`as_ref()`][asref] method is used to get the reference to the actual type.
 Without it, the compiler would complain that "no method named `len` found for type parameter `U` in the current scope" and
 "cannot index into a value of type `U`".
@@ -51,13 +51,14 @@ The [`cmp()`][cmp] method of the `Ord` trait is used to compare that element val
 Since the element is a reference, the `key` must also be referenced.
 
 The [`match`][match] arms each use a value from the `Ordering` enum.
+
 - If the midpoint element value equals the `key`, then the midpoint plus the offset is returned from the function wrapped in a [`Some`][some].
 - If the midpoint element value is less than the `key`, then `find_rec()` calls itself,
-passing a slice of the `array` from the element to the right of the midpoint through the end of the `array`.
-The offset is adjusted to be itself plus the midpoint plus `1`. 
+  passing a slice of the `array` from the element to the right of the midpoint through the end of the `array`.
+  The offset is adjusted to be itself plus the midpoint plus `1`.
 - If the midpoint element value is greater than the `key`, then `find_rec()` calls itself,
-passing a slice of the `array` from the beginning up to but not including the midpoint element.
-The offset remains as is.
+  passing a slice of the `array` from the beginning up to but not including the midpoint element.
+  The offset remains as is.
 
 While the element value is not equal to the `key`, `find_rec()` keeps calling itself while halving the number of elements being searched,
 until either the `key` is found, or, if it is not in the `array`, the `array` is whittled down to empty.

@@ -59,7 +59,7 @@ If we wish to implement an `info` method to display the basic information of the
 we could define this method inside an `impl` block for `Wizard`:
 
 ```rust
-impl Wizard {    
+impl Wizard {
     fn info(&self) {
         println!(
             "A wizard of age {} who studies in House {:?} at Hogwarts",

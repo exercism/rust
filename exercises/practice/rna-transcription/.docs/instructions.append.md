@@ -9,5 +9,5 @@ string has a valid RNA string, we don't need to return a `Result`/`Option` from
 This explains the type signatures you will see in the tests.
 
 The return types of both `DNA::new()` and `RNA::new()` are `Result<Self, usize>`,
-where the error type `usize` represents the index of the first invalid character 
+where the error type `usize` represents the index of the first invalid character
 (char index, not utf8).

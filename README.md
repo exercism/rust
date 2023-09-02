@@ -38,8 +38,8 @@ fn test_second_and_past_tests_ignored() {
 
 Before submitting your pull request, you'll want to verify the changes in two ways:
 
-* Run all the tests for the Rust exercises
-* Run an Exercism-specific linter to verify the track
+- Run all the tests for the Rust exercises
+- Run an Exercism-specific linter to verify the track
 
 ### On modifying the exercises' README
 
@@ -66,6 +66,7 @@ Note that:
 - Exercises must conform to the Exercism-wide standards described in [the documentation](https://github.com/exercism/legacy-docs/tree/main/language-tracks/exercises).
 
 - Each exercise should have at least the following structure:
+
   ```
   exercise-name
   ┣━ src
@@ -85,8 +86,8 @@ Note that:
 
 TODO automate setting of version field for problem-spec exercises
 
-- An exercise may contain `.meta/hints.md`.  This is optional and will appear after the normal exercise
-  instructions if present. 
+- An exercise may contain `.meta/hints.md`. This is optional and will appear after the normal exercise
+  instructions if present.
   Rust is different in many ways from other languages.
   This is a place where the differences required for Rust are explained.
   If it is a large change, you may want to call this out as a comment at the top of `src/lib.rs`, so the user recognizes to read this section before starting.

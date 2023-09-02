@@ -27,7 +27,7 @@ assert!(!can_construct_note(&magazine, &note));
 
 The function returns `false` since the magazine only contains one instance of `"two"` when the note requires two of them.
 
-The following input will succeed: 
+The following input will succeed:
 
 ```rust
 let magazine = "Astronomer Amy Mainzer spent hours chatting with Leonardo DiCaprio for Netflix's 'Don't Look Up'".split_whitespace().collect::<Vec<&str>>();

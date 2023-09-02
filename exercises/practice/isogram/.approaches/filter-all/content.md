@@ -23,18 +23,19 @@ let mut hs = std::collections::HashSet::new();
 ```
 
 After the `HashSet` is instantiated, a series of functions are chained from the `candidate` `&str`.
+
 - Since all of the characters are [ASCII][ascii], they can be iterated with the [`bytes`][bytes] method.
-Each byte is iterated as a [`u8`][u8], which is an unsigned 8-bit integer.
+  Each byte is iterated as a [`u8`][u8], which is an unsigned 8-bit integer.
 - The [`filter`][filter] method [borrows][borrow] each byte as a [reference][reference] to a `u8` (`&u8`).
-Inside of its [closure][closure] it tests each byte to see if it [`is_ascii_alphabetic`][is-ascii-alphabetic].
-Only bytes which are ASCII letters will survive the `filter` to be passed on to the [`map`][map] method.
+  Inside of its [closure][closure] it tests each byte to see if it [`is_ascii_alphabetic`][is-ascii-alphabetic].
+  Only bytes which are ASCII letters will survive the `filter` to be passed on to the [`map`][map] method.
 - The `map` method calls [`to_ascii_lowercase`][to-ascii-lowercase] on each byte.
 - Each lowercased byte is then tested by the [`all`][all] method by using the [`insert`][insert] method of `HashSet`.
-`all` will return `true` if every call to `insert` returns true.
-If a call to `insert` returns `false` then `all` will "short-circuit" and immediately return `false`.
-The `insert` method returns whether the value is _newly_ inserted.
-So, for the word `"alpha"`, `insert` will return `true` when the first `a` is inserted,
-but will return `false` when the second `a` is inserted.
+  `all` will return `true` if every call to `insert` returns true.
+  If a call to `insert` returns `false` then `all` will "short-circuit" and immediately return `false`.
+  The `insert` method returns whether the value is _newly_ inserted.
+  So, for the word `"alpha"`, `insert` will return `true` when the first `a` is inserted,
+  but will return `false` when the second `a` is inserted.
 
 ## Refactoring
 
@@ -53,7 +54,7 @@ candidate
 
 However, changing the case of all characters in a `str` raised the average benchmark a few nanoseconds.
 It is a bit faster to `filter` out non-ASCII letters and to change the case of each surviving byte.
-Since the performance is fairly close, either may be prefered. 
+Since the performance is fairly close, either may be prefered.
 
 ### using `filter_map`
 

@@ -65,7 +65,7 @@ fn check_shapes(constant: &[u8], linear: &[u8], superlinear: &[u8]) -> (bool, bo
 // understanding the implementations of the following functions is not necessary for this example
 // but are provided should you be interested
 
-fn is_constant(slice: &[u8]) -> bool { 
+fn is_constant(slice: &[u8]) -> bool {
     slice
         .first()
         .map(|first| slice.iter().all(|v| v == first))
@@ -146,7 +146,7 @@ pub fn main() {
 }
 ```
 
-This  works, because the compiler knows that the mutable borrows do not overlap
+This works, because the compiler knows that the mutable borrows do not overlap
 
 ```rust
 fn add_five(counter: &mut i32) {

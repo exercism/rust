@@ -20,7 +20,7 @@ pub fn actions(n: u8) -> Vec<&'static str> {
         _ => (3, -1, -1),
     };
     let mut output: Vec<&'static str> = Vec::new();
-    
+
     loop {
         if action == end {
             break;

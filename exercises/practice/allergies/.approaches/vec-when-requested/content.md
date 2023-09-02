@@ -32,11 +32,11 @@ impl Allergies {
     pub fn new(n: u32) -> Allergies {
         Allergies { allergens: n }
     }
-    
+
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
         self.allergens & *allergen as u32 != 0
     }
-    
+
     pub fn allergies(&self) -> Vec<Allergen> {
         ALLERGENS
             .iter()
@@ -69,7 +69,7 @@ The `new()` method sets its `allergens` field to the `u232` value passed in.
 
 The `is_allergic_to()` method uses the [bitwise AND operator][bitand] (`&`) to compare the `Allergen` passed in with the `allergens` `u32` field.
 The dereferenced `Allergen` passed in is [cast][cast] to a `u32` for the purpose of comparison with the `allergens` `u32` value.
-The method returns if the comparison is not `0`. 
+The method returns if the comparison is not `0`.
 If the comparison is not `0`, then the `allergens` field contains the value of the `Allergen`, and `true` is returned.
 
 For example, if the `allergens` field is decimal `3`, it is binary `11`.
