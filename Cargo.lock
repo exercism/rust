@@ -3,6 +3,15 @@
 version = 3
 
 [[package]]
+name = "exercise_config"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "track_config",
+]
+
+[[package]]
 name = "itoa"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -33,10 +42,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "repo-conventions"
+name = "repo_conventions"
 version = "0.1.0"
 dependencies = [
- "track-config",
+ "exercise_config",
  "walkdir",
 ]
 
@@ -98,7 +107,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "track-config"
+name = "track_config"
 version = "0.1.0"
 dependencies = [
  "once_cell",

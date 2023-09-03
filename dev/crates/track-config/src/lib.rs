@@ -5,6 +5,7 @@
 //! Some definitions are not yet perfectly precise,
 //! because we don't anticipate they will be needed much.
 //! Feel free to improve this if need be.
+//! (e.g. replace `String` with an enum of possible values)
 
 use std::collections::HashMap;
 
