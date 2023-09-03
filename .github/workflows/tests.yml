@@ -17,13 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks out default branch locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
-        with:
-          ref: main
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
@@ -38,10 +31,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
-        with:
-          ref: main
       - name: Checkout code
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
@@ -50,7 +39,7 @@ jobs:
 
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
-    name: shellcheck internal tooling lint
+    name: Run shellcheck on scripts
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -58,27 +47,16 @@ jobs:
 
       - name: Run shellcheck
         uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # v2.0.0
-        env: 
-          SHELLCHECK_OPTS: -x -s bash -e SC2001 --norc
 
   compilation:
     name: Check compilation
     runs-on: ubuntu-latest
 
     strategy:
-      # Allows running the job multiple times with different configurations
       matrix:
         rust: ["stable", "beta"]
-        deny_warnings: ['', '1']
 
     steps:
-      # Checks out main locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
-        with:
-          ref: main
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
@@ -87,18 +65,15 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
 
-      # run scripts as steps
       - name: Check exercises
         env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
+          DENYWARNINGS: '1'
         run: ./dev/scripts/check_exercises.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
       - name: Ensure stubs compile
         env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
+          DENYWARNINGS: '1'
         run: ./dev/scripts/ensure_stubs_compile.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
 
 
   rustformat:
@@ -114,11 +89,8 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Rust Format Version
-        run: rustfmt --version
-
       - name: Format
-        run: dev/scripts/format_exercises
+        run: ./dev/scripts/format_exercises
 
       - name: Diff
         run: |
@@ -136,11 +108,6 @@ jobs:
         rust: ["stable", "beta"]
 
     steps:
-      - name: Checkout main
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
-        with:
-          ref: main
-
       - name: Checkout code
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
@@ -148,11 +115,6 @@ jobs:
         uses: dtolnay/rust-toolchain@0e66bd3e6b38ec0ad5312288c83e47c143e6b09e
         with:
           toolchain: ${{ matrix.rust }}
-
-      # Clippy already installed on Stable, but not Beta.
-      # So, we must install here.
-      - name: Install Clippy
-        run: rustup component add clippy
 
       - name: Clippy tests
         env:
@@ -170,13 +132,6 @@ jobs:
     continue-on-error: true # It's okay if the nightly job fails
 
     steps:
-      # Checks out main locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
-        with:
-          ref: main
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
