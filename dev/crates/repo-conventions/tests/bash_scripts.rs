@@ -25,9 +25,14 @@ fn test_file_extension() {
 #[test]
 fn test_snake_case_name() {
     for_all_scripts(|path| {
-        let file_name = path.file_name().unwrap().to_str().unwrap();
+        let file_name = path
+            .file_name()
+            .unwrap()
+            .to_str()
+            .unwrap()
+            .trim_end_matches(".sh");
         assert!(
-            file_name.to_lowercase() == file_name && !file_name.contains('-'),
+            file_name.chars().all(|c| c.is_ascii_lowercase() || c == '_'),
             "name of '{file_name}' should be snake_case"
         );
     })
