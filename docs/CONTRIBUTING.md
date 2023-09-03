@@ -22,8 +22,6 @@ and what maintainers expect of contributors.
 ## Internal Tooling Style Guide
 
 - Prefer Rust tests over shell scripts for anything non-trivial.
-    `dev/crates/repo-conventions` is a great place for general-purpose tests.
+  `dev/crates/repo-conventions` is a great place for general-purpose tests.
 - Bash scripts should set the following options at the top:
-    ```bash
-    set -eo pipefail
-    ```
+  `set -eo pipefail`

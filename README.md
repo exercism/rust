@@ -17,7 +17,7 @@ At the most basic level, Exercism is all about the tests. You can read more abou
 
 Test files should use the following format:
 
-```
+```rust
 extern crate exercise_name;
 
 use exercise_name::*;
@@ -67,7 +67,7 @@ Note that:
 
 - Each exercise should have at least the following structure:
 
-  ```
+  ```txt
   exercise-name
   ┣━ src
   ┃  ┗━ lib.rs            // an empty file or with exercise stubs
