@@ -16,7 +16,7 @@ fn assert_one_less_ignore_than_tests(path: &str) {
 }
 
 #[test]
-fn count_ignores() {
+fn test_count_ignores() {
     for path in get_all_concept_exercise_paths() {
         assert_one_less_ignore_than_tests(&path);
     }

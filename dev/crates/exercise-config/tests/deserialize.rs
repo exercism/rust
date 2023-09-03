@@ -4,7 +4,7 @@ use exercise_config::{
 };
 
 #[test]
-fn deserialize_all() {
+fn test_deserialize_all() {
     for path in get_all_concept_exercise_paths() {
         let config_path = format!("{path}/.meta/config.json");
         let config_contents = std::fs::read_to_string(config_path).unwrap();

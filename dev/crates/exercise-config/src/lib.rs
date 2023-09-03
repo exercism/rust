@@ -5,7 +5,7 @@
 use serde::{Deserialize, Serialize};
 use track_config::TRACK_CONFIG;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConceptExerciseConfig {
     pub authors: Vec<String>,
@@ -18,7 +18,7 @@ pub struct ConceptExerciseConfig {
     pub test_runner: Option<bool>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConceptFilesConfig {
     pub solution: Vec<String>,
@@ -26,7 +26,7 @@ pub struct ConceptFilesConfig {
     pub exemplar: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PracticeExerciseConfig {
     pub authors: Vec<String>,
@@ -40,7 +40,7 @@ pub struct PracticeExerciseConfig {
     pub custom: Option<CustomConfig>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PracticeFilesConfig {
     pub solution: Vec<String>,
@@ -48,7 +48,7 @@ pub struct PracticeFilesConfig {
     pub example: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct CustomConfig {
     #[serde(rename = "allowed-to-not-compile")]

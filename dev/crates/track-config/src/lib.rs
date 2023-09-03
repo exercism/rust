@@ -17,7 +17,7 @@ pub static TRACK_CONFIG: Lazy<TrackConfig> = Lazy::new(|| {
     serde_json::from_str(config).expect("should deserialize the track config")
 });
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct TrackConfig {
     pub language: String,
@@ -35,7 +35,7 @@ pub struct TrackConfig {
     pub tags: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct OnlineEditorConfig {
     pub indent_style: String,
@@ -43,7 +43,7 @@ pub struct OnlineEditorConfig {
     pub highlightjs_language: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ExercisesConfig {
     pub concept: Vec<ConceptExerciseConfig>,
@@ -51,14 +51,14 @@ pub struct ExercisesConfig {
     pub foregone: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum ConceptExerciseStatus {
     Active,
     Wip,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConceptExerciseConfig {
     pub slug: String,
@@ -70,13 +70,13 @@ pub struct ConceptExerciseConfig {
     pub status: ConceptExerciseStatus,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum PracticeExerciseStatus {
     Deprecated,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PracticeExerciseConfig {
     pub slug: String,
@@ -90,7 +90,7 @@ pub struct PracticeExerciseConfig {
     pub status: Option<PracticeExerciseStatus>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConceptConfig {
     pub uuid: String,
@@ -98,7 +98,7 @@ pub struct ConceptConfig {
     pub name: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct KeyFeatureConfig {
     pub icon: String,
