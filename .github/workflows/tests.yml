@@ -89,7 +89,7 @@ jobs:
           toolchain: stable
 
       - name: Run tests
-        run: cargo test --workspace
+        run: cargo test --package rust-tooling
 
   rustformat:
     name: Check Rust Formatting
