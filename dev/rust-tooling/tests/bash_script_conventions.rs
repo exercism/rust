@@ -4,7 +4,7 @@ use std::path::PathBuf;
 /// The function is passed the path of the script.
 fn for_all_scripts(f: fn(PathBuf)) {
     let crate_dir = env!("CARGO_MANIFEST_DIR");
-    let scripts_dir = format!("{crate_dir}/../../scripts");
+    let scripts_dir = format!("{crate_dir}/../scripts");
 
     for entry in std::fs::read_dir(scripts_dir).unwrap() {
         f(entry.unwrap().path())

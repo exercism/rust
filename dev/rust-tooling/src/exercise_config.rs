@@ -1,9 +1,10 @@
-//! This crate provides a data structure for exercise configuration stored
-//! in `.meta/config`. It is capable of serializing and deserializing th
+//! This module provides a data structure for exercise configuration stored in
+//! `.meta/config`. It is capable of serializing and deserializing th
 //! configuration, for example with `serde_json`.
 
 use serde::{Deserialize, Serialize};
-use track_config::TRACK_CONFIG;
+
+use crate::track_config::TRACK_CONFIG;
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -66,7 +67,7 @@ pub fn get_all_concept_exercise_paths() -> impl Iterator<Item = String> {
         .exercises
         .concept
         .iter()
-        .map(move |e| format!("{crate_dir}/../../../exercises/concept/{}", e.slug))
+        .map(move |e| format!("{crate_dir}/../../exercises/concept/{}", e.slug))
 }
 
 pub fn get_all_practice_exercise_paths() -> impl Iterator<Item = String> {
@@ -76,9 +77,25 @@ pub fn get_all_practice_exercise_paths() -> impl Iterator<Item = String> {
         .exercises
         .practice
         .iter()
-        .map(move |e| format!("{crate_dir}/../../../exercises/practice/{}", e.slug))
+        .map(move |e| format!("{crate_dir}/../../exercises/practice/{}", e.slug))
 }
 
 pub fn get_all_exercise_paths() -> impl Iterator<Item = String> {
     get_all_concept_exercise_paths().chain(get_all_practice_exercise_paths())
+}
+
+#[test]
+fn test_deserialize_all() {
+    for path in get_all_concept_exercise_paths() {
+        let config_path = format!("{path}/.meta/config.json");
+        let config_contents = std::fs::read_to_string(config_path).unwrap();
+        let _: ConceptExerciseConfig = serde_json::from_str(config_contents.as_str())
+            .expect("should deserialize concept exercise config");
+    }
+    for path in get_all_practice_exercise_paths() {
+        let config_path = format!("{path}/.meta/config.json");
+        let config_contents = std::fs::read_to_string(config_path).unwrap();
+        let _: PracticeExerciseConfig = serde_json::from_str(config_contents.as_str())
+            .expect("should deserialize practice exercise config");
+    }
 }

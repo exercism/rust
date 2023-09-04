@@ -1,4 +1,4 @@
-//! This crate provides a data structure for the track configuration.
+//! This module provides a data structure for the track configuration.
 //! It is capable of serializing and deserializing the configuration,
 //! for example with `serde_json`.
 //!
@@ -13,7 +13,7 @@ use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 
 pub static TRACK_CONFIG: Lazy<TrackConfig> = Lazy::new(|| {
-    let config = include_str!("../../../../config.json");
+    let config = include_str!("../../../config.json");
     serde_json::from_str(config).expect("should deserialize the track config")
 });
 

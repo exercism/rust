@@ -15,7 +15,7 @@ fn contains_trailing_whitespace(p: &Path) -> bool {
 #[test]
 fn test_no_trailing_whitespace() {
     let crate_dir = env!("CARGO_MANIFEST_DIR");
-    let repo_dir = format!("{crate_dir}/../../..");
+    let repo_dir = format!("{crate_dir}/../..");
 
     for entry in WalkDir::new(repo_dir) {
         let entry = entry.unwrap();
