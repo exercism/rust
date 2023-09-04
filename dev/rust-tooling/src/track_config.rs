@@ -105,3 +105,9 @@ pub struct KeyFeatureConfig {
     pub title: String,
     pub content: String,
 }
+
+#[test]
+fn test_deserialize() {
+    // force deserialization of lazy static
+    assert!(TRACK_CONFIG.active, "should deserialize track config");
+}
