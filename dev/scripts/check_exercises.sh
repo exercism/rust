@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# test for existence and executability of the test-exercise script
+# test for existence and executability of the test_exercise.sh script
 # this depends on that
-if [ ! -f "./dev/scripts/test-exercise" ]; then
-   echo "dev/scripts/test-exercise does not exist"
+if [ ! -f "./dev/scripts/test_exercise.sh" ]; then
+   echo "dev/scripts/test_exercise.sh does not exist"
    exit 1
 fi
-if [ ! -x "./dev/scripts/test-exercise" ]; then
-   echo "dev/scripts/test-exercise does not have its executable bit set"
+if [ ! -x "./dev/scripts/test_exercise.sh" ]; then
+   echo "dev/scripts/test_exercise.sh does not have its executable bit set"
    exit 1
 fi
 
@@ -70,11 +70,11 @@ for exercise in $files; do
       # (such as "Compiling"/"Downloading").
       # Compiler errors will still be shown though.
       # Both flags are necessary to keep things quiet.
-      ./dev/scripts/test-exercise "$directory" --quiet --no-run
+      ./dev/scripts/test_exercise.sh "$directory" --quiet --no-run
       return_code=$((return_code | $?))
    else
       # Run the test and get the status
-      ./dev/scripts/test-exercise "$directory" $release
+      ./dev/scripts/test_exercise.sh "$directory" $release
       return_code=$((return_code | $?))
    fi
 done

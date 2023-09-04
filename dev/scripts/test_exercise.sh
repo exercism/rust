@@ -15,7 +15,7 @@ if [ $# -ge 1 ]; then
    # so if you are in the exercise directory and want to pass any
    # arguments to cargo, you need to include the local path first.
    # I.e. to test in release mode:
-   # $ test-exercise . --release
+   # $ test_exercise.sh . --release
    shift 1
 else
    exercise='.'
