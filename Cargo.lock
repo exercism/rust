@@ -3,16 +3,386 @@
 version = 3
 
 [[package]]
+name = "acronym"
+version = "1.7.0"
+
+[[package]]
+name = "affine-cipher"
+version = "2.0.0"
+
+[[package]]
+name = "allergies"
+version = "1.1.0"
+
+[[package]]
+name = "allyourbase"
+version = "1.0.0"
+
+[[package]]
+name = "alphametics"
+version = "1.3.0"
+
+[[package]]
+name = "anagram"
+version = "0.0.0"
+
+[[package]]
+name = "anyhow"
+version = "1.0.75"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
+
+[[package]]
+name = "armstrong_numbers"
+version = "1.1.0"
+
+[[package]]
+name = "assembly-line"
+version = "0.1.0"
+
+[[package]]
+name = "atbash-cipher"
+version = "1.2.0"
+
+[[package]]
+name = "beer-song"
+version = "0.0.0"
+
+[[package]]
+name = "binary-search"
+version = "1.3.0"
+
+[[package]]
+name = "bob"
+version = "1.6.0"
+
+[[package]]
+name = "book_store"
+version = "1.3.0"
+
+[[package]]
+name = "bowling"
+version = "1.2.0"
+
+[[package]]
+name = "cfg-if"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "circular-buffer"
+version = "1.1.0"
+
+[[package]]
+name = "collatz_conjecture"
+version = "1.2.1"
+
+[[package]]
+name = "crypto-square"
+version = "0.1.0"
+
+[[package]]
+name = "csv_builder"
+version = "0.1.0"
+
+[[package]]
+name = "custom-set"
+version = "1.0.1"
+
+[[package]]
+name = "deranged"
+version = "0.3.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f2696e8a945f658fd14dc3b87242e6b80cd0f36ff04ea560fa39082368847946"
+
+[[package]]
+name = "diamond"
+version = "1.1.0"
+
+[[package]]
+name = "difference-of-squares"
+version = "1.2.0"
+
+[[package]]
+name = "diffie-hellman"
+version = "0.1.0"
+
+[[package]]
+name = "dominoes"
+version = "2.1.0"
+
+[[package]]
+name = "doubly-linked-list"
+version = "0.0.0"
+
+[[package]]
+name = "enum-iterator"
+version = "1.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7add3873b5dd076766ee79c8e406ad1a472c385476b9e38849f8eec24f1be689"
+dependencies = [
+ "enum-iterator-derive",
+]
+
+[[package]]
+name = "enum-iterator-derive"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eecf8589574ce9b895052fa12d69af7a233f99e6107f5cb8dd1044f2a17bfdcb"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.29",
+]
+
+[[package]]
+name = "equivalent"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5"
+
+[[package]]
+name = "etl"
+version = "1.0.0"
+
+[[package]]
+name = "fizzy"
+version = "0.0.0"
+
+[[package]]
+name = "forth"
+version = "1.7.0"
+
+[[package]]
+name = "getrandom"
+version = "0.2.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "be4136b2a15dd319360be1c07d9933517ccf0be8f16bf62a3bee4f0d618df427"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "wasi",
+]
+
+[[package]]
+name = "gigasecond"
+version = "2.0.0"
+dependencies = [
+ "time",
+]
+
+[[package]]
+name = "grade-school"
+version = "0.0.0"
+
+[[package]]
+name = "grains"
+version = "1.2.0"
+
+[[package]]
+name = "grep"
+version = "1.3.0"
+dependencies = [
+ "anyhow",
+]
+
+[[package]]
+name = "hamming"
+version = "2.2.0"
+
+[[package]]
+name = "hashbrown"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c6201b9ff9fd90a5a3bac2e56a830d0caa509576f0e503818ee82c181b3437a"
+
+[[package]]
+name = "health_statistics"
+version = "0.1.0"
+
+[[package]]
+name = "hello-world"
+version = "1.1.0"
+
+[[package]]
+name = "hexadecimal"
+version = "0.0.0"
+
+[[package]]
+name = "high-scores"
+version = "4.0.0"
+
+[[package]]
+name = "indexmap"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d5477fe2230a79769d8dc68e0eabf5437907c0457a5614a9e8dddb67f65eb65d"
+dependencies = [
+ "equivalent",
+ "hashbrown",
+]
+
+[[package]]
+name = "int-enum"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cff87d3cc4b79b4559e3c75068d64247284aceb6a038bd4bb38387f3f164476d"
+dependencies = [
+ "int-enum-impl",
+]
+
+[[package]]
+name = "int-enum-impl"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "df1f2f068675add1a3fc77f5f5ab2e29290c841ee34d151abc007bce902e5d34"
+dependencies = [
+ "proc-macro-crate",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "isbn-verifier"
+version = "2.7.0"
+
+[[package]]
+name = "isogram"
+version = "1.3.0"
+
+[[package]]
 name = "itoa"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "af150ab688ff2122fcef229be89cb50dd66af9e01a4ff320cc137eecc9bacc38"
 
 [[package]]
+name = "kindergarten_garden"
+version = "0.1.0"
+
+[[package]]
+name = "knapsack"
+version = "0.1.0"
+
+[[package]]
+name = "largest-series-product"
+version = "1.2.0"
+
+[[package]]
+name = "leap"
+version = "1.6.0"
+
+[[package]]
+name = "libc"
+version = "0.2.147"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b4668fb0ea861c1df094127ac5f1da3409a82116a4ba74fca2e58ef927159bb3"
+
+[[package]]
+name = "low_power_embedded_game"
+version = "0.1.0"
+
+[[package]]
+name = "lucians-luscious-lasagna"
+version = "0.1.0"
+
+[[package]]
+name = "luhn"
+version = "1.6.1"
+
+[[package]]
+name = "magazine_cutout"
+version = "0.1.0"
+
+[[package]]
+name = "matching-brackets"
+version = "2.0.0"
+
+[[package]]
+name = "memchr"
+version = "2.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8f232d6ef707e1956a43342693d2a31e72989554d58299d7a88738cc95b0d35c"
+
+[[package]]
+name = "minesweeper"
+version = "1.1.0"
+
+[[package]]
+name = "nth_prime"
+version = "2.1.0"
+
+[[package]]
+name = "nucleotide-count"
+version = "1.3.0"
+
+[[package]]
+name = "nucleotide_codons"
+version = "0.1.0"
+
+[[package]]
+name = "ocr-numbers"
+version = "0.0.0"
+
+[[package]]
 name = "once_cell"
 version = "1.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dd8b5dd2ae5ed71462c540258bedcb51965123ad7e7ccf4b9a8cafaa4a63576d"
+
+[[package]]
+name = "paasio"
+version = "0.0.0"
+
+[[package]]
+name = "palindrome-products"
+version = "1.2.0"
+
+[[package]]
+name = "pangram"
+version = "0.0.0"
+
+[[package]]
+name = "pascals-triangle"
+version = "1.5.0"
+
+[[package]]
+name = "perfect_numbers"
+version = "1.1.0"
+
+[[package]]
+name = "phone-number"
+version = "1.6.1"
+
+[[package]]
+name = "pig-latin"
+version = "1.0.0"
+
+[[package]]
+name = "poker"
+version = "1.1.0"
+
+[[package]]
+name = "ppv-lite86"
+version = "0.2.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b40af805b3121feab8a3c29f04d8ad262fa8e0561883e7653e024ae4479e6de"
+
+[[package]]
+name = "prime_factors"
+version = "1.1.0"
+
+[[package]]
+name = "proc-macro-crate"
+version = "1.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7f4c021e1093a56626774e81216a4ce732a735e5bad4868a03f3ed65ca0c3919"
+dependencies = [
+ "once_cell",
+ "toml_edit",
+]
 
 [[package]]
 name = "proc-macro2"
@@ -24,6 +394,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "protein-translation"
+version = "0.1.0"
+
+[[package]]
+name = "proverb"
+version = "1.1.0"
+
+[[package]]
+name = "pythagorean_triplet"
+version = "1.0.0"
+
+[[package]]
+name = "queen-attack"
+version = "2.2.0"
+
+[[package]]
 name = "quote"
 version = "1.0.33"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -31,6 +417,96 @@ checksum = "5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae"
 dependencies = [
  "proc-macro2",
 ]
+
+[[package]]
+name = "rail_fence_cipher"
+version = "1.1.0"
+
+[[package]]
+name = "raindrops"
+version = "1.1.0"
+
+[[package]]
+name = "rand"
+version = "0.8.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34af8d1a0e25924bc5b7c43c079c942339d8f0a8b57c39049bef581b46327404"
+dependencies = [
+ "libc",
+ "rand_chacha",
+ "rand_core",
+]
+
+[[package]]
+name = "rand_chacha"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6c10a63a0fa32252be49d21e7709d4d4baf8d231c2dbce1eaa8141b9b127d88"
+dependencies = [
+ "ppv-lite86",
+ "rand_core",
+]
+
+[[package]]
+name = "rand_core"
+version = "0.6.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ec0be4795e2f6a28069bec0b5ff3e2ac9bafc99e6a9a7dc3547996c5c816922c"
+dependencies = [
+ "getrandom",
+]
+
+[[package]]
+name = "react"
+version = "2.0.0"
+
+[[package]]
+name = "rectangles"
+version = "1.1.0"
+
+[[package]]
+name = "resistor-color"
+version = "1.0.0"
+dependencies = [
+ "enum-iterator",
+ "int-enum",
+]
+
+[[package]]
+name = "reverse_string"
+version = "1.2.0"
+
+[[package]]
+name = "rna-transcription"
+version = "1.0.0"
+
+[[package]]
+name = "robot-name"
+version = "0.0.0"
+
+[[package]]
+name = "robot-simulator"
+version = "2.2.0"
+
+[[package]]
+name = "role_playing_game"
+version = "0.1.0"
+
+[[package]]
+name = "roman-numerals"
+version = "1.0.0"
+
+[[package]]
+name = "rotational-cipher"
+version = "1.0.0"
+
+[[package]]
+name = "rpn_calculator"
+version = "0.1.0"
+
+[[package]]
+name = "run-length-encoding"
+version = "1.1.0"
 
 [[package]]
 name = "rust-tooling"
@@ -49,6 +525,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1ad4cc8da4ef723ed60bced201181d83791ad433213d8c24efffda1eec85d741"
 
 [[package]]
+name = "saddle-points"
+version = "1.3.0"
+
+[[package]]
 name = "same-file"
 version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -56,6 +536,26 @@ checksum = "93fc1dc3aaa9bfed95e02e6eadabb4baf7e3078b0bd1b4d7b6b0b68378900502"
 dependencies = [
  "winapi-util",
 ]
+
+[[package]]
+name = "say"
+version = "1.2.0"
+
+[[package]]
+name = "scale_generator"
+version = "2.0.0"
+
+[[package]]
+name = "scrabble-score"
+version = "1.1.0"
+
+[[package]]
+name = "secret-handshake"
+version = "1.1.0"
+
+[[package]]
+name = "semi_structured_logs"
+version = "0.1.0"
 
 [[package]]
 name = "serde"
@@ -74,7 +574,7 @@ checksum = "4eca7ac642d82aa35b60049a6eccb4be6be75e599bd2e9adb5f875a737654af2"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.29",
 ]
 
 [[package]]
@@ -89,6 +589,56 @@ dependencies = [
 ]
 
 [[package]]
+name = "series"
+version = "0.1.0"
+
+[[package]]
+name = "short_fibonacci"
+version = "0.1.0"
+
+[[package]]
+name = "sieve"
+version = "1.1.0"
+
+[[package]]
+name = "simple-cipher"
+version = "0.0.0"
+dependencies = [
+ "rand",
+]
+
+[[package]]
+name = "simple_linked_list"
+version = "0.1.0"
+
+[[package]]
+name = "space-age"
+version = "1.2.0"
+
+[[package]]
+name = "spiral-matrix"
+version = "1.1.0"
+
+[[package]]
+name = "sublist"
+version = "0.0.0"
+
+[[package]]
+name = "sum-of-multiples"
+version = "1.5.0"
+
+[[package]]
+name = "syn"
+version = "1.0.109"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b64191b275b66ffe2469e8af2c1cfe3bafa67b529ead792a6d0160888b4237"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-ident",
+]
+
+[[package]]
 name = "syn"
 version = "2.0.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -100,10 +650,64 @@ dependencies = [
 ]
 
 [[package]]
+name = "time"
+version = "0.3.28"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "17f6bb557fd245c28e6411aa56b6403c689ad95061f50e4be16c274e70a17e48"
+dependencies = [
+ "deranged",
+ "serde",
+ "time-core",
+]
+
+[[package]]
+name = "time-core"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7300fbefb4dadc1af235a9cef3737cea692a9d97e1b9cbcd4ebdae6f8868e6fb"
+
+[[package]]
+name = "toml_datetime"
+version = "0.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7cda73e2f1397b1262d6dfdcef8aafae14d1de7748d66822d3bfeeb6d03e5e4b"
+
+[[package]]
+name = "toml_edit"
+version = "0.19.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f8123f27e969974a3dfba720fdb560be359f57b44302d280ba72e76a74480e8a"
+dependencies = [
+ "indexmap",
+ "toml_datetime",
+ "winnow",
+]
+
+[[package]]
+name = "tournament"
+version = "1.4.0"
+
+[[package]]
+name = "triangle"
+version = "0.0.0"
+
+[[package]]
+name = "two-bucket"
+version = "1.4.0"
+
+[[package]]
+name = "twofer"
+version = "1.2.0"
+
+[[package]]
 name = "unicode-ident"
 version = "1.0.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "301abaae475aa91687eb82514b328ab47a211a533026cb25fc3e519b86adfc3c"
+
+[[package]]
+name = "variable-length-quantity"
+version = "1.2.0"
 
 [[package]]
 name = "walkdir"
@@ -114,6 +718,12 @@ dependencies = [
  "same-file",
  "winapi-util",
 ]
+
+[[package]]
+name = "wasi"
+version = "0.11.0+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
 
 [[package]]
 name = "winapi"
@@ -145,3 +755,24 @@ name = "winapi-x86_64-pc-windows-gnu"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
+
+[[package]]
+name = "winnow"
+version = "0.5.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7c2e3184b9c4e92ad5167ca73039d0c42476302ab603e2fec4487511f38ccefc"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
+name = "word-count"
+version = "1.2.0"
+
+[[package]]
+name = "wordy"
+version = "1.5.0"
+
+[[package]]
+name = "yacht"
+version = "0.1.0"
