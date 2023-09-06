@@ -76,9 +76,9 @@
       },
       {
         "slug": "semi-structured-logs",
+        "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
         "name": "Semi Structured Logs",
         "difficulty": 1,
-        "uuid": "1924b87a-9246-456f-8fc1-111f922a8cf3",
         "concepts": [
           "enums"
         ],
@@ -89,8 +89,8 @@
       },
       {
         "slug": "resistor-color",
-        "name": "Resistor Color",
         "uuid": "51c31e6a-b7ec-469d-8a28-dd821fd857d2",
+        "name": "Resistor Color",
         "difficulty": 1,
         "concepts": [
           "external-crates"
@@ -132,9 +132,9 @@
       },
       {
         "slug": "low-power-embedded-game",
+        "uuid": "7f064e9b-f631-48b1-9ed0-a66e8393ceba",
         "name": "Low-Power Embedded Game",
         "difficulty": 1,
-        "uuid": "7f064e9b-f631-48b1-9ed0-a66e8393ceba",
         "concepts": [
           "tuples",
           "destructuring"
@@ -146,9 +146,9 @@
       },
       {
         "slug": "short-fibonacci",
+        "uuid": "c481e318-ddd7-4f8a-91eb-dadb7315e304",
         "name": "A Short Fibonacci Sequence",
         "difficulty": 1,
-        "uuid": "c481e318-ddd7-4f8a-91eb-dadb7315e304",
         "concepts": [
           "vec-macro"
         ],
@@ -160,9 +160,9 @@
       },
       {
         "slug": "rpn-calculator",
+        "uuid": "25cc722b-211d-4271-9381-fdfe16b41301",
         "name": "RPN Calculator",
         "difficulty": 4,
-        "uuid": "25cc722b-211d-4271-9381-fdfe16b41301",
         "concepts": [
           "vec-stack"
         ],
@@ -176,9 +176,9 @@
       },
       {
         "slug": "csv-builder",
+        "uuid": "10c9f505-9aef-479f-b689-cb7959572482",
         "name": "CSV builder",
         "difficulty": 1,
-        "uuid": "10c9f505-9aef-479f-b689-cb7959572482",
         "concepts": [
           "string-vs-str"
         ],

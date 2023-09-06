@@ -3,7 +3,7 @@
 .DS_Store
 **/target
 tmp
-bin
+/bin
 exercises/*/*/Cargo.lock
 exercises/*/*/clippy.log
 .vscode

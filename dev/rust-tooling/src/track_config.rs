@@ -2,8 +2,7 @@
 //! It is capable of serializing and deserializing the configuration,
 //! for example with `serde_json`.
 //!
-//! Some definitions are not yet perfectly precise,
-//! because we don't anticipate they will be needed much.
+//! Some definitions may not be perfectly precise.
 //! Feel free to improve this if need be.
 //! (e.g. replace `String` with an enum of possible values)
 
@@ -23,12 +22,12 @@ pub struct TrackConfig {
     pub language: String,
     pub slug: String,
     pub active: bool,
-    pub status: HashMap<String, bool>,
+    pub status: StatusConfig,
     pub blurb: String,
     pub version: u8,
     pub online_editor: OnlineEditorConfig,
     pub test_runner: HashMap<String, u8>,
-    pub files: HashMap<String, Vec<String>>,
+    pub files: FilesConfig,
     pub exercises: ExercisesConfig,
     pub concepts: Vec<ConceptConfig>,
     pub key_features: Vec<KeyFeatureConfig>,
@@ -37,10 +36,28 @@ pub struct TrackConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
+pub struct StatusConfig {
+    pub concept_exercises: bool,
+    pub test_runner: bool,
+    pub representer: bool,
+    pub analyzer: bool,
+}
+
+#[derive(Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct OnlineEditorConfig {
     pub indent_style: String,
     pub indent_size: u8,
     pub highlightjs_language: String,
+}
+
+#[derive(Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FilesConfig {
+    pub solution: Vec<String>,
+    pub test: Vec<String>,
+    pub example: Vec<String>,
+    pub exemplar: Vec<String>,
 }
 
 #[derive(Clone, Serialize, Deserialize)]
@@ -86,8 +103,23 @@ pub struct PracticeExerciseConfig {
     pub prerequisites: Vec<String>,
     pub difficulty: u8,
     pub topics: Vec<String>,
-    #[serde(default)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub status: Option<PracticeExerciseStatus>,
+}
+
+impl PracticeExerciseConfig {
+    pub fn new(slug: String, name: String, difficulty: u8) -> Self {
+        Self {
+            slug,
+            name,
+            uuid: uuid::Uuid::new_v4().to_string(),
+            practices: Vec::new(),
+            prerequisites: Vec::new(),
+            difficulty,
+            topics: Vec::new(),
+            status: None,
+        }
+    }
 }
 
 #[derive(Clone, Serialize, Deserialize)]
