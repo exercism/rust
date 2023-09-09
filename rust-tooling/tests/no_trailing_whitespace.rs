@@ -1,5 +1,6 @@
 use std::path::Path;
 
+use exercism_tooling::bin_utils;
 use walkdir::WalkDir;
 
 fn contains_trailing_whitespace(p: &Path) -> bool {
@@ -14,10 +15,9 @@ fn contains_trailing_whitespace(p: &Path) -> bool {
 
 #[test]
 fn test_no_trailing_whitespace() {
-    let crate_dir = env!("CARGO_MANIFEST_DIR");
-    let repo_dir = format!("{crate_dir}/../..");
+    bin_utils::cd_into_repo_root();
 
-    for entry in WalkDir::new(repo_dir) {
+    for entry in WalkDir::new(".") {
         let entry = entry.unwrap();
         if !entry.file_type().is_file() {
             continue;

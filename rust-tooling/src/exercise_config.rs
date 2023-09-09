@@ -67,7 +67,7 @@ pub fn get_all_concept_exercise_paths() -> impl Iterator<Item = String> {
         .exercises
         .concept
         .iter()
-        .map(move |e| format!("{crate_dir}/../../exercises/concept/{}", e.slug))
+        .map(move |e| format!("{crate_dir}/../exercises/concept/{}", e.slug))
 }
 
 pub fn get_all_practice_exercise_paths() -> impl Iterator<Item = String> {
@@ -77,7 +77,7 @@ pub fn get_all_practice_exercise_paths() -> impl Iterator<Item = String> {
         .exercises
         .practice
         .iter()
-        .map(move |e| format!("{crate_dir}/../../exercises/practice/{}", e.slug))
+        .map(move |e| format!("{crate_dir}/../exercises/practice/{}", e.slug))
 }
 
 pub fn get_all_exercise_paths() -> impl Iterator<Item = String> {

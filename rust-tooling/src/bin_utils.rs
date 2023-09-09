@@ -9,6 +9,6 @@
 /// when called from anywhere within the repository.
 pub fn cd_into_repo_root() {
     static RUST_TOOLING_DIR: &str = env!("CARGO_MANIFEST_DIR");
-    let repo_root_dir = std::path::PathBuf::from(RUST_TOOLING_DIR).join("../..");
+    let repo_root_dir = std::path::PathBuf::from(RUST_TOOLING_DIR).join("..");
     std::env::set_current_dir(repo_root_dir).unwrap();
 }

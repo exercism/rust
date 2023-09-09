@@ -21,10 +21,10 @@ jobs:
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Fetch configlet
-        run: ./dev/scripts/fetch_configlet.sh
+        run: ./bin/fetch_configlet.sh
 
       - name: Lint configlet
-        run: ./dev/scripts/configlet lint
+        run: ./bin/configlet lint
 
   markdownlint:
     name: markdown lint
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Run markdown lint
-        run: ./dev/scripts/lint_markdown.sh
+        run: ./bin/lint_markdown.sh
 
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
@@ -68,12 +68,12 @@ jobs:
       - name: Check exercises
         env:
           DENYWARNINGS: "1"
-        run: ./dev/scripts/check_exercises.sh
+        run: ./bin/check_exercises.sh
 
       - name: Ensure stubs compile
         env:
           DENYWARNINGS: "1"
-        run: ./dev/scripts/ensure_stubs_compile.sh
+        run: ./bin/ensure_stubs_compile.sh
 
   tests:
     name: Run repository tests
@@ -89,7 +89,7 @@ jobs:
           toolchain: stable
 
       - name: Run tests
-        run: cargo test --package rust-tooling
+        run: cd rust-tooling && cargo test
 
   rustformat:
     name: Check Rust Formatting
@@ -105,7 +105,7 @@ jobs:
           toolchain: stable
 
       - name: Format
-        run: ./dev/scripts/format_exercises
+        run: ./bin/format_exercises
 
       - name: Diff
         run: |
@@ -134,12 +134,12 @@ jobs:
       - name: Clippy tests
         env:
           CLIPPY: true
-        run: ./dev/scripts/check_exercises.sh
+        run: ./bin/check_exercises.sh
 
       - name: Clippy stubs
         env:
           CLIPPY: true
-        run: ./dev/scripts/ensure_stubs_compile.sh
+        run: ./bin/ensure_stubs_compile.sh
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
@@ -158,4 +158,4 @@ jobs:
       - name: Check exercises
         env:
           BENCHMARK: "1"
-        run: ./dev/scripts/check_exercises.sh
+        run: ./bin/check_exercises.sh

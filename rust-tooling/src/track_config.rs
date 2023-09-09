@@ -12,7 +12,7 @@ use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 
 pub static TRACK_CONFIG: Lazy<TrackConfig> = Lazy::new(|| {
-    let config = include_str!("../../../config.json");
+    let config = include_str!("../../config.json");
     serde_json::from_str(config).expect("should deserialize the track config")
 });
 
