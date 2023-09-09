@@ -1,6 +1,8 @@
+use std::path::PathBuf;
+
 use convert_case::{Case, Casing};
 use exercism_tooling::{
-    fs_utils,
+    exercise_generation, fs_utils,
     track_config::{self, TRACK_CONFIG},
 };
 use glob::glob;
@@ -42,6 +44,8 @@ fn main() {
     let slug = add_entry_to_track_config();
 
     make_configlet_generate_what_it_can(&slug);
+
+    generate_exercise_files(&slug);
 }
 
 /// Interactively prompts the user for required fields in the track config
@@ -148,4 +152,26 @@ fn make_configlet_generate_what_it_can(slug: &str) {
     if !status.success() {
         panic!("configlet sync failed");
     }
+}
+
+fn generate_exercise_files(slug: &str) {
+    let exercise = exercise_generation::new(slug);
+
+    let exercise_path = PathBuf::from("exercises/practice").join(slug);
+
+    std::fs::write(exercise_path.join(".gitignore"), exercise.gitignore).unwrap();
+    std::fs::write(exercise_path.join("Cargo.toml"), exercise.manifest).unwrap();
+    std::fs::create_dir(exercise_path.join("src")).unwrap();
+    std::fs::write(exercise_path.join("src/lib.rs"), exercise.lib_rs).unwrap();
+    std::fs::write(exercise_path.join(".meta/example.rs"), exercise.example).unwrap();
+
+    std::fs::create_dir(exercise_path.join("tests")).unwrap();
+    let crate_name = slug.replace('-', "_");
+    let mut test_file = exercise.test_header;
+    test_file += &exercise.test_cases;
+    std::fs::write(
+        exercise_path.join(format!("tests/{crate_name}.rs")),
+        test_file,
+    )
+    .unwrap();
 }

@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-# test for existence and executability of the test_exercise.sh script
-# this depends on that
-if [ ! -f "./bin/test_exercise.sh" ]; then
-   echo "bin/test_exercise.sh does not exist"
-   exit 1
-fi
-if [ ! -x "./bin/test_exercise.sh" ]; then
-   echo "bin/test_exercise.sh does not have its executable bit set"
-   exit 1
-fi
-
 # In DENYWARNINGS or CLIPPY mode, do not set -e so that we run all tests.
 # This allows us to see all warnings.
 # If we are in neither DENYWARNINGS nor CLIPPY mode, do set -e.

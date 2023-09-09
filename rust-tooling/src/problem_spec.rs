@@ -38,8 +38,22 @@ pub struct SingleTestCase {
     pub expected: serde_json::Value,
 }
 
+pub fn get_canonical_data(slug: &str) -> CanonicalData {
+    crate::fs_utils::cd_into_repo_root();
+    let path = std::path::PathBuf::from("problem-specifications/exercises")
+        .join(slug)
+        .join("canonical-data.json");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    serde_json::from_str(contents.as_str()).unwrap_or_else(|e| {
+        panic!(
+            "should deserialize canonical data for {}: {e}",
+            path.display()
+        )
+    })
+}
+
 #[test]
-fn test_deserialize_all() {
+fn test_deserialize_canonical_data() {
     crate::fs_utils::cd_into_repo_root();
     for entry in walkdir::WalkDir::new("problem-specifications/exercises")
         .into_iter()
