@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 use convert_case::{Case, Casing};
 use exercism_tooling::{
     fs_utils,
@@ -7,7 +5,6 @@ use exercism_tooling::{
 };
 use glob::glob;
 use inquire::{validator::Validation, Select, Text};
-use tap::prelude::*;
 
 enum Difficulty {
     Easy,
@@ -28,7 +25,7 @@ impl From<Difficulty> for u8 {
     }
 }
 
-impl Display for Difficulty {
+impl std::fmt::Display for Difficulty {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Difficulty::Easy => write!(f, "Easy (1)"),
@@ -42,8 +39,15 @@ impl Display for Difficulty {
 fn main() {
     fs_utils::cd_into_repo_root();
 
-    update_problem_spec_cache();
+    let slug = add_entry_to_track_config();
 
+    make_configlet_generate_what_it_can(&slug);
+}
+
+/// Interactively prompts the user for required fields in the track config
+/// and writes the answers to config.json.
+/// Returns slug.
+fn add_entry_to_track_config() -> String {
     let implemented_exercises = glob("exercises/concept/*")
         .unwrap()
         .chain(glob("exercises/practice/*").unwrap())
@@ -58,18 +62,30 @@ fn main() {
         .filter(|e| !implemented_exercises.contains(e))
         .collect::<Vec<_>>();
 
+    println!("(suggestions are from problem-specifications)");
     let slug = Text::new("What's the slug of your exercise?")
         .with_autocomplete(move |input: &_| {
-            Ok(unimplemented_with_spec
-                .clone()
-                .tap_ref_mut(|v: &mut Vec<_>| v.retain(|e| e.starts_with(input))))
+            let mut slugs = unimplemented_with_spec.clone();
+            slugs.retain(|e| e.starts_with(input));
+            Ok(slugs)
         })
         .with_validator(|input: &str| {
-            if input.is_case(Case::Kebab) {
+            if input.is_empty() {
+                Ok(Validation::Invalid("The slug must not be empty.".into()))
+            } else if !input.is_case(Case::Kebab) {
+                Ok(Validation::Invalid(
+                    "The slug must be in kebab-case.".into(),
+                ))
+            } else {
+                Ok(Validation::Valid)
+            }
+        })
+        .with_validator(move |input: &str| {
+            if !implemented_exercises.contains(&input.to_string()) {
                 Ok(Validation::Valid)
             } else {
                 Ok(Validation::Invalid(
-                    "The slug must be in kebab-case.".into(),
+                    "An exercise with this slug already exists.".into(),
                 ))
             }
         })
@@ -77,6 +93,7 @@ fn main() {
         .unwrap();
 
     let name = Text::new("What's the name of your exercise?")
+        .with_initial_value(&slug.to_case(Case::Title))
         .prompt()
         .unwrap();
 
@@ -93,7 +110,7 @@ fn main() {
     .unwrap()
     .into();
 
-    let config = track_config::PracticeExercise::new(slug, name, difficulty);
+    let config = track_config::PracticeExercise::new(slug.clone(), name, difficulty);
 
     let mut track_config = TRACK_CONFIG.clone();
     track_config.exercises.practice.push(config);
@@ -108,17 +125,27 @@ fn main() {
 Added your exercise to config.json.
 You can add practices, prerequisites and topics if you like."
     );
+
+    slug
 }
 
-/// Populates ~/.cache/exercism/configlet/problem-specifications
-///
-/// configlet manages a cache of the problem specifications repository.
-/// So, instead of fetching the problem specs every time over the network,
-/// we can just reuse configlet's cache.
-/// We just need to make sure that the cache is up-to-date.
-fn update_problem_spec_cache() {
-    std::process::Command::new("./bin/configlet")
-        .args(["sync"])
-        .output()
+fn make_configlet_generate_what_it_can(slug: &str) {
+    let status = std::process::Command::new("just")
+        .args([
+            "configlet",
+            "sync",
+            "--update",
+            "--yes",
+            "--docs",
+            "--metadata",
+            "--tests",
+            "include",
+            "--exercise",
+            slug,
+        ])
+        .status()
         .unwrap();
+    if !status.success() {
+        panic!("configlet sync failed");
+    }
 }
