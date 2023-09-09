@@ -1,14 +1,17 @@
-use convert_case::{Case, Casing};
+use tera::Context;
 
-use crate::{problem_spec::{get_canonical_data, SingleTestCase, TestCase}, exercise_config::get_excluded_tests};
+use crate::{
+    exercise_config::{get_excluded_tests, get_test_emplate},
+    problem_spec::{get_canonical_data, SingleTestCase, TestCase},
+};
 
 pub struct GeneratedExercise {
     pub gitignore: String,
     pub manifest: String,
     pub lib_rs: String,
     pub example: String,
-    pub test_header: String,
-    pub test_cases: String,
+    pub test_template: String,
+    pub tests: String,
 }
 
 pub fn new(slug: &str) -> GeneratedExercise {
@@ -19,8 +22,8 @@ pub fn new(slug: &str) -> GeneratedExercise {
         manifest: generate_manifest(&crate_name),
         lib_rs: generate_lib_rs(&crate_name),
         example: EXAMPLE_RS.into(),
-        test_header: generate_test_header(&crate_name),
-        test_cases: generate_tests(slug),
+        test_template: TEST_TEMPLATE.into(),
+        tests: generate_tests(slug),
     }
 }
 
@@ -47,7 +50,7 @@ fn generate_lib_rs(crate_name: &str) -> String {
     format!(
         concat!(
             "pub fn TODO(input: TODO) -> TODO {{\n",
-            "   todo!(\"use {{input}} to implement {crate_name}\")\n",
+            "    todo!(\"use {{input}} to implement {crate_name}\")\n",
             "}}\n",
         ),
         crate_name = crate_name
@@ -60,22 +63,7 @@ pub fn TODO(input: TODO) -> TODO {
 }
 ";
 
-fn generate_test_header(crate_name: &str) -> String {
-    format!(
-        concat!(
-            "use {crate_name}::*;\n",
-            "\n",
-            "fn process(input: TODO, expected: TODO) -> bool {{\n",
-            "   TODO\n",
-            "}}\n",
-            "\n",
-            "// The following test cases are generated from problem-specifications.\n",
-            "// If you'd like to improve the test suite, you can do it over there.\n",
-            "// https://github.com/exercism/problem-specifications/\n",
-        ),
-        crate_name = crate_name
-    )
-}
+static TEST_TEMPLATE: &str = include_str!("default_test_template.tera");
 
 fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCase>) {
     for case in cases {
@@ -86,40 +74,23 @@ fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCa
     }
 }
 
-fn generate_single_test_case(case: SingleTestCase, is_first: bool) -> String {
-    // TODO generate tests with an author-provided template (Tera?)
-    let fn_name = case.description.to_case(Case::Snake);
-    format!(
-        concat!(
-            "\n",
-            "#[test]\n",
-            "{ignore}",
-            "fn {fn_name}() {{\n",
-            "   process({input}, {expected})\n",
-            "}}\n",
-        ),
-        ignore = if is_first { "" } else { "#[ignore]\n" },
-        fn_name = fn_name,
-        input = case.input,
-        expected = case.expected,
-    )
-}
-
 fn generate_tests(slug: &str) -> String {
     let cases = get_canonical_data(slug).cases;
     let excluded_tests = get_excluded_tests(slug);
+    let mut template = get_test_emplate(slug).unwrap();
+    if template.get_template_names().next().is_none() {
+        template
+            .add_raw_template("test_template.tera", TEST_TEMPLATE)
+            .unwrap();
+    }
 
     let mut single_cases = Vec::new();
     extend_single_cases(&mut single_cases, cases);
     single_cases.retain(|case| !excluded_tests.contains(&case.uuid));
 
-    let mut buffer = String::new();
+    let mut context = Context::new();
+    context.insert("crate_name", &slug.replace('-', "_"));
+    context.insert("cases", &single_cases);
 
-    buffer.push_str(generate_single_test_case(single_cases.remove(0), true).as_str());
-
-    for case in single_cases {
-        buffer.push_str(generate_single_test_case(case, false).as_str());
-    }
-
-    buffer
+    template.render("test_template.tera", &context).unwrap()
 }

@@ -39,7 +39,6 @@ pub struct SingleTestCase {
 }
 
 pub fn get_canonical_data(slug: &str) -> CanonicalData {
-    crate::fs_utils::cd_into_repo_root();
     let path = std::path::PathBuf::from("problem-specifications/exercises")
         .join(slug)
         .join("canonical-data.json");

@@ -1,0 +1,12 @@
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | replace(from=" ", to="_") }}() {
+    let input = {{ test.input }};
+    let output = {{ crate_name }}::TODO(input);
+    let expected = {{ test.expected }};
+    assert_eq!(output, expected);
+}
+{% endfor -%}

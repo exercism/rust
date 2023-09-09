@@ -3,6 +3,7 @@
 //! configuration, for example with `serde_json`.
 
 use serde::{Deserialize, Serialize};
+use tera::Tera;
 
 use crate::track_config::TRACK_CONFIG;
 
@@ -102,7 +103,6 @@ fn test_deserialize_all() {
 
 /// Returns the uuids of the tests excluded in .meta/tests.toml
 pub fn get_excluded_tests(slug: &str) -> Vec<String> {
-    crate::fs_utils::cd_into_repo_root();
     let path = std::path::PathBuf::from("exercises/practice")
         .join(slug)
         .join(".meta/tests.toml");
@@ -119,4 +119,9 @@ pub fn get_excluded_tests(slug: &str) -> Vec<String> {
     }
 
     excluded_tests
+}
+
+/// Returns the uuids of the tests excluded in .meta/tests.toml
+pub fn get_test_emplate(slug: &str) -> Option<Tera> {
+    Some(Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).unwrap())
 }

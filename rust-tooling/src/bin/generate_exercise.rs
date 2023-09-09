@@ -188,13 +188,16 @@ fn generate_exercise_files(slug: &str, is_update: bool) {
         std::fs::write(exercise_path.join(".meta/example.rs"), exercise.example).unwrap();
     }
 
+    let template_path = exercise_path.join(".meta/test_template.tera");
+    if std::fs::metadata(&template_path).is_err() {
+        std::fs::write(template_path, exercise.test_template).unwrap();
+    }
+
     std::fs::create_dir(exercise_path.join("tests")).ok();
     let crate_name = slug.replace('-', "_");
-    let mut test_file = exercise.test_header;
-    test_file += &exercise.test_cases;
     std::fs::write(
         exercise_path.join(format!("tests/{crate_name}.rs")),
-        test_file,
+        exercise.tests,
     )
     .unwrap();
 }
