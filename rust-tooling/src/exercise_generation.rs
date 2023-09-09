@@ -1,6 +1,6 @@
 use convert_case::{Case, Casing};
 
-use crate::problem_spec::{get_canonical_data, SingleTestCase, TestCase};
+use crate::{problem_spec::{get_canonical_data, SingleTestCase, TestCase}, exercise_config::get_excluded_tests};
 
 pub struct GeneratedExercise {
     pub gitignore: String,
@@ -13,14 +13,14 @@ pub struct GeneratedExercise {
 
 pub fn new(slug: &str) -> GeneratedExercise {
     let crate_name = slug.replace('-', "_");
-    let canonical_data = get_canonical_data(slug);
+
     GeneratedExercise {
         gitignore: GITIGNORE.into(),
         manifest: generate_manifest(&crate_name),
         lib_rs: generate_lib_rs(&crate_name),
         example: EXAMPLE_RS.into(),
         test_header: generate_test_header(&crate_name),
-        test_cases: generate_tests(canonical_data.cases),
+        test_cases: generate_tests(slug),
     }
 }
 
@@ -105,9 +105,13 @@ fn generate_single_test_case(case: SingleTestCase, is_first: bool) -> String {
     )
 }
 
-fn generate_tests(cases: Vec<TestCase>) -> String {
+fn generate_tests(slug: &str) -> String {
+    let cases = get_canonical_data(slug).cases;
+    let excluded_tests = get_excluded_tests(slug);
+
     let mut single_cases = Vec::new();
     extend_single_cases(&mut single_cases, cases);
+    single_cases.retain(|case| !excluded_tests.contains(&case.uuid));
 
     let mut buffer = String::new();
 

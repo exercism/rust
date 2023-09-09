@@ -99,3 +99,24 @@ fn test_deserialize_all() {
             .expect("should deserialize practice exercise config");
     }
 }
+
+/// Returns the uuids of the tests excluded in .meta/tests.toml
+pub fn get_excluded_tests(slug: &str) -> Vec<String> {
+    crate::fs_utils::cd_into_repo_root();
+    let path = std::path::PathBuf::from("exercises/practice")
+        .join(slug)
+        .join(".meta/tests.toml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+
+    let mut excluded_tests = Vec::new();
+
+    // shitty toml parser
+    for case in contents.split("\n[").skip(1) {
+        let (uuid, rest) = case.split_once(']').unwrap();
+        if rest.contains("include = false") {
+            excluded_tests.push(uuid.to_string());
+        }
+    }
+
+    excluded_tests
+}
