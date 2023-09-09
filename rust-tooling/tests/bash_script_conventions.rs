@@ -1,11 +1,12 @@
 use std::path::PathBuf;
 
-use exercism_tooling::bin_utils;
+use convert_case::{Case, Casing};
+use exercism_tooling::fs_utils;
 
 /// Runs a function for each bash script in the bin directory.
 /// The function is passed the path of the script.
 fn for_all_scripts(f: fn(PathBuf)) {
-    bin_utils::cd_into_repo_root();
+    fs_utils::cd_into_repo_root();
 
     for entry in std::fs::read_dir("bin").unwrap() {
         f(entry.unwrap().path())
@@ -45,9 +46,7 @@ fn test_snake_case_name() {
         }
 
         assert!(
-            file_name
-                .chars()
-                .all(|c| c.is_ascii_lowercase() || c == '_'),
+            file_name.is_case(Case::Snake),
             "name of '{file_name}' should be snake_case"
         );
     })

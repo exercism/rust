@@ -1,20 +1,13 @@
-use std::{fmt::Display, ops::Deref};
+use std::fmt::Display;
 
+use convert_case::{Case, Casing};
 use exercism_tooling::{
-    bin_utils,
+    fs_utils,
     track_config::{self, TRACK_CONFIG},
 };
 use glob::glob;
 use inquire::{validator::Validation, Select, Text};
-use once_cell::sync::Lazy;
 use tap::prelude::*;
-
-static SPEC_DIR: Lazy<String> = Lazy::new(|| {
-    format!(
-        "{}/.cache/exercism/configlet/problem-specifications",
-        env!("HOME")
-    )
-});
 
 enum Difficulty {
     Easy,
@@ -46,14 +39,8 @@ impl Display for Difficulty {
     }
 }
 
-fn is_kebab_case(s: &str) -> bool {
-    s.chars().all(|c| c.is_ascii_lowercase() || c == '-')
-}
-
 fn main() {
-    // Many other functions rely on this.
-    // We are doing a very script-like thing here after all.
-    bin_utils::cd_into_repo_root();
+    fs_utils::cd_into_repo_root();
 
     update_problem_spec_cache();
 
@@ -64,7 +51,7 @@ fn main() {
         .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
         .collect::<Vec<_>>();
 
-    let unimplemented_with_spec = glob(&format!("{}/exercises/*", SPEC_DIR.deref()))
+    let unimplemented_with_spec = glob("problem-specifications/exercises/*")
         .unwrap()
         .filter_map(Result::ok)
         .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
@@ -77,8 +64,8 @@ fn main() {
                 .clone()
                 .tap_ref_mut(|v: &mut Vec<_>| v.retain(|e| e.starts_with(input))))
         })
-        .with_validator(|input: &_| {
-            if is_kebab_case(input) {
+        .with_validator(|input: &str| {
+            if input.is_case(Case::Kebab) {
                 Ok(Validation::Valid)
             } else {
                 Ok(Validation::Invalid(
@@ -117,7 +104,8 @@ fn main() {
     std::fs::write("config.json", new_config).unwrap();
 
     println!(
-        "Added your exercise to config.json.
+        "\
+Added your exercise to config.json.
 You can add practices, prerequisites and topics if you like."
     );
 }

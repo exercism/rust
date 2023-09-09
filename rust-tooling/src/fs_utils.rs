@@ -1,6 +1,4 @@
-//! This module contains utilities for working with the filesystem.
-//! I/O is performed at the edge of an application.
-//! This module does contain lots of I/O, to be used by executables.
+//! This module contains utilities for working with the files in this repo.
 
 /// Changes the current working directory to the root of the repository.
 ///

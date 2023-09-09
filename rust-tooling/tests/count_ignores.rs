@@ -1,5 +1,5 @@
 use exercism_tooling::exercise_config::{
-    get_all_concept_exercise_paths, get_all_practice_exercise_paths, PracticeExerciseConfig,
+    get_all_concept_exercise_paths, get_all_practice_exercise_paths, PracticeExercise,
 };
 
 fn assert_one_less_ignore_than_tests(path: &str) {
@@ -23,8 +23,7 @@ fn test_count_ignores() {
     for path in get_all_practice_exercise_paths() {
         let config_path = format!("{path}/.meta/config.json");
         let config_contents = std::fs::read_to_string(config_path).unwrap();
-        let config: PracticeExerciseConfig =
-            serde_json::from_str(config_contents.as_str()).unwrap();
+        let config: PracticeExercise = serde_json::from_str(config_contents.as_str()).unwrap();
         if let Some(custom) = config.custom {
             if custom.ignore_count_ignores.unwrap_or_default() {
                 continue;

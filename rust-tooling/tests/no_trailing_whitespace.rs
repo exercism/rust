@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use exercism_tooling::bin_utils;
+use exercism_tooling::fs_utils;
 use walkdir::WalkDir;
 
 fn contains_trailing_whitespace(p: &Path) -> bool {
@@ -15,7 +15,7 @@ fn contains_trailing_whitespace(p: &Path) -> bool {
 
 #[test]
 fn test_no_trailing_whitespace() {
-    bin_utils::cd_into_repo_root();
+    fs_utils::cd_into_repo_root();
 
     for entry in WalkDir::new(".") {
         let entry = entry.unwrap();

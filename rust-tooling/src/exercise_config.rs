@@ -8,10 +8,10 @@ use crate::track_config::TRACK_CONFIG;
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct ConceptExerciseConfig {
+pub struct ConceptExercise {
     pub authors: Vec<String>,
     pub contributors: Option<Vec<String>>,
-    pub files: ConceptFilesConfig,
+    pub files: ConceptFiles,
     pub icon: Option<String>,
     pub blurb: String,
     pub source: Option<String>,
@@ -21,7 +21,7 @@ pub struct ConceptExerciseConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct ConceptFilesConfig {
+pub struct ConceptFiles {
     pub solution: Vec<String>,
     pub test: Vec<String>,
     pub exemplar: Vec<String>,
@@ -29,21 +29,21 @@ pub struct ConceptFilesConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct PracticeExerciseConfig {
+pub struct PracticeExercise {
     pub authors: Vec<String>,
     pub contributors: Option<Vec<String>>,
-    pub files: PracticeFilesConfig,
+    pub files: PracticeFiles,
     pub icon: Option<String>,
     pub blurb: String,
     pub source: Option<String>,
     pub source_url: Option<String>,
     pub test_runner: Option<bool>,
-    pub custom: Option<CustomConfig>,
+    pub custom: Option<Custom>,
 }
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct PracticeFilesConfig {
+pub struct PracticeFiles {
     pub solution: Vec<String>,
     pub test: Vec<String>,
     pub example: Vec<String>,
@@ -51,7 +51,7 @@ pub struct PracticeFilesConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct CustomConfig {
+pub struct Custom {
     #[serde(rename = "allowed-to-not-compile")]
     pub allowed_to_not_compile: Option<String>,
     #[serde(rename = "test-in-release-mode")]
@@ -89,13 +89,13 @@ fn test_deserialize_all() {
     for path in get_all_concept_exercise_paths() {
         let config_path = format!("{path}/.meta/config.json");
         let config_contents = std::fs::read_to_string(config_path).unwrap();
-        let _: ConceptExerciseConfig = serde_json::from_str(config_contents.as_str())
+        let _: ConceptExercise = serde_json::from_str(config_contents.as_str())
             .expect("should deserialize concept exercise config");
     }
     for path in get_all_practice_exercise_paths() {
         let config_path = format!("{path}/.meta/config.json");
         let config_contents = std::fs::read_to_string(config_path).unwrap();
-        let _: PracticeExerciseConfig = serde_json::from_str(config_contents.as_str())
+        let _: PracticeExercise = serde_json::from_str(config_contents.as_str())
             .expect("should deserialize practice exercise config");
     }
 }

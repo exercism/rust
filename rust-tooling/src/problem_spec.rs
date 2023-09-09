@@ -40,9 +40,8 @@ pub struct SingleTestCase {
 
 #[test]
 fn test_deserialize_all() {
-    crate::bin_utils::cd_into_repo_root();
-    let spec_dir = "problem-specifications/exercises";
-    for entry in walkdir::WalkDir::new(spec_dir)
+    crate::fs_utils::cd_into_repo_root();
+    for entry in walkdir::WalkDir::new("problem-specifications/exercises")
         .into_iter()
         .filter_map(|e| e.ok())
         .filter(|e| e.file_name().to_str().unwrap() == "canonical-data.json")
