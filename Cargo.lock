@@ -190,6 +190,20 @@ name = "etl"
 version = "1.0.0"
 
 [[package]]
+name = "exercism_tooling"
+version = "0.1.0"
+dependencies = [
+ "glob",
+ "inquire",
+ "once_cell",
+ "serde",
+ "serde_json",
+ "tap",
+ "uuid",
+ "walkdir",
+]
+
+[[package]]
 name = "fizzy"
 version = "0.0.0"
 
@@ -647,20 +661,6 @@ version = "0.1.0"
 [[package]]
 name = "run-length-encoding"
 version = "1.1.0"
-
-[[package]]
-name = "rust-tooling"
-version = "0.1.0"
-dependencies = [
- "glob",
- "inquire",
- "once_cell",
- "serde",
- "serde_json",
- "tap",
- "uuid",
- "walkdir",
-]
 
 [[package]]
 name = "ryu"

@@ -38,12 +38,10 @@ pub struct SingleTestCase {
     pub expected: serde_json::Value,
 }
 
-/// Ignored because the problem-specifications repository may not be present.
 #[test]
-#[ignore]
 fn test_deserialize_all() {
-    let spec_dir =
-        env!("HOME").to_string() + "/.cache/exercism/configlet/problem-specifications/exercises";
+    crate::bin_utils::cd_into_repo_root();
+    let spec_dir = "problem-specifications/exercises";
     for entry in walkdir::WalkDir::new(spec_dir)
         .into_iter()
         .filter_map(|e| e.ok())

@@ -1,6 +1,6 @@
 //! Make sure exercise difficulties are set correctly
 
-use rust_tooling::track_config::TRACK_CONFIG;
+use exercism_tooling::track_config::TRACK_CONFIG;
 
 #[test]
 fn test_difficulties_are_valid() {

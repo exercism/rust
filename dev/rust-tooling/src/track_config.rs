@@ -22,21 +22,21 @@ pub struct TrackConfig {
     pub language: String,
     pub slug: String,
     pub active: bool,
-    pub status: StatusConfig,
+    pub status: Status,
     pub blurb: String,
     pub version: u8,
-    pub online_editor: OnlineEditorConfig,
+    pub online_editor: OnlineEditor,
     pub test_runner: HashMap<String, u8>,
-    pub files: FilesConfig,
-    pub exercises: ExercisesConfig,
+    pub files: Files,
+    pub exercises: Exercises,
     pub concepts: Vec<ConceptConfig>,
-    pub key_features: Vec<KeyFeatureConfig>,
+    pub key_features: Vec<KeyFeature>,
     pub tags: Vec<String>,
 }
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct StatusConfig {
+pub struct Status {
     pub concept_exercises: bool,
     pub test_runner: bool,
     pub representer: bool,
@@ -45,7 +45,7 @@ pub struct StatusConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct OnlineEditorConfig {
+pub struct OnlineEditor {
     pub indent_style: String,
     pub indent_size: u8,
     pub highlightjs_language: String,
@@ -53,7 +53,7 @@ pub struct OnlineEditorConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct FilesConfig {
+pub struct Files {
     pub solution: Vec<String>,
     pub test: Vec<String>,
     pub example: Vec<String>,
@@ -62,9 +62,9 @@ pub struct FilesConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct ExercisesConfig {
-    pub concept: Vec<ConceptExerciseConfig>,
-    pub practice: Vec<PracticeExerciseConfig>,
+pub struct Exercises {
+    pub concept: Vec<ConceptExercise>,
+    pub practice: Vec<PracticeExercise>,
     pub foregone: Vec<String>,
 }
 
@@ -77,7 +77,7 @@ pub enum ConceptExerciseStatus {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct ConceptExerciseConfig {
+pub struct ConceptExercise {
     pub slug: String,
     pub uuid: String,
     pub name: String,
@@ -95,7 +95,7 @@ pub enum PracticeExerciseStatus {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct PracticeExerciseConfig {
+pub struct PracticeExercise {
     pub slug: String,
     pub name: String,
     pub uuid: String,
@@ -107,7 +107,7 @@ pub struct PracticeExerciseConfig {
     pub status: Option<PracticeExerciseStatus>,
 }
 
-impl PracticeExerciseConfig {
+impl PracticeExercise {
     pub fn new(slug: String, name: String, difficulty: u8) -> Self {
         Self {
             slug,
@@ -132,7 +132,7 @@ pub struct ConceptConfig {
 
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct KeyFeatureConfig {
+pub struct KeyFeature {
     pub icon: String,
     pub title: String,
     pub content: String,

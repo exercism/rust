@@ -1,9 +1,12 @@
-use std::{fmt::Display, ops::Deref, process::Command};
+use std::{fmt::Display, ops::Deref};
 
+use exercism_tooling::{
+    bin_utils,
+    track_config::{self, TRACK_CONFIG},
+};
 use glob::glob;
 use inquire::{validator::Validation, Select, Text};
 use once_cell::sync::Lazy;
-use rust_tooling::track_config::{self, TRACK_CONFIG};
 use tap::prelude::*;
 
 static SPEC_DIR: Lazy<String> = Lazy::new(|| {
@@ -48,8 +51,9 @@ fn is_kebab_case(s: &str) -> bool {
 }
 
 fn main() {
-    // many other functions rely on this
-    cd_into_repo_root();
+    // Many other functions rely on this.
+    // We are doing a very script-like thing here after all.
+    bin_utils::cd_into_repo_root();
 
     update_problem_spec_cache();
 
@@ -102,7 +106,7 @@ fn main() {
     .unwrap()
     .into();
 
-    let config = track_config::PracticeExerciseConfig::new(slug, name, difficulty);
+    let config = track_config::PracticeExercise::new(slug, name, difficulty);
 
     let mut track_config = TRACK_CONFIG.clone();
     track_config.exercises.practice.push(config);
@@ -116,17 +120,6 @@ fn main() {
         "Added your exercise to config.json.
 You can add practices, prerequisites and topics if you like."
     );
-}
-
-/// Changes the current working directory to the root of the repository.
-fn cd_into_repo_root() {
-    let repo_path = Command::new("git")
-        .args(["rev-parse", "--show-toplevel"])
-        .output()
-        .unwrap()
-        .stdout
-        .pipe(|stdout| String::from_utf8(stdout).unwrap().trim().to_string());
-    std::env::set_current_dir(repo_path).unwrap();
 }
 
 /// Populates ~/.cache/exercism/configlet/problem-specifications
