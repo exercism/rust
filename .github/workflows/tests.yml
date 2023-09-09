@@ -105,7 +105,7 @@ jobs:
           toolchain: stable
 
       - name: Format
-        run: ./bin/format_exercises
+        run: ./bin/format_exercises.sh
 
       - name: Diff
         run: |

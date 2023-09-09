@@ -199,13 +199,13 @@ version = "0.1.0"
 dependencies = [
  "convert_case",
  "glob",
+ "ignore",
  "inquire",
  "once_cell",
  "serde",
  "serde_json",
  "tera",
  "uuid",
- "walkdir",
 ]
 
 [[package]]

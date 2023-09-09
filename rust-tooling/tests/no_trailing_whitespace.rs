@@ -1,7 +1,6 @@
 use std::path::Path;
 
 use exercism_tooling::fs_utils;
-use walkdir::WalkDir;
 
 fn contains_trailing_whitespace(p: &Path) -> bool {
     let contents = std::fs::read_to_string(p).unwrap();
@@ -17,9 +16,9 @@ fn contains_trailing_whitespace(p: &Path) -> bool {
 fn test_no_trailing_whitespace() {
     fs_utils::cd_into_repo_root();
 
-    for entry in WalkDir::new(".") {
+    for entry in ignore::Walk::new("./") {
         let entry = entry.unwrap();
-        if !entry.file_type().is_file() {
+        if !entry.file_type().is_some_and(|t| t.is_file()) {
             continue;
         }
         let path = entry.path();
