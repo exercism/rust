@@ -1,0 +1,12 @@
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | replace(from=" ", to="_") }}() {
+    let input = "{{ test.input.phrase }}";
+    let output = acronym::abbreviate(input);
+    let expected = "{{ test.expected }}";
+    assert_eq!(output, expected);
+}
+{% endfor -%}
