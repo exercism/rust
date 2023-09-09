@@ -9,14 +9,13 @@ configlet *args="":
     @[ -f bin/configlet ] || bin/fetch-configlet
     ./bin/configlet  {{ args }}
 
-# TODO update all if no exercise specified
-update exercise:
-    @just configlet sync --update --yes --docs --metadata --tests include --exercise {{ exercise }}
-
 add-practice-exercise:
-    cd rust-tooling && cargo run --quiet --bin add_practice_exercise
+    cd rust-tooling && cargo run --quiet --bin generate_exercise
+
+update-practice-exercise:
+    cd rust-tooling && cargo run --quiet --bin generate_exercise update
 
 # TODO remove. resets result of add-practice-exercise.
 clean:
-    git restore config.json
+    git restore config.json exercises/practice
     git clean -- exercises/practice

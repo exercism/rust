@@ -41,11 +41,32 @@ impl std::fmt::Display for Difficulty {
 fn main() {
     fs_utils::cd_into_repo_root();
 
-    let slug = add_entry_to_track_config();
+    let is_update = std::env::args().any(|arg| arg == "update");
+
+    let slug = if is_update {
+        ask_for_exercise_to_update()
+    } else {
+        add_entry_to_track_config()
+    };
 
     make_configlet_generate_what_it_can(&slug);
 
-    generate_exercise_files(&slug);
+    generate_exercise_files(&slug, is_update);
+}
+
+fn ask_for_exercise_to_update() -> String {
+    let implemented_exercises = glob("exercises/practice/*")
+        .unwrap()
+        .filter_map(Result::ok)
+        .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
+        .collect::<Vec<_>>();
+
+    Select::new(
+        "Which exercise would you like to update?",
+        implemented_exercises,
+    )
+    .prompt()
+    .unwrap()
 }
 
 /// Interactively prompts the user for required fields in the track config
@@ -154,18 +175,20 @@ fn make_configlet_generate_what_it_can(slug: &str) {
     }
 }
 
-fn generate_exercise_files(slug: &str) {
+fn generate_exercise_files(slug: &str, is_update: bool) {
     let exercise = exercise_generation::new(slug);
 
     let exercise_path = PathBuf::from("exercises/practice").join(slug);
 
-    std::fs::write(exercise_path.join(".gitignore"), exercise.gitignore).unwrap();
-    std::fs::write(exercise_path.join("Cargo.toml"), exercise.manifest).unwrap();
-    std::fs::create_dir(exercise_path.join("src")).unwrap();
-    std::fs::write(exercise_path.join("src/lib.rs"), exercise.lib_rs).unwrap();
-    std::fs::write(exercise_path.join(".meta/example.rs"), exercise.example).unwrap();
+    if !is_update {
+        std::fs::write(exercise_path.join(".gitignore"), exercise.gitignore).unwrap();
+        std::fs::write(exercise_path.join("Cargo.toml"), exercise.manifest).unwrap();
+        std::fs::create_dir(exercise_path.join("src")).ok();
+        std::fs::write(exercise_path.join("src/lib.rs"), exercise.lib_rs).unwrap();
+        std::fs::write(exercise_path.join(".meta/example.rs"), exercise.example).unwrap();
+    }
 
-    std::fs::create_dir(exercise_path.join("tests")).unwrap();
+    std::fs::create_dir(exercise_path.join("tests")).ok();
     let crate_name = slug.replace('-', "_");
     let mut test_file = exercise.test_header;
     test_file += &exercise.test_cases;
