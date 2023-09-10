@@ -29,33 +29,32 @@ Students are exepcted to learn the language themselves, for example with the [of
 </span>
 <span align="left">
 
-🌟🌟&nbsp; Please take a moment to read our [Code of Conduct][exercism-code-of-conduct]&nbsp;🌟🌟&nbsp;  
-It might also be helpful to look at [Being a Good Community Member][being-a-good-community-member] & [The words that we use][the-words-that-we-use].
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some defined roles in our community: [Contributors][exercism-contributors] **|** [Mentors][exercism-mentors] **|** [Maintainers][exercism-track-maintainers] **|** [Admins][exercism-admins]
+🌟🌟&nbsp; Please take a moment to read our [Code of Conduct][exercism-code-of-conduct] &nbsp;🌟🌟<br>
+It might also be helpful to look at [Being a Good Community Member][being-a-good-community-member] & [The words that we use][the-words-that-we-use].<br>
+Some defined roles in our community: [Contributors][exercism-contributors] **|** [Mentors][exercism-mentors] **|** [Maintainers][exercism-track-maintainers] **|** [Admins][exercism-admins]
 
 </span></div>
 
 <br>
 <img align="left" width="90" height="85" src="https://raw.githubusercontent.com/exercism/website-icons/main/exercises/health-statistics.svg">
 
-We&nbsp;💛&nbsp;💙 &nbsp; our community.  
-**`But our maintainers are not accepting community contributions at this time.`**  
+We&nbsp;💛&nbsp;💙 &nbsp; our community.<br>
+**`But our maintainers are not accepting community contributions at this time.`**<br>
 Please read this [community blog post][freeing-maintainers] for details.
 
 <br>
 <img align="left" width="95" height="90" src="https://raw.githubusercontent.com/exercism/website-icons/main/exercises/boutique-suggestions.svg">
 
-Here to suggest a new feature or new exercise?? **Hooray!** &nbsp;🎉 &nbsp;  
-We'd love if you did that via our [Exercism Community Forum](https://forum.exercism.org/).  
-Please read [Suggesting Exercise Improvements][suggesting-improvements] & [Chesterton's Fence][chestertons-fence].  
+Here to suggest a new feature or new exercise?? **Hooray!** &nbsp;🎉 &nbsp;<br>
+We'd love if you did that via our [Exercism Community Forum](https://forum.exercism.org/).<br>
+Please read [Suggesting Exercise Improvements][suggesting-improvements] & [Chesterton's Fence][chestertons-fence].<br>
 _Thoughtful suggestions will likely result faster & more enthusiastic responses from volunteers._
 
 <br>
 <img align="left" width="85" height="80" src="https://raw.githubusercontent.com/exercism/website-icons/main/exercises/word-search.svg">
 
-✨&nbsp;🦄&nbsp; _**Want to jump directly into Exercism specifications & detail?**_  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Structure][exercism-track-structure] **|** [Tasks][exercism-tasks] **|** [Concepts][exercism-concepts] **|** [Concept Exercises][concept-exercises] **|** [Practice Exercises][practice-exercises] **|** [Presentation][exercise-presentation]  
+✨&nbsp;🦄&nbsp; _**Want to jump directly into Exercism specifications & detail?**_<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Structure][exercism-track-structure] **|** [Tasks][exercism-tasks] **|** [Concepts][exercism-concepts] **|** [Concept Exercises][concept-exercises] **|** [Practice Exercises][practice-exercises] **|** [Presentation][exercise-presentation]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Writing Style Guide][exercism-writing-style] **|** [Markdown Specification][exercism-markdown-specification] (_✨ version in [contributing][website-contributing-section] on exercism.org_)
 
 <br>
