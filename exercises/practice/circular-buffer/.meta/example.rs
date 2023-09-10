@@ -4,20 +4,21 @@ pub enum Error {
     FullBuffer,
 }
 
-pub struct CircularBuffer<T: Default + Clone> {
-    buffer: Vec<T>,
-    size: usize,
+pub struct CircularBuffer<T> {
+    /// Using Option leads to less efficient memory layout, but
+    /// it allows us to avoid using `unsafe` to handle uninitialized
+    /// mempory ourselves.
+    data: Vec<Option<T>>,
     start: usize,
     end: usize,
 }
 
-impl<T: Default + Clone> CircularBuffer<T> {
-    // this circular buffer keeps an unallocated slot between the start and the end
-    // when the buffer is full.
-    pub fn new(size: usize) -> CircularBuffer<T> {
-        CircularBuffer {
-            buffer: vec![T::default(); size + 1],
-            size: size + 1,
+impl<T> CircularBuffer<T> {
+    pub fn new(capacity: usize) -> Self {
+        let mut data = Vec::with_capacity(capacity);
+        data.resize_with(capacity, || None);
+        Self {
+            data,
             start: 0,
             end: 0,
         }
@@ -27,8 +28,9 @@ impl<T: Default + Clone> CircularBuffer<T> {
         if self.is_empty() {
             return Err(Error::EmptyBuffer);
         }
-
-        let v = self.buffer[self.start].clone();
+        let v = self.data[self.start]
+            .take()
+            .expect("should not read 'uninitialized' memory");
         self.advance_start();
         Ok(v)
     }
@@ -37,18 +39,16 @@ impl<T: Default + Clone> CircularBuffer<T> {
         if self.is_full() {
             return Err(Error::FullBuffer);
         }
-
-        self.buffer[self.end] = byte;
+        self.data[self.end] = Some(byte);
         self.advance_end();
         Ok(())
     }
 
     pub fn overwrite(&mut self, byte: T) {
-        if self.is_full() {
+        self.data[self.end] = Some(byte);
+        if self.start == self.end {
             self.advance_start();
         }
-
-        self.buffer[self.end] = byte;
         self.advance_end();
     }
 
@@ -57,24 +57,22 @@ impl<T: Default + Clone> CircularBuffer<T> {
         self.end = 0;
 
         // Clear any values in the buffer
-        for element in self.buffer.iter_mut() {
-            std::mem::take(element);
-        }
+        self.data.fill_with(|| None);
     }
 
-    pub fn is_empty(&self) -> bool {
-        self.start == self.end
+    fn is_empty(&self) -> bool {
+        self.start == self.end && self.data[self.start].is_none()
     }
 
-    pub fn is_full(&self) -> bool {
-        (self.end + 1) % self.size == self.start
+    fn is_full(&self) -> bool {
+        self.start == self.end && self.data[self.start].is_some()
     }
 
     fn advance_start(&mut self) {
-        self.start = (self.start + 1) % self.size;
+        self.start = (self.start + 1) % self.data.len();
     }
 
     fn advance_end(&mut self) {
-        self.end = (self.end + 1) % self.size;
+        self.end = (self.end + 1) % self.data.len();
     }
 }
