@@ -1,7 +1,7 @@
 pub fn verse(n: u32) -> String {
-    unimplemented!("emit verse {n}")
+    todo!("emit verse {n}")
 }
 
 pub fn sing(start: u32, end: u32) -> String {
-    unimplemented!("sing verses {start} to {end}, inclusive")
+    todo!("sing verses {start} to {end}, inclusive")
 }

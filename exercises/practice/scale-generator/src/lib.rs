@@ -16,14 +16,14 @@ pub struct Scale;
 
 impl Scale {
     pub fn new(tonic: &str, intervals: &str) -> Result<Scale, Error> {
-        unimplemented!("Construct a new scale with tonic {tonic} and intervals {intervals}")
+        todo!("Construct a new scale with tonic {tonic} and intervals {intervals}")
     }
 
     pub fn chromatic(tonic: &str) -> Result<Scale, Error> {
-        unimplemented!("Construct a new chromatic scale with tonic {tonic}")
+        todo!("Construct a new chromatic scale with tonic {tonic}")
     }
 
     pub fn enumerate(&self) -> Vec<String> {
-        unimplemented!()
+        todo!()
     }
 }

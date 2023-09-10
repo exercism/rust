@@ -10,25 +10,25 @@ impl<R: Read> ReadStats<R> {
     // can't be passed through format!(). For actual implementation you will likely
     // wish to remove the leading underscore so the variable is not ignored.
     pub fn new(_wrapped: R) -> ReadStats<R> {
-        unimplemented!()
+        todo!()
     }
 
     pub fn get_ref(&self) -> &R {
-        unimplemented!()
+        todo!()
     }
 
     pub fn bytes_through(&self) -> usize {
-        unimplemented!()
+        todo!()
     }
 
     pub fn reads(&self) -> usize {
-        unimplemented!()
+        todo!()
     }
 }
 
 impl<R: Read> Read for ReadStats<R> {
     fn read(&mut self, buf: &mut [u8]) -> Result<usize> {
-        unimplemented!("Collect statistics about this call reading {buf:?}")
+        todo!("Collect statistics about this call reading {buf:?}")
     }
 }
 
@@ -39,28 +39,28 @@ impl<W: Write> WriteStats<W> {
     // can't be passed through format!(). For actual implementation you will likely
     // wish to remove the leading underscore so the variable is not ignored.
     pub fn new(_wrapped: W) -> WriteStats<W> {
-        unimplemented!()
+        todo!()
     }
 
     pub fn get_ref(&self) -> &W {
-        unimplemented!()
+        todo!()
     }
 
     pub fn bytes_through(&self) -> usize {
-        unimplemented!()
+        todo!()
     }
 
     pub fn writes(&self) -> usize {
-        unimplemented!()
+        todo!()
     }
 }
 
 impl<W: Write> Write for WriteStats<W> {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
-        unimplemented!("Collect statistics about this call writing {buf:?}")
+        todo!("Collect statistics about this call writing {buf:?}")
     }
 
     fn flush(&mut self) -> Result<()> {
-        unimplemented!()
+        todo!()
     }
 }

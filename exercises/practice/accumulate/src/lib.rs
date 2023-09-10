@@ -1,4 +1,4 @@
 /// What should the type of _function be?
 pub fn map(input: Vec<i32>, _function: ???) -> Vec<i32> {
-    unimplemented!("Transform input vector {input:?} using passed function");
+    todo!("Transform input vector {input:?} using passed function");
 }

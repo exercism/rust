@@ -17,14 +17,14 @@ pub struct Flags;
 
 impl Flags {
     pub fn new(flags: &[&str]) -> Self {
-        unimplemented!(
+        todo!(
             "Given the flags {flags:?} implement your own 'Flags' struct to handle flags-related logic"
         );
     }
 }
 
 pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>, Error> {
-    unimplemented!(
+    todo!(
         "Search the files '{files:?}' for '{pattern}' pattern and save the matches in a vector. Your search logic should be aware of the given flags '{flags:?}'"
     );
 }

@@ -1,3 +1,3 @@
 pub fn encode(n: u64) -> String {
-    unimplemented!("Say {n} in English.");
+    todo!("Say {n} in English.");
 }
