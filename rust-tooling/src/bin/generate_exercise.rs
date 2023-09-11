@@ -200,9 +200,8 @@ fn generate_exercise_files(slug: &str, is_update: bool) {
     }
 
     std::fs::create_dir(exercise_path.join("tests")).ok();
-    let crate_name = slug.replace('-', "_");
     std::fs::write(
-        exercise_path.join(format!("tests/{crate_name}.rs")),
+        exercise_path.join(format!("tests/{slug}.rs")),
         exercise.tests,
     )
     .unwrap();
