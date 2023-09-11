@@ -1,7 +1,7 @@
 use knapsack::*;
 
 #[test]
-fn test_example_knapsack() {
+fn example_knapsack() {
     let max_weight = 10;
     let items = [
         Item {
@@ -27,7 +27,7 @@ fn test_example_knapsack() {
 
 #[test]
 #[ignore]
-fn test_no_items() {
+fn no_items() {
     let max_weight = 100;
     let items = [];
 
@@ -36,7 +36,7 @@ fn test_no_items() {
 
 #[test]
 #[ignore]
-fn test_one_item_too_heavy() {
+fn one_item_too_heavy() {
     let max_weight = 10;
     let items = [Item {
         weight: 100,
@@ -48,7 +48,7 @@ fn test_one_item_too_heavy() {
 
 #[test]
 #[ignore]
-fn test_five_items_cannot_be_greedy_by_weight() {
+fn five_items_cannot_be_greedy_by_weight() {
     let max_weight = 10;
     let items = [
         Item {
@@ -78,7 +78,7 @@ fn test_five_items_cannot_be_greedy_by_weight() {
 
 #[test]
 #[ignore]
-fn test_five_items_cannot_be_greedy_by_value() {
+fn five_items_cannot_be_greedy_by_value() {
     let max_weight = 10;
     let items = [
         Item {
@@ -108,7 +108,7 @@ fn test_five_items_cannot_be_greedy_by_value() {
 
 #[test]
 #[ignore]
-fn test_8_items() {
+fn eight_items() {
     let max_weight = 104;
     let items = [
         Item {
@@ -150,7 +150,7 @@ fn test_8_items() {
 
 #[test]
 #[ignore]
-fn test_15_items() {
+fn fifteen_items() {
     let max_weight = 750;
     let items = [
         Item {

@@ -9,25 +9,25 @@ fn empty_equals_empty() {
 
 #[test]
 #[ignore]
-fn test_empty_is_a_sublist_of_anything() {
+fn empty_is_a_sublist_of_anything() {
     assert_eq!(Comparison::Sublist, sublist(&[], &['a', 's', 'd', 'f']));
 }
 
 #[test]
 #[ignore]
-fn test_anything_is_a_superlist_of_empty() {
+fn anything_is_a_superlist_of_empty() {
     assert_eq!(Comparison::Superlist, sublist(&['a', 's', 'd', 'f'], &[]));
 }
 
 #[test]
 #[ignore]
-fn test_1_is_not_2() {
+fn one_is_not_two() {
     assert_eq!(Comparison::Unequal, sublist(&[1], &[2]));
 }
 
 #[test]
 #[ignore]
-fn test_compare_larger_equal_lists() {
+fn compare_larger_equal_lists() {
     use std::iter::repeat;
 
     let v: Vec<char> = repeat('x').take(1000).collect();
@@ -37,7 +37,7 @@ fn test_compare_larger_equal_lists() {
 
 #[test]
 #[ignore]
-fn test_sublist_at_start() {
+fn sublist_at_start() {
     assert_eq!(Comparison::Sublist, sublist(&[1, 2, 3], &[1, 2, 3, 4, 5]));
 }
 

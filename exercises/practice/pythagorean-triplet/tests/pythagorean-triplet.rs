@@ -14,37 +14,37 @@ fn process_tripletswithsum_case(sum: u32, expected: &[[u32; 3]]) {
 }
 
 #[test]
-fn test_triplets_whose_sum_is_12() {
+fn triplets_whose_sum_is_12() {
     process_tripletswithsum_case(12, &[[3, 4, 5]]);
 }
 
 #[test]
 #[ignore]
-fn test_triplets_whose_sum_is_108() {
+fn triplets_whose_sum_is_108() {
     process_tripletswithsum_case(108, &[[27, 36, 45]]);
 }
 
 #[test]
 #[ignore]
-fn test_triplets_whose_sum_is_1000() {
+fn triplets_whose_sum_is_1000() {
     process_tripletswithsum_case(1000, &[[200, 375, 425]]);
 }
 
 #[test]
 #[ignore]
-fn test_no_matching_triplets_for_1001() {
+fn no_matching_triplets_for_1001() {
     process_tripletswithsum_case(1001, &[]);
 }
 
 #[test]
 #[ignore]
-fn test_returns_all_matching_triplets() {
+fn returns_all_matching_triplets() {
     process_tripletswithsum_case(90, &[[9, 40, 41], [15, 36, 39]]);
 }
 
 #[test]
 #[ignore]
-fn test_several_matching_triplets() {
+fn several_matching_triplets() {
     process_tripletswithsum_case(
         840,
         &[
@@ -62,7 +62,7 @@ fn test_several_matching_triplets() {
 
 #[test]
 #[ignore]
-fn test_triplets_for_large_number() {
+fn triplets_for_large_number() {
     process_tripletswithsum_case(
         30_000,
         &[

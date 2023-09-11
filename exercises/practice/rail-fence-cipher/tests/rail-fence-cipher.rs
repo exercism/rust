@@ -32,21 +32,21 @@ fn process_decode_case(input: &str, rails: u32, expected: &str) {
 
 #[test]
 /// encode with two rails
-fn test_encode_with_two_rails() {
+fn encode_with_two_rails() {
     process_encode_case("XOXOXOXOXOXOXOXOXO", 2, "XXXXXXXXXOOOOOOOOO");
 }
 
 #[test]
 #[ignore]
 /// encode with three rails
-fn test_encode_with_three_rails() {
+fn encode_with_three_rails() {
     process_encode_case("WEAREDISCOVEREDFLEEATONCE", 3, "WECRLTEERDSOEEFEAOCAIVDEN");
 }
 
 #[test]
 #[ignore]
 /// encode with ending in the middle
-fn test_encode_with_ending_in_the_middle() {
+fn encode_with_ending_in_the_middle() {
     process_encode_case("EXERCISES", 4, "ESXIEECSR");
 }
 
@@ -55,21 +55,21 @@ fn test_encode_with_ending_in_the_middle() {
 #[test]
 #[ignore]
 /// decode with three rails
-fn test_decode_with_three_rails() {
+fn decode_with_three_rails() {
     process_decode_case("TEITELHDVLSNHDTISEIIEA", 3, "THEDEVILISINTHEDETAILS");
 }
 
 #[test]
 #[ignore]
 /// decode with five rails
-fn test_decode_with_five_rails() {
+fn decode_with_five_rails() {
     process_decode_case("EIEXMSMESAORIWSCE", 5, "EXERCISMISAWESOME");
 }
 
 #[test]
 #[ignore]
 /// decode with six rails
-fn test_decode_with_six_rails() {
+fn decode_with_six_rails() {
     process_decode_case(
         "133714114238148966225439541018335470986172518171757571896261",
         6,
@@ -87,6 +87,6 @@ fn test_decode_with_six_rails() {
 ///
 /// this text is possibly one of the most famous haiku of all time, by
 /// Matsuo Bashō (松尾芭蕉)
-fn test_encode_wide_characters() {
+fn encode_wide_characters() {
     process_encode_case("古池蛙飛び込む水の音", 3, "古びの池飛込水音蛙む");
 }

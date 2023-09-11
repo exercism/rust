@@ -41,31 +41,31 @@ pub fn total_pow_for() -> u64 {
 }
 
 #[bench]
-fn test_square_bit(b: &mut Bencher) {
+fn square_bit(b: &mut Bencher) {
     b.iter(|| square_bit(64));
 }
 
 #[bench]
-fn test_total_bit(b: &mut Bencher) {
+fn total_bit(b: &mut Bencher) {
     b.iter(|| total_bit());
 }
 
 #[bench]
-fn test_square_pow(b: &mut Bencher) {
+fn square_pow(b: &mut Bencher) {
     b.iter(|| square_pow(64));
 }
 
 #[bench]
-fn test_total_pow_u128(b: &mut Bencher) {
+fn total_pow_u128(b: &mut Bencher) {
     b.iter(|| total_pow_u128());
 }
 
 #[bench]
-fn test_total_pow_fold(b: &mut Bencher) {
+fn total_pow_fold(b: &mut Bencher) {
     b.iter(|| total_pow_fold());
 }
 
 #[bench]
-fn test_total_pow_for(b: &mut Bencher) {
+fn total_pow_for(b: &mut Bencher) {
     b.iter(|| total_pow_for());
 }

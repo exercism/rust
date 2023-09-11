@@ -23,7 +23,7 @@ fn count_returns_result() {
 
 #[test]
 #[ignore]
-fn test_count_empty() {
+fn count_empty() {
     assert_eq!(dna::count('A', ""), Ok(0));
 }
 
@@ -41,13 +41,13 @@ fn count_invalid_dna() {
 
 #[test]
 #[ignore]
-fn test_count_repetitive_cytosine() {
+fn count_repetitive_cytosine() {
     assert_eq!(dna::count('C', "CCCCC"), Ok(5));
 }
 
 #[test]
 #[ignore]
-fn test_count_only_thymine() {
+fn count_only_thymine() {
     assert_eq!(dna::count('T', "GGGGGTAACCCGG"), Ok(1));
 }
 
@@ -59,27 +59,27 @@ fn counts_returns_result() {
 
 #[test]
 #[ignore]
-fn test_empty_strand() {
+fn empty_strand() {
     process_nucleotidecounts_case("", &[('A', 0), ('T', 0), ('C', 0), ('G', 0)]);
 }
 
 #[test]
 #[ignore]
 /// can count one nucleotide in single-character input
-fn test_can_count_one_nucleotide_in_singlecharacter_input() {
+fn can_count_one_nucleotide_in_singlecharacter_input() {
     process_nucleotidecounts_case("G", &[('A', 0), ('C', 0), ('G', 1), ('T', 0)]);
 }
 
 #[test]
 #[ignore]
-fn test_strand_with_repeated_nucleotide() {
+fn strand_with_repeated_nucleotide() {
     process_nucleotidecounts_case("GGGGGGG", &[('A', 0), ('T', 0), ('C', 0), ('G', 7)]);
 }
 
 #[test]
 #[ignore]
 /// strand with multiple nucleotides
-fn test_strand_with_multiple_nucleotides() {
+fn strand_with_multiple_nucleotides() {
     process_nucleotidecounts_case(
         "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC",
         &[('A', 20), ('T', 21), ('C', 12), ('G', 17)],
@@ -95,6 +95,6 @@ fn counts_invalid_nucleotide_results_in_err() {
 #[test]
 #[ignore]
 /// strand with invalid nucleotides
-fn test_strand_with_invalid_nucleotides() {
+fn strand_with_invalid_nucleotides() {
     assert_eq!(dna::nucleotide_counts("AGXXACT"), Err('X'),);
 }

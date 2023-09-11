@@ -52,7 +52,7 @@ pub fn get_canonical_data(slug: &str) -> CanonicalData {
 }
 
 #[test]
-fn test_deserialize_canonical_data() {
+fn deserialize_canonical_data() {
     crate::fs_utils::cd_into_repo_root();
     for entry in ignore::Walk::new("problem-specifications/exercises")
         .filter_map(|e| e.ok())

@@ -1,19 +1,19 @@
 #[test]
-fn test_methionine() {
+fn methionine() {
     let info = nucleotide_codons::parse(make_pairs());
     assert_eq!(info.name_for("ATG"), Ok("methionine"));
 }
 
 #[test]
 #[ignore]
-fn test_cysteine_tgt() {
+fn cysteine_tgt() {
     let info = nucleotide_codons::parse(make_pairs());
     assert_eq!(info.name_for("TGT"), Ok("cysteine"));
 }
 
 #[test]
 #[ignore]
-fn test_cysteine_tgy() {
+fn cysteine_tgy() {
     // "compressed" name for TGT and TGC
     let info = nucleotide_codons::parse(make_pairs());
     assert_eq!(info.name_for("TGT"), info.name_for("TGY"));
@@ -22,28 +22,28 @@ fn test_cysteine_tgy() {
 
 #[test]
 #[ignore]
-fn test_stop() {
+fn stop() {
     let info = nucleotide_codons::parse(make_pairs());
     assert_eq!(info.name_for("TAA"), Ok("stop codon"));
 }
 
 #[test]
 #[ignore]
-fn test_valine() {
+fn valine() {
     let info = nucleotide_codons::parse(make_pairs());
     assert_eq!(info.name_for("GTN"), Ok("valine"));
 }
 
 #[test]
 #[ignore]
-fn test_isoleucine() {
+fn isoleucine() {
     let info = nucleotide_codons::parse(make_pairs());
     assert_eq!(info.name_for("ATH"), Ok("isoleucine"));
 }
 
 #[test]
 #[ignore]
-fn test_arginine_name() {
+fn arginine_name() {
     // In arginine CGA can be "compressed" both as CGN and as MGR
     let info = nucleotide_codons::parse(make_pairs());
     assert_eq!(info.name_for("CGA"), Ok("arginine"));

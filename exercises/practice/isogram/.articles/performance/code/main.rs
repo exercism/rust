@@ -85,31 +85,31 @@ pub fn check_hash_unicode(candidate: &str) -> bool {
 }
 
 #[bench]
-fn test_check_hash(b: &mut Bencher) {
+fn check_hash(b: &mut Bencher) {
     b.iter(|| check_hash("thumbscrew-japingly"));
 }
 
 #[bench]
-fn test_check_bits(b: &mut Bencher) {
+fn check_bits(b: &mut Bencher) {
     b.iter(|| check_bits("thumbscrew-japingly"));
 }
 
 #[bench]
-fn test_check_bits_func(b: &mut Bencher) {
+fn check_bits_func(b: &mut Bencher) {
     b.iter(|| check_bits_func("thumbscrew-japingly"));
 }
 
 #[bench]
-fn test_check_hash_filtermap(b: &mut Bencher) {
+fn check_hash_filtermap(b: &mut Bencher) {
     b.iter(|| check_hash_filtermap("thumbscrew-japingly"));
 }
 
 #[bench]
-fn test_check_bits_func_filter_map(b: &mut Bencher) {
+fn check_bits_func_filter_map(b: &mut Bencher) {
     b.iter(|| check_bits_func_filter_map("thumbscrew-japingly"));
 }
 
 #[bench]
-fn test_check_hash_unicode(b: &mut Bencher) {
+fn check_hash_unicode(b: &mut Bencher) {
     b.iter(|| check_hash_unicode("thumbscrew-japingly"));
 }

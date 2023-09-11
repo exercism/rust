@@ -1,14 +1,14 @@
 use simple_linked_list::SimpleLinkedList;
 
 #[test]
-fn test_new_list_is_empty() {
+fn new_list_is_empty() {
     let list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     assert_eq!(list.len(), 0, "list's length must be 0");
 }
 
 #[test]
 #[ignore]
-fn test_push_increments_length() {
+fn push_increments_length() {
     let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     list.push(1);
     assert_eq!(list.len(), 1, "list's length must be 1");
@@ -18,7 +18,7 @@ fn test_push_increments_length() {
 
 #[test]
 #[ignore]
-fn test_pop_decrements_length() {
+fn pop_decrements_length() {
     let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     list.push(1);
     list.push(2);
@@ -30,7 +30,7 @@ fn test_pop_decrements_length() {
 
 #[test]
 #[ignore]
-fn test_is_empty() {
+fn is_empty() {
     let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     assert!(list.is_empty(), "List wasn't empty on creation");
     for inserts in 0..100 {
@@ -57,7 +57,7 @@ fn test_is_empty() {
 
 #[test]
 #[ignore]
-fn test_pop_returns_head_element_and_removes_it() {
+fn pop_returns_head_element_and_removes_it() {
     let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     list.push(1);
     list.push(2);
@@ -68,7 +68,7 @@ fn test_pop_returns_head_element_and_removes_it() {
 
 #[test]
 #[ignore]
-fn test_peek_returns_reference_to_head_element_but_does_not_remove_it() {
+fn peek_returns_reference_to_head_element_but_does_not_remove_it() {
     let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     assert_eq!(list.peek(), None, "No element should be contained in list");
     list.push(2);
@@ -84,7 +84,7 @@ fn test_peek_returns_reference_to_head_element_but_does_not_remove_it() {
 
 #[test]
 #[ignore]
-fn test_from_slice() {
+fn from_slice() {
     let mut array = vec!["1", "2", "3", "4"];
     let mut list: SimpleLinkedList<_> = array.drain(..).collect();
     assert_eq!(list.pop(), Some("4"));
@@ -95,7 +95,7 @@ fn test_from_slice() {
 
 #[test]
 #[ignore]
-fn test_reverse() {
+fn reverse() {
     let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
     list.push(1);
     list.push(2);
@@ -109,7 +109,7 @@ fn test_reverse() {
 
 #[test]
 #[ignore]
-fn test_into_vector() {
+fn into_vector() {
     let mut v = Vec::new();
     let mut s = SimpleLinkedList::new();
     for i in 1..4 {

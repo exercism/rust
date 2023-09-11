@@ -1,13 +1,13 @@
 use diamond::*;
 
 #[test]
-fn test_a() {
+fn a() {
     assert_eq!(get_diamond('A'), vec!["A"]);
 }
 
 #[test]
 #[ignore]
-fn test_b() {
+fn b() {
     #[rustfmt::skip]
     assert_eq!(
         get_diamond('B'),
@@ -21,7 +21,7 @@ fn test_b() {
 
 #[test]
 #[ignore]
-fn test_c() {
+fn c() {
     #[rustfmt::skip]
     assert_eq!(
         get_diamond('C'),
@@ -37,7 +37,7 @@ fn test_c() {
 
 #[test]
 #[ignore]
-fn test_d() {
+fn d() {
     #[rustfmt::skip]
     assert_eq!(
         get_diamond('D'),
@@ -55,7 +55,7 @@ fn test_d() {
 
 #[test]
 #[ignore]
-fn test_e() {
+fn e() {
     assert_eq!(
         get_diamond('Z'),
         vec![

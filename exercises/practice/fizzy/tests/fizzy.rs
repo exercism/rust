@@ -10,28 +10,28 @@ macro_rules! expect {
 }
 
 #[test]
-fn test_simple() {
+fn simple() {
     let got = fizz_buzz::<i32>().apply(1..=16).collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
 
 #[test]
 #[ignore]
-fn test_u8() {
+fn u8() {
     let got = fizz_buzz::<u8>().apply(1_u8..=16).collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
 
 #[test]
 #[ignore]
-fn test_u64() {
+fn u64() {
     let got = fizz_buzz::<u64>().apply(1_u64..=16).collect::<Vec<_>>();
     assert_eq!(expect!(), got);
 }
 
 #[test]
 #[ignore]
-fn test_nonsequential() {
+fn nonsequential() {
     let collatz_12 = &[12, 6, 3, 10, 5, 16, 8, 4, 2, 1];
     let expect = vec![
         "fizz", "fizz", "fizz", "buzz", "buzz", "16", "8", "4", "2", "1",
@@ -44,7 +44,7 @@ fn test_nonsequential() {
 
 #[test]
 #[ignore]
-fn test_custom() {
+fn custom() {
     let expect = vec![
         "1", "2", "Fizz", "4", "Buzz", "Fizz", "Bam", "8", "Fizz", "Buzz", "11", "Fizz", "13",
         "Bam", "BuzzFizz", "16",
@@ -59,7 +59,7 @@ fn test_custom() {
 
 #[test]
 #[ignore]
-fn test_f64() {
+fn f64() {
     // a tiny bit more complicated becuase range isn't natively implemented on floats
     // NOTE: this test depends on a language feature introduced in Rust 1.34. If you
     // have an older compiler, upgrade. If you have an older compiler and cannot upgrade,
@@ -73,7 +73,7 @@ fn test_f64() {
 
 #[test]
 #[ignore]
-fn test_minimal_generic_bounds() {
+fn minimal_generic_bounds() {
     // NOTE: this test depends on a language feature introduced in Rust 1.34. If you
     // have an older compiler, upgrade. If you have an older compiler and cannot upgrade,
     // feel free to ignore this test.

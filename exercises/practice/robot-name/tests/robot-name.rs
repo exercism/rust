@@ -22,20 +22,20 @@ fn assert_name_is_persistent(r: &robot::Robot) {
 }
 
 #[test]
-fn test_name_should_match_expected_pattern() {
+fn name_should_match_expected_pattern() {
     let r = robot::Robot::new();
     assert_name_matches_pattern(r.name());
 }
 
 #[test]
 #[ignore]
-fn test_name_is_persistent() {
+fn name_is_persistent() {
     assert_name_is_persistent(&robot::Robot::new());
 }
 
 #[test]
 #[ignore]
-fn test_different_robots_have_different_names() {
+fn different_robots_have_different_names() {
     let r1 = robot::Robot::new();
     let r2 = robot::Robot::new();
     assert_ne!(r1.name(), r2.name(), "Robot names should be different");
@@ -43,7 +43,7 @@ fn test_different_robots_have_different_names() {
 
 #[test]
 #[ignore]
-fn test_many_different_robots_have_different_names() {
+fn many_different_robots_have_different_names() {
     use std::collections::HashSet;
 
     // In 3,529 random robot names, there is ~99.99% chance of a name collision
@@ -56,7 +56,7 @@ fn test_many_different_robots_have_different_names() {
 
 #[test]
 #[ignore]
-fn test_new_name_should_match_expected_pattern() {
+fn new_name_should_match_expected_pattern() {
     let mut r = robot::Robot::new();
     assert_name_matches_pattern(r.name());
     r.reset_name();
@@ -65,7 +65,7 @@ fn test_new_name_should_match_expected_pattern() {
 
 #[test]
 #[ignore]
-fn test_new_name_is_persistent() {
+fn new_name_is_persistent() {
     let mut r = robot::Robot::new();
     r.reset_name();
     assert_name_is_persistent(&r);
@@ -73,7 +73,7 @@ fn test_new_name_is_persistent() {
 
 #[test]
 #[ignore]
-fn test_new_name_is_different_from_old_name() {
+fn new_name_is_different_from_old_name() {
     let mut r = robot::Robot::new();
     let n1 = r.name().to_string();
     r.reset_name();

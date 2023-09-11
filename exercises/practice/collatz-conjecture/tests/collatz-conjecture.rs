@@ -1,31 +1,31 @@
 use collatz_conjecture::*;
 
 #[test]
-fn test_1() {
+fn one() {
     assert_eq!(Some(0), collatz(1));
 }
 
 #[test]
 #[ignore]
-fn test_16() {
+fn sixteen() {
     assert_eq!(Some(4), collatz(16));
 }
 
 #[test]
 #[ignore]
-fn test_12() {
+fn twelve() {
     assert_eq!(Some(9), collatz(12));
 }
 
 #[test]
 #[ignore]
-fn test_1000000() {
+fn one_million() {
     assert_eq!(Some(152), collatz(1_000_000));
 }
 
 #[test]
 #[ignore]
-fn test_0() {
+fn zero() {
     assert_eq!(None, collatz(0));
 }
 
@@ -38,14 +38,14 @@ fn test_110243094271() {
 
 #[test]
 #[ignore]
-fn test_max_div_3() {
+fn max_div_3() {
     let max = u64::MAX / 3;
     assert_eq!(None, collatz(max));
 }
 
 #[test]
 #[ignore]
-fn test_max_minus_1() {
+fn max_minus_1() {
     let max = u64::MAX - 1;
     assert_eq!(None, collatz(max));
 }

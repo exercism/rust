@@ -14,10 +14,10 @@ The [approaches page][approaches] lists four  idiomatic approaches to this exerc
 To benchmark the approaches, we wrote a [small benchmark application][benchmark-application].
 
 ```
-test test_is_pangram_all_contains   ... bench:         850 ns/iter (+/- 525)
-test test_is_pangram_hash_is_subset ... bench:       3,113 ns/iter (+/- 188)
-test test_is_pangram_hashset_len    ... bench:       1,737 ns/iter (+/- 331)
-test test_is_pangram_bitfield       ... bench:          76 ns/iter (+/- 12)
+test is_pangram_all_contains   ... bench:         850 ns/iter (+/- 525)
+test is_pangram_hash_is_subset ... bench:       3,113 ns/iter (+/- 188)
+test is_pangram_hashset_len    ... bench:       1,737 ns/iter (+/- 331)
+test is_pangram_bitfield       ... bench:          76 ns/iter (+/- 12)
 ```
 
 - The `HashSet` `len` approach is not quite twice as fast as the `HashSet` `is_subset` approach.

@@ -102,17 +102,17 @@ pub mod interval {
         use super::*;
 
         #[test]
-        fn test_parse_chromatic() {
+        fn parse_chromatic() {
             assert!("mmmmmmmmmmmm".parse::<Intervals>().is_ok());
         }
 
         #[test]
-        fn test_parse_major() {
+        fn parse_major() {
             assert!("MMmMMMm".parse::<Intervals>().is_ok());
         }
 
         #[test]
-        fn test_parse_minor() {
+        fn parse_minor() {
             assert!("MmMMmMM".parse::<Intervals>().is_ok());
         }
     }

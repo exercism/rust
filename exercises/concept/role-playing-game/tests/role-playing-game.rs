@@ -1,7 +1,7 @@
 use role_playing_game::*;
 
 #[test]
-fn test_reviving_dead_player() {
+fn reviving_dead_player() {
     let dead_player = Player {
         health: 0,
         mana: Some(0),
@@ -17,7 +17,7 @@ fn test_reviving_dead_player() {
 
 #[test]
 #[ignore]
-fn test_reviving_dead_level9_player() {
+fn reviving_dead_level9_player() {
     let dead_player = Player {
         health: 0,
         mana: None,
@@ -33,7 +33,7 @@ fn test_reviving_dead_level9_player() {
 
 #[test]
 #[ignore]
-fn test_reviving_dead_level10_player() {
+fn reviving_dead_level10_player() {
     let dead_player = Player {
         health: 0,
         mana: Some(0),
@@ -49,7 +49,7 @@ fn test_reviving_dead_level10_player() {
 
 #[test]
 #[ignore]
-fn test_reviving_alive_player() {
+fn reviving_alive_player() {
     let alive_player = Player {
         health: 1,
         mana: None,
@@ -60,7 +60,7 @@ fn test_reviving_alive_player() {
 
 #[test]
 #[ignore]
-fn test_cast_spell_with_enough_mana() {
+fn cast_spell_with_enough_mana() {
     const HEALTH: u32 = 99;
     const MANA: u32 = 100;
     const LEVEL: u32 = 100;
@@ -80,7 +80,7 @@ fn test_cast_spell_with_enough_mana() {
 
 #[test]
 #[ignore]
-fn test_cast_spell_with_insufficient_mana() {
+fn cast_spell_with_insufficient_mana() {
     let mut no_mana_wizard = Player {
         health: 56,
         mana: Some(2),
@@ -99,7 +99,7 @@ fn test_cast_spell_with_insufficient_mana() {
 
 #[test]
 #[ignore]
-fn test_cast_spell_with_no_mana_pool() {
+fn cast_spell_with_no_mana_pool() {
     const MANA_COST: u32 = 10;
 
     let mut underleveled_player = Player {
@@ -120,7 +120,7 @@ fn test_cast_spell_with_no_mana_pool() {
 
 #[test]
 #[ignore]
-fn test_cast_large_spell_with_no_mana_pool() {
+fn cast_large_spell_with_no_mana_pool() {
     const MANA_COST: u32 = 30;
 
     let mut underleveled_player = Player {

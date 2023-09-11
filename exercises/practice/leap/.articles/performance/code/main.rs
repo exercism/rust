@@ -46,31 +46,31 @@ pub fn is_leap_year_naive(year: u64) -> bool {
 }
 
 #[bench]
-fn test_ternary(b: &mut Bencher) {
+fn ternary(b: &mut Bencher) {
     b.iter(|| is_leap_year(2000));
 }
 
 #[bench]
-fn test_one_line(b: &mut Bencher) {
+fn one_line(b: &mut Bencher) {
     b.iter(|| is_leap_year_one_line(2000));
 }
 
 #[bench]
-fn test_match(b: &mut Bencher) {
+fn match(b: &mut Bencher) {
     b.iter(|| is_leap_year_match(2000));
 }
 
 #[bench]
-fn test_time(b: &mut Bencher) {
+fn time(b: &mut Bencher) {
     b.iter(|| is_leap_year_time(2000));
 }
 
 #[bench]
-fn test_chrono(b: &mut Bencher) {
+fn chrono(b: &mut Bencher) {
     b.iter(|| is_leap_year_chrono(2000));
 }
 
 #[bench]
-fn test_naive(b: &mut Bencher) {
+fn naive(b: &mut Bencher) {
     b.iter(|| is_leap_year_naive(2000));
 }

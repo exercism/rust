@@ -24,7 +24,7 @@ fn for_all_scripts(f: fn(&str)) {
 }
 
 #[test]
-fn test_file_extension() {
+fn file_extension() {
     for_all_scripts(|file_name| {
         assert!(
             file_name.ends_with(".sh"),
@@ -34,7 +34,7 @@ fn test_file_extension() {
 }
 
 #[test]
-fn test_snake_case_name() {
+fn snake_case_name() {
     for_all_scripts(|file_name| {
         let file_name = file_name.trim_end_matches(".sh");
 
@@ -47,7 +47,7 @@ fn test_snake_case_name() {
 
 /// Notably on nixOS and macOS, bash is not installed in `/bin/bash`.
 #[test]
-fn test_portable_shebang() {
+fn portable_shebang() {
     for_all_scripts(|file_name| {
         let contents = std::fs::read_to_string(PathBuf::from("bin").join(file_name)).unwrap();
         assert!(
