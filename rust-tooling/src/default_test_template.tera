@@ -3,9 +3,9 @@
 {% if loop.index != 1 -%}
 #[ignore]
 {% endif -%}
-fn {{ test.description | replace(from=" ", to="_") }}() {
+fn {{ test.description | lower | replace(from=" ", to="_") }}() {
     let input = {{ test.input }};
-    let output = {{ crate_name }}::TODO(input);
+    let output = {{ crate_name }}::{{ fn_names[0] }}(input);
     let expected = {{ test.expected }};
     assert_eq!(output, expected);
 }

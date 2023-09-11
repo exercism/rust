@@ -176,7 +176,13 @@ fn make_configlet_generate_what_it_can(slug: &str) {
 }
 
 fn generate_exercise_files(slug: &str, is_update: bool) {
-    let exercise = exercise_generation::new(slug);
+    let fn_names = if is_update {
+        read_fn_names_from_lib_rs(slug)
+    } else {
+        vec!["TODO".to_string()]
+    };
+
+    let exercise = exercise_generation::new(slug, fn_names);
 
     let exercise_path = PathBuf::from("exercises/practice").join(slug);
 
@@ -200,4 +206,15 @@ fn generate_exercise_files(slug: &str, is_update: bool) {
         exercise.tests,
     )
     .unwrap();
+}
+
+fn read_fn_names_from_lib_rs(slug: &str) -> Vec<String> {
+    let lib_rs =
+        std::fs::read_to_string(format!("exercises/practice/{}/src/lib.rs", slug)).unwrap();
+
+    lib_rs
+        .split("fn ")
+        .skip(1)
+        .map(|f| f.split_once('(').unwrap().0.to_string())
+        .collect()
 }

@@ -14,16 +14,17 @@ pub struct GeneratedExercise {
     pub tests: String,
 }
 
-pub fn new(slug: &str) -> GeneratedExercise {
+pub fn new(slug: &str, fn_names: Vec<String>) -> GeneratedExercise {
     let crate_name = slug.replace('-', "_");
+    let first_fn_name = &fn_names[0];
 
     GeneratedExercise {
         gitignore: GITIGNORE.into(),
         manifest: generate_manifest(&crate_name),
-        lib_rs: generate_lib_rs(&crate_name),
-        example: EXAMPLE_RS.into(),
+        lib_rs: generate_lib_rs(&crate_name, first_fn_name),
+        example: generate_example_rs(first_fn_name),
         test_template: TEST_TEMPLATE.into(),
-        tests: generate_tests(slug),
+        tests: generate_tests(slug, fn_names),
     }
 }
 
@@ -46,22 +47,28 @@ fn generate_manifest(crate_name: &str) -> String {
     )
 }
 
-fn generate_lib_rs(crate_name: &str) -> String {
+fn generate_lib_rs(crate_name: &str, fn_name: &str) -> String {
     format!(
         concat!(
-            "pub fn TODO(input: TODO) -> TODO {{\n",
+            "pub fn {fn_name}(input: TODO) -> TODO {{\n",
             "    todo!(\"use {{input}} to implement {crate_name}\")\n",
             "}}\n",
         ),
-        crate_name = crate_name
+        fn_name = fn_name,
+        crate_name = crate_name,
     )
 }
 
-static EXAMPLE_RS: &str = "\
-pub fn TODO(input: TODO) -> TODO {
-    TODO
+fn generate_example_rs(fn_name: &str) -> String {
+    format!(
+        concat!(
+            "pub fn {fn_name}(input: TODO) -> TODO {{\n",
+            "    TODO\n",
+            "}}\n",
+        ),
+        fn_name = fn_name
+    )
 }
-";
 
 static TEST_TEMPLATE: &str = include_str!("default_test_template.tera");
 
@@ -74,7 +81,7 @@ fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCa
     }
 }
 
-fn generate_tests(slug: &str) -> String {
+fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     let cases = get_canonical_data(slug).cases;
     let excluded_tests = get_excluded_tests(slug);
     let mut template = get_test_emplate(slug).unwrap();
@@ -90,7 +97,8 @@ fn generate_tests(slug: &str) -> String {
 
     let mut context = Context::new();
     context.insert("crate_name", &slug.replace('-', "_"));
+    context.insert("fn_names", &fn_names);
     context.insert("cases", &single_cases);
 
-    template.render("test_template.tera", &context).unwrap()
+    template.render("test_template.tera", &context).unwrap().trim_start().into()
 }
