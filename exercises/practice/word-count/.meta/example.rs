@@ -6,8 +6,8 @@ pub fn word_count(input: &str) -> HashMap<String, u32> {
     let slice: &str = lower.as_ref();
     for word in slice
         .split(|c: char| !c.is_alphanumeric() && c != '\'')
-        .filter(|s| !s.is_empty())
         .map(|s| s.trim_matches('\''))
+        .filter(|s| !s.is_empty())
     {
         *map.entry(word.to_string()).or_insert(0) += 1;
     }
