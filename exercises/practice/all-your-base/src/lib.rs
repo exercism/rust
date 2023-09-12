@@ -12,8 +12,7 @@ pub enum Error {
 /// A digit is any unsigned integer (e.g. u8, u16, u32, u64, or usize).
 /// Bases are specified as unsigned integers.
 ///
-/// Return an `Err(.)` if the conversion is impossible.
-/// The tests do not test for specific values inside the `Err(.)`.
+/// Return the corresponding Error enum if the conversion is impossible.
 ///
 ///
 /// You are allowed to change the function signature as long as all test still pass.
