@@ -4,9 +4,9 @@
 #[ignore]
 {% endif -%}
 fn {{ test.description | lower | replace(from=" ", to="_") }}() {
-    let input = {{ test.input }};
+    let input = {{ test.input | json_encode() }};
     let output = {{ crate_name }}::{{ fn_names[0] }}(input);
-    let expected = {{ test.expected }};
+    let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }
 {% endfor -%}
