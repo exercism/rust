@@ -1,0 +1,33 @@
+use variable_length_quantity as vlq;
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+{%- if test.property == "encode" %}
+    let input = &{{ test.input.integers | json_encode() }};
+    let output = vlq::{{ fn_names[0] }}(input);
+    let expected = vec![
+        {%- for byte in test.expected -%}
+            0x{{ byte | to_hex }},
+        {%- endfor -%}
+    ];
+{%- elif test.property == "decode" %}
+    let input = &[
+        {%- for byte in test.input.integers -%}
+            0x{{ byte | to_hex }},
+        {%- endfor -%}
+    ];
+    let output = vlq::{{ fn_names[1] }}(input);
+    let expected = {% if test.expected is object -%}
+        Err(vlq::Error::IncompleteNumber)
+    {%- else -%}
+        Ok(vec!{{ test.expected | json_encode() }})
+    {%- endif %};
+{%- else %}
+    panic!("unknown property: {{ test.property }}");
+{%- endif %}
+    assert_eq!(output, expected);
+}
+{% endfor -%}

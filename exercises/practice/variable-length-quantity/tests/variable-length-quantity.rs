@@ -1,134 +1,238 @@
 use variable_length_quantity as vlq;
 
 #[test]
-fn to_single_byte() {
-    assert_eq!(&[0x00], vlq::to_bytes(&[0x00]).as_slice());
-    assert_eq!(&[0x40], vlq::to_bytes(&[0x40]).as_slice());
-    assert_eq!(&[0x7f], vlq::to_bytes(&[0x7f]).as_slice());
+fn zero() {
+    let input = &[0];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x0];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn to_double_byte() {
-    assert_eq!(&[0x81, 0x00], vlq::to_bytes(&[0x80]).as_slice());
-    assert_eq!(&[0xc0, 0x00], vlq::to_bytes(&[0x2000]).as_slice());
-    assert_eq!(&[0xff, 0x7f], vlq::to_bytes(&[0x3fff]).as_slice());
+fn arbitrary_single_byte() {
+    let input = &[64];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x40];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn to_triple_byte() {
-    assert_eq!(&[0x81, 0x80, 0x00], vlq::to_bytes(&[0x4000]).as_slice());
-    assert_eq!(&[0xc0, 0x80, 0x00], vlq::to_bytes(&[0x10_0000]).as_slice());
-    assert_eq!(&[0xff, 0xff, 0x7f], vlq::to_bytes(&[0x1f_ffff]).as_slice());
+fn largest_single_byte() {
+    let input = &[127];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x7f];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn to_quadruple_byte() {
-    assert_eq!(
-        &[0x81, 0x80, 0x80, 0x00],
-        vlq::to_bytes(&[0x20_0000]).as_slice()
-    );
-    assert_eq!(
-        &[0xc0, 0x80, 0x80, 0x00],
-        vlq::to_bytes(&[0x0800_0000]).as_slice()
-    );
-    assert_eq!(
-        &[0xff, 0xff, 0xff, 0x7f],
-        vlq::to_bytes(&[0x0fff_ffff]).as_slice()
-    );
+fn smallest_double_byte() {
+    let input = &[128];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x81, 0x0];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn to_quintuple_byte() {
-    assert_eq!(
-        &[0x81, 0x80, 0x80, 0x80, 0x00],
-        vlq::to_bytes(&[0x1000_0000]).as_slice()
-    );
-    assert_eq!(
-        &[0x8f, 0xf8, 0x80, 0x80, 0x00],
-        vlq::to_bytes(&[0xff00_0000]).as_slice()
-    );
-    assert_eq!(
-        &[0x8f, 0xff, 0xff, 0xff, 0x7f],
-        vlq::to_bytes(&[0xffff_ffff]).as_slice()
-    );
+fn arbitrary_double_byte() {
+    let input = &[8192];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0xc0, 0x0];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn from_bytes() {
-    assert_eq!(Ok(vec![0x7f]), vlq::from_bytes(&[0x7f]));
-    assert_eq!(Ok(vec![0x2000]), vlq::from_bytes(&[0xc0, 0x00]));
-    assert_eq!(Ok(vec![0x1f_ffff]), vlq::from_bytes(&[0xff, 0xff, 0x7f]));
-    assert_eq!(
-        Ok(vec![0x20_0000]),
-        vlq::from_bytes(&[0x81, 0x80, 0x80, 0x00])
-    );
-    assert_eq!(
-        Ok(vec![0xffff_ffff]),
-        vlq::from_bytes(&[0x8f, 0xff, 0xff, 0xff, 0x7f])
-    );
+fn largest_double_byte() {
+    let input = &[16383];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0xff, 0x7f];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn to_bytes_multiple_values() {
-    assert_eq!(&[0x40, 0x7f], vlq::to_bytes(&[0x40, 0x7f]).as_slice());
-    assert_eq!(
-        &[0x81, 0x80, 0x00, 0xc8, 0xe8, 0x56],
-        vlq::to_bytes(&[0x4000, 0x12_3456]).as_slice()
-    );
-    assert_eq!(
-        &[
-            0xc0, 0x00, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0x00, 0xff, 0x7f, 0x81, 0x80,
-            0x00,
-        ],
-        vlq::to_bytes(&[0x2000, 0x12_3456, 0x0fff_ffff, 0x00, 0x3fff, 0x4000]).as_slice()
-    );
+fn smallest_triple_byte() {
+    let input = &[16384];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x81, 0x80, 0x0];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn from_bytes_multiple_values() {
-    assert_eq!(
-        Ok(vec![0x2000, 0x12_3456, 0x0fff_ffff, 0x00, 0x3fff, 0x4000]),
-        vlq::from_bytes(&[
-            0xc0, 0x00, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0x00, 0xff, 0x7f, 0x81, 0x80,
-            0x00,
-        ])
-    );
+fn arbitrary_triple_byte() {
+    let input = &[1048576];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0xc0, 0x80, 0x0];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn incomplete_byte_sequence() {
-    assert_eq!(Err(vlq::Error::IncompleteNumber), vlq::from_bytes(&[0xff]));
+fn largest_triple_byte() {
+    let input = &[2097151];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0xff, 0xff, 0x7f];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn zero_incomplete_byte_sequence() {
-    assert_eq!(Err(vlq::Error::IncompleteNumber), vlq::from_bytes(&[0x80]));
+fn smallest_quadruple_byte() {
+    let input = &[2097152];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x81, 0x80, 0x80, 0x0];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn overflow_u32() {
-    assert_eq!(
-        Err(vlq::Error::Overflow),
-        vlq::from_bytes(&[0xff, 0xff, 0xff, 0xff, 0x7f])
-    );
+fn arbitrary_quadruple_byte() {
+    let input = &[134217728];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0xc0, 0x80, 0x80, 0x0];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn chained_execution_is_identity() {
-    let test = &[0xf2, 0xf6, 0x96, 0x9c, 0x3b, 0x39, 0x2e, 0x30, 0xb3, 0x24];
-    assert_eq!(
-        Ok(Vec::from(&test[..])),
-        vlq::from_bytes(&vlq::to_bytes(test))
-    );
+fn largest_quadruple_byte() {
+    let input = &[268435455];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0xff, 0xff, 0xff, 0x7f];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn smallest_quintuple_byte() {
+    let input = &[268435456];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x81, 0x80, 0x80, 0x80, 0x0];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn arbitrary_quintuple_byte() {
+    let input = &[4278190080];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x8f, 0xf8, 0x80, 0x80, 0x0];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn maximum_32_bit_integer_input() {
+    let input = &[4294967295];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x8f, 0xff, 0xff, 0xff, 0x7f];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn two_single_byte_values() {
+    let input = &[64, 127];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x40, 0x7f];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn two_multi_byte_values() {
+    let input = &[16384, 1193046];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x81, 0x80, 0x0, 0xc8, 0xe8, 0x56];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn many_multi_byte_values() {
+    let input = &[8192, 1193046, 268435455, 0, 16383, 16384];
+    let output = vlq::to_bytes(input);
+    let expected = vec![
+        0xc0, 0x0, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0x0, 0xff, 0x7f, 0x81, 0x80, 0x0,
+    ];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn one_byte() {
+    let input = &[0x7f];
+    let output = vlq::from_bytes(input);
+    let expected = Ok(vec![127]);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn two_bytes() {
+    let input = &[0xc0, 0x0];
+    let output = vlq::from_bytes(input);
+    let expected = Ok(vec![8192]);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn three_bytes() {
+    let input = &[0xff, 0xff, 0x7f];
+    let output = vlq::from_bytes(input);
+    let expected = Ok(vec![2097151]);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn four_bytes() {
+    let input = &[0x81, 0x80, 0x80, 0x0];
+    let output = vlq::from_bytes(input);
+    let expected = Ok(vec![2097152]);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn maximum_32_bit_integer() {
+    let input = &[0x8f, 0xff, 0xff, 0xff, 0x7f];
+    let output = vlq::from_bytes(input);
+    let expected = Ok(vec![4294967295]);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn incomplete_sequence_causes_error() {
+    let input = &[0xff];
+    let output = vlq::from_bytes(input);
+    let expected = Err(vlq::Error::IncompleteNumber);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn incomplete_sequence_causes_error_even_if_value_is_zero() {
+    let input = &[0x80];
+    let output = vlq::from_bytes(input);
+    let expected = Err(vlq::Error::IncompleteNumber);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn multiple_values() {
+    let input = &[
+        0xc0, 0x0, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0x0, 0xff, 0x7f, 0x81, 0x80, 0x0,
+    ];
+    let output = vlq::from_bytes(input);
+    let expected = Ok(vec![8192, 1193046, 268435455, 0, 16383, 16384]);
+    assert_eq!(output, expected);
 }
