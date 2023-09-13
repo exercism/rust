@@ -101,6 +101,11 @@ Find some tips about writing tera templates [in the next section](#tera-template
 The full documentation for tera templates is [here][tera-docs].
 Following are some approaches that have worked for our specific needs.
 
+You will likely want to look at the exercise's `canonical-data.json`
+to see what structure your input data has.
+You can use `bin/symlink_problem_specifications.sh` to have this data
+symlinked into the actual exercise directory. Handy!
+
 The name of the input property is different for each exercise.
 The default template will be something like this:
 
