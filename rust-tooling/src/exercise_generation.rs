@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use tera::Context;
 
 use crate::{
@@ -81,6 +83,13 @@ fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCa
     }
 }
 
+fn to_hex(value: &tera::Value, _args: &HashMap<String, tera::Value>) -> tera::Result<tera::Value> {
+    Ok(serde_json::Value::String(format!(
+        "{:x}",
+        value.as_u64().unwrap()
+    )))
+}
+
 fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     let cases = get_canonical_data(slug).cases;
     let excluded_tests = get_excluded_tests(slug);
@@ -90,6 +99,7 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
             .add_raw_template("test_template.tera", TEST_TEMPLATE)
             .unwrap();
     }
+    template.register_filter("to_hex", to_hex);
 
     let mut single_cases = Vec::new();
     extend_single_cases(&mut single_cases, cases);
@@ -100,5 +110,9 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     context.insert("fn_names", &fn_names);
     context.insert("cases", &single_cases);
 
-    template.render("test_template.tera", &context).unwrap().trim_start().into()
+    template
+        .render("test_template.tera", &context)
+        .unwrap()
+        .trim_start()
+        .into()
 }
