@@ -60,6 +60,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
 
+      - name: Fetch origin/main
+        run: git fetch --depth=1 origin main
+
       - name: Setup toolchain
         uses: dtolnay/rust-toolchain@0e66bd3e6b38ec0ad5312288c83e47c143e6b09e
         with:
@@ -130,6 +133,7 @@ jobs:
         uses: dtolnay/rust-toolchain@0e66bd3e6b38ec0ad5312288c83e47c143e6b09e
         with:
           toolchain: ${{ matrix.rust }}
+          components: clippy
 
       - name: Clippy tests
         env:
