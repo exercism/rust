@@ -7,8 +7,8 @@ odd, multiply n by 3 and add 1 to get 3n + 1. Repeat the process indefinitely.
 The conjecture states that no matter which number you start with, you will
 always reach 1 eventually.
 
-But sometimes the number grow significantly before it reaches 1. 
-This can lead to an integer overflow and makes the algorithm unsolvable 
+But sometimes the number grow significantly before it reaches 1.
+This can lead to an integer overflow and makes the algorithm unsolvable
 within the range of a number in u64.
 
 Given a number n, return the number of steps required to reach 1.

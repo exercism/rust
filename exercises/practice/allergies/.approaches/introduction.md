@@ -8,7 +8,6 @@ Another approach can be to store the `Allergen` values as a [`u32`][u32] and onl
 
 Something to keep in mind is to leverage [bitwise][bitwise] operations to implement the logic.
 
-
 ## Approach: Create `Vec` on `new()`
 
 ```rust
@@ -104,11 +103,11 @@ impl Allergies {
     pub fn new(n: u32) -> Allergies {
         Allergies { allergens: n }
     }
-    
+
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
         self.allergens & *allergen as u32 != 0
     }
-    
+
     pub fn allergies(&self) -> Vec<Allergen> {
         ALLERGENS
             .iter()

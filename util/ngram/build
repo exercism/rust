@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-cargo build --release --quiet && cp ./target/release/ngram ../../bin/generator-utils && rm -rf ./target

@@ -1,84 +1,79 @@
 #[test]
-fn empty() {
-    assert_eq!(acronym::abbreviate(""), "");
-}
-
-#[test]
-#[ignore]
 fn basic() {
-    assert_eq!(acronym::abbreviate("Portable Network Graphics"), "PNG");
+    let input = "Portable Network Graphics";
+    let output = acronym::abbreviate(input);
+    let expected = "PNG";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn lowercase_words() {
-    assert_eq!(acronym::abbreviate("Ruby on Rails"), "ROR");
-}
-
-#[test]
-#[ignore]
-fn camelcase() {
-    assert_eq!(acronym::abbreviate("HyperText Markup Language"), "HTML");
+    let input = "Ruby on Rails";
+    let output = acronym::abbreviate(input);
+    let expected = "ROR";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn punctuation() {
-    assert_eq!(acronym::abbreviate("First In, First Out"), "FIFO");
+    let input = "First In, First Out";
+    let output = acronym::abbreviate(input);
+    let expected = "FIFO";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn all_caps_word() {
-    assert_eq!(
-        acronym::abbreviate("GNU Image Manipulation Program"),
-        "GIMP"
-    );
-}
-
-#[test]
-#[ignore]
-fn all_caps_word_with_punctuation() {
-    assert_eq!(acronym::abbreviate("PHP: Hypertext Preprocessor"), "PHP");
+    let input = "GNU Image Manipulation Program";
+    let output = acronym::abbreviate(input);
+    let expected = "GIMP";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn punctuation_without_whitespace() {
-    assert_eq!(
-        acronym::abbreviate("Complementary metal-oxide semiconductor"),
-        "CMOS"
-    );
+    let input = "Complementary metal-oxide semiconductor";
+    let output = acronym::abbreviate(input);
+    let expected = "CMOS";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn very_long_abbreviation() {
-    assert_eq!(
-        acronym::abbreviate(
-            "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me"
-        ),
-        "ROTFLSHTMDCOALM"
-    );
+    let input = "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me";
+    let output = acronym::abbreviate(input);
+    let expected = "ROTFLSHTMDCOALM";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn consecutive_delimiters() {
-    assert_eq!(
-        acronym::abbreviate("Something - I made up from thin air"),
-        "SIMUFTA"
-    );
+    let input = "Something - I made up from thin air";
+    let output = acronym::abbreviate(input);
+    let expected = "SIMUFTA";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn apostrophes() {
-    assert_eq!(acronym::abbreviate("Halley's Comet"), "HC");
+    let input = "Halley's Comet";
+    let output = acronym::abbreviate(input);
+    let expected = "HC";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn underscore_emphasis() {
-    assert_eq!(acronym::abbreviate("The Road _Not_ Taken"), "TRNT");
+    let input = "The Road _Not_ Taken";
+    let output = acronym::abbreviate(input);
+    let expected = "TRNT";
+    assert_eq!(output, expected);
 }

@@ -7,7 +7,7 @@ Another approach is to calculate the length every time it is asked for.
 ## General guidance
 
 One thing to keep in mind is to not mutate the list when it is not necessary.
-For instance, if you find yourself using `mut self` for  `rev()` or `into()`, that is an indication that the list is being mutated when it is not necessary.
+For instance, if you find yourself using `mut self` for `rev()` or `into()`, that is an indication that the list is being mutated when it is not necessary.
 
 A well-known treatment of writing linked lists in Rust is [`Learn Rust With Entirely Too Many Linked Lists`][too-many-lists].
 
@@ -132,11 +132,11 @@ impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
         Self { head: None }
     }
-    
+
     pub fn is_empty(&self) -> bool {
         self.head.is_none()
     }
-    
+
     pub fn len(&self) -> usize {
         let mut current_node = &self.head;
         let mut size = 0;
@@ -146,12 +146,12 @@ impl<T> SimpleLinkedList<T> {
         }
         size
     }
-    
+
     pub fn push(&mut self, element: T) {
         let node = Box::new(Node::new(element, self.head.take()));
         self.head = Some(node);
     }
-    
+
     pub fn pop(&mut self) -> Option<T> {
         if self.head.is_some() {
             let head_node = self.head.take().unwrap();
@@ -161,11 +161,11 @@ impl<T> SimpleLinkedList<T> {
             None
         }
     }
-    
+
     pub fn peek(&self) -> Option<&T> {
         self.head.as_ref().map(|head| &(head.data))
     }
-    
+
     pub fn rev(self) -> SimpleLinkedList<T> {
         let mut list = SimpleLinkedList::new();
         let mut cur_node = self.head;

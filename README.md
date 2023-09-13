@@ -1,106 +1,87 @@
-# Exercism Rust Track
+<br>
 
-[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=main)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amain)
+<img align="left" width="90" height="90" src="https://raw.githubusercontent.com/exercism/website-icons/main/tracks/rust.svg">
+<p vertical-align="middle"><h1>Exercism Rust Track</h1></p>
 
-Exercism exercises in Rust
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Discourse topics](https://img.shields.io/discourse/topics?color=8A08E6&label=Connect%20&labelColor=FFDF58&logo=Discourse&logoColor=8A08E6&server=https%3A%2F%2Fforum.exercism.org&style=social)](https://forum.exercism.org)
+&nbsp;&nbsp;[![Exercism_III](https://img.shields.io/badge/PAUSED-C73D4E?labelColor=3D454D&label=Contributions)](https://exercism.org/blog/freeing-our-maintainers)
+&nbsp;&nbsp;[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=main)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amain)
 
-## Contributing
+<br>
 
-Check out our [contributor documentation](docs/CONTRIBUTING.md).
+Hi. &nbsp;👋🏽 &nbsp;👋 &nbsp;**We are happy you are here.**&nbsp; 🎉&nbsp;🌟
 
-## Exercise Tests
+<br>
 
-At the most basic level, Exercism is all about the tests. You can read more about how we think about test suites in [the Exercism documentation](https://github.com/exercism/legacy-docs/blob/main/language-tracks/exercises/anatomy/test-suites.md).
+**`exercism/rust`** is one of many programming language tracks on [exercism(dot)org][exercism-website].
+This repo holds all the instructions, tests, code, & support files for Rust _exercises_ currently under development or implemented & available for students.
 
-Test files should use the following format:
+Some Exercism language tracks have a **syllabus** which is meant to teach the language step-by-step.
+The Rust track's syllabus is a work in progress and it's not activated yet.
+All exercises presented to students are **practice exercises**.
+Students are exepcted to learn the language themselves, for example with the [official book][the-rust-programming-language], and practice with our exercises.
 
-```
-extern crate exercise_name;
+<br><br>
 
-use exercise_name::*;
+<div>
+<span>
+<img align="left" height="60" width="85" src="https://user-images.githubusercontent.com/5923094/204436863-2ebf34d1-4b16-486b-9e0a-add36f4c09c1.svg">
+</span>
+<span align="left">
 
-#[test]
-fn test_descriptive_name() {
-    assert_eq!(exercise_function(1), 1);
-}
+🌟🌟&nbsp; Please take a moment to read our [Code of Conduct][exercism-code-of-conduct] &nbsp;🌟🌟<br>
+It might also be helpful to look at [Being a Good Community Member][being-a-good-community-member] & [The words that we use][the-words-that-we-use].<br>
+Some defined roles in our community: [Contributors][exercism-contributors] **|** [Mentors][exercism-mentors] **|** [Maintainers][exercism-track-maintainers] **|** [Admins][exercism-admins]
 
-#[test]
-#[ignore]
-fn test_second_and_past_tests_ignored() {
-    assert_ne!(exercise_function(1), 2);
-}
-```
+</span></div>
 
-## Opening an Issue
+<br>
+<img align="left" width="90" height="85" src="https://raw.githubusercontent.com/exercism/website-icons/main/exercises/health-statistics.svg">
 
-If you plan to make significant or breaking changes, please open an issue so we can discuss it first. If this is a discussion that is relevant to more than just the Rust track, please open an issue in [exercism/discussions](https://github.com/exercism/discussions/issues).
+We&nbsp;💛&nbsp;💙 &nbsp; our community.<br>
+**`But our maintainers are not accepting community contributions at this time.`**<br>
+Please read this [community blog post][freeing-maintainers] for details.
 
-## Submitting a Pull Request
+<br>
+<img align="left" width="95" height="90" src="https://raw.githubusercontent.com/exercism/website-icons/main/exercises/boutique-suggestions.svg">
 
-Pull requests should be focused on a single exercise, issue, or conceptually cohesive change. Please refer to Exercism's [pull request guidelines](https://github.com/exercism/legacy-docs/blob/main/contributing/pull-request-guidelines.md).
+Here to suggest a new feature or new exercise?? **Hooray!** &nbsp;🎉 &nbsp;<br>
+We'd love if you did that via our [Exercism Community Forum](https://forum.exercism.org/).<br>
+Please read [Suggesting Exercise Improvements][suggesting-improvements] & [Chesterton's Fence][chestertons-fence].<br>
+_Thoughtful suggestions will likely result faster & more enthusiastic responses from volunteers._
 
-Please follow the coding standards for Rust.  [rustfmt](https://github.com/nrc/rustfmt) may help with this
-and can be installed with `cargo install rustfmt`.
+<br>
+<img align="left" width="85" height="80" src="https://raw.githubusercontent.com/exercism/website-icons/main/exercises/word-search.svg">
 
-### Verifying your Change
+✨&nbsp;🦄&nbsp; _**Want to jump directly into Exercism specifications & detail?**_<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Structure][exercism-track-structure] **|** [Tasks][exercism-tasks] **|** [Concepts][exercism-concepts] **|** [Concept Exercises][concept-exercises] **|** [Practice Exercises][practice-exercises] **|** [Presentation][exercise-presentation]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Writing Style Guide][exercism-writing-style] **|** [Markdown Specification][exercism-markdown-specification] (_✨ version in [contributing][website-contributing-section] on exercism.org_)
 
-Before submitting your pull request, you'll want to verify the changes in two ways:
+<br>
+<br>
 
-* Run all the tests for the Rust exercises
-* Run an Exercism-specific linter to verify the track
+## Exercism Rust Track License
 
-All the tests for Rust exercises can be run from the top level of the repo with `_test/check_exercises.sh`. If you are on a Windows machine, there are additional [Windows-specific instructions](_test/WINDOWS_README.md) for running this.
+This repository uses the [MIT License](/LICENSE).
 
-### On modifying the exercises' README
-
-Please note that the README of every exercise is formed using several templates, not all of which are necessarily present on this repo. The most important of these:
-
-- The `description.md` file in the exercise directory from the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/main/exercises)
-
-- The `.meta/hints.md` file in the exercise directory on this repository
-
-- The [Rust-specific instructions](https://github.com/exercism/rust/blob/main/exercises/shared/.docs/tests.md)
-
-If you are modifying the section of the README that belongs to the template not from this repository, please consider [opening a PR](https://github.com/exercism/problem-specifications/pulls) on the `problem-specifications` repository first.
-
-## Contributing a New Exercise
-
-Please see the documentation about [adding new exercises](https://github.com/exercism/legacy-docs/blob/main/you-can-help/make-up-new-exercises.md).
-
-Note that:
-
-- The simplest way to generate, update or configure an exercise is to use the [exercise](https://github.com/exercism/rust/tree/main/util/exercise) utility provided in this repository. To compile the utility you can use the [bin/build_exercise_crate.sh](https://github.com/exercism/rust/tree/main/bin/build_exercise_crate.sh) script or, if the script does not work for you, use the `cargo build --release` command in the `util/exercise/` directory and then copy the `exercise` binary from the `util/exercise/target/release/` directory into the `bin/` directory. Use `bin/exercise --help` to learn about the existing commands and their possible usage.
-
-- Each exercise must stand on its own. Do not reference files outside the exercise directory. They will not be included when the user fetches the exercise.
-
-- Exercises must conform to the Exercism-wide standards described in [the documentation](https://github.com/exercism/legacy-docs/tree/main/language-tracks/exercises).
-
-- Each exercise should have:
-
-      exercises/exercise-name/
-                              tests/exercise-name.rs  <- a test suite
-                              src/lib.rs              <- an empty file or with exercise stubs
-                              example.rs              <- example solution that satisfies tests
-                              Cargo.toml              <- with version equal to exercise definition
-                              Cargo.lock              <- Auto generated
-                              README.md               <- Instructions for the exercise (see notes below)
-
-- The stub file and test suite should use only the Rust core libraries. `Cargo.toml` should not list any external dependencies as we don't want to make the student assume required crates. If an `example.rs` uses external crates, include `Cargo-example.toml` so that `_tests/check_exercises.sh` can compile with these when testing.
-
-- Except in extraordinary circumstances, the stub file should compile under `cargo test --no-run`.
-  This allows us to check that the signatures in the stub file match the signatures expected by the tests.
-  Use `unimplemented!()` as the body of each function to achieve this.
-  If there is a justified reason why this is not possible, instead include a `.custom."allowed-to-not-compile"` key in the exercise's `.meta/config.json` containing the reason.
-
-- If porting an existing exercise from problem-specifications that has a `canonical-data.json` file, use the version in `canonical-data.json` for that exercise as your `Cargo.toml` version.  Otherwise, use "0.0.0".
-
-- An exercise may contain `.meta/hints.md`.  This is optional and will appear after the normal exercise
-  instructions if present.  Rust is different in many ways from other languages.  This is a place where the differences required for Rust are explained.  If it is a large change, you may want to call this out as a comment at the top of `src/lib.rs`, so the user recognizes to read this section before starting.
-
-- If the test suite is appreciably sped up by running in release mode, and there is reason to be confident that the test suite appropriately detects any overflow errors, consider adding a marker to the exercise's `.meta/config.json`: `.custom."test-in-release-mode"` should be `true`. This can particularly impact the online editor experience.
-
-- If your exercise implements macro-based testing (see [#392](https://github.com/exercism/rust/issues/392#issuecomment-343865993) and [`perfect-numbers.rs`](https://github.com/exercism/rust/blob/main/exercises/practice/perfect-numbers/tests/perfect-numbers.rs)), you will likely run afoul of a CI check which counts the `#[ignore]` lines and compares the result to the number of `#[test]` lines. To fix this, add a marker to the exercise's `.meta/config.json`: `.custom."ignore-count-ignores"` should be `true` to disable that check for your exercise.
-
-- `README.md` may be [regenerated](https://github.com/exercism/legacy-docs/blob/main/maintaining-a-track/regenerating-exercise-readmes.md) from Exercism data. The generator will use the `description.md` from the exercise directory in the [problem-specifications repository](https://github.com/exercism/problem-specifications/tree/main/exercises), then any hints in `.meta/hints.md`, then the [Rust-specific instructions](https://github.com/exercism/rust/blob/main/exercises/shared/.docs/tests.md). The `## Source` section comes from the `metadata.yml` in the same directory.  Convention is that the description of the source remains text and the link is both name and hyperlink of the markdown link.
-
-- Be sure to add the exercise to an appropriate place in the `config.json` file.  The position in the file determines the order exercises are sent.   Generate a unique UUID for the exercise.  Current difficulty levels in use are 1, 4, 7 and 10.
+[being-a-good-community-member]: https://github.com/exercism/docs/tree/main/community/good-member
+[chestertons-fence]: https://github.com/exercism/docs/blob/main/community/good-member/chestertons-fence.md
+[concept-exercises]: https://github.com/exercism/docs/blob/main/building/tracks/concept-exercises.md
+[exercise-presentation]: https://github.com/exercism/docs/blob/main/building/tracks/presentation.md
+[exercism-admins]: https://github.com/exercism/docs/blob/main/community/administrators.md
+[exercism-code-of-conduct]: https://exercism.org/docs/using/legal/code-of-conduct
+[exercism-concepts]: https://github.com/exercism/docs/blob/main/building/tracks/concepts.md
+[exercism-contributors]: https://github.com/exercism/docs/blob/main/community/contributors.md
+[exercism-markdown-specification]: https://github.com/exercism/docs/blob/main/building/markdown/markdown.md
+[exercism-mentors]: https://github.com/exercism/docs/tree/main/mentoring
+[exercism-tasks]: https://exercism.org/docs/building/product/tasks
+[exercism-track-maintainers]: https://github.com/exercism/docs/blob/main/community/maintainers.md
+[exercism-track-structure]: https://github.com/exercism/docs/tree/main/building/tracks
+[exercism-website]: https://exercism.org/
+[exercism-writing-style]: https://github.com/exercism/docs/blob/main/building/markdown/style-guide.md
+[freeing-maintainers]: https://exercism.org/blog/freeing-our-maintainers
+[practice-exercises]: https://github.com/exercism/docs/blob/main/building/tracks/practice-exercises.md
+[suggesting-improvements]: https://github.com/exercism/docs/blob/main/community/good-member/suggesting-exercise-improvements.md
+[the-words-that-we-use]: https://github.com/exercism/docs/blob/main/community/good-member/words.md
+[website-contributing-section]: https://exercism.org/docs/building
+[the-rust-programming-language]: https://doc.rust-lang.org/book/
