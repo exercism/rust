@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 set -eo pipefail
+
 # Test an exercise
 
 # which exercise are we testing right now?

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+set -eo pipefail
+
 # Format existing exercises using rustfmt
-set -e
 
 repo=$(git rev-parse --show-toplevel)
 

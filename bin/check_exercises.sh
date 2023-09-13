@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
-
-# In DENYWARNINGS or CLIPPY mode, do not set -e so that we run all tests.
-# This allows us to see all warnings.
-# If we are in neither DENYWARNINGS nor CLIPPY mode, do set -e.
-if [ -z "$DENYWARNINGS" ] && [ -z "$CLIPPY" ]; then
-    set -e
-fi
+set -eo pipefail
 
 # can't benchmark with a stable compiler; to bench, use
 # $ BENCHMARK=1 rustup run nightly bin/check_exercises.sh
