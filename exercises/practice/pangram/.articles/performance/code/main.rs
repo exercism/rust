@@ -47,7 +47,7 @@ pub fn is_pangram_bitfield(sentence: &str) -> bool {
 }
 
 #[bench]
-fn test_is_pangram_all_contains(b: &mut Bencher) {
+fn is_pangram_all_contains(b: &mut Bencher) {
     b.iter(|| {
         is_pangram_all_contains(
             "Victor jagt zwölf_(12) Boxkämpfer quer über den großen Sylter Deich.",
@@ -56,7 +56,7 @@ fn test_is_pangram_all_contains(b: &mut Bencher) {
 }
 
 #[bench]
-fn test_is_pangram_hash_is_subset(b: &mut Bencher) {
+fn is_pangram_hash_is_subset(b: &mut Bencher) {
     b.iter(|| {
         is_pangram_hash_is_subset(
             "Victor jagt zwölf_(12) Boxkämpfer quer über den großen Sylter Deich.",
@@ -65,7 +65,7 @@ fn test_is_pangram_hash_is_subset(b: &mut Bencher) {
 }
 
 #[bench]
-fn test_is_pangram_hashset_len(b: &mut Bencher) {
+fn is_pangram_hashset_len(b: &mut Bencher) {
     b.iter(|| {
         is_pangram_hashset_len(
             "Victor jagt zwölf_(12) Boxkämpfer quer über den großen Sylter Deich.",
@@ -74,7 +74,7 @@ fn test_is_pangram_hashset_len(b: &mut Bencher) {
 }
 
 #[bench]
-fn test_is_pangram_bitfield(b: &mut Bencher) {
+fn is_pangram_bitfield(b: &mut Bencher) {
     b.iter(|| {
         is_pangram_bitfield("Victor jagt zwölf_(12) Boxkämpfer quer über den großen Sylter Deich.")
     });

@@ -102,9 +102,9 @@ fn tear_down_files(files: &[&str]) {
 
 /// This macro is here so that every test case had its own set of files to be used in test.
 /// The approach is to create required files for every test case and to append test name to the
-/// file names (so for test with a name 'test_one_file_one_match_no_flags' and a required file
+/// file names (so for test with a name 'one_file_one_match_no_flags' and a required file
 /// 'iliad.txt' there would be created a file with a name
-/// 'test_one_file_one_match_no_flags_iliad.txt').
+/// 'one_file_one_match_no_flags_iliad.txt').
 /// This allows us to create files for every test case with no intersection between them.
 ///
 /// A better way would be to create required set of files at the start of tests run and to
@@ -161,24 +161,24 @@ fn process_grep_case(pattern: &str, flags: &[&str], files: &[&str], expected: &[
 // Test returning a Result
 
 #[test]
-fn test_nonexistent_file_returns_error() {
+fn nonexistent_file_returns_error() {
     let pattern = "Agamemnon";
 
     let flags = Flags::new(&[]);
 
-    let files = vec!["test_nonexistent_file_returns_error_iliad.txt"];
+    let files = vec!["nonexistent_file_returns_error_iliad.txt"];
 
     assert!(grep(pattern, &flags, &files).is_err());
 }
 
 #[test]
 #[ignore]
-fn test_grep_returns_result() {
+fn grep_returns_result() {
     let pattern = "Agamemnon";
 
     let flags = Flags::new(&[]);
 
-    let files = vec!["test_grep_returns_result_iliad.txt"];
+    let files = vec!["grep_returns_result_iliad.txt"];
 
     let test_fixture = Fixture::new(&files);
 
@@ -192,7 +192,7 @@ fn test_grep_returns_result() {
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_one_match_no_flags(
+    one_file_one_match_no_flags(
         pattern = "Agamemnon",
         flags = [],
         files = ["iliad.txt"],
@@ -203,7 +203,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_one_match_print_line_numbers_flag(
+    one_file_one_match_print_line_numbers_flag(
         pattern = "Forbidden",
         flags = ["-n"],
         files = ["paradise_lost.txt"],
@@ -214,7 +214,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_one_match_caseinsensitive_flag(
+    one_file_one_match_caseinsensitive_flag(
         pattern = "FORBIDDEN",
         flags = ["-i"],
         files = ["paradise_lost.txt"],
@@ -225,7 +225,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_one_match_print_file_names_flag(
+    one_file_one_match_print_file_names_flag(
         pattern = "Forbidden",
         flags = ["-l"],
         files = ["paradise_lost.txt"],
@@ -236,7 +236,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_one_match_match_entire_lines_flag(
+    one_file_one_match_match_entire_lines_flag(
         pattern = "With loss of Eden, till one greater Man",
         flags = ["-x"],
         files = ["paradise_lost.txt"],
@@ -247,7 +247,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_one_match_multiple_flags(
+    one_file_one_match_multiple_flags(
         pattern = "OF ATREUS, Agamemnon, KIng of MEN.",
         flags = ["-x", "-i", "-n"],
         files = ["iliad.txt"],
@@ -258,7 +258,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_several_matches_no_flags(
+    one_file_several_matches_no_flags(
         pattern = "may",
         flags = [],
         files = ["midsummer_night.txt"],
@@ -273,7 +273,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_several_matches_print_line_numbers_flag(
+    one_file_several_matches_print_line_numbers_flag(
         pattern = "may",
         flags = ["-n"],
         files = ["midsummer_night.txt"],
@@ -288,7 +288,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_several_matches_match_entire_lines_flag(
+    one_file_several_matches_match_entire_lines_flag(
         pattern = "may",
         flags = ["-x"],
         files = ["midsummer_night.txt"],
@@ -299,7 +299,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_several_matches_caseinsensitive_flag(
+    one_file_several_matches_caseinsensitive_flag(
         pattern = "ACHILLES",
         flags = ["-i"],
         files = ["iliad.txt"],
@@ -313,7 +313,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_several_matches_inverted_flag(
+    one_file_several_matches_inverted_flag(
         pattern = "Of",
         flags = ["-v"],
         files = ["paradise_lost.txt"],
@@ -330,7 +330,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_no_matches_various_flags(
+    one_file_no_matches_various_flags(
         pattern = "Gandalf",
         flags = ["-n", "-l", "-x", "-i"],
         files = ["iliad.txt"],
@@ -341,7 +341,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_several_matches_inverted_and_match_entire_lines_flags(
+    one_file_several_matches_inverted_and_match_entire_lines_flags(
         pattern = "Illustrious into Ades premature,",
         flags = ["-x", "-v"],
         files = ["iliad.txt"],
@@ -361,7 +361,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_one_file_one_match_file_flag_takes_precedence_over_line_flag(
+    one_file_one_match_file_flag_takes_precedence_over_line_flag(
         pattern = "ten",
         flags = ["-n", "-l"],
         files = ["iliad.txt"],
@@ -374,7 +374,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_one_match_no_flags(
+    multiple_files_one_match_no_flags(
         pattern = "Agamemnon",
         flags = [],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -385,7 +385,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_several_matches_no_flags(
+    multiple_files_several_matches_no_flags(
         pattern = "may",
         flags = [],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -400,7 +400,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_several_matches_print_line_numbers_flag(
+    multiple_files_several_matches_print_line_numbers_flag(
         pattern = "that",
         flags = ["-n"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -416,7 +416,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_one_match_print_file_names_flag(
+    multiple_files_one_match_print_file_names_flag(
         pattern = "who",
         flags = ["-l"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -427,7 +427,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_several_matches_caseinsensitive_flag(
+    multiple_files_several_matches_caseinsensitive_flag(
         pattern = "TO",
         flags = ["-i"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -449,7 +449,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_several_matches_caseinsensitive_flag_utf8(
+    multiple_files_several_matches_caseinsensitive_flag_utf8(
         pattern = "В", // This letter stands for cyrillic 'Ve' and not latin 'B'. Therefore there should be no matches from paradise_lost.txt
         flags = ["-i"],
         files = ["paradise_lost.txt", "in_the_white_night.txt"],
@@ -465,7 +465,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_several_matches_inverted_flag(
+    multiple_files_several_matches_inverted_flag(
         pattern = "a",
         flags = ["-v"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -480,7 +480,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_one_match_match_entire_lines_flag(
+    multiple_files_one_match_match_entire_lines_flag(
         pattern = "But I beseech your grace that I may know",
         flags = ["-x"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -491,7 +491,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_one_match_multiple_flags(
+    multiple_files_one_match_multiple_flags(
         pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN",
         flags = ["-n", "-i", "-x"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -502,7 +502,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_no_matches_various_flags(
+    multiple_files_no_matches_various_flags(
         pattern = "Frodo",
         flags = ["-n", "-i", "-x", "-l"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -513,7 +513,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_several_matches_file_flag_takes_precedence_over_line_number_flag(
+    multiple_files_several_matches_file_flag_takes_precedence_over_line_number_flag(
         pattern = "who",
         flags = ["-n", "-l"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],
@@ -524,7 +524,7 @@ set_up_test_case!(
 set_up_test_case!(
     #[test]
     #[ignore]
-    test_multiple_files_several_matches_inverted_and_match_entire_lines_flags(
+    multiple_files_several_matches_inverted_and_match_entire_lines_flags(
         pattern = "Illustrious into Ades premature,",
         flags = ["-x", "-v"],
         files = ["iliad.txt", "midsummer_night.txt", "paradise_lost.txt"],

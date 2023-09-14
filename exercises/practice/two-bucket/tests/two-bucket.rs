@@ -1,7 +1,7 @@
 use two_bucket::{solve, Bucket, BucketStats};
 
 #[test]
-fn test_case_1() {
+fn case_1() {
     assert_eq!(
         solve(3, 5, 1, &Bucket::One),
         Some(BucketStats {
@@ -14,7 +14,7 @@ fn test_case_1() {
 
 #[test]
 #[ignore]
-fn test_case_2() {
+fn case_2() {
     assert_eq!(
         solve(3, 5, 1, &Bucket::Two),
         Some(BucketStats {
@@ -27,7 +27,7 @@ fn test_case_2() {
 
 #[test]
 #[ignore]
-fn test_case_3() {
+fn case_3() {
     assert_eq!(
         solve(7, 11, 2, &Bucket::One),
         Some(BucketStats {
@@ -40,7 +40,7 @@ fn test_case_3() {
 
 #[test]
 #[ignore]
-fn test_case_4() {
+fn case_4() {
     assert_eq!(
         solve(7, 11, 2, &Bucket::Two),
         Some(BucketStats {

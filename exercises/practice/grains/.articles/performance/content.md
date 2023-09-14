@@ -14,12 +14,12 @@ Varieties of `pow` that iterate and call `square` were also benchmarked.
 To benchmark the approaches, we wrote a [small benchmark application][benchmark-application].
 
 ```
-test test_square_bit      ... bench:           0 ns/iter (+/- 0)
-test test_total_bit       ... bench:           0 ns/iter (+/- 0)
-test test_square_pow      ... bench:           0 ns/iter (+/- 0)
-test test_total_pow_u128  ... bench:           0 ns/iter (+/- 0)
-test test_total_pow_fold  ... bench:         215 ns/iter (+/- 7)
-test test_total_pow_for   ... bench:         263 ns/iter (+/- 46)
+test square_bit      ... bench:           0 ns/iter (+/- 0)
+test total_bit       ... bench:           0 ns/iter (+/- 0)
+test square_pow      ... bench:           0 ns/iter (+/- 0)
+test total_pow_u128  ... bench:           0 ns/iter (+/- 0)
+test total_pow_fold  ... bench:         215 ns/iter (+/- 7)
+test total_pow_for   ... bench:         263 ns/iter (+/- 46)
 ```
 
 `pow` and bit shifting have the same measurable performance.

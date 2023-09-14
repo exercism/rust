@@ -403,7 +403,7 @@ fn callbacks_should_not_be_called_if_dependencies_change_but_output_value_doesnt
 
 #[test]
 #[ignore]
-fn test_adder_with_boolean_values() {
+fn adder_with_boolean_values() {
     // This is a digital logic circuit called an adder:
     // https://en.wikipedia.org/wiki/Adder_(electronics)
     let mut reactor = Reactor::new();

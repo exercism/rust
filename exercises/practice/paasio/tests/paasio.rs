@@ -9,7 +9,7 @@ macro_rules! test_read {
 
             $(#[$attr])*
             #[test]
-            fn test_read_passthrough() {
+            fn read_passthrough() {
                 let data = $input;
                 let len = $len;
                 let size = len(&data);
@@ -30,7 +30,7 @@ macro_rules! test_read {
 
             $(#[$attr])*
             #[test]
-            fn test_read_chunks() {
+            fn read_chunks() {
                 let data = $input;
                 let len = $len;
                 let size = len(&data);
@@ -51,7 +51,7 @@ macro_rules! test_read {
 
             $(#[$attr])*
             #[test]
-            fn test_read_buffered_chunks() {
+            fn read_buffered_chunks() {
                 let data = $input;
                 let len = $len;
                 let size = len(&data);
@@ -85,7 +85,7 @@ macro_rules! test_write {
             const CHUNK_SIZE: usize = 2;
             $(#[$attr])*
             #[test]
-            fn test_write_passthrough() {
+            fn write_passthrough() {
                 let data = $input;
                 let len = $len;
                 let size = len(&data);
@@ -100,7 +100,7 @@ macro_rules! test_write {
 
             $(#[$attr])*
             #[test]
-            fn test_sink_oneshot() {
+            fn sink_oneshot() {
                 let data = $input;
                 let len = $len;
                 let size = len(&data);
@@ -114,7 +114,7 @@ macro_rules! test_write {
 
             $(#[$attr])*
             #[test]
-            fn test_sink_windowed() {
+            fn sink_windowed() {
                 let data = $input;
                 let len = $len;
                 let size = len(&data);
@@ -133,7 +133,7 @@ macro_rules! test_write {
 
             $(#[$attr])*
             #[test]
-            fn test_sink_buffered_windowed() {
+            fn sink_buffered_windowed() {
                 let data = $input;
                 let len = $len;
                 let size = len(&data);
@@ -159,7 +159,7 @@ macro_rules! test_write {
 }
 
 #[test]
-fn test_create_stats() {
+fn create_stats() {
     let mut data: Vec<u8> = Vec::new();
     let _ = paasio::ReadStats::new(data.as_slice());
     let _ = paasio::WriteStats::new(data.as_mut_slice());

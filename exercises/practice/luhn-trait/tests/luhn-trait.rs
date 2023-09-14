@@ -58,6 +58,6 @@ fn you_can_validate_from_a_usize() {
 
 #[test]
 #[ignore]
-fn test_input_digit_9_is_still_correctly_converted_to_output_digit_9() {
+fn input_digit_9_is_still_correctly_converted_to_output_digit_9() {
     assert!("091".valid_luhn());
 }

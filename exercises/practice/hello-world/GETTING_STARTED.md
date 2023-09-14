@@ -22,29 +22,29 @@ This will compile the `hello-world` crate and run the test, which fails.
 
 ```sh
 running 1 test
-test test_hello_world ... FAILED
+test hello_world ... FAILED
 
 failures:
 
----- test_hello_world stdout ----
-thread 'test_hello_world' panicked at 'assertion failed: `(left == right)`
+---- hello_world stdout ----
+thread 'hello_world' panicked at 'assertion failed: `(left == right)`
 (left: `"Hello, World!"`, right: `"Goodbye, Mars!"`)', tests/hello-world.rs:5
 
 failures:
-    test_hello_world
+    hello_world
 
 test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured
 ```
 
 ### Understanding Test Failures
 
-The `test_hello_world` failure states that it is expecting the value,
+The `hello_world` failure states that it is expecting the value,
 `"Hello, World!"`, to be returned from `hello()`.
 The left side of the assertion (at line 5) should be equal to the right side.
 
 ```sh
----- test_hello_world stdout ----
-thread 'test_hello_world' panicked at 'assertion failed: `(left == right)`
+---- hello_world stdout ----
+thread 'hello_world' panicked at 'assertion failed: `(left == right)`
 (left: `"Hello, World!"`, right: `"Goodbye, Mars!"`)', tests/hello-world.rs:5
 ```
 
@@ -71,7 +71,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
      Running target/debug/deps/hello_world-bd1f06dc726ef14f
 
 running 1 test
-test test_hello_world ... ok
+test hello_world ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
 

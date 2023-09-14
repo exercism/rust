@@ -1,7 +1,7 @@
 use csv_builder::*;
 
 #[test]
-fn test_no_escaping() {
+fn no_escaping() {
     let mut builder = CsvRecordBuilder::new();
 
     builder.add("ant");
@@ -15,7 +15,7 @@ fn test_no_escaping() {
 
 #[test]
 #[ignore]
-fn test_quote() {
+fn quote() {
     let mut builder = CsvRecordBuilder::new();
 
     builder.add("ant");
@@ -28,7 +28,7 @@ fn test_quote() {
 
 #[test]
 #[ignore]
-fn test_new_line() {
+fn new_line() {
     let mut builder = CsvRecordBuilder::new();
 
     builder.add("ant");
@@ -39,7 +39,7 @@ fn test_new_line() {
 }
 #[test]
 #[ignore]
-fn test_comma() {
+fn comma() {
     let mut builder = CsvRecordBuilder::new();
 
     builder.add("ant");
@@ -51,7 +51,7 @@ fn test_comma() {
 
 #[test]
 #[ignore]
-fn test_empty() {
+fn empty() {
     let builder = CsvRecordBuilder::new();
     let list = builder.build();
     assert!(list.is_empty());

@@ -9,7 +9,7 @@ fn process_anagram_case(word: &str, inputs: &[&str], expected: &[&str]) {
 }
 
 #[test]
-fn test_no_matches() {
+fn no_matches() {
     let word = "diaper";
 
     let inputs = ["hello", "world", "zombies", "pants"];
@@ -21,7 +21,7 @@ fn test_no_matches() {
 
 #[test]
 #[ignore]
-fn test_detect_simple_anagram() {
+fn detect_simple_anagram() {
     let word = "ant";
 
     let inputs = ["tan", "stand", "at"];
@@ -33,7 +33,7 @@ fn test_detect_simple_anagram() {
 
 #[test]
 #[ignore]
-fn test_does_not_confuse_different_duplicates() {
+fn does_not_confuse_different_duplicates() {
     let word = "galea";
 
     let inputs = ["eagle"];
@@ -45,7 +45,7 @@ fn test_does_not_confuse_different_duplicates() {
 
 #[test]
 #[ignore]
-fn test_eliminate_anagram_subsets() {
+fn eliminate_anagram_subsets() {
     let word = "good";
 
     let inputs = ["dog", "goody"];
@@ -57,7 +57,7 @@ fn test_eliminate_anagram_subsets() {
 
 #[test]
 #[ignore]
-fn test_detect_anagram() {
+fn detect_anagram() {
     let word = "listen";
 
     let inputs = ["enlists", "google", "inlets", "banana"];
@@ -69,7 +69,7 @@ fn test_detect_anagram() {
 
 #[test]
 #[ignore]
-fn test_multiple_anagrams() {
+fn multiple_anagrams() {
     let word = "allergy";
 
     let inputs = [
@@ -88,7 +88,7 @@ fn test_multiple_anagrams() {
 
 #[test]
 #[ignore]
-fn test_case_insensitive_anagrams() {
+fn case_insensitive_anagrams() {
     let word = "Orchestra";
 
     let inputs = ["cashregister", "Carthorse", "radishes"];
@@ -100,7 +100,7 @@ fn test_case_insensitive_anagrams() {
 
 #[test]
 #[ignore]
-fn test_unicode_anagrams() {
+fn unicode_anagrams() {
     let word = "ΑΒΓ";
 
     // These words don't make sense, they're just greek letters cobbled together.
@@ -113,7 +113,7 @@ fn test_unicode_anagrams() {
 
 #[test]
 #[ignore]
-fn test_misleading_unicode_anagrams() {
+fn misleading_unicode_anagrams() {
     // Despite what a human might think these words contain different letters, the input uses Greek
     // A and B while the list of potential anagrams uses Latin A and B.
     let word = "ΑΒΓ";
@@ -127,7 +127,7 @@ fn test_misleading_unicode_anagrams() {
 
 #[test]
 #[ignore]
-fn test_does_not_detect_a_word_as_its_own_anagram() {
+fn does_not_detect_a_word_as_its_own_anagram() {
     let word = "banana";
 
     let inputs = ["banana"];
@@ -139,7 +139,7 @@ fn test_does_not_detect_a_word_as_its_own_anagram() {
 
 #[test]
 #[ignore]
-fn test_does_not_detect_a_differently_cased_word_as_its_own_anagram() {
+fn does_not_detect_a_differently_cased_word_as_its_own_anagram() {
     let word = "banana";
 
     let inputs = ["bAnana"];
@@ -151,7 +151,7 @@ fn test_does_not_detect_a_differently_cased_word_as_its_own_anagram() {
 
 #[test]
 #[ignore]
-fn test_does_not_detect_a_differently_cased_unicode_word_as_its_own_anagram() {
+fn does_not_detect_a_differently_cased_unicode_word_as_its_own_anagram() {
     let word = "ΑΒΓ";
 
     let inputs = ["ΑΒγ"];
@@ -163,7 +163,7 @@ fn test_does_not_detect_a_differently_cased_unicode_word_as_its_own_anagram() {
 
 #[test]
 #[ignore]
-fn test_same_bytes_different_chars() {
+fn same_bytes_different_chars() {
     let word = "a⬂"; // 61 E2 AC 82
 
     let inputs = ["€a"]; // E2 82 AC 61
@@ -175,7 +175,7 @@ fn test_same_bytes_different_chars() {
 
 #[test]
 #[ignore]
-fn test_different_words_but_same_ascii_sum() {
+fn different_words_but_same_ascii_sum() {
     let word = "bc";
 
     let inputs = ["ad"];

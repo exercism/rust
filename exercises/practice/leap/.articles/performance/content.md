@@ -18,12 +18,12 @@ For our performance investigation, we'll also include two other approaches:
 To benchmark the approaches, we wrote a [small benchmark application][benchmark-application].
 
 ```
-test test_ternary  ... bench:           0 ns/iter (+/- 0)
-test test_one_line ... bench:           0 ns/iter (+/- 0)
-test test_match    ... bench:           0 ns/iter (+/- 0)
-test test_time     ... bench:          30 ns/iter (+/- 9)
-test test_chrono   ... bench:          18 ns/iter (+/- 3)
-test test_naive    ... bench:          18 ns/iter (+/- 1)
+test ternary  ... bench:           0 ns/iter (+/- 0)
+test one_line ... bench:           0 ns/iter (+/- 0)
+test match    ... bench:           0 ns/iter (+/- 0)
+test time     ... bench:          30 ns/iter (+/- 9)
+test chrono   ... bench:          18 ns/iter (+/- 3)
+test naive    ... bench:          18 ns/iter (+/- 1)
 ```
 
 The three main approaches were identical in measurable performance.

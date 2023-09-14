@@ -13,7 +13,7 @@ fn contains_trailing_whitespace(p: &Path) -> bool {
 }
 
 #[test]
-fn test_no_trailing_whitespace() {
+fn no_trailing_whitespace() {
     fs_utils::cd_into_repo_root();
 
     for entry in ignore::Walk::new("./") {

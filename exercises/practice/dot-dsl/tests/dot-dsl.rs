@@ -4,7 +4,7 @@ use dot_dsl::graph::Graph;
 use maplit::hashmap;
 
 #[test]
-fn test_empty_graph() {
+fn empty_graph() {
     let graph = Graph::new();
 
     assert!(graph.nodes.is_empty());
@@ -16,7 +16,7 @@ fn test_empty_graph() {
 
 #[test]
 #[ignore]
-fn test_graph_with_one_node() {
+fn graph_with_one_node() {
     let nodes = vec![Node::new("a")];
 
     let graph = Graph::new().with_nodes(&nodes);
@@ -30,7 +30,7 @@ fn test_graph_with_one_node() {
 
 #[test]
 #[ignore]
-fn test_graph_with_one_node_with_keywords() {
+fn graph_with_one_node_with_keywords() {
     let nodes = vec![Node::new("a").with_attrs(&[("color", "green")])];
 
     let graph = Graph::new().with_nodes(&nodes);
@@ -47,7 +47,7 @@ fn test_graph_with_one_node_with_keywords() {
 
 #[test]
 #[ignore]
-fn test_graph_with_one_edge() {
+fn graph_with_one_edge() {
     let edges = vec![Edge::new("a", "b")];
 
     let graph = Graph::new().with_edges(&edges);
@@ -61,7 +61,7 @@ fn test_graph_with_one_edge() {
 
 #[test]
 #[ignore]
-fn test_graph_with_one_edge_with_keywords() {
+fn graph_with_one_edge_with_keywords() {
     let edges = vec![Edge::new("a", "b").with_attrs(&[("color", "blue")])];
 
     let graph = Graph::new().with_edges(&edges);
@@ -78,7 +78,7 @@ fn test_graph_with_one_edge_with_keywords() {
 
 #[test]
 #[ignore]
-fn test_graph_with_one_attribute() {
+fn graph_with_one_attribute() {
     let graph = Graph::new().with_attrs(&[("foo", "1")]);
 
     let expected_attrs = hashmap! {
@@ -94,7 +94,7 @@ fn test_graph_with_one_attribute() {
 
 #[test]
 #[ignore]
-fn test_graph_with_attributes() {
+fn graph_with_attributes() {
     let nodes = vec![
         Node::new("a").with_attrs(&[("color", "green")]),
         Node::new("c"),
@@ -141,7 +141,7 @@ fn test_graph_with_attributes() {
 
 #[test]
 #[ignore]
-fn test_edges_store_attributes() {
+fn edges_store_attributes() {
     let nodes = vec![
         Node::new("a").with_attrs(&[("color", "green")]),
         Node::new("c"),
@@ -178,7 +178,7 @@ fn test_edges_store_attributes() {
 
 #[test]
 #[ignore]
-fn test_graph_nodes_store_attributes() {
+fn graph_nodes_store_attributes() {
     let attributes = [("foo", "bar"), ("bat", "baz"), ("bim", "bef")];
     let graph = Graph::new().with_nodes(
         &["a", "b", "c"]

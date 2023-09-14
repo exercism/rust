@@ -5,13 +5,13 @@ fn test(input: &str, output: &str) {
 }
 
 #[test]
-fn test_empty_input() {
+fn empty_input() {
     test("", "")
 }
 
 #[test]
 #[ignore]
-fn test_encrypt_also_decrypts_square() {
+fn encrypt_also_decrypts_square() {
     // note that you only get the exact input back if:
     // 1. no punctuation
     // 2. even spacing
@@ -23,7 +23,7 @@ fn test_encrypt_also_decrypts_square() {
 
 #[test]
 #[ignore]
-fn test_example() {
+fn example() {
     test(
         "If man was meant to stay on the ground, god would have given us roots.",
         "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau ",
@@ -32,13 +32,13 @@ fn test_example() {
 
 #[test]
 #[ignore]
-fn test_empty_last_line() {
+fn empty_last_line() {
     test("congratulate", "crl oaa ntt gue")
 }
 
 #[test]
 #[ignore]
-fn test_spaces_are_reorganized() {
+fn spaces_are_reorganized() {
     test("abet", "ae bt");
     test("a bet", "ae bt");
     test("     a  b     e      t             ", "ae bt");
@@ -46,7 +46,7 @@ fn test_spaces_are_reorganized() {
 
 #[test]
 #[ignore]
-fn test_everything_becomes_lowercase() {
+fn everything_becomes_lowercase() {
     test("caSe", "cs ae");
     test("cAsE", "cs ae");
     test("CASE", "cs ae");
@@ -54,7 +54,7 @@ fn test_everything_becomes_lowercase() {
 
 #[test]
 #[ignore]
-fn test_long() {
+fn long() {
     test(
         r#"
 We choose to go to the moon.

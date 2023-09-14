@@ -73,18 +73,18 @@ pub fn reply_array(msg: &str) -> &str {
 
 #[bench]
 /// multiple line question for match
-fn test_multiple_line_question_match(b: &mut Bencher) {
+fn multiple_line_question_match(b: &mut Bencher) {
     b.iter(|| reply_match("\rDoes this cryogenic chamber make me look fat?\rNo."));
 }
 
 #[bench]
 /// multiple line question for if statements
-fn test_multiple_line_question_if(b: &mut Bencher) {
+fn multiple_line_question_if(b: &mut Bencher) {
     b.iter(|| reply_if_chain("\rDoes this cryogenic chamber make me look fat?\rNo."));
 }
 
 #[bench]
 /// multiple line question for answer array
-fn test_multiple_line_question_array(b: &mut Bencher) {
+fn multiple_line_question_array(b: &mut Bencher) {
     b.iter(|| reply_array("\rDoes this cryogenic chamber make me look fat?\rNo."));
 }

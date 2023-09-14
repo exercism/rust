@@ -1,42 +1,42 @@
 use protein_translation as proteins;
 
 #[test]
-fn test_methionine() {
+fn methionine() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("AUG"), Some("methionine"));
 }
 
 #[test]
 #[ignore]
-fn test_cysteine_tgt() {
+fn cysteine_tgt() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("UGU"), Some("cysteine"));
 }
 
 #[test]
 #[ignore]
-fn test_stop() {
+fn stop() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("UAA"), Some("stop codon"));
 }
 
 #[test]
 #[ignore]
-fn test_valine() {
+fn valine() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("GUU"), Some("valine"));
 }
 
 #[test]
 #[ignore]
-fn test_isoleucine() {
+fn isoleucine() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("AUU"), Some("isoleucine"));
 }
 
 #[test]
 #[ignore]
-fn test_arginine_name() {
+fn arginine_name() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.name_for("CGA"), Some("arginine"));
     assert_eq!(info.name_for("AGA"), Some("arginine"));
@@ -73,7 +73,7 @@ fn too_long_is_invalid() {
 
 #[test]
 #[ignore]
-fn test_translates_rna_strand_into_correct_protein() {
+fn translates_rna_strand_into_correct_protein() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
         info.of_rna("AUGUUUUGG"),
@@ -83,7 +83,7 @@ fn test_translates_rna_strand_into_correct_protein() {
 
 #[test]
 #[ignore]
-fn test_stops_translation_if_stop_codon_present() {
+fn stops_translation_if_stop_codon_present() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
         info.of_rna("AUGUUUUAA"),
@@ -93,7 +93,7 @@ fn test_stops_translation_if_stop_codon_present() {
 
 #[test]
 #[ignore]
-fn test_stops_translation_of_longer_strand() {
+fn stops_translation_of_longer_strand() {
     let info = proteins::parse(make_pairs());
     assert_eq!(
         info.of_rna("UGGUGUUAUUAAUGGUUU"),
@@ -103,21 +103,21 @@ fn test_stops_translation_of_longer_strand() {
 
 #[test]
 #[ignore]
-fn test_invalid_codons() {
+fn invalid_codons() {
     let info = proteins::parse(make_pairs());
     assert!(info.of_rna("CARROT").is_none());
 }
 
 #[test]
 #[ignore]
-fn test_invalid_length() {
+fn invalid_length() {
     let info = proteins::parse(make_pairs());
     assert!(info.of_rna("AUGUA").is_none());
 }
 
 #[test]
 #[ignore]
-fn test_valid_stopped_rna() {
+fn valid_stopped_rna() {
     let info = proteins::parse(make_pairs());
     assert_eq!(info.of_rna("AUGUAAASDF"), Some(vec!["methionine"]));
 }

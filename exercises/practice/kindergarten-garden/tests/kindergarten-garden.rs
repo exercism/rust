@@ -1,7 +1,7 @@
 use kindergarten_garden::*;
 
 #[test]
-fn test_garden_with_single_student() {
+fn garden_with_single_student() {
     let diagram = "RC
 GG";
     let student = "Alice";
@@ -11,7 +11,7 @@ GG";
 
 #[test]
 #[ignore]
-fn test_different_garden_with_single_student() {
+fn different_garden_with_single_student() {
     let diagram = "VC
 RC";
     let student = "Alice";
@@ -21,7 +21,7 @@ RC";
 
 #[test]
 #[ignore]
-fn test_garden_with_two_students() {
+fn garden_with_two_students() {
     let diagram = "VVCG
 VVRC";
     let student = "Bob";
@@ -31,7 +31,7 @@ VVRC";
 
 #[test]
 #[ignore]
-fn test_second_students_garden() {
+fn second_students_garden() {
     let diagram = "VVCCGG
 VVCCGG";
     let student = "Bob";
@@ -41,7 +41,7 @@ VVCCGG";
 
 #[test]
 #[ignore]
-fn test_third_students_garden() {
+fn third_students_garden() {
     let diagram = "VVCCGG
 VVCCGG";
     let student = "Charlie";
@@ -51,7 +51,7 @@ VVCCGG";
 
 #[test]
 #[ignore]
-fn test_for_alice_first_students_garden() {
+fn for_alice_first_students_garden() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Alice";
@@ -61,7 +61,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_bob_second_students_garden() {
+fn for_bob_second_students_garden() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Bob";
@@ -71,7 +71,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_charlie() {
+fn for_charlie() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Charlie";
@@ -81,7 +81,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_david() {
+fn for_david() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "David";
@@ -91,7 +91,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_eve() {
+fn for_eve() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Eve";
@@ -101,7 +101,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_fred() {
+fn for_fred() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Fred";
@@ -111,7 +111,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_ginny() {
+fn for_ginny() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Ginny";
@@ -121,7 +121,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_harriet() {
+fn for_harriet() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Harriet";
@@ -131,7 +131,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_ileana() {
+fn for_ileana() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Ileana";
@@ -141,7 +141,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_joseph() {
+fn for_joseph() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Joseph";
@@ -151,7 +151,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_kincaid_second_to_last_students_garden() {
+fn for_kincaid_second_to_last_students_garden() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Kincaid";
@@ -161,7 +161,7 @@ VRCCCGCRRGVCGCRVVCVGCGCV";
 
 #[test]
 #[ignore]
-fn test_for_larry_last_students_garden() {
+fn for_larry_last_students_garden() {
     let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV
 VRCCCGCRRGVCGCRVVCVGCGCV";
     let student = "Larry";

@@ -3,7 +3,7 @@
 use exercism_tooling::track_config::TRACK_CONFIG;
 
 #[test]
-fn test_difficulties_are_valid() {
+fn difficulties_are_valid() {
     let mut difficulties = TRACK_CONFIG
         .exercises
         .concept
