@@ -33,6 +33,7 @@ Run `just add-practice-exercise` and you'll be prompted for the minimal
 information required to generate the exercise stub for you.
 After that, jump in the generated exercise and fill in any todos you find.
 This includes most notably:
+
 - adding an example solution in `.meta/example.rs`
 - Adjusting `.meta/test_template.tera`
 
@@ -41,12 +42,14 @@ The input of the template is the canonical data from [`problem-specifications`].
 if you want to exclude certain tests from being generated,
 you have to set `include = false` in `.meta/tests.toml`.
 
+Find some tips about writing tera templates [here](#tera-templates).
+
 [Tera]: https://keats.github.io/tera/docs/
 [`problem-specifications`]: https://github.com/exercism/problem-specifications/
 
 Many aspects of a correctly implemented exercises are checked in CI.
 I recommend that instead of spending lots of time studying and writing
-documentation about the process, *just do it*.
+documentation about the process, _just do it_.
 If something breaks, fix it and add a test / automation
 so it won't happen anymore.
 
@@ -86,6 +89,65 @@ check if they should be made `problem-specifications` instead.
 Run `just update-practice-exercise` to update an exercise.
 This outsources most work to `configlet sync --update`
 and runs the test generator again.
+
+When updaing an exercise that doesn't have a tera template yet,
+a new one will be generated for you.
+You will likely have to adjust it to some extent.
+
+Find some tips about writing tera templates [in the next section](#tera-templates).
+
+## Tera templates
+
+The full documentation for tera templates is [here][tera-docs].
+Following are some approaches that have worked for our specific needs.
+
+The name of the input property is different for each exercise.
+The default template will be something like this:
+
+```txt
+let input = {{ test.input | json_encode() }};
+```
+
+You will have to add the specific field of input for this exercise, e.g.
+
+```txt
+let input = {{ test.input.integers | json_encode() }};
+```
+
+Some exercises may have error return values.
+You can use an if-else to render something different,
+depending on the structure of the data:
+
+```txt
+let expected = {% if test.expected is object -%}
+    None
+{%- else -%}
+    Some({{ test.expected }})
+{%- endif %};
+```
+
+If every test case needs to do some crunching of the inputs,
+you can add utils functions at the top of the tera template.
+See [`word-count`'s template][word-count-tmpl] for an example.
+
+Some exercises have multiple functions that need to be implemented
+by the student and therefore tested.
+The canonical data contains a field `property` in that case.
+The template also has access to a value `fn_names`,
+which is an array of functions found in `lib.rs`.
+So, you can construct if-else-chains based on `test.property`
+and render a different element of `fn_names` based on that.
+See [`variable-length-quantity`'s template][var-len-q-tmpl] for an example.
+
+There is a custom tera fiter `to_hex`, which formats ints in hexadecimal.
+Feel free to add your own in the crate `rust-tooling`.
+Custom filters added there will be available to all templates.
+How to create such custom filters is documented int he [tera docs][tera-docs-filters].
+
+[tera-docs]: https://keats.github.io/tera/docs/#templates
+[word-count-tmpl]: /exercises/practice/word-count/.meta/test_template.tera
+[var-len-q-tmpl]: /exercises/practice/variable-length-quantity/.meta/test_template.tera
+[tera-docs-filters]: https://keats.github.io/tera/docs/#filters
 
 ## Syllabus
 
