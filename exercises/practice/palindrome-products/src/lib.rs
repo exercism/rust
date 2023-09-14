@@ -8,17 +8,17 @@ pub struct Palindrome(u64);
 impl Palindrome {
     /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
     pub fn new(value: u64) -> Option<Palindrome> {
-        unimplemented!("if the value {value} is a palindrome return Some, otherwise return None");
+        todo!("if the value {value} is a palindrome return Some, otherwise return None");
     }
 
     /// Get the value of this palindrome.
     pub fn into_inner(self) -> u64 {
-        unimplemented!("return inner value of a Palindrome");
+        todo!("return inner value of a Palindrome");
     }
 }
 
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
-    unimplemented!(
+    todo!(
         "returns the minimum and maximum number of palindromes of the products of two factors in the range {min} to {max}"
     );
 }

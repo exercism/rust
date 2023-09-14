@@ -4,5 +4,5 @@ pub struct Item {
 }
 
 pub fn maximum_value(_max_weight: u32, _items: &[Item]) -> u32 {
-    unimplemented!("Solve the knapsack exercise");
+    todo!("Solve the knapsack exercise");
 }

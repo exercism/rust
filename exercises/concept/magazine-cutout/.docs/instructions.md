@@ -13,7 +13,7 @@ You'll start with the following stubbed function signature:
 
 ```rust
 pub fn can_construct_note(magazine: &[&str], note: &[&str]) -> bool {
-    unimplemented!()
+    todo!()
 }
 ```
 

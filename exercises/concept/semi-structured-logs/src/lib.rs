@@ -11,14 +11,14 @@ pub enum LogLevel {
 }
 /// primary function for emitting logs
 pub fn log(level: LogLevel, message: &str) -> String {
-    unimplemented!("return a message for the given log level")
+    todo!("return a message for the given log level")
 }
 pub fn info(message: &str) -> String {
-    unimplemented!("return a message for info log level")
+    todo!("return a message for info log level")
 }
 pub fn warn(message: &str) -> String {
-    unimplemented!("return a message for warn log level")
+    todo!("return a message for warn log level")
 }
 pub fn error(message: &str) -> String {
-    unimplemented!("return a message for error log level")
+    todo!("return a message for error log level")
 }

@@ -8,14 +8,14 @@ pub struct BowlingGame {}
 
 impl BowlingGame {
     pub fn new() -> Self {
-        unimplemented!();
+        todo!();
     }
 
     pub fn roll(&mut self, pins: u16) -> Result<(), Error> {
-        unimplemented!("Record that {pins} pins have been scored");
+        todo!("Record that {pins} pins have been scored");
     }
 
     pub fn score(&self) -> Option<u16> {
-        unimplemented!("Return the score if the game is complete, or None if not.");
+        todo!("Return the score if the game is complete, or None if not.");
     }
 }

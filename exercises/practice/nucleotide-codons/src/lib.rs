@@ -16,19 +16,19 @@ pub struct Error;
 
 impl<'a> CodonsInfo<'a> {
     pub fn name_for(&self, codon: &str) -> Result<&'a str, Error> {
-        unimplemented!(
+        todo!(
             "Return the protein name for a '{}' codon or Err, if codon string is invalid",
             codon
         );
     }
 
     pub fn of_rna(&self, rna: &str) -> Result<Vec<&'a str>, Error> {
-        unimplemented!("Return a list of protein names that correspond to the '{}' RNA string or Err if the RNA string is invalid", rna);
+        todo!("Return a list of protein names that correspond to the '{}' RNA string or Err if the RNA string is invalid", rna);
     }
 }
 
 pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonsInfo<'a> {
-    unimplemented!(
+    todo!(
         "Construct a new CodonsInfo struct from given pairs: {:?}",
         pairs
     );

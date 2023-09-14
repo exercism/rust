@@ -1,4 +1,4 @@
 /// Check a Luhn checksum.
 pub fn is_valid(code: &str) -> bool {
-    unimplemented!("Is the Luhn checksum for {code} valid?");
+    todo!("Is the Luhn checksum for {code} valid?");
 }

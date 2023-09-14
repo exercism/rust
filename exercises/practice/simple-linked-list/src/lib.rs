@@ -8,7 +8,7 @@ pub struct SimpleLinkedList<T> {
 
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
-        unimplemented!()
+        todo!()
     }
 
     // You may be wondering why it's necessary to have is_empty()
@@ -17,34 +17,34 @@ impl<T> SimpleLinkedList<T> {
     // whereas is_empty() is almost always cheap.
     // (Also ask yourself whether len() is expensive for SimpleLinkedList)
     pub fn is_empty(&self) -> bool {
-        unimplemented!()
+        todo!()
     }
 
     pub fn len(&self) -> usize {
-        unimplemented!()
+        todo!()
     }
 
     pub fn push(&mut self, _element: T) {
-        unimplemented!()
+        todo!()
     }
 
     pub fn pop(&mut self) -> Option<T> {
-        unimplemented!()
+        todo!()
     }
 
     pub fn peek(&self) -> Option<&T> {
-        unimplemented!()
+        todo!()
     }
 
     #[must_use]
     pub fn rev(self) -> SimpleLinkedList<T> {
-        unimplemented!()
+        todo!()
     }
 }
 
 impl<T> FromIterator<T> for SimpleLinkedList<T> {
     fn from_iter<I: IntoIterator<Item = T>>(_iter: I) -> Self {
-        unimplemented!()
+        todo!()
     }
 }
 
@@ -61,6 +61,6 @@ impl<T> FromIterator<T> for SimpleLinkedList<T> {
 
 impl<T> From<SimpleLinkedList<T>> for Vec<T> {
     fn from(mut _linked_list: SimpleLinkedList<T>) -> Vec<T> {
-        unimplemented!()
+        todo!()
     }
 }

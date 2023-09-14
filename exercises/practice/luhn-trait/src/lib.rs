@@ -9,6 +9,6 @@ pub trait Luhn {
 /// Perhaps there exists a better solution for this problem?
 impl<'a> Luhn for &'a str {
     fn valid_luhn(&self) -> bool {
-        unimplemented!("Determine if '{self}' is a valid credit card number.");
+        todo!("Determine if '{self}' is a valid credit card number.");
     }
 }

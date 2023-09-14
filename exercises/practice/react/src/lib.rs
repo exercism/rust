@@ -41,12 +41,12 @@ pub struct Reactor<T> {
 // You are guaranteed that Reactor will only be tested against types that are Copy + PartialEq.
 impl<T: Copy + PartialEq> Reactor<T> {
     pub fn new() -> Self {
-        unimplemented!()
+        todo!()
     }
 
     // Creates an input cell with the specified initial value, returning its ID.
     pub fn create_input(&mut self, _initial: T) -> InputCellId {
-        unimplemented!()
+        todo!()
     }
 
     // Creates a compute cell with the specified dependencies and compute function.
@@ -67,7 +67,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
         _dependencies: &[CellId],
         _compute_func: F,
     ) -> Result<ComputeCellId, CellId> {
-        unimplemented!()
+        todo!()
     }
 
     // Retrieves the current value of the cell, or None if the cell does not exist.
@@ -78,7 +78,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
     // It turns out this introduces a significant amount of extra complexity to this exercise.
     // We chose not to cover this here, since this exercise is probably enough work as-is.
     pub fn value(&self, id: CellId) -> Option<T> {
-        unimplemented!("Get the value of the cell whose id is {id:?}")
+        todo!("Get the value of the cell whose id is {id:?}")
     }
 
     // Sets the value of the specified input cell.
@@ -90,7 +90,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
     //
     // As before, that turned out to add too much extra complexity.
     pub fn set_value(&mut self, _id: InputCellId, _new_value: T) -> bool {
-        unimplemented!()
+        todo!()
     }
 
     // Adds a callback to the specified compute cell.
@@ -110,7 +110,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
         _id: ComputeCellId,
         _callback: F,
     ) -> Option<CallbackId> {
-        unimplemented!()
+        todo!()
     }
 
     // Removes the specified callback, using an ID returned from add_callback.
@@ -123,7 +123,7 @@ impl<T: Copy + PartialEq> Reactor<T> {
         cell: ComputeCellId,
         callback: CallbackId,
     ) -> Result<(), RemoveCallbackError> {
-        unimplemented!(
+        todo!(
             "Remove the callback identified by the CallbackId {callback:?} from the cell {cell:?}"
         )
     }

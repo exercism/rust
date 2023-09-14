@@ -80,7 +80,7 @@ fn add_entry_to_track_config() -> String {
         .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
         .collect::<Vec<_>>();
 
-    let unimplemented_with_spec = glob("problem-specifications/exercises/*")
+    let todo_with_spec = glob("problem-specifications/exercises/*")
         .unwrap()
         .filter_map(Result::ok)
         .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
@@ -90,7 +90,7 @@ fn add_entry_to_track_config() -> String {
     println!("(suggestions are from problem-specifications)");
     let slug = Text::new("What's the slug of your exercise?")
         .with_autocomplete(move |input: &_| {
-            let mut slugs = unimplemented_with_spec.clone();
+            let mut slugs = todo_with_spec.clone();
             slugs.retain(|e| e.starts_with(input));
             Ok(slugs)
         })

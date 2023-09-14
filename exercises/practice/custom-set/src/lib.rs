@@ -7,41 +7,41 @@ pub struct CustomSet<T> {
 
 impl<T> CustomSet<T> {
     pub fn new(_input: &[T]) -> Self {
-        unimplemented!();
+        todo!();
     }
 
     pub fn contains(&self, _element: &T) -> bool {
-        unimplemented!();
+        todo!();
     }
 
     pub fn add(&mut self, _element: T) {
-        unimplemented!();
+        todo!();
     }
 
     pub fn is_subset(&self, _other: &Self) -> bool {
-        unimplemented!();
+        todo!();
     }
 
     pub fn is_empty(&self) -> bool {
-        unimplemented!();
+        todo!();
     }
 
     pub fn is_disjoint(&self, _other: &Self) -> bool {
-        unimplemented!();
+        todo!();
     }
 
     #[must_use]
     pub fn intersection(&self, _other: &Self) -> Self {
-        unimplemented!();
+        todo!();
     }
 
     #[must_use]
     pub fn difference(&self, _other: &Self) -> Self {
-        unimplemented!();
+        todo!();
     }
 
     #[must_use]
     pub fn union(&self, _other: &Self) -> Self {
-        unimplemented!();
+        todo!();
     }
 }

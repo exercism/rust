@@ -2,7 +2,7 @@ pub struct Luhn;
 
 impl Luhn {
     pub fn is_valid(&self) -> bool {
-        unimplemented!("Determine if the current Luhn struct contains a valid credit card number.");
+        todo!("Determine if the current Luhn struct contains a valid credit card number.");
     }
 }
 
@@ -13,6 +13,6 @@ impl Luhn {
 /// Perhaps there exists a better solution for this problem?
 impl<'a> From<&'a str> for Luhn {
     fn from(input: &'a str) -> Self {
-        unimplemented!("From the given input '{input}' create a new Luhn struct.");
+        todo!("From the given input '{input}' create a new Luhn struct.");
     }
 }

@@ -18,6 +18,6 @@
 
 ## 3. Implement a `manhattan` method on a `Position` tuple struct
 
-- Don't worry about method syntax; just replacing the `unimplemented` portion within the `impl Position` block will do the right thing.
+- Don't worry about method syntax; just replacing the `todo` portion within the `impl Position` block will do the right thing.
 - Consider that some values within a `Position` may be negative, but a distance is never negative.
 - Calculating the absolute value is [built-in](https://doc.rust-lang.org/std/primitive.i16.html#method.abs)
