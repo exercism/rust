@@ -108,6 +108,17 @@ fn gt_negative_and_zero() {
     assert!(decimal("0.0") > decimal("-1.0"));
 }
 
+#[test]
+#[ignore]
+fn unequal_number_of_decimal_places() {
+    assert!(decimal("3.14") > decimal("3.13"));
+    assert!(decimal("3.14") > decimal("3.131"));
+    assert!(decimal("3.14") > decimal("3.1"));
+    assert!(decimal("3.13") < decimal("3.14"));
+    assert!(decimal("3.131") < decimal("3.14"));
+    assert!(decimal("3.1") < decimal("3.14"));
+}
+
 // tests of arbitrary precision behavior
 #[test]
 #[ignore]
