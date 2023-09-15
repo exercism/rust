@@ -40,6 +40,15 @@ mod evens {
 
     #[test]
     #[ignore]
+    fn strs() {
+        let input = "You really must never be above joking.".split_whitespace();
+        let expected: Vec<_> = "You must be joking.".split_whitespace().collect();
+        let out: Vec<_> = evens(input).collect();
+        assert_eq!(out, expected);
+    }
+
+    #[test]
+    #[ignore]
     fn simple_i32() {
         let out: Vec<i32> = evens(0..).take(5).collect();
         assert_eq!(out, &[0, 2, 4, 6, 8]);
@@ -57,15 +66,6 @@ mod evens {
     fn offset_i32() {
         let out: Vec<i32> = evens(1..).take(5).collect();
         assert_eq!(out, &[1, 3, 5, 7, 9]);
-    }
-
-    #[test]
-    #[ignore]
-    fn strs() {
-        let input = "You really must never be above joking.".split_whitespace();
-        let expected: Vec<_> = "You must be joking.".split_whitespace().collect();
-        let out: Vec<_> = evens(input).collect();
-        assert_eq!(out, expected);
     }
 }
 
