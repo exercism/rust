@@ -1,6 +1,13 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
 
 [88bf4b28-0de3-4883-93c7-db1b14aa806e]
 description = "just a number"
@@ -38,8 +45,14 @@ description = "multiple subtraction"
 [4f4a5749-ef0c-4f60-841f-abcfaf05d2ae]
 description = "subtraction then addition"
 
+[312d908c-f68f-42c9-aa75-961623cc033f]
+description = "multiple multiplication"
+
 [38e33587-8940-4cc1-bc28-bfd7e3966276]
 description = "addition and multiplication"
+
+[3c854f97-9311-46e8-b574-92b60d17d394]
+description = "multiple division"
 
 [3ad3e433-8af7-41ec-aa9b-97b42ab49357]
 description = "unknown operation"
