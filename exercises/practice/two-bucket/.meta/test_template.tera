@@ -1,0 +1,31 @@
+{% macro bucket(label) -%}
+    {% if label == 'one' -%}
+        Bucket::One
+    {%- else -%}
+        Bucket::Two
+    {%- endif %}
+{%- endmacro bucket -%}
+
+use two_bucket::{Bucket, BucketStats};
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let output = {{ crate_name }}::{{ fn_names[0] }}(
+        {{ test.input.bucketOne }}, {{ test.input.bucketTwo }}, {{ test.input.goal }},
+        &{{ self::bucket(label=test.input.startBucket) }},
+    );
+    let expected = {% if 'error' in test.expected -%}
+        None
+    {%- else -%}
+        Some(BucketStats {
+            moves: {{ test.expected.moves }},
+            goal_bucket: {{ self::bucket(label=test.expected.goalBucket) }},
+            other_bucket: {{ test.expected.otherBucket }},
+        })
+    {%- endif %};
+    assert_eq!(output, expected);
+}
+{% endfor -%}
