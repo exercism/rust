@@ -1,0 +1,60 @@
+use custom_set::CustomSet;
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+{%- if test.property == "empty" %}
+    let set = CustomSet::<i32>::new(&{{ test.input.set | json_encode() }});
+    assert!(
+        {%- if not test.expected -%} ! {%- endif -%}
+        set.is_empty());
+{%- elif test.property == "contains" %}
+    let set = CustomSet::<i32>::new(&{{ test.input.set | json_encode() }});
+    assert!(
+        {%- if not test.expected -%} ! {%- endif -%}
+        set.contains(&{{ test.input.element }}));
+{%- elif test.property == "subset" %}
+    let set_1 = CustomSet::<i32>::new(&{{ test.input.set1 | json_encode() }});
+    let set_2 = CustomSet::<i32>::new(&{{ test.input.set2 | json_encode() }});
+    assert!(
+        {%- if not test.expected -%} ! {%- endif -%}
+        set_1.is_subset(&set_2));
+{%- elif test.property == "disjoint" %}
+    let set_1 = CustomSet::<i32>::new(&{{ test.input.set1 | json_encode() }});
+    let set_2 = CustomSet::<i32>::new(&{{ test.input.set2 | json_encode() }});
+    assert!(
+        {%- if not test.expected -%} ! {%- endif -%}
+        set_1.is_disjoint(&set_2));
+{%- elif test.property == "equal" %}
+    let set_1 = CustomSet::<i32>::new(&{{ test.input.set1 | json_encode() }});
+    let set_2 = CustomSet::<i32>::new(&{{ test.input.set2 | json_encode() }});
+    {% if test.expected -%}
+        assert_eq!(set_1, set_2);
+    {%- else -%}
+        assert_ne!(set_1, set_2);
+    {%- endif %}
+{%- elif test.property == "add" %}
+    let mut set = CustomSet::<i32>::new(&{{ test.input.set | json_encode() }});
+    set.add({{ test.input.element }});
+    let expected = CustomSet::<i32>::new(&{{ test.expected | json_encode() }});
+    assert_eq!(set, expected);
+{%- elif test.property == "intersection" %}
+    let set_1 = CustomSet::<i32>::new(&{{ test.input.set1 | json_encode() }});
+    let set_2 = CustomSet::<i32>::new(&{{ test.input.set2 | json_encode() }});
+    let expected = CustomSet::<i32>::new(&{{ test.expected | json_encode() }});
+    assert_eq!(set_1.intersection(&set_2), expected);
+{%- elif test.property == "difference" %}
+    let set_1 = CustomSet::<i32>::new(&{{ test.input.set1 | json_encode() }});
+    let set_2 = CustomSet::<i32>::new(&{{ test.input.set2 | json_encode() }});
+    let expected = CustomSet::<i32>::new(&{{ test.expected | json_encode() }});
+    assert_eq!(set_1.difference(&set_2), expected);
+{%- elif test.property == "union" %}
+    let set_1 = CustomSet::<i32>::new(&{{ test.input.set1 | json_encode() }});
+    let set_2 = CustomSet::<i32>::new(&{{ test.input.set2 | json_encode() }});
+    let expected = CustomSet::<i32>::new(&{{ test.expected | json_encode() }});
+    assert_eq!(set_1.union(&set_2), expected);
+{%- endif %}
+}
+{% endfor -%}
