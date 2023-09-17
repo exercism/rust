@@ -1,0 +1,14 @@
+use pascals_triangle::PascalsTriangle;
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let pt = PascalsTriangle::new({{ test.input.count }});
+    let expected: Vec<Vec<u32>> = vec![{% for row in test.expected -%}
+        vec!{{ row | json_encode() }},
+    {%- endfor %}];
+    assert_eq!(pt.rows(), expected);
+}
+{% endfor -%}
