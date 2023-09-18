@@ -7,3 +7,4 @@ tmp
 exercises/*/*/Cargo.lock
 exercises/*/*/clippy.log
 .vscode
+.prob-spec
