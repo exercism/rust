@@ -3,11 +3,7 @@
 Write a doubly linked list using unsafe Rust, including an iterator over the list
 and a cursor for efficient mutation.
 
-The doubly linked list is a fundamental data structure in computer science,
-often used in the implementation of other data structures. They're
-pervasive in functional programming languages, such as Clojure, Erlang,
-or Haskell, but far less common in imperative languages such as Ruby or
-Python.
+The doubly linked list is a fundamental data structure in computer science.
 
 Each node in a doubly linked list contains data and pointers to the next
 and previous node, if they exist.
