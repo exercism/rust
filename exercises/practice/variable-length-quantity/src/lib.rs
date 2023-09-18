@@ -1,7 +1,6 @@
 #[derive(Debug, PartialEq, Eq)]
 pub enum Error {
     IncompleteNumber,
-    Overflow,
 }
 
 /// Convert a list of numbers to a stream of bytes encoded with variable length encoding.
