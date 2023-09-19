@@ -7,10 +7,9 @@ if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
     git fetch --depth=1 origin main
     changed_exercises="$(
         git diff --diff-filter=d --name-only remotes/origin/main |
-        grep "exercises/" || true |
-        cut -d '/' -f -3 |
-        sort -u |
-        awk -v repo="$repo" '{print repo"/"$1}'
+        grep "exercises/" |
+        cut --delimiter '/' --fields -3 |
+        sort --unique || true
     )"
 else
     # we want globbing and it does not actually assign locally
