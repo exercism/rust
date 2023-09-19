@@ -5,8 +5,8 @@ pub struct CustomSet<T> {
 
 impl<T: Ord + Clone> PartialEq for CustomSet<T> {
     fn eq(&self, other: &Self) -> bool {
-        self.collection.iter().all(|x| other.contains(&x))
-            && other.collection.iter().all(|x| self.contains(&x))
+        self.collection.iter().all(|x| other.contains(x))
+            && other.collection.iter().all(|x| self.contains(x))
     }
 }
 

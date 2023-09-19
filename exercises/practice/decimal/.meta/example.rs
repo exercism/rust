@@ -63,7 +63,7 @@ impl Decimal {
     fn equalize_precision(one: &mut Decimal, two: &mut Decimal) {
         fn expand(lower_precision: &mut Decimal, higher_precision: &Decimal) {
             let precision_difference =
-                (higher_precision.decimal_index - lower_precision.decimal_index) as usize;
+                higher_precision.decimal_index - lower_precision.decimal_index;
 
             lower_precision.digits =
                 &lower_precision.digits * pow(BigInt::from(10_usize), precision_difference);
@@ -102,7 +102,9 @@ macro_rules! auto_impl_decimal_ops {
             fn $func_name(mut self, mut rhs: Self) -> Self {
                 Decimal::equalize_precision(&mut self, &mut rhs);
                 Decimal::new(
+                    #[allow(clippy::redundant_closure_call)]
                     $digits_operation(self.digits, rhs.digits),
+                    #[allow(clippy::redundant_closure_call)]
                     $index_operation(self.decimal_index, rhs.decimal_index),
                 )
             }
@@ -125,6 +127,7 @@ macro_rules! auto_impl_decimal_cow {
         impl $trait for Decimal {
             fn $func_name(&self, other: &Self) -> $return_type {
                 if self.decimal_index == other.decimal_index {
+                    #[allow(clippy::redundant_closure_call)]
                     $digits_operation(&self.digits, &other.digits)
                 } else {
                     // if we're here, the decimal indexes are unmatched.

@@ -12,7 +12,7 @@ impl School {
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
-        let entry = self.grades.entry(grade).or_insert_with(Vec::new);
+        let entry = self.grades.entry(grade).or_default();
         entry.push(student.to_string());
         entry.sort_unstable();
     }
@@ -28,5 +28,11 @@ impl School {
             .get(&grade)
             .map(|v| v.to_vec())
             .unwrap_or_default()
+    }
+}
+
+impl Default for School {
+    fn default() -> Self {
+        Self::new()
     }
 }

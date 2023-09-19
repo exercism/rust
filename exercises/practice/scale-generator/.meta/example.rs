@@ -96,26 +96,6 @@ pub mod interval {
             &self.0
         }
     }
-
-    #[cfg(test)]
-    mod test {
-        use super::*;
-
-        #[test]
-        fn parse_chromatic() {
-            assert!("mmmmmmmmmmmm".parse::<Intervals>().is_ok());
-        }
-
-        #[test]
-        fn parse_major() {
-            assert!("MMmMMMm".parse::<Intervals>().is_ok());
-        }
-
-        #[test]
-        fn parse_minor() {
-            assert!("MmMMmMM".parse::<Intervals>().is_ok());
-        }
-    }
 }
 
 pub mod note {
@@ -167,8 +147,8 @@ pub mod note {
     }
 
     impl Accidental {
-        fn to_i8(&self) -> i8 {
-            match *self {
+        fn to_i8(self) -> i8 {
+            match self {
                 Accidental::Sharp => 1,
                 Accidental::Flat => -1,
             }
@@ -353,5 +333,25 @@ impl Scale {
         }
 
         out
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::interval::*;
+
+    #[test]
+    fn parse_chromatic() {
+        assert!("mmmmmmmmmmmm".parse::<Intervals>().is_ok());
+    }
+
+    #[test]
+    fn parse_major() {
+        assert!("MMmMMMm".parse::<Intervals>().is_ok());
+    }
+
+    #[test]
+    fn parse_minor() {
+        assert!("MmMMmMM".parse::<Intervals>().is_ok());
     }
 }

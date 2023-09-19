@@ -3,7 +3,6 @@ use std::cmp::Ordering;
 use std::collections::hash_map::DefaultHasher;
 use std::collections::{BTreeSet, HashSet};
 use std::hash::{Hash, Hasher};
-use std::mem;
 
 type Book = u32;
 type Price = u32;
@@ -125,7 +124,7 @@ impl Iterator for DecomposeGroups {
         //    then move the last item from the most populous group into a new group, alone,
         //    and return
         let return_value = self.next.clone();
-        if let Some(groups) = mem::replace(&mut self.next, None) {
+        if let Some(groups) = self.next.take() {
             if !(groups.is_empty() || groups.iter().all(|g| g.0.borrow().len() == 1)) {
                 let mut hypothetical;
                 for mpg_book in groups[0].0.borrow().iter() {
@@ -169,7 +168,7 @@ impl DecomposeGroups {
         let mut book_groups = Vec::new();
         'nextbook: for book in books {
             for Group(book_group) in book_groups.iter() {
-                if !book_group.borrow().contains(&book) {
+                if !book_group.borrow().contains(book) {
                     book_group.borrow_mut().insert(*book);
                     continue 'nextbook;
                 }

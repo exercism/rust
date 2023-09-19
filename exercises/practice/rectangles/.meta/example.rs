@@ -71,9 +71,11 @@ struct TransposedArea<'a>(&'a RealArea);
 
 // For vertical scanning
 impl<'a> Area for TransposedArea<'a> {
+    #[allow(clippy::misnamed_getters)]
     fn width(&self) -> usize {
         self.0.height
     }
+    #[allow(clippy::misnamed_getters)]
     fn height(&self) -> usize {
         self.0.width
     }

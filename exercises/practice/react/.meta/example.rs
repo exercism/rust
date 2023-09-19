@@ -44,6 +44,7 @@ struct ComputeCell<'a, T: Copy> {
     cell: Cell<T>,
 
     dependencies: Vec<CellId>,
+    #[allow(clippy::type_complexity)]
     f: Box<dyn 'a + Fn(&[T]) -> T>,
     callbacks_issued: usize,
     callbacks: HashMap<CallbackId, Box<dyn 'a + FnMut(T)>>,
@@ -245,5 +246,11 @@ impl<'a, T: Copy + PartialEq> Reactor<'a, T> {
         for d in dependents {
             self.fire_callbacks(d);
         }
+    }
+}
+
+impl<'a, T: Copy + PartialEq> Default for Reactor<'a, T> {
+    fn default() -> Self {
+        Self::new()
     }
 }

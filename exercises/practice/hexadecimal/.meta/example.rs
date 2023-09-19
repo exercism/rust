@@ -27,7 +27,7 @@ pub fn hex_to_int(string: &str) -> Option<i64> {
         .chars()
         .rev()
         .enumerate()
-        .fold(Some(0), |acc, (pos, c)| {
-            parse_hex_digit(c).and_then(|n| acc.map(|acc| acc + n * base.pow(pos as u32)))
+        .try_fold(0, |acc, (pos, c)| {
+            parse_hex_digit(c).map(|n| acc + n * base.pow(pos as u32))
         })
 }

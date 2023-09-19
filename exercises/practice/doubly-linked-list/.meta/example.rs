@@ -67,6 +67,12 @@ impl<T> Node<T> {
     }
 }
 
+impl<T> Default for LinkedList<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<T> LinkedList<T> {
     pub fn new() -> Self {
         LinkedList {
@@ -253,7 +259,7 @@ impl<T> Cursor<'_, T> {
             }
         };
         link_new_node(cursor_node, new_node);
-        let end_node = end_node(&mut self.list);
+        let end_node = end_node(self.list);
         if *end_node == Some(cursor_node) {
             *end_node = Some(new_node);
         }
