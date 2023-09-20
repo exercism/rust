@@ -1,138 +1,160 @@
-use affine_cipher::*;
+use affine_cipher::AffineCipherError::NotCoprime;
 
 #[test]
 fn encode_yes() {
-    assert_eq!(encode("yes", 5, 7).unwrap(), "xbt")
+    let phrase = "yes";
+    let (a, b) = (5, 7);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("xbt".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_no() {
-    assert_eq!(encode("no", 15, 18).unwrap(), "fu")
+    let phrase = "no";
+    let (a, b) = (15, 18);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("fu".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_omg() {
-    assert_eq!(encode("OMG", 21, 3).unwrap(), "lvz")
+    let phrase = "OMG";
+    let (a, b) = (21, 3);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("lvz".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_o_m_g() {
-    assert_eq!(encode("O M G", 25, 47).unwrap(), "hjp")
+    let phrase = "O M G";
+    let (a, b) = (25, 47);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("hjp".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_mindblowingly() {
-    assert_eq!(encode("mindblowingly", 11, 15).unwrap(), "rzcwa gnxzc dgt")
+    let phrase = "mindblowingly";
+    let (a, b) = (11, 15);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("rzcwa gnxzc dgt".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_numbers() {
-    assert_eq!(
-        encode("Testing,1 2 3, testing.", 3, 4).unwrap(),
-        "jqgjc rw123 jqgjc rw"
-    )
+    let phrase = "Testing,1 2 3, testing.";
+    let (a, b) = (3, 4);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("jqgjc rw123 jqgjc rw".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_deep_thought() {
-    assert_eq!(
-        encode("Truth is fiction", 5, 17).unwrap(),
-        "iynia fdqfb ifje"
-    )
+    let phrase = "Truth is fiction.";
+    let (a, b) = (5, 17);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("iynia fdqfb ifje".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_all_the_letters() {
-    assert_eq!(
-        encode("The quick brown fox jumps over the lazy dog.", 17, 33).unwrap(),
-        "swxtj npvyk lruol iejdc blaxk swxmh qzglf"
-    )
+    let phrase = "The quick brown fox jumps over the lazy dog.";
+    let (a, b) = (17, 33);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Ok("swxtj npvyk lruol iejdc blaxk swxmh qzglf".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn encode_with_a_not_coprime_to_m() {
-    const EXPECTED_ERROR: AffineCipherError = AffineCipherError::NotCoprime(6);
-    match encode("This is a test.", 6, 17) {
-        Err(EXPECTED_ERROR) => (),
-        Err(err) => panic!("Incorrect error: expected: {EXPECTED_ERROR:?}, actual: {err:?}."),
-        Ok(r) => panic!(
-            "Cannot encode/decode when a is coprime to m: expected: {EXPECTED_ERROR:?}, actual: {r:?}."
-        ),
-    }
+    let phrase = "This is a test.";
+    let (a, b) = (6, 17);
+    let output = affine_cipher::encode(phrase, a, b);
+    let expected = Err(NotCoprime(6));
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn decode_exercism() {
-    assert_eq!(decode("tytgn fjr", 3, 7).unwrap(), "exercism")
+    let phrase = "tytgn fjr";
+    let (a, b) = (3, 7);
+    let output = affine_cipher::decode(phrase, a, b);
+    let expected = Ok("exercism".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn decode_a_sentence() {
-    assert_eq!(
-        encode("anobstacleisoftenasteppingstone", 19, 16).unwrap(),
-        "qdwju nqcro muwhn odqun oppmd aunwd o"
-    );
-    assert_eq!(
-        decode("qdwju nqcro muwhn odqun oppmd aunwd o", 19, 16).unwrap(),
-        "anobstacleisoftenasteppingstone"
-    )
+    let phrase = "qdwju nqcro muwhn odqun oppmd aunwd o";
+    let (a, b) = (19, 16);
+    let output = affine_cipher::decode(phrase, a, b);
+    let expected = Ok("anobstacleisoftenasteppingstone".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn decode_numbers() {
-    assert_eq!(
-        decode("odpoz ub123 odpoz ub", 25, 7).unwrap(),
-        "testing123testing"
-    )
+    let phrase = "odpoz ub123 odpoz ub";
+    let (a, b) = (25, 7);
+    let output = affine_cipher::decode(phrase, a, b);
+    let expected = Ok("testing123testing".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn decode_all_the_letters() {
-    assert_eq!(
-        decode("swxtj npvyk lruol iejdc blaxk swxmh qzglf", 17, 33).unwrap(),
-        "thequickbrownfoxjumpsoverthelazydog"
-    )
+    let phrase = "swxtj npvyk lruol iejdc blaxk swxmh qzglf";
+    let (a, b) = (17, 33);
+    let output = affine_cipher::decode(phrase, a, b);
+    let expected = Ok("thequickbrownfoxjumpsoverthelazydog".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn decode_with_no_spaces_in_input() {
-    assert_eq!(
-        decode("swxtjnpvyklruoliejdcblaxkswxmhqzglf", 17, 33).unwrap(),
-        "thequickbrownfoxjumpsoverthelazydog"
-    )
+    let phrase = "swxtjnpvyklruoliejdcblaxkswxmhqzglf";
+    let (a, b) = (17, 33);
+    let output = affine_cipher::decode(phrase, a, b);
+    let expected = Ok("thequickbrownfoxjumpsoverthelazydog".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn decode_with_too_many_spaces() {
-    assert_eq!(
-        decode("vszzm    cly   yd cg    qdp", 15, 16).unwrap(),
-        "jollygreengiant"
-    )
+    let phrase = "vszzm    cly   yd cg    qdp";
+    let (a, b) = (15, 16);
+    let output = affine_cipher::decode(phrase, a, b);
+    let expected = Ok("jollygreengiant".into());
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn decode_with_a_not_coprime_to_m() {
-    const EXPECTED_ERROR: AffineCipherError = AffineCipherError::NotCoprime(13);
-    match decode("Test", 13, 11) {
-        Err(EXPECTED_ERROR) => (),
-        Err(e) => panic!("Incorrect error: expected: {EXPECTED_ERROR:?}, actual: {e:?}."),
-        Ok(r) => panic!(
-            "Cannot encode/decode when a is coprime to m: expected: {EXPECTED_ERROR:?}, actual: {r:?}."
-        ),
-    }
+    let phrase = "Test";
+    let (a, b) = (13, 5);
+    let output = affine_cipher::decode(phrase, a, b);
+    let expected = Err(NotCoprime(13));
+    assert_eq!(output, expected);
 }
