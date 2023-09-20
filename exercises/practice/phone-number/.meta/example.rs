@@ -1,5 +1,8 @@
 pub fn number(user_number: &str) -> Option<String> {
-    let mut filtered_number: String = user_number.chars().filter(|ch| ch.is_digit(10)).collect();
+    let mut filtered_number: String = user_number
+        .chars()
+        .filter(|ch| ch.is_ascii_digit())
+        .collect();
 
     let number_len = filtered_number.len();
 

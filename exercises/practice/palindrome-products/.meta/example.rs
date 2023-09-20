@@ -8,7 +8,7 @@ pub struct Palindrome(u64);
 impl Palindrome {
     /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
     pub fn new(value: u64) -> Option<Palindrome> {
-        is_palindrome(value).then(move || Palindrome(value))
+        is_palindrome(value).then_some(Palindrome(value))
     }
 
     /// Get the value of this palindrome.

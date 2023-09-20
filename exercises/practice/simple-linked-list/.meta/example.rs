@@ -10,6 +10,12 @@ struct Node<T> {
     next: Option<Box<Node<T>>>,
 }
 
+impl<T> Default for SimpleLinkedList<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
         SimpleLinkedList { head: None, len: 0 }

@@ -44,3 +44,9 @@ impl Robot {
         self.name = generate_name();
     }
 }
+
+impl Default for Robot {
+    fn default() -> Self {
+        Self::new()
+    }
+}

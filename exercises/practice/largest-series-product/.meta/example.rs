@@ -9,7 +9,7 @@ pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
         return Ok(1);
     }
 
-    if let Some(invalid) = string_digits.chars().find(|c| !c.is_digit(10)) {
+    if let Some(invalid) = string_digits.chars().find(|c| !c.is_ascii_digit()) {
         return Err(Error::InvalidDigit(invalid));
     }
 

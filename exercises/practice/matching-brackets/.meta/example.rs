@@ -23,7 +23,7 @@ impl Brackets {
         };
 
         Brackets {
-            raw_brackets: s.chars().filter(|c| p.contains(&c)).collect::<Vec<char>>(),
+            raw_brackets: s.chars().filter(|c| p.contains(c)).collect::<Vec<char>>(),
             pairs: p,
         }
     }

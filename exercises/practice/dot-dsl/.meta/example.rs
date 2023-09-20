@@ -44,6 +44,12 @@ pub mod graph {
         }
     }
 
+    impl Default for Graph {
+        fn default() -> Self {
+            Self::new()
+        }
+    }
+
     pub mod graph_items {
         pub mod edge {
             use std::collections::HashMap;

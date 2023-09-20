@@ -67,7 +67,6 @@ impl Forth {
                         eval_op(
                             parse_op(token, &self.words)?,
                             &mut self.stack,
-                            &self.words,
                             &self.definitions,
                         )?;
                     }
@@ -96,7 +95,7 @@ impl Forth {
         }
 
         (mode == Mode::Execution)
-            .then(|| ())
+            .then_some(())
             .ok_or(Error::InvalidWord)
     }
 }
@@ -119,12 +118,7 @@ fn parse_op(token: &str, words: &HashMap<String, Id>) -> Result<Op, Error> {
     })
 }
 
-fn eval_op(
-    op: Op,
-    stack: &mut Vec<Value>,
-    words: &HashMap<String, Id>,
-    definitions: &Vec<Vec<Op>>,
-) -> ForthResult {
+fn eval_op(op: Op, stack: &mut Vec<Value>, definitions: &Vec<Vec<Op>>) -> ForthResult {
     let mut pop = || stack.pop().ok_or(Error::StackUnderflow);
     match op {
         Op::Add => {
@@ -165,7 +159,7 @@ fn eval_op(
         }
         Op::Call(fn_id) => {
             for op in &definitions[fn_id as usize] {
-                eval_op(*op, stack, words, definitions)?;
+                eval_op(*op, stack, definitions)?;
             }
         }
     }

@@ -9,7 +9,7 @@ impl<'a> HighScores<'a> {
     }
 
     pub fn scores(&self) -> &'a [u32] {
-        &self.scores
+        self.scores
     }
 
     pub fn latest(&self) -> Option<u32> {

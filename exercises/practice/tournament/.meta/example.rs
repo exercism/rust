@@ -70,7 +70,7 @@ fn write_tally(results: &HashMap<String, TeamResult>) -> String {
         .collect();
     // Sort by points descending, then name A-Z.
     v.sort_by(|a, b| match a.3.cmp(&(b.3)).reverse() {
-        Equal => a.0.cmp(&(b.0)),
+        Equal => a.0.cmp(b.0),
         other => other,
     });
     let mut lines = vec![format!("{:30} | MP |  W |  D |  L |  P", "Team")];

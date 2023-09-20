@@ -4,7 +4,7 @@ pub struct Luhn {
 
 impl Luhn {
     pub fn is_valid(&self) -> bool {
-        if self.digits.iter().any(|c| c.is_alphabetic()) || self.digits.iter().count() == 1 {
+        if self.digits.iter().any(|c| c.is_alphabetic()) || self.digits.len() == 1 {
             return false;
         }
 

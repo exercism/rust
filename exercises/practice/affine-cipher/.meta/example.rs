@@ -43,7 +43,7 @@ pub fn decode(ciphertext: &str, a: i32, b: i32) -> Result<String, AffineCipherEr
 /// Encodes a single char with the key (`a`, `b`). The key is assumed to be valid (i.e. `a` should
 /// be coprime to 26).
 fn encode_char(ch: char, a: i32, b: i32) -> char {
-    if ch.is_digit(10) {
+    if ch.is_ascii_digit() {
         ch
     } else {
         let index = (ch as i32) - ('a' as i32);
@@ -54,7 +54,7 @@ fn encode_char(ch: char, a: i32, b: i32) -> char {
 
 /// Decodes a single char using `inv` (the modular multiplicative inverse of `a`) and `b`.
 fn decode_char(ch: char, inv: i32, b: i32) -> char {
-    if ch.is_digit(10) {
+    if ch.is_ascii_digit() {
         ch
     } else {
         let index = (ch as i32) - ('a' as i32);
@@ -82,7 +82,7 @@ fn modular_multiplicative_inverse(a: i32) -> Option<i32> {
     if rs.0 == 1 {
         // ts.0 gives a number such that (s * 26 + t * a) % 26 == 1. Since (s * 26) % 26 == 0,
         // we can further reduce this to (t * a) % 26 == 1. In other words, t is the MMI of a.
-        Some(ts.0 as i32)
+        Some(ts.0)
     } else {
         None
     }

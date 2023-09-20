@@ -1,7 +1,7 @@
 pub fn abbreviate(phrase: &str) -> String {
     phrase
         .split(|c: char| c.is_whitespace() || (c != '\'' && !c.is_alphanumeric()))
-        .flat_map(|word| split_camel(word))
+        .flat_map(split_camel)
         .filter_map(|word| word.chars().next())
         .collect::<String>()
         .to_uppercase()

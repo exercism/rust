@@ -43,7 +43,7 @@ impl Frame {
             return self.bonus_score() <= 10;
         }
 
-        if let Some(first) = self.bonus.get(0) {
+        if let Some(first) = self.bonus.first() {
             if *first == 10 {
                 self.bonus_score() <= 20
             } else {
@@ -137,5 +137,11 @@ impl BowlingGame {
 
     fn is_done(&self) -> bool {
         self.frames.len() == 10 && self.frames.iter().all(|f| f.is_complete())
+    }
+}
+
+impl Default for BowlingGame {
+    fn default() -> Self {
+        Self::new()
     }
 }

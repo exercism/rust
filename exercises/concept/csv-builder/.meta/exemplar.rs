@@ -16,9 +16,9 @@ impl CsvRecordBuilder {
             self.content.push(',');
         }
 
-        if val.contains(",") || val.contains(r#"""#) || val.contains("\n") {
+        if val.contains(',') || val.contains('"') || val.contains('\n') {
             self.content.push('"');
-            self.content.push_str(&val.replace(r#"""#, r#""""#));
+            self.content.push_str(&val.replace('"', r#""""#));
             self.content.push('"');
         } else {
             self.content.push_str(val);
@@ -28,5 +28,11 @@ impl CsvRecordBuilder {
     /// Consumes the builder and returns the CSV record.
     pub fn build(self) -> String {
         self.content
+    }
+}
+
+impl Default for CsvRecordBuilder {
+    fn default() -> Self {
+        Self::new()
     }
 }
