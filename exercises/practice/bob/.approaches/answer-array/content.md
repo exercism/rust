@@ -61,11 +61,11 @@ If the input is a yell, then `is_yelling` is given the value `2`, otherwise it i
 
 The final expression returns the value in the `ANSWERS` array at the index of the combined values for `is_questioning` and `is_yelling`.
 
-```exercism/note
+~~~~exercism/note
 Note that the final line is just `ANSWERS[is_questioning + is_yelling]`
 This is because the [last expression can be returned](https://doc.rust-lang.org/rust-by-example/fn.html)
 from a function without using `return` and a semicolon.
-```
+~~~~
 
 | is_yelling | is_questioning | Index     | Answer                                |
 | ---------- | -------------- | --------- | ------------------------------------- |

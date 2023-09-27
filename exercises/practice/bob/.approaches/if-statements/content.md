@@ -48,11 +48,11 @@ The uppercasing is done by using the `str` method [`to_uppercase`][to-uppercase]
 - If the input is a question, then the function returns the response for that.
 - Finally, if the function has not returned by the end, the response for neither a yell nor a question is returned.
 
-```exercism/note
+~~~~exercism/note
 Note that the final line is just `"Whatever."`
 This is because the [last expression can be returned](https://doc.rust-lang.org/rust-by-example/fn.html)
 from a function without using `return` and a semicolon.
-```
+~~~~
 
 [str]: https://doc.rust-lang.org/std/primitive.str.html
 [trim-end]: https://doc.rust-lang.org/std/primitive.str.html#method.trim_end

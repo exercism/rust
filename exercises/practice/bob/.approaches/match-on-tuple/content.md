@@ -43,12 +43,12 @@ Since those values are booleans, each arm of the `match` tests a pattern of bool
 - If both the yell value in the tuple is `true` and the question part of the tuple is `true`,
 then the response is returned for a yelled question.
 
-```exercism/note
+~~~~exercism/note
 Note that each arm of the `match` is a single-line expression, so `return` is not needed in the responses returned by the `match` arms.
 And, since the `match` is the last expression in the function, `return` is not used before `match`.
 The [last expression can be returned](https://doc.rust-lang.org/rust-by-example/fn.html)
 from a function without using `return` and a semicolon.
-```
+~~~~
 
 - If the tuple is not `(true, true)`, then the next arm of the `match` tests if the yell value in the tuple is `true`.
 It uses the [wildcard pattern][wildcard] of `_` to disregard the value for the question part of the tuple.
@@ -59,14 +59,14 @@ If the pattern matches, in other words, if the yell value in the tuple is `true`
 This is similar to `default` used in `switch` statements in other languages.
 It returns "Whatever." no matter what the values in the tuple are.
 
-```exercism/note
+~~~~exercism/note
 Note that a `match` in Rust must be exhaustive.
 This means it must match all conceivable patterns of the value being tested or the code will not compile.
 For a boolean value, you can have one arm to match `true` and another to match `false`,
 and the compiler will know that the `match` has checked all conceivable patterns for a boolean.
 For a value with many possible patterns, such as a `u32`, you can have each arm match whatever patterns you care about,
 such as `1` and `2`, and then have one final arm using the wildcard pattern to match on everything else.
-```
+~~~~
 
 [match]: https://doc.rust-lang.org/rust-by-example/flow_control/match.html
 [str]: https://doc.rust-lang.org/std/primitive.str.html

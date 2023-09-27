@@ -33,11 +33,11 @@ if year % 100 == 0 {
 `year` is tested to be evenly divislbe by `100` by using the [remainder operator][remainder-operator].
 If so, it returns if `year` is evenly divisible by `400`, as the last expression evaluated in the function.
 
-```exercism/note
+~~~~exercism/note
 Note that the line is just `year % 400 == 0`.
 This is because the [last expression can be returned](https://doc.rust-lang.org/rust-by-example/fn.html)
 from a function without using `return` and a semicolon.
-```
+~~~~
 
 If `year` is _not_ evenly divisible by `100`, then `else` is the last expression evaluated in the function
 
