@@ -19,12 +19,12 @@ Rust does not have an exponential operator, but uses the [`pow`][pow-u64] method
 `pow` is nicely suited to the problem, since we start with one grain and keep doubling the number of grains on each successive square.
 `1` grain is `2u64.pow(0)`, `2` grains is `2u64.pow(1)`, `4` is `2u64.pow(2)`, and so on.
 
-```exercism/note
+~~~~exercism/note
 Note that the type of a binding can be defined by appending it to the binding name.
 It can optionally be appended using one or more `_` separators between the value and the type.
 More info can be found in the [Literals](https://doc.rust-lang.org/rust-by-example/types/literals.html) section of
 [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
-```
+~~~~
 
 So, to get the right exponent, we subtract `1` from the square number `s`.
 

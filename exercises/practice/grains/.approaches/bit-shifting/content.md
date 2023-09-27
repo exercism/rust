@@ -38,12 +38,12 @@ However, we can't do this with a `u64` which has only `64` bits, so we need to u
 To go back to our two-square example, if we can grow to three squares, then we can shift `1_u128` two positions to the left for binary `100`,
 which is decimal `4`.
 
-```exercism/note
+~~~~exercism/note
 Note that the type of a binding can be defined by appending it to the binding name.
 It can optionally be appended using one or more `_` separators between the value and the type.
 More info can be found in the [Literals](https://doc.rust-lang.org/rust-by-example/types/literals.html) section of
 [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
-```
+~~~~
 By subtracting `1` we get `3`, which is the total amount of grains on the two squares.
 
 | Square  | Binary Value | Decimal Value |
