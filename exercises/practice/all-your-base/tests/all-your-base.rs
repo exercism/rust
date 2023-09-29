@@ -214,3 +214,19 @@ fn output_base_is_zero() {
         Err(ayb::Error::InvalidOutputBase)
     );
 }
+
+#[test]
+#[ignore]
+fn number_bigger_than_u64() {
+    // This test should panic with overflow if user parses input digits into one u64 number.
+    let input_base = 36;
+    let input_digits = &[31; 14];
+    let output_base = 8;
+    let output_digits = vec![
+        1, 1, 1, 5, 5, 5, 3, 6, 4, 7, 1, 6, 0, 5, 1, 7, 3, 7, 0, 5, 3, 7, 0, 5, 3,
+    ];
+    assert_eq!(
+        ayb::convert(input_digits, input_base, output_base),
+        Ok(output_digits)
+    );
+}
