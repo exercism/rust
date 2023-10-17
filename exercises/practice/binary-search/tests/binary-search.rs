@@ -4,6 +4,7 @@
 // without clippy warnings for both people who take on the
 // additional challenge and people who don't, we disable this lint.
 #![allow(clippy::needless_borrow)]
+#![allow(clippy::needless_borrows_for_generic_args)]
 
 use binary_search::find;
 
