@@ -121,10 +121,6 @@ jobs:
     name: Clippy
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        rust: ["stable", "beta"]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
@@ -132,7 +128,7 @@ jobs:
       - name: Setup toolchain
         uses: dtolnay/rust-toolchain@1482605bfc5719782e1267fd0c0cc350fe7646b8
         with:
-          toolchain: ${{ matrix.rust }}
+          toolchain: stable
           components: clippy
 
       - name: Clippy tests
