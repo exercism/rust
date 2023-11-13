@@ -9,56 +9,80 @@ fn assert_in_delta(expected: f64, actual: f64) {
 }
 
 #[test]
-fn earth_age() {
-    let duration = Duration::from(1_000_000_000);
-    assert_in_delta(31.69, Earth::years_during(&duration));
+fn age_on_earth() {
+    let seconds = 1000000000;
+    let duration = Duration::from(seconds);
+    let output = Earth::years_during(&duration);
+    let expected = 31.69;
+    assert_in_delta(expected, output);
 }
 
 #[test]
 #[ignore]
-fn mercury_age() {
-    let duration = Duration::from(2_134_835_688);
-    assert_in_delta(280.88, Mercury::years_during(&duration));
+fn age_on_mercury() {
+    let seconds = 2134835688;
+    let duration = Duration::from(seconds);
+    let output = Mercury::years_during(&duration);
+    let expected = 280.88;
+    assert_in_delta(expected, output);
 }
 
 #[test]
 #[ignore]
-fn venus_age() {
-    let duration = Duration::from(189_839_836);
-    assert_in_delta(9.78, Venus::years_during(&duration));
+fn age_on_venus() {
+    let seconds = 189839836;
+    let duration = Duration::from(seconds);
+    let output = Venus::years_during(&duration);
+    let expected = 9.78;
+    assert_in_delta(expected, output);
 }
 
 #[test]
 #[ignore]
-fn mars_age() {
-    let duration = Duration::from(2_129_871_239);
-    assert_in_delta(35.88, Mars::years_during(&duration));
+fn age_on_mars() {
+    let seconds = 2129871239;
+    let duration = Duration::from(seconds);
+    let output = Mars::years_during(&duration);
+    let expected = 35.88;
+    assert_in_delta(expected, output);
 }
 
 #[test]
 #[ignore]
-fn jupiter_age() {
-    let duration = Duration::from(901_876_382);
-    assert_in_delta(2.41, Jupiter::years_during(&duration));
+fn age_on_jupiter() {
+    let seconds = 901876382;
+    let duration = Duration::from(seconds);
+    let output = Jupiter::years_during(&duration);
+    let expected = 2.41;
+    assert_in_delta(expected, output);
 }
 
 #[test]
 #[ignore]
-fn saturn_age() {
-    let duration = Duration::from(2_000_000_000);
-    assert_in_delta(2.15, Saturn::years_during(&duration));
+fn age_on_saturn() {
+    let seconds = 2000000000;
+    let duration = Duration::from(seconds);
+    let output = Saturn::years_during(&duration);
+    let expected = 2.15;
+    assert_in_delta(expected, output);
 }
 
 #[test]
 #[ignore]
-fn uranus_age() {
-    let duration = Duration::from(1_210_123_456);
-    assert_in_delta(0.46, Uranus::years_during(&duration));
+fn age_on_uranus() {
+    let seconds = 1210123456;
+    let duration = Duration::from(seconds);
+    let output = Uranus::years_during(&duration);
+    let expected = 0.46;
+    assert_in_delta(expected, output);
 }
 
 #[test]
 #[ignore]
-fn neptune_age() {
-    let duration = Duration::from(1_821_023_456);
-    assert_in_delta(0.35, Neptune::years_during(&duration));
+fn age_on_neptune() {
+    let seconds = 1821023456;
+    let duration = Duration::from(seconds);
+    let output = Neptune::years_during(&duration);
+    let expected = 0.35;
+    assert_in_delta(expected, output);
 }
