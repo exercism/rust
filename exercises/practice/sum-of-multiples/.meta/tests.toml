@@ -1,6 +1,13 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
 
 [54aaab5a-ce86-4edc-8b40-d3ab2400a279]
 description = "no multiples within limit"
@@ -46,3 +53,6 @@ description = "the only multiple of 0 is 0"
 
 [c423ae21-a0cb-4ec7-aeb1-32971af5b510]
 description = "the factor 0 does not affect the sum of multiples of other factors"
+
+[17053ba9-112f-4ac0-aadb-0519dd836342]
+description = "solutions using include-exclude must extend to cardinality greater than 3"
