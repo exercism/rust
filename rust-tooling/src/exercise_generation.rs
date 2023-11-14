@@ -4,7 +4,7 @@ use tera::Context;
 
 use crate::{
     exercise_config::{get_excluded_tests, get_test_emplate},
-    problem_spec::{get_canonical_data, SingleTestCase, TestCase},
+    problem_spec::{get_additional_test_cases, get_canonical_data, SingleTestCase, TestCase},
 };
 
 pub struct GeneratedExercise {
@@ -91,7 +91,11 @@ fn to_hex(value: &tera::Value, _args: &HashMap<String, tera::Value>) -> tera::Re
 }
 
 fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
-    let cases = get_canonical_data(slug).cases;
+    let cases = {
+        let mut cases = get_canonical_data(slug).cases;
+        cases.extend_from_slice(&get_additional_test_cases(slug));
+        cases
+    };
     let excluded_tests = get_excluded_tests(slug);
     let mut template = get_test_emplate(slug).unwrap();
     if template.get_template_names().next().is_none() {
