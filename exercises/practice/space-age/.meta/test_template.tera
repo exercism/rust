@@ -1,0 +1,22 @@
+use space_age::*;
+
+fn assert_in_delta(expected: f64, actual: f64) {
+    let diff: f64 = (expected - actual).abs();
+    let delta: f64 = 0.01;
+    if diff > delta {
+        panic!("Your result of {actual} should be within {delta} of the expected result {expected}")
+    }
+}
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let seconds = {{ test.input.seconds | json_encode() }};
+    let duration = Duration::from(seconds);
+    let output = {{ test.input.planet }}::years_during(&duration);
+    let expected = {{ test.expected | json_encode() }};
+    assert_in_delta(expected, output);
+}
+{% endfor -%}
