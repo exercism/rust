@@ -1,0 +1,24 @@
+// We don't care about order
+fn find_sorted_saddle_points(input: &[Vec<u64>]) -> Vec<(usize, usize)> {
+    let mut result = saddle_points::find_saddle_points(input);
+    result.sort_unstable();
+    result
+}
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = &[{% for row in test.input.matrix %}
+        vec!{{ row }},
+    {% endfor %}];
+    let output = find_sorted_saddle_points(input);
+    let expected = &[
+        {% for p in test.expected | sort(attribute = "column") | sort(attribute = "row") %}
+            ({{ p.row - 1 }}, {{ p.column - 1 }}),
+        {% endfor %}
+    ];
+    assert_eq!(output, expected);
+}
+{% endfor -%}
