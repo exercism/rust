@@ -1,4 +1,8 @@
-use std::collections::HashMap;
+use std::{
+    collections::HashMap,
+    io::Write,
+    process::{Command, Stdio},
+};
 
 use tera::Context;
 
@@ -110,9 +114,28 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     context.insert("fn_names", &fn_names);
     context.insert("cases", &single_cases);
 
-    template
-        .render("test_template.tera", &context)
+    let rendered = template.render("test_template.tera", &context).unwrap();
+    let rendered = rendered.trim_start();
+
+    let mut child = Command::new("rustfmt")
+        .stdin(Stdio::piped())
+        .stdout(Stdio::piped())
+        .spawn()
+        .expect("failed to spawn process");
+
+    child
+        .stdin
+        .as_mut()
         .unwrap()
-        .trim_start()
-        .into()
+        .write_all(rendered.as_bytes())
+        .unwrap();
+    let rustfmt_out = child.wait_with_output().unwrap();
+
+    if rustfmt_out.status.success() {
+        String::from_utf8(rustfmt_out.stdout).unwrap()
+    } else {
+        // if rustfmt fails, still return the unformatted
+        // content to be written to the file
+        rendered.into()
+    }
 }
