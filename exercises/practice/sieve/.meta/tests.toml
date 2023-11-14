@@ -1,6 +1,25 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
+
+[88529125-c4ce-43cc-bb36-1eb4ddd7b44f]
+description = "no primes under two"
+
+[4afe9474-c705-4477-9923-840e1024cc2b]
+description = "find first prime"
+
+[974945d8-8cd9-4f00-9463-7d813c7f17b7]
+description = "find primes up to 10"
 
 [2e2417b7-3f3a-452a-8594-b9af08af6d82]
 description = "limit is prime"
+
+[92102a05-4c7c-47de-9ed0-b7d5fcd00f21]
+description = "find primes up to 1000"
