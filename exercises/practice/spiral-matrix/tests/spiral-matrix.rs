@@ -1,55 +1,63 @@
-use spiral_matrix::*;
-
 #[test]
 fn empty_spiral() {
-    let expected: Vec<Vec<u32>> = Vec::new();
-    assert_eq!(spiral_matrix(0), expected);
+    let input = 0;
+    let output = spiral_matrix::spiral_matrix(input);
+    let expected: [[u32; 0]; 0] = [];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn size_one_spiral() {
-    let expected: Vec<Vec<u32>> = vec![vec![1]];
-    assert_eq!(spiral_matrix(1), expected);
-}
-#[test]
-#[ignore]
-fn size_two_spiral() {
-    let expected: Vec<Vec<u32>> = vec![vec![1, 2], vec![4, 3]];
-    assert_eq!(spiral_matrix(2), expected);
+fn trivial_spiral() {
+    let input = 1;
+    let output = spiral_matrix::spiral_matrix(input);
+    let expected: [[u32; 1]; 1] = [[1]];
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn size_three_spiral() {
-    #[rustfmt::skip]
-    let expected: Vec<Vec<u32>> = vec![
-        vec![1, 2, 3],
-        vec![8, 9, 4],
-        vec![7, 6, 5],
-    ];
-    assert_eq!(spiral_matrix(3), expected);
+fn spiral_of_size_2() {
+    let input = 2;
+    let output = spiral_matrix::spiral_matrix(input);
+    let expected: [[u32; 2]; 2] = [[1, 2], [4, 3]];
+    assert_eq!(output, expected);
 }
+
 #[test]
 #[ignore]
-fn size_four_spiral() {
-    let expected: Vec<Vec<u32>> = vec![
-        vec![1, 2, 3, 4],
-        vec![12, 13, 14, 5],
-        vec![11, 16, 15, 6],
-        vec![10, 9, 8, 7],
-    ];
-    assert_eq!(spiral_matrix(4), expected);
+fn spiral_of_size_3() {
+    let input = 3;
+    let output = spiral_matrix::spiral_matrix(input);
+    let expected: [[u32; 3]; 3] = [[1, 2, 3], [8, 9, 4], [7, 6, 5]];
+    assert_eq!(output, expected);
 }
+
 #[test]
 #[ignore]
-fn size_five_spiral() {
-    let expected: Vec<Vec<u32>> = vec![
-        vec![1, 2, 3, 4, 5],
-        vec![16, 17, 18, 19, 6],
-        vec![15, 24, 25, 20, 7],
-        vec![14, 23, 22, 21, 8],
-        vec![13, 12, 11, 10, 9],
+fn spiral_of_size_4() {
+    let input = 4;
+    let output = spiral_matrix::spiral_matrix(input);
+    let expected: [[u32; 4]; 4] = [
+        [1, 2, 3, 4],
+        [12, 13, 14, 5],
+        [11, 16, 15, 6],
+        [10, 9, 8, 7],
     ];
-    assert_eq!(spiral_matrix(5), expected);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn spiral_of_size_5() {
+    let input = 5;
+    let output = spiral_matrix::spiral_matrix(input);
+    let expected: [[u32; 5]; 5] = [
+        [1, 2, 3, 4, 5],
+        [16, 17, 18, 19, 6],
+        [15, 24, 25, 20, 7],
+        [14, 23, 22, 21, 8],
+        [13, 12, 11, 10, 9],
+    ];
+    assert_eq!(output, expected);
 }

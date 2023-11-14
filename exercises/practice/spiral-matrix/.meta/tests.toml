@@ -1,6 +1,28 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
 
 [8f584201-b446-4bc9-b132-811c8edd9040]
 description = "empty spiral"
+
+[e40ae5f3-e2c9-4639-8116-8a119d632ab2]
+description = "trivial spiral"
+
+[cf05e42d-eb78-4098-a36e-cdaf0991bc48]
+description = "spiral of size 2"
+
+[1c475667-c896-4c23-82e2-e033929de939]
+description = "spiral of size 3"
+
+[05ccbc48-d891-44f5-9137-f4ce462a759d]
+description = "spiral of size 4"
+
+[f4d2165b-1738-4e0c-bed0-c459045ae50d]
+description = "spiral of size 5"
