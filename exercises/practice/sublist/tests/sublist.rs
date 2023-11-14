@@ -1,127 +1,180 @@
-use sublist::{sublist, Comparison};
+use sublist::Comparison;
 
 #[test]
-fn empty_equals_empty() {
-    let v: &[u32] = &[];
-
-    assert_eq!(Comparison::Equal, sublist(v, v));
+fn empty_lists() {
+    let list_one: &[i32] = &[];
+    let list_two: &[i32] = &[];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Equal;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn empty_is_a_sublist_of_anything() {
-    assert_eq!(Comparison::Sublist, sublist(&[], &['a', 's', 'd', 'f']));
+fn empty_list_within_non_empty_list() {
+    let list_one: &[i32] = &[];
+    let list_two: &[i32] = &[1, 2, 3];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Sublist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn anything_is_a_superlist_of_empty() {
-    assert_eq!(Comparison::Superlist, sublist(&['a', 's', 'd', 'f'], &[]));
+fn non_empty_list_contains_empty_list() {
+    let list_one: &[i32] = &[1, 2, 3];
+    let list_two: &[i32] = &[];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Superlist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn one_is_not_two() {
-    assert_eq!(Comparison::Unequal, sublist(&[1], &[2]));
+fn list_equals_itself() {
+    let list_one: &[i32] = &[1, 2, 3];
+    let list_two: &[i32] = &[1, 2, 3];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Equal;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn compare_larger_equal_lists() {
-    use std::iter::repeat;
+fn different_lists() {
+    let list_one: &[i32] = &[1, 2, 3];
+    let list_two: &[i32] = &[2, 3, 4];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Unequal;
+    assert_eq!(output, expected);
+}
 
-    let v: Vec<char> = repeat('x').take(1000).collect();
+#[test]
+#[ignore]
+fn false_start() {
+    let list_one: &[i32] = &[1, 2, 5];
+    let list_two: &[i32] = &[0, 1, 2, 3, 1, 2, 5, 6];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Sublist;
+    assert_eq!(output, expected);
+}
 
-    assert_eq!(Comparison::Equal, sublist(&v, &v));
+#[test]
+#[ignore]
+fn consecutive() {
+    let list_one: &[i32] = &[1, 1, 2];
+    let list_two: &[i32] = &[0, 1, 1, 1, 2, 1, 2];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Sublist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn sublist_at_start() {
-    assert_eq!(Comparison::Sublist, sublist(&[1, 2, 3], &[1, 2, 3, 4, 5]));
+    let list_one: &[i32] = &[0, 1, 2];
+    let list_two: &[i32] = &[0, 1, 2, 3, 4, 5];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Sublist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn sublist_in_middle() {
-    assert_eq!(Comparison::Sublist, sublist(&[4, 3, 2], &[5, 4, 3, 2, 1]));
+    let list_one: &[i32] = &[2, 3, 4];
+    let list_two: &[i32] = &[0, 1, 2, 3, 4, 5];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Sublist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn sublist_at_end() {
-    assert_eq!(Comparison::Sublist, sublist(&[3, 4, 5], &[1, 2, 3, 4, 5]));
+    let list_one: &[i32] = &[3, 4, 5];
+    let list_two: &[i32] = &[0, 1, 2, 3, 4, 5];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Sublist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn partially_matching_sublist_at_start() {
-    assert_eq!(Comparison::Sublist, sublist(&[1, 1, 2], &[1, 1, 1, 2]));
+fn at_start_of_superlist() {
+    let list_one: &[i32] = &[0, 1, 2, 3, 4, 5];
+    let list_two: &[i32] = &[0, 1, 2];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Superlist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn sublist_early_in_huge_list() {
-    let huge: Vec<u32> = (1..1_000_000).collect();
-
-    assert_eq!(Comparison::Sublist, sublist(&[3, 4, 5], &huge));
+fn in_middle_of_superlist() {
+    let list_one: &[i32] = &[0, 1, 2, 3, 4, 5];
+    let list_two: &[i32] = &[2, 3];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Superlist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn huge_sublist_not_in_huge_list() {
-    let v1: Vec<u64> = (10..1_000_001).collect();
-    let v2: Vec<u64> = (1..1_000_000).collect();
-
-    assert_eq!(Comparison::Unequal, sublist(&v1, &v2));
+fn at_end_of_superlist() {
+    let list_one: &[i32] = &[0, 1, 2, 3, 4, 5];
+    let list_two: &[i32] = &[3, 4, 5];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Superlist;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn superlist_at_start() {
-    assert_eq!(Comparison::Superlist, sublist(&[1, 2, 3, 4, 5], &[1, 2, 3]));
-}
-
-#[test]
-#[ignore]
-fn superlist_in_middle() {
-    assert_eq!(Comparison::Superlist, sublist(&[5, 4, 3, 2, 1], &[4, 3, 2]));
-}
-
-#[test]
-#[ignore]
-fn superlist_at_end() {
-    assert_eq!(Comparison::Superlist, sublist(&[1, 2, 3, 4, 5], &[3, 4, 5]));
+fn first_list_missing_element_from_second_list() {
+    let list_one: &[i32] = &[1, 3];
+    let list_two: &[i32] = &[1, 2, 3];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Unequal;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn second_list_missing_element_from_first_list() {
-    assert_eq!(Comparison::Unequal, sublist(&[1, 2, 3], &[1, 3]));
+    let list_one: &[i32] = &[1, 2, 3];
+    let list_two: &[i32] = &[1, 3];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Unequal;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn superlist_early_in_huge_list() {
-    let huge: Vec<u32> = (1..1_000_000).collect();
-
-    assert_eq!(Comparison::Superlist, sublist(&huge, &[3, 4, 5]));
+fn first_list_missing_additional_digits_from_second_list() {
+    let list_one: &[i32] = &[1, 2];
+    let list_two: &[i32] = &[1, 22];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Unequal;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn recurring_values_sublist() {
-    assert_eq!(
-        Comparison::Sublist,
-        sublist(&[1, 2, 1, 2, 3], &[1, 2, 3, 1, 2, 1, 2, 3, 2, 1])
-    );
+fn order_matters_to_a_list() {
+    let list_one: &[i32] = &[1, 2, 3];
+    let list_two: &[i32] = &[3, 2, 1];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Unequal;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn recurring_values_unequal() {
-    assert_eq!(
-        Comparison::Unequal,
-        sublist(&[1, 2, 1, 2, 3], &[1, 2, 3, 1, 2, 3, 2, 3, 2, 1])
-    );
+fn same_digits_but_different_numbers() {
+    let list_one: &[i32] = &[1, 0, 1];
+    let list_two: &[i32] = &[10, 1];
+    let output = sublist::sublist(list_one, list_two);
+    let expected = Comparison::Unequal;
+    assert_eq!(output, expected);
 }
