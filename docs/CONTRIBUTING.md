@@ -41,6 +41,9 @@ The tests are generated using the template engine [Tera].
 The input of the template is the canonical data from [`problem-specifications`].
 if you want to exclude certain tests from being generated,
 you have to set `include = false` in `.meta/tests.toml`.
+Please include a comment about the reason for excluding it.
+If you want to add additional track-specific tests, you can do so in a file `.meta/additional-tests.json`.
+Only do this with a good reason for not upstreaming these tests.
 
 Find some tips about writing tera templates [here](#tera-templates).
 
