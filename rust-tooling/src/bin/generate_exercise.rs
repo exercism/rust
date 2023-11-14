@@ -214,6 +214,14 @@ fn read_fn_names_from_lib_rs(slug: &str) -> Vec<String> {
     lib_rs
         .split("fn ")
         .skip(1)
-        .map(|f| f.split_once('(').unwrap().0.to_string())
+        .map(|f| {
+            let tmp = f.split_once('(').unwrap().0;
+            // strip generics
+            if let Some((res, _)) = tmp.split_once('<') {
+                res.to_string()
+            } else {
+                tmp.to_string()
+            }
+        })
         .collect()
 }
