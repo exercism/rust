@@ -1,160 +1,169 @@
-// Note: No tests created using 'and' with numbers.
-// Apparently Most American English does not use the 'and' with numbers,
-// where it is common in British English to use the 'and'.
-
 #[test]
 fn zero() {
-    assert_eq!(say::encode(0), String::from("zero"));
+    let input = 0;
+    let output = say::encode(input);
+    let expected = "zero";
+    assert_eq!(output, expected);
 }
-
-//
-// If the below test is uncommented, it should not compile.
-//
-/*
-#[test]
-#[ignore]
-fn negative() {
-    assert_eq!(say::encode(-1), String::from("won't compile"));
-}
-*/
 
 #[test]
 #[ignore]
 fn one() {
-    assert_eq!(say::encode(1), String::from("one"));
+    let input = 1;
+    let output = say::encode(input);
+    let expected = "one";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn fourteen() {
-    assert_eq!(say::encode(14), String::from("fourteen"));
+    let input = 14;
+    let output = say::encode(input);
+    let expected = "fourteen";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn twenty() {
-    assert_eq!(say::encode(20), String::from("twenty"));
+    let input = 20;
+    let output = say::encode(input);
+    let expected = "twenty";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn twenty_two() {
-    assert_eq!(say::encode(22), String::from("twenty-two"));
+    let input = 22;
+    let output = say::encode(input);
+    let expected = "twenty-two";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn thirty() {
+    let input = 30;
+    let output = say::encode(input);
+    let expected = "thirty";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn ninety_nine() {
+    let input = 99;
+    let output = say::encode(input);
+    let expected = "ninety-nine";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_hundred() {
-    assert_eq!(say::encode(100), String::from("one hundred"));
-}
-
-// note, using American style with no and
-#[test]
-#[ignore]
-fn one_hundred_twenty() {
-    assert_eq!(say::encode(120), String::from("one hundred twenty"));
+    let input = 100;
+    let output = say::encode(input);
+    let expected = "one hundred";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_hundred_twenty_three() {
-    assert_eq!(say::encode(123), String::from("one hundred twenty-three"));
+    let input = 123;
+    let output = say::encode(input);
+    let expected = "one hundred twenty-three";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn two_hundred() {
+    let input = 200;
+    let output = say::encode(input);
+    let expected = "two hundred";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn nine_hundred_ninety_nine() {
+    let input = 999;
+    let output = say::encode(input);
+    let expected = "nine hundred ninety-nine";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_thousand() {
-    assert_eq!(say::encode(1000), String::from("one thousand"));
+    let input = 1000;
+    let output = say::encode(input);
+    let expected = "one thousand";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_thousand_two_hundred_thirty_four() {
-    assert_eq!(
-        say::encode(1234),
-        String::from("one thousand two hundred thirty-four")
-    );
-}
-
-// note, using American style with no and
-#[test]
-#[ignore]
-fn eight_hundred_and_ten_thousand() {
-    assert_eq!(
-        say::encode(810_000),
-        String::from("eight hundred ten thousand")
-    );
+    let input = 1234;
+    let output = say::encode(input);
+    let expected = "one thousand two hundred thirty-four";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_million() {
-    assert_eq!(say::encode(1_000_000), String::from("one million"));
-}
-
-// note, using American style with no and
-#[test]
-#[ignore]
-fn one_million_two() {
-    assert_eq!(say::encode(1_000_002), String::from("one million two"));
+    let input = 1000000;
+    let output = say::encode(input);
+    let expected = "one million";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_million_two_thousand_three_hundred_forty_five() {
-    assert_eq!(
-        say::encode(1_002_345),
-        String::from("one million two thousand three hundred forty-five")
-    );
+    let input = 1002345;
+    let output = say::encode(input);
+    let expected = "one million two thousand three hundred forty-five";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_billion() {
-    assert_eq!(say::encode(1_000_000_000), String::from("one billion"));
+    let input = 1000000000;
+    let output = say::encode(input);
+    let expected = "one billion";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_987654321123() {
-    assert_eq!(
-        say::encode(987_654_321_123),
-        String::from(
-            "nine hundred eighty-seven billion \
-             six hundred fifty-four million \
-             three hundred twenty-one thousand \
-             one hundred twenty-three"
-        )
-    );
+fn a_big_number() {
+    let input = 987654321123;
+    let output = say::encode(input);
+    let expected = "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three";
+    assert_eq!(output, expected);
 }
 
-/*
-  These tests are only if you implemented full parsing for u64 type.
-*/
 #[test]
 #[ignore]
 fn max_i64() {
-    assert_eq!(
-        say::encode(9_223_372_036_854_775_807),
-        String::from(
-            "nine quintillion two hundred twenty-three \
-             quadrillion three hundred seventy-two trillion \
-             thirty-six billion eight hundred fifty-four million \
-             seven hundred seventy-five thousand eight hundred seven"
-        )
-    );
+    let input = 9223372036854775807;
+    let output = say::encode(input);
+    let expected = "nine quintillion two hundred twenty-three quadrillion three hundred seventy-two trillion thirty-six billion eight hundred fifty-four million seven hundred seventy-five thousand eight hundred seven";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn max_u64() {
-    assert_eq!(
-        say::encode(18_446_744_073_709_551_615),
-        String::from(
-            "eighteen quintillion four hundred forty-six \
-             quadrillion seven hundred forty-four trillion \
-             seventy-three billion seven hundred nine million \
-             five hundred fifty-one thousand six hundred fifteen"
-        )
-    );
+    let input = 18446744073709551615;
+    let output = say::encode(input);
+    let expected = "eighteen quintillion four hundred forty-six quadrillion seven hundred forty-four trillion seventy-three billion seven hundred nine million five hundred fifty-one thousand six hundred fifteen";
+    assert_eq!(output, expected);
 }

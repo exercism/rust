@@ -1,0 +1,20 @@
+[
+    {
+        "uuid": "ecafab60-89f2-4680-9286-56b423e8a7b9",
+        "description": "max i64",
+        "property": "say",
+        "input": {
+            "number": 9223372036854775807
+        },
+        "expected": "nine quintillion two hundred twenty-three quadrillion three hundred seventy-two trillion thirty-six billion eight hundred fifty-four million seven hundred seventy-five thousand eight hundred seven"
+    },
+    {
+        "uuid": "88808dac-dffb-46a6-95d4-68d5271a9c38",
+        "description": "max u64",
+        "property": "say",
+        "input": {
+            "number": 18446744073709551615
+        },
+        "expected": "eighteen quintillion four hundred forty-six quadrillion seven hundred forty-four trillion seventy-three billion seven hundred nine million five hundred fifty-one thousand six hundred fifteen"
+    }
+]
