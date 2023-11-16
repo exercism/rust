@@ -1,74 +1,115 @@
-use scrabble_score::*;
-
 #[test]
-fn a_is_worth_one_point() {
-    assert_eq!(score("a"), 1);
+fn lowercase_letter() {
+    let input = "a";
+    let output = scrabble_score::score(input);
+    let expected = 1;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn scoring_is_case_insensitive() {
-    assert_eq!(score("A"), 1);
+fn uppercase_letter() {
+    let input = "A";
+    let output = scrabble_score::score(input);
+    let expected = 1;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn f_is_worth_four() {
-    assert_eq!(score("f"), 4);
+fn valuable_letter() {
+    let input = "f";
+    let output = scrabble_score::score(input);
+    let expected = 4;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn two_one_point_letters_make_a_two_point_word() {
-    assert_eq!(score("at"), 2);
+fn short_word() {
+    let input = "at";
+    let output = scrabble_score::score(input);
+    let expected = 2;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn three_letter_word() {
-    assert_eq!(score("zoo"), 12);
+fn short_valuable_word() {
+    let input = "zoo";
+    let output = scrabble_score::score(input);
+    let expected = 12;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn medium_word() {
-    assert_eq!(score("street"), 6);
+    let input = "street";
+    let output = scrabble_score::score(input);
+    let expected = 6;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn longer_words_with_valuable_letters() {
-    assert_eq!(score("quirky"), 22);
+fn medium_valuable_word() {
+    let input = "quirky";
+    let output = scrabble_score::score(input);
+    let expected = 22;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn long_mixed_case_word() {
-    assert_eq!(score("OxyphenButazone"), 41);
+    let input = "OxyphenButazone";
+    let output = scrabble_score::score(input);
+    let expected = 41;
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn english_like_word() {
+    let input = "pinata";
+    let output = scrabble_score::score(input);
+    let expected = 8;
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn empty_input() {
+    let input = "";
+    let output = scrabble_score::score(input);
+    let expected = 0;
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn entire_alphabet_available() {
+    let input = "abcdefghijklmnopqrstuvwxyz";
+    let output = scrabble_score::score(input);
+    let expected = 87;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn non_english_scrabble_letters_do_not_score() {
-    assert_eq!(score("pinata"), 8, "'n' should score 1");
-    assert_eq!(score("piñata"), 7, "'ñ' should score 0");
-}
-
-#[test]
-#[ignore]
-fn empty_words_are_worth_zero() {
-    assert_eq!(score(""), 0);
-}
-
-#[test]
-#[ignore]
-fn all_letters_work() {
-    assert_eq!(score("abcdefghijklmnopqrstuvwxyz"), 87);
+    let input = "piñata";
+    let output = scrabble_score::score(input);
+    let expected = 7;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn german_letters_do_not_score() {
-    assert_eq!(score("STRASSE"), 7, "\"SS\" should score 2");
-    assert_eq!(score("STRAßE"), 5, "'ß' should score 0");
+    let input = "STRAßE";
+    let output = scrabble_score::score(input);
+    let expected = 5;
+    assert_eq!(output, expected);
 }
