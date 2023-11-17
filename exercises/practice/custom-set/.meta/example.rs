@@ -49,8 +49,8 @@ impl<T: Ord + Clone> CustomSet<T> {
             &self
                 .collection
                 .iter()
-                .cloned()
                 .filter(|c| other.contains(c))
+                .cloned()
                 .collect::<Vec<_>>(),
         )
     }
@@ -61,8 +61,8 @@ impl<T: Ord + Clone> CustomSet<T> {
             &self
                 .collection
                 .iter()
+                .chain(other.collection.iter())
                 .cloned()
-                .chain(other.collection.iter().cloned())
                 .collect::<Vec<_>>(),
         )
     }
@@ -73,8 +73,8 @@ impl<T: Ord + Clone> CustomSet<T> {
             &self
                 .collection
                 .iter()
-                .cloned()
                 .filter(|c| !other.contains(c))
+                .cloned()
                 .collect::<Vec<_>>(),
         )
     }

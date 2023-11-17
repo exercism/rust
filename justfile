@@ -12,6 +12,7 @@ test:
     ./bin/lint_markdown.sh
     # TODO shellcheck
     ./bin/check_exercises.sh
+    CLIPPY=true ./bin/check_exercises.sh
     ./bin/ensure_stubs_compile.sh
     cd rust-tooling && cargo test
     # TODO format exercises
