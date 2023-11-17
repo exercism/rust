@@ -1,0 +1,20 @@
+[
+  {
+    "uuid": "9e0faee7-dc23-460b-afec-17c7145ae564",
+    "description": "non english scrabble letters do not score",
+    "property": "score",
+    "input": {
+      "word": "piñata"
+    },
+    "expected": 7
+  },
+  {
+    "uuid": "3099e8fd-0077-4520-be33-54bb9a1c0dc7",
+    "description": "german letters do not score",
+    "property": "score",
+    "input": {
+      "word": "STRAßE"
+    },
+    "expected": 5
+  }
+]
