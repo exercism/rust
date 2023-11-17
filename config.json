@@ -1439,7 +1439,8 @@
           "music_theory",
           "to_primitive",
           "traits"
-        ]
+        ],
+        "status": "deprecated"
       },
       {
         "slug": "dominoes",
