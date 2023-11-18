@@ -1,0 +1,14 @@
+use rotational_cipher as cipher;
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let text = {{ test.input.text | json_encode() }};
+    let shift_key = {{ test.input.shiftKey | json_encode() }};
+    let output = cipher::{{ fn_names[0] }}(text, shift_key);
+    let expected = {{ test.expected | json_encode() }};
+    assert_eq!(output, expected);
+}
+{% endfor -%}
