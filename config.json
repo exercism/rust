@@ -1429,9 +1429,7 @@
         "slug": "scale-generator",
         "name": "Scale Generator",
         "uuid": "b9436a89-90cb-4fb7-95b0-758f17c309ff",
-        "practices": [
-          "enums"
-        ],
+        "practices": [],
         "prerequisites": [],
         "difficulty": 7,
         "topics": [
@@ -1439,7 +1437,8 @@
           "music_theory",
           "to_primitive",
           "traits"
-        ]
+        ],
+        "status": "deprecated"
       },
       {
         "slug": "dominoes",
