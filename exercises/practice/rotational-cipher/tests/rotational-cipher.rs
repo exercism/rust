@@ -1,81 +1,100 @@
 use rotational_cipher as cipher;
 
 #[test]
-fn rotate_a_1() {
-    assert_eq!("b", cipher::rotate("a", 1));
+fn rotate_a_by_0_same_output_as_input() {
+    let text = "a";
+    let shift_key = 0;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "a";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rotate_a_26() {
-    assert_eq!("a", cipher::rotate("a", 26));
+fn rotate_a_by_1() {
+    let text = "a";
+    let shift_key = 1;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "b";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rotate_a_0() {
-    assert_eq!("a", cipher::rotate("a", 0));
+fn rotate_a_by_26_same_output_as_input() {
+    let text = "a";
+    let shift_key = 26;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "a";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rotate_m_13() {
-    assert_eq!("z", cipher::rotate("m", 13));
+fn rotate_m_by_13() {
+    let text = "m";
+    let shift_key = 13;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "z";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rotate_n_13_with_wrap() {
-    assert_eq!("a", cipher::rotate("n", 13));
+fn rotate_n_by_13_with_wrap_around_alphabet() {
+    let text = "n";
+    let shift_key = 13;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "a";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rotate_caps() {
-    assert_eq!("TRL", cipher::rotate("OMG", 5));
+fn rotate_capital_letters() {
+    let text = "OMG";
+    let shift_key = 5;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "TRL";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn rotate_spaces() {
-    assert_eq!("T R L", cipher::rotate("O M G", 5));
+    let text = "O M G";
+    let shift_key = 5;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "T R L";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn rotate_numbers() {
-    assert_eq!(
-        "Xiwxmrk 1 2 3 xiwxmrk",
-        cipher::rotate("Testing 1 2 3 testing", 4)
-    );
+    let text = "Testing 1 2 3 testing";
+    let shift_key = 4;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "Xiwxmrk 1 2 3 xiwxmrk";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn rotate_punctuation() {
-    assert_eq!(
-        "Gzo\'n zvo, Bmviyhv!",
-        cipher::rotate("Let\'s eat, Grandma!", 21)
-    );
+    let text = "Let's eat, Grandma!";
+    let shift_key = 21;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "Gzo'n zvo, Bmviyhv!";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rotate_all_the_letters() {
-    assert_eq!(
-        "Gur dhvpx oebja sbk whzcf bire gur ynml qbt.",
-        cipher::rotate("The quick brown fox jumps over the lazy dog.", 13)
-    );
-}
-
-#[test]
-#[ignore]
-fn rotate_m_negative_1() {
-    assert_eq!("l", cipher::rotate("m", -1));
-}
-
-#[test]
-#[ignore]
-fn rotate_letters_negative_26() {
-    assert_eq!("omg", cipher::rotate("omg", -26));
+fn rotate_all_letters() {
+    let text = "The quick brown fox jumps over the lazy dog.";
+    let shift_key = 13;
+    let output = cipher::rotate(text, shift_key);
+    let expected = "Gur dhvpx oebja sbk whzcf bire gur ynml qbt.";
+    assert_eq!(output, expected);
 }

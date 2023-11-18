@@ -1,6 +1,4 @@
-pub fn rotate(text: &str, key: i8) -> String {
-    let key = if key < 0 { (26 + key) as u8 } else { key as u8 };
-
+pub fn rotate(text: &str, key: u8) -> String {
     text.chars()
         .map(|c| {
             if c.is_alphabetic() {
