@@ -1,108 +1,234 @@
-use roman_numerals::*;
+use roman_numerals::Roman;
 
 #[test]
-fn one() {
-    assert_eq!("I", Roman::from(1).to_string());
+fn number_1_is_i() {
+    let input = 1;
+    let output = Roman::from(input).to_string();
+    let expected = "I";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn two() {
-    assert_eq!("II", Roman::from(2).to_string());
+fn number_2_is_ii() {
+    let input = 2;
+    let output = Roman::from(input).to_string();
+    let expected = "II";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn three() {
-    assert_eq!("III", Roman::from(3).to_string());
+fn number_3_is_iii() {
+    let input = 3;
+    let output = Roman::from(input).to_string();
+    let expected = "III";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn four() {
-    assert_eq!("IV", Roman::from(4).to_string());
+fn number_4_is_iv() {
+    let input = 4;
+    let output = Roman::from(input).to_string();
+    let expected = "IV";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn five() {
-    assert_eq!("V", Roman::from(5).to_string());
+fn number_5_is_v() {
+    let input = 5;
+    let output = Roman::from(input).to_string();
+    let expected = "V";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn six() {
-    assert_eq!("VI", Roman::from(6).to_string());
+fn number_6_is_vi() {
+    let input = 6;
+    let output = Roman::from(input).to_string();
+    let expected = "VI";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn nine() {
-    assert_eq!("IX", Roman::from(9).to_string());
+fn number_9_is_ix() {
+    let input = 9;
+    let output = Roman::from(input).to_string();
+    let expected = "IX";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn twenty_seven() {
-    assert_eq!("XXVII", Roman::from(27).to_string());
+fn number_16_is_xvi() {
+    let input = 16;
+    let output = Roman::from(input).to_string();
+    let expected = "XVI";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn forty_eight() {
-    assert_eq!("XLVIII", Roman::from(48).to_string());
+fn number_27_is_xxvii() {
+    let input = 27;
+    let output = Roman::from(input).to_string();
+    let expected = "XXVII";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn fifty_nine() {
-    assert_eq!("LIX", Roman::from(59).to_string());
+fn number_48_is_xlviii() {
+    let input = 48;
+    let output = Roman::from(input).to_string();
+    let expected = "XLVIII";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn ninety_three() {
-    assert_eq!("XCIII", Roman::from(93).to_string());
+fn number_49_is_xlix() {
+    let input = 49;
+    let output = Roman::from(input).to_string();
+    let expected = "XLIX";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_141() {
-    assert_eq!("CXLI", Roman::from(141).to_string());
+fn number_59_is_lix() {
+    let input = 59;
+    let output = Roman::from(input).to_string();
+    let expected = "LIX";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_163() {
-    assert_eq!("CLXIII", Roman::from(163).to_string());
+fn number_66_is_lxvi() {
+    let input = 66;
+    let output = Roman::from(input).to_string();
+    let expected = "LXVI";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_402() {
-    assert_eq!("CDII", Roman::from(402).to_string());
+fn number_93_is_xciii() {
+    let input = 93;
+    let output = Roman::from(input).to_string();
+    let expected = "XCIII";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_575() {
-    assert_eq!("DLXXV", Roman::from(575).to_string());
+fn number_141_is_cxli() {
+    let input = 141;
+    let output = Roman::from(input).to_string();
+    let expected = "CXLI";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_911() {
-    assert_eq!("CMXI", Roman::from(911).to_string());
+fn number_163_is_clxiii() {
+    let input = 163;
+    let output = Roman::from(input).to_string();
+    let expected = "CLXIII";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_1024() {
-    assert_eq!("MXXIV", Roman::from(1024).to_string());
+fn number_166_is_clxvi() {
+    let input = 166;
+    let output = Roman::from(input).to_string();
+    let expected = "CLXVI";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn test_3000() {
-    assert_eq!("MMM", Roman::from(3000).to_string());
+fn number_402_is_cdii() {
+    let input = 402;
+    let output = Roman::from(input).to_string();
+    let expected = "CDII";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_575_is_dlxxv() {
+    let input = 575;
+    let output = Roman::from(input).to_string();
+    let expected = "DLXXV";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_666_is_dclxvi() {
+    let input = 666;
+    let output = Roman::from(input).to_string();
+    let expected = "DCLXVI";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_911_is_cmxi() {
+    let input = 911;
+    let output = Roman::from(input).to_string();
+    let expected = "CMXI";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_1024_is_mxxiv() {
+    let input = 1024;
+    let output = Roman::from(input).to_string();
+    let expected = "MXXIV";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_1666_is_mdclxvi() {
+    let input = 1666;
+    let output = Roman::from(input).to_string();
+    let expected = "MDCLXVI";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_3000_is_mmm() {
+    let input = 3000;
+    let output = Roman::from(input).to_string();
+    let expected = "MMM";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_3001_is_mmmi() {
+    let input = 3001;
+    let output = Roman::from(input).to_string();
+    let expected = "MMMI";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn number_3999_is_mmmcmxcix() {
+    let input = 3999;
+    let output = Roman::from(input).to_string();
+    let expected = "MMMCMXCIX";
+    assert_eq!(output, expected);
 }

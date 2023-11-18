@@ -1,0 +1,14 @@
+use roman_numerals::Roman;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn number_{{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.number | json_encode() }};
+    let output = Roman::from(input).to_string();
+    let expected = {{ test.expected | json_encode() }};
+    assert_eq!(output, expected);
+}
+{% endfor -%}
