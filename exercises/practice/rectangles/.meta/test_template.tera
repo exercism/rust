@@ -1,0 +1,19 @@
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
+    {% if test.input.strings | length > 1 -%}
+    #[rustfmt::skip]
+    {%- endif %}
+    let input = &[
+        {%- for row in test.input.strings %}
+        {{ row | json_encode }},
+        {%- endfor %}
+    ];
+    let output = {{ crate_name }}::{{ fn_names[0] }}(input);
+    let expected = {{ test.expected | json_encode() }};
+    assert_eq!(output, expected);
+}
+{% endfor -%}
