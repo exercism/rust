@@ -1,0 +1,20 @@
+[
+  {
+    "uuid": "01ebf55b-bebb-414e-9dec-06f7bb0bee3c",
+    "description": "wide characters",
+    "property": "reverse",
+    "input": {
+      "value": "子猫"
+    },
+    "expected": "猫子"
+  },
+  {
+    "uuid": "01ebf55b-bebb-414e-9dec-06f7bb0bee3c",
+    "description": "grapheme clusters",
+    "property": "grapheme",
+    "input": {
+      "value": "uüu"
+    },
+    "expected": "uüu"
+  }
+]
