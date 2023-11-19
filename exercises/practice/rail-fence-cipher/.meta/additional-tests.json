@@ -1,0 +1,12 @@
+[
+  {
+    "uuid": "46dc5c50-5538-401d-93a5-41102680d068",
+    "description": "encode wide characters",
+    "property": "encode",
+    "input": {
+      "msg": "古池蛙飛び込む水の音",
+      "rails": 3
+    },
+    "expected": "古びの池飛込水音蛙む"
+  }
+]
