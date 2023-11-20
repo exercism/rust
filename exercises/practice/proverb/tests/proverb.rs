@@ -1,53 +1,55 @@
-use proverb::build_proverb;
-
 #[test]
-fn two_pieces() {
-    let input = vec!["nail", "shoe"];
-    let expected = [
-        "For want of a nail the shoe was lost.",
-        "And all for the want of a nail.",
-    ]
-    .join("\n");
-    assert_eq!(build_proverb(&input), expected);
-}
-
-// Notice the change in the last line at three pieces.
-#[test]
-#[ignore]
-fn three_pieces() {
-    let input = vec!["nail", "shoe", "horse"];
-    let expected = [
-        "For want of a nail the shoe was lost.",
-        "For want of a shoe the horse was lost.",
-        "And all for the want of a nail.",
-    ]
-    .join("\n");
-    assert_eq!(build_proverb(&input), expected);
+fn zero_pieces() {
+    let input = &[];
+    let output = proverb::build_proverb(input);
+    let expected = String::new();
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn one_piece() {
-    let input = vec!["nail"];
-    let expected = String::from("And all for the want of a nail.");
-    assert_eq!(build_proverb(&input), expected);
+    let input = &["nail"];
+    let output = proverb::build_proverb(input);
+    let expected: String = ["And all for the want of a nail."].join("\n");
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn zero_pieces() {
-    let input: Vec<&str> = vec![];
-    let expected = String::new();
-    assert_eq!(build_proverb(&input), expected);
+fn two_pieces() {
+    let input = &["nail", "shoe"];
+    let output = proverb::build_proverb(input);
+    let expected: String = [
+        "For want of a nail the shoe was lost.",
+        "And all for the want of a nail.",
+    ]
+    .join("\n");
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn full() {
-    let input = vec![
+fn three_pieces() {
+    let input = &["nail", "shoe", "horse"];
+    let output = proverb::build_proverb(input);
+    let expected: String = [
+        "For want of a nail the shoe was lost.",
+        "For want of a shoe the horse was lost.",
+        "And all for the want of a nail.",
+    ]
+    .join("\n");
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn full_proverb() {
+    let input = &[
         "nail", "shoe", "horse", "rider", "message", "battle", "kingdom",
     ];
-    let expected = [
+    let output = proverb::build_proverb(input);
+    let expected: String = [
         "For want of a nail the shoe was lost.",
         "For want of a shoe the horse was lost.",
         "For want of a horse the rider was lost.",
@@ -57,19 +59,20 @@ fn full() {
         "And all for the want of a nail.",
     ]
     .join("\n");
-    assert_eq!(build_proverb(&input), expected);
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn three_pieces_modernized() {
-    let input = vec!["pin", "gun", "soldier", "battle"];
-    let expected = [
+fn four_pieces_modernized() {
+    let input = &["pin", "gun", "soldier", "battle"];
+    let output = proverb::build_proverb(input);
+    let expected: String = [
         "For want of a pin the gun was lost.",
         "For want of a gun the soldier was lost.",
         "For want of a soldier the battle was lost.",
         "And all for the want of a pin.",
     ]
     .join("\n");
-    assert_eq!(build_proverb(&input), expected);
+    assert_eq!(output, expected);
 }
