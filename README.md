@@ -16,6 +16,9 @@ Hi. &nbsp;👋🏽 &nbsp;👋 &nbsp;**We are happy you are here.**&nbsp; 🎉&nb
 **`exercism/rust`** is one of many programming language tracks on [exercism(dot)org][exercism-website].
 This repo holds all the instructions, tests, code, & support files for Rust _exercises_ currently under development or implemented & available for students.
 
+blabla do not merge this.
+changing the readme should not trigger the comment.
+
 Some Exercism language tracks have a **syllabus** which is meant to teach the language step-by-step.
 The Rust track's syllabus is a work in progress and it's not activated yet.
 All exercises presented to students are **practice exercises**.
