@@ -1,0 +1,64 @@
+name: No important files changed
+
+on:
+  pull_request_target:
+    types: [opened]
+    paths:
+      - "exercises/*/*/tests/**"
+
+permissions:
+  pull-requests: write
+
+jobs:
+  no_important_files_changed:
+    name: No important files changed
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Check if important files changed
+        id: check
+        env:
+          TARGET_BRANCH: ${{ github.base_ref }}
+        run: |
+          for changed_file in $(git diff --name-only $TARGET_BRANCH); do
+            if ! echo "$changed_file" | grep --quiet --extended-regexp 'exercises/(practice|concept)' ; then
+              continue
+            fi
+            slug="$(echo "$changed_file" | sed --regexp-extended 's#exercises/[^/]+/([^/]+)/.*#\1#' )"
+            path_before_slug="$(echo "$changed_file" | sed --regexp-extended "s#(.*)/$slug/.*#\\1#" )"
+            path_after_slug="$( echo "$changed_file" | sed --regexp-extended "s#.*/$slug/(.*)#\\1#" )"
+
+            if ! [ -f "$path_before_slug/$slug/.meta/config.json" ]; then
+              # cannot determine if important files changed without .meta/config.json
+              continue
+            fi
+
+            #  returns 0 if the filter matches, 1 otherwise
+            #  | contains($path_after_slug)
+            if jq --exit-status \
+              --arg path_after_slug "$path_after_slug" \
+              '[.files.test, .files.invalidator, .files.editor] | flatten | index($path_after_slug)' \
+              "$path_before_slug/$slug/.meta/config.json" \
+              > /dev/null;
+            then
+              echo "important_files_changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+
+          echo "important_files_changed=false" >> "$GITHUB_OUTPUT"
+
+      - name: Suggest to add [no important files changed]
+        if: steps.check.outputs.important_files_changed == 'true'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        with:
+          script: |
+            const body = "This PR touches files which probably affect the outcome of the tests of an exercise. If this is not the case, please add the following to the merge commit message. Copy-paste to avoid typos. This will prevent tests from rerunning unnecessarily. For more information, refer to the [documentation](https://exercism.org/docs/building/tracks#h-avoiding-triggering-unnecessary-test-runs).\n```\n[no important files changed]\n```"
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
