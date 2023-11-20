@@ -1,0 +1,21 @@
+use rna_transcription::{Dna, Rna};
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.dna | json_encode() }};
+{% if test.property == "invalidDna" -%}
+    let output = Dna::new(input);
+    let expected = Err({{ test.expected }});
+{%- elif test.property == "invalidRna" -%}
+    let output = Rna::new(input);
+    let expected = Err({{ test.expected }});
+{%- else -%}
+    let output = Dna::new(input).unwrap().into_rna();
+    let expected = Rna::new({{ test.expected | json_encode() }}).unwrap();
+{%- endif %}
+    assert_eq!(output, expected);
+}
+{% endfor -%}

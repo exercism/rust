@@ -1,0 +1,38 @@
+[
+  {
+    "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
+    "description": "Invalid DNA input",
+    "property": "invalidDna",
+    "input": {
+      "dna": "U"
+    },
+    "expected": 0
+  },
+  {
+    "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
+    "description": "Invalid DNA input at offset",
+    "property": "invalidDna",
+    "input": {
+      "dna": "ACGTUXXCTTAA"
+    },
+    "expected": 4
+  },
+  {
+    "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
+    "description": "Invalid RNA input",
+    "property": "invalidRna",
+    "input": {
+      "dna": "T"
+    },
+    "expected": 0
+  },
+  {
+    "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
+    "description": "Invalid RNA input at offset",
+    "property": "invalidRna",
+    "input": {
+      "dna": "ACGTUXXCTTAA"
+    },
+    "expected": 3
+  }
+]

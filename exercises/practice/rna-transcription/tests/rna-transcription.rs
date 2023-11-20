@@ -1,88 +1,90 @@
-use rna_transcription as dna;
+use rna_transcription::{Dna, Rna};
 
 #[test]
-fn valid_dna_input() {
-    assert!(dna::Dna::new("GCTA").is_ok());
+fn empty_rna_sequence() {
+    let input = "";
+    let output = Dna::new(input).unwrap().into_rna();
+    let expected = Rna::new("").unwrap();
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn valid_rna_input() {
-    assert!(dna::Rna::new("CGAU").is_ok());
+fn rna_complement_of_cytosine_is_guanine() {
+    let input = "C";
+    let output = Dna::new(input).unwrap().into_rna();
+    let expected = Rna::new("G").unwrap();
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn rna_complement_of_guanine_is_cytosine() {
+    let input = "G";
+    let output = Dna::new(input).unwrap().into_rna();
+    let expected = Rna::new("C").unwrap();
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn rna_complement_of_thymine_is_adenine() {
+    let input = "T";
+    let output = Dna::new(input).unwrap().into_rna();
+    let expected = Rna::new("A").unwrap();
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn rna_complement_of_adenine_is_uracil() {
+    let input = "A";
+    let output = Dna::new(input).unwrap().into_rna();
+    let expected = Rna::new("U").unwrap();
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn rna_complement() {
+    let input = "ACGTGGTCTTAA";
+    let output = Dna::new(input).unwrap().into_rna();
+    let expected = Rna::new("UGCACCAGAAUU").unwrap();
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn invalid_dna_input() {
-    // Invalid character
-    assert_eq!(dna::Dna::new("X").err(), Some(0));
-    // Valid nucleotide, but invalid in context
-    assert_eq!(dna::Dna::new("U").err(), Some(0));
-    // Longer string with contained errors
-    assert_eq!(dna::Dna::new("ACGTUXXCTTAA").err(), Some(4));
+    let input = "U";
+    let output = Dna::new(input);
+    let expected = Err(0);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn invalid_dna_input_at_offset() {
+    let input = "ACGTUXXCTTAA";
+    let output = Dna::new(input);
+    let expected = Err(4);
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn invalid_rna_input() {
-    // Invalid character
-    assert_eq!(dna::Rna::new("X").unwrap_err(), 0);
-    // Valid nucleotide, but invalid in context
-    assert_eq!(dna::Rna::new("T").unwrap_err(), 0);
-    // Longer string with contained errors
-    assert_eq!(dna::Rna::new("ACGUTTXCUUAA").unwrap_err(), 4);
+    let input = "T";
+    let output = Rna::new(input);
+    let expected = Err(0);
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn acid_equals_acid() {
-    assert_eq!(dna::Dna::new("CGA").unwrap(), dna::Dna::new("CGA").unwrap());
-    assert_ne!(dna::Dna::new("CGA").unwrap(), dna::Dna::new("AGC").unwrap());
-    assert_eq!(dna::Rna::new("CGA").unwrap(), dna::Rna::new("CGA").unwrap());
-    assert_ne!(dna::Rna::new("CGA").unwrap(), dna::Rna::new("AGC").unwrap());
-}
-
-#[test]
-#[ignore]
-fn transcribes_cytosine_guanine() {
-    assert_eq!(
-        dna::Rna::new("G").unwrap(),
-        dna::Dna::new("C").unwrap().into_rna()
-    );
-}
-
-#[test]
-#[ignore]
-fn transcribes_guanine_cytosine() {
-    assert_eq!(
-        dna::Rna::new("C").unwrap(),
-        dna::Dna::new("G").unwrap().into_rna()
-    );
-}
-
-#[test]
-#[ignore]
-fn transcribes_adenine_uracil() {
-    assert_eq!(
-        dna::Rna::new("U").unwrap(),
-        dna::Dna::new("A").unwrap().into_rna()
-    );
-}
-
-#[test]
-#[ignore]
-fn transcribes_thymine_to_adenine() {
-    assert_eq!(
-        dna::Rna::new("A").unwrap(),
-        dna::Dna::new("T").unwrap().into_rna()
-    );
-}
-
-#[test]
-#[ignore]
-fn transcribes_all_dna_to_rna() {
-    assert_eq!(
-        dna::Rna::new("UGCACCAGAAUU").unwrap(),
-        dna::Dna::new("ACGTGGTCTTAA").unwrap().into_rna()
-    )
+fn invalid_rna_input_at_offset() {
+    let input = "ACGTUXXCTTAA";
+    let output = Rna::new(input);
+    let expected = Err(3);
+    assert_eq!(output, expected);
 }
