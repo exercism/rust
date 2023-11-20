@@ -22,7 +22,7 @@ jobs:
         env:
           TARGET_BRANCH: ${{ github.base_ref }}
         run: |
-          for changed_file in $(git diff --name-only $TARGET_BRANCH); do
+          for changed_file in $(git diff --name-only origin/$TARGET_BRANCH); do
             if ! echo "$changed_file" | grep --quiet --extended-regexp 'exercises/(practice|concept)' ; then
               continue
             fi
