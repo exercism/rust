@@ -106,7 +106,7 @@ pub fn get_excluded_tests(slug: &str) -> Vec<String> {
     let path = std::path::PathBuf::from("exercises/practice")
         .join(slug)
         .join(".meta/tests.toml");
-    let contents = std::fs::read_to_string(&path).unwrap();
+    let contents = std::fs::read_to_string(path).unwrap();
 
     let mut excluded_tests = Vec::new();
 

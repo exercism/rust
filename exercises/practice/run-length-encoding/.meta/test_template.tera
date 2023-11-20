@@ -1,0 +1,18 @@
+use run_length_encoding as rle;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.property }}_{{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.string | json_encode() }};
+    {% if test.property == "consistency" -%}
+        let output = rle::decode(&rle::encode(input));
+    {%- else -%}
+        let output = rle::{{ test.property }}(input);
+    {%- endif %}
+    let expected = {{ test.expected | json_encode() }};
+    assert_eq!(output, expected);
+}
+{% endfor -%}
