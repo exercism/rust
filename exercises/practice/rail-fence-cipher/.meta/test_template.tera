@@ -1,0 +1,19 @@
+use rail_fence_cipher::RailFence;
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.msg | json_encode() }};
+    let rails = {{ test.input.rails | json_encode() }};
+    let rail_fence = RailFence::new(rails);
+    {% if test.property == "encode" -%}
+        let output = rail_fence.encode(input);
+    {%- else -%}
+        let output = rail_fence.decode(input);
+    {%- endif %}
+    let expected = {{ test.expected | json_encode() }};
+    assert_eq!(output, expected);
+}
+{% endfor -%}
