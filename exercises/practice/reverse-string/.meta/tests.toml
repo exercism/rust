@@ -1,3 +1,28 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
+
+[c3b7d806-dced-49ee-8543-933fd1719b1c]
+description = "an empty string"
+
+[01ebf55b-bebb-414e-9dec-06f7bb0bee3c]
+description = "a word"
+
+[0f7c07e4-efd1-4aaa-a07a-90b49ce0b746]
+description = "a capitalized word"
+
+[71854b9c-f200-4469-9f5c-1e8e5eff5614]
+description = "a sentence with punctuation"
+
+[1f8ed2f3-56f3-459b-8f3e-6d8d654a1f6c]
+description = "a palindrome"
+
+[b9e7dec1-c6df-40bd-9fa3-cd7ded010c4c]
+description = "an even-sized word"
