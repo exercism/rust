@@ -1,143 +1,168 @@
-use rectangles::count;
-
 #[test]
-fn zero_area_1() {
-    let lines = &[];
-    assert_eq!(0, count(lines))
+fn test_no_rows() {
+    let input = &[];
+    let output = rectangles::count(input);
+    let expected = 0;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn zero_area_2() {
-    let lines = &[""];
-    assert_eq!(0, count(lines))
+fn test_no_columns() {
+    let input = &[""];
+    let output = rectangles::count(input);
+    let expected = 0;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn empty_area() {
-    let lines = &[" "];
-    assert_eq!(0, count(lines))
+fn test_no_rectangles() {
+    let input = &[" "];
+    let output = rectangles::count(input);
+    let expected = 0;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn one_rectangle() {
+fn test_one_rectangle() {
     #[rustfmt::skip]
-    let lines = &[
+    let input = &[
         "+-+",
         "| |",
         "+-+",
     ];
-    assert_eq!(1, count(lines))
+    let output = rectangles::count(input);
+    let expected = 1;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn two_rectangles_no_shared_parts() {
+fn test_two_rectangles_without_shared_parts() {
     #[rustfmt::skip]
-    let lines = &[
+    let input = &[
         "  +-+",
         "  | |",
         "+-+-+",
         "| |  ",
         "+-+  ",
     ];
-    assert_eq!(2, count(lines))
+    let output = rectangles::count(input);
+    let expected = 2;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn five_rectangles_three_regions() {
+fn test_five_rectangles_with_shared_parts() {
     #[rustfmt::skip]
-    let lines = &[
+    let input = &[
         "  +-+",
         "  | |",
         "+-+-+",
         "| | |",
         "+-+-+",
     ];
-    assert_eq!(5, count(lines))
+    let output = rectangles::count(input);
+    let expected = 5;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rectangle_of_height_1() {
+fn test_rectangle_of_height_1_is_counted() {
     #[rustfmt::skip]
-    let lines = &[
+    let input = &[
         "+--+",
         "+--+",
     ];
-    assert_eq!(1, count(lines))
+    let output = rectangles::count(input);
+    let expected = 1;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn rectangle_of_width_1() {
+fn test_rectangle_of_width_1_is_counted() {
     #[rustfmt::skip]
-    let lines = &[
+    let input = &[
         "++",
         "||",
         "++",
     ];
-    assert_eq!(1, count(lines))
+    let output = rectangles::count(input);
+    let expected = 1;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn unit_square() {
+fn test_1x1_square_is_counted() {
     #[rustfmt::skip]
-    let lines = &[
+    let input = &[
         "++",
         "++",
     ];
-    assert_eq!(1, count(lines))
+    let output = rectangles::count(input);
+    let expected = 1;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn incomplete_rectangles() {
+fn test_only_complete_rectangles_are_counted() {
     #[rustfmt::skip]
-    let lines = &[
+    let input = &[
         "  +-+",
         "    |",
         "+-+-+",
         "| | -",
         "+-+-+",
     ];
-    assert_eq!(1, count(lines))
+    let output = rectangles::count(input);
+    let expected = 1;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn complicated() {
-    let lines = &[
+fn test_rectangles_can_be_of_different_sizes() {
+    #[rustfmt::skip]
+    let input = &[
         "+------+----+",
         "|      |    |",
         "+---+--+    |",
         "|   |       |",
         "+---+-------+",
     ];
-    assert_eq!(3, count(lines))
+    let output = rectangles::count(input);
+    let expected = 3;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn not_so_complicated() {
-    let lines = &[
+fn test_corner_is_required_for_a_rectangle_to_be_complete() {
+    #[rustfmt::skip]
+    let input = &[
         "+------+----+",
         "|      |    |",
         "+------+    |",
         "|   |       |",
         "+---+-------+",
     ];
-    assert_eq!(2, count(lines))
+    let output = rectangles::count(input);
+    let expected = 2;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn large_input_with_many_rectangles() {
-    let lines = &[
+fn test_large_input_with_many_rectangles() {
+    #[rustfmt::skip]
+    let input = &[
         "+---+--+----+",
         "|   +--+----+",
         "+---+--+    |",
@@ -147,19 +172,25 @@ fn large_input_with_many_rectangles() {
         "+------+  | |",
         "          +-+",
     ];
-    assert_eq!(60, count(lines))
+    let output = rectangles::count(input);
+    let expected = 60;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn three_rectangles_no_shared_parts() {
+fn test_rectangles_must_have_four_sides() {
     #[rustfmt::skip]
-    let lines = &[
-        "  +-+  ",
+    let input = &[
+        "+-+ +-+",
+        "| | | |",
+        "+-+-+-+",
         "  | |  ",
         "+-+-+-+",
         "| | | |",
         "+-+ +-+",
     ];
-    assert_eq!(3, count(lines))
+    let output = rectangles::count(input);
+    let expected = 5;
+    assert_eq!(output, expected);
 }
