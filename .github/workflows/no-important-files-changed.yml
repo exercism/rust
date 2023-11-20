@@ -1,0 +1,29 @@
+name: No Important Files Changed
+
+on:
+  pull_request_target:
+    types: [opened]
+    paths:
+      - 'exercises/*/*/tests/**'
+
+permissions:
+  pull-requests: write
+
+jobs:
+  no_important_files_changed:
+    name: Skip Test Runs
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: mshick/add-pr-comment@v2.8.1
+        with:
+          message: |
+            This PR touches the test files of an exercise.
+            If the changes are only cosmetic, please add the following
+            to the merge commit message. Copy-paste to avoid typos.
+            This will prevent tests from rerunning unnecessarily.
+            For more information, refer to the [documentation](
+              https://exercism.org/docs/building/tracks#h-avoiding-triggering-unnecessary-test-runs
+            ).
+            ```
+            [no important files changed]
+            ```
