@@ -11,6 +11,10 @@ fn func_single() {
     assert_eq!(map(input, square), expected);
 }
 
+// WIP
+
+// DO NOT MERGE THIS CHANGE
+
 #[test]
 #[ignore]
 fn func_multi() {
