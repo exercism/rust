@@ -1,65 +1,27 @@
 # Instructions
 
-Search a file for lines matching a regular expression pattern. Return the line
-number and contents of each matching line.
+Search files for lines matching a search string and return all matching lines.
 
-The Unix [`grep`](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/grep.html) command can be used to search for lines in one or more files
-that match a user-provided search query (known as the *pattern*).
+The Unix [`grep`][grep] command searches files for lines that match a regular expression.
+Your task is to implement a simplified `grep` command, which supports searching for fixed strings.
 
 The `grep` command takes three arguments:
 
-1. The pattern used to match lines in a file.
-2. Zero or more flags to customize the matching behavior.
-3. One or more files in which to search for matching lines.
+1. The string to search for.
+2. Zero or more flags for customizing the command's behavior.
+3. One or more files to search in.
 
-Your task is to implement the `grep` function, which should read the contents
-of the specified files, find the lines that match the specified pattern
-and then output those lines as a single string. Note that the lines should
-be output in the order in which they were found, with the first matching line
-in the first file being output first.
-
-As an example, suppose there is a file named "input.txt" with the following contents:
-
-```text
-hello
-world
-hello again
-```
-
-If we were to call `grep "hello" input.txt`, the returned string should be:
-
-```text
-hello
-hello again
-```
+It then reads the contents of the specified files (in the order specified), finds the lines that contain the search string, and finally returns those lines in the order in which they were found.
+When searching in multiple files, each matching line is prepended by the file name and a colon (':').
 
 ## Flags
 
-As said earlier, the `grep` command should also support the following flags:
+The `grep` command supports the following flags:
 
-- `-n` Print the line numbers of each matching line.
-- `-l` Print only the names of files that contain at least one matching line.
-- `-i` Match line using a case-insensitive comparison.
-- `-v` Invert the program -- collect all lines that fail to match the pattern.
-- `-x` Only match entire lines, instead of lines that contain a match.
+- `-n` Prepend the line number and a colon (':') to each line in the output, placing the number after the filename (if present).
+- `-l` Output only the names of the files that contain at least one matching line.
+- `-i` Match using a case-insensitive comparison.
+- `-v` Invert the program -- collect all lines that fail to match.
+- `-x` Search only for lines where the search string matches the entire line.
 
-If we run `grep -n "hello" input.txt`, the `-n` flag will require the matching
-lines to be prefixed with its line number:
-
-```text
-1:hello
-3:hello again
-```
-
-And if we run `grep -i "HELLO" input.txt`, we'll do a case-insensitive match,
-and the output will be:
-
-```text
-hello
-hello again
-```
-
-The `grep` command should support multiple flags at once.
-
-For example, running `grep -l -v "hello" file1.txt file2.txt` should
-print the names of files that do not contain the string "hello".
+[grep]: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/grep.html
