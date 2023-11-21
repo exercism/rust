@@ -1,4 +1,4 @@
-use exercism_tooling::exercise_config::{
+use models::exercise_config::{
     get_all_concept_exercise_paths, get_all_practice_exercise_paths, PracticeExercise,
 };
 

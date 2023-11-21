@@ -4,10 +4,10 @@ use std::{
     process::{Command, Stdio},
 };
 
-use tera::Context;
+use tera::{Context, Tera};
 
-use crate::{
-    exercise_config::{get_excluded_tests, get_test_emplate},
+use models::{
+    exercise_config::get_excluded_tests,
     problem_spec::{get_additional_test_cases, get_canonical_data, SingleTestCase, TestCase},
 };
 
@@ -76,7 +76,7 @@ fn generate_example_rs(fn_name: &str) -> String {
     )
 }
 
-static TEST_TEMPLATE: &str = include_str!("default_test_template.tera");
+static TEST_TEMPLATE: &str = include_str!("../default_test_template.tera");
 
 fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCase>) {
     for case in cases {
@@ -101,7 +101,7 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
         cases
     };
     let excluded_tests = get_excluded_tests(slug);
-    let mut template = get_test_emplate(slug).unwrap();
+    let mut template = get_test_template(slug).unwrap();
     if template.get_template_names().next().is_none() {
         template
             .add_raw_template("test_template.tera", TEST_TEMPLATE)
@@ -142,4 +142,8 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
         // content to be written to the file
         rendered.into()
     }
+}
+
+pub fn get_test_template(slug: &str) -> Option<Tera> {
+    Some(Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).unwrap())
 }

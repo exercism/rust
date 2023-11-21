@@ -1,4 +1,4 @@
-use exercism_tooling::exercise_config::get_all_exercise_paths;
+use models::exercise_config::get_all_exercise_paths;
 
 /// The package manifest of each exercise should not contain an `authors` field.
 /// The authors are already specified in the track configuration.
