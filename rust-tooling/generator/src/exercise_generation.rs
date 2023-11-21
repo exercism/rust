@@ -76,7 +76,7 @@ fn generate_example_rs(fn_name: &str) -> String {
     )
 }
 
-static TEST_TEMPLATE: &str = include_str!("../default_test_template.tera");
+static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.tera");
 
 fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCase>) {
     for case in cases {

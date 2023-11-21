@@ -1,10 +1,11 @@
 use std::path::PathBuf;
 
 use convert_case::{Case, Casing};
-use generator::exercise_generation;
 use glob::glob;
 use inquire::{validator::Validation, Select, Text};
 use models::track_config::{self, TRACK_CONFIG};
+
+mod exercise_generation;
 
 enum Difficulty {
     Easy,
