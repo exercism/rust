@@ -236,3 +236,21 @@ fn multiple_values() {
     let expected = Ok(vec![8192, 1193046, 268435455, 0, 16383, 16384]);
     assert_eq!(output, expected);
 }
+
+#[test]
+#[ignore]
+fn sequence_must_be_in_range_of_u32_number() {
+    let input = &[0xff, 0xff, 0xff, 0xff, 0x7f];
+    let output = vlq::from_bytes(input);
+    let expected = Err(vlq::Error::IncompleteNumber);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn numbers_bigger_than_u32_are_invalid() {
+    let input = &[0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f];
+    let output = vlq::from_bytes(input);
+    let expected = Err(vlq::Error::IncompleteNumber);
+    assert_eq!(output, expected);
+}
