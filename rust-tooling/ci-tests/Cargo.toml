@@ -1,0 +1,16 @@
+[package]
+name = "ci-tests"
+version = "0.1.0"
+edition = "2021"
+description = "Tests to be run in CI to make sure the repo is in good shape"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# This crate is built in CI to run the tests.
+# Be considerate when adding dependencies to keep compile times reasonable.
+[dependencies]
+convert_case = "0.6.0"
+ignore = "0.4.20"
+models = { version = "0.1.0", path = "../models" }
+serde_json = "1.0.108"
+utils = { version = "0.1.0", path = "../utils" }

@@ -1,7 +1,5 @@
 use std::path::Path;
 
-use exercism_tooling::fs_utils;
-
 fn contains_trailing_whitespace(p: &Path) -> bool {
     let contents = std::fs::read_to_string(p).unwrap();
     for line in contents.lines() {
@@ -14,7 +12,7 @@ fn contains_trailing_whitespace(p: &Path) -> bool {
 
 #[test]
 fn no_trailing_whitespace() {
-    fs_utils::cd_into_repo_root();
+    utils::fs::cd_into_repo_root();
 
     for entry in ignore::Walk::new("./") {
         let entry = entry.unwrap();

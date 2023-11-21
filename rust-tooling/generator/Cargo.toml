@@ -1,0 +1,17 @@
+[package]
+name = "generator"
+version = "0.1.0"
+edition = "2021"
+description = "Generates exercise boilerplate, especially test cases"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+convert_case = "0.6.0"
+glob = "0.3.1"
+inquire = "0.6.2"
+models = { version = "0.1.0", path = "../models" }
+serde_json = { version = "1.0.105", features = ["preserve_order"] }
+tera = "1.19.1"
+utils = { version = "0.1.0", path = "../utils" }
+uuid = { version = "1.4.1", features = ["v4"] }

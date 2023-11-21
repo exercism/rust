@@ -1,12 +1,10 @@
 use std::path::PathBuf;
 
 use convert_case::{Case, Casing};
-use exercism_tooling::{
-    exercise_generation, fs_utils,
-    track_config::{self, TRACK_CONFIG},
-};
+use generator::exercise_generation;
 use glob::glob;
 use inquire::{validator::Validation, Select, Text};
+use models::track_config::{self, TRACK_CONFIG};
 
 enum Difficulty {
     Easy,
@@ -39,7 +37,7 @@ impl std::fmt::Display for Difficulty {
 }
 
 fn main() {
-    fs_utils::cd_into_repo_root();
+    utils::fs::cd_into_repo_root();
 
     let is_update = std::env::args().any(|arg| arg == "update");
 

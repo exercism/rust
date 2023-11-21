@@ -1,9 +1,8 @@
 //! This module provides a data structure for exercise configuration stored in
-//! `.meta/config`. It is capable of serializing and deserializing th
+//! `.meta/config`. It is capable of serializing and deserializing the
 //! configuration, for example with `serde_json`.
 
 use serde::{Deserialize, Serialize};
-use tera::Tera;
 
 use crate::track_config::TRACK_CONFIG;
 
@@ -62,23 +61,23 @@ pub struct Custom {
 }
 
 pub fn get_all_concept_exercise_paths() -> impl Iterator<Item = String> {
-    let crate_dir = env!("CARGO_MANIFEST_DIR");
+    use utils::fs::REPO_ROOT_DIR;
 
     TRACK_CONFIG
         .exercises
         .concept
         .iter()
-        .map(move |e| format!("{crate_dir}/../exercises/concept/{}", e.slug))
+        .map(move |e| format!("{REPO_ROOT_DIR}/exercises/concept/{}", e.slug))
 }
 
 pub fn get_all_practice_exercise_paths() -> impl Iterator<Item = String> {
-    let crate_dir = env!("CARGO_MANIFEST_DIR");
+    use utils::fs::REPO_ROOT_DIR;
 
     TRACK_CONFIG
         .exercises
         .practice
         .iter()
-        .map(move |e| format!("{crate_dir}/../exercises/practice/{}", e.slug))
+        .map(move |e| format!("{REPO_ROOT_DIR}/exercises/practice/{}", e.slug))
 }
 
 pub fn get_all_exercise_paths() -> impl Iterator<Item = String> {
@@ -119,9 +118,4 @@ pub fn get_excluded_tests(slug: &str) -> Vec<String> {
     }
 
     excluded_tests
-}
-
-/// Returns the uuids of the tests excluded in .meta/tests.toml
-pub fn get_test_emplate(slug: &str) -> Option<Tera> {
-    Some(Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).unwrap())
 }

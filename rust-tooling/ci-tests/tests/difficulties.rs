@@ -1,6 +1,6 @@
 //! Make sure exercise difficulties are set correctly
 
-use exercism_tooling::track_config::TRACK_CONFIG;
+use models::track_config::TRACK_CONFIG;
 
 #[test]
 fn difficulties_are_valid() {

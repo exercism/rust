@@ -72,7 +72,7 @@ pub fn get_additional_test_cases(slug: &str) -> Vec<TestCase> {
 
 #[test]
 fn deserialize_canonical_data() {
-    crate::fs_utils::cd_into_repo_root();
+    utils::fs::cd_into_repo_root();
     for entry in ignore::Walk::new("problem-specifications/exercises")
         .filter_map(|e| e.ok())
         .filter(|e| e.file_name().to_str().unwrap() == "canonical-data.json")

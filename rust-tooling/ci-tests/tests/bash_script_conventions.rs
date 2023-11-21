@@ -1,12 +1,11 @@
 use std::path::PathBuf;
 
 use convert_case::{Case, Casing};
-use exercism_tooling::fs_utils;
 
 /// Runs a function for each bash script in the bin directory.
 /// The function is passed the path of the script.
 fn for_all_scripts(f: fn(&str)) {
-    fs_utils::cd_into_repo_root();
+    utils::fs::cd_into_repo_root();
 
     for entry in std::fs::read_dir("bin").unwrap() {
         let path = entry.unwrap().path();
