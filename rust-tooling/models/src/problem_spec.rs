@@ -38,11 +38,11 @@ pub struct SingleTestCase {
     pub expected: serde_json::Value,
 }
 
-pub fn get_canonical_data(slug: &str) -> CanonicalData {
+pub fn get_canonical_data(slug: &str) -> Option<CanonicalData> {
     let path = std::path::PathBuf::from("problem-specifications/exercises")
         .join(slug)
         .join("canonical-data.json");
-    let contents = std::fs::read_to_string(&path).unwrap();
+    let contents = std::fs::read_to_string(&path).ok()?;
     serde_json::from_str(contents.as_str()).unwrap_or_else(|e| {
         panic!(
             "should deserialize canonical data for {}: {e}",

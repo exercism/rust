@@ -96,7 +96,9 @@ fn to_hex(value: &tera::Value, _args: &HashMap<String, tera::Value>) -> tera::Re
 
 fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     let cases = {
-        let mut cases = get_canonical_data(slug).cases;
+        let mut cases = get_canonical_data(slug)
+            .map(|data| data.cases)
+            .unwrap_or_default();
         cases.extend_from_slice(&get_additional_test_cases(slug));
         cases
     };
