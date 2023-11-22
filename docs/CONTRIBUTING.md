@@ -29,7 +29,7 @@ Please familiarize yourself with the [Exercism documentation about practice exer
 
 [Exercism documentation about practice exercises]: https://exercism.org/docs/building/tracks/practice-exercises
 
-Run `just add-practice-exercise` and you'll be prompted for the minimal
+Run `just add-exercise` and you'll be prompted for the minimal
 information required to generate the exercise stub for you.
 After that, jump in the generated exercise and fill in any todos you find.
 This includes most notably:
@@ -89,7 +89,7 @@ This includes their test suite and user-facing documentation.
 Before proposing changes here,
 check if they should be made `problem-specifications` instead.
 
-Run `just update-practice-exercise` to update an exercise.
+Run `just update-exercise` to update an exercise.
 This outsources most work to `configlet sync --update`
 and runs the test generator again.
 
