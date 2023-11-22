@@ -124,8 +124,10 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     let rendered = rendered.trim_start();
 
     let mut child = Command::new("rustfmt")
+        .args(["--color=always"])
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
         .spawn()
         .expect("failed to spawn process");
 
@@ -140,8 +142,19 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     if rustfmt_out.status.success() {
         String::from_utf8(rustfmt_out.stdout).unwrap()
     } else {
-        // if rustfmt fails, still return the unformatted
-        // content to be written to the file
+        let rustfmt_error = String::from_utf8(rustfmt_out.stderr).unwrap();
+        let mut last_16_error_lines = rustfmt_error.lines().rev().take(16).collect::<Vec<_>>();
+        last_16_error_lines.reverse();
+        let last_16_error_lines = last_16_error_lines.join("\n");
+
+        println!(
+            "{last_16_error_lines}\
+^ last 16 lines of errors from rustfmt
+Check the test template (.meta/test_template.tera)
+It probably generates invalid Rust code."
+        );
+
+        // still return the unformatted content to be written to the file
         rendered.into()
     }
 }
