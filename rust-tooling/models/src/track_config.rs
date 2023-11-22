@@ -10,6 +10,7 @@ use std::collections::HashMap;
 
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
+use serde_repr::{Deserialize_repr, Serialize_repr};
 
 pub static TRACK_CONFIG: Lazy<TrackConfig> = Lazy::new(|| {
     let config = include_str!("../../../config.json");
@@ -75,13 +76,23 @@ pub enum ConceptExerciseStatus {
     Wip,
 }
 
+#[derive(Debug, Clone, Copy, Serialize_repr, Deserialize_repr)]
+#[repr(u8)]
+pub enum Difficulty {
+    Easy = 1,
+    Medium = 4,
+    // I'm not sure why there are two medium difficulties
+    Medium2 = 7,
+    Hard = 10,
+}
+
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConceptExercise {
     pub slug: String,
     pub uuid: String,
     pub name: String,
-    pub difficulty: u8,
+    pub difficulty: Difficulty,
     pub concepts: Vec<String>,
     pub prerequisites: Vec<String>,
     pub status: ConceptExerciseStatus,
@@ -101,14 +112,14 @@ pub struct PracticeExercise {
     pub uuid: String,
     pub practices: Vec<String>,
     pub prerequisites: Vec<String>,
-    pub difficulty: u8,
+    pub difficulty: Difficulty,
     pub topics: Vec<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub status: Option<PracticeExerciseStatus>,
 }
 
 impl PracticeExercise {
-    pub fn new(slug: String, name: String, difficulty: u8) -> Self {
+    pub fn new(slug: String, name: String, difficulty: Difficulty) -> Self {
         Self {
             slug,
             name,
