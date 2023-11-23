@@ -76,7 +76,7 @@ fn generate_example_rs(fn_name: &str) -> String {
     )
 }
 
-static TEST_TEMPLATE: &str = include_str!("../default_test_template.tera");
+static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.tera");
 
 fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCase>) {
     for case in cases {
@@ -96,7 +96,9 @@ fn to_hex(value: &tera::Value, _args: &HashMap<String, tera::Value>) -> tera::Re
 
 fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     let cases = {
-        let mut cases = get_canonical_data(slug).cases;
+        let mut cases = get_canonical_data(slug)
+            .map(|data| data.cases)
+            .unwrap_or_default();
         cases.extend_from_slice(&get_additional_test_cases(slug));
         cases
     };
@@ -122,8 +124,10 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     let rendered = rendered.trim_start();
 
     let mut child = Command::new("rustfmt")
+        .args(["--color=always"])
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
         .spawn()
         .expect("failed to spawn process");
 
@@ -138,8 +142,19 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     if rustfmt_out.status.success() {
         String::from_utf8(rustfmt_out.stdout).unwrap()
     } else {
-        // if rustfmt fails, still return the unformatted
-        // content to be written to the file
+        let rustfmt_error = String::from_utf8(rustfmt_out.stderr).unwrap();
+        let mut last_16_error_lines = rustfmt_error.lines().rev().take(16).collect::<Vec<_>>();
+        last_16_error_lines.reverse();
+        let last_16_error_lines = last_16_error_lines.join("\n");
+
+        println!(
+            "{last_16_error_lines}\
+^ last 16 lines of errors from rustfmt
+Check the test template (.meta/test_template.tera)
+It probably generates invalid Rust code."
+        );
+
+        // still return the unformatted content to be written to the file
         rendered.into()
     }
 }

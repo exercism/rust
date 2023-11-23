@@ -17,13 +17,8 @@ test:
     cd rust-tooling && cargo test
     # TODO format exercises
 
-add-practice-exercise:
-    cd rust-tooling && cargo run --quiet --bin generate_exercise
+add-exercise *args="":
+    cd rust-tooling/generate; cargo run --quiet --release -- add {{ args }}
 
-update-practice-exercise:
-    cd rust-tooling && cargo run --quiet --bin generate_exercise update
-
-# TODO remove. resets result of add-practice-exercise.
-clean:
-    git restore config.json exercises/practice
-    git clean -- exercises/practice
+update-exercise *args="":
+    cd rust-tooling/generate; cargo run --quiet --release -- update {{ args }}
