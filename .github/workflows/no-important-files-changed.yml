@@ -22,7 +22,9 @@ jobs:
         env:
           TARGET_BRANCH: ${{ github.base_ref }}
         run: |
-          for changed_file in $(git diff --name-only $TARGET_BRANCH); do
+          set -x
+          git fetch --depth 1 origin $TARGET_BRANCH
+          for changed_file in $(git diff --name-only origin/$TARGET_BRANCH); do
             if ! echo "$changed_file" | grep --quiet --extended-regexp 'exercises/(practice|concept)' ; then
               continue
             fi
@@ -62,3 +64,8 @@ jobs:
               repo: context.repo.repo,
               body: body
             })
+
+      - name: Sanity check
+        if: steps.check.outputs.important_files_changed == 'false'
+        run: echo "No important files changed"
+        
