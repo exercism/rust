@@ -7,7 +7,7 @@ use triangle::Triangle;
 {% if loop.index != 1 -%}
 #[ignore]
 {% endif -%}
-{% if test.description is containing("floats") %}
+{% if test.description is containing("float") %}
 #[cfg(feature = "generic")]
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
@@ -29,7 +29,7 @@ use triangle::Triangle;
 
 #[test]
 #[ignore]
-{% if test.description is containing("floats") %}
+{% if test.description is containing("float") %}
 #[cfg(feature = "generic")]
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
@@ -51,7 +51,7 @@ use triangle::Triangle;
 
 #[test]
 #[ignore]
-{% if test.description is containing("floats") %}
+{% if test.description is containing("float") %}
 #[cfg(feature = "generic")]
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
@@ -73,7 +73,7 @@ use triangle::Triangle;
 
 #[test]
 #[ignore]
-{% if test.description is containing("floats") %}
+{% if test.description is containing("float") %}
 #[cfg(feature = "generic")]
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
