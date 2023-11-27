@@ -165,6 +165,7 @@ name = "ci-tests"
 version = "0.1.0"
 dependencies = [
  "convert_case",
+ "glob",
  "ignore",
  "models",
  "serde_json",
