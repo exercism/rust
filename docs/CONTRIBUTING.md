@@ -152,6 +152,10 @@ Feel free to add your own in the crate `rust-tooling`.
 Custom filters added there will be available to all templates.
 How to create such custom filters is documented int he [tera docs][tera-docs-filters].
 
+For a rather complicated example, check out the test template of `triangle`.
+It organizes the test cases in modules and dynamically detects which tests to put behind feature gates.
+That exercise also reimplements some test cases from upstream in `additional-tests.json`, in order to add more information to them necessary for generating good tests.
+
 [tera-docs]: https://keats.github.io/tera/docs/#templates
 [word-count-tmpl]: /exercises/practice/word-count/.meta/test_template.tera
 [var-len-q-tmpl]: /exercises/practice/variable-length-quantity/.meta/test_template.tera
