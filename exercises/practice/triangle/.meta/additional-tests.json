@@ -1,0 +1,47 @@
+[
+  {
+    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+    "description": "all zero sides is not a triangle",
+    "property": "invalid",
+    "input": {
+      "sides": [0, 0, 0]
+    },
+    "expected": false
+  },
+  {
+    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+    "description": "first triangle inequality violation",
+    "property": "invalid",
+    "input": {
+      "sides": [1, 1, 3]
+    },
+    "expected": false
+  },
+  {
+    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+    "description": "second triangle inequality violation",
+    "property": "invalid",
+    "input": {
+      "sides": [1, 3, 1]
+    },
+    "expected": false
+  },
+  {
+    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+    "description": "third triangle inequality violation",
+    "property": "invalid",
+    "input": {
+      "sides": [3, 1, 1]
+    },
+    "expected": false
+  },
+  {
+    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+    "description": "may not violate triangle inequality",
+    "property": "invalid",
+    "input": {
+      "sides": [7, 3, 2]
+    },
+    "expected": false
+  }
+]

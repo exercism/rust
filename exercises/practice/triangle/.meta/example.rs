@@ -37,7 +37,7 @@ where
     }
 
     pub fn is_isosceles(&self) -> bool {
-        self.count_distinct_pairs() == 2
+        self.count_distinct_pairs() <= 2
     }
 
     pub fn is_scalene(&self) -> bool {

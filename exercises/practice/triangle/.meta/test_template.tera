@@ -1,0 +1,85 @@
+mod equilateral {
+use triangle::Triangle;
+{% for test in cases %}
+{% if test.property != "equilateral" %}{% continue %}{% endif %}
+
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+{% if test.description is containing("floats") %}
+#[cfg(feature = "generic")]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.sides | json_encode() }};
+    let output = Triangle::build(input).unwrap();
+    {%- if test.expected %}
+        assert!(output.is_equilateral());
+    {% else %}
+        assert!(!output.is_equilateral());
+    {% endif -%}
+}
+{% endfor -%}
+}
+
+mod isosceles {
+use triangle::Triangle;
+{% for test in cases %}
+{% if test.property != "isosceles" %}{% continue %}{% endif %}
+
+#[test]
+#[ignore]
+{% if test.description is containing("floats") %}
+#[cfg(feature = "generic")]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.sides | json_encode() }};
+    let output = Triangle::build(input).unwrap();
+    {%- if test.expected %}
+        assert!(output.is_isosceles());
+    {% else %}
+        assert!(!output.is_isosceles());
+    {% endif -%}
+}
+{% endfor -%}
+}
+
+mod scalene {
+use triangle::Triangle;
+{% for test in cases %}
+{% if test.property != "scalene" %}{% continue %}{% endif %}
+
+#[test]
+#[ignore]
+{% if test.description is containing("floats") %}
+#[cfg(feature = "generic")]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.sides | json_encode() }};
+    let output = Triangle::build(input).unwrap();
+    {%- if test.expected %}
+        assert!(output.is_scalene());
+    {% else %}
+        assert!(!output.is_scalene());
+    {% endif -%}
+}
+{% endfor -%}
+}
+
+mod invalid {
+use triangle::Triangle;
+{% for test in cases %}
+{% if test.property != "invalid" %}{% continue %}{% endif %}
+
+#[test]
+#[ignore]
+{% if test.description is containing("floats") %}
+#[cfg(feature = "generic")]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.sides | json_encode() }};
+    let output = Triangle::build(input);
+    assert!(output.is_none());
+}
+{% endfor -%}
+}
