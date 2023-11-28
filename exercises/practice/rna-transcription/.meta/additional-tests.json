@@ -2,6 +2,10 @@
   {
     "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
     "description": "Invalid DNA input",
+    "comments": [
+      "Upstream does not focus on error handling,",
+      "but this is a big focus for Rust."
+    ],
     "property": "invalidDna",
     "input": {
       "dna": "U"
@@ -11,6 +15,10 @@
   {
     "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
     "description": "Invalid DNA input at offset",
+    "comments": [
+      "Upstream does not focus on error handling,",
+      "but this is a big focus for Rust."
+    ],
     "property": "invalidDna",
     "input": {
       "dna": "ACGTUXXCTTAA"
@@ -20,6 +28,10 @@
   {
     "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
     "description": "Invalid RNA input",
+    "comments": [
+      "Upstream does not focus on error handling,",
+      "but this is a big focus for Rust."
+    ],
     "property": "invalidRna",
     "input": {
       "dna": "T"
@@ -29,6 +41,10 @@
   {
     "uuid": "6eedbb5c-12cb-4c8b-9f51-f8320b4dc2e7",
     "description": "Invalid RNA input at offset",
+    "comments": [
+      "Upstream does not focus on error handling,",
+      "but this is a big focus for Rust."
+    ],
     "property": "invalidRna",
     "input": {
       "dna": "ACGTUXXCTTAA"

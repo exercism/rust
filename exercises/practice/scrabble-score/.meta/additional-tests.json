@@ -2,6 +2,10 @@
   {
     "uuid": "9e0faee7-dc23-460b-afec-17c7145ae564",
     "description": "non english scrabble letters do not score",
+    "comments": [
+      "Unicode tests are not suitable to be upstreamed.",
+      "Handling unicode is tedious in many languages."
+    ],
     "property": "score",
     "input": {
       "word": "piñata"
@@ -11,6 +15,10 @@
   {
     "uuid": "3099e8fd-0077-4520-be33-54bb9a1c0dc7",
     "description": "german letters do not score",
+    "comments": [
+      "Unicode tests are not suitable to be upstreamed.",
+      "Handling unicode is tedious in many languages."
+    ],
     "property": "score",
     "input": {
       "word": "STRAßE"

@@ -2,6 +2,11 @@
     {
         "uuid": "ecafab60-89f2-4680-9286-56b423e8a7b9",
         "description": "max i64",
+        "comments": [
+            "Idiomatic Rust emphasizes the principle",
+            "'Make invalid states impossible to represent'.",
+            "So it is appropriate to test the entire range of possible inputs."
+        ],
         "property": "say",
         "input": {
             "number": 9223372036854775807
@@ -11,6 +16,11 @@
     {
         "uuid": "88808dac-dffb-46a6-95d4-68d5271a9c38",
         "description": "max u64",
+        "comments": [
+            "Idiomatic Rust emphasizes the principle",
+            "'Make invalid states impossible to represent'.",
+            "So it is appropriate to test the entire range of possible inputs."
+        ],
         "property": "say",
         "input": {
             "number": 18446744073709551615

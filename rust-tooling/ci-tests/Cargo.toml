@@ -10,6 +10,7 @@ description = "Tests to be run in CI to make sure the repo is in good shape"
 # Be considerate when adding dependencies to keep compile times reasonable.
 [dependencies]
 convert_case = "0.6.0"
+glob = "0.3.1"
 ignore = "0.4.20"
 models = { version = "0.1.0", path = "../models" }
 serde_json = "1.0.108"
