@@ -13,8 +13,10 @@ cargo_args="$2"
 
 # determine the exercise path from the slug
 for p in exercises/{practice,concept}/* ; do
-    if [[ "$p" =~ $slug ]]; then
-        exercise_path=$p
+    current_slug="$(basename "$p")"
+    p="$(dirname "$p")"
+    if [[ "$current_slug" = "$slug" ]]; then
+        exercise_path="$p/$slug"
         break
     fi
 done
