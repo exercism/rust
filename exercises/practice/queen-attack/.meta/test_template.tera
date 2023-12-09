@@ -1,0 +1,26 @@
+use queen_attack::{ChessPiece, ChessPosition, Queen};
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+{% if test.property == "create" %}
+    let chess_position = ChessPosition::new({{ test.input.queen.position.row }}, {{ test.input.queen.position.column }});
+{%- if test.expected is object %}
+    assert!(chess_position.is_none());
+{% else %}
+    assert!(chess_position.is_some());
+{% endif -%}
+{% else %}
+    let white_queen = Queen::new(ChessPosition::new({{ test.input.white_queen.position.row }}, {{ test.input.white_queen.position.column }}).unwrap());
+    let black_queen = Queen::new(ChessPosition::new({{ test.input.black_queen.position.row }}, {{ test.input.black_queen.position.column }}).unwrap());
+{%- if test.expected %}
+    assert!(white_queen.can_attack(&black_queen));
+{% else %}
+    assert!(!white_queen.can_attack(&black_queen));
+{% endif -%}
+{% endif %}
+}
+{% endfor -%}

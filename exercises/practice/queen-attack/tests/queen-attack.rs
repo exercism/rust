@@ -1,96 +1,100 @@
 use queen_attack::*;
 
 #[test]
-fn chess_position_on_the_board_is_some() {
-    assert!(ChessPosition::new(2, 4).is_some());
+fn queen_with_a_valid_position() {
+    let chess_position = ChessPosition::new(2, 2);
+    assert!(chess_position.is_some());
 }
 
 #[test]
 #[ignore]
-fn chess_position_off_the_board_is_none() {
-    assert!(ChessPosition::new(-1, 2).is_none());
-
-    assert!(ChessPosition::new(8, 2).is_none());
-
-    assert!(ChessPosition::new(5, -1).is_none());
-
-    assert!(ChessPosition::new(5, 8).is_none());
+fn queen_must_have_positive_row() {
+    let chess_position = ChessPosition::new(-2, 2);
+    assert!(chess_position.is_none());
 }
 
 #[test]
 #[ignore]
-fn queen_is_created_with_a_valid_position() {
-    Queen::new(ChessPosition::new(2, 4).unwrap());
+fn queen_must_have_row_on_board() {
+    let chess_position = ChessPosition::new(8, 4);
+    assert!(chess_position.is_none());
 }
 
 #[test]
 #[ignore]
-fn queens_that_can_not_attack() {
+fn queen_must_have_positive_column() {
+    let chess_position = ChessPosition::new(2, -2);
+    assert!(chess_position.is_none());
+}
+
+#[test]
+#[ignore]
+fn queen_must_have_column_on_board() {
+    let chess_position = ChessPosition::new(4, 8);
+    assert!(chess_position.is_none());
+}
+
+#[test]
+#[ignore]
+fn cannot_attack() {
     let white_queen = Queen::new(ChessPosition::new(2, 4).unwrap());
     let black_queen = Queen::new(ChessPosition::new(6, 6).unwrap());
-
     assert!(!white_queen.can_attack(&black_queen));
 }
 
 #[test]
 #[ignore]
-fn queens_on_the_same_rank_can_attack() {
+fn can_attack_on_same_row() {
     let white_queen = Queen::new(ChessPosition::new(2, 4).unwrap());
     let black_queen = Queen::new(ChessPosition::new(2, 6).unwrap());
-
     assert!(white_queen.can_attack(&black_queen));
 }
 
 #[test]
 #[ignore]
-fn queens_on_the_same_file_can_attack() {
+fn can_attack_on_same_column() {
     let white_queen = Queen::new(ChessPosition::new(4, 5).unwrap());
-    let black_queen = Queen::new(ChessPosition::new(3, 5).unwrap());
-
+    let black_queen = Queen::new(ChessPosition::new(2, 5).unwrap());
     assert!(white_queen.can_attack(&black_queen));
 }
 
 #[test]
 #[ignore]
-fn queens_on_the_same_diagonal_can_attack_one() {
+fn can_attack_on_first_diagonal() {
     let white_queen = Queen::new(ChessPosition::new(2, 2).unwrap());
     let black_queen = Queen::new(ChessPosition::new(0, 4).unwrap());
-
     assert!(white_queen.can_attack(&black_queen));
 }
 
 #[test]
 #[ignore]
-fn queens_on_the_same_diagonal_can_attack_two() {
+fn can_attack_on_second_diagonal() {
     let white_queen = Queen::new(ChessPosition::new(2, 2).unwrap());
     let black_queen = Queen::new(ChessPosition::new(3, 1).unwrap());
-
     assert!(white_queen.can_attack(&black_queen));
 }
 
 #[test]
 #[ignore]
-fn queens_on_the_same_diagonal_can_attack_three() {
+fn can_attack_on_third_diagonal() {
     let white_queen = Queen::new(ChessPosition::new(2, 2).unwrap());
     let black_queen = Queen::new(ChessPosition::new(1, 1).unwrap());
-
     assert!(white_queen.can_attack(&black_queen));
 }
 
 #[test]
 #[ignore]
-fn queens_on_the_same_diagonal_can_attack_four() {
-    let white_queen = Queen::new(ChessPosition::new(2, 2).unwrap());
-    let black_queen = Queen::new(ChessPosition::new(5, 5).unwrap());
-
+fn can_attack_on_fourth_diagonal() {
+    let white_queen = Queen::new(ChessPosition::new(1, 7).unwrap());
+    let black_queen = Queen::new(ChessPosition::new(0, 6).unwrap());
     assert!(white_queen.can_attack(&black_queen));
 }
 
 #[test]
 #[ignore]
-fn queens_that_cannot_attack_with_equal_difference() {
+fn cannot_attack_if_falling_diagonals_are_only_the_same_when_reflected_across_the_longest_falling_diagonal(
+) {
     let white_queen = Queen::new(ChessPosition::new(4, 1).unwrap());
     let black_queen = Queen::new(ChessPosition::new(2, 5).unwrap());
-
     assert!(!white_queen.can_attack(&black_queen));
 }
