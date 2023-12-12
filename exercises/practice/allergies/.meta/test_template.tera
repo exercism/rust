@@ -1,0 +1,43 @@
+use {{ crate_name }}::*;
+
+fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
+    for element in expected {
+        if !actual.contains(element) {
+            panic!("Allergen missing\n  {element:?} should be in {actual:?}");
+        }
+    }
+
+    if actual.len() != expected.len() {
+        panic!(
+            "Allergy vectors are of different lengths\n  expected {expected:?}\n  got {actual:?}"
+        );
+    }
+}
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+{%- if test.property == "allergicTo" %}
+{# canonical data contains multiple cases named "allergic to everything" for different items #}
+fn {{ test.description | slugify | replace(from="-", to="_") }}_{{ test.input.item }}() {
+    let allergies = Allergies::new({{ test.input.score }});
+{%- if test.expected %}
+    assert!(allergies.is_allergic_to(&Allergen::{{ test.input.item | title }}))
+{% else %}
+    assert!(!allergies.is_allergic_to(&Allergen::{{ test.input.item | title }}))
+{% endif -%}
+{% else %}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let allergies = Allergies::new({{ test.input.score }}).allergies();
+    let expected = &[
+        {% for allergen in test.expected %}
+            Allergen::{{ allergen | title }},
+        {% endfor %}
+    ];
+
+    compare_allergy_vectors(expected, &allergies);
+{% endif -%}
+}
+{% endfor -%}
