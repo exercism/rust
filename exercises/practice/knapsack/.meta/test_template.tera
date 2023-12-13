@@ -1,0 +1,22 @@
+use {{ crate_name }}::*;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
+    let max_weight = {{ test.input.maximumWeight }};
+    let items = [
+        {% for item in test.input.items -%}
+            Item {
+                weight: {{ item.weight }},
+                value: {{ item.value }},
+            },
+        {% endfor -%}
+    ];
+    let output = {{ fn_names[0] }}(max_weight, &items);
+    let expected = {{ test.expected | json_encode() }};
+    assert_eq!(output, expected);
+}
+{% endfor -%}
