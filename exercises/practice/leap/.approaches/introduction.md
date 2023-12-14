@@ -75,7 +75,7 @@ For more information, check the [Performance article][article-performance].
 [remainder-operator]: https://doc.rust-lang.org/std/ops/trait.Rem.html
 [match]: https://doc.rust-lang.org/rust-by-example/flow_control/match.html
 [tuple]: https://doc.rust-lang.org/rust-by-example/primitives/tuples.html
-[ternary-expression]: (https://doc.rust-lang.org/reference/expressions/if-expr.html)
+[ternary-expression]: https://doc.rust-lang.org/reference/expressions/if-expr.html
 [approach-boolean-line]: https://exercism.org/tracks/rust/exercises/leap/approaches/boolean-one-line
 [approach-ternary-expression]: https://exercism.org/tracks/rust/exercises/leap/approaches/ternary-expression
 [approach-match-on-a-tuple]: https://exercism.org/tracks/rust/exercises/leap/approaches/match-on-a-tuple
