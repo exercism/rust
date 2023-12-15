@@ -7,18 +7,16 @@ use {{ crate_name }}::*;
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let robot = Robot::new({{ test.input.position.x }}, {{ test.input.position.y }}, Direction::{{ test.input.direction | title }});
-{%- if test.group_description == "Create robot" %}
+{%- if test.property == "create" %}
     {#- noop -#}
-{%- elif test.group_description == "Rotating clockwise" %}
+{%- elif test.input.instructions == "R" %}
     let robot = robot.turn_right();
-{%- elif test.group_description == "Rotating counter-clockwise" %}
+{%- elif test.input.instructions == "L" %}
     let robot = robot.turn_left();
-{%- elif test.group_description == "Moving forward one" %}
+{%- elif test.input.instructions == "A" %}
     let robot = robot.advance();
-{%- elif test.group_description == "Follow series of instructions" %}
-    let robot = robot.instructions({{ test.input.instructions | json_encode() }});
 {%- else %}
-    panic!("Unknown test group: {{ test.group_description }}");
+    let robot = robot.instructions({{ test.input.instructions | json_encode() }});
 {% endif -%}
     assert_eq!(robot.position(), ({{ test.expected.position.x }}, {{ test.expected.position.y }}));
     assert_eq!(robot.direction(), &Direction::{{ test.expected.direction | title }});
