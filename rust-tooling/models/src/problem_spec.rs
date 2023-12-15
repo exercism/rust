@@ -31,6 +31,14 @@ pub struct SingleTestCase {
     pub uuid: String,
     pub reimplements: Option<String>,
     pub description: String,
+    /// This is technically not part of the spec.
+    /// Just by deserializing the canonical data, this will always be `None`.
+    /// However, groups aren't usually nested beyond one level.
+    /// So it's convenient to just add the group description here.
+    /// The nesting of groups can then be flattened to an array of test cases.
+    /// This field then identifies which group a test case belongs to.
+    /// This transformation is done in the test case generator.
+    pub group_description: Option<String>,
     pub comments: Option<Vec<String>>,
     pub scenarios: Option<Vec<String>>,
     pub property: String,

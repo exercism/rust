@@ -78,11 +78,26 @@ fn generate_example_rs(fn_name: &str) -> String {
 
 static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.tera");
 
+fn with_group_description(mut cases: Vec<TestCase>, group_description: &str) -> Vec<TestCase> {
+    for case in cases.iter_mut() {
+        if let TestCase::Single { case } = case {
+            case.group_description = Some(group_description.to_string());
+        }
+        // Deeper nesting of groups is ignored at this point.
+        // As such, single test cases will only have the group description of
+        // their immediate parent group.
+        // It's highly unlikely that more information will be needed in practice.
+    }
+    cases
+}
+
 fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCase>) {
     for case in cases {
         match case {
             TestCase::Single { case } => single_cases.push(case),
-            TestCase::Group { cases, .. } => extend_single_cases(single_cases, cases),
+            TestCase::Group {
+                cases, description, ..
+            } => extend_single_cases(single_cases, with_group_description(cases, &description)),
         }
     }
 }
