@@ -1,0 +1,24 @@
+use {{ crate_name }}::*;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.series | json_encode() }};
+    let length = {{ test.input.sliceLength | json_encode() }};
+    let output = {{ fn_names[0] }}(input, length);
+{%- if test.expected is object -%}
+    {#
+        The author of the exercise chose to define the semantics such that
+        "invalid" series return empty vectors. Adding error handling to the
+        exercise later would be a breaking change.
+    #}
+    let expected: &[&str] = &[];
+{% else %}
+    let expected = &{{ test.expected | json_encode() }};
+{% endif -%}
+    assert_eq!(output, expected);
+}
+{% endfor -%}

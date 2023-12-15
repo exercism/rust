@@ -1,3 +1,70 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
+
+[7ae7a46a-d992-4c2a-9c15-a112d125ebad]
+description = "slices of one from one"
+
+[3143b71d-f6a5-4221-aeae-619f906244d2]
+description = "slices of one from two"
+
+[dbb68ff5-76c5-4ccd-895a-93dbec6d5805]
+description = "slices of two"
+
+[19bbea47-c987-4e11-a7d1-e103442adf86]
+description = "slices of two overlap"
+
+[8e17148d-ba0a-4007-a07f-d7f87015d84c]
+description = "slices can include duplicates"
+
+[bd5b085e-f612-4f81-97a8-6314258278b0]
+description = "slices of a long series"
+
+[6d235d85-46cf-4fae-9955-14b6efef27cd]
+description = "slice length is too large"
+
+[d7957455-346d-4e47-8e4b-87ed1564c6d7]
+description = "slice length is way too large"
+
+[d34004ad-8765-4c09-8ba1-ada8ce776806]
+description = "slice length cannot be zero"
+include = false
+comment = """
+    This test case has caused a certain amount of confusion.
+    In the original implementation of the exercise, the test expected:
+
+    series("12345", 0) -> ["", "", "", "", "", ""]
+
+    Reasonable arguments have been made on both sides:
+    https://github.com/exercism/rust/pull/402
+    https://github.com/exercism/rust/issues/671
+
+    The problem-specifications repository defines this case to return an error.
+    But the existing interface of the exercise doesn't allow error handling,
+    so changing it now would be a breaking change.
+
+    It was decided to simply exclude this test case.
+    Handling this specific edge case in the very specific way it was designed
+    in the original implementation doesn't further the student's understanding
+    of Rust as a language.
+
+    In order to avoid breaking existing solutions, there should not be any
+    tests added in the future where the length of the slice is exactly one more
+    than the length of the input string. If such tests are added in
+    problem-specifications, they should be excluded as well.
+"""
+
+[10ab822d-8410-470a-a85d-23fbeb549e54]
+description = "slice length cannot be negative"
+include = false
+comment = "the function signature already prevents this (usize)"
+
+[c7ed0812-0e4b-4bf3-99c4-28cbbfc246a2]
+description = "empty series is invalid"
