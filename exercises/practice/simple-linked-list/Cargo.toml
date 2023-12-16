@@ -3,4 +3,5 @@ edition = "2021"
 name = "simple_linked_list"
 version = "0.1.0"
 
-[dependencies]
+[lints.clippy]
+new_without_default = "allow"
