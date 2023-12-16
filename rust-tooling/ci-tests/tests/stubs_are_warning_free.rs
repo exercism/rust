@@ -14,6 +14,12 @@ fn stubs_are_warning_free() {
         .unwrap()
         .map(Result::unwrap)
     {
+        if std::fs::read_to_string(&manifest.parent().unwrap().join(".meta").join("config.json"))
+            .unwrap()
+            .contains("allowed-to-not-compile")
+        {
+            continue;
+        }
         let slug = manifest
             .parent()
             .unwrap()
