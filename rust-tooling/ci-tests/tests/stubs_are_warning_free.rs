@@ -57,7 +57,16 @@ fn stubs_are_warning_free() {
             continue;
         }
         let stderr = String::from_utf8(output.stderr).unwrap();
-        log.push_str(&format!("######## {slug} ########\n\n{stderr}\n\n"));
+        log.push_str(&format!(
+            "\
+################################################################
+################
+################    {slug}
+
+{stderr}
+
+"
+        ));
     }
 
     if !log.is_empty() {
