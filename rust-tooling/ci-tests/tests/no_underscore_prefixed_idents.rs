@@ -87,7 +87,13 @@ fn no_underscore_prefixed_idents() {
         {
             if identifier_like.starts_with('_') && identifier_like != "_" {
                 panic!(
-                    "Exercise stub in {} contains underscore-prefixed identifier {}",
+                    "Exercise stub in {} contains underscore-prefixed identifier {}
+
+    ╔════════════════════════════════════════════════════════════════╗
+    ║ The use of an underscore-prefixed identifier may be justified. ║
+    ║     If you think it is, add it to the list of exceptions.      ║
+    ╚════════════════════════════════════════════════════════════════╝
+",
                     lib_rs.display(),
                     identifier_like
                 );
