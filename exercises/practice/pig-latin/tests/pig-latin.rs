@@ -1,126 +1,198 @@
-use pig_latin as pl;
+use pig_latin::*;
 
 #[test]
 fn word_beginning_with_a() {
-    assert_eq!(pl::translate("apple"), "appleay");
+    let input = "apple";
+    let output = translate(input);
+    let expected = "appleay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_e() {
-    assert_eq!(pl::translate("ear"), "earay");
+    let input = "ear";
+    let output = translate(input);
+    let expected = "earay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_i() {
-    assert_eq!(pl::translate("igloo"), "iglooay");
+    let input = "igloo";
+    let output = translate(input);
+    let expected = "iglooay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_o() {
-    assert_eq!(pl::translate("object"), "objectay");
+    let input = "object";
+    let output = translate(input);
+    let expected = "objectay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_u() {
-    assert_eq!(pl::translate("under"), "underay");
+    let input = "under";
+    let output = translate(input);
+    let expected = "underay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_a_vowel_and_followed_by_a_qu() {
-    assert_eq!(pl::translate("equal"), "equalay");
+    let input = "equal";
+    let output = translate(input);
+    let expected = "equalay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_p() {
-    assert_eq!(pl::translate("pig"), "igpay");
+    let input = "pig";
+    let output = translate(input);
+    let expected = "igpay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_k() {
-    assert_eq!(pl::translate("koala"), "oalakay");
-}
-
-#[test]
-#[ignore]
-fn word_beginning_with_y() {
-    assert_eq!(pl::translate("yellow"), "ellowyay");
+    let input = "koala";
+    let output = translate(input);
+    let expected = "oalakay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_x() {
-    assert_eq!(pl::translate("xenon"), "enonxay");
+    let input = "xenon";
+    let output = translate(input);
+    let expected = "enonxay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_q_without_a_following_u() {
-    assert_eq!(pl::translate("qat"), "atqay");
+    let input = "qat";
+    let output = translate(input);
+    let expected = "atqay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_ch() {
-    assert_eq!(pl::translate("chair"), "airchay");
+    let input = "chair";
+    let output = translate(input);
+    let expected = "airchay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_qu() {
-    assert_eq!(pl::translate("queen"), "eenquay");
+    let input = "queen";
+    let output = translate(input);
+    let expected = "eenquay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_qu_and_a_preceding_consonant() {
-    assert_eq!(pl::translate("square"), "aresquay");
+    let input = "square";
+    let output = translate(input);
+    let expected = "aresquay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_th() {
-    assert_eq!(pl::translate("therapy"), "erapythay");
+    let input = "therapy";
+    let output = translate(input);
+    let expected = "erapythay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_thr() {
-    assert_eq!(pl::translate("thrush"), "ushthray");
+    let input = "thrush";
+    let output = translate(input);
+    let expected = "ushthray";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_sch() {
-    assert_eq!(pl::translate("school"), "oolschay");
+    let input = "school";
+    let output = translate(input);
+    let expected = "oolschay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_yt() {
-    assert_eq!(pl::translate("yttria"), "yttriaay");
+    let input = "yttria";
+    let output = translate(input);
+    let expected = "yttriaay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn word_beginning_with_xr() {
-    assert_eq!(pl::translate("xray"), "xrayay");
+    let input = "xray";
+    let output = translate(input);
+    let expected = "xrayay";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn y_is_treated_like_a_consonant_at_the_beginning_of_a_word() {
+    let input = "yellow";
+    let output = translate(input);
+    let expected = "ellowyay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn y_is_treated_like_a_vowel_at_the_end_of_a_consonant_cluster() {
-    assert_eq!(pl::translate("rhythm"), "ythmrhay");
+    let input = "rhythm";
+    let output = translate(input);
+    let expected = "ythmrhay";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn y_as_second_letter_in_two_letter_word() {
+    let input = "my";
+    let output = translate(input);
+    let expected = "ymay";
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn a_whole_phrase() {
-    assert_eq!(pl::translate("quick fast run"), "ickquay astfay unray");
+    let input = "quick fast run";
+    let output = translate(input);
+    let expected = "ickquay astfay unray";
+    assert_eq!(output, expected);
 }
