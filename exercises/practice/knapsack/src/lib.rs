@@ -3,6 +3,6 @@ pub struct Item {
     pub value: u32,
 }
 
-pub fn maximum_value(_max_weight: u32, _items: &[Item]) -> u32 {
-    todo!("Solve the knapsack exercise");
+pub fn maximum_value(max_weight: u32, items: &[Item]) -> u32 {
+    todo!("calculate the maximum value achievable with the given {items} and {max_weight}");
 }
