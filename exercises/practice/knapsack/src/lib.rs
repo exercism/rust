@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct Item {
     pub weight: u32,
     pub value: u32,
