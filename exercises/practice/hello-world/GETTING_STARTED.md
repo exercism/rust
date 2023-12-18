@@ -88,5 +88,5 @@ Once the test is passing, you can submit your code with the following
 command:
 
 ```sh
-$ exercism submit src/lib.rs
+$ exercism submit
 ```
