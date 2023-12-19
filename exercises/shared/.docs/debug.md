@@ -8,7 +8,7 @@ You can write to standard out using `println!`:
 println!("Debug message");
 ```
 
-Use braces `{}` to print the value of a variable or expressions:
+Use braces `{}` to print the value of a variable or expression:
 
 ```rust
 let secret_number = 4321;
