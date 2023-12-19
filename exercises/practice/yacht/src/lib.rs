@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub enum Category {
     Ones,
     Twos,
@@ -14,6 +15,7 @@ pub enum Category {
 }
 
 type Dice = [u8; 5];
-pub fn score(_dice: Dice, _category: Category) -> u8 {
-    todo!("Solve the Yacht exercise");
+
+pub fn score(dice: Dice, category: Category) -> u8 {
+    todo!("determine the score for {dice:?} in the {category:?}");
 }
