@@ -2,3 +2,6 @@
 edition = "2021"
 name = "forth"
 version = "1.7.0"
+
+[lints.clippy]
+new_without_default = "allow"

@@ -5,6 +5,6 @@
 tmp
 /bin/configlet
 exercises/*/*/Cargo.lock
-exercises/*/*/clippy.log
+clippy.log
 .vscode
 .prob-spec
