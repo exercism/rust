@@ -1,0 +1,18 @@
+use {{ crate_name }}::*;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let input = {{ test.input.phrase | json_encode() }};
+    let output = {{ fn_names[0] }}(input);
+{%- if test.expected is object %}
+    assert!(output.is_none());
+{% else %}
+    let expected = Some({{ test.expected | json_encode() }}.into());
+    assert_eq!(output, expected);
+{% endif -%}
+}
+{% endfor -%}
