@@ -1,40 +1,107 @@
-use perfect_numbers::{classify, Classification};
+use perfect_numbers::*;
 
-macro_rules! tests {
-    ($property_test_func:ident {
-        $( $(#[$attr:meta])* $test_name:ident( $( $param:expr ),* ); )+
-    }) => {
-        $(
-            $(#[$attr])*
-            #[test]
-            fn $test_name() {
-                $property_test_func($( $param ),* )
-            }
-        )+
-    }
-}
-
-fn test_classification(num: u64, result: Classification) {
-    assert_eq!(classify(num), Some(result));
+#[test]
+fn smallest_perfect_number_is_classified_correctly() {
+    let input = 6;
+    let output = classify(input);
+    let expected = Some(Classification::Perfect);
+    assert_eq!(output, expected);
 }
 
 #[test]
-fn basic() {
-    assert_eq!(classify(0), None);
+#[ignore]
+fn medium_perfect_number_is_classified_correctly() {
+    let input = 28;
+    let output = classify(input);
+    let expected = Some(Classification::Perfect);
+    assert_eq!(output, expected);
 }
 
-tests! {
-    test_classification {
-        #[ignore] test_1(1, Classification::Deficient);
-        #[ignore] test_2(2, Classification::Deficient);
-        #[ignore] test_4(4, Classification::Deficient);
-        #[ignore] test_6(6, Classification::Perfect);
-        #[ignore] test_12(12, Classification::Abundant);
-        #[ignore] test_28(28, Classification::Perfect);
-        #[ignore] test_30(30, Classification::Abundant);
-        #[ignore] test_32(32, Classification::Deficient);
-        #[ignore] test_33550335(33_550_335, Classification::Abundant);
-        #[ignore] test_33550336(33_550_336, Classification::Perfect);
-        #[ignore] test_33550337(33_550_337, Classification::Deficient);
-    }
+#[test]
+#[ignore]
+fn large_perfect_number_is_classified_correctly() {
+    let input = 33550336;
+    let output = classify(input);
+    let expected = Some(Classification::Perfect);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn smallest_abundant_number_is_classified_correctly() {
+    let input = 12;
+    let output = classify(input);
+    let expected = Some(Classification::Abundant);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn medium_abundant_number_is_classified_correctly() {
+    let input = 30;
+    let output = classify(input);
+    let expected = Some(Classification::Abundant);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn large_abundant_number_is_classified_correctly() {
+    let input = 33550335;
+    let output = classify(input);
+    let expected = Some(Classification::Abundant);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn smallest_prime_deficient_number_is_classified_correctly() {
+    let input = 2;
+    let output = classify(input);
+    let expected = Some(Classification::Deficient);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn smallest_non_prime_deficient_number_is_classified_correctly() {
+    let input = 4;
+    let output = classify(input);
+    let expected = Some(Classification::Deficient);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn medium_deficient_number_is_classified_correctly() {
+    let input = 32;
+    let output = classify(input);
+    let expected = Some(Classification::Deficient);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn large_deficient_number_is_classified_correctly() {
+    let input = 33550337;
+    let output = classify(input);
+    let expected = Some(Classification::Deficient);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn edge_case_no_factors_other_than_itself_is_classified_correctly() {
+    let input = 1;
+    let output = classify(input);
+    let expected = Some(Classification::Deficient);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn zero_is_rejected_as_it_is_not_a_positive_integer() {
+    let input = 0;
+    let output = classify(input);
+    assert!(output.is_none());
 }
