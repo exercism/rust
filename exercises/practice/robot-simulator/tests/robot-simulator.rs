@@ -1,145 +1,160 @@
 use robot_simulator::*;
 
 #[test]
-fn robots_are_created_with_position_and_direction() {
+fn at_origin_facing_north() {
     let robot = Robot::new(0, 0, Direction::North);
-    assert_eq!((0, 0), robot.position());
-    assert_eq!(&Direction::North, robot.direction());
+    assert_eq!(robot.position(), (0, 0));
+    assert_eq!(robot.direction(), &Direction::North);
 }
 
 #[test]
 #[ignore]
-fn positions_can_be_negative() {
+fn at_negative_position_facing_south() {
     let robot = Robot::new(-1, -1, Direction::South);
-    assert_eq!((-1, -1), robot.position());
-    assert_eq!(&Direction::South, robot.direction());
+    assert_eq!(robot.position(), (-1, -1));
+    assert_eq!(robot.direction(), &Direction::South);
 }
 
 #[test]
 #[ignore]
-fn turning_right_does_not_change_position() {
-    let robot = Robot::new(0, 0, Direction::North).turn_right();
-    assert_eq!((0, 0), robot.position());
+fn changes_north_to_east() {
+    let robot_start = Robot::new(0, 0, Direction::North);
+    let robot_end = robot_start.turn_right();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::East);
 }
 
 #[test]
 #[ignore]
-fn turning_right_from_north_points_the_robot_east() {
-    let robot = Robot::new(0, 0, Direction::North).turn_right();
-    assert_eq!(&Direction::East, robot.direction());
+fn changes_east_to_south() {
+    let robot_start = Robot::new(0, 0, Direction::East);
+    let robot_end = robot_start.turn_right();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::South);
 }
 
 #[test]
 #[ignore]
-fn turning_right_from_east_points_the_robot_south() {
-    let robot = Robot::new(0, 0, Direction::East).turn_right();
-    assert_eq!(&Direction::South, robot.direction());
+fn changes_south_to_west() {
+    let robot_start = Robot::new(0, 0, Direction::South);
+    let robot_end = robot_start.turn_right();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::West);
 }
 
 #[test]
 #[ignore]
-fn turning_right_from_south_points_the_robot_west() {
-    let robot = Robot::new(0, 0, Direction::South).turn_right();
-    assert_eq!(&Direction::West, robot.direction());
+fn changes_west_to_north() {
+    let robot_start = Robot::new(0, 0, Direction::West);
+    let robot_end = robot_start.turn_right();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::North);
 }
 
 #[test]
 #[ignore]
-fn turning_right_from_west_points_the_robot_north() {
-    let robot = Robot::new(0, 0, Direction::West).turn_right();
-    assert_eq!(&Direction::North, robot.direction());
+fn changes_north_to_west() {
+    let robot_start = Robot::new(0, 0, Direction::North);
+    let robot_end = robot_start.turn_left();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::West);
 }
 
 #[test]
 #[ignore]
-fn turning_left_does_not_change_position() {
-    let robot = Robot::new(0, 0, Direction::North).turn_left();
-    assert_eq!((0, 0), robot.position());
+fn changes_west_to_south() {
+    let robot_start = Robot::new(0, 0, Direction::West);
+    let robot_end = robot_start.turn_left();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::South);
 }
 
 #[test]
 #[ignore]
-fn turning_left_from_north_points_the_robot_west() {
-    let robot = Robot::new(0, 0, Direction::North).turn_left();
-    assert_eq!(&Direction::West, robot.direction());
+fn changes_south_to_east() {
+    let robot_start = Robot::new(0, 0, Direction::South);
+    let robot_end = robot_start.turn_left();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::East);
 }
 
 #[test]
 #[ignore]
-fn turning_left_from_west_points_the_robot_south() {
-    let robot = Robot::new(0, 0, Direction::West).turn_left();
-    assert_eq!(&Direction::South, robot.direction());
+fn changes_east_to_north() {
+    let robot_start = Robot::new(0, 0, Direction::East);
+    let robot_end = robot_start.turn_left();
+    assert_eq!(robot_end.position(), (0, 0));
+    assert_eq!(robot_end.direction(), &Direction::North);
 }
 
 #[test]
 #[ignore]
-fn turning_left_from_south_points_the_robot_east() {
-    let robot = Robot::new(0, 0, Direction::South).turn_left();
-    assert_eq!(&Direction::East, robot.direction());
+fn facing_north_increments_y() {
+    let robot_start = Robot::new(0, 0, Direction::North);
+    let robot_end = robot_start.advance();
+    assert_eq!(robot_end.position(), (0, 1));
+    assert_eq!(robot_end.direction(), &Direction::North);
 }
 
 #[test]
 #[ignore]
-fn turning_left_from_east_points_the_robot_north() {
-    let robot = Robot::new(0, 0, Direction::East).turn_left();
-    assert_eq!(&Direction::North, robot.direction());
+fn facing_south_decrements_y() {
+    let robot_start = Robot::new(0, 0, Direction::South);
+    let robot_end = robot_start.advance();
+    assert_eq!(robot_end.position(), (0, -1));
+    assert_eq!(robot_end.direction(), &Direction::South);
 }
 
 #[test]
 #[ignore]
-fn advance_does_not_change_the_direction() {
-    let robot = Robot::new(0, 0, Direction::North).advance();
-    assert_eq!(&Direction::North, robot.direction());
+fn facing_east_increments_x() {
+    let robot_start = Robot::new(0, 0, Direction::East);
+    let robot_end = robot_start.advance();
+    assert_eq!(robot_end.position(), (1, 0));
+    assert_eq!(robot_end.direction(), &Direction::East);
 }
 
 #[test]
 #[ignore]
-fn advance_increases_the_y_coordinate_by_one_when_facing_north() {
-    let robot = Robot::new(0, 0, Direction::North).advance();
-    assert_eq!((0, 1), robot.position());
+fn facing_west_decrements_x() {
+    let robot_start = Robot::new(0, 0, Direction::West);
+    let robot_end = robot_start.advance();
+    assert_eq!(robot_end.position(), (-1, 0));
+    assert_eq!(robot_end.direction(), &Direction::West);
 }
 
 #[test]
 #[ignore]
-fn advance_decreases_the_y_coordinate_by_one_when_facing_south() {
-    let robot = Robot::new(0, 0, Direction::South).advance();
-    assert_eq!((0, -1), robot.position());
+fn moving_east_and_north_from_readme() {
+    let robot_start = Robot::new(7, 3, Direction::North);
+    let robot_end = robot_start.instructions("RAALAL");
+    assert_eq!(robot_end.position(), (9, 4));
+    assert_eq!(robot_end.direction(), &Direction::West);
 }
 
 #[test]
 #[ignore]
-fn advance_increases_the_x_coordinate_by_one_when_facing_east() {
-    let robot = Robot::new(0, 0, Direction::East).advance();
-    assert_eq!((1, 0), robot.position());
+fn moving_west_and_north() {
+    let robot_start = Robot::new(0, 0, Direction::North);
+    let robot_end = robot_start.instructions("LAAARALA");
+    assert_eq!(robot_end.position(), (-4, 1));
+    assert_eq!(robot_end.direction(), &Direction::West);
 }
 
 #[test]
 #[ignore]
-fn advance_decreases_the_x_coordinate_by_one_when_facing_west() {
-    let robot = Robot::new(0, 0, Direction::West).advance();
-    assert_eq!((-1, 0), robot.position());
+fn moving_west_and_south() {
+    let robot_start = Robot::new(2, -7, Direction::East);
+    let robot_end = robot_start.instructions("RRAAAAALA");
+    assert_eq!(robot_end.position(), (-3, -8));
+    assert_eq!(robot_end.direction(), &Direction::South);
 }
 
 #[test]
 #[ignore]
-fn follow_instructions_to_move_west_and_north() {
-    let robot = Robot::new(0, 0, Direction::North).instructions("LAAARALA");
-    assert_eq!((-4, 1), robot.position());
-    assert_eq!(&Direction::West, robot.direction());
-}
-
-#[test]
-#[ignore]
-fn follow_instructions_to_move_west_and_south() {
-    let robot = Robot::new(2, -7, Direction::East).instructions("RRAAAAALA");
-    assert_eq!((-3, -8), robot.position());
-    assert_eq!(&Direction::South, robot.direction());
-}
-
-#[test]
-#[ignore]
-fn follow_instructions_to_move_east_and_north() {
-    let robot = Robot::new(8, 4, Direction::South).instructions("LAAARRRALLLL");
-    assert_eq!((11, 5), robot.position());
-    assert_eq!(&Direction::North, robot.direction());
+fn moving_east_and_north() {
+    let robot_start = Robot::new(8, 4, Direction::South);
+    let robot_end = robot_start.instructions("LAAARRRALLLL");
+    assert_eq!(robot_end.position(), (11, 5));
+    assert_eq!(robot_end.direction(), &Direction::North);
 }
