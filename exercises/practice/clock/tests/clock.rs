@@ -350,3 +350,50 @@ fn compare_clocks_with_negative_hours_and_minutes_that_wrap() {
 fn compare_full_clock_and_zeroed_clock() {
     assert_eq!(Clock::new(24, 0), Clock::new(0, 0));
 }
+
+//
+// Test Overflow
+//
+
+#[test]
+fn positive_overflow_hours() {
+    Clock::new(i32::MAX, 0);
+}
+
+#[test]
+fn negative_overflow_hours() {
+    Clock::new(i32::MIN, 0);
+}
+
+#[test]
+fn positive_overflow_minutes() {
+    Clock::new(23, i32::MAX);
+}
+
+#[test]
+fn negative_overflow_minutes() {
+    Clock::new(23, i32::MIN);
+}
+
+#[test]
+fn positive_overflow_hours_and_minutes() {
+    Clock::new(i32::MAX, i32::MAX);
+}
+
+#[test]
+fn negative_overflow_hours_and_minutes() {
+    Clock::new(i32::MIN, i32::MIN);
+}
+
+#[test]
+fn positive_overflow_minutes() {
+    let clock = Clock::new(i32::MAX, i32::MAX);
+    clock.add_minutes(i32::MAX);
+}
+
+#[test]
+fn negative_overflow_minutes() {
+    let clock = Clock::new(i32::MIN, i32::MIN);
+    clock.add_minutes(i32::MIN);
+}
+
