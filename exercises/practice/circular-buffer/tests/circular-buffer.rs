@@ -143,6 +143,18 @@ fn overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read() {
 
 #[test]
 #[ignore]
+fn dropping_the_buffer_drops_its_elements() {
+    let element = Rc::new(());
+    {
+        let mut buffer = CircularBuffer::new(1);
+        assert!(buffer.write(Rc::clone(&element)).is_ok());
+        assert_eq!(Rc::strong_count(&element), 2);
+    }
+    assert_eq!(Rc::strong_count(&element), 1);
+}
+
+#[test]
+#[ignore]
 fn integer_buffer() {
     let mut buffer = CircularBuffer::new(2);
     assert!(buffer.write(1).is_ok());
