@@ -23,7 +23,7 @@ fn apply_op<'a, 'b>(num1: i32, words: &'a [Token<'b>]) -> Option<(i32, &'a [Toke
         [Token::NonNumber("multiplied"), Token::NonNumber("by")] => Some(num1 * num2),
         [Token::NonNumber("divided"), Token::NonNumber("by")] => Some(num1 / num2),
         [Token::NonNumber("raised"), Token::NonNumber("to"), Token::NonNumber("the")] => {
-            if Some(&Token::NonNumber("power")) == remainder.get(0) {
+            if Some(&Token::NonNumber("power")) == remainder.first() {
                 remainder = remainder.get(1..)?;
                 Some(num1.pow(num2 as u32))
             } else {
