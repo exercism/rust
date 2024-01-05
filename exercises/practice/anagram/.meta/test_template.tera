@@ -1,0 +1,16 @@
+use {{ crate_name }}::*;
+use std::collections::HashSet;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let word = {{ test.input.subject | json_encode() }};
+    let inputs = &{{ test.input.candidates | json_encode() }};
+    let output = {{ fn_names[0] }}(word, inputs);
+    let expected = HashSet::from_iter({{ test.expected | json_encode() }});
+    assert_eq!(output, expected);
+}
+{% endfor -%}
