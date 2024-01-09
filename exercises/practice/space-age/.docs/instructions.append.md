@@ -1,4 +1,6 @@
-# Topics
+# Instructions append
+
+## Topics
 
 Some Rust topics you may want to read about while solving this problem:
 

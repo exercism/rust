@@ -1,3 +1,4 @@
+# Instructions append
 
 ## Rust Specific Exercise Notes
 
@@ -14,6 +15,6 @@ Adding 'and' into number text has not been implemented in test cases.
 
 ### Extension
 
-Add capability of converting up to the max value for u64: 18,446,744,073,709,551,615.
+Add capability of converting up to the max value for u64: `18_446_744_073_709_551_615`.
 
 For hints at the output this should have, look at the last test case.

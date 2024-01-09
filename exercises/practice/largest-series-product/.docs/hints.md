@@ -1,4 +1,4 @@
-# Largest Series Product in Rust
+## General
 
 These iterators may be useful, depending on your approach
 

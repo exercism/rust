@@ -1,4 +1,6 @@
-# Rust Traits for `.to_string()`
+# Instructions append
+
+## Rust Traits for `.to_string()`
 
 You will also need to implement `.to_string()` for the `Clock` struct.
 We will be using this to display the Clock's state.

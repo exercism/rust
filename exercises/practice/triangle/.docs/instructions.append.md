@@ -1,4 +1,4 @@
-# Triangle in Rust
+# Instructions append
 
 - [Result](https://doc.rust-lang.org/std/result/index.html)
 

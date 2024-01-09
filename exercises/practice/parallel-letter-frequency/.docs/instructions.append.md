@@ -1,4 +1,6 @@
-# Parallel Letter Frequency in Rust
+# Instructions append
+
+## Parallel Letter Frequency in Rust
 
 Learn more about concurrency in Rust here:
 

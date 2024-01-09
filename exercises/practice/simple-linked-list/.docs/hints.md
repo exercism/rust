@@ -1,4 +1,4 @@
-# Implementation Hints
+## General
 
 Do not implement the struct `SimpleLinkedList` as a wrapper around a `Vec`. Instead, allocate nodes on the heap.
 
