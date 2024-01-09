@@ -6,7 +6,7 @@ use glob::glob;
 fn stubs_are_warning_free() {
     utils::fs::cd_into_repo_root();
 
-    let temp_dir = tempdir::TempDir::new("exercism-rust").unwrap();
+    let temp_dir = tempfile::tempdir().unwrap();
 
     let mut handles = vec![];
 

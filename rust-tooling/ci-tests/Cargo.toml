@@ -14,5 +14,5 @@ glob = "0.3.1"
 ignore = "0.4.20"
 models = { version = "0.1.0", path = "../models" }
 serde_json = "1.0.108"
-tempdir = "0.3.7"
+tempfile = "3.9.0"
 utils = { version = "0.1.0", path = "../utils" }
