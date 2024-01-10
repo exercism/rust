@@ -1,4 +1,4 @@
-# Hints
+## General
 
 * A doubly linked does not have a clear ownership hierarchy, which is why it requires either the use
   of unsafe or abstractions for shared ownership like `Rc`. The latter has some overhead that is unnecessary
