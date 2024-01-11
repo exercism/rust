@@ -1,7 +1,7 @@
 let mid = array.len() / 2;
 
 match array[mid].cmp(&key) {
-    Ordering::Equal => Some(offset + mid),
-    Ordering::Less => find_rec(&array[mid + 1..], key, offset + mid + 1),
-    Ordering::Greater => find_rec(&array[..mid], key, offset),
+    Ordering::Equal => Some(mid),
+    Ordering::Greater => find(&array[..mid], key),
+    Ordering::Less => find(&array[mid + 1..], key).map(|p| p + mid + 1),
 }

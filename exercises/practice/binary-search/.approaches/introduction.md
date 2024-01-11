@@ -51,8 +51,8 @@ fn find<U: AsRef<[T]>, T: Ord>(array: U, key: T) -> Option<usize> {
 
     match array[mid].cmp(&key) {
         Ordering::Equal => Some(offset + mid),
-        Ordering::Greater => find_rec(&array[..mid], key),
-        Ordering::Less => find_rec(&array[mid + 1..], key).map(|p| p + mid + 1),
+        Ordering::Greater => find(&array[..mid], key),
+        Ordering::Less => find(&array[mid + 1..], key).map(|p| p + mid + 1),
     }
 }
 ```
