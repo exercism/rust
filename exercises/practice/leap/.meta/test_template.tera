@@ -1,0 +1,15 @@
+use {{ crate_name }}::*;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+{%- if test.expected %}
+    assert!(is_leap_year({{ test.input.year }}));
+{% else %}
+    assert!(!is_leap_year({{ test.input.year }}));
+{% endif -%}
+}
+{% endfor -%}
