@@ -72,10 +72,10 @@ pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
 
 Here, instead of using a [`BTreeSet`][btreeset], we simply collect the multiples into a [`Vec`][vec]. This is
 more efficient since `Vec` will allocate much less memory. Then, in order to have all duplicates removed
-by [`partition_dedup`], we first [`sort`][slice-sort] the multiples. (For an explanation of why we use [`sort`][slice-sort]
-and not [`sort_unstable`][slice-sort_unstable], see the documentation of [`sort`].)
+by [`partition_dedup`][slice-partition_dedup], we first [`sort`][slice-sort] the multiples. (For an explanation
+of why we use [`sort`][slice-sort] and not [`sort_unstable`][slice-sort_unstable], see the documentation of [`sort`][slice-sort].)
 
-Running the tests for this variant requires the use of a Nightly Rust toolchain. To install up:
+Running the tests for this variant requires the use of a Nightly Rust toolchain. To install one:
 
 ```sh
 rustup toolchain install nightly
@@ -91,6 +91,7 @@ cargo +nightly test
 [rangefrom]: https://doc.rust-lang.org/std/ops/struct.RangeFrom.html
 [iterator-step_by]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.step_by
 [iterator-take_while]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.take_while
+[iterator-flat_map]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.flat_map
 [iterator-map]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map
 [iterator-flatten]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.flatten
 [iterator-collect]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect
@@ -99,3 +100,4 @@ cargo +nightly test
 [slice-partition_dedup]: https://doc.rust-lang.org/std/primitive.slice.html#method.partition_dedup
 [vec]: https://doc.rust-lang.org/std/vec/struct.Vec.html
 [slice-sort]: https://doc.rust-lang.org/std/primitive.slice.html?search=vec#method.sort
+[slice-sort_unstable]: https://doc.rust-lang.org/std/primitive.slice.html#method.sort_unstable
