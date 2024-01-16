@@ -18,7 +18,7 @@
 ## 3. Calculate the preparation time in minutes
 
 -   You need to define a [function][functions] with a single parameter.
--   You can use the [mathematical operator for multiplicaton][operators] to multiply values.
+-   You can use the [mathematical operator for multiplication][operators] to multiply values.
 
 ## 4. Calculate the elapsed time in minutes
 
