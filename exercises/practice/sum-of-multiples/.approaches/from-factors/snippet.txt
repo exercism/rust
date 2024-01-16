@@ -1,0 +1,8 @@
+pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
+    factors.iter()
+        .filter(|&&factor| factor > 0)
+        .flat_map(|&factor| multiples(limit, factor))
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .sum()
+}
