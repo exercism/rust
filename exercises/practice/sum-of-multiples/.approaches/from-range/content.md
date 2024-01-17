@@ -11,7 +11,7 @@ pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
 Instead of implementing the steps in the exercise description, this approach uses another angle:
 
 1. Iterate all numbers between 1 (inclusive) and `limit` (exclusive)
-2. Keep only numbers which have at least one factor in `factors`
+2. Keep only numbers which have at least one factor in `factors` (automatically avoiding any duplicates)
 3. Calculate the sum of all numbers kept
 
 After creating our range, we use [`filter`][iterator-filter] to keep only matching multiples.
