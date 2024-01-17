@@ -1,0 +1,13 @@
+{
+  "articles": [
+    {
+      "uuid": "5b2277e9-d224-4db2-b967-f7c1617ecb50",
+      "slug": "performance",
+      "title": "Performance deep dive",
+      "blurb": "Deep dive to find out the most performant approach for computing the sum of multiples.",
+      "authors": [
+        "clechasseur"
+      ]
+    }
+  ]
+}
