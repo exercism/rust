@@ -33,11 +33,9 @@ Finally, calculating the sum of the remaining unique multiples in the set is eas
 
 [^1]: There is another method available to sort a slice: [`sort_unstable`][slice-sort_unstable]. Usually, using [`sort_unstable`][slice-sort_unstable] is recommended if we do not need to keep the ordering of duplicate elements (which is our case). However, [`sort`][slice-sort] has the advantage because of its implementation. From the documentation:
 
-    ```
-    Current implementation
-
-    The current algorithm is an adaptive, iterative merge sort inspired by timsort. It is designed to be very fast in cases where the slice is nearly sorted, or consists of two or more sorted sequences concatenated one after another.
-    ```
+    > Current implementation
+    >
+    > The current algorithm is an adaptive, iterative merge sort inspired by timsort. It is designed to be very fast in cases where the slice is nearly sorted, or consists of two or more sorted sequences concatenated one after another.
 
     The last part is key, because this is exactly our use case: we concatenate sequences of _sorted_ multiples.
 
