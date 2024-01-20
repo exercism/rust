@@ -47,9 +47,11 @@ For more information, check the [Sum by iterating the whole range approach][appr
   However, this approach has the advantage of having stable complexity that is only dependent on the limit and the number of factors, since there is no deduplication involved.
   It also avoids any additional memory allocation.
 
+Without proper benchmarks, the second approach may be preferred since it offers a more stable level of complexity (e.g. its performances varies less when the size of the input changes).
+However, if you have some knowledge of the size and shape of the input, then benchmarking might reveal that one approach is better than the other for your specific use case.
+
 For more information, check the [Performance article][article-performance].
 
 [approach-from-factors]: https://exercism.org/tracks/rust/exercises/sum-of-multiples/approaches/from-factors
 [approach-from-range]: https://exercism.org/tracks/rust/exercises/sum-of-multiples/approaches/from-range
 [rem]: https://doc.rust-lang.org/core/ops/trait.Rem.html
-[article-performance]: https://exercism.org/tracks/rust/exercises/sum-of-multiples/articles/performance
