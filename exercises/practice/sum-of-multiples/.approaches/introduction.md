@@ -13,22 +13,15 @@ It is also possible to find the multiples by simple addition, starting from the 
 ## Approach: Calculating sum from factors
 
 ```rust
-use std::collections::BTreeSet;
-
-pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
-    factors
+pub fn sum_of_multiples_from_factors(limit: u32, factors: &[u32]) -> u32 {
+    let mut multiples: Vec<_> = factors
         .iter()
         .filter(|&&factor| factor != 0)
-        .flat_map(|&factor| multiples(limit, factor))
-        .collect::<BTreeSet<_>>()
-        .into_iter()
-        .sum()
-}
-
-fn multiples(limit: u32, factor: u32) -> impl Iterator<Item = u32> {
-    (factor..)
-        .step_by(factor as usize)
-        .take_while(move |&n| n < limit)
+        .flat_map(|&factor| (factor..limit).step_by(factor as usize))
+        .collect();
+    multiples.sort();
+    multiples.dedup();
+    multiples.iter().sum()
 }
 ```
 
@@ -48,14 +41,11 @@ For more information, check the [Sum by iterating the whole range approach][appr
 
 ## Which approach to use?
 
-- Computing the sum from factors can be efficient if we have a small number of factors and/or if they are large
-  compared to the limit, because this will result in a small number of multiples to deduplicate. However, as the
-  number of factors increases or if they are small, the number of multiples grows quickly and this approach
-  can result in a lot of work to deduplicate them. This approach's complexity is also difficult to pinpoint because
-  it is dependent on both the number and the size of the factors, making its performance vary wildly.
-- Computing the sum by iterating the whole range is less efficient for large ranges when the number of factors is
-  small and/or when they are large. However, this approach has the advantage of having stable complexity that is
-  only dependent on the limit and the number of factors. It also avoids any additional memory allocation.
+- Computing the sum from factors can be efficient if we have a small number of factors and/or if they are large compared to the limit, because this will result in a small number of multiples to deduplicate.
+  However, as the number of multiples grows, this approach can result in a lot of work to deduplicate them.
+- Computing the sum by iterating the whole range is less efficient for large ranges when the number of factors is small and/or when they are large.
+  However, this approach has the advantage of having stable complexity that is only dependent on the limit and the number of factors, since there is no deduplication involved.
+  It also avoids any additional memory allocation.
 
 For more information, check the [Performance article][article-performance].
 
