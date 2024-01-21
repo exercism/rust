@@ -1,0 +1,27 @@
+{
+    "introduction": {
+      "authors": [
+        "clechasseur"
+      ]
+    },
+    "approaches": [
+      {
+        "uuid": "c0e599bf-a0b4-4eb3-af73-ab6c5b04dec8",
+        "slug": "from-factors",
+        "title": "Calculating sum from factors",
+        "blurb": "Calculate the sum by scanning the factors and computing their multiples.",
+        "authors": [
+          "clechasseur"
+        ]
+      },
+      {
+        "uuid": "305246ad-c36a-48ae-8047-cd00a4e7a3e4",
+        "slug": "from-range",
+        "title": "Calculating sum by iterating the whole range",
+        "blurb": "Calculate the sum by scanning the whole range and identifying any multiple via factors.",
+        "authors": [
+          "clechasseur"
+        ]
+      }
+    ]
+  }
