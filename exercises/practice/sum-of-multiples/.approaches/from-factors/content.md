@@ -23,7 +23,7 @@ This approach implements the exact steps outlined in the exercise description:
 In order to compute the list of multiples for a factor, we create a [`Range`][range] from the factor (inclusive) to the `limit` (exclusive), then use [`step_by`][iterator-step_by] with the same factor.
 
 To combine the multiples of all factors, we iterate the list of factors and use [`flat_map`][iterator-flat_map] on each factor's multiples.
-[`flat_map`][iteratpr-flat_map] is a combination of [`map`][iterator-map] and [`flatten`][iterator-flatten]; it maps each factor into its multiples, then flattens them all in a single sequence.
+[`flat_map`][iterator-flat_map] is a combination of [`map`][iterator-map] and [`flatten`][iterator-flatten]; it maps each factor into its multiples, then flattens them all in a single sequence.
 
 Since we need to have unique multiples to compute the proper sum, we [`collect`][iterator-collect] the multiples into a [`Vec`][vec], which allows us to then [`sort`][slice-sort][^1] them and use [`dedup`][vec-dedup] to remove the duplicates.
 [`collect`][iterator-collect] is a powerful function that can collect the data in a sequence and store it in any kind of collection - however, because of this, the compiler is not able to infer the type of collection you want as the output.
