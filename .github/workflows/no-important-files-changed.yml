@@ -3,6 +3,7 @@ name: No important files changed
 on:
   pull_request:
     types: [opened]
+    branches: [main]
 
 permissions:
   pull-requests: write
@@ -17,16 +18,14 @@ jobs:
 
       - name: Check if important files changed
         id: check
-        env:
-          TARGET_BRANCH: ${{ github.base_ref }}
         run: |
           set -exo pipefail
 
-          # fetch a ref to the target branch so we can diff against it
-          git remote set-branches origin '*'
-          git fetch --depth 1 origin $TARGET_BRANCH
+          # fetch a ref to the main branch so we can diff against it
+          git remote set-branches origin main
+          git fetch --depth 1 origin main
 
-          for changed_file in $(git diff --name-only origin/$TARGET_BRANCH); do
+          for changed_file in $(git diff --name-only origin/main); do
             if ! echo "$changed_file" | grep --quiet --extended-regexp 'exercises/(practice|concept)' ; then
               continue
             fi
