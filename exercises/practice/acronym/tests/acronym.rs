@@ -81,5 +81,8 @@ fn underscore_emphasis() {
 #[test]
 #[ignore]
 fn camelcase() {
-    assert_eq!(acronym::abbreviate("HyperText Markup Language"), "HTML");
+    let input = "HyperText Markup Language";
+    let output = acronym::abbreviate(input);
+    let expected = "HTML";
+    assert_eq!(output, expected);
 }
