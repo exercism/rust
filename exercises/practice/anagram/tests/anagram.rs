@@ -166,3 +166,23 @@ fn words_other_than_themselves_can_be_anagrams() {
     let expected = HashSet::from_iter(["Silent"]);
     assert_eq!(output, expected);
 }
+
+#[test]
+#[ignore]
+fn handles_case_of_greek_letters() {
+    let word = "ΑΒΓ";
+    let inputs = &["ΒΓΑ", "ΒΓΔ", "γβα", "αβγ"];
+    let output = anagrams_for(word, inputs);
+    let expected = HashSet::from_iter(["ΒΓΑ", "γβα"]);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn different_characters_may_have_the_same_bytes() {
+    let word = "a⬂";
+    let inputs = &["€a"];
+    let output = anagrams_for(word, inputs);
+    let expected = HashSet::from_iter([]);
+    assert_eq!(output, expected);
+}
