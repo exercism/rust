@@ -6,6 +6,10 @@ configlet *args="":
     @[ -f bin/configlet ] || bin/fetch-configlet
     ./bin/configlet  {{ args }}
 
+# generate a new uuid straight to your clipboard
+uuid:
+    ./bin/configlet uuid | tr -d '[:space:]' | wl-copy
+
 # simulate CI locally (WIP)
 test:
     just configlet lint

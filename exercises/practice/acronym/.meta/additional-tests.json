@@ -1,0 +1,22 @@
+[
+  {
+    "uuid": "d9f6e6d2-79c3-4e53-a22d-66325e8614c6",
+    "description": "camelcase",
+    "comments": [
+      "This test makes the exercise noticeably harder.",
+      "",
+      "Upstreaming this test is not a good option,",
+      "as most other languages would exclude it due to the added difficulty.",
+      "Removing the test from the Rust track is also not a good option,",
+      "because it creates confusion regarding existing community solutions.",
+      "",
+      "While deviations from problem-specifications should generally be avoided,",
+      "it seems like the best choice to stick with it in this case."
+    ],
+    "property": "abbreviate",
+    "input": {
+      "phrase": "HyperText Markup Language"
+    },
+    "expected": "HTML"
+  }
+]
