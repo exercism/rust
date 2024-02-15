@@ -105,3 +105,12 @@ fn zero_is_rejected_as_it_is_not_a_positive_integer() {
     let output = classify(input);
     assert!(output.is_none());
 }
+
+#[test]
+#[ignore]
+fn very_large_prime_is_classified_correctly() {
+    let input = 10000000019;
+    let output = classify(input);
+    let expected = Some(Classification::Deficient);
+    assert_eq!(output, expected);
+}
