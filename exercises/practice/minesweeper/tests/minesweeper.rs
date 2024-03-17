@@ -5,7 +5,8 @@ fn remove_annotations(board: &[&str]) -> Vec<String> {
 }
 
 fn remove_annotations_in_row(row: &str) -> String {
-    row.chars()
+    row.as_bytes()
+        .iter()
         .map(|ch| match ch {
             '*' => '*',
             _ => ' ',
