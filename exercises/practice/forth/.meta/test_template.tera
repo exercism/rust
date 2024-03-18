@@ -1,0 +1,41 @@
+use forth::{Error, Forth, Value};
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {% for desc in test.parent_descriptions %}{{ desc | slugify | replace(from="-", to="_") }}_{% endfor %}{{ test.description | slugify | replace(from="-", to="_") }}() {
+    let mut f = Forth::new();
+    {% if test.property == "evaluateBoth" -%}
+            {% for instr in test.input.instructionsFirst -%}
+                f.eval("{{ instr }}").unwrap();
+            {% endfor -%}
+            assert_eq!(f.stack(), {{ test.expected[0] | json_encode() }});
+            let mut f = Forth::new();
+            {% for instr in test.input.instructionsSecond -%}
+                f.eval("{{ instr }}").unwrap();
+            {% endfor -%}
+            assert_eq!(f.stack(), {{ test.expected[1] | json_encode() }});
+        }
+        {% continue %}
+    {% endif -%}
+
+    {% if test.expected is object -%}
+        {% if test.expected.error == "empty stack" or test.expected.error == "only one value on the stack" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::StackUnderflow));
+        {% elif test.expected.error == "divide by zero" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::DivisionByZero));
+        {% elif test.expected.error == "illegal operation" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::InvalidWord));
+        {% elif test.expected.error == "undefined operation" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::UnknownWord));
+        {% endif -%}
+    {% else -%}
+        {% for instr in test.input.instructions -%}
+            f.eval("{{ instr }}").unwrap();
+        {% endfor -%}
+        assert_eq!(f.stack(), {{ test.expected | json_encode() }});
+    {% endif -%}
+}
+{% endfor -%}

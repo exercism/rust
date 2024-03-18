@@ -362,6 +362,7 @@ dependencies = [
  "glob",
  "inquire",
  "models",
+ "serde",
  "serde_json",
  "tera",
  "utils",

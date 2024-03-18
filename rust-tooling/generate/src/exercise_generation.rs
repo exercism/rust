@@ -4,6 +4,7 @@ use std::{
     process::{Command, Stdio},
 };
 
+use serde::{Deserialize, Serialize};
 use tera::{Context, Tera};
 
 use models::{
@@ -78,13 +79,44 @@ fn generate_example_rs(fn_name: &str) -> String {
 
 static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.tera");
 
-fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCase>) {
-    for case in cases {
-        match case {
-            TestCase::Single { case } => single_cases.push(case),
-            TestCase::Group { cases, .. } => extend_single_cases(single_cases, cases),
+/// Like a [`SingleTestCase`] but with all descriptions of any parent test
+/// group. This is useful during test case generation, because some tests
+/// have the same name across different groups. They can be distinguished
+/// via the parent descriptions.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FlattenedTestCase {
+    pub parent_descriptions: Vec<String>,
+    #[serde(flatten)]
+    pub inner: SingleTestCase,
+}
+
+impl From<SingleTestCase> for FlattenedTestCase {
+    fn from(inner: SingleTestCase) -> Self {
+        Self {
+            parent_descriptions: vec![],
+            inner,
         }
     }
+}
+
+fn flatten_test_cases(cases: Vec<TestCase>) -> Vec<FlattenedTestCase> {
+    let mut flattened_cases = Vec::new();
+    for case in cases {
+        match case {
+            TestCase::Single { case } => flattened_cases.push(case.into()),
+            TestCase::Group {
+                cases, description, ..
+            } => {
+                let mut cases = flatten_test_cases(cases);
+                for c in cases.iter_mut() {
+                    c.parent_descriptions.push(description.clone());
+                }
+                flattened_cases.extend(cases);
+            }
+        }
+    }
+    flattened_cases
 }
 
 fn to_hex(value: &tera::Value, _args: &HashMap<String, tera::Value>) -> tera::Result<tera::Value> {
@@ -111,14 +143,13 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     }
     template.register_filter("to_hex", to_hex);
 
-    let mut single_cases = Vec::new();
-    extend_single_cases(&mut single_cases, cases);
-    single_cases.retain(|case| !excluded_tests.contains(&case.uuid));
+    let mut flattened_cases = flatten_test_cases(cases);
+    flattened_cases.retain(|case| !excluded_tests.contains(&case.inner.uuid));
 
     let mut context = Context::new();
     context.insert("crate_name", &slug.replace('-', "_"));
     context.insert("fn_names", &fn_names);
-    context.insert("cases", &single_cases);
+    context.insert("cases", &flattened_cases);
 
     let rendered = template.render("test_template.tera", &context).unwrap();
     let rendered = rendered.trim_start();
