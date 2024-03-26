@@ -1,16 +1,5 @@
-use std::collections::HashMap;
+use word_count::*;
 
-fn check_word_count(mut output: HashMap<String, u32>, pairs: &[(&str, u32)]) {
-    // The reason for the awkward code in here is to ensure that the failure
-    // message for assert_eq! is as informative as possible. A simpler
-    // solution would simply check the length of the map, and then
-    // check for the presence and value of each key in the given pairs vector.
-    for &(k, v) in pairs.iter() {
-        assert_eq!((k, output.remove(&k.to_string()).unwrap_or(0)), (k, v));
-    }
-    // may fail with a message that clearly shows all extra pairs in the map
-    assert_eq!(output.iter().collect::<Vec<(&String, &u32)>>(), vec![]);
-}
 {% for test in cases %}
 #[test]
 {% if loop.index != 1 -%}
@@ -18,10 +7,20 @@ fn check_word_count(mut output: HashMap<String, u32>, pairs: &[(&str, u32)]) {
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.sentence | json_encode() }};
-    let output = {{ crate_name }}::{{ fn_names[0] }}(input);
-    let expected = &[{% for key, value in test.expected -%}
+    let mut output = word_count(input);
+    let expected = [{% for key, value in test.expected -%}
         ({{ key | json_encode() }}, {{ value }}),
     {%- endfor %}];
-    check_word_count(output, expected);
+    {#-
+        The reason for the awkward code in here is to ensure that the failure
+        message for assert_eq! is as informative as possible. A simpler
+        solution would simply check the length of the map, and then
+        check for the presence and value of each key in the given pairs vector.
+    #}
+    for (word, count) in expected {
+        assert_eq!((word, output.remove(word).unwrap_or(0)), (word, count));
+    }
+    {#- may fail with a message that clearly shows all extra pairs in the map #}
+    assert_eq!(output.into_iter().collect::<Vec<_>>(), vec![]);
 }
 {% endfor -%}
