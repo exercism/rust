@@ -1,9 +1,16 @@
 {
-  "authors": [],
+  "authors": ["jpal91"],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/matrix.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "blurb": "Given a string representing a matrix of numbers, return the rows and columns of that matrix.",
   "source": "Exercise by the JumpstartLab team for students at The Turing School of Software and Design.",
