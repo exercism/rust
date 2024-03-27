@@ -1,0 +1,28 @@
+[
+  {
+    "uuid": "88bf4b28-0de3-4883-93c7-db1b14aa806e",
+    "description": "exponential",
+    "comments": [
+      "This test case was added a long time ago.",
+      "Upstreaming it would make the exercise more difficult."
+    ],
+    "property": "exponentials",
+    "input": {
+      "question": "What is 2 raised to the 5th power?"
+    },
+    "expected": 32
+  },
+  {
+    "uuid": "bb8c655c-cf42-4dfc-90e0-152fcfd8d4e0",
+    "description": "addition and exponential",
+    "comments": [
+      "This test case was added a long time ago.",
+      "Upstreaming it would make the exercise more difficult."
+    ],
+    "property": "exponentials",
+    "input": {
+      "question": "What is 1 plus 2 raised to the 2nd power?"
+    },
+    "expected": 9
+  }
+]

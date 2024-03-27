@@ -5,7 +5,6 @@ use cli::{AddArgs, FullAddArgs, UpdateArgs};
 use models::track_config::{self, TRACK_CONFIG};
 
 mod cli;
-mod exercise_generation;
 
 fn main() {
     utils::fs::cd_into_repo_root();
@@ -79,12 +78,12 @@ fn make_configlet_generate_what_it_can(slug: &str) {
 
 fn generate_exercise_files(slug: &str, is_update: bool) {
     let fn_names = if is_update {
-        read_fn_names_from_lib_rs(slug)
+        generate::read_fn_names_from_lib_rs(slug)
     } else {
         vec!["TODO".to_string()]
     };
 
-    let exercise = exercise_generation::new(slug, fn_names);
+    let exercise = generate::new(slug, fn_names);
 
     let exercise_path = PathBuf::from("exercises/practice").join(slug);
 
@@ -107,23 +106,4 @@ fn generate_exercise_files(slug: &str, is_update: bool) {
         exercise.tests,
     )
     .unwrap();
-}
-
-fn read_fn_names_from_lib_rs(slug: &str) -> Vec<String> {
-    let lib_rs =
-        std::fs::read_to_string(format!("exercises/practice/{}/src/lib.rs", slug)).unwrap();
-
-    lib_rs
-        .split("fn ")
-        .skip(1)
-        .map(|f| {
-            let tmp = f.split_once('(').unwrap().0;
-            // strip generics
-            if let Some((res, _)) = tmp.split_once('<') {
-                res.to_string()
-            } else {
-                tmp.to_string()
-            }
-        })
-        .collect()
 }
