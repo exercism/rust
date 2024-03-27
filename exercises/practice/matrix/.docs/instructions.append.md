@@ -2,7 +2,7 @@
 
 ## Challenges
 
-- Can you implement this solution with using **ANY** `for` loops? (ie using [iterators][iterators] instead)
+- Can you implement this solution without using any `for` loops? (i.e. using [iterators][iterators] instead)
 - Although it would be relatively straight-forward to have two data structures in `Matrix` (one representing rows and another for columns), can you implement this solution without having to hold two separate copies of the input in your struct?
 
 ## Helpful Methods
