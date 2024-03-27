@@ -1533,6 +1533,15 @@
         "prerequisites": [],
         "difficulty": 4,
         "topics": []
+      },
+      {
+        "slug": "matrix",
+        "name": "Matrix",
+        "uuid": "9fceeb8b-0154-45f0-93a5-7117d4d81449",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": []
       }
     ],
     "foregone": [
