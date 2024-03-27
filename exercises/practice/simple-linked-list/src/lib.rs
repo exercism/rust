@@ -1,5 +1,3 @@
-use std::iter::FromIterator;
-
 pub struct SimpleLinkedList<T> {
     // Delete this field
     // dummy is needed to avoid unused parameter error during compilation

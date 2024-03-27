@@ -1,5 +1,3 @@
-use std::iter::FromIterator;
-
 pub struct SimpleLinkedList<T> {
     head: Option<Box<Node<T>>>,
     len: usize,
