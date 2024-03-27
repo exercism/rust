@@ -15,7 +15,7 @@ fn test_can_extract_row() {
 #[test]
 fn test_extract_row_where_numbers_have_different_widths() {
     let matrix = Matrix::new("1 2\n10 20");
-    assert_eq!(matrix.row(2 ), Some(vec![10, 20]));
+    assert_eq!(matrix.row(2), Some(vec![10, 20]));
 }
 
 #[test]
