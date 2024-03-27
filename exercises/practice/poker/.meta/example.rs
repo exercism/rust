@@ -1,5 +1,5 @@
+use std::cmp::Ordering;
 use std::fmt;
-use std::{cmp::Ordering, convert::TryFrom};
 
 use counter::Counter;
 
