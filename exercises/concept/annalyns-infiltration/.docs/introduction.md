@@ -36,7 +36,8 @@ Rust supports following operators on `bool`:
   The result of `x && y` is `true` if both `x` and `y` evaluate to `true`.
   Otherwise, the result is `false`.
 - OR (`||`) operator computes the logical OR of its operands.
-  The result of `x || y` is `true` if either `x` or `y` evaluates to `true`. Otherwise, the result is `false`.
+  The result of `x || y` is `true` if either `x` or `y` evaluates to `true`.
+  Otherwise, the result is `false`.
 - NOT (`!`) operator computes logical negation of its operand.
   That is, it produces `true`, if the operand evaluates to `false`, and `false`, if the operand evaluates to `true`.
 
