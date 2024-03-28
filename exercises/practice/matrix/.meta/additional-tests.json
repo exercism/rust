@@ -8,8 +8,11 @@
             "index": 4
         },
         "expected": null,
-        "comments": [
-            "Additional test to ensure the method can handle invalid input"
+        "comments": [ 
+            "Additional test to ensure the method can handle invalid input", 
+            "Upstream does not want to add this test to avoid every exercise being about input validation.", 
+            "Rust puts a lot of emphasis on error handling, hence the idiomatic Option return type.", 
+            "With Option in the API, it makes sense to test for None at least once." 
         ]
     },
     {
@@ -21,8 +24,11 @@
             "index": 4
         },
         "expected": null,
-        "comments": [
-            "Additional test to ensure the method can handle invalid input"
+        "comments": [ 
+            "Additional test to ensure the method can handle invalid input", 
+            "Upstream does not want to add this test to avoid every exercise being about input validation.", 
+            "Rust puts a lot of emphasis on error handling, hence the idiomatic Option return type.", 
+            "With Option in the API, it makes sense to test for None at least once." 
         ]
     }
 ]
