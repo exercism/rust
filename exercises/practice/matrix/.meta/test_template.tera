@@ -7,12 +7,10 @@ use {{ crate_name }}::*;
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let matrix = Matrix::new({{ test.input.string | json_encode() }});
+    {% if test.expected -%}
     assert_eq!(matrix.{{ test.property }}({{ test.input.index }}), Some(vec!{{ test.expected | json_encode() }}));
-    {% if loop.index == 4 -%}
-    assert_eq!(matrix.column({{ test.input.index }}), None);
+    {% else -%}
+    assert_eq!(matrix.{{ test.property }}({{ test.input.index }}), None);
     {% endif -%}
-    {% if loop.index == 7 -%}
-    assert_eq!(matrix.row({{ test.input.index }}), None);
-    {% endif -%} 
 }
 {% endfor -%}

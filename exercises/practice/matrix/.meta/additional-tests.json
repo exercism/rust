@@ -1,22 +1,22 @@
-{
-    "cases": [
-        {
-            "description": "cannot extract row with no corresponding row in matrix",
-            "property": "row",
-            "input": {
-                "string": "1 2 3\n4 5 6\n7 8 9",
-                "index": 4
-            },
-            "expected": null
+[
+    {
+        "uuid": "9ca9c869-7220-4783-93ba-3e4f96b81732",
+        "description": "cannot extract row with no corresponding row in matrix",
+        "property": "row",
+        "input": {
+            "string": "1 2 3\n4 5 6\n7 8 9",
+            "index": 4
         },
-        {
-            "description": "cannot extract column with no corresponding column in matrix",
-            "property": "column",
-            "input": {
-                "string": "1 2 3\n4 5 6\n7 8 9",
-                "index": 4
-            },
-            "expected": null
-        }
-    ]
-}
+        "expected": null
+    },
+    {
+        "uuid": "304d71d4-cf26-41d4-9b74-cc04441fec8c",
+        "description": "cannot extract column with no corresponding column in matrix",
+        "property": "column",
+        "input": {
+            "string": "1 2 3\n4 5 6\n7 8 9",
+            "index": 4
+        },
+        "expected": null
+    }
+]
