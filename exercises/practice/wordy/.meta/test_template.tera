@@ -3,8 +3,11 @@
 {% if loop.index != 1 -%}
 #[ignore]
 {% endif -%}
+{% if test.property == "exponentials" -%}
+#[cfg(feature = "exponentials")]
+{% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
-    let input = {{ test.input | json_encode() }};
+    let input = {{ test.input.question | json_encode() }};
     let output = {{ crate_name }}::{{ fn_names[0] }}(input);
     let expected = {% if test.expected is object -%}
         None

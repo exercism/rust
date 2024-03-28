@@ -1535,6 +1535,15 @@
         "topics": []
       },
       {
+        "slug": "matrix",
+        "name": "Matrix",
+        "uuid": "9fceeb8b-0154-45f0-93a5-7117d4d81449",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": []
+      },
+      {
         "slug": "eliuds-eggs",
         "name": "Eliuds Eggs",
         "uuid": "2d738c77-8dde-437a-bf42-ed5542a414d1",

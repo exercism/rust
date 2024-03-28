@@ -1,0 +1,16 @@
+use {{ crate_name }}::*;
+
+{% for test in cases %}
+#[test]
+{% if loop.index != 1 -%}
+#[ignore]
+{% endif -%}
+fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+    let matrix = Matrix::new({{ test.input.string | json_encode() }});
+    {% if test.expected -%}
+    assert_eq!(matrix.{{ test.property }}({{ test.input.index }}), Some(vec!{{ test.expected | json_encode() }}));
+    {% else -%}
+    assert_eq!(matrix.{{ test.property }}({{ test.input.index }}), None);
+    {% endif -%}
+}
+{% endfor -%}

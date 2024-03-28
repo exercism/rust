@@ -162,3 +162,22 @@ It probably generates invalid Rust code."
 pub fn get_test_template(slug: &str) -> Option<Tera> {
     Some(Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).unwrap())
 }
+
+pub fn read_fn_names_from_lib_rs(slug: &str) -> Vec<String> {
+    let lib_rs =
+        std::fs::read_to_string(format!("exercises/practice/{}/src/lib.rs", slug)).unwrap();
+
+    lib_rs
+        .split("fn ")
+        .skip(1)
+        .map(|f| {
+            let tmp = f.split_once('(').unwrap().0;
+            // strip generics
+            if let Some((res, _)) = tmp.split_once('<') {
+                res.to_string()
+            } else {
+                tmp.to_string()
+            }
+        })
+        .collect()
+}

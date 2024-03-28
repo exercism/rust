@@ -1,6 +1,16 @@
 use knapsack::*;
 
 #[test]
+fn test_no_items() {
+    let max_weight = 100;
+    let items = [];
+    let output = maximum_value(max_weight, &items);
+    let expected = 0;
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn test_one_item_too_heavy() {
     let max_weight = 10;
     let items = [Item {
