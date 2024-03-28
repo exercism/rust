@@ -7,7 +7,10 @@
             "string": "1 2 3\n4 5 6\n7 8 9",
             "index": 4
         },
-        "expected": null
+        "expected": null,
+        "comments": [
+            "Additional test to ensure the method can handle invalid input"
+        ]
     },
     {
         "uuid": "304d71d4-cf26-41d4-9b74-cc04441fec8c",
@@ -17,6 +20,9 @@
             "string": "1 2 3\n4 5 6\n7 8 9",
             "index": 4
         },
-        "expected": null
+        "expected": null,
+        "comments": [
+            "Additional test to ensure the method can handle invalid input"
+        ]
     }
 ]
