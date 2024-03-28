@@ -1,4 +1,4 @@
-use queen_attack::{ChessPiece, ChessPosition, Queen};
+use queen_attack::*;
 
 {% for test in cases %}
 #[test]

@@ -7,7 +7,7 @@ use variable_length_quantity as vlq;
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
 {%- if test.property == "encode" %}
     let input = &{{ test.input.integers | json_encode() }};
-    let output = vlq::{{ fn_names[0] }}(input);
+    let output = vlq::to_bytes(input);
     let expected = vec![
         {%- for byte in test.expected -%}
             0x{{ byte | to_hex }},
@@ -19,7 +19,7 @@ fn {{ test.description | slugify | replace(from="-", to="_") }}() {
             0x{{ byte | to_hex }},
         {%- endfor -%}
     ];
-    let output = vlq::{{ fn_names[1] }}(input);
+    let output = vlq::from_bytes(input);
     let expected = {% if test.expected is object -%}
         Err(vlq::Error::IncompleteNumber)
     {%- else -%}
