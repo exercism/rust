@@ -1,0 +1,6 @@
+[package]
+edition = "2021"
+name = "eliuds_eggs"
+version = "1.0.0"
+
+[dependencies]
