@@ -161,7 +161,7 @@ It probably generates invalid Rust code."
         );
 
         // still return the unformatted content to be written to the file
-        rendered.into()
+        rendered
     }
 }
 
