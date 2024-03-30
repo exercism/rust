@@ -335,7 +335,6 @@ fn allergic_to_everything_cats() {
 
 #[test]
 #[ignore]
-
 fn no_allergies() {
     let allergies = Allergies::new(0).allergies();
     let expected = &[];
@@ -345,7 +344,6 @@ fn no_allergies() {
 
 #[test]
 #[ignore]
-
 fn just_eggs() {
     let allergies = Allergies::new(1).allergies();
     let expected = &[Allergen::Eggs];
@@ -355,7 +353,6 @@ fn just_eggs() {
 
 #[test]
 #[ignore]
-
 fn just_peanuts() {
     let allergies = Allergies::new(2).allergies();
     let expected = &[Allergen::Peanuts];
@@ -365,7 +362,6 @@ fn just_peanuts() {
 
 #[test]
 #[ignore]
-
 fn just_strawberries() {
     let allergies = Allergies::new(8).allergies();
     let expected = &[Allergen::Strawberries];
@@ -375,7 +371,6 @@ fn just_strawberries() {
 
 #[test]
 #[ignore]
-
 fn eggs_and_peanuts() {
     let allergies = Allergies::new(3).allergies();
     let expected = &[Allergen::Eggs, Allergen::Peanuts];
@@ -385,7 +380,6 @@ fn eggs_and_peanuts() {
 
 #[test]
 #[ignore]
-
 fn more_than_eggs_but_not_peanuts() {
     let allergies = Allergies::new(5).allergies();
     let expected = &[Allergen::Eggs, Allergen::Shellfish];
@@ -395,7 +389,6 @@ fn more_than_eggs_but_not_peanuts() {
 
 #[test]
 #[ignore]
-
 fn lots_of_stuff() {
     let allergies = Allergies::new(248).allergies();
     let expected = &[
@@ -411,7 +404,6 @@ fn lots_of_stuff() {
 
 #[test]
 #[ignore]
-
 fn everything() {
     let allergies = Allergies::new(255).allergies();
     let expected = &[
@@ -430,7 +422,6 @@ fn everything() {
 
 #[test]
 #[ignore]
-
 fn no_allergen_score_parts() {
     let allergies = Allergies::new(509).allergies();
     let expected = &[
@@ -448,7 +439,6 @@ fn no_allergen_score_parts() {
 
 #[test]
 #[ignore]
-
 fn no_allergen_score_parts_without_highest_valid_score() {
     let allergies = Allergies::new(257).allergies();
     let expected = &[Allergen::Eggs];

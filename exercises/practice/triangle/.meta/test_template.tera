@@ -4,9 +4,7 @@ use triangle::Triangle;
 {% if test.property != "equilateral" %}{% continue %}{% endif %}
 
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 {% if test.description is containing("float") %}
 #[cfg(feature = "generic")]
 {% endif -%}

@@ -2,9 +2,7 @@ use {{ crate_name }}::*;
 
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
     let max_weight = {{ test.input.maximumWeight }};
     let items = [

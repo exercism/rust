@@ -2,9 +2,7 @@ use queen_attack::*;
 
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
 {% if test.property == "create" %}
     let chess_position = ChessPosition::new({{ test.input.queen.position.row }}, {{ test.input.queen.position.column }});

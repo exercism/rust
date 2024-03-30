@@ -1,8 +1,6 @@
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 {% if test.description is starting_with("grapheme cluster") -%}
 #[cfg(feature = "grapheme")]
 {% endif -%}

@@ -1,8 +1,6 @@
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.number | json_encode() }};
     let output = {{ crate_name }}::{{ fn_names[0] }}(input);

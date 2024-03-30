@@ -2,9 +2,7 @@ use run_length_encoding as rle;
 
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 fn {{ test.property }}_{{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.string | json_encode() }};
     {% if test.property == "consistency" -%}

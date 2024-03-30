@@ -1,8 +1,6 @@
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 {% if test.property == "exponentials" -%}
 #[cfg(feature = "exponentials")]
 {% endif -%}
