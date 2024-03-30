@@ -3,7 +3,7 @@
 {% if loop.index != 1 -%}
 #[ignore]
 {% endif -%}
-{% if test.property == "grapheme" -%}
+{% if test.description == "grapheme clusters" -%}
 #[cfg(feature = "grapheme")]
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {

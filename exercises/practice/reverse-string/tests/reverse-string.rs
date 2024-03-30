@@ -62,10 +62,19 @@ fn wide_characters() {
 
 #[test]
 #[ignore]
+fn grapheme_cluster_with_pre_combined_form() {
+    let input = "Würstchenstand";
+    let output = reverse_string::reverse(input);
+    let expected = "dnatsnehctsrüW";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 #[cfg(feature = "grapheme")]
 fn grapheme_clusters() {
-    let input = "uüu";
+    let input = "ผู้เขียนโปรแกรม";
     let output = reverse_string::reverse(input);
-    let expected = "uüu";
+    let expected = "มรกแรปโนยขีเผู้";
     assert_eq!(output, expected);
 }
