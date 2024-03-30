@@ -77,13 +77,7 @@ fn make_configlet_generate_what_it_can(slug: &str) {
 }
 
 fn generate_exercise_files(slug: &str, is_update: bool) {
-    let fn_names = if is_update {
-        generate::read_fn_names_from_lib_rs(slug)
-    } else {
-        vec!["TODO".to_string()]
-    };
-
-    let exercise = generate::new(slug, fn_names);
+    let exercise = generate::new(slug);
 
     let exercise_path = PathBuf::from("exercises/practice").join(slug);
 

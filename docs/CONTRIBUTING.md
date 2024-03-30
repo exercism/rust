@@ -134,18 +134,10 @@ let expected = {% if test.expected is object -%}
 {%- endif %};
 ```
 
-If every test case needs to do some crunching of the inputs,
-you can add utils functions at the top of the tera template.
-See [`word-count`'s template][word-count-tmpl] for an example.
-
 Some exercises have multiple functions that need to be implemented
 by the student and therefore tested.
 The canonical data contains a field `property` in that case.
-The template also has access to a value `fn_names`,
-which is an array of functions found in `lib.rs`.
-So, you can construct if-else-chains based on `test.property`
-and render a different element of `fn_names` based on that.
-See [`variable-length-quantity`'s template][var-len-q-tmpl] for an example.
+You can construct if-else-chains based on `test.property` and render a different function based on that.
 
 There is a custom tera fiter `to_hex`, which formats ints in hexadecimal.
 Feel free to add your own in the crate `rust-tooling`.
@@ -157,8 +149,6 @@ It organizes the test cases in modules and dynamically detects which tests to pu
 That exercise also reimplements some test cases from upstream in `additional-tests.json`, in order to add more information to them necessary for generating good tests.
 
 [tera-docs]: https://keats.github.io/tera/docs/#templates
-[word-count-tmpl]: /exercises/practice/word-count/.meta/test_template.tera
-[var-len-q-tmpl]: /exercises/practice/variable-length-quantity/.meta/test_template.tera
 [tera-docs-filters]: https://keats.github.io/tera/docs/#filters
 
 ## Syllabus

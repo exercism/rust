@@ -20,17 +20,16 @@ pub struct GeneratedExercise {
     pub tests: String,
 }
 
-pub fn new(slug: &str, fn_names: Vec<String>) -> GeneratedExercise {
+pub fn new(slug: &str) -> GeneratedExercise {
     let crate_name = slug.replace('-', "_");
-    let first_fn_name = &fn_names[0];
 
     GeneratedExercise {
         gitignore: GITIGNORE.into(),
         manifest: generate_manifest(&crate_name),
-        lib_rs: generate_lib_rs(&crate_name, first_fn_name),
-        example: generate_example_rs(first_fn_name),
+        lib_rs: LIB_RS.into(),
+        example: EXAMPLE_RS.into(),
         test_template: TEST_TEMPLATE.into(),
-        tests: generate_tests(slug, fn_names),
+        tests: generate_tests(slug),
     }
 }
 
@@ -53,28 +52,17 @@ fn generate_manifest(crate_name: &str) -> String {
     )
 }
 
-fn generate_lib_rs(crate_name: &str, fn_name: &str) -> String {
-    format!(
-        concat!(
-            "pub fn {fn_name}(input: TODO) -> TODO {{\n",
-            "    todo!(\"use {{input}} to implement {crate_name}\")\n",
-            "}}\n",
-        ),
-        fn_name = fn_name,
-        crate_name = crate_name,
-    )
+static LIB_RS: &str = "\
+pub fn TODO(input: TODO) -> TODO {
+    todo!(\"use {input} to solve the exercise\")
 }
+";
 
-fn generate_example_rs(fn_name: &str) -> String {
-    format!(
-        concat!(
-            "pub fn {fn_name}(input: TODO) -> TODO {{\n",
-            "    TODO\n",
-            "}}\n",
-        ),
-        fn_name = fn_name
-    )
+static EXAMPLE_RS: &str = "\
+pub fn TODO(input: TODO) -> TODO {
+    TODO
 }
+";
 
 static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.tera");
 
@@ -94,7 +82,7 @@ fn to_hex(value: &tera::Value, _args: &HashMap<String, tera::Value>) -> tera::Re
     )))
 }
 
-fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
+fn generate_tests(slug: &str) -> String {
     let cases = {
         let mut cases = get_canonical_data(slug)
             .map(|data| data.cases)
@@ -116,8 +104,6 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     single_cases.retain(|case| !excluded_tests.contains(&case.uuid));
 
     let mut context = Context::new();
-    context.insert("crate_name", &slug.replace('-', "_"));
-    context.insert("fn_names", &fn_names);
     context.insert("cases", &single_cases);
 
     let rendered = template.render("test_template.tera", &context).unwrap();
@@ -167,23 +153,4 @@ It probably generates invalid Rust code."
 
 pub fn get_test_template(slug: &str) -> Option<Tera> {
     Some(Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).unwrap())
-}
-
-pub fn read_fn_names_from_lib_rs(slug: &str) -> Vec<String> {
-    let lib_rs =
-        std::fs::read_to_string(format!("exercises/practice/{}/src/lib.rs", slug)).unwrap();
-
-    lib_rs
-        .split("fn ")
-        .skip(1)
-        .map(|f| {
-            let tmp = f.split_once('(').unwrap().0;
-            // strip generics
-            if let Some((res, _)) = tmp.split_once('<') {
-                res.to_string()
-            } else {
-                tmp.to_string()
-            }
-        })
-        .collect()
 }
