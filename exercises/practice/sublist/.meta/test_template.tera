@@ -1,3 +1,5 @@
+use sublist::*;
+
 use sublist::Comparison;
 {% for test in cases %}
 #[test]
@@ -5,7 +7,7 @@ use sublist::Comparison;
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let list_one: &[i32] = &{{ test.input.listOne | json_encode() }};
     let list_two: &[i32] = &{{ test.input.listTwo | json_encode() }};
-    let output = {{ crate_name }}::{{ fn_names[0] }}(list_one, list_two);
+    let output = {{ fn_names[0] }}(list_one, list_two);
     let expected = {% if test.expected == "equal" -%}
         Comparison::Equal
     {%- elif test.expected == "sublist" -%}

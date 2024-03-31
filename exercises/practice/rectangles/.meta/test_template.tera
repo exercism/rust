@@ -1,3 +1,5 @@
+use rectangles::*;
+
 {% for test in cases %}
 #[test]
 #[ignore]
@@ -10,7 +12,7 @@ fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
         {{ row | json_encode }},
         {%- endfor %}
     ];
-    let output = {{ crate_name }}::{{ fn_names[0] }}(input);
+    let output = {{ fn_names[0] }}(input);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }

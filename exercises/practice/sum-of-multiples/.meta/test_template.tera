@@ -1,10 +1,12 @@
+use sum_of_multiples::*;
+
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let factors = &{{ test.input.factors | json_encode() }};
     let limit = {{ test.input.limit | json_encode() }};
-    let output = {{ crate_name }}::{{ fn_names[0] }}(limit, factors);
+    let output = {{ fn_names[0] }}(limit, factors);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }

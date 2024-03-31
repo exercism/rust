@@ -1,10 +1,12 @@
+use pythagorean_triplet::*;
+
 use std::collections::HashSet;
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.n | json_encode() }};
-    let output = {{ crate_name }}::{{ fn_names[0] }}(input);
+    let output = {{ fn_names[0] }}(input);
     let expected = {{ test.expected | json_encode() }};
     let expected: HashSet<_> = expected.iter().cloned().collect();
     assert_eq!(output, expected);

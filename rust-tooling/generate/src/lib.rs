@@ -106,7 +106,9 @@ fn generate_tests(slug: &str) -> String {
     let mut context = Context::new();
     context.insert("cases", &single_cases);
 
-    let rendered = template.render("test_template.tera", &context).unwrap();
+    let rendered = template
+        .render("test_template.tera", &context)
+        .unwrap_or_else(|_| panic!("failed to render template of '{slug}'"));
 
     // Remove ignore-annotation on first test.
     // This could be done in the template itself,

@@ -1,4 +1,4 @@
-use {{ crate_name }}::*;
+use phone_number::*;
 
 {% for test in cases %}
 #[test]

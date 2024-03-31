@@ -1,4 +1,4 @@
-use {{ crate_name }}::*;
+use series::*;
 
 {% for test in cases %}
 #[test]

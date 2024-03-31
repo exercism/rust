@@ -1,4 +1,4 @@
-use {{ crate_name }}::*;
+use perfect_numbers::*;
 
 {% for test in cases %}
 #[test]

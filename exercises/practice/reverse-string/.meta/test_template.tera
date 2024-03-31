@@ -1,3 +1,5 @@
+use reverse_string::*;
+
 {% for test in cases %}
 #[test]
 #[ignore]
@@ -6,7 +8,7 @@
 {% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.value | json_encode() }};
-    let output = {{ crate_name }}::{{ fn_names[0] }}(input);
+    let output = {{ fn_names[0] }}(input);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }

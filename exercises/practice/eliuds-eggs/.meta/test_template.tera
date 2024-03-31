@@ -1,4 +1,4 @@
-use {{ crate_name }}::*;
+use eliuds_eggs::*;
 
 {% for test in cases %}
 #[test]
