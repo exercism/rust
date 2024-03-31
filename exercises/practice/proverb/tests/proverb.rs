@@ -1,7 +1,9 @@
+use proverb::*;
+
 #[test]
 fn zero_pieces() {
     let input = &[];
-    let output = proverb::build_proverb(input);
+    let output = build_proverb(input);
     let expected = String::new();
     assert_eq!(output, expected);
 }
@@ -10,7 +12,7 @@ fn zero_pieces() {
 #[ignore]
 fn one_piece() {
     let input = &["nail"];
-    let output = proverb::build_proverb(input);
+    let output = build_proverb(input);
     let expected: String = ["And all for the want of a nail."].join("\n");
     assert_eq!(output, expected);
 }
@@ -19,7 +21,7 @@ fn one_piece() {
 #[ignore]
 fn two_pieces() {
     let input = &["nail", "shoe"];
-    let output = proverb::build_proverb(input);
+    let output = build_proverb(input);
     let expected: String = [
         "For want of a nail the shoe was lost.",
         "And all for the want of a nail.",
@@ -32,7 +34,7 @@ fn two_pieces() {
 #[ignore]
 fn three_pieces() {
     let input = &["nail", "shoe", "horse"];
-    let output = proverb::build_proverb(input);
+    let output = build_proverb(input);
     let expected: String = [
         "For want of a nail the shoe was lost.",
         "For want of a shoe the horse was lost.",
@@ -48,7 +50,7 @@ fn full_proverb() {
     let input = &[
         "nail", "shoe", "horse", "rider", "message", "battle", "kingdom",
     ];
-    let output = proverb::build_proverb(input);
+    let output = build_proverb(input);
     let expected: String = [
         "For want of a nail the shoe was lost.",
         "For want of a shoe the horse was lost.",
@@ -66,7 +68,7 @@ fn full_proverb() {
 #[ignore]
 fn four_pieces_modernized() {
     let input = &["pin", "gun", "soldier", "battle"];
-    let output = proverb::build_proverb(input);
+    let output = build_proverb(input);
     let expected: String = [
         "For want of a pin the gun was lost.",
         "For want of a gun the soldier was lost.",

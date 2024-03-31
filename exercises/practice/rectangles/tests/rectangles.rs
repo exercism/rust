@@ -1,7 +1,9 @@
+use rectangles::*;
+
 #[test]
 fn test_no_rows() {
     let input = &[];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 0;
     assert_eq!(output, expected);
 }
@@ -10,7 +12,7 @@ fn test_no_rows() {
 #[ignore]
 fn test_no_columns() {
     let input = &[""];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 0;
     assert_eq!(output, expected);
 }
@@ -19,7 +21,7 @@ fn test_no_columns() {
 #[ignore]
 fn test_no_rectangles() {
     let input = &[" "];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 0;
     assert_eq!(output, expected);
 }
@@ -33,7 +35,7 @@ fn test_one_rectangle() {
         "| |",
         "+-+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 1;
     assert_eq!(output, expected);
 }
@@ -49,7 +51,7 @@ fn test_two_rectangles_without_shared_parts() {
         "| |  ",
         "+-+  ",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 2;
     assert_eq!(output, expected);
 }
@@ -65,7 +67,7 @@ fn test_five_rectangles_with_shared_parts() {
         "| | |",
         "+-+-+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 5;
     assert_eq!(output, expected);
 }
@@ -78,7 +80,7 @@ fn test_rectangle_of_height_1_is_counted() {
         "+--+",
         "+--+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 1;
     assert_eq!(output, expected);
 }
@@ -92,7 +94,7 @@ fn test_rectangle_of_width_1_is_counted() {
         "||",
         "++",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 1;
     assert_eq!(output, expected);
 }
@@ -105,7 +107,7 @@ fn test_1x1_square_is_counted() {
         "++",
         "++",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 1;
     assert_eq!(output, expected);
 }
@@ -121,7 +123,7 @@ fn test_only_complete_rectangles_are_counted() {
         "| | -",
         "+-+-+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 1;
     assert_eq!(output, expected);
 }
@@ -137,7 +139,7 @@ fn test_rectangles_can_be_of_different_sizes() {
         "|   |       |",
         "+---+-------+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 3;
     assert_eq!(output, expected);
 }
@@ -153,7 +155,7 @@ fn test_corner_is_required_for_a_rectangle_to_be_complete() {
         "|   |       |",
         "+---+-------+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 2;
     assert_eq!(output, expected);
 }
@@ -172,7 +174,7 @@ fn test_large_input_with_many_rectangles() {
         "+------+  | |",
         "          +-+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 60;
     assert_eq!(output, expected);
 }
@@ -190,7 +192,7 @@ fn test_rectangles_must_have_four_sides() {
         "| | | |",
         "+-+ +-+",
     ];
-    let output = rectangles::count(input);
+    let output = count(input);
     let expected = 5;
     assert_eq!(output, expected);
 }
