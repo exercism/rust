@@ -6,7 +6,7 @@ use tournament::*;
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input: &[&str] = &{{ test.input.rows | json_encode() }};
     let input = input.join("\n");
-    let output = {{ fn_names[0] }}(&input);
+    let output = tally(&input);
     let expected = {{ test.expected | json_encode() }}.join("\n");
     assert_eq!(output, expected);
 }

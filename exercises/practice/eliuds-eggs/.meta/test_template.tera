@@ -5,7 +5,7 @@ use eliuds_eggs::*;
 #[ignore]
 fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.number }};
-    let output = {{ fn_names[0] }}(input);
+    let output = egg_count(input);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }

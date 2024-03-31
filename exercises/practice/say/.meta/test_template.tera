@@ -5,7 +5,7 @@ use say::*;
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.number | json_encode() }};
-    let output = {{ fn_names[0] }}(input);
+    let output = encode(input);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }

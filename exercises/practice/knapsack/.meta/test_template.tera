@@ -13,7 +13,7 @@ fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
             },
         {% endfor -%}
     ];
-    let output = {{ fn_names[0] }}(max_weight, &items);
+    let output = maximum_value(max_weight, &items);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }

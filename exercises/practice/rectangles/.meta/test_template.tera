@@ -12,7 +12,7 @@ fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
         {{ row | json_encode }},
         {%- endfor %}
     ];
-    let output = {{ fn_names[0] }}(input);
+    let output = count(input);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }

@@ -5,7 +5,7 @@ use proverb::*;
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = &{{ test.input.strings | json_encode() }};
-    let output = {{ fn_names[0] }}(input);
+    let output = build_proverb(input);
     {% if test.expected | length == 0 -%}
         let expected = String::new();
     {%- else -%}

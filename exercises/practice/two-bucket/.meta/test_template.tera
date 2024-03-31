@@ -13,7 +13,7 @@ use two_bucket::{Bucket, BucketStats};
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
-    let output = {{ fn_names[0] }}(
+    let output = solve(
         {{ test.input.bucketOne }}, {{ test.input.bucketTwo }}, {{ test.input.goal }},
         &{{ self::bucket(label=test.input.startBucket) }},
     );
