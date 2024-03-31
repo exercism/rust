@@ -8,7 +8,6 @@ use two_bucket::*;
     {%- endif %}
 {%- endmacro bucket -%}
 
-use two_bucket::{Bucket, BucketStats};
 {% for test in cases %}
 #[test]
 #[ignore]

@@ -1,7 +1,5 @@
 use two_bucket::*;
 
-use two_bucket::{Bucket, BucketStats};
-
 #[test]
 fn measure_using_bucket_one_of_size_3_and_bucket_two_of_size_5_start_with_bucket_one() {
     let output = solve(3, 5, 1, &Bucket::One);
