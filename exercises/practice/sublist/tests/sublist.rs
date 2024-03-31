@@ -1,7 +1,5 @@
 use sublist::*;
 
-use sublist::Comparison;
-
 #[test]
 fn empty_lists() {
     let list_one: &[i32] = &[];

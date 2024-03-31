@@ -1,6 +1,5 @@
 use sublist::*;
 
-use sublist::Comparison;
 {% for test in cases %}
 #[test]
 #[ignore]
