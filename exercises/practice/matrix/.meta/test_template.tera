@@ -3,7 +3,7 @@ use matrix::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let matrix = Matrix::new({{ test.input.string | json_encode() }});
     {% if test.expected -%}
     assert_eq!(matrix.{{ test.property }}({{ test.input.index }}), Some(vec!{{ test.expected | json_encode() }}));

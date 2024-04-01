@@ -8,7 +8,7 @@ use triangle::Triangle;
 {% if test.description is containing("float") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input).unwrap();
     {%- if test.expected %}
@@ -30,7 +30,7 @@ use triangle::Triangle;
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input).unwrap();
     {%- if test.expected %}
@@ -52,7 +52,7 @@ use triangle::Triangle;
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input).unwrap();
     {%- if test.expected %}
@@ -74,7 +74,7 @@ use triangle::Triangle;
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input);
     assert!(output.is_none());

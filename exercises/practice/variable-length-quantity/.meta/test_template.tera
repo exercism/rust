@@ -2,7 +2,7 @@ use variable_length_quantity as vlq;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
 {%- if test.property == "encode" %}
     let input = &{{ test.input.integers | json_encode() }};
     let output = vlq::to_bytes(input);

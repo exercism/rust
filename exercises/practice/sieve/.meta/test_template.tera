@@ -3,7 +3,7 @@ use sieve::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.limit | json_encode() }};
     let output = primes_up_to(input);
     let expected = {{ test.expected | json_encode() }};

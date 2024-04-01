@@ -3,7 +3,7 @@ use sublist::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let list_one: &[i32] = &{{ test.input.listOne | json_encode() }};
     let list_two: &[i32] = &{{ test.input.listTwo | json_encode() }};
     let output = sublist(list_one, list_two);

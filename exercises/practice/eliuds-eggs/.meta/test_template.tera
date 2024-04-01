@@ -3,7 +3,7 @@ use eliuds_eggs::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
+fn test_{{ test.description | snake_case }}() {
     let input = {{ test.input.number }};
     let output = egg_count(input);
     let expected = {{ test.expected | json_encode() }};

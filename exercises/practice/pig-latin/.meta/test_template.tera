@@ -3,7 +3,7 @@ use pig_latin::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.phrase | json_encode() }};
     let output = translate(input);
     let expected = {{ test.expected | json_encode() }};

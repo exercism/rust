@@ -6,7 +6,7 @@ use wordy::*;
 {% if test.property == "exponentials" -%}
 #[cfg(feature = "exponentials")]
 {% endif -%}
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.question | json_encode() }};
     let output = answer(input);
     let expected = {% if test.expected is object -%}

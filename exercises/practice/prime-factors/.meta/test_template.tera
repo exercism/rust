@@ -3,7 +3,7 @@ use prime_factors::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let factors = factors({{ test.input.value }});
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(factors, expected);

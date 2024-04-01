@@ -19,7 +19,7 @@ fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
 #[ignore]
 {%- if test.property == "allergicTo" %}
 {# canonical data contains multiple cases named "allergic to everything" for different items #}
-fn {{ test.description | slugify | replace(from="-", to="_") }}_{{ test.input.item }}() {
+fn {{ test.description | snake_case }}_{{ test.input.item }}() {
     let allergies = Allergies::new({{ test.input.score }});
 {%- if test.expected %}
     assert!(allergies.is_allergic_to(&Allergen::{{ test.input.item | title }}))
@@ -27,7 +27,7 @@ fn {{ test.description | slugify | replace(from="-", to="_") }}_{{ test.input.it
     assert!(!allergies.is_allergic_to(&Allergen::{{ test.input.item | title }}))
 {% endif -%}
 {% else %}
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let allergies = Allergies::new({{ test.input.score }}).allergies();
     let expected = &[
         {% for allergen in test.expected %}

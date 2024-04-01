@@ -3,7 +3,7 @@ use perfect_numbers::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.number | json_encode() }};
     let output = classify(input);
 {%- if test.expected is object %}

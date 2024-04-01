@@ -2,7 +2,7 @@ use custom_set::CustomSet;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
 {%- if test.property == "empty" %}
     let set = CustomSet::<i32>::new(&{{ test.input.set | json_encode() }});
     assert!(
