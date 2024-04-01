@@ -363,6 +363,7 @@ dependencies = [
  "inquire",
  "models",
  "serde_json",
+ "slug",
  "tera",
  "utils",
  "uuid",

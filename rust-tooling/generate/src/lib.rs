@@ -1,15 +1,17 @@
 use std::{
-    collections::HashMap,
     io::Write,
     process::{Command, Stdio},
 };
 
 use tera::{Context, Tera};
 
+use custom_filters::CUSTOM_FILTERS;
 use models::{
     exercise_config::get_excluded_tests,
     problem_spec::{get_additional_test_cases, get_canonical_data, SingleTestCase, TestCase},
 };
+
+mod custom_filters;
 
 pub struct GeneratedExercise {
     pub gitignore: String,
@@ -75,13 +77,6 @@ fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCa
     }
 }
 
-fn to_hex(value: &tera::Value, _args: &HashMap<String, tera::Value>) -> tera::Result<tera::Value> {
-    Ok(serde_json::Value::String(format!(
-        "{:x}",
-        value.as_u64().unwrap()
-    )))
-}
-
 fn generate_tests(slug: &str) -> String {
     let cases = {
         let mut cases = get_canonical_data(slug)
@@ -97,7 +92,9 @@ fn generate_tests(slug: &str) -> String {
             .add_raw_template("test_template.tera", TEST_TEMPLATE)
             .unwrap();
     }
-    template.register_filter("to_hex", to_hex);
+    for (name, filter) in CUSTOM_FILTERS {
+        template.register_filter(name, filter);
+    }
 
     let mut single_cases = Vec::new();
     extend_single_cases(&mut single_cases, cases);
