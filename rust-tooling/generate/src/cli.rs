@@ -1,3 +1,4 @@
+use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use convert_case::{Case, Casing};
 use glob::glob;
@@ -45,15 +46,25 @@ pub struct FullAddArgs {
 }
 
 impl AddArgs {
-    pub fn unwrap_args_or_prompt(self) -> FullAddArgs {
-        let slug = self.slug.unwrap_or_else(prompt_for_add_slug);
-        let name = self.name.unwrap_or_else(|| prompt_for_exercise_name(&slug));
-        let difficulty = self.difficulty.unwrap_or_else(prompt_for_difficulty).into();
-        FullAddArgs {
+    pub fn unwrap_args_or_prompt(self) -> Result<FullAddArgs> {
+        let slug = match self.slug {
+            Some(slug) => slug,
+            _ => prompt_for_add_slug()?,
+        };
+        let name = match self.name {
+            Some(name) => name,
+            None => prompt_for_exercise_name(&slug)?,
+        };
+        let difficulty = match self.difficulty {
+            Some(diff) => diff,
+            None => prompt_for_difficulty()?,
+        }
+        .into();
+        Ok(FullAddArgs {
             slug,
             name,
             difficulty,
-        }
+        })
     }
 }
 
@@ -65,16 +76,19 @@ pub struct UpdateArgs {
 }
 
 impl UpdateArgs {
-    pub fn unwrap_slug_or_prompt(self) -> String {
-        self.slug.unwrap_or_else(prompt_for_update_slug)
+    pub fn unwrap_slug_or_prompt(self) -> Result<String> {
+        match self.slug {
+            Some(slug) => Ok(slug),
+            _ => prompt_for_update_slug(),
+        }
     }
 }
 
-pub fn prompt_for_update_slug() -> String {
+pub fn prompt_for_update_slug() -> Result<String> {
     let implemented_exercises = glob("exercises/practice/*")
-        .unwrap()
+        .map_err(anyhow::Error::from)?
         .filter_map(Result::ok)
-        .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
+        .flat_map(|path| path.file_name()?.to_str().map(|s| s.to_owned()))
         .collect::<Vec<_>>();
 
     Select::new(
@@ -82,21 +96,21 @@ pub fn prompt_for_update_slug() -> String {
         implemented_exercises,
     )
     .prompt()
-    .unwrap()
+    .context("failed to select slug")
 }
 
-pub fn prompt_for_add_slug() -> String {
+pub fn prompt_for_add_slug() -> Result<String> {
     let implemented_exercises = glob("exercises/concept/*")
-        .unwrap()
-        .chain(glob("exercises/practice/*").unwrap())
+        .map_err(anyhow::Error::from)?
+        .chain(glob("exercises/practice/*").map_err(anyhow::Error::from)?)
         .filter_map(Result::ok)
-        .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
+        .flat_map(|path| path.file_name()?.to_str().map(|s| s.to_owned()))
         .collect::<Vec<_>>();
 
     let todo_with_spec = glob("problem-specifications/exercises/*")
-        .unwrap()
+        .map_err(anyhow::Error::from)?
         .filter_map(Result::ok)
-        .map(|path| path.file_name().unwrap().to_str().unwrap().to_string())
+        .flat_map(|path| path.file_name()?.to_str().map(|s| s.to_owned()))
         .filter(|e| !implemented_exercises.contains(e))
         .collect::<Vec<_>>();
 
@@ -128,14 +142,14 @@ pub fn prompt_for_add_slug() -> String {
             }
         })
         .prompt()
-        .unwrap()
+        .context("failed to prompt for slug")
 }
 
-pub fn prompt_for_exercise_name(slug: &str) -> String {
+pub fn prompt_for_exercise_name(slug: &str) -> Result<String> {
     Text::new("What's the name of your exercise?")
         .with_initial_value(&slug.to_case(Case::Title))
         .prompt()
-        .unwrap()
+        .context("failed to prompt for exercise name")
 }
 
 /// Mostly a clone of the `Difficulty` enum from `models::track_config`.
@@ -172,7 +186,7 @@ impl std::fmt::Display for Difficulty {
     }
 }
 
-pub fn prompt_for_difficulty() -> Difficulty {
+pub fn prompt_for_difficulty() -> Result<Difficulty> {
     Select::new(
         "What's the difficulty of your exercise?",
         vec![
@@ -183,5 +197,5 @@ pub fn prompt_for_difficulty() -> Difficulty {
         ],
     )
     .prompt()
-    .unwrap()
+    .context("failed to select difficulty")
 }
