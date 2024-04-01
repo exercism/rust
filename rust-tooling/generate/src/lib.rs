@@ -3,7 +3,8 @@ use std::{
     process::{Command, Stdio},
 };
 
-use tera::{Context, Tera};
+use anyhow::{Context, Result};
+use tera::Tera;
 
 use custom_filters::CUSTOM_FILTERS;
 use models::{
@@ -22,17 +23,17 @@ pub struct GeneratedExercise {
     pub tests: String,
 }
 
-pub fn new(slug: &str) -> GeneratedExercise {
+pub fn new(slug: &str) -> Result<GeneratedExercise> {
     let crate_name = slug.replace('-', "_");
 
-    GeneratedExercise {
+    Ok(GeneratedExercise {
         gitignore: GITIGNORE.into(),
         manifest: generate_manifest(&crate_name),
         lib_rs: LIB_RS.into(),
         example: EXAMPLE_RS.into(),
         test_template: TEST_TEMPLATE.into(),
-        tests: generate_tests(slug),
-    }
+        tests: generate_tests(slug)?,
+    })
 }
 
 static GITIGNORE: &str = "\
@@ -77,7 +78,7 @@ fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCa
     }
 }
 
-fn generate_tests(slug: &str) -> String {
+fn generate_tests(slug: &str) -> Result<String> {
     let cases = {
         let mut cases = get_canonical_data(slug)
             .map(|data| data.cases)
@@ -86,11 +87,9 @@ fn generate_tests(slug: &str) -> String {
         cases
     };
     let excluded_tests = get_excluded_tests(slug);
-    let mut template = get_test_template(slug).unwrap();
-    if template.get_template_names().next().is_none() {
-        template
-            .add_raw_template("test_template.tera", TEST_TEMPLATE)
-            .unwrap();
+    let mut template = get_test_template(slug).context("failed to get test template")?;
+    if template.get_template_names().next() != Some("test_template.tera") {
+        anyhow::bail!("'test_template.tera' not found");
     }
     for (name, filter) in CUSTOM_FILTERS {
         template.register_filter(name, filter);
@@ -100,12 +99,12 @@ fn generate_tests(slug: &str) -> String {
     extend_single_cases(&mut single_cases, cases);
     single_cases.retain(|case| !excluded_tests.contains(&case.uuid));
 
-    let mut context = Context::new();
+    let mut context = tera::Context::new();
     context.insert("cases", &single_cases);
 
     let rendered = template
         .render("test_template.tera", &context)
-        .unwrap_or_else(|_| panic!("failed to render template of '{slug}'"));
+        .with_context(|| format!("failed to render template of '{slug}'"))?;
 
     // Remove ignore-annotation on first test.
     // This could be done in the template itself,
@@ -120,25 +119,25 @@ fn generate_tests(slug: &str) -> String {
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .spawn()
-        .expect("failed to spawn process");
+        .context("failed to spawn rustfmt process")?;
 
     child
         .stdin
         .as_mut()
-        .unwrap()
+        .context("failed to get rustfmt's stdin")?
         .write_all(rendered.as_bytes())
-        .unwrap();
-    let rustfmt_out = child.wait_with_output().unwrap();
+        .context("failed to write to rustfmt's stdin")?;
+    let rustfmt_out = child
+        .wait_with_output()
+        .context("failed to get rustfmt's output")?;
 
-    if rustfmt_out.status.success() {
-        String::from_utf8(rustfmt_out.stdout).unwrap()
-    } else {
-        let rustfmt_error = String::from_utf8(rustfmt_out.stderr).unwrap();
+    if !rustfmt_out.status.success() {
+        let rustfmt_error = String::from_utf8_lossy(&rustfmt_out.stderr);
         let mut last_16_error_lines = rustfmt_error.lines().rev().take(16).collect::<Vec<_>>();
         last_16_error_lines.reverse();
         let last_16_error_lines = last_16_error_lines.join("\n");
 
-        println!(
+        eprintln!(
             "{last_16_error_lines}\
 ^ last 16 lines of errors from rustfmt
 Check the test template (.meta/test_template.tera)
@@ -146,10 +145,11 @@ It probably generates invalid Rust code."
         );
 
         // still return the unformatted content to be written to the file
-        rendered
+        return Ok(rendered);
     }
+    Ok(String::from_utf8_lossy(&rustfmt_out.stdout).into_owned())
 }
 
-pub fn get_test_template(slug: &str) -> Option<Tera> {
-    Some(Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).unwrap())
+pub fn get_test_template(slug: &str) -> Result<Tera> {
+    Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).map_err(Into::into)
 }

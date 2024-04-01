@@ -1,6 +1,8 @@
 //! This test is not run in CI. Doing so would slow down CI noticeably, because
 //! exercise generation depends on `tera`, which takes a while to compile.
 
+#![allow(clippy::unwrap_used, clippy::panic)]
+
 use glob::glob;
 use utils::fs::cd_into_repo_root;
 
@@ -12,7 +14,7 @@ fn tera_templates_are_in_sync() {
         let exercise_dir = path.parent().unwrap().parent().unwrap();
         let slug = exercise_dir.file_name().unwrap().to_string_lossy();
 
-        let generated = generate::new(&slug);
+        let generated = generate::new(&slug).unwrap();
 
         let test_path = exercise_dir.join("tests").join(format!("{slug}.rs"));
         let on_disk = std::fs::read_to_string(test_path).unwrap();
