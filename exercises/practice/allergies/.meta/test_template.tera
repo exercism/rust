@@ -14,7 +14,8 @@ fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
     }
 }
 
-{% for test in cases %}
+{% for test_group in cases %}
+{% for test in test_group.cases %}
 #[test]
 #[ignore]
 {%- if test.property == "allergicTo" %}
@@ -38,4 +39,5 @@ fn {{ test.description | snake_case }}() {
     compare_allergy_vectors(expected, &allergies);
 {% endif -%}
 }
+{% endfor -%}
 {% endfor -%}
