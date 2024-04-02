@@ -2,6 +2,10 @@
   {
     "uuid": "8a9c5921-a266-4c11-b392-3b2fbb53517c",
     "description": "char buffer",
+    "comments": [
+      "The upstream tests intentionally do not cover generics,",
+      "but recommends individual languages may do it."
+    ],
     "property": "generic",
     "input": {
       "capacity": 1,
@@ -18,6 +22,10 @@
   {
     "uuid": "8a9c5921-a266-4c11-b392-3b2fbb53517c",
     "description": "string buffer",
+    "comments": [
+      "The upstream tests intentionally do not cover generics,",
+      "but recommends individual languages may do it."
+    ],
     "property": "generic",
     "input": {
       "capacity": 1,
