@@ -2,9 +2,7 @@ use word_count::*;
 
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.sentence | json_encode() }};
     let mut output = word_count(input);

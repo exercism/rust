@@ -121,7 +121,13 @@ fn generate_tests(slug: &str, fn_names: Vec<String>) -> String {
     context.insert("cases", &single_cases);
 
     let rendered = template.render("test_template.tera", &context).unwrap();
-    let rendered = rendered.trim_start();
+
+    // Remove ignore-annotation on first test.
+    // This could be done in the template itself,
+    // but doing it here makes all templates more readable.
+    // Also, it is harder to do this in the template when the template
+    // generates test functions inside a macro for modules.
+    let rendered = rendered.replacen("#[ignore]\n", "", 1);
 
     let mut child = Command::new("rustfmt")
         .args(["--color=always"])
@@ -155,7 +161,7 @@ It probably generates invalid Rust code."
         );
 
         // still return the unformatted content to be written to the file
-        rendered.into()
+        rendered
     }
 }
 

@@ -16,9 +16,7 @@ fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
 
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 {%- if test.property == "allergicTo" %}
 {# canonical data contains multiple cases named "allergic to everything" for different items #}
 fn {{ test.description | slugify | replace(from="-", to="_") }}_{{ test.input.item }}() {

@@ -1,9 +1,7 @@
 use variable_length_quantity as vlq;
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
 {%- if test.property == "encode" %}
     let input = &{{ test.input.integers | json_encode() }};

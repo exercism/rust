@@ -1,8 +1,6 @@
 {% for test in cases %}
 #[test]
-{% if loop.index != 1 -%}
 #[ignore]
-{% endif -%}
 fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
     {% if test.input.strings | length > 1 -%}
     #[rustfmt::skip]
