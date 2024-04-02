@@ -1,11 +1,11 @@
-use {{ crate_name }}::*;
+use phone_number::*;
 
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.phrase | json_encode() }};
-    let output = {{ fn_names[0] }}(input);
+    let output = number(input);
 {%- if test.expected is object %}
     assert!(output.is_none());
 {% else %}

@@ -1,11 +1,11 @@
-use {{ crate_name }}::*;
+use perfect_numbers::*;
 
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.number | json_encode() }};
-    let output = {{ fn_names[0] }}(input);
+    let output = classify(input);
 {%- if test.expected is object %}
     assert!(output.is_none());
 {% else %}

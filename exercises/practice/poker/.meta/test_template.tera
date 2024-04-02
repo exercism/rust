@@ -1,4 +1,4 @@
-use {{ crate_name }}::*;
+use poker::*;
 use std::collections::HashSet;
 
 {% for test in cases %}
@@ -6,7 +6,7 @@ use std::collections::HashSet;
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = &{{ test.input.hands | json_encode() }};
-    let output = {{ fn_names[0] }}(input).into_iter().collect::<HashSet<_>>();
+    let output = winning_hands(input).into_iter().collect::<HashSet<_>>();
     let expected = {{ test.expected | json_encode() }}.into_iter().collect::<HashSet<_>>();
     assert_eq!(output, expected);
 }

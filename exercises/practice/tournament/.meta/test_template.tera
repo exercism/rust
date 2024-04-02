@@ -1,10 +1,12 @@
+use tournament::*;
+
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input: &[&str] = &{{ test.input.rows | json_encode() }};
     let input = input.join("\n");
-    let output = {{ crate_name }}::{{ fn_names[0] }}(&input);
+    let output = tally(&input);
     let expected = {{ test.expected | json_encode() }}.join("\n");
     assert_eq!(output, expected);
 }

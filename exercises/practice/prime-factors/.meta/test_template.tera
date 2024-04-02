@@ -1,10 +1,10 @@
-use {{ crate_name }}::*;
+use prime_factors::*;
 
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
-    let factors = {{ fn_names[0] }}({{ test.input.value }});
+    let factors = factors({{ test.input.value }});
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(factors, expected);
 }

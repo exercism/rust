@@ -1,8 +1,10 @@
+use tournament::*;
+
 #[test]
 fn just_the_header_if_no_input() {
     let input: &[&str] = &[];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = ["Team                           | MP |  W |  D |  L |  P"].join("\n");
     assert_eq!(output, expected);
 }
@@ -12,7 +14,7 @@ fn just_the_header_if_no_input() {
 fn a_win_is_three_points_a_loss_is_zero_points() {
     let input: &[&str] = &["Allegoric Alaskans;Blithering Badgers;win"];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3",
@@ -27,7 +29,7 @@ fn a_win_is_three_points_a_loss_is_zero_points() {
 fn a_win_can_also_be_expressed_as_a_loss() {
     let input: &[&str] = &["Blithering Badgers;Allegoric Alaskans;loss"];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3",
@@ -42,7 +44,7 @@ fn a_win_can_also_be_expressed_as_a_loss() {
 fn a_different_team_can_win() {
     let input: &[&str] = &["Blithering Badgers;Allegoric Alaskans;win"];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Blithering Badgers             |  1 |  1 |  0 |  0 |  3",
@@ -57,7 +59,7 @@ fn a_different_team_can_win() {
 fn a_draw_is_one_point_each() {
     let input: &[&str] = &["Allegoric Alaskans;Blithering Badgers;draw"];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1",
@@ -75,7 +77,7 @@ fn there_can_be_more_than_one_match() {
         "Allegoric Alaskans;Blithering Badgers;win",
     ];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6",
@@ -93,7 +95,7 @@ fn there_can_be_more_than_one_winner() {
         "Allegoric Alaskans;Blithering Badgers;win",
     ];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  2 |  1 |  0 |  1 |  3",
@@ -112,7 +114,7 @@ fn there_can_be_more_than_two_teams() {
         "Courageous Californians;Allegoric Alaskans;loss",
     ];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6",
@@ -135,7 +137,7 @@ fn typical_input() {
         "Allegoric Alaskans;Courageous Californians;win",
     ];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Devastating Donkeys            |  3 |  2 |  1 |  0 |  7",
@@ -157,7 +159,7 @@ fn incomplete_competition_not_all_pairs_have_played() {
         "Allegoric Alaskans;Courageous Californians;win",
     ];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  3 |  2 |  0 |  1 |  6",
@@ -181,7 +183,7 @@ fn ties_broken_alphabetically() {
         "Allegoric Alaskans;Courageous Californians;draw",
     ];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Allegoric Alaskans             |  3 |  2 |  1 |  0 |  7",
@@ -204,7 +206,7 @@ fn ensure_points_sorted_numerically() {
         "Blithering Badgers;Devastating Donkeys;win",
     ];
     let input = input.join("\n");
-    let output = tournament::tally(&input);
+    let output = tally(&input);
     let expected = [
         "Team                           | MP |  W |  D |  L |  P",
         "Devastating Donkeys            |  5 |  4 |  0 |  1 | 12",

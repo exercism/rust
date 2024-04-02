@@ -1,9 +1,11 @@
+use spiral_matrix::*;
+
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | slugify | replace(from="-", to="_") }}() {
     let input = {{ test.input.size | json_encode() }};
-    let output = {{ crate_name }}::{{ fn_names[0] }}(input);
+    let output = spiral_matrix(input);
     let expected: [[u32; {{ test.input.size }}]; {{ test.input.size }}] = [
         {% for i in test.expected %}
             {{ i | json_encode }},

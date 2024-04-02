@@ -1,4 +1,4 @@
-use {{ crate_name }}::*;
+use leap::*;
 
 {% for test in cases %}
 #[test]
