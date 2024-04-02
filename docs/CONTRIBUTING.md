@@ -23,6 +23,18 @@ Feel free to extend it.
 
 If you want to run CI tests locally, `just test` will get you quite far.
 
+## Excluding tests and adding custom ones
+
+While creating or updating an exercise, you may decide to exclude certain tests from being generated.
+You can do so by setting `include = false` in `.meta/tests.toml`.
+Please include a comment about the reason for excluding it.
+
+If you want to add additional track-specific tests, you can do so in a file `.meta/additional-tests.json`.
+Only do this with a good reason for not upstreaming these tests.
+A comment in the additional test should answer these questions:
+- Why is the test no upstreamed to `problem-specifications`, i.e. why is it not generally valuable to other languages?
+- Why is the test valuable for the Rust track anyway?
+
 ## Creating a new exercise
 
 Please familiarize yourself with the [Exercism documentation about practice exercises].
@@ -31,19 +43,15 @@ Please familiarize yourself with the [Exercism documentation about practice exer
 
 Run `just add-exercise` and you'll be prompted for the minimal
 information required to generate the exercise stub for you.
-After that, jump in the generated exercise and fill in any todos you find.
+After that, jump in the generated exercise and fill in any placeholders you find.
 This includes most notably:
 
+- writing the exercise stub in `src/lib.rs`
 - adding an example solution in `.meta/example.rs`
 - Adjusting `.meta/test_template.tera`
 
 The tests are generated using the template engine [Tera].
 The input of the template is the canonical data from [`problem-specifications`].
-if you want to exclude certain tests from being generated,
-you have to set `include = false` in `.meta/tests.toml`.
-Please include a comment about the reason for excluding it.
-If you want to add additional track-specific tests, you can do so in a file `.meta/additional-tests.json`.
-Only do this with a good reason for not upstreaming these tests.
 
 Find some tips about writing tera templates [here](#tera-templates).
 
@@ -74,26 +82,27 @@ include a `.custom."allowed-to-not-compile"` key
 in the exercise's `.meta/config.json` containing the reason.
 
 If your exercise implements macro-based testing
-(see [#392](https://github.com/exercism/rust/issues/392#issuecomment-343865993)
-and [`perfect-numbers.rs`](https://github.com/exercism/rust/blob/main/exercises/practice/perfect-numbers/tests/perfect-numbers.rs)),
+(e.g. [`xorcism`](/exercises/practice/xorcism/tests/xorcism.rs)),
 you will likely run afoul of a CI check which counts the `#[ignore]` lines
 and compares the result to the number of `#[test]` lines.
 To fix this, add a marker to the exercise's `.meta/config.json`:
 `.custom."ignore-count-ignores"` should be `true`
 to disable that check for your exercise.
+However, tera templates should generally be preferred to generate many similar test cases.
+See [issue #1824](https://github.com/exercism/rust/issues/1824) for the reasoning.
 
 ## Updating an exercise
 
 Many exercises are derived from [`problem-specifications`].
 This includes their test suite and user-facing documentation.
 Before proposing changes here,
-check if they should be made `problem-specifications` instead.
+check if they should be made in `problem-specifications` instead.
 
 Run `just update-exercise` to update an exercise.
 This outsources most work to `configlet sync --update`
 and runs the test generator again.
 
-When updaing an exercise that doesn't have a tera template yet,
+When updating an exercise that doesn't have a tera template yet,
 a new one will be generated for you.
 You will likely have to adjust it to some extent.
 
@@ -104,8 +113,7 @@ Find some tips about writing tera templates [in the next section](#tera-template
 The full documentation for tera templates is [here][tera-docs].
 Following are some approaches that have worked for our specific needs.
 
-You will likely want to look at the exercise's `canonical-data.json`
-to see what structure your input data has.
+You will likely want to look at the exercise's `canonical-data.json` to see what your input data looks like.
 You can use `bin/symlink_problem_specifications.sh` to have this data
 symlinked into the actual exercise directory. Handy!
 
@@ -139,17 +147,25 @@ by the student and therefore tested.
 The canonical data contains a field `property` in that case.
 You can construct if-else-chains based on `test.property` and render a different function based on that.
 
-There is a custom tera fiter `to_hex`, which formats ints in hexadecimal.
+Some exercises have their test cases organized into _test groups_.
+Your template will have to account for that.
+In many cases, you can simply flatten the structure. (example: [`affine-cipher`](/exercises/practice/affine-cipher/.meta/test_template.tera))
+However, tests sometimes have the same description in different groups, which leads to naming conflicts if the structure is flattened.
+In that case, you can use the group description to organize the tests in modules. (example: [`forth`](/exercises/practice/forth/.meta/test_template.tera))
+
+There are some custom tera filters in [`rust-tooling`](/rust-tooling/generate/src/custom_filters.rs).
+Here's the hopefully up-to-date list:
+- `to_hex` formats ints in hexadecimal
+- `snake_case` massages an arbitrary string into a decent Rust identifier
+
 Feel free to add your own in the crate `rust-tooling`.
-Custom filters added there will be available to all templates.
-How to create such custom filters is documented int he [tera docs][tera-docs-filters].
+Hopefully you'll remember to update the list here as well. 🙂
 
 For a rather complicated example, check out the test template of `triangle`.
 It organizes the test cases in modules and dynamically detects which tests to put behind feature gates.
 That exercise also reimplements some test cases from upstream in `additional-tests.json`, in order to add more information to them necessary for generating good tests.
 
 [tera-docs]: https://keats.github.io/tera/docs/#templates
-[tera-docs-filters]: https://keats.github.io/tera/docs/#filters
 
 ## Syllabus
 
