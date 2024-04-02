@@ -18,6 +18,12 @@ fn tera_templates_are_in_sync() {
         let test_path = exercise_dir.join("tests").join(format!("{slug}.rs"));
         let on_disk = std::fs::read_to_string(test_path).unwrap();
 
-        assert_eq!(generated.tests, on_disk);
+        if generated.tests != on_disk {
+            panic!(
+                "
+    The Tera template for exercise '{slug}' is not in sync.
+    Run 'just update-exercise --slug {slug}' to fix it.\n"
+            )
+        }
     }
 }
