@@ -1,0 +1,61 @@
+use circular_buffer::*;
+use std::rc::Rc;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    let mut buffer = CircularBuffer{% if loop.index == 1 %}::<i32>{% endif %}::new({{ test.input.capacity }});
+{%- for op in test.input.operations %}
+    {%- if op.operation == "read" %}
+        {%- if op.should_succeed %}
+            assert_eq!(buffer.read(), Ok({{ op.expected }}));
+        {%- else %}
+            assert_eq!(buffer.read(), Err(Error::EmptyBuffer));
+        {% endif -%}
+    {%- elif op.operation == "write" %}
+        {%- if op.should_succeed %}
+            assert!(buffer.write({{ op.item }}).is_ok());
+        {%- else %}
+            assert_eq!(buffer.write({{ op.item }}), Err(Error::FullBuffer));
+        {% endif -%}
+    {%- elif op.operation == "overwrite" %}
+        buffer.overwrite({{ op.item }});
+    {%- elif op.operation == "clear" %}
+        buffer.clear();
+    {%- else %}
+        panic!("error in test template: unknown operation");
+    {% endif -%}
+{% endfor %}
+}
+{% endfor %}
+
+{#-
+    We usually do not add additional tests directly in the template.
+    In this case however, the structure of the tests is different from the
+    regular ones. Accommodating that in the template would be complicated
+    and unnecessary.
+#}
+
+#[test]
+#[ignore]
+fn clear_actually_frees_up_its_elements() {
+    let mut buffer = CircularBuffer::new(1);
+    let element = Rc::new(());
+    assert!(buffer.write(Rc::clone(&element)).is_ok());
+    assert_eq!(Rc::strong_count(&element), 2);
+    buffer.clear();
+    assert_eq!(Rc::strong_count(&element), 1);
+}
+
+#[test]
+#[ignore]
+fn dropping_the_buffer_drops_its_elements() {
+    let element = Rc::new(());
+    {
+        let mut buffer = CircularBuffer::new(1);
+        assert!(buffer.write(Rc::clone(&element)).is_ok());
+        assert_eq!(Rc::strong_count(&element), 2);
+    }
+    assert_eq!(Rc::strong_count(&element), 1);
+}
