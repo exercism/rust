@@ -13,6 +13,7 @@ glob = "0.3.1"
 inquire = "0.6.2"
 models = { version = "0.1.0", path = "../models" }
 serde_json = { version = "1.0.105", features = ["preserve_order"] }
+slug = "0.1.5"
 tera = "1.19.1"
 utils = { version = "0.1.0", path = "../utils" }
 uuid = { version = "1.4.1", features = ["v4"] }

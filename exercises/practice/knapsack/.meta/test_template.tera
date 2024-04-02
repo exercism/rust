@@ -3,7 +3,7 @@ use knapsack::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn test_{{ test.description | slugify | replace(from="-", to="_") }}() {
+fn test_{{ test.description | snake_case }}() {
     let max_weight = {{ test.input.maximumWeight }};
     let items = [
         {% for item in test.input.items -%}

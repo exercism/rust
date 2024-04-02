@@ -7,7 +7,7 @@ fn find_sorted_saddle_points(input: &[Vec<u64>]) -> Vec<(usize, usize)> {
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = &[{% for row in test.input.matrix %}
         vec!{{ row }},
     {% endfor %}];

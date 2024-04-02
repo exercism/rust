@@ -4,7 +4,7 @@ use std::collections::HashSet;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
     let input = {{ test.input.n | json_encode() }};
     let output = find(input);
     let expected = {{ test.expected | json_encode() }};

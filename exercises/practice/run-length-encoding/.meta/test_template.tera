@@ -3,7 +3,7 @@ use run_length_encoding as rle;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.property }}_{{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.property }}_{{ test.description | snake_case }}() {
     let input = {{ test.input.string | json_encode() }};
     {% if test.property == "consistency" -%}
         let output = rle::decode(&rle::encode(input));

@@ -3,7 +3,7 @@ use robot_simulator::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | slugify | replace(from="-", to="_") }}() {
+fn {{ test.description | snake_case }}() {
 {%- if test.property == "create" %}
     let robot = Robot::new({{ test.input.position.x }}, {{ test.input.position.y }}, Direction::{{ test.input.direction | title }});
     assert_eq!(robot.position(), ({{ test.expected.position.x }}, {{ test.expected.position.y }}));
