@@ -1,52 +1,57 @@
 [
   {
-    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
-    "description": "all zero sides is not a triangle",
-    "comments": ["reimplements 16e8ceb0-eadb-46d1-b892-c50327479251"],
-    "property": "invalid",
-    "input": {
-      "sides": [0, 0, 0]
-    },
-    "expected": false
-  },
-  {
-    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
-    "description": "first triangle inequality violation",
-    "comments": ["reimplements 2eba0cfb-6c65-4c40-8146-30b608905eae"],
-    "property": "invalid",
-    "input": {
-      "sides": [1, 1, 3]
-    },
-    "expected": false
-  },
-  {
-    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
-    "description": "second triangle inequality violation",
-    "comments": ["reimplements 278469cb-ac6b-41f0-81d4-66d9b828f8ac"],
-    "property": "invalid",
-    "input": {
-      "sides": [1, 3, 1]
-    },
-    "expected": false
-  },
-  {
-    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
-    "description": "third triangle inequality violation",
-    "comments": ["reimplements 90efb0c7-72bb-4514-b320-3a3892e278ff"],
-    "property": "invalid",
-    "input": {
-      "sides": [3, 1, 1]
-    },
-    "expected": false
-  },
-  {
-    "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
-    "description": "may not violate triangle inequality",
-    "comments": ["reimplements 70ad5154-0033-48b7-af2c-b8d739cd9fdc"],
-    "property": "invalid",
-    "input": {
-      "sides": [7, 3, 2]
-    },
-    "expected": false
+    "description": "invalid triangle",
+    "cases": [
+      {
+        "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+        "description": "all zero sides is not a triangle",
+        "comments": ["reimplements 16e8ceb0-eadb-46d1-b892-c50327479251"],
+        "property": "invalid",
+        "input": {
+          "sides": [0, 0, 0]
+        },
+        "expected": false
+      },
+      {
+        "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+        "description": "first triangle inequality violation",
+        "comments": ["reimplements 2eba0cfb-6c65-4c40-8146-30b608905eae"],
+        "property": "invalid",
+        "input": {
+          "sides": [1, 1, 3]
+        },
+        "expected": false
+      },
+      {
+        "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+        "description": "second triangle inequality violation",
+        "comments": ["reimplements 278469cb-ac6b-41f0-81d4-66d9b828f8ac"],
+        "property": "invalid",
+        "input": {
+          "sides": [1, 3, 1]
+        },
+        "expected": false
+      },
+      {
+        "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+        "description": "third triangle inequality violation",
+        "comments": ["reimplements 90efb0c7-72bb-4514-b320-3a3892e278ff"],
+        "property": "invalid",
+        "input": {
+          "sides": [3, 1, 1]
+        },
+        "expected": false
+      },
+      {
+        "uuid": "3ddc03ad-4066-41b0-8ba2-1b0ce0146064",
+        "description": "may not violate triangle inequality",
+        "comments": ["reimplements 70ad5154-0033-48b7-af2c-b8d739cd9fdc"],
+        "property": "invalid",
+        "input": {
+          "sides": [7, 3, 2]
+        },
+        "expected": false
+      }
+    ]
   }
 ]

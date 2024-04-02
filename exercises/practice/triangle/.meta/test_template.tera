@@ -1,8 +1,10 @@
-mod equilateral {
-use triangle::Triangle;
-{% for test in cases %}
-{% if test.property != "equilateral" %}{% continue %}{% endif %}
+{% for test_group in cases %}
+mod {{ test_group.description | split(pat=" ") | first }} {
+    use triangle::Triangle;
 
+{% for test in test_group.cases %}
+
+{% if test.property == "equilateral" %}
 #[test]
 #[ignore]
 {% if test.description is containing("float") %}
@@ -17,14 +19,8 @@ fn {{ test.description | snake_case }}() {
         assert!(!output.is_equilateral());
     {% endif -%}
 }
-{% endfor -%}
-}
 
-mod isosceles {
-use triangle::Triangle;
-{% for test in cases %}
-{% if test.property != "isosceles" %}{% continue %}{% endif %}
-
+{% elif test.property == "isosceles" %}
 #[test]
 #[ignore]
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
@@ -39,14 +35,8 @@ fn {{ test.description | snake_case }}() {
         assert!(!output.is_isosceles());
     {% endif -%}
 }
-{% endfor -%}
-}
 
-mod scalene {
-use triangle::Triangle;
-{% for test in cases %}
-{% if test.property != "scalene" %}{% continue %}{% endif %}
-
+{% elif test.property == "scalene" %}
 #[test]
 #[ignore]
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
@@ -61,14 +51,8 @@ fn {{ test.description | snake_case }}() {
         assert!(!output.is_scalene());
     {% endif -%}
 }
-{% endfor -%}
-}
 
-mod invalid {
-use triangle::Triangle;
-{% for test in cases %}
-{% if test.property != "invalid" %}{% continue %}{% endif %}
-
+{% elif test.property == "invalid" %}
 #[test]
 #[ignore]
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
@@ -79,5 +63,8 @@ fn {{ test.description | snake_case }}() {
     let output = Triangle::build(input);
     assert!(output.is_none());
 }
-{% endfor -%}
+
+{% endif %}
+{% endfor %}
 }
+{% endfor %}

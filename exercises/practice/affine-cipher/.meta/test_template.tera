@@ -1,7 +1,9 @@
 use affine_cipher::*;
 
 use affine_cipher::AffineCipherError::NotCoprime;
-{% for test in cases %}
+
+{% for test_group in cases %}
+{% for test in test_group.cases %}
 #[test]
 #[ignore]
 fn {{ test.description | snake_case }}() {
@@ -15,4 +17,5 @@ fn {{ test.description | snake_case }}() {
     {%- endif %};
     assert_eq!(output, expected);
 }
+{% endfor -%}
 {% endfor -%}

@@ -9,7 +9,7 @@ use tera::Tera;
 use custom_filters::CUSTOM_FILTERS;
 use models::{
     exercise_config::get_excluded_tests,
-    problem_spec::{get_additional_test_cases, get_canonical_data, SingleTestCase, TestCase},
+    problem_spec::{get_additional_test_cases, get_canonical_data, TestCase},
 };
 
 mod custom_filters;
@@ -69,17 +69,20 @@ pub fn TODO(input: TODO) -> TODO {
 
 static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.tera");
 
-fn extend_single_cases(single_cases: &mut Vec<SingleTestCase>, cases: Vec<TestCase>) {
+fn remove_excluded_tests(cases: &mut Vec<TestCase>, excluded_tests: &[String]) {
+    cases.retain(|case| match case {
+        TestCase::Single { case } => !excluded_tests.contains(&case.uuid),
+        _ => true,
+    });
     for case in cases {
-        match case {
-            TestCase::Single { case } => single_cases.push(case),
-            TestCase::Group { cases, .. } => extend_single_cases(single_cases, cases),
+        if let TestCase::Group { cases, .. } = case {
+            remove_excluded_tests(cases, excluded_tests)
         }
     }
 }
 
 fn generate_tests(slug: &str) -> Result<String> {
-    let cases = {
+    let mut cases = {
         let mut cases = get_canonical_data(slug)
             .map(|data| data.cases)
             .unwrap_or_default();
@@ -95,12 +98,10 @@ fn generate_tests(slug: &str) -> Result<String> {
         template.register_filter(name, filter);
     }
 
-    let mut single_cases = Vec::new();
-    extend_single_cases(&mut single_cases, cases);
-    single_cases.retain(|case| !excluded_tests.contains(&case.uuid));
+    remove_excluded_tests(&mut cases, &excluded_tests);
 
     let mut context = tera::Context::new();
-    context.insert("cases", &single_cases);
+    context.insert("cases", &cases);
 
     let rendered = template
         .render("test_template.tera", &context)

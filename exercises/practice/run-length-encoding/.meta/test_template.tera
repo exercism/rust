@@ -1,6 +1,7 @@
 use run_length_encoding as rle;
 
-{% for test in cases %}
+{% for test_group in cases %}
+{% for test in test_group.cases %}
 #[test]
 #[ignore]
 fn {{ test.property }}_{{ test.description | snake_case }}() {
@@ -13,4 +14,5 @@ fn {{ test.property }}_{{ test.description | snake_case }}() {
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }
+{% endfor -%}
 {% endfor -%}
