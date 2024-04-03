@@ -1,87 +1,86 @@
-use circular_buffer::{CircularBuffer, Error};
+use circular_buffer::*;
 use std::rc::Rc;
 
 #[test]
-fn error_on_read_empty_buffer() {
-    let mut buffer = CircularBuffer::<char>::new(1);
-    assert_eq!(Err(Error::EmptyBuffer), buffer.read());
+fn reading_empty_buffer_should_fail() {
+    let mut buffer = CircularBuffer::<i32>::new(1);
+    assert_eq!(buffer.read(), Err(Error::EmptyBuffer));
 }
 
 #[test]
 #[ignore]
-fn can_read_item_just_written() {
+fn can_read_an_item_just_written() {
     let mut buffer = CircularBuffer::new(1);
-    assert!(buffer.write('1').is_ok());
-    assert_eq!(Ok('1'), buffer.read());
+    assert!(buffer.write(1).is_ok());
+    assert_eq!(buffer.read(), Ok(1));
 }
 
 #[test]
 #[ignore]
 fn each_item_may_only_be_read_once() {
     let mut buffer = CircularBuffer::new(1);
-    assert!(buffer.write('1').is_ok());
-    assert_eq!(Ok('1'), buffer.read());
-    assert_eq!(Err(Error::EmptyBuffer), buffer.read());
+    assert!(buffer.write(1).is_ok());
+    assert_eq!(buffer.read(), Ok(1));
+    assert_eq!(buffer.read(), Err(Error::EmptyBuffer));
 }
 
 #[test]
 #[ignore]
 fn items_are_read_in_the_order_they_are_written() {
     let mut buffer = CircularBuffer::new(2);
-    assert!(buffer.write('1').is_ok());
-    assert!(buffer.write('2').is_ok());
-    assert_eq!(Ok('1'), buffer.read());
-    assert_eq!(Ok('2'), buffer.read());
-    assert_eq!(Err(Error::EmptyBuffer), buffer.read());
+    assert!(buffer.write(1).is_ok());
+    assert!(buffer.write(2).is_ok());
+    assert_eq!(buffer.read(), Ok(1));
+    assert_eq!(buffer.read(), Ok(2));
 }
 
 #[test]
 #[ignore]
-fn full_buffer_cant_be_written_to() {
+fn full_buffer_can_t_be_written_to() {
     let mut buffer = CircularBuffer::new(1);
-    assert!(buffer.write('1').is_ok());
-    assert_eq!(Err(Error::FullBuffer), buffer.write('2'));
+    assert!(buffer.write(1).is_ok());
+    assert_eq!(buffer.write(2), Err(Error::FullBuffer));
 }
 
 #[test]
 #[ignore]
-fn read_frees_up_capacity_for_another_write() {
+fn a_read_frees_up_capacity_for_another_write() {
     let mut buffer = CircularBuffer::new(1);
-    assert!(buffer.write('1').is_ok());
-    assert_eq!(Ok('1'), buffer.read());
-    assert!(buffer.write('2').is_ok());
-    assert_eq!(Ok('2'), buffer.read());
+    assert!(buffer.write(1).is_ok());
+    assert_eq!(buffer.read(), Ok(1));
+    assert!(buffer.write(2).is_ok());
+    assert_eq!(buffer.read(), Ok(2));
 }
 
 #[test]
 #[ignore]
 fn read_position_is_maintained_even_across_multiple_writes() {
     let mut buffer = CircularBuffer::new(3);
-    assert!(buffer.write('1').is_ok());
-    assert!(buffer.write('2').is_ok());
-    assert_eq!(Ok('1'), buffer.read());
-    assert!(buffer.write('3').is_ok());
-    assert_eq!(Ok('2'), buffer.read());
-    assert_eq!(Ok('3'), buffer.read());
+    assert!(buffer.write(1).is_ok());
+    assert!(buffer.write(2).is_ok());
+    assert_eq!(buffer.read(), Ok(1));
+    assert!(buffer.write(3).is_ok());
+    assert_eq!(buffer.read(), Ok(2));
+    assert_eq!(buffer.read(), Ok(3));
 }
 
 #[test]
 #[ignore]
-fn items_cleared_out_of_buffer_cant_be_read() {
+fn items_cleared_out_of_buffer_can_t_be_read() {
     let mut buffer = CircularBuffer::new(1);
-    assert!(buffer.write('1').is_ok());
+    assert!(buffer.write(1).is_ok());
     buffer.clear();
-    assert_eq!(Err(Error::EmptyBuffer), buffer.read());
+    assert_eq!(buffer.read(), Err(Error::EmptyBuffer));
 }
 
 #[test]
 #[ignore]
 fn clear_frees_up_capacity_for_another_write() {
     let mut buffer = CircularBuffer::new(1);
-    assert!(buffer.write('1').is_ok());
+    assert!(buffer.write(1).is_ok());
     buffer.clear();
-    assert!(buffer.write('2').is_ok());
-    assert_eq!(Ok('2'), buffer.read());
+    assert!(buffer.write(2).is_ok());
+    assert_eq!(buffer.read(), Ok(2));
 }
 
 #[test]
@@ -89,8 +88,72 @@ fn clear_frees_up_capacity_for_another_write() {
 fn clear_does_nothing_on_empty_buffer() {
     let mut buffer = CircularBuffer::new(1);
     buffer.clear();
-    assert!(buffer.write('1').is_ok());
-    assert_eq!(Ok('1'), buffer.read());
+    assert!(buffer.write(1).is_ok());
+    assert_eq!(buffer.read(), Ok(1));
+}
+
+#[test]
+#[ignore]
+fn overwrite_acts_like_write_on_non_full_buffer() {
+    let mut buffer = CircularBuffer::new(2);
+    assert!(buffer.write(1).is_ok());
+    buffer.overwrite(2);
+    assert_eq!(buffer.read(), Ok(1));
+    assert_eq!(buffer.read(), Ok(2));
+}
+
+#[test]
+#[ignore]
+fn overwrite_replaces_the_oldest_item_on_full_buffer() {
+    let mut buffer = CircularBuffer::new(2);
+    assert!(buffer.write(1).is_ok());
+    assert!(buffer.write(2).is_ok());
+    buffer.overwrite(3);
+    assert_eq!(buffer.read(), Ok(2));
+    assert_eq!(buffer.read(), Ok(3));
+}
+
+#[test]
+#[ignore]
+fn overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read() {
+    let mut buffer = CircularBuffer::new(3);
+    assert!(buffer.write(1).is_ok());
+    assert!(buffer.write(2).is_ok());
+    assert!(buffer.write(3).is_ok());
+    assert_eq!(buffer.read(), Ok(1));
+    assert!(buffer.write(4).is_ok());
+    buffer.overwrite(5);
+    assert_eq!(buffer.read(), Ok(3));
+    assert_eq!(buffer.read(), Ok(4));
+    assert_eq!(buffer.read(), Ok(5));
+}
+
+#[test]
+#[ignore]
+fn initial_clear_does_not_affect_wrapping_around() {
+    let mut buffer = CircularBuffer::new(2);
+    buffer.clear();
+    assert!(buffer.write(1).is_ok());
+    assert!(buffer.write(2).is_ok());
+    buffer.overwrite(3);
+    buffer.overwrite(4);
+    assert_eq!(buffer.read(), Ok(3));
+    assert_eq!(buffer.read(), Ok(4));
+    assert_eq!(buffer.read(), Err(Error::EmptyBuffer));
+}
+
+#[test]
+#[ignore]
+fn char_buffer() {
+    let mut buffer = CircularBuffer::new(1);
+    assert!(buffer.write('A').is_ok());
+}
+
+#[test]
+#[ignore]
+fn string_buffer() {
+    let mut buffer = CircularBuffer::new(1);
+    assert!(buffer.write("Testing".to_string()).is_ok());
 }
 
 #[test]
@@ -106,43 +169,6 @@ fn clear_actually_frees_up_its_elements() {
 
 #[test]
 #[ignore]
-fn overwrite_acts_like_write_on_non_full_buffer() {
-    let mut buffer = CircularBuffer::new(2);
-    assert!(buffer.write('1').is_ok());
-    buffer.overwrite('2');
-    assert_eq!(Ok('1'), buffer.read());
-    assert_eq!(Ok('2'), buffer.read());
-    assert_eq!(Err(Error::EmptyBuffer), buffer.read());
-}
-
-#[test]
-#[ignore]
-fn overwrite_replaces_the_oldest_item_on_full_buffer() {
-    let mut buffer = CircularBuffer::new(2);
-    assert!(buffer.write('1').is_ok());
-    assert!(buffer.write('2').is_ok());
-    buffer.overwrite('A');
-    assert_eq!(Ok('2'), buffer.read());
-    assert_eq!(Ok('A'), buffer.read());
-}
-
-#[test]
-#[ignore]
-fn overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read() {
-    let mut buffer = CircularBuffer::new(3);
-    assert!(buffer.write('1').is_ok());
-    assert!(buffer.write('2').is_ok());
-    assert!(buffer.write('3').is_ok());
-    assert_eq!(Ok('1'), buffer.read());
-    assert!(buffer.write('4').is_ok());
-    buffer.overwrite('5');
-    assert_eq!(Ok('3'), buffer.read());
-    assert_eq!(Ok('4'), buffer.read());
-    assert_eq!(Ok('5'), buffer.read());
-}
-
-#[test]
-#[ignore]
 fn dropping_the_buffer_drops_its_elements() {
     let element = Rc::new(());
     {
@@ -151,27 +177,4 @@ fn dropping_the_buffer_drops_its_elements() {
         assert_eq!(Rc::strong_count(&element), 2);
     }
     assert_eq!(Rc::strong_count(&element), 1);
-}
-
-#[test]
-#[ignore]
-fn integer_buffer() {
-    let mut buffer = CircularBuffer::new(2);
-    assert!(buffer.write(1).is_ok());
-    assert!(buffer.write(2).is_ok());
-    assert_eq!(Ok(1), buffer.read());
-    assert!(buffer.write(-1).is_ok());
-    assert_eq!(Ok(2), buffer.read());
-    assert_eq!(Ok(-1), buffer.read());
-    assert_eq!(Err(Error::EmptyBuffer), buffer.read());
-}
-
-#[test]
-#[ignore]
-fn string_buffer() {
-    let mut buffer = CircularBuffer::new(2);
-    buffer.write("".to_string()).unwrap();
-    buffer.write("Testing".to_string()).unwrap();
-    assert_eq!(0, buffer.read().unwrap().len());
-    assert_eq!(Ok("Testing".to_string()), buffer.read());
 }
