@@ -1,0 +1,44 @@
+{% for test_group in cases %}
+mod {{ test_group.description | snake_case }} {
+    use forth::*;
+
+{% for test in test_group.cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    let mut f = Forth::new();
+    {% if test.property == "evaluateBoth" -%}
+            {% for instr in test.input.instructionsFirst -%}
+                assert!(f.eval("{{ instr }}").is_ok());
+            {% endfor -%}
+            assert_eq!(f.stack(), {{ test.expected[0] | json_encode() }});
+            let mut f = Forth::new();
+            {% for instr in test.input.instructionsSecond -%}
+                assert!(f.eval("{{ instr }}").is_ok());
+            {% endfor -%}
+            assert_eq!(f.stack(), {{ test.expected[1] | json_encode() }});
+        }
+        {% continue %}
+    {% endif -%}
+
+    {% if test.expected is object -%}
+        {% if test.expected.error == "empty stack" or test.expected.error == "only one value on the stack" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::StackUnderflow));
+        {% elif test.expected.error == "divide by zero" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::DivisionByZero));
+        {% elif test.expected.error == "illegal operation" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::InvalidWord));
+        {% elif test.expected.error == "undefined operation" -%}
+            assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::UnknownWord));
+        {% endif -%}
+    {% else -%}
+        {% for instr in test.input.instructions -%}
+            assert!(f.eval("{{ instr }}").is_ok());
+        {% endfor -%}
+        assert_eq!(f.stack(), {{ test.expected | json_encode() }});
+    {% endif -%}
+}
+{% endfor %}
+
+}
+{% endfor %}
