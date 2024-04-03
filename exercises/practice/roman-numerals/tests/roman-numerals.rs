@@ -226,6 +226,15 @@ fn number_3001_is_mmmi() {
 
 #[test]
 #[ignore]
+fn number_3888_is_mmmdccclxxxviii() {
+    let input = 3888;
+    let output = Roman::from(input).to_string();
+    let expected = "MMMDCCCLXXXVIII";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn number_3999_is_mmmcmxcix() {
     let input = 3999;
     let output = Roman::from(input).to_string();
