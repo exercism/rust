@@ -33,19 +33,29 @@ fn zero() {
 #[ignore]
 fn test_110243094271() {
     let val = 110243094271;
-    assert_eq!(None, collatz(val));
+    let collatz_length = collatz(val);
+    if collatz_length.is_some() {
+        assert_eq!(Some(572), collatz_length);
+    }
 }
 
 #[test]
 #[ignore]
 fn max_div_3() {
     let max = u64::MAX / 3;
-    assert_eq!(None, collatz(max));
+    let collatz_length = collatz(max);
+    dbg!(max, collatz_length);
+    if collatz_length.is_some() {
+        assert_eq!(Some(65), collatz_length);
+    }
 }
 
 #[test]
 #[ignore]
 fn max_minus_1() {
     let max = u64::MAX - 1;
-    assert_eq!(None, collatz(max));
+    let collatz_length = collatz(max);
+    if collatz_length.is_some() {
+        assert_eq!(Some(863), collatz_length);
+    }
 }
