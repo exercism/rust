@@ -7,7 +7,7 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
     (2..numbers.len())
         .filter_map(|i| {
             let prime = numbers[i].take()? as usize;
-            (prime + prime..=upper_bound)
+            (prime * prime..=upper_bound)
                 .step_by(prime)
                 .for_each(|j| numbers[j] = None);
             Some(prime as u64)
@@ -25,7 +25,7 @@ Each number from the range is passed to the [`filter_map()`][filtermap].
 The [closure][closure] (also known as a lambda) in the body of the `filter_map()` uses the [`take()`][take] method, combined with the
 unwrap operator (`?`), to get the element value in the `Vec` at the index of the number passed in from the range.
 If the element value is `None`, then no further processing happens in the lambda for that iteration.
-If the element value is `Some` number, then an inner range is defined, starting from the element value plus itself and going through the upper bound.
+If the element value is `Some` number, then an inner range is defined, starting from the element value times itself and going through the upper bound.
 
 The [`step_by()`][stepby] method is used to traverse the range in steps the size of the element value.
 
