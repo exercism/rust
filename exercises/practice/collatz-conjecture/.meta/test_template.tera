@@ -1,0 +1,16 @@
+use collatz_conjecture::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    let output = collatz({{ test.input.number | json_encode() }});
+    
+    let expected = {% if test.expected is object %}
+        None
+    {% else %}
+        Some({{ test.expected | json_encode() }})
+    {% endif %};
+    assert_eq!(output, expected);
+}
+{% endfor -%}

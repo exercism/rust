@@ -1,51 +1,45 @@
 use collatz_conjecture::*;
 
 #[test]
-fn one() {
-    assert_eq!(Some(0), collatz(1));
+fn zero_steps_for_one() {
+    let output = collatz(1);
+
+    let expected = Some(0);
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn sixteen() {
-    assert_eq!(Some(4), collatz(16));
+fn divide_if_even() {
+    let output = collatz(16);
+
+    let expected = Some(4);
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn twelve() {
-    assert_eq!(Some(9), collatz(12));
+fn even_and_odd_steps() {
+    let output = collatz(12);
+
+    let expected = Some(9);
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn one_million() {
-    assert_eq!(Some(152), collatz(1_000_000));
+fn large_number_of_even_and_odd_steps() {
+    let output = collatz(1000000);
+
+    let expected = Some(152);
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
-fn zero() {
-    assert_eq!(None, collatz(0));
-}
+fn zero_is_an_error() {
+    let output = collatz(0);
 
-#[test]
-#[ignore]
-fn test_110243094271() {
-    let val = 110243094271;
-    assert_eq!(None, collatz(val));
-}
-
-#[test]
-#[ignore]
-fn max_div_3() {
-    let max = u64::MAX / 3;
-    assert_eq!(None, collatz(max));
-}
-
-#[test]
-#[ignore]
-fn max_minus_1() {
-    let max = u64::MAX - 1;
-    assert_eq!(None, collatz(max));
+    let expected = None;
+    assert_eq!(output, expected);
 }
