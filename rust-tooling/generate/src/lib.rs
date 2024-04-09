@@ -91,8 +91,10 @@ fn generate_tests(slug: &str) -> Result<String> {
     };
     let excluded_tests = get_excluded_tests(slug);
     let mut template = get_test_template(slug).context("failed to get test template")?;
-    if template.get_template_names().next() != Some("test_template.tera") {
-        anyhow::bail!("'test_template.tera' not found");
+    if template.get_template_names().next().is_none() {
+        template
+            .add_raw_template("test_template.tera", TEST_TEMPLATE)
+            .context("failed to add default template")?;
     }
     for (name, filter) in CUSTOM_FILTERS {
         template.register_filter(name, filter);
