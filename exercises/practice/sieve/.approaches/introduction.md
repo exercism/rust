@@ -20,7 +20,7 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
     (2..numbers.len())
         .filter_map(|i| {
             let prime = numbers[i].take()? as usize;
-            (prime + prime..=upper_bound)
+            (prime * prime..=upper_bound)
                 .step_by(prime)
                 .for_each(|j| numbers[j] = None);
             Some(prime as u64)
