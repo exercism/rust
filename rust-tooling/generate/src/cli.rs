@@ -37,12 +37,17 @@ pub struct AddArgs {
 
     #[arg(short, long)]
     difficulty: Option<Difficulty>,
+
+    /// do not update problem-specifications cache
+    #[arg(long)]
+    offline: bool,
 }
 
 pub struct FullAddArgs {
     pub slug: String,
     pub name: String,
     pub difficulty: track_config::Difficulty,
+    pub offline: bool,
 }
 
 impl AddArgs {
@@ -64,6 +69,7 @@ impl AddArgs {
             slug,
             name,
             difficulty,
+            offline: self.offline,
         })
     }
 }
@@ -73,6 +79,10 @@ pub struct UpdateArgs {
     /// slug of the exercise to update
     #[arg(short, long)]
     slug: Option<String>,
+
+    /// do not update problem-specifications cache
+    #[arg(long)]
+    pub offline: bool,
 }
 
 impl UpdateArgs {
