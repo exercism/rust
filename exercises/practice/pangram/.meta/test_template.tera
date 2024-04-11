@@ -1,0 +1,14 @@
+use pangram::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    let sentence = {{ test.input.sentence | json_encode() }};
+    {% if test.expected -%}
+        assert!(is_pangram(sentence));
+    {% else -%}
+        assert!(!is_pangram(sentence));
+    {% endif -%}
+}
+{% endfor -%}
