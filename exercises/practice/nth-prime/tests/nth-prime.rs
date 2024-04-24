@@ -1,24 +1,32 @@
-use nth_prime as np;
+use nth_prime::*;
 
 #[test]
 fn first_prime() {
-    assert_eq!(np::nth(0), 2);
+    let output = nth(0);
+    let expected = 2;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn second_prime() {
-    assert_eq!(np::nth(1), 3);
+    let output = nth(1);
+    let expected = 3;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn sixth_prime() {
-    assert_eq!(np::nth(5), 13);
+    let output = nth(5);
+    let expected = 13;
+    assert_eq!(output, expected);
 }
 
 #[test]
 #[ignore]
 fn big_prime() {
-    assert_eq!(np::nth(10_000), 104_743);
+    let output = nth(10000);
+    let expected = 104743;
+    assert_eq!(output, expected);
 }
