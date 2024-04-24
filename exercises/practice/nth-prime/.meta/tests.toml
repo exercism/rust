@@ -1,3 +1,30 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
+
+[75c65189-8aef-471a-81de-0a90c728160c]
+description = "first prime"
+
+[2c38804c-295f-4701-b728-56dea34fd1a0]
+description = "second prime"
+
+[56692534-781e-4e8c-b1f9-3e82c1640259]
+description = "sixth prime"
+
+[fce1e979-0edb-412d-93aa-2c744e8f50ff]
+description = "big prime"
+
+[bd0a9eae-6df7-485b-a144-80e13c7d55b2]
+description = "there is no zeroth prime"
+include = false
+comment = """
+  The zeroth prime was defined to be 2 (zero-based indexing).
+  Changing it now would be an unnecessary breaking change.
+"""
