@@ -310,59 +310,6 @@
         ]
       },
       {
-        "slug": "parallel-letter-frequency",
-        "name": "Parallel Letter Frequency",
-        "uuid": "e114b19f-9a9a-402d-a5cb-1cad8de5088e",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "multi_threading"
-        ]
-      },
-      {
-        "slug": "macros",
-        "name": "Macros",
-        "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
-        "practices": [
-          "hashmap"
-        ],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "macros",
-          "macros_by_example"
-        ]
-      },
-      {
-        "slug": "poker",
-        "name": "Poker",
-        "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
-        "practices": [
-          "enums",
-          "strings",
-          "structs"
-        ],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "lifetimes",
-          "parsing",
-          "traits"
-        ]
-      },
-      {
-        "slug": "forth",
-        "name": "Forth",
-        "uuid": "55976c49-1be5-4170-8aa3-056c2223abbb",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "parsing"
-        ]
-      },
-      {
         "slug": "armstrong-numbers",
         "name": "Armstrong Numbers",
         "uuid": "e652139e-ff3f-4e03-9810-d21f8b0c9e60",
@@ -526,6 +473,92 @@
         "topics": [
           "stack_or_recursion"
         ]
+      },
+      {
+        "slug": "collatz-conjecture",
+        "name": "Collatz Conjecture",
+        "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": [
+          "math",
+          "option_type"
+        ]
+      },
+      {
+        "slug": "diffie-hellman",
+        "name": "Diffie-Hellman",
+        "uuid": "ff9344b6-b185-4d53-bb03-f1d2bce8c959",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": [
+          "math"
+        ]
+      },
+      {
+        "slug": "series",
+        "name": "Series",
+        "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": [
+          "strings",
+          "vectors"
+        ]
+      },
+      {
+        "slug": "hexadecimal",
+        "name": "Hexadecimal",
+        "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": [],
+        "status": "deprecated"
+      },
+      {
+        "slug": "nucleotide-codons",
+        "name": "Nucleotide Codons",
+        "uuid": "8dae8f4d-368d-477d-907e-bf746921bfbf",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": [],
+        "status": "deprecated"
+      },
+      {
+        "slug": "two-fer",
+        "name": "Two Fer",
+        "uuid": "585e963b-366c-48bc-b523-29b6be4175c8",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": [
+          "match",
+          "strings"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "slug": "kindergarten-garden",
+        "name": "Kindergarten Garden",
+        "uuid": "c27e4878-28a4-4637-bde2-2af681a7ff0d",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": []
+      },
+      {
+        "slug": "eliuds-eggs",
+        "name": "Eliuds Eggs",
+        "uuid": "2d738c77-8dde-437a-bf42-ed5542a414d1",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": []
       },
       {
         "slug": "acronym",
@@ -1008,32 +1041,6 @@
         ]
       },
       {
-        "slug": "ocr-numbers",
-        "name": "OCR Numbers",
-        "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "chunks",
-          "lines",
-          "slices"
-        ]
-      },
-      {
-        "slug": "react",
-        "name": "React",
-        "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "closures",
-          "generics",
-          "lifetimes"
-        ]
-      },
-      {
         "slug": "wordy",
         "name": "Wordy",
         "uuid": "620b55bb-058e-4c6f-a966-ced3b41736db",
@@ -1058,68 +1065,6 @@
           "equality",
           "generic_over_type",
           "structs",
-          "vectors"
-        ]
-      },
-      {
-        "slug": "circular-buffer",
-        "name": "Circular Buffer",
-        "uuid": "6ff1a539-251b-49d4-81b5-a6b1e9ba66a4",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "buffers",
-          "generics"
-        ]
-      },
-      {
-        "slug": "rectangles",
-        "name": "Rectangles",
-        "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
-        "practices": [
-          "enums"
-        ],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": [
-          "algorithms",
-          "structs",
-          "traits"
-        ]
-      },
-      {
-        "slug": "collatz-conjecture",
-        "name": "Collatz Conjecture",
-        "uuid": "f9afd650-8103-4373-a284-fa4ecfee7207",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "math",
-          "option_type"
-        ]
-      },
-      {
-        "slug": "diffie-hellman",
-        "name": "Diffie-Hellman",
-        "uuid": "ff9344b6-b185-4d53-bb03-f1d2bce8c959",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "math"
-        ]
-      },
-      {
-        "slug": "series",
-        "name": "Series",
-        "uuid": "9de405e1-3a05-43cb-8eb3-00b81a2968e9",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "strings",
           "vectors"
         ]
       },
@@ -1342,6 +1287,42 @@
         ]
       },
       {
+        "slug": "secret-handshake",
+        "name": "Secret Handshake",
+        "uuid": "8c044530-9deb-4ff7-a638-98d6c05ebbb8",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": []
+      },
+      {
+        "slug": "knapsack",
+        "name": "Knapsack",
+        "uuid": "cbccd0c5-eb15-4705-9a4c-0209861f078c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": []
+      },
+      {
+        "slug": "yacht",
+        "name": "Yacht",
+        "uuid": "1a0e8e34-f578-4a53-91b0-8a1260446553",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": []
+      },
+      {
+        "slug": "matrix",
+        "name": "Matrix",
+        "uuid": "9fceeb8b-0154-45f0-93a5-7117d4d81449",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": []
+      },
+      {
         "slug": "fizzy",
         "name": "Fizzy",
         "uuid": "6b209749-d4af-45c2-bbdc-27603ce6979f",
@@ -1363,6 +1344,112 @@
         "difficulty": 7,
         "topics": [
           "math"
+        ]
+      },
+      {
+        "slug": "parallel-letter-frequency",
+        "name": "Parallel Letter Frequency",
+        "uuid": "e114b19f-9a9a-402d-a5cb-1cad8de5088e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "multi_threading"
+        ]
+      },
+      {
+        "slug": "macros",
+        "name": "Macros",
+        "uuid": "29583cc6-d56d-4bee-847d-93d74e5a30e7",
+        "practices": [
+          "hashmap"
+        ],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "macros",
+          "macros_by_example"
+        ]
+      },
+      {
+        "slug": "poker",
+        "name": "Poker",
+        "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
+        "practices": [
+          "enums",
+          "strings",
+          "structs"
+        ],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "lifetimes",
+          "parsing",
+          "traits"
+        ]
+      },
+      {
+        "slug": "forth",
+        "name": "Forth",
+        "uuid": "55976c49-1be5-4170-8aa3-056c2223abbb",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "parsing"
+        ]
+      },
+      {
+        "slug": "ocr-numbers",
+        "name": "OCR Numbers",
+        "uuid": "704aab91-b83a-4e64-8c21-fb0be5076289",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "chunks",
+          "lines",
+          "slices"
+        ]
+      },
+      {
+        "slug": "react",
+        "name": "React",
+        "uuid": "8708ccc7-711a-4862-b5a4-ff59fde2241c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "closures",
+          "generics",
+          "lifetimes"
+        ]
+      },
+      {
+        "slug": "circular-buffer",
+        "name": "Circular Buffer",
+        "uuid": "6ff1a539-251b-49d4-81b5-a6b1e9ba66a4",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "buffers",
+          "generics"
+        ]
+      },
+      {
+        "slug": "rectangles",
+        "name": "Rectangles",
+        "uuid": "cc4ccd99-1c97-4ee7-890c-d629b4e1e46d",
+        "practices": [
+          "enums"
+        ],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": [
+          "algorithms",
+          "structs",
+          "traits"
         ]
       },
       {
@@ -1464,93 +1551,6 @@
           "lists",
           "unsafe"
         ]
-      },
-      {
-        "slug": "secret-handshake",
-        "name": "Secret Handshake",
-        "uuid": "8c044530-9deb-4ff7-a638-98d6c05ebbb8",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 4,
-        "topics": []
-      },
-      {
-        "slug": "hexadecimal",
-        "name": "Hexadecimal",
-        "uuid": "496fd79f-1678-4aa2-8110-c32c6aaf545e",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [],
-        "status": "deprecated"
-      },
-      {
-        "slug": "nucleotide-codons",
-        "name": "Nucleotide Codons",
-        "uuid": "8dae8f4d-368d-477d-907e-bf746921bfbf",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [],
-        "status": "deprecated"
-      },
-      {
-        "slug": "two-fer",
-        "name": "Two Fer",
-        "uuid": "585e963b-366c-48bc-b523-29b6be4175c8",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "match",
-          "strings"
-        ],
-        "status": "deprecated"
-      },
-      {
-        "slug": "knapsack",
-        "name": "Knapsack",
-        "uuid": "cbccd0c5-eb15-4705-9a4c-0209861f078c",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 4,
-        "topics": []
-      },
-      {
-        "slug": "kindergarten-garden",
-        "name": "Kindergarten Garden",
-        "uuid": "c27e4878-28a4-4637-bde2-2af681a7ff0d",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": []
-      },
-      {
-        "slug": "yacht",
-        "name": "Yacht",
-        "uuid": "1a0e8e34-f578-4a53-91b0-8a1260446553",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 4,
-        "topics": []
-      },
-      {
-        "slug": "matrix",
-        "name": "Matrix",
-        "uuid": "9fceeb8b-0154-45f0-93a5-7117d4d81449",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 4,
-        "topics": []
-      },
-      {
-        "slug": "eliuds-eggs",
-        "name": "Eliuds Eggs",
-        "uuid": "2d738c77-8dde-437a-bf42-ed5542a414d1",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": []
       }
     ],
     "foregone": [
