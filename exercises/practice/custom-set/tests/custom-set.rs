@@ -15,6 +15,14 @@ fn sets_with_elements_are_not_empty() {
 
 #[test]
 #[ignore]
+fn duplicate_input_is_ignored() {
+    let set = CustomSet::<i32>::new(&[1,1,2,3]);
+    let expected = CustomSet::<i32>::new(&[1,2,3]);
+    assert_eq!(set, expected);
+}
+
+#[test]
+#[ignore]
 fn nothing_is_contained_in_an_empty_set() {
     let set = CustomSet::<i32>::new(&[]);
     assert!(!set.contains(&1));
