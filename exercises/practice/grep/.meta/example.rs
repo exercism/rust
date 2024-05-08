@@ -92,7 +92,7 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                     }
 
                     if flags.print_file_name {
-                        result = file_name.to_owned().to_owned();
+                        file_name.to_owned().clone_into(&mut result);
                     }
 
                     result
