@@ -288,6 +288,15 @@ fn difference_of_two_non_empty_sets_is_a_set_of_elements_that_are_only_in_the_fi
 
 #[test]
 #[ignore]
+fn difference_removes_all_duplicates_in_the_first_set() {
+    let set_1 = CustomSet::<i32>::new(&[1, 1]);
+    let set_2 = CustomSet::<i32>::new(&[1]);
+    let expected = CustomSet::<i32>::new(&[]);
+    assert_eq!(set_1.difference(&set_2), expected);
+}
+
+#[test]
+#[ignore]
 fn union_of_empty_sets_is_an_empty_set() {
     let set_1 = CustomSet::<i32>::new(&[]);
     let set_2 = CustomSet::<i32>::new(&[]);
