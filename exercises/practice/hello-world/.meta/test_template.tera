@@ -1,0 +1,9 @@
+use hello_world::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    assert_eq!(hello(), {{ test.expected | json_encode() }});
+}
+{% endfor -%}
