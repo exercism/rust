@@ -1,0 +1,4 @@
+[package]
+edition = "2021"
+name = "cars_assemble"
+version = "1.0.0"
