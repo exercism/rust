@@ -1,27 +1,17 @@
-use std::collections::HashMap;
-
-pub struct CodonsInfo<'a> {
-    actual_codons: HashMap<&'a str, &'a str>,
-}
-
-pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonsInfo<'a> {
-    CodonsInfo {
-        actual_codons: pairs.into_iter().collect(),
-    }
-}
-
-impl<'a> CodonsInfo<'a> {
-    pub fn name_for(&self, codon: &str) -> Option<&'a str> {
-        self.actual_codons.get(&codon).cloned()
-    }
-
-    pub fn of_rna(&self, strand: &str) -> Option<Vec<&'a str>> {
-        strand
-            .chars()
-            .collect::<Vec<char>>()
-            .chunks(3)
-            .map(|chars| self.name_for(&chars.iter().collect::<String>()))
-            .take_while(|result| result.is_none() || result.unwrap() != "stop codon")
-            .collect()
-    }
+pub fn translate(rna: &str) -> Option<Vec<&str>> {
+    rna.as_bytes()
+        .chunks(3)
+        .map(|codon| match codon {
+            b"AUG" => Some("methionine"),
+            b"UUU" | b"UUC" => Some("phenylalanine"),
+            b"UUA" | b"UUG" => Some("leucine"),
+            b"UCU" | b"UCC" | b"UCA" | b"UCG" => Some("serine"),
+            b"UAU" | b"UAC" => Some("tyrosine"),
+            b"UGU" | b"UGC" => Some("cysteine"),
+            b"UGG" => Some("tryptophan"),
+            b"UAA" | b"UAG" | b"UGA" => Some("STOP"),
+            _ => None,
+        })
+        .take_while(|result| result.is_none() || result.unwrap() != "STOP")
+        .collect()
 }
