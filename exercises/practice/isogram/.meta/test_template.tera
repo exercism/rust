@@ -1,0 +1,13 @@
+use isogram::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    {% if test.expected %}
+        assert!(check({{ test.input.phrase | json_encode() }}));
+    {% else %}
+        assert!(!check({{ test.input.phrase | json_encode() }}));
+    {% endif %}
+}
+{% endfor -%}
