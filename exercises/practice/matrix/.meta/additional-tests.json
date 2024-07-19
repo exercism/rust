@@ -16,6 +16,22 @@
         ]
     },
     {
+        "uuid": "83a3ade8-b44b-4e08-9092-89f5ff859050",
+        "description": "cannot extract row with index zero",
+        "property": "row",
+        "input": {
+            "string": "1 2 3\n4 5 6\n7 8 9",
+            "index": 0
+        },
+        "expected": null,
+        "comments": [ 
+            "Additional test to ensure the method can handle zero indexes without panicking.", 
+            "Upstream does not want to add this test to avoid every exercise being about input validation.", 
+            "A naive solution may handle the 1-based indexing using index - 1.", 
+            "This panics in debug mode when index == 0 due to integer underflow."
+        ]
+    },
+    {
         "uuid": "304d71d4-cf26-41d4-9b74-cc04441fec8c",
         "description": "cannot extract column with no corresponding column in matrix",
         "property": "column",
@@ -29,6 +45,22 @@
             "Upstream does not want to add this test to avoid every exercise being about input validation.", 
             "Rust puts a lot of emphasis on error handling, hence the idiomatic Option return type.", 
             "With Option in the API, it makes sense to test for None at least once." 
+        ]
+    },
+    {
+        "uuid": "39366889-ccd9-4142-954d-28f76e6036e9",
+        "description": "cannot extract column with index zero",
+        "property": "column",
+        "input": {
+            "string": "1 2 3\n4 5 6\n7 8 9",
+            "index": 0
+        },
+        "expected": null,
+        "comments": [ 
+            "Additional test to ensure the method can handle zero indexes without panicking.", 
+            "Upstream does not want to add this test to avoid every exercise being about input validation.", 
+            "A naive solution may handle the 1-based indexing using index - 1.", 
+            "This panics in debug mode when index == 0 due to integer underflow."
         ]
     }
 ]

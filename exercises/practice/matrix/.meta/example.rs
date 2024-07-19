@@ -13,14 +13,10 @@ impl Matrix {
     }
 
     pub fn row(&self, row_no: usize) -> Option<Vec<u32>> {
-        self.grid.get(row_no - 1).map(|row| row.to_owned())
+        self.grid.get(row_no.checked_sub(1)?).cloned()
     }
 
     pub fn column(&self, col_no: usize) -> Option<Vec<u32>> {
-        if col_no > self.grid[0].len() {
-            return None;
-        };
-
-        Some(self.grid.iter().map(|row| row[col_no - 1]).collect())
+        self.grid.iter().map(|row| row.get(col_no.checked_sub(1)?).copied()).collect()
     }
 }

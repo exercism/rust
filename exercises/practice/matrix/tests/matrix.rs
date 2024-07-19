@@ -64,7 +64,21 @@ fn cannot_extract_row_with_no_corresponding_row_in_matrix() {
 
 #[test]
 #[ignore]
+fn cannot_extract_row_with_index_zero() {
+    let matrix = Matrix::new("1 2 3\n4 5 6\n7 8 9");
+    assert_eq!(matrix.row(0), None);
+}
+
+#[test]
+#[ignore]
 fn cannot_extract_column_with_no_corresponding_column_in_matrix() {
     let matrix = Matrix::new("1 2 3\n4 5 6\n7 8 9");
     assert_eq!(matrix.column(4), None);
+}
+
+#[test]
+#[ignore]
+fn cannot_extract_column_with_index_zero() {
+    let matrix = Matrix::new("1 2 3\n4 5 6\n7 8 9");
+    assert_eq!(matrix.column(0), None);
 }
