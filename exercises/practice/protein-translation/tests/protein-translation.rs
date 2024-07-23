@@ -8,85 +8,85 @@ fn empty_rna_sequence_results_in_no_proteins() {
 #[test]
 #[ignore]
 fn methionine_rna_sequence() {
-    assert_eq!(translate("AUG"), Some(vec!["methionine"]),);
+    assert_eq!(translate("AUG"), Some(vec!["Methionine"]),);
 }
 
 #[test]
 #[ignore]
 fn phenylalanine_rna_sequence_1() {
-    assert_eq!(translate("UUU"), Some(vec!["phenylalanine"]),);
+    assert_eq!(translate("UUU"), Some(vec!["Phenylalanine"]),);
 }
 
 #[test]
 #[ignore]
 fn phenylalanine_rna_sequence_2() {
-    assert_eq!(translate("UUC"), Some(vec!["phenylalanine"]),);
+    assert_eq!(translate("UUC"), Some(vec!["Phenylalanine"]),);
 }
 
 #[test]
 #[ignore]
 fn leucine_rna_sequence_1() {
-    assert_eq!(translate("UUA"), Some(vec!["leucine"]),);
+    assert_eq!(translate("UUA"), Some(vec!["Leucine"]),);
 }
 
 #[test]
 #[ignore]
 fn leucine_rna_sequence_2() {
-    assert_eq!(translate("UUG"), Some(vec!["leucine"]),);
+    assert_eq!(translate("UUG"), Some(vec!["Leucine"]),);
 }
 
 #[test]
 #[ignore]
 fn serine_rna_sequence_1() {
-    assert_eq!(translate("UCU"), Some(vec!["serine"]),);
+    assert_eq!(translate("UCU"), Some(vec!["Serine"]),);
 }
 
 #[test]
 #[ignore]
 fn serine_rna_sequence_2() {
-    assert_eq!(translate("UCC"), Some(vec!["serine"]),);
+    assert_eq!(translate("UCC"), Some(vec!["Serine"]),);
 }
 
 #[test]
 #[ignore]
 fn serine_rna_sequence_3() {
-    assert_eq!(translate("UCA"), Some(vec!["serine"]),);
+    assert_eq!(translate("UCA"), Some(vec!["Serine"]),);
 }
 
 #[test]
 #[ignore]
 fn serine_rna_sequence_4() {
-    assert_eq!(translate("UCG"), Some(vec!["serine"]),);
+    assert_eq!(translate("UCG"), Some(vec!["Serine"]),);
 }
 
 #[test]
 #[ignore]
 fn tyrosine_rna_sequence_1() {
-    assert_eq!(translate("UAU"), Some(vec!["tyrosine"]),);
+    assert_eq!(translate("UAU"), Some(vec!["Tyrosine"]),);
 }
 
 #[test]
 #[ignore]
 fn tyrosine_rna_sequence_2() {
-    assert_eq!(translate("UAC"), Some(vec!["tyrosine"]),);
+    assert_eq!(translate("UAC"), Some(vec!["Tyrosine"]),);
 }
 
 #[test]
 #[ignore]
 fn cysteine_rna_sequence_1() {
-    assert_eq!(translate("UGU"), Some(vec!["cysteine"]),);
+    assert_eq!(translate("UGU"), Some(vec!["Cysteine"]),);
 }
 
 #[test]
 #[ignore]
 fn cysteine_rna_sequence_2() {
-    assert_eq!(translate("UGC"), Some(vec!["cysteine"]),);
+    assert_eq!(translate("UGC"), Some(vec!["Cysteine"]),);
 }
 
 #[test]
 #[ignore]
 fn tryptophan_rna_sequence() {
-    assert_eq!(translate("UGG"), Some(vec!["tryptophan"]),);
+    assert_eq!(translate("UGG"), Some(vec!["Tryptophan"]),);
 }
 
 #[test]
@@ -112,14 +112,14 @@ fn stop_codon_rna_sequence_3() {
 fn sequence_of_two_protein_codons_translates_into_proteins() {
     assert_eq!(
         translate("UUUUUU"),
-        Some(vec!["phenylalanine", "phenylalanine"]),
+        Some(vec!["Phenylalanine", "Phenylalanine"]),
     );
 }
 
 #[test]
 #[ignore]
 fn sequence_of_two_different_protein_codons_translates_into_proteins() {
-    assert_eq!(translate("UUAUUG"), Some(vec!["leucine", "leucine"]),);
+    assert_eq!(translate("UUAUUG"), Some(vec!["Leucine", "Leucine"]),);
 }
 
 #[test]
@@ -127,7 +127,7 @@ fn sequence_of_two_different_protein_codons_translates_into_proteins() {
 fn translate_rna_strand_into_correct_protein_list() {
     assert_eq!(
         translate("AUGUUUUGG"),
-        Some(vec!["methionine", "phenylalanine", "tryptophan"]),
+        Some(vec!["Methionine", "Phenylalanine", "Tryptophan"]),
     );
 }
 
@@ -140,7 +140,7 @@ fn translation_stops_if_stop_codon_at_beginning_of_sequence() {
 #[test]
 #[ignore]
 fn translation_stops_if_stop_codon_at_end_of_two_codon_sequence() {
-    assert_eq!(translate("UGGUAG"), Some(vec!["tryptophan"]),);
+    assert_eq!(translate("UGGUAG"), Some(vec!["Tryptophan"]),);
 }
 
 #[test]
@@ -148,14 +148,14 @@ fn translation_stops_if_stop_codon_at_end_of_two_codon_sequence() {
 fn translation_stops_if_stop_codon_at_end_of_three_codon_sequence() {
     assert_eq!(
         translate("AUGUUUUAA"),
-        Some(vec!["methionine", "phenylalanine"]),
+        Some(vec!["Methionine", "Phenylalanine"]),
     );
 }
 
 #[test]
 #[ignore]
 fn translation_stops_if_stop_codon_in_middle_of_three_codon_sequence() {
-    assert_eq!(translate("UGGUAGUGG"), Some(vec!["tryptophan"]),);
+    assert_eq!(translate("UGGUAGUGG"), Some(vec!["Tryptophan"]),);
 }
 
 #[test]
@@ -163,14 +163,14 @@ fn translation_stops_if_stop_codon_in_middle_of_three_codon_sequence() {
 fn translation_stops_if_stop_codon_in_middle_of_six_codon_sequence() {
     assert_eq!(
         translate("UGGUGUUAUUAAUGGUUU"),
-        Some(vec!["tryptophan", "cysteine", "tyrosine"]),
+        Some(vec!["Tryptophan", "Cysteine", "Tyrosine"]),
     );
 }
 
 #[test]
 #[ignore]
 fn sequence_of_two_non_stop_codons_does_not_translate_to_a_stop_codon() {
-    assert_eq!(translate("AUGAUG"), Some(vec!["methionine", "methionine"]),);
+    assert_eq!(translate("AUGAUG"), Some(vec!["Methionine", "Methionine"]),);
 }
 
 #[test]
@@ -190,6 +190,6 @@ fn incomplete_rna_sequence_can_t_translate() {
 fn incomplete_rna_sequence_can_translate_if_valid_until_a_stop_codon() {
     assert_eq!(
         translate("UUCUUCUAAUGGU"),
-        Some(vec!["phenylalanine", "phenylalanine"]),
+        Some(vec!["Phenylalanine", "Phenylalanine"]),
     );
 }

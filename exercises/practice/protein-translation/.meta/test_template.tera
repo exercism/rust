@@ -11,7 +11,7 @@ fn {{ test.description | snake_case }}() {
         {% else %}
             Some(vec![
                 {% for s in test.expected %}
-                    "{{ s | lower }}" {% if not loop.last %} , {% endif %}
+                    "{{ s }}" {% if not loop.last %} , {% endif %}
                 {% endfor %}
             ])
         {% endif %},
