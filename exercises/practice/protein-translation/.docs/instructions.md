@@ -9,7 +9,7 @@ RNA: `"AUGUUUUCU"` => translates to
 Codons: `"AUG", "UUU", "UCU"`
 => which become a polypeptide with the following sequence =>
 
-Protein: `"Methionine", "Phenylalanine", "Serine"`
+Protein: `"methionine", "pPhenylalanine", "serine"`
 
 There are 64 codons which in turn correspond to 20 amino acids; however, all of the codon sequences and resulting amino acids are not important in this exercise.
 If it works for one codon, the program should work for all of them.
@@ -23,7 +23,7 @@ RNA: `"AUGUUUUCUUAAAUG"` =>
 
 Codons: `"AUG", "UUU", "UCU", "UAA", "AUG"` =>
 
-Protein: `"Methionine", "Phenylalanine", "Serine"`
+Protein: `"methionine", "phenylalanine", "serine"`
 
 Note the stop codon `"UAA"` terminates the translation and the final methionine is not translated into the protein sequence.
 
@@ -31,13 +31,13 @@ Below are the codons and resulting Amino Acids needed for the exercise.
 
 | Codon              | Protein       |
 | :----------------- | :------------ |
-| AUG                | Methionine    |
-| UUU, UUC           | Phenylalanine |
-| UUA, UUG           | Leucine       |
-| UCU, UCC, UCA, UCG | Serine        |
-| UAU, UAC           | Tyrosine      |
-| UGU, UGC           | Cysteine      |
-| UGG                | Tryptophan    |
+| AUG                | methionine    |
+| UUU, UUC           | phenylalanine |
+| UUA, UUG           | leucine       |
+| UCU, UCC, UCA, UCG | aerine        |
+| UAU, UAC           | tyrosine      |
+| UGU, UGC           | cysteine      |
+| UGG                | tryptophan    |
 | UAA, UAG, UGA      | STOP          |
 
 Learn more about [protein translation on Wikipedia][protein-translation].
