@@ -2,13 +2,13 @@ pub fn translate(rna: &str) -> Option<Vec<&str>> {
     rna.as_bytes()
         .chunks(3)
         .map(|codon| match codon {
-            b"AUG" => Some("methionine"),
-            b"UUU" | b"UUC" => Some("phenylalanine"),
-            b"UUA" | b"UUG" => Some("leucine"),
-            b"UCU" | b"UCC" | b"UCA" | b"UCG" => Some("serine"),
-            b"UAU" | b"UAC" => Some("tyrosine"),
-            b"UGU" | b"UGC" => Some("cysteine"),
-            b"UGG" => Some("tryptophan"),
+            b"AUG" => Some("Methionine"),
+            b"UUU" | b"UUC" => Some("Phenylalanine"),
+            b"UUA" | b"UUG" => Some("Leucine"),
+            b"UCU" | b"UCC" | b"UCA" | b"UCG" => Some("Serine"),
+            b"UAU" | b"UAC" => Some("Tyrosine"),
+            b"UGU" | b"UGC" => Some("Cysteine"),
+            b"UGG" => Some("Tryptophan"),
             b"UAA" | b"UAG" | b"UGA" => Some("STOP"),
             _ => None,
         })
