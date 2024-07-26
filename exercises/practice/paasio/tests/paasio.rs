@@ -1,3 +1,5 @@
+use std::io::{Error, ErrorKind, Read, Result, Write};
+
 /// test a few read scenarios
 macro_rules! test_read {
     ($(#[$attr:meta])* $modname:ident ($input:expr, $len:expr)) => {
@@ -206,4 +208,68 @@ fn read_stats_by_ref_returns_wrapped_reader() {
         "Why, sometimes I've believed as many as six impossible things before breakfast".as_bytes();
     let reader = ReadStats::new(input);
     assert_eq!(reader.get_ref(), &input);
+}
+
+/// a Read type that always errors
+struct ReadFails;
+
+impl ReadFails {
+    const MESSAGE: &'static str = "this reader always fails";
+}
+
+impl Read for ReadFails {
+    fn read(&mut self, _buf: &mut [u8]) -> Result<usize> {
+        Err(Error::other(Self::MESSAGE))
+    }
+}
+
+/// a Write type that always errors
+struct WriteFails;
+
+impl WriteFails {
+    const MESSAGE: &'static str = "this writer always fails";
+}
+
+impl Write for WriteFails {
+    fn write(&mut self, _buf: &[u8]) -> Result<usize> {
+        Err(Error::other(Self::MESSAGE))
+    }
+
+    fn flush(&mut self) -> Result<()> {
+        Err(Error::other(Self::MESSAGE))
+    }
+}
+
+#[test]
+#[ignore]
+fn read_propagates_errors() {
+    use paasio::ReadStats;
+
+    let mut reader = ReadStats::new(ReadFails);
+    let mut buffer = Vec::new();
+
+    let Err(e) = reader.read(&mut buffer) else {
+        panic!("read error not propagated")
+    };
+
+    // check that the correct error was returned
+    assert_eq!(e.kind(), ErrorKind::Other);
+    assert_eq!(e.get_ref().unwrap().to_string(), ReadFails::MESSAGE);
+}
+
+#[test]
+#[ignore]
+fn write_propagates_errors() {
+    use paasio::WriteStats;
+
+    let mut writer = WriteStats::new(WriteFails);
+    let buffer = "This text won't be written";
+
+    let Err(e) = writer.write(buffer.as_bytes()) else {
+        panic!("write error not propagated")
+    };
+
+    // check that the correct error is returned
+    assert_eq!(e.kind(), ErrorKind::Other);
+    assert_eq!(e.get_ref().unwrap().to_string(), WriteFails::MESSAGE);
 }
