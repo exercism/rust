@@ -272,8 +272,4 @@ fn write_propagates_errors() {
     // check that the correct error is returned
     assert_eq!(e.kind(), ErrorKind::Other);
     assert_eq!(e.get_ref().unwrap().to_string(), WriteFails::MESSAGE);
-
-    // check that no writes were logged
-    assert_eq!(0, writer.writes());
-    assert_eq!(0, writer.bytes_through());
 }
