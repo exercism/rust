@@ -61,7 +61,7 @@ for dir in $changed_exercises; do
         # since we're generally not going to test it.
         if ! (
             cd "$dir" &&
-            cargo clippy --lib --tests --color always -- --allow clippy::new_without_default 2>clippy.log
+            cargo clippy --lib --tests --color always -- 2>clippy.log
         ); then
             cat "$dir/clippy.log"
             broken="$broken\n$exercise"
