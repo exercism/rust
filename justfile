@@ -1,14 +1,13 @@
 _default:
     just --list --unsorted
 
-# configlet wrapper, uses problem-specifications submodule
-configlet *args="":
-    @[ -f bin/configlet ] || bin/fetch-configlet
-    ./bin/configlet  {{ args }}
+# configlet wrapper, uses pinned problem-specifications commit
+@configlet *args="":
+    ./bin/configlet_wrapper.sh {{ args }}
 
 # generate a new uuid straight to your clipboard
 uuid:
-    ./bin/configlet uuid | tr -d '[:space:]' | wl-copy
+    just configlet uuid | tr -d '[:space:]' | wl-copy
 
 # simulate CI locally (WIP)
 test:
