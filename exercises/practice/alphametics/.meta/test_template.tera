@@ -1,0 +1,19 @@
+use alphametics::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    let answer = solve({{ test.input.puzzle | json_encode() }});
+    {%- if test.expected is object %}
+        let expected = [
+            {%- for key, val in test.expected %}
+                ('{{ key }}', {{val}}),
+            {%- endfor %}
+        ].into_iter().collect();
+        assert_eq!(answer, Some(expected));
+    {%- else %}
+        assert_eq!(answer, None);
+    {%- endif %}
+}
+{% endfor -%}
