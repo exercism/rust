@@ -8,3 +8,4 @@ exercises/*/*/Cargo.lock
 clippy.log
 .vscode
 .prob-spec
+problem-specifications
