@@ -5,6 +5,14 @@ fn square(x: i32) -> i32 {
 }
 
 #[test]
+fn accumulate_empty() {
+    let input = vec![];
+    let expected = vec![];
+    assert_eq!(map(input, square), expected);
+}
+
+#[test]
+#[ignore]
 fn func_single() {
     let input = vec![2];
     let expected = vec![4];
@@ -13,9 +21,9 @@ fn func_single() {
 
 #[test]
 #[ignore]
-fn func_multi() {
-    let input = vec![2, 3, 4, 5];
-    let expected = vec![4, 9, 16, 25];
+fn accumulate_squares() {
+    let input = vec![1, 2, 3];
+    let expected = vec![1, 4, 9];
     assert_eq!(map(input, square), expected);
 }
 
@@ -41,6 +49,38 @@ fn strings() {
     let input = vec!["1".to_string(), "2".into(), "3".into()];
     let expected = vec!["11".to_string(), "22".into(), "33".into()];
     assert_eq!(map(input, |s| s.repeat(2)), expected);
+}
+
+#[test]
+#[ignore]
+fn accumulate_upcases() {
+    let input = vec!["Hello", "world"];
+    let expected = vec!["HELLO", "WORLD"];
+    assert_eq!(map(input, str::to_uppercase), expected);
+}
+
+#[test]
+#[ignore]
+fn accumulate_reversed_strings() {
+    let input = vec!["the", "quick", "brown", "fox", "etc"];
+    let expected = vec!["eht", "kciuq", "nworb", "xof", "cte"];
+    let reverse = |s: &str| s.chars().rev().collect::<String>();
+    assert_eq!(map(input, reverse), expected);
+}
+
+#[test]
+#[ignore]
+fn accumulate_recursively() {
+    let input = vec!["a", "b", "c"];
+    let expected = vec![
+        vec!["a1", "a2", "a3"],
+        vec!["b1", "b2", "b3"],
+        vec!["c1", "c2", "c3"],
+    ];
+    assert_eq!(
+        map(input, |x| map(vec!["1", "2", "3"], |y| [x, y].join(""))),
+        expected
+    );
 }
 
 #[test]
