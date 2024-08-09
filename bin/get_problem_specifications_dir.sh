@@ -6,8 +6,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   prefix="${XDG_CACHE_HOME:-$HOME/Library/Caches}"
 else
-  echo "Unsupported OS: $OSTYPE" >&2 
+  echo "Unsupported OS: $OSTYPE" >&2
   exit 1
 fi
 
-echo -n "$prefix/exercism/configlet/problem-specifications"        
+echo -n "$prefix/exercism/configlet/problem-specifications"
