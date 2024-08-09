@@ -61,7 +61,7 @@ fn error_handling_flags() {
     for_all_scripts(|file_name| {
         let contents = std::fs::read_to_string(PathBuf::from("bin").join(file_name)).unwrap();
         assert!(
-            contents.contains("set -eo pipefail"),
+            contents.contains("set -euo pipefail") || contents.contains("set -eo pipefail"),
             "'{file_name}' should set error handling flags 'set -eo pipefail'"
         );
     })
