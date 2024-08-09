@@ -1,0 +1,26 @@
+use allyourbase as ayb;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_test_ident }}() {
+    let input_base = {{ test.input.inputBase }};
+    let input_digits = &{{ test.input.digits | json_encode() }};
+    let output_base = {{ test.input.outputBase }};
+    {%- if not test.expected is object %}
+        let output_digits = vec!{{ test.expected | json_encode() }};
+    {%- endif %}
+    assert_eq!(
+        ayb::convert(input_digits, input_base, output_base),
+        {%- if not test.expected is object %}
+            Ok(output_digits)
+        {%- elif test.expected.error == "input base must be >= 2" %}
+            Err(ayb::Error::InvalidInputBase)
+        {%- elif test.expected.error == "all digits must satisfy 0 <= d < input base" %}
+            Err(ayb::Error::InvalidDigit(2))
+        {%- elif test.expected.error == "output base must be >= 2" %}
+            Err(ayb::Error::InvalidOutputBase)
+        {%- endif %}
+    );
+}
+{% endfor -%}
