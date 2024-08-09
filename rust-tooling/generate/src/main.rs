@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use clap::Parser;
-use cli::{AddArgs, FullAddArgs, UpdateArgs};
+use cli::{prompt_for_template_generation, AddArgs, FullAddArgs, UpdateArgs};
 use models::track_config::{self, TRACK_CONFIG};
 
 mod cli;
@@ -98,14 +98,19 @@ fn generate_exercise_files(slug: &str, is_update: bool) -> Result<()> {
     }
 
     let template_path = exercise_path.join(".meta/test_template.tera");
-    if std::fs::metadata(&template_path).is_err() {
-        std::fs::write(template_path, exercise.test_template)?;
+    if !template_path.exists() && (!is_update || prompt_for_template_generation()) {
+        // Some exercises have existing test cases that are difficult to migrate
+        // to the test generator. That's why we only generate a template for
+        // existing exercises if the users requests it.
+        std::fs::write(&template_path, exercise.test_template)?;
     }
 
     std::fs::create_dir(exercise_path.join("tests")).ok();
-    std::fs::write(
-        exercise_path.join(format!("tests/{slug}.rs")),
-        exercise.tests,
-    )
-    .map_err(Into::into)
+    if template_path.exists() {
+        std::fs::write(
+            exercise_path.join(format!("tests/{slug}.rs")),
+            exercise.tests,
+        )?;
+    }
+    Ok(())
 }
