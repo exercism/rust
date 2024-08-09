@@ -5,6 +5,10 @@ _default:
 @configlet *args="":
     ./bin/configlet_wrapper.sh {{ args }}
 
+# update the pinned commit hash
+update-problem-specs:
+    ./bin/update_problem_specifications.sh
+
 # generate a new uuid straight to your clipboard
 uuid:
     just configlet uuid | tr -d '[:space:]' | wl-copy
