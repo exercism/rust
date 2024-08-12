@@ -1,3 +1,34 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
+
+[5a02fd08-d336-4607-8006-246fe6fa9fb0]
+description = "verse -> single verse -> first generic verse"
+
+[77299ca6-545e-4217-a9cc-606b342e0187]
+description = "verse -> single verse -> last generic verse"
+
+[102cbca0-b197-40fd-b548-e99609b06428]
+description = "verse -> single verse -> verse with 2 bottles"
+
+[b8ef9fce-960e-4d85-a0c9-980a04ec1972]
+description = "verse -> single verse -> verse with 1 bottle"
+
+[c59d4076-f671-4ee3-baaa-d4966801f90d]
+description = "verse -> single verse -> verse with 0 bottles"
+
+[7e17c794-402d-4ca6-8f96-4d8f6ee1ec7e]
+description = "lyrics -> multiple verses -> first two verses"
+
+[949868e7-67e8-43d3-9bb4-69277fe020fb]
+description = "lyrics -> multiple verses -> last three verses"
+
+[bc220626-126c-4e72-8df4-fddfc0c3e458]
+description = "lyrics -> multiple verses -> all verses"
