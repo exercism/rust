@@ -157,6 +157,7 @@ There are some custom tera filters in [`rust-tooling`](/rust-tooling/generate/sr
 Here's the hopefully up-to-date list:
 - `to_hex` formats ints in hexadecimal
 - `snake_case` massages an arbitrary string into a decent Rust identifier
+- `fmt_num` format number literals (insert `_` every third digit)
 
 Feel free to add your own in the crate `rust-tooling`.
 Hopefully you'll remember to update the list here as well. 🙂
