@@ -1,0 +1,9 @@
+use bob::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    assert_eq!(reply({{ test.input.heyBob | json_encode() }}), "{{ test.expected }}");
+}
+{% endfor -%}
