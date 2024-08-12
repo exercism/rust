@@ -74,7 +74,7 @@ fi
 # run tests from within temporary directory
 cd "$tmp_dir"
 if [ -n "$CLIPPY" ]; then
-    export RUSTFLAGS="$RUSTFLAGS -D clippy::all"
+    export RUSTFLAGS="$RUSTFLAGS -D warnings"
     # shellcheck disable=SC2086
     cargo clippy --tests $cargo_args
 else
