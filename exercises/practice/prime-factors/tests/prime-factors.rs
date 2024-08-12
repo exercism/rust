@@ -82,7 +82,7 @@ fn product_of_primes_and_non_primes() {
 #[test]
 #[ignore]
 fn product_of_primes() {
-    let factors = factors(901255);
+    let factors = factors(901_255);
     let expected = [5, 17, 23, 461];
     assert_eq!(factors, expected);
 }
@@ -90,7 +90,7 @@ fn product_of_primes() {
 #[test]
 #[ignore]
 fn factors_include_a_large_prime() {
-    let factors = factors(93819012551);
-    let expected = [11, 9539, 894119];
+    let factors = factors(93_819_012_551);
+    let expected = [11, 9_539, 894_119];
     assert_eq!(factors, expected);
 }

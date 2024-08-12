@@ -11,7 +11,7 @@ fn assert_in_delta(expected: f64, actual: f64) {
 #[test]
 #[ignore]
 fn {{ test.description | snake_case }}() {
-    let seconds = {{ test.input.seconds | json_encode() }};
+    let seconds = {{ test.input.seconds | fmt_num }};
     let duration = Duration::from(seconds);
     let output = {{ test.input.planet }}::years_during(&duration);
     let expected = {{ test.expected | json_encode() }};

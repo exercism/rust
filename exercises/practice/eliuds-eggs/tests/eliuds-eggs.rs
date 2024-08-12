@@ -29,7 +29,7 @@ fn test_4_eggs() {
 #[test]
 #[ignore]
 fn test_13_eggs() {
-    let input = 2000000000;
+    let input = 2_000_000_000;
     let output = egg_count(input);
     let expected = 13;
     assert_eq!(output, expected);

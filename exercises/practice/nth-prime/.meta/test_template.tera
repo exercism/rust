@@ -4,8 +4,8 @@ use nth_prime::*;
 #[test]
 #[ignore]
 fn {{ test.description | snake_case }}() {
-    let output = nth({{ test.input.number - 1 }});
-    let expected = {{ test.expected | json_encode() }};
+    let output = nth({{ test.input.number - 1 | fmt_num }});
+    let expected = {{ test.expected | fmt_num }};
     assert_eq!(output, expected);
 }
 {% endfor -%}

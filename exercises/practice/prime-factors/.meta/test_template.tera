@@ -4,8 +4,10 @@ use prime_factors::*;
 #[test]
 #[ignore]
 fn {{ test.description | snake_case }}() {
-    let factors = factors({{ test.input.value }});
-    let expected = {{ test.expected | json_encode() }};
+    let factors = factors({{ test.input.value | fmt_num }});
+    let expected = [{% for factor in test.expected -%}
+        {{ factor | fmt_num }},
+    {%- endfor %}];
     assert_eq!(factors, expected);
 }
 {% endfor -%}

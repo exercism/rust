@@ -10,7 +10,7 @@ fn assert_in_delta(expected: f64, actual: f64) {
 
 #[test]
 fn age_on_earth() {
-    let seconds = 1000000000;
+    let seconds = 1_000_000_000;
     let duration = Duration::from(seconds);
     let output = Earth::years_during(&duration);
     let expected = 31.69;
@@ -20,7 +20,7 @@ fn age_on_earth() {
 #[test]
 #[ignore]
 fn age_on_mercury() {
-    let seconds = 2134835688;
+    let seconds = 2_134_835_688;
     let duration = Duration::from(seconds);
     let output = Mercury::years_during(&duration);
     let expected = 280.88;
@@ -30,7 +30,7 @@ fn age_on_mercury() {
 #[test]
 #[ignore]
 fn age_on_venus() {
-    let seconds = 189839836;
+    let seconds = 189_839_836;
     let duration = Duration::from(seconds);
     let output = Venus::years_during(&duration);
     let expected = 9.78;
@@ -40,7 +40,7 @@ fn age_on_venus() {
 #[test]
 #[ignore]
 fn age_on_mars() {
-    let seconds = 2129871239;
+    let seconds = 2_129_871_239;
     let duration = Duration::from(seconds);
     let output = Mars::years_during(&duration);
     let expected = 35.88;
@@ -50,7 +50,7 @@ fn age_on_mars() {
 #[test]
 #[ignore]
 fn age_on_jupiter() {
-    let seconds = 901876382;
+    let seconds = 901_876_382;
     let duration = Duration::from(seconds);
     let output = Jupiter::years_during(&duration);
     let expected = 2.41;
@@ -60,7 +60,7 @@ fn age_on_jupiter() {
 #[test]
 #[ignore]
 fn age_on_saturn() {
-    let seconds = 2000000000;
+    let seconds = 2_000_000_000;
     let duration = Duration::from(seconds);
     let output = Saturn::years_during(&duration);
     let expected = 2.15;
@@ -70,7 +70,7 @@ fn age_on_saturn() {
 #[test]
 #[ignore]
 fn age_on_uranus() {
-    let seconds = 1210123456;
+    let seconds = 1_210_123_456;
     let duration = Duration::from(seconds);
     let output = Uranus::years_during(&duration);
     let expected = 0.46;
@@ -80,7 +80,7 @@ fn age_on_uranus() {
 #[test]
 #[ignore]
 fn age_on_neptune() {
-    let seconds = 1821023456;
+    let seconds = 1_821_023_456;
     let duration = Duration::from(seconds);
     let output = Neptune::years_during(&duration);
     let expected = 0.35;

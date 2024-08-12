@@ -20,7 +20,7 @@ fn medium_perfect_number_is_classified_correctly() {
 #[test]
 #[ignore]
 fn large_perfect_number_is_classified_correctly() {
-    let input = 33550336;
+    let input = 33_550_336;
     let output = classify(input);
     let expected = Some(Classification::Perfect);
     assert_eq!(output, expected);
@@ -47,7 +47,7 @@ fn medium_abundant_number_is_classified_correctly() {
 #[test]
 #[ignore]
 fn large_abundant_number_is_classified_correctly() {
-    let input = 33550335;
+    let input = 33_550_335;
     let output = classify(input);
     let expected = Some(Classification::Abundant);
     assert_eq!(output, expected);
@@ -83,7 +83,7 @@ fn medium_deficient_number_is_classified_correctly() {
 #[test]
 #[ignore]
 fn large_deficient_number_is_classified_correctly() {
-    let input = 33550337;
+    let input = 33_550_337;
     let output = classify(input);
     let expected = Some(Classification::Deficient);
     assert_eq!(output, expected);
