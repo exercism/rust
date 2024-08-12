@@ -1,0 +1,9 @@
+use armstrong_numbers::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    assert!({% if not test.expected %} ! {% endif %}is_armstrong_number({{ test.input.number | fmt_num }}))
+}
+{% endfor -%}
