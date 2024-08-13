@@ -1,0 +1,24 @@
+{% for stupid_uselessly_nested_test_group in cases -%}
+{% for test_group in stupid_uselessly_nested_test_group.cases -%}
+mod {{ test_group.description | snake_case }} {
+    use beer_song::*;
+
+{% for test in test_group.cases %}
+    #[test]
+    #[ignore]
+    fn {{ test.description | snake_case }}() {
+        assert_eq!(
+            {% if stupid_uselessly_nested_test_group.description == "verse" -%}
+            verse({{ test.input.startBottles }}).trim(),
+            {% else -%}
+            sing({{ test.input.startBottles }}, {{ test.input.startBottles - test.input.takeDown + 1 }}).trim(),
+            {% endif -%}
+            {{ test.expected | join(sep="
+") | json_encode() }},
+        );
+    }
+{% endfor -%}
+}
+
+{% endfor -%}
+{% endfor -%}
