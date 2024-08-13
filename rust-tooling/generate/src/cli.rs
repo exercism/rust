@@ -199,3 +199,10 @@ pub fn prompt_for_difficulty() -> Result<Difficulty> {
     .prompt()
     .context("failed to select difficulty")
 }
+
+pub fn prompt_for_template_generation() -> bool {
+    inquire::Confirm::new("Would you like to add a template for test generation?")
+        .with_default(false)
+        .prompt()
+        .unwrap_or_default()
+}
