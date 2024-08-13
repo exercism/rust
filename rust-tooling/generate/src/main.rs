@@ -23,7 +23,6 @@ fn add_exercise(args: AddArgs) -> Result<()> {
         slug,
         name,
         difficulty,
-        offline,
     } = args.unwrap_args_or_prompt()?;
 
     let config = track_config::PracticeExercise::new(slug.clone(), name, difficulty);
@@ -42,40 +41,35 @@ Added your exercise to config.json.
 You can add practices, prerequisites and topics if you like."
     );
 
-    make_configlet_generate_what_it_can(&slug, offline)?;
+    make_configlet_generate_what_it_can(&slug)?;
 
     let is_update = false;
     generate_exercise_files(&slug, is_update)
 }
 
 fn update_exercise(args: UpdateArgs) -> Result<()> {
-    let offline = args.offline;
     let slug = args.unwrap_slug_or_prompt()?;
 
-    make_configlet_generate_what_it_can(&slug, offline)?;
+    make_configlet_generate_what_it_can(&slug)?;
 
     let is_update = true;
     generate_exercise_files(&slug, is_update)
 }
 
-fn make_configlet_generate_what_it_can(slug: &str, offline: bool) -> Result<()> {
+fn make_configlet_generate_what_it_can(slug: &str) -> Result<()> {
     let status = std::process::Command::new("just")
-        .args(
-            [
-                "configlet",
-                "sync",
-                "--update",
-                "--yes",
-                "--docs",
-                "--metadata",
-                "--tests",
-                "include",
-                "--exercise",
-                slug,
-            ]
-            .into_iter()
-            .chain(offline.then_some("--offline")),
-        )
+        .args([
+            "configlet",
+            "sync",
+            "--update",
+            "--yes",
+            "--docs",
+            "--metadata",
+            "--tests",
+            "include",
+            "--exercise",
+            slug,
+        ])
         .status()
         .context("failed to run configlet sync")?;
     if !status.success() {
