@@ -92,7 +92,7 @@ fn hexadecimal_to_trinary() {
 
 #[test]
 #[ignore]
-fn fifteen_bit_integer() {
+fn test_15_bit_integer() {
     let input_base = 97;
     let input_digits = &[3, 46, 60];
     let output_base = 73;
@@ -157,37 +157,13 @@ fn leading_zeros() {
 
 #[test]
 #[ignore]
-fn invalid_positive_digit() {
-    let input_base = 2;
-    let input_digits = &[1, 2, 1, 0, 1, 0];
-    let output_base = 10;
-    assert_eq!(
-        ayb::convert(input_digits, input_base, output_base),
-        Err(ayb::Error::InvalidDigit(2))
-    );
-}
-
-#[test]
-#[ignore]
 fn input_base_is_one() {
     let input_base = 1;
-    let input_digits = &[];
+    let input_digits = &[0];
     let output_base = 10;
     assert_eq!(
         ayb::convert(input_digits, input_base, output_base),
         Err(ayb::Error::InvalidInputBase)
-    );
-}
-
-#[test]
-#[ignore]
-fn output_base_is_one() {
-    let input_base = 2;
-    let input_digits = &[1, 0, 1, 0, 1, 0];
-    let output_base = 1;
-    assert_eq!(
-        ayb::convert(input_digits, input_base, output_base),
-        Err(ayb::Error::InvalidOutputBase)
     );
 }
 
@@ -200,6 +176,30 @@ fn input_base_is_zero() {
     assert_eq!(
         ayb::convert(input_digits, input_base, output_base),
         Err(ayb::Error::InvalidInputBase)
+    );
+}
+
+#[test]
+#[ignore]
+fn invalid_positive_digit() {
+    let input_base = 2;
+    let input_digits = &[1, 2, 1, 0, 1, 0];
+    let output_base = 10;
+    assert_eq!(
+        ayb::convert(input_digits, input_base, output_base),
+        Err(ayb::Error::InvalidDigit(2))
+    );
+}
+
+#[test]
+#[ignore]
+fn output_base_is_one() {
+    let input_base = 2;
+    let input_digits = &[1, 0, 1, 0, 1, 0];
+    let output_base = 1;
+    assert_eq!(
+        ayb::convert(input_digits, input_base, output_base),
+        Err(ayb::Error::InvalidOutputBase)
     );
 }
 
