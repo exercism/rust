@@ -1,0 +1,37 @@
+use binary_search::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    assert_eq!(find(&{{ test.input.array | json_encode() }}, {{ test.input.value }}), {% if test.expected is object -%}
+        None
+    {%- else -%}
+        Some({{ test.expected }})
+    {%- endif -%});
+}
+{% endfor %}
+
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn works_for_arrays() {
+    assert_eq!(find([6], 6), Some(0));
+}
+
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn works_for_vec() {
+    let vector = vec![6];
+    assert_eq!(find(&vector, 6), Some(0));
+    assert_eq!(find(vector, 6), Some(0));
+}
+
+#[test]
+#[ignore]
+#[cfg(feature = "generic")]
+fn works_for_str_elements() {
+    assert_eq!(find(["a"], "a"), Some(0));
+    assert_eq!(find(["a", "b"], "b"), Some(1));
+}

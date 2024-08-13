@@ -1,6 +1,13 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
 
 [b55c24a9-a98d-4379-a08c-2adcf8ebeee8]
 description = "finds a value in an array with one element"
@@ -22,6 +29,15 @@ description = "finds a value in an array of even length"
 
 [da7db20a-354f-49f7-a6a1-650a54998aa6]
 description = "identifies that a value is not included in the array"
+
+[95d869ff-3daf-4c79-b622-6e805c675f97]
+description = "a value smaller than the array's smallest value is not found"
+
+[8b24ef45-6e51-4a94-9eac-c2bf38fdb0ba]
+description = "a value larger than the array's largest value is not found"
+
+[f439a0fa-cf42-4262-8ad1-64bf41ce566a]
+description = "nothing is found in an empty array"
 
 [2c353967-b56d-40b8-acff-ce43115eed64]
 description = "nothing is found when the left and right bounds cross"

@@ -1,27 +1,8 @@
-// The &[] borrows are required for the base exercise,
-// where `find` is not generic. Once `find` is made generic,
-// the borrows become needless. Since we want the tests to work
-// without clippy warnings for both people who take on the
-// additional challenge and people who don't, we disable this lint.
-#![allow(clippy::needless_borrows_for_generic_args)]
-
-use binary_search::find;
+use binary_search::*;
 
 #[test]
 fn finds_a_value_in_an_array_with_one_element() {
     assert_eq!(find(&[6], 6), Some(0));
-}
-
-#[test]
-#[ignore]
-fn finds_first_value_in_an_array_with_two_element() {
-    assert_eq!(find(&[1, 2], 1), Some(0));
-}
-
-#[test]
-#[ignore]
-fn finds_second_value_in_an_array_with_two_element() {
-    assert_eq!(find(&[1, 2], 2), Some(1));
 }
 
 #[test]
@@ -68,19 +49,19 @@ fn identifies_that_a_value_is_not_included_in_the_array() {
 
 #[test]
 #[ignore]
-fn a_value_smaller_than_the_arrays_smallest_value_is_not_included() {
+fn a_value_smaller_than_the_array_s_smallest_value_is_not_found() {
     assert_eq!(find(&[1, 3, 4, 6, 8, 9, 11], 0), None);
 }
 
 #[test]
 #[ignore]
-fn a_value_larger_than_the_arrays_largest_value_is_not_included() {
+fn a_value_larger_than_the_array_s_largest_value_is_not_found() {
     assert_eq!(find(&[1, 3, 4, 6, 8, 9, 11], 13), None);
 }
 
 #[test]
 #[ignore]
-fn nothing_is_included_in_an_empty_array() {
+fn nothing_is_found_in_an_empty_array() {
     assert_eq!(find(&[], 1), None);
 }
 
