@@ -29,8 +29,5 @@
   },
   "blurb": "Report network IO statistics.",
   "source": "Brian Matsuo",
-  "source_url": "https://github.com/bmatsuo",
-  "custom": {
-    "ignore-count-ignores": true
-  }
+  "source_url": "https://github.com/bmatsuo"
 }

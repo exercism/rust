@@ -56,8 +56,6 @@ pub struct Custom {
     pub allowed_to_not_compile: Option<String>,
     #[serde(rename = "test-in-release-mode")]
     pub test_in_release_mode: Option<bool>,
-    #[serde(rename = "ignore-count-ignores")]
-    pub ignore_count_ignores: Option<bool>,
 }
 
 pub fn get_all_concept_exercise_paths() -> impl Iterator<Item = String> {
