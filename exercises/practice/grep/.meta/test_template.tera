@@ -1,0 +1,148 @@
+use grep::*;
+
+#[test]
+#[ignore]
+fn nonexistent_file_returns_error() {
+    let pattern = "Agamemnon";
+    let flags = Flags::new(&[]);
+    let files = ["0-1-nonexistent-file-returns-error-iliad.txt"];
+    assert!(grep(pattern, &flags, &files).is_err());
+}
+
+#[test]
+#[ignore]
+fn grep_returns_result() {
+    let pattern = "Agamemnon";
+    let flags = Flags::new(&[]);
+    let files = Files::new(&["0-2-grep-returns-result-iliad.txt"]);
+    assert!(grep(pattern, &flags, files.as_ref()).is_ok());
+}
+
+{% for test_group in cases %}
+{% set group_idx = loop.index %}
+{% for test in test_group.cases %}
+{% set test_idx = loop.index %}
+
+{#
+    This prefix is added to the file names to ensure each test case has its own
+    set of files. This is necessary because every test case creates and deletes
+    its own files, so the names must be unique to prevent conflicts.
+#}
+{% set prefix = group_idx ~ "-" ~ test_idx %}
+
+#[test]
+#[ignore]
+fn {{ test.description | snake_case }}() {
+    let pattern = {{ test.input.pattern | json_encode() }};
+    let flags = Flags::new(&{{ test.input.flags | json_encode() }});
+    let files = Files::new(&[
+        {% for file in test.input.files -%}
+            "{{ prefix }}-{{ file }}",
+        {%- endfor %}
+    ]);
+    let actual = grep(pattern, &flags, files.as_ref()).unwrap();
+    let expected: &[&str] = &[
+        {% if test.input.files | length > 1 or test.input.flags is containing("-l") %}
+            {% for line in test.expected %}
+                "{{ prefix }}-{{ line }}",
+            {% endfor %}
+        {% else %}
+            {% for line in test.expected %}
+                "{{ line }}",
+            {% endfor %}
+        {% endif %}
+    ];
+    assert_eq!(actual, expected);
+}
+{% endfor %}
+{% endfor %}
+
+static ILIAD_CONTENT: &str = "\
+Achilles sing, O Goddess! Peleus' son;
+His wrath pernicious, who ten thousand woes
+Caused to Achaia's host, sent many a soul
+Illustrious into Ades premature,
+And Heroes gave (so stood the will of Jove)
+To dogs and to all ravening fowls a prey,
+When fierce dispute had separated once
+The noble Chief Achilles from the son
+Of Atreus, Agamemnon, King of men.
+";
+
+static MIDSUMMER_NIGHT_CONTENT: &str = "\
+I do entreat your grace to pardon me.
+I know not by what power I am made bold,
+Nor how it may concern my modesty,
+In such a presence here to plead my thoughts;
+But I beseech your grace that I may know
+The worst that may befall me in this case,
+If I refuse to wed Demetrius.
+";
+
+static PARADISE_LOST_CONTENT: &str = "\
+Of Mans First Disobedience, and the Fruit
+Of that Forbidden Tree, whose mortal tast
+Brought Death into the World, and all our woe,
+With loss of Eden, till one greater Man
+Restore us, and regain the blissful Seat,
+Sing Heav'nly Muse, that on the secret top
+Of Oreb, or of Sinai, didst inspire
+That Shepherd, who first taught the chosen Seed
+";
+
+/// In The White Night
+/// A poem by Alexander Blok(https://en.wikipedia.org/wiki/Alexander_Blok)
+/// a Russian poet who is regarded as one of the most important figures of the Silver Age of Russian Poetry
+/// You can read the translation here: https://lyricstranslate.com/ru/белой-ночью-месяц-красный-white-night-crimson-crescent.html
+static IN_THE_WHITE_NIGHT_CONTENT: &str = "
+Белой ночью месяц красный
+Выплывает в синеве.
+Бродит призрачно-прекрасный,
+Отражается в Неве.
+Мне провидится и снится
+Исполненье тайных дум.
+В вас ли доброе таится,
+Красный месяц, тихий шум?..
+";
+
+struct Files<'a> {
+    file_names: &'a [&'a str],
+}
+
+impl<'a> Files<'a> {
+    fn new(file_names: &'a [&'a str]) -> Self {
+        for file_name in file_names {
+            let content = if file_name.ends_with("iliad.txt") {
+                ILIAD_CONTENT
+            } else if file_name.ends_with("midsummer-night.txt") {
+                MIDSUMMER_NIGHT_CONTENT
+            } else if file_name.ends_with("paradise-lost.txt") {
+                PARADISE_LOST_CONTENT
+            } else {
+                IN_THE_WHITE_NIGHT_CONTENT
+            };
+            std::fs::write(file_name, content).unwrap_or_else(|_| {
+                panic!(
+                "Error setting up file '{file_name}' with the following content:\n{content}"
+            )
+            });
+        }
+
+        Self { file_names }
+    }
+}
+
+impl<'a> Drop for Files<'a> {
+    fn drop(&mut self) {
+        for file_name in self.file_names {
+            std::fs::remove_file(file_name)
+                .unwrap_or_else(|e| panic!("Could not delete file '{file_name}': {e}"));
+        }
+    }
+}
+
+impl<'a> AsRef<[&'a str]> for Files<'a> {
+    fn as_ref(&self) -> &[&'a str] {
+        self.file_names
+    }
+}
