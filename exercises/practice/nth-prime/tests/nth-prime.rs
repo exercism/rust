@@ -26,7 +26,7 @@ fn sixth_prime() {
 #[test]
 #[ignore]
 fn big_prime() {
-    let output = nth(10000);
-    let expected = 104743;
+    let output = nth(10_000);
+    let expected = 104_743;
     assert_eq!(output, expected);
 }

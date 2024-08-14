@@ -4,7 +4,7 @@ use eliuds_eggs::*;
 #[test]
 #[ignore]
 fn test_{{ test.description | snake_case }}() {
-    let input = {{ test.input.number }};
+    let input = {{ test.input.number | fmt_num }};
     let output = egg_count(input);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);

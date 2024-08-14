@@ -4,7 +4,7 @@ use say::*;
 #[test]
 #[ignore]
 fn {{ test.description | snake_case }}() {
-    let input = {{ test.input.number | json_encode() }};
+    let input = {{ test.input.number | fmt_num }};
     let output = encode(input);
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);

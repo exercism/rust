@@ -6,7 +6,9 @@ use variable_length_quantity as vlq;
 #[ignore]
 fn {{ test.description | snake_case }}() {
 {%- if test.property == "encode" %}
-    let input = &{{ test.input.integers | json_encode() }};
+    let input = &[{% for integer in test.input.integers -%}
+        {{ integer | fmt_num }},
+    {%- endfor %}];
     let output = vlq::to_bytes(input);
     let expected = vec![
         {%- for byte in test.expected -%}
@@ -23,7 +25,9 @@ fn {{ test.description | snake_case }}() {
     let expected = {% if test.expected is object -%}
         Err(vlq::Error::IncompleteNumber)
     {%- else -%}
-        Ok(vec!{{ test.expected | json_encode() }})
+        Ok(vec![{% for integer in test.expected -%}
+            {{ integer | fmt_num }},
+        {%- endfor %}])
     {%- endif %};
 {%- else %}
     panic!("unknown property: {{ test.property }}");

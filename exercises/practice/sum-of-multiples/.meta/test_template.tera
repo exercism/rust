@@ -5,9 +5,9 @@ use sum_of_multiples::*;
 #[ignore]
 fn {{ test.description | snake_case }}() {
     let factors = &{{ test.input.factors | json_encode() }};
-    let limit = {{ test.input.limit | json_encode() }};
+    let limit = {{ test.input.limit | fmt_num }};
     let output = sum_of_multiples(limit, factors);
-    let expected = {{ test.expected | json_encode() }};
+    let expected = {{ test.expected | fmt_num }};
     assert_eq!(output, expected);
 }
 {% endfor -%}

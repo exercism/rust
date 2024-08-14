@@ -4,8 +4,7 @@ use collatz_conjecture::*;
 #[test]
 #[ignore]
 fn {{ test.description | snake_case }}() {
-    let output = collatz({{ test.input.number | json_encode() }});
-    
+    let output = collatz({{ test.input.number | fmt_num }});
     let expected = {% if test.expected is object %}
         None
     {% else %}

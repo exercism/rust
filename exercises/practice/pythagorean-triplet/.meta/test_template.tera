@@ -5,9 +5,13 @@ use std::collections::HashSet;
 #[test]
 #[ignore]
 fn {{ test.description | snake_case }}() {
-    let input = {{ test.input.n | json_encode() }};
+    let input = {{ test.input.n | fmt_num }};
     let output = find(input);
-    let expected = {{ test.expected | json_encode() }};
+    let expected = [{% for triple in test.expected -%}
+        [{% for side in triple -%}
+            {{ side | fmt_num }},
+        {%- endfor %}],
+    {%- endfor %}];
     let expected: HashSet<_> = expected.iter().cloned().collect();
     assert_eq!(output, expected);
 }

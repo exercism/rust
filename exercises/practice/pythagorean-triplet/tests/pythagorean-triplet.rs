@@ -24,7 +24,7 @@ fn triplets_whose_sum_is_108() {
 #[test]
 #[ignore]
 fn triplets_whose_sum_is_1000() {
-    let input = 1000;
+    let input = 1_000;
     let output = find(input);
     let expected = [[200, 375, 425]];
     let expected: HashSet<_> = expected.iter().cloned().collect();
@@ -34,7 +34,7 @@ fn triplets_whose_sum_is_1000() {
 #[test]
 #[ignore]
 fn no_matching_triplets_for_1001() {
-    let input = 1001;
+    let input = 1_001;
     let output = find(input);
     let expected = [];
     let expected: HashSet<_> = expected.iter().cloned().collect();
@@ -73,14 +73,14 @@ fn several_matching_triplets() {
 #[test]
 #[ignore]
 fn triplets_for_large_number() {
-    let input = 30000;
+    let input = 30_000;
     let output = find(input);
     let expected = [
-        [1200, 14375, 14425],
-        [1875, 14000, 14125],
-        [5000, 12000, 13000],
-        [6000, 11250, 12750],
-        [7500, 10000, 12500],
+        [1_200, 14_375, 14_425],
+        [1_875, 14_000, 14_125],
+        [5_000, 12_000, 13_000],
+        [6_000, 11_250, 12_750],
+        [7_500, 10_000, 12_500],
     ];
     let expected: HashSet<_> = expected.iter().cloned().collect();
     assert_eq!(output, expected);
