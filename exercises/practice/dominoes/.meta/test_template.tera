@@ -1,0 +1,61 @@
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let input = &[
+        {% for domino in test.input.dominoes %}
+            ({{ domino.0 }}, {{domino.1 }}),
+        {% endfor %}
+    ];
+    {%- if test.expected %}
+        let output = dominoes::chain(input);
+        assert!(output.is_some());
+        assert_correct(input, output.unwrap());
+    {%- else %}
+        assert!(dominoes::chain(input).is_none());
+    {%- endif %}
+}
+{% endfor -%}
+
+type Domino = (u8, u8);
+
+fn assert_correct(input: &[Domino], output: Vec<Domino>) {
+    if input.len() != output.len() {
+        panic!("Length mismatch for input {input:?}, output {output:?}");
+    } else if input.is_empty() {
+        // and thus output.is_empty()
+        return;
+    }
+
+    let mut output_sorted = output
+        .iter()
+        .map(|&d| normalize(d))
+        .collect::<Vec<Domino>>();
+    output_sorted.sort_unstable();
+    let mut input_sorted = input.iter().map(|&d| normalize(d)).collect::<Vec<Domino>>();
+    input_sorted.sort_unstable();
+    if input_sorted != output_sorted {
+        panic!("Domino mismatch for input {input:?}, output {output:?}");
+    }
+
+    // both input and output have at least 1 element
+    // This essentially puts the first element after the last one, thereby making it
+    // easy to check whether the domino chains "wraps around".
+    {
+        let mut n = output[0].1;
+        let iter = output.iter().skip(1).chain(output.iter().take(1));
+        for &(first, second) in iter {
+            if n != first {
+                panic!("Chaining failure for input {input:?}, output {output:?}")
+            }
+            n = second
+        }
+    }
+}
+
+fn normalize(d: Domino) -> Domino {
+    match d {
+        (m, n) if m > n => (n, m),
+        (m, n) => (m, n),
+    }
+}
