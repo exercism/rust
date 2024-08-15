@@ -1,7 +1,7 @@
 use rectangles::*;
 
 #[test]
-fn test_no_rows() {
+fn no_rows() {
     let input = &[];
     let output = count(input);
     let expected = 0;
@@ -10,7 +10,7 @@ fn test_no_rows() {
 
 #[test]
 #[ignore]
-fn test_no_columns() {
+fn no_columns() {
     let input = &[""];
     let output = count(input);
     let expected = 0;
@@ -19,7 +19,7 @@ fn test_no_columns() {
 
 #[test]
 #[ignore]
-fn test_no_rectangles() {
+fn no_rectangles() {
     let input = &[" "];
     let output = count(input);
     let expected = 0;
@@ -28,7 +28,7 @@ fn test_no_rectangles() {
 
 #[test]
 #[ignore]
-fn test_one_rectangle() {
+fn one_rectangle() {
     #[rustfmt::skip]
     let input = &[
         "+-+",
@@ -42,7 +42,7 @@ fn test_one_rectangle() {
 
 #[test]
 #[ignore]
-fn test_two_rectangles_without_shared_parts() {
+fn two_rectangles_without_shared_parts() {
     #[rustfmt::skip]
     let input = &[
         "  +-+",
@@ -58,7 +58,7 @@ fn test_two_rectangles_without_shared_parts() {
 
 #[test]
 #[ignore]
-fn test_five_rectangles_with_shared_parts() {
+fn five_rectangles_with_shared_parts() {
     #[rustfmt::skip]
     let input = &[
         "  +-+",
@@ -74,7 +74,7 @@ fn test_five_rectangles_with_shared_parts() {
 
 #[test]
 #[ignore]
-fn test_rectangle_of_height_1_is_counted() {
+fn rectangle_of_height_1_is_counted() {
     #[rustfmt::skip]
     let input = &[
         "+--+",
@@ -87,7 +87,7 @@ fn test_rectangle_of_height_1_is_counted() {
 
 #[test]
 #[ignore]
-fn test_rectangle_of_width_1_is_counted() {
+fn rectangle_of_width_1_is_counted() {
     #[rustfmt::skip]
     let input = &[
         "++",
@@ -114,7 +114,7 @@ fn test_1x1_square_is_counted() {
 
 #[test]
 #[ignore]
-fn test_only_complete_rectangles_are_counted() {
+fn only_complete_rectangles_are_counted() {
     #[rustfmt::skip]
     let input = &[
         "  +-+",
@@ -130,7 +130,7 @@ fn test_only_complete_rectangles_are_counted() {
 
 #[test]
 #[ignore]
-fn test_rectangles_can_be_of_different_sizes() {
+fn rectangles_can_be_of_different_sizes() {
     #[rustfmt::skip]
     let input = &[
         "+------+----+",
@@ -146,7 +146,7 @@ fn test_rectangles_can_be_of_different_sizes() {
 
 #[test]
 #[ignore]
-fn test_corner_is_required_for_a_rectangle_to_be_complete() {
+fn corner_is_required_for_a_rectangle_to_be_complete() {
     #[rustfmt::skip]
     let input = &[
         "+------+----+",
@@ -162,7 +162,7 @@ fn test_corner_is_required_for_a_rectangle_to_be_complete() {
 
 #[test]
 #[ignore]
-fn test_large_input_with_many_rectangles() {
+fn large_input_with_many_rectangles() {
     #[rustfmt::skip]
     let input = &[
         "+---+--+----+",
@@ -181,7 +181,7 @@ fn test_large_input_with_many_rectangles() {
 
 #[test]
 #[ignore]
-fn test_rectangles_must_have_four_sides() {
+fn rectangles_must_have_four_sides() {
     #[rustfmt::skip]
     let input = &[
         "+-+ +-+",
