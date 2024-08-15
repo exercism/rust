@@ -1,79 +1,64 @@
-use crypto_square::encrypt;
-
-fn test(input: &str, output: &str) {
-    assert_eq!(&encrypt(input), output);
-}
+use crypto_square::*;
 
 #[test]
-fn empty_input() {
-    test("", "")
-}
-
-#[test]
-#[ignore]
-fn encrypt_also_decrypts_square() {
-    // note that you only get the exact input back if:
-    // 1. no punctuation
-    // 2. even spacing
-    // 3. all lowercase
-    // 4. square input
-    let example = "lime anda coco anut";
-    assert_eq!(example, &encrypt(&encrypt(example)));
+fn empty_plaintext_results_in_an_empty_ciphertext() {
+    let actual = encrypt("");
+    let expected = "";
+    assert_eq!(&actual, expected);
 }
 
 #[test]
 #[ignore]
-fn example() {
-    test(
-        "If man was meant to stay on the ground, god would have given us roots.",
-        "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau ",
-    )
+fn normalization_results_in_empty_plaintext() {
+    let actual = encrypt("... --- ...");
+    let expected = "";
+    assert_eq!(&actual, expected);
 }
 
 #[test]
 #[ignore]
-fn empty_last_line() {
-    test("congratulate", "crl oaa ntt gue")
+fn lowercase() {
+    let actual = encrypt("A");
+    let expected = "a";
+    assert_eq!(&actual, expected);
 }
 
 #[test]
 #[ignore]
-fn spaces_are_reorganized() {
-    test("abet", "ae bt");
-    test("a bet", "ae bt");
-    test("     a  b     e      t             ", "ae bt");
+fn remove_spaces() {
+    let actual = encrypt("  b ");
+    let expected = "b";
+    assert_eq!(&actual, expected);
 }
 
 #[test]
 #[ignore]
-fn everything_becomes_lowercase() {
-    test("caSe", "cs ae");
-    test("cAsE", "cs ae");
-    test("CASE", "cs ae");
+fn remove_punctuation() {
+    let actual = encrypt("@1,%!");
+    let expected = "1";
+    assert_eq!(&actual, expected);
 }
 
 #[test]
 #[ignore]
-fn long() {
-    test(
-        r#"
-We choose to go to the moon.
+fn test_9_character_plaintext_results_in_3_chunks_of_3_characters() {
+    let actual = encrypt("This is fun!");
+    let expected = "tsf hiu isn";
+    assert_eq!(&actual, expected);
+}
 
-We choose to go to the moon in this decade and do the other things,
-not because they are easy, but because they are hard, because that
-goal will serve to organize and measure the best of our energies and
-skills, because that challenge is one that we are willing to accept,
-one we are unwilling to postpone, and one which we intend to win,
-and the others, too.
+#[test]
+#[ignore]
+fn test_8_character_plaintext_results_in_3_chunks_the_last_one_with_a_trailing_space() {
+    let actual = encrypt("Chill out.");
+    let expected = "clu hlt io ";
+    assert_eq!(&actual, expected);
+}
 
--- John F. Kennedy, 12 September 1962
-        "#,
-        &(String::from("womdbudlmecsgwdwob enooetbsenaotioihe ")
-            + "cwotcbeeaeunolnnnr henhaecrsrsealeaf1 ocieucavugetciwnk9 "
-            + "ohnosauerithcnhde6 sotteusteehaegitn2 eohhtseotsatptchn  "
-            + "tsiehetohatwtohee  oesrethrenceopwod  gtdtyhagbdhanoety  "
-            + "ooehaetaesaresih1  tgcirygnsklewtne2  ooaneaoitilweptrs  "
-            + "ttdgerazoleiaoese  hoesaeleflnlrnntp  etanshwaosgleedot  "
-            + "mhnoyainubeiuatoe  oedtbrldreinnnojm "),
-    )
+#[test]
+#[ignore]
+fn test_54_character_plaintext_results_in_7_chunks_the_last_two_with_trailing_spaces() {
+    let actual = encrypt("If man was meant to stay on the ground, god would have given us roots.");
+    let expected = "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau ";
+    assert_eq!(&actual, expected);
 }

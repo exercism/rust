@@ -1,0 +1,11 @@
+use crypto_square::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let actual = encrypt({{ test.input.plaintext | json_encode() }});
+    let expected = {{ test.expected | json_encode() }};
+    assert_eq!(&actual, expected);
+}
+{% endfor -%}
