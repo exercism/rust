@@ -1,0 +1,62 @@
+[
+  {
+    "uuid": "93f3415a-28f4-40e9-9df6-9d61bef26108",
+    "description": "grades_for_empty_school",
+    "comments": [
+      "The original exercise design contains a `grades` method",
+      "which should not go untested."
+    ],
+    "property": "grades",
+    "input": {
+        "students": []
+    },
+    "expected": []
+  },
+  {
+    "uuid": "93f3415a-28f4-40e9-9df6-9d61bef26108",
+    "description": "grades_for_one_student",
+    "comments": [
+      "The original exercise design contains a `grades` method",
+      "which should not go untested."
+    ],
+    "property": "grades",
+    "input": {
+        "students": [["Aimee", 2]]
+    },
+    "expected": [2]
+  },
+  {
+    "uuid": "93f3415a-28f4-40e9-9df6-9d61bef26108",
+    "description": "grades_for_several_students_are_sorted",
+    "comments": [
+      "The original exercise design contains a `grades` method",
+      "which should not go untested."
+    ],
+    "property": "grades",
+    "input": {
+        "students": [
+          ["Aimee", 2],
+          ["Logan", 7],
+          ["Blair", 4]
+        ]
+    },
+    "expected": [2, 4, 7]
+  },
+  {
+    "uuid": "93f3415a-28f4-40e9-9df6-9d61bef26108",
+    "description": "grades_when_several_students_have_the_same_grade",
+    "comments": [
+      "The original exercise design contains a `grades` method",
+      "which should not go untested."
+    ],
+    "property": "grades",
+    "input": {
+        "students": [
+          ["Aimee", 2],
+          ["Logan", 2],
+          ["Blair", 2]
+        ]
+    },
+    "expected": [2]
+  }
+]
