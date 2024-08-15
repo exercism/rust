@@ -3,7 +3,7 @@ use sum_of_multiples::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let factors = &{{ test.input.factors | json_encode() }};
     let limit = {{ test.input.limit | fmt_num }};
     let output = sum_of_multiples(limit, factors);

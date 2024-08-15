@@ -3,7 +3,7 @@ use roman_numerals::Roman;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn number_{{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.number | json_encode() }};
     let output = Roman::from(input).to_string();
     let expected = {{ test.expected | json_encode() }};

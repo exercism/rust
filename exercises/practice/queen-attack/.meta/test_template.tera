@@ -4,7 +4,7 @@ use queen_attack::*;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
 {% if test.property == "create" %}
     let chess_position = ChessPosition::new({{ test.input.queen.position.row }}, {{ test.input.queen.position.column }});
 {%- if test.expected is object %}

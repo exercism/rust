@@ -4,7 +4,7 @@ use std::rc::Rc;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let mut buffer = CircularBuffer{% if loop.index == 1 %}::<i32>{% endif %}::new({{ test.input.capacity }});
 {%- for op in test.input.operations %}
     {%- if op.operation == "read" %}

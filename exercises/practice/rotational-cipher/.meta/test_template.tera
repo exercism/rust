@@ -2,7 +2,7 @@ use rotational_cipher as cipher;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let text = {{ test.input.text | json_encode() }};
     let shift_key = {{ test.input.shiftKey | json_encode() }};
     let output = cipher::rotate(text, shift_key);

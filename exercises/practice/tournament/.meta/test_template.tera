@@ -3,7 +3,7 @@ use tournament::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input: &[&str] = &{{ test.input.rows | json_encode() }};
     let input = input.join("\n");
     let output = tally(&input);

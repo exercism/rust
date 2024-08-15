@@ -11,7 +11,7 @@ use two_bucket::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let output = solve(
         {{ test.input.bucketOne }}, {{ test.input.bucketTwo }}, {{ test.input.goal }},
         &{{ self::bucket(label=test.input.startBucket) }},

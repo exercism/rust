@@ -3,7 +3,7 @@ use isogram::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     {% if test.expected %}
         assert!(check({{ test.input.phrase | json_encode() }}));
     {% else %}

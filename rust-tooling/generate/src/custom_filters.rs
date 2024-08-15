@@ -6,8 +6,7 @@ type Filter = fn(&Value, &HashMap<String, Value>) -> Result<Value>;
 
 pub static CUSTOM_FILTERS: &[(&str, Filter)] = &[
     ("to_hex", to_hex),
-    ("snake_case", snake_case),
-    ("make_test_ident", make_test_ident),
+    ("make_ident", make_ident),
     ("fmt_num", fmt_num),
 ];
 
@@ -21,32 +20,19 @@ pub fn to_hex(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
     Ok(serde_json::Value::String(format!("{:x}", value)))
 }
 
-pub fn snake_case(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
+pub fn make_ident(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
     let Some(value) = value.as_str() else {
         return Err(tera::Error::call_filter(
-            "snake_case filter expects a string",
+            "make_ident filter expects a string",
             "serde_json::value::Value::as_str",
         ));
     };
-    Ok(serde_json::Value::String(
-        // slug is the same dependency tera uses for its builtin 'slugify'
-        slug::slugify(value).replace('-', "_"),
-    ))
-}
-
-pub fn make_test_ident(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
-    let value = snake_case(value, _args)?;
-    let Some(value) = value.as_str() else {
-        return Err(tera::Error::call_filter(
-            "make_test_ident filter expects a string",
-            "serde_json::value::Value::as_str",
-        ));
-    };
+    let value = slug::slugify(value).replace('-', "_");
     if !value.chars().next().unwrap_or_default().is_alphabetic() {
         // identifiers cannot start with digits etc.
         return Ok(Value::String(format!("test_{value}")));
     }
-    Ok(Value::String(value.into()))
+    Ok(Value::String(value))
 }
 
 pub fn fmt_num(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {

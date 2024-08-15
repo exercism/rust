@@ -3,7 +3,7 @@ use isbn_verifier::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     {% if test.expected %}
     assert!(is_valid_isbn("{{ test.input.isbn }}"));
     {% else %}

@@ -6,7 +6,7 @@ use affine_cipher::AffineCipherError::NotCoprime;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let phrase = {{ test.input.phrase | json_encode() }};
     let (a, b) = ({{ test.input.key.a }}, {{ test.input.key.b }});
     let output = {{ test.property }}(phrase, a, b);

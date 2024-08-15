@@ -3,7 +3,7 @@ use series::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.series | json_encode() }};
     let length = {{ test.input.sliceLength | json_encode() }};
     let output = series(input, length);

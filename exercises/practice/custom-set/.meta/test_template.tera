@@ -4,7 +4,7 @@ use custom_set::CustomSet;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
 {%- if test.property == "empty" %}
     let set = CustomSet::<i32>::new(&{{ test.input.set | json_encode() }});
     assert!(

@@ -3,7 +3,7 @@ use acronym::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.phrase | json_encode() }};
     let output = abbreviate(input);
     let expected = {{ test.expected | json_encode() }};

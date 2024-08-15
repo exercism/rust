@@ -3,7 +3,7 @@ use binary_search::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     assert_eq!(find(&{{ test.input.array | json_encode() }}, {{ test.input.value }}), {% if test.expected is object -%}
         None
     {%- else -%}

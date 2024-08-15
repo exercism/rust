@@ -4,7 +4,7 @@ use robot_simulator::*;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
 {%- if test.property == "create" %}
     let robot = Robot::new({{ test.input.position.x }}, {{ test.input.position.y }}, Direction::{{ test.input.direction | title }});
     assert_eq!(robot.position(), ({{ test.expected.position.x }}, {{ test.expected.position.y }}));

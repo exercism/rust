@@ -4,7 +4,7 @@ use perfect_numbers::*;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.number | fmt_num }};
     let output = classify(input);
 {%- if test.expected is object %}

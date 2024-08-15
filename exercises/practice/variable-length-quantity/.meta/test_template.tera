@@ -4,7 +4,7 @@ use variable_length_quantity as vlq;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
 {%- if test.property == "encode" %}
     let input = &[{% for integer in test.input.integers -%}
         {{ integer | fmt_num }},

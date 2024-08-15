@@ -3,7 +3,7 @@ use protein_translation::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     assert_eq!(
         translate({{ test.input.strand | json_encode() }}),
         {% if test.expected is object %}

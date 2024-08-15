@@ -3,7 +3,7 @@ use scrabble_score::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.word | json_encode() }};
     let output = score(input);
     let expected = {{ test.expected | json_encode() }};

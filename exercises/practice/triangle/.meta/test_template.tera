@@ -10,7 +10,7 @@ mod {{ test_group.description | split(pat=" ") | first }} {
 {% if test.description is containing("float") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input).unwrap();
     {%- if test.expected %}
@@ -26,7 +26,7 @@ fn {{ test.description | snake_case }}() {
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input).unwrap();
     {%- if test.expected %}
@@ -42,7 +42,7 @@ fn {{ test.description | snake_case }}() {
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input).unwrap();
     {%- if test.expected %}
@@ -58,7 +58,7 @@ fn {{ test.description | snake_case }}() {
 {% if test.scenarios and test.scenarios is containing("floating-point") %}
 #[cfg(feature = "generic")]
 {% endif -%}
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.sides | json_encode() }};
     let output = Triangle::build(input);
     assert!(output.is_none());

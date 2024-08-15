@@ -3,7 +3,7 @@ use proverb::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = &{{ test.input.strings | json_encode() }};
     let output = build_proverb(input);
     {% if test.expected | length == 0 -%}
