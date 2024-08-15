@@ -81,16 +81,6 @@ If there is a justified reason why this is not possible,
 include a `.custom."allowed-to-not-compile"` key
 in the exercise's `.meta/config.json` containing the reason.
 
-If your exercise implements macro-based testing
-(e.g. [`xorcism`](/exercises/practice/xorcism/tests/xorcism.rs)),
-you will likely run afoul of a CI check which counts the `#[ignore]` lines
-and compares the result to the number of `#[test]` lines.
-To fix this, add a marker to the exercise's `.meta/config.json`:
-`.custom."ignore-count-ignores"` should be `true`
-to disable that check for your exercise.
-However, tera templates should generally be preferred to generate many similar test cases.
-See [issue #1824](https://github.com/exercism/rust/issues/1824) for the reasoning.
-
 ## Updating an exercise
 
 Many exercises are derived from [`problem-specifications`].
