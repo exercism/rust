@@ -3,7 +3,7 @@ use phone_number::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.phrase | json_encode() }};
     let output = number(input);
 {%- if test.expected is object %}

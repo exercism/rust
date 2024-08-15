@@ -3,7 +3,7 @@ use spiral_matrix::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.size | json_encode() }};
     let output = spiral_matrix(input);
     let expected: [[u32; {{ test.input.size }}]; {{ test.input.size }}] = [

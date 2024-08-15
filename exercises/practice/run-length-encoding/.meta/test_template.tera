@@ -4,7 +4,7 @@ use run_length_encoding as rle;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.property }}_{{ test.description | snake_case }}() {
+fn {{ test.property }}_{{ test.description | make_ident }}() {
     let input = {{ test.input.string | json_encode() }};
     {% if test.property == "consistency" -%}
         let output = rle::decode(&rle::encode(input));

@@ -6,7 +6,7 @@ use reverse_string::*;
 {% if test.description is starting_with("grapheme cluster") -%}
 #[cfg(feature = "grapheme")]
 {% endif -%}
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.value | json_encode() }};
     let output = reverse(input);
     let expected = {{ test.expected | json_encode() }};

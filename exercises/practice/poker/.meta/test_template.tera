@@ -4,7 +4,7 @@ use std::collections::HashSet;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = &{{ test.input.hands | json_encode() }};
     let output = winning_hands(input).into_iter().collect::<HashSet<_>>();
     let expected = {{ test.expected | json_encode() }}.into_iter().collect::<HashSet<_>>();

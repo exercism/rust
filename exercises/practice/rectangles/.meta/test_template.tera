@@ -3,7 +3,7 @@ use rectangles::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn test_{{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     {% if test.input.strings | length > 1 -%}
     #[rustfmt::skip]
     {%- endif %}

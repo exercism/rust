@@ -80,7 +80,7 @@ fn statefulness() {
 
 {% for test in cases %}
 
-mod {{ test.description | snake_case }} {
+mod {{ test.description | make_ident }} {
 
     use super::*;
 

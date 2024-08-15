@@ -4,7 +4,7 @@ use pig_latin::*;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.phrase | json_encode() }};
     let output = translate(input);
     let expected = {{ test.expected | json_encode() }};

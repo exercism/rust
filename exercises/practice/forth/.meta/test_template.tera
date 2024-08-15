@@ -1,11 +1,11 @@
 {% for test_group in cases %}
-mod {{ test_group.description | snake_case }} {
+mod {{ test_group.description | make_ident }} {
     use forth::*;
 
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let mut f = Forth::new();
     {% if test.property == "evaluateBoth" -%}
             {% for instr in test.input.instructionsFirst -%}

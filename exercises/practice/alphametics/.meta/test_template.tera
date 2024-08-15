@@ -3,7 +3,7 @@ use alphametics::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let answer = solve({{ test.input.puzzle | json_encode() }});
     {%- if test.expected is object %}
         let expected = [

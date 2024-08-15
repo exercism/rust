@@ -32,7 +32,7 @@ fn grep_returns_result() {
 
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let pattern = {{ test.input.pattern | json_encode() }};
     let flags = Flags::new(&{{ test.input.flags | json_encode() }});
     let files = Files::new(&[

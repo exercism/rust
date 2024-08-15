@@ -156,8 +156,8 @@ In that case, you can use the group description to organize the tests in modules
 There are some custom tera filters in [`rust-tooling`](/rust-tooling/generate/src/custom_filters.rs).
 Here's the hopefully up-to-date list:
 - `to_hex` formats ints in hexadecimal
-- `snake_case` massages an arbitrary string into a decent Rust identifier
-- `make_test_ident` is like snake case, but prepends `test_` if the string starts with a digit
+- `make_ident` turns an arbitrary string into a decent Rust identifier.
+   Most useful for generating function names from test descriptions.
 - `fmt_num` format number literals (insert `_` every third digit)
 
 Feel free to add your own in the crate `rust-tooling`.

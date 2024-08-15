@@ -4,7 +4,7 @@ use rail_fence_cipher::RailFence;
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.msg | json_encode() }};
     let rails = {{ test.input.rails | json_encode() }};
     let rail_fence = RailFence::new(rails);

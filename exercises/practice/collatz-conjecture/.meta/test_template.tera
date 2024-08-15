@@ -3,7 +3,7 @@ use collatz_conjecture::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let output = collatz({{ test.input.number | fmt_num }});
     let expected = {% if test.expected is object %}
         None

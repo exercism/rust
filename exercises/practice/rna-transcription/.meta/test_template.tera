@@ -2,7 +2,7 @@ use rna_transcription::{Dna, Rna};
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.dna | json_encode() }};
 {% if test.property == "invalidDna" -%}
     let output = Dna::new(input);

@@ -4,7 +4,7 @@ use std::collections::HashSet;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     let input = {{ test.input.n | fmt_num }};
     let output = find(input);
     let expected = [{% for triple in test.expected -%}

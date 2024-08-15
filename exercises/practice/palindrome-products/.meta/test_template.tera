@@ -26,7 +26,7 @@ fn palindrome_new_return_none() {
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | snake_case }}() {
+fn {{ test.description | make_ident }}() {
     {%- if test.property == "smallest" %}
         let output = palindrome_products({{ test.input.min }}, {{ test.input.max }}).map(|(min, _)| min.into_inner());
     {%- else %}

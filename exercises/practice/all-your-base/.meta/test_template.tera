@@ -3,7 +3,7 @@ use allyourbase as ayb;
 {% for test in cases %}
 #[test]
 #[ignore]
-fn {{ test.description | make_test_ident }}() {
+fn {{ test.description | make_ident }}() {
     let input_base = {{ test.input.inputBase }};
     let input_digits = &{{ test.input.digits | json_encode() }};
     let output_base = {{ test.input.outputBase }};
