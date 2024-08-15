@@ -1,19 +1,5 @@
 use allergies::*;
 
-fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
-    for element in expected {
-        if !actual.contains(element) {
-            panic!("Allergen missing\n  {element:?} should be in {actual:?}");
-        }
-    }
-
-    if actual.len() != expected.len() {
-        panic!(
-            "Allergy vectors are of different lengths\n  expected {expected:?}\n  got {actual:?}"
-        );
-    }
-}
-
 #[test]
 
 fn not_allergic_to_anything_eggs() {
@@ -338,8 +324,7 @@ fn allergic_to_everything_cats() {
 fn no_allergies() {
     let allergies = Allergies::new(0).allergies();
     let expected = &[];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -347,8 +332,7 @@ fn no_allergies() {
 fn just_eggs() {
     let allergies = Allergies::new(1).allergies();
     let expected = &[Allergen::Eggs];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -356,8 +340,7 @@ fn just_eggs() {
 fn just_peanuts() {
     let allergies = Allergies::new(2).allergies();
     let expected = &[Allergen::Peanuts];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -365,8 +348,7 @@ fn just_peanuts() {
 fn just_strawberries() {
     let allergies = Allergies::new(8).allergies();
     let expected = &[Allergen::Strawberries];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -374,8 +356,7 @@ fn just_strawberries() {
 fn eggs_and_peanuts() {
     let allergies = Allergies::new(3).allergies();
     let expected = &[Allergen::Eggs, Allergen::Peanuts];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -383,8 +364,7 @@ fn eggs_and_peanuts() {
 fn more_than_eggs_but_not_peanuts() {
     let allergies = Allergies::new(5).allergies();
     let expected = &[Allergen::Eggs, Allergen::Shellfish];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -398,8 +378,7 @@ fn lots_of_stuff() {
         Allergen::Pollen,
         Allergen::Cats,
     ];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -416,8 +395,7 @@ fn everything() {
         Allergen::Pollen,
         Allergen::Cats,
     ];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -433,8 +411,7 @@ fn no_allergen_score_parts() {
         Allergen::Pollen,
         Allergen::Cats,
     ];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
 
 #[test]
@@ -442,6 +419,5 @@ fn no_allergen_score_parts() {
 fn no_allergen_score_parts_without_highest_valid_score() {
     let allergies = Allergies::new(257).allergies();
     let expected = &[Allergen::Eggs];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 }
