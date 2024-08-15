@@ -1,19 +1,5 @@
 use allergies::*;
 
-fn compare_allergy_vectors(expected: &[Allergen], actual: &[Allergen]) {
-    for element in expected {
-        if !actual.contains(element) {
-            panic!("Allergen missing\n  {element:?} should be in {actual:?}");
-        }
-    }
-
-    if actual.len() != expected.len() {
-        panic!(
-            "Allergy vectors are of different lengths\n  expected {expected:?}\n  got {actual:?}"
-        );
-    }
-}
-
 {% for test_group in cases %}
 {% for test in test_group.cases %}
 #[test]
@@ -35,8 +21,7 @@ fn {{ test.description | snake_case }}() {
             Allergen::{{ allergen | title }},
         {% endfor %}
     ];
-
-    compare_allergy_vectors(expected, &allergies);
+    assert_eq!(&allergies, expected);
 {% endif -%}
 }
 {% endfor -%}
