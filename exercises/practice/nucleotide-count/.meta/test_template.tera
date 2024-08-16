@@ -1,0 +1,39 @@
+use std::collections::HashMap;
+
+use nucleotide_count::*;
+
+{% for test in cases %}
+{#
+    Additional tests are appended, but we want to test the `count` API first.
+#}
+{% if test.property != "count" %}
+    {% continue %}
+{% endif %}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    assert_eq!(count('{{ test.input.nucleotide }}', {{ test.input.strand | json_encode() }}), {{ test.expected }});
+}
+{% endfor %}
+
+{% for test in cases %}
+{% if test.property == "count" %}
+    {% continue %}
+{% endif %}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let output = nucleotide_counts({{ test.input.strand | json_encode() }});
+    {% if "error" in test.expected -%}
+        assert!(output.is_err());
+    {% else -%}
+        let mut expected = HashMap::new();
+        {% for key, val in test.expected -%}
+            expected.insert('{{ key }}', {{ val }});
+        {% endfor -%}
+        assert_eq!(output, Ok(expected));
+    {% endif -%}
+}
+{% endfor %}
