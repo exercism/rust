@@ -1,0 +1,33 @@
+use minesweeper::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    {% if test.input.minefield | length < 2 -%}
+    let input = &[
+        {%- for line in test.input.minefield %}
+        {{ line | json_encode() }},
+        {%- endfor %}
+    ];
+    let expected{% if test.expected | length == 0 %}: &[&str]{% endif %} = &[
+        {%- for line in test.expected %}
+        {{ line | json_encode() }},
+        {%- endfor %}
+    ];
+    {% else -%}
+    #[rustfmt::skip]
+    let (input, expected) = (&[
+        {%- for line in test.input.minefield %}
+        {{ line | json_encode() }},
+        {%- endfor %}
+    ], &[
+        {%- for line in test.expected %}
+        {{ line | json_encode() }},
+        {%- endfor %}
+    ]);
+    {% endif -%}
+    let actual = annotate(input);
+    assert_eq!(actual, expected);
+}
+{% endfor -%}
