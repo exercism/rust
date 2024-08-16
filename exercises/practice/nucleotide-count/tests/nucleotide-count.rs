@@ -1,100 +1,88 @@
-use nucleotide_count as dna;
-
 use std::collections::HashMap;
 
-fn process_nucleotidecounts_case(s: &str, pairs: &[(char, usize)]) {
-    // The reason for the awkward code in here is to ensure that the failure
-    // message for assert_eq! is as informative as possible. A simpler
-    // solution would simply check the length of the map, and then
-    // check for the presence and value of each key in the given pairs vector.
-    let mut m: HashMap<char, usize> = dna::nucleotide_counts(s).unwrap();
-    for &(k, v) in pairs.iter() {
-        assert_eq!((k, m.remove(&k)), (k, Some(v)));
-    }
-
-    // may fail with a message that clearly shows all extra pairs in the map
-    assert_eq!(m.iter().collect::<Vec<(&char, &usize)>>(), vec![]);
-}
+use nucleotide_count::*;
 
 #[test]
-fn count_returns_result() {
-    assert!(dna::count('A', "").is_ok());
-}
-
-#[test]
-#[ignore]
 fn count_empty() {
-    assert_eq!(dna::count('A', ""), Ok(0));
+    assert_eq!(count('A', ""), Ok(0));
 }
 
 #[test]
 #[ignore]
 fn count_invalid_nucleotide() {
-    assert_eq!(dna::count('X', "A"), Err('X'));
+    assert_eq!(count('X', "A"), Err('X'));
 }
 
 #[test]
 #[ignore]
 fn count_invalid_dna() {
-    assert_eq!(dna::count('A', "AX"), Err('X'));
+    assert_eq!(count('A', "AX"), Err('X'));
 }
 
 #[test]
 #[ignore]
 fn count_repetitive_cytosine() {
-    assert_eq!(dna::count('C', "CCCCC"), Ok(5));
+    assert_eq!(count('C', "CCCCC"), Ok(5));
 }
 
 #[test]
 #[ignore]
 fn count_only_thymine() {
-    assert_eq!(dna::count('T', "GGGGGTAACCCGG"), Ok(1));
-}
-
-#[test]
-#[ignore]
-fn counts_returns_result() {
-    assert!(dna::nucleotide_counts("ACGT").is_ok());
+    assert_eq!(count('T', "GGGGGTAACCCGG"), Ok(1));
 }
 
 #[test]
 #[ignore]
 fn empty_strand() {
-    process_nucleotidecounts_case("", &[('A', 0), ('T', 0), ('C', 0), ('G', 0)]);
+    let output = nucleotide_counts("");
+    let mut expected = HashMap::new();
+    expected.insert('A', 0);
+    expected.insert('C', 0);
+    expected.insert('G', 0);
+    expected.insert('T', 0);
+    assert_eq!(output, Ok(expected));
 }
 
 #[test]
 #[ignore]
-/// can count one nucleotide in single-character input
-fn can_count_one_nucleotide_in_singlecharacter_input() {
-    process_nucleotidecounts_case("G", &[('A', 0), ('C', 0), ('G', 1), ('T', 0)]);
+fn can_count_one_nucleotide_in_single_character_input() {
+    let output = nucleotide_counts("G");
+    let mut expected = HashMap::new();
+    expected.insert('A', 0);
+    expected.insert('C', 0);
+    expected.insert('G', 1);
+    expected.insert('T', 0);
+    assert_eq!(output, Ok(expected));
 }
 
 #[test]
 #[ignore]
 fn strand_with_repeated_nucleotide() {
-    process_nucleotidecounts_case("GGGGGGG", &[('A', 0), ('T', 0), ('C', 0), ('G', 7)]);
+    let output = nucleotide_counts("GGGGGGG");
+    let mut expected = HashMap::new();
+    expected.insert('A', 0);
+    expected.insert('C', 0);
+    expected.insert('G', 7);
+    expected.insert('T', 0);
+    assert_eq!(output, Ok(expected));
 }
 
 #[test]
 #[ignore]
-/// strand with multiple nucleotides
 fn strand_with_multiple_nucleotides() {
-    process_nucleotidecounts_case(
-        "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC",
-        &[('A', 20), ('T', 21), ('C', 12), ('G', 17)],
-    );
+    let output =
+        nucleotide_counts("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC");
+    let mut expected = HashMap::new();
+    expected.insert('A', 20);
+    expected.insert('C', 12);
+    expected.insert('G', 17);
+    expected.insert('T', 21);
+    assert_eq!(output, Ok(expected));
 }
 
 #[test]
 #[ignore]
-fn counts_invalid_nucleotide_results_in_err() {
-    assert_eq!(dna::nucleotide_counts("GGXXX"), Err('X'));
-}
-
-#[test]
-#[ignore]
-/// strand with invalid nucleotides
 fn strand_with_invalid_nucleotides() {
-    assert_eq!(dna::nucleotide_counts("AGXXACT"), Err('X'),);
+    let output = nucleotide_counts("AGXXACT");
+    assert!(output.is_err());
 }

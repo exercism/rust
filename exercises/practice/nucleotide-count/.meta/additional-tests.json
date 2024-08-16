@@ -1,0 +1,72 @@
+[
+  {
+    "uuid": "3e5c30a8-87e2-4845-a815-a49671ade970",
+    "description": "count_empty",
+    "comments": [
+      "The exercise was designed with a `count` method",
+      "which should be tested as well."
+    ],
+    "property": "count",
+    "input": {
+      "nucleotide": "A",
+      "strand": ""
+    },
+    "expected": "Ok(0)"
+  },
+  {
+    "uuid": "3e5c30a8-87e2-4845-a815-a49671ade970",
+    "description": "count_invalid_nucleotide",
+    "comments": [
+      "The exercise was designed with a `count` method",
+      "which should be tested as well."
+    ],
+    "property": "count",
+    "input": {
+      "nucleotide": "X",
+      "strand": "A"
+    },
+    "expected": "Err('X')"
+  },
+  {
+    "uuid": "3e5c30a8-87e2-4845-a815-a49671ade970",
+    "description": "count_invalid_dna",
+    "comments": [
+      "The exercise was designed with a `count` method",
+      "which should be tested as well."
+    ],
+    "property": "count",
+    "input": {
+      "nucleotide": "A",
+      "strand": "AX"
+    },
+    "expected": "Err('X')"
+  },
+  {
+    "uuid": "3e5c30a8-87e2-4845-a815-a49671ade970",
+    "description": "count_repetitive_cytosine",
+    "comments": [
+      "The exercise was designed with a `count` method",
+      "which should be tested as well."
+    ],
+    "property": "count",
+    "input": {
+      "nucleotide": "C",
+      "strand": "CCCCC"
+    },
+    "expected": "Ok(5)"
+  },
+  {
+    "uuid": "3e5c30a8-87e2-4845-a815-a49671ade970",
+    "description": "count_only_thymine",
+    "comments": [
+      "The exercise was designed with a `count` method",
+      "which should be tested as well."
+    ],
+    "property": "count",
+    "input": {
+      "nucleotide": "T",
+      "strand": "GGGGGTAACCCGG"
+    },
+    "expected": "Ok(1)"
+  }
+]
