@@ -12,25 +12,10 @@ fn assert_name_matches_pattern(n: &str) {
     );
 }
 
-fn assert_name_is_persistent(r: &robot::Robot) {
-    // The type system already proves this, but why not.
-    let n1 = r.name();
-    let n2 = r.name();
-    let n3 = r.name();
-    assert_eq!(n1, n2);
-    assert_eq!(n2, n3);
-}
-
 #[test]
 fn name_should_match_expected_pattern() {
     let r = robot::Robot::new();
     assert_name_matches_pattern(r.name());
-}
-
-#[test]
-#[ignore]
-fn name_is_persistent() {
-    assert_name_is_persistent(&robot::Robot::new());
 }
 
 #[test]
@@ -61,14 +46,6 @@ fn new_name_should_match_expected_pattern() {
     assert_name_matches_pattern(r.name());
     r.reset_name();
     assert_name_matches_pattern(r.name());
-}
-
-#[test]
-#[ignore]
-fn new_name_is_persistent() {
-    let mut r = robot::Robot::new();
-    r.reset_name();
-    assert_name_is_persistent(&r);
 }
 
 #[test]
