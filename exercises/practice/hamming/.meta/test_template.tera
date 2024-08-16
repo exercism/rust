@@ -1,0 +1,16 @@
+use hamming::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    assert_eq!(
+        hamming_distance({{ test.input.strand1 | json_encode() }}, {{ test.input.strand2 | json_encode() }}),
+        {% if test.expected is object -%}
+            None
+        {% else -%}
+            Some({{ test.expected }})
+        {% endif -%}
+    );
+}
+{% endfor -%}
