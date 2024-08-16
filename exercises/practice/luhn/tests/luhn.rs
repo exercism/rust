@@ -1,141 +1,132 @@
 use luhn::*;
 
-fn process_valid_case(number: &str, is_luhn_expected: bool) {
-    assert_eq!(is_valid(number), is_luhn_expected);
-}
-
 #[test]
 fn single_digit_strings_can_not_be_valid() {
-    process_valid_case("1", false);
+    assert!(!is_valid("1"));
 }
 
 #[test]
 #[ignore]
 fn a_single_zero_is_invalid() {
-    process_valid_case("0", false);
+    assert!(!is_valid("0"));
 }
 
 #[test]
 #[ignore]
 fn a_simple_valid_sin_that_remains_valid_if_reversed() {
-    process_valid_case("059", true);
+    assert!(is_valid("059"));
 }
 
 #[test]
 #[ignore]
 fn a_simple_valid_sin_that_becomes_invalid_if_reversed() {
-    process_valid_case("59", true);
+    assert!(is_valid("59"));
 }
 
 #[test]
 #[ignore]
 fn a_valid_canadian_sin() {
-    process_valid_case("055 444 285", true);
+    assert!(is_valid("055 444 285"));
 }
 
 #[test]
 #[ignore]
 fn invalid_canadian_sin() {
-    process_valid_case("055 444 286", false);
+    assert!(!is_valid("055 444 286"));
 }
 
 #[test]
 #[ignore]
 fn invalid_credit_card() {
-    process_valid_case("8273 1232 7352 0569", false);
+    assert!(!is_valid("8273 1232 7352 0569"));
+}
+
+#[test]
+#[ignore]
+fn invalid_long_number_with_an_even_remainder() {
+    assert!(!is_valid("1 2345 6789 1234 5678 9012"));
+}
+
+#[test]
+#[ignore]
+fn invalid_long_number_with_a_remainder_divisible_by_5() {
+    assert!(!is_valid("1 2345 6789 1234 5678 9013"));
 }
 
 #[test]
 #[ignore]
 fn valid_number_with_an_even_number_of_digits() {
-    process_valid_case("095 245 88", true);
+    assert!(is_valid("095 245 88"));
 }
 
 #[test]
 #[ignore]
-fn strings_that_contain_non_digits_are_invalid() {
-    process_valid_case("055a 444 285", false);
+fn valid_number_with_an_odd_number_of_spaces() {
+    assert!(is_valid("234 567 891 234"));
+}
+
+#[test]
+#[ignore]
+fn valid_strings_with_a_non_digit_added_at_the_end_become_invalid() {
+    assert!(!is_valid("059a"));
 }
 
 #[test]
 #[ignore]
 fn valid_strings_with_punctuation_included_become_invalid() {
-    process_valid_case("055-444-285", false);
+    assert!(!is_valid("055-444-285"));
 }
 
 #[test]
 #[ignore]
-fn symbols_are_invalid() {
-    process_valid_case("055£ 444$ 285", false);
+fn valid_strings_with_symbols_included_become_invalid() {
+    assert!(!is_valid("055# 444$ 285"));
 }
 
 #[test]
 #[ignore]
 fn single_zero_with_space_is_invalid() {
-    process_valid_case(" 0", false);
+    assert!(!is_valid(" 0"));
 }
 
 #[test]
 #[ignore]
 fn more_than_a_single_zero_is_valid() {
-    process_valid_case("0000 0", true);
+    assert!(is_valid("0000 0"));
 }
 
 #[test]
 #[ignore]
 fn input_digit_9_is_correctly_converted_to_output_digit_9() {
-    process_valid_case("091", true);
+    assert!(is_valid("091"));
 }
 
 #[test]
 #[ignore]
-/// using ASCII value for doubled non-digit isn't allowed
-/// Convert non-digits to their ASCII values and then offset them by 48 sometimes accidentally declare an invalid string to be valid.
-/// This test is designed to avoid that solution.
-fn using_ascii_value_for_doubled_nondigit_isnt_allowed() {
-    process_valid_case(":9", false);
+fn very_long_input_is_valid() {
+    assert!(is_valid("9999999999 9999999999 9999999999 9999999999"));
 }
 
 #[test]
 #[ignore]
-/// valid strings with a non-digit added at the end become invalid
-fn valid_strings_with_a_nondigit_added_at_the_end_become_invalid() {
-    process_valid_case("059a", false);
+fn valid_luhn_with_an_odd_number_of_digits_and_non_zero_first_digit() {
+    assert!(is_valid("109"));
 }
 
 #[test]
 #[ignore]
-/// valid strings with symbols included become invalid
-fn valid_strings_with_symbols_included_become_invalid() {
-    process_valid_case("055# 444$ 285", false);
+fn using_ascii_value_for_non_doubled_non_digit_isn_t_allowed() {
+    assert!(!is_valid("055b 444 285"));
 }
 
 #[test]
 #[ignore]
-/// using ASCII value for non-doubled non-digit isn't allowed
-/// Convert non-digits to their ASCII values and then offset them by 48 sometimes accidentally declare an invalid string to be valid.
-/// This test is designed to avoid that solution.
-fn using_ascii_value_for_nondoubled_nondigit_isnt_allowed() {
-    process_valid_case("055b 444 285", false);
+fn using_ascii_value_for_doubled_non_digit_isn_t_allowed() {
+    assert!(!is_valid(":9"));
 }
 
 #[test]
 #[ignore]
-/// valid number with an odd number of spaces
-fn valid_number_with_an_odd_number_of_spaces() {
-    process_valid_case("234 567 891 234", true);
-}
-
-#[test]
-#[ignore]
-/// non-numeric, non-space char in the middle with a sum that's divisible by 10 isn't allowed
-fn invalid_char_in_middle_with_sum_divisible_by_10_isnt_allowed() {
-    process_valid_case("59%59", false);
-}
-
-#[test]
-#[ignore]
-/// unicode numeric characters are not allowed in a otherwise valid number
-fn valid_strings_with_numeric_unicode_characters_become_invalid() {
-    process_valid_case("1249①", false);
+fn non_numeric_non_space_char_in_the_middle_with_a_sum_that_s_divisible_by_10_isn_t_allowed() {
+    assert!(!is_valid("59%59"));
 }

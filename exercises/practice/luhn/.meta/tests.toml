@@ -1,3 +1,76 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
+
+[792a7082-feb7-48c7-b88b-bbfec160865e]
+description = "single digit strings can not be valid"
+
+[698a7924-64d4-4d89-8daa-32e1aadc271e]
+description = "a single zero is invalid"
+
+[73c2f62b-9b10-4c9f-9a04-83cee7367965]
+description = "a simple valid SIN that remains valid if reversed"
+
+[9369092e-b095-439f-948d-498bd076be11]
+description = "a simple valid SIN that becomes invalid if reversed"
+
+[8f9f2350-1faf-4008-ba84-85cbb93ffeca]
+description = "a valid Canadian SIN"
+
+[1cdcf269-6560-44fc-91f6-5819a7548737]
+description = "invalid Canadian SIN"
+
+[656c48c1-34e8-4e60-9a5a-aad8a367810a]
+description = "invalid credit card"
+
+[20e67fad-2121-43ed-99a8-14b5b856adb9]
+description = "invalid long number with an even remainder"
+
+[7e7c9fc1-d994-457c-811e-d390d52fba5e]
+description = "invalid long number with a remainder divisible by 5"
+
+[ad2a0c5f-84ed-4e5b-95da-6011d6f4f0aa]
+description = "valid number with an even number of digits"
+
+[ef081c06-a41f-4761-8492-385e13c8202d]
+description = "valid number with an odd number of spaces"
+
+[bef66f64-6100-4cbb-8f94-4c9713c5e5b2]
+description = "valid strings with a non-digit added at the end become invalid"
+
+[2177e225-9ce7-40f6-b55d-fa420e62938e]
+description = "valid strings with punctuation included become invalid"
+
+[ebf04f27-9698-45e1-9afe-7e0851d0fe8d]
+description = "valid strings with symbols included become invalid"
+
+[08195c5e-ce7f-422c-a5eb-3e45fece68ba]
+description = "single zero with space is invalid"
+
+[12e63a3c-f866-4a79-8c14-b359fc386091]
+description = "more than a single zero is valid"
+
+[ab56fa80-5de8-4735-8a4a-14dae588663e]
+description = "input digit 9 is correctly converted to output digit 9"
+
+[b9887ee8-8337-46c5-bc45-3bcab51bc36f]
+description = "very long input is valid"
+
+[8a7c0e24-85ea-4154-9cf1-c2db90eabc08]
+description = "valid luhn with an odd number of digits and non zero first digit"
+
+[39a06a5a-5bad-4e0f-b215-b042d46209b1]
+description = "using ascii value for non-doubled non-digit isn't allowed"
+
+[f94cf191-a62f-4868-bc72-7253114aa157]
+description = "using ascii value for doubled non-digit isn't allowed"
+
+[8b72ad26-c8be-49a2-b99c-bcc3bf631b33]
+description = "non-numeric, non-space char in the middle with a sum that's divisible by 10 isn't allowed"
