@@ -1,0 +1,22 @@
+use grains::*;
+
+{% for test in cases.0.cases %}
+#[test]
+#[ignore]
+{% if test.expected is object -%}
+#[should_panic]
+{% endif -%}
+fn {{ test.description | make_ident }}() {
+    {% if test.expected is number -%}
+    assert_eq!(square({{ test.input.square }}), {{ test.expected | fmt_num }});
+    {% else %}
+    square({{ test.input.square }});
+    {% endif -%}
+}
+{% endfor -%}
+
+#[test]
+#[ignore]
+fn returns_the_total_number_of_grains_on_the_board() {
+    assert_eq!(grains::total(), 18_446_744_073_709_551_615);
+}

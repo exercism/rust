@@ -28,6 +28,8 @@ description = "square 0 raises an exception"
 
 [61974483-eeb2-465e-be54-ca5dde366453]
 description = "negative square raises an exception"
+include = false
+comment = "u64 cannot be negative"
 
 [a95e4374-f32c-45a7-a10d-ffec475c012f]
 description = "square greater than 64 raises an exception"
