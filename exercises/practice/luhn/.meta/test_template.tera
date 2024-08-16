@@ -1,0 +1,9 @@
+use luhn::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    assert!({% if not test.expected %} ! {% endif %}is_valid({{ test.input.value | json_encode() }}));
+}
+{% endfor -%}
