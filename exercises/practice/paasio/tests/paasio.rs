@@ -19,8 +19,7 @@ mod read_string {
     #[ignore]
     fn read_passthrough() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut reader = ReadStats::new(data);
 
         let mut buffer = Vec::with_capacity(size);
@@ -40,24 +39,16 @@ mod read_string {
     #[ignore]
     fn read_chunks() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut reader = ReadStats::new(data);
 
         let mut buffer = [0_u8; CHUNK_SIZE];
         let mut chunks_read = 0;
-        while reader
-            .read(&mut buffer[..])
-            .unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read + 1))
-            > 0
-        {
+        while reader.read(&mut buffer[..]).unwrap() > 0 {
             chunks_read += 1;
         }
 
-        assert_eq!(
-            size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE),
-            chunks_read
-        );
+        assert_eq!(size / CHUNK_SIZE + 1.min(size % CHUNK_SIZE), chunks_read);
         // we read once more than the number of chunks, because the final
         // read returns 0 new bytes
         assert_eq!(1 + chunks_read, reader.reads());
@@ -68,24 +59,16 @@ mod read_string {
     #[ignore]
     fn read_buffered_chunks() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut reader = BufReader::new(ReadStats::new(data));
 
         let mut buffer = [0_u8; CHUNK_SIZE];
         let mut chunks_read = 0;
-        while reader
-            .read(&mut buffer[..])
-            .unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read + 1))
-            > 0
-        {
+        while reader.read(&mut buffer[..]).unwrap() > 0 {
             chunks_read += 1;
         }
 
-        assert_eq!(
-            size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE),
-            chunks_read
-        );
+        assert_eq!(size / CHUNK_SIZE + 1.min(size % CHUNK_SIZE), chunks_read);
         // the BufReader should smooth out the reads, collecting into
         // a buffer and performing only two read operations:
         // the first collects everything into the buffer,
@@ -107,8 +90,7 @@ mod write_string {
     #[ignore]
     fn write_passthrough() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = WriteStats::new(Vec::with_capacity(size));
         let written = writer.write(data);
         assert!(written.is_ok());
@@ -122,8 +104,7 @@ mod write_string {
     #[ignore]
     fn sink_oneshot() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = WriteStats::new(io::sink());
         let written = writer.write(data);
         assert!(written.is_ok());
@@ -136,8 +117,7 @@ mod write_string {
     #[ignore]
     fn sink_windowed() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = WriteStats::new(io::sink());
 
         let mut chunk_count = 0;
@@ -155,8 +135,7 @@ mod write_string {
     #[ignore]
     fn sink_buffered_windowed() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = BufWriter::new(WriteStats::new(io::sink()));
 
         for chunk in data.chunks(CHUNK_SIZE) {
@@ -188,8 +167,7 @@ mod read_byte_literal {
     #[ignore]
     fn read_passthrough() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut reader = ReadStats::new(data);
 
         let mut buffer = Vec::with_capacity(size);
@@ -209,24 +187,16 @@ mod read_byte_literal {
     #[ignore]
     fn read_chunks() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut reader = ReadStats::new(data);
 
         let mut buffer = [0_u8; CHUNK_SIZE];
         let mut chunks_read = 0;
-        while reader
-            .read(&mut buffer[..])
-            .unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read + 1))
-            > 0
-        {
+        while reader.read(&mut buffer[..]).unwrap() > 0 {
             chunks_read += 1;
         }
 
-        assert_eq!(
-            size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE),
-            chunks_read
-        );
+        assert_eq!(size / CHUNK_SIZE + 1.min(size % CHUNK_SIZE), chunks_read);
         // we read once more than the number of chunks, because the final
         // read returns 0 new bytes
         assert_eq!(1 + chunks_read, reader.reads());
@@ -237,24 +207,16 @@ mod read_byte_literal {
     #[ignore]
     fn read_buffered_chunks() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut reader = BufReader::new(ReadStats::new(data));
 
         let mut buffer = [0_u8; CHUNK_SIZE];
         let mut chunks_read = 0;
-        while reader
-            .read(&mut buffer[..])
-            .unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read + 1))
-            > 0
-        {
+        while reader.read(&mut buffer[..]).unwrap() > 0 {
             chunks_read += 1;
         }
 
-        assert_eq!(
-            size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE),
-            chunks_read
-        );
+        assert_eq!(size / CHUNK_SIZE + 1.min(size % CHUNK_SIZE), chunks_read);
         // the BufReader should smooth out the reads, collecting into
         // a buffer and performing only two read operations:
         // the first collects everything into the buffer,
@@ -278,8 +240,7 @@ mod write_byte_literal {
     #[ignore]
     fn write_passthrough() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = WriteStats::new(Vec::with_capacity(size));
         let written = writer.write(data);
         assert!(written.is_ok());
@@ -293,8 +254,7 @@ mod write_byte_literal {
     #[ignore]
     fn sink_oneshot() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = WriteStats::new(io::sink());
         let written = writer.write(data);
         assert!(written.is_ok());
@@ -307,8 +267,7 @@ mod write_byte_literal {
     #[ignore]
     fn sink_windowed() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = WriteStats::new(io::sink());
 
         let mut chunk_count = 0;
@@ -326,8 +285,7 @@ mod write_byte_literal {
     #[ignore]
     fn sink_buffered_windowed() {
         let data = INPUT;
-        let len = |d: &[u8]| d.len();
-        let size = len(data);
+        let size = data.len();
         let mut writer = BufWriter::new(WriteStats::new(io::sink()));
 
         for chunk in data.chunks(CHUNK_SIZE) {
@@ -357,9 +315,7 @@ mod read_file {
     #[ignore]
     fn read_passthrough() {
         let data = std::fs::File::open("Cargo.toml").expect("Cargo.toml must be present");
-        let len =
-            |f: &::std::fs::File| f.metadata().expect("metadata must be present").len() as usize;
-        let size = len(&data);
+        let size = data.metadata().expect("metadata must be present").len() as usize;
         let mut reader = ReadStats::new(data);
 
         let mut buffer = Vec::with_capacity(size);
@@ -379,25 +335,16 @@ mod read_file {
     #[ignore]
     fn read_chunks() {
         let data = std::fs::File::open("Cargo.toml").expect("Cargo.toml must be present");
-        let len =
-            |f: &::std::fs::File| f.metadata().expect("metadata must be present").len() as usize;
-        let size = len(&data);
+        let size = data.metadata().expect("metadata must be present").len() as usize;
         let mut reader = ReadStats::new(data);
 
         let mut buffer = [0_u8; CHUNK_SIZE];
         let mut chunks_read = 0;
-        while reader
-            .read(&mut buffer[..])
-            .unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read + 1))
-            > 0
-        {
+        while reader.read(&mut buffer[..]).unwrap() > 0 {
             chunks_read += 1;
         }
 
-        assert_eq!(
-            size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE),
-            chunks_read
-        );
+        assert_eq!(size / CHUNK_SIZE + 1.min(size % CHUNK_SIZE), chunks_read);
         // we read once more than the number of chunks, because the final
         // read returns 0 new bytes
         assert_eq!(1 + chunks_read, reader.reads());
@@ -408,25 +355,16 @@ mod read_file {
     #[ignore]
     fn read_buffered_chunks() {
         let data = std::fs::File::open("Cargo.toml").expect("Cargo.toml must be present");
-        let len =
-            |f: &::std::fs::File| f.metadata().expect("metadata must be present").len() as usize;
-        let size = len(&data);
+        let size = data.metadata().expect("metadata must be present").len() as usize;
         let mut reader = BufReader::new(ReadStats::new(data));
 
         let mut buffer = [0_u8; CHUNK_SIZE];
         let mut chunks_read = 0;
-        while reader
-            .read(&mut buffer[..])
-            .unwrap_or_else(|_| panic!("read failed at chunk {}", chunks_read + 1))
-            > 0
-        {
+        while reader.read(&mut buffer[..]).unwrap() > 0 {
             chunks_read += 1;
         }
 
-        assert_eq!(
-            size / CHUNK_SIZE + std::cmp::min(1, size % CHUNK_SIZE),
-            chunks_read
-        );
+        assert_eq!(size / CHUNK_SIZE + 1.min(size % CHUNK_SIZE), chunks_read);
         // the BufReader should smooth out the reads, collecting into
         // a buffer and performing only two read operations:
         // the first collects everything into the buffer,
