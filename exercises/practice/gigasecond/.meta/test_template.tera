@@ -1,0 +1,53 @@
+{% for test in cases %}
+
+{#
+    Parsing datetime strings in a templating language
+    really makes you question your life choices.
+#}
+{% set date_and_time = test.input.moment | split(pat="T") %}
+{% set date = date_and_time.0 | split(pat="-") %}
+{% set year  = date.0 | int %}
+{% set month = date.1 | int %}
+{% set day   = date.2 | int %}
+{% if date_and_time | length >= 2 %}
+    {% set time = date_and_time.1 | split(pat=":") %}
+    {% set hour   = time.0 | int %}
+    {% set minute = time.1 | int %}
+    {% set second = time.2 | int %}
+{% else %}
+    {% set hour   = 0 %}
+    {% set minute = 0 %}
+    {% set second = 0 %}
+{% endif %}
+
+{#
+    again for the expected datetime
+#}
+{% set date_and_time = test.expected | split(pat="T") %}
+{% set date = date_and_time.0 | split(pat="-") %}
+{% set e_year  = date.0 | int %}
+{% set e_month = date.1 | int %}
+{% set e_day   = date.2 | int %}
+{% set time = date_and_time.1 | split(pat=":") %}
+{% set e_hour   = time.0 | int %}
+{% set e_minute = time.1 | int %}
+{% set e_second = time.2 | int %}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let start = datetime({{ year }},{{ month }},{{ day }},{{ hour }},{{ minute }},{{ second }});
+    let actual = gigasecond::after(start);
+    let expected = datetime({{ e_year }},{{ e_month }},{{ e_day }},{{ e_hour }},{{ e_minute }},{{ e_second }});
+    assert_eq!(actual, expected);
+}
+{% endfor %}
+
+fn datetime(year: i32, month: u8, day: u8, hour: u8, minute: u8, second: u8) -> time::PrimitiveDateTime {
+    use time::{Date, PrimitiveDateTime, Time};
+
+    PrimitiveDateTime::new(
+        Date::from_calendar_date(year, month.try_into().unwrap(), day).unwrap(),
+        Time::from_hms(hour, minute, second).unwrap(),
+    )
+}
