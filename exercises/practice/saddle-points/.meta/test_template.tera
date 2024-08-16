@@ -1,9 +1,5 @@
-// We don't care about order
-fn find_sorted_saddle_points(input: &[Vec<u64>]) -> Vec<(usize, usize)> {
-    let mut result = saddle_points::find_saddle_points(input);
-    result.sort_unstable();
-    result
-}
+use saddle_points::*;
+
 {% for test in cases %}
 #[test]
 #[ignore]
@@ -11,7 +7,8 @@ fn {{ test.description | make_ident }}() {
     let input = &[{% for row in test.input.matrix %}
         vec!{{ row }},
     {% endfor %}];
-    let output = find_sorted_saddle_points(input);
+    let mut output = find_saddle_points(input);
+    output.sort_unstable();
     let expected = &[
         {% for p in test.expected | sort(attribute = "column") | sort(attribute = "row") %}
             ({{ p.row - 1 }}, {{ p.column - 1 }}),
