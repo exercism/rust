@@ -1,6 +1,13 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
 
 [0c5ec4bd-dea7-4138-8651-1203e1cb9f44]
 description = "no rows"
@@ -10,6 +17,9 @@ description = "no columns"
 
 [6fbf8f6d-a03b-42c9-9a58-b489e9235478]
 description = "no mines"
+
+[61aff1c4-fb31-4078-acad-cd5f1e635655]
+description = "minefield with only mines"
 
 [84167147-c504-4896-85d7-246b01dea7c5]
 description = "mine surrounded by spaces"
@@ -31,3 +41,6 @@ description = "vertical line, mines at edges"
 
 [4b098563-b7f3-401c-97c6-79dd1b708f34]
 description = "cross"
+
+[04a260f1-b40a-4e89-839e-8dd8525abe0e]
+description = "large minefield"
