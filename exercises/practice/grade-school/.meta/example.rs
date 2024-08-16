@@ -12,6 +12,13 @@ impl School {
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
+        if self
+            .grades
+            .iter()
+            .any(|(_, students)| students.iter().any(|s| s == student))
+        {
+            return; // don't add duplicate student
+        }
         let entry = self.grades.entry(grade).or_default();
         entry.push(student.to_string());
         entry.sort_unstable();

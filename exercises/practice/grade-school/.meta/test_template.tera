@@ -1,0 +1,46 @@
+use grade_school::*;
+
+{% for test in cases %}
+
+{% if test.property == "roster" %}
+    {#
+        The original exercise design does not include a method for getting
+        the roster. Excluding these tests doesn't seem too bad, it would be
+        difficult to implement this property incorrectly while getting the other
+        ones right.
+    #}
+    {% continue %}
+{% endif%}
+{% if test.property == "add" %}
+    {#
+        The original exercise design doesn't define the add method as fallible.
+    #}
+    {% continue %}
+{% endif%}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let {% if test.input.students | length > 0 %}
+        mut
+    {% endif %} s = School::new();
+    {% for student in test.input.students -%}
+        s.add({{ student.1 }}, {{ student.0 | json_encode() }});
+    {% endfor -%}
+    {% if test.property == "grade" -%}
+    assert_eq!(
+        s.grade({{ test.input.desiredGrade }}),
+        {% if test.expected | length == 0 -%}
+            Vec::<String>::new()
+        {% else -%}
+            vec!{{ test.expected | json_encode() }}
+        {% endif -%}
+    )
+    {% elif test.property == "grades" -%}
+    assert_eq!(
+        s.grades(),
+        vec!{{ test.expected | json_encode() }}
+    )
+    {% endif -%}
+}
+{% endfor -%}
