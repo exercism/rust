@@ -1,0 +1,53 @@
+use clock::*;
+
+//
+// Clock Creation
+//
+
+{% for test in cases.0.cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    assert_eq!(Clock::new({{ test.input.hour }}, {{ test.input.minute }}).to_string(), {{ test.expected | json_encode() }});
+}
+{% endfor %}
+
+//
+// Clock Math
+//
+
+{% for test in cases.1.cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let clock = Clock::new({{ test.input.hour }}, {{ test.input.minute }}).add_minutes({{ test.input.value }});
+    assert_eq!(clock.to_string(), {{ test.expected | json_encode() }});
+}
+{% endfor %}
+
+{% for test in cases.2.cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let clock = Clock::new({{ test.input.hour }}, {{ test.input.minute }}).add_minutes(-{{ test.input.value }});
+    assert_eq!(clock.to_string(), {{ test.expected | json_encode() }});
+}
+{% endfor %}
+
+//
+// Test Equality
+//
+
+{% for test in cases.3.cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    {% set c1 = test.input.clock1 %}
+    {% set c2 = test.input.clock2 %}
+    {% if test.expected -%}
+    assert_eq!(Clock::new({{ c1.hour }}, {{ c1.minute }}), Clock::new({{ c2.hour }}, {{ c2.minute }}));
+    {% else -%}
+    assert_ne!(Clock::new({{ c1.hour }}, {{ c1.minute }}), Clock::new({{ c2.hour }}, {{ c2.minute }}));
+    {% endif -%}
+}
+{% endfor %}
