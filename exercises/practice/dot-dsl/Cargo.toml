@@ -3,5 +3,5 @@ edition = "2021"
 name = "dot-dsl"
 version = "0.1.0"
 
-[dependencies]
-maplit = "1.0.1"
+[lints.clippy]
+new_without_default = "allow"
