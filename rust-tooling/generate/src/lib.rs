@@ -48,8 +48,6 @@ fn generate_manifest(crate_name: &str) -> String {
             "edition = \"2021\"\n",
             "name = \"{crate_name}\"\n",
             "version = \"1.0.0\"\n",
-            "\n",
-            "[dependencies]\n",
         ),
         crate_name = crate_name
     )

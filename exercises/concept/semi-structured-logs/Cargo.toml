@@ -5,5 +5,3 @@ edition = "2021"
 
 [features]
 add-a-variant = []
-
-[dependencies]
