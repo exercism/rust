@@ -1,5 +1,3 @@
-[dependencies]
-
 [package]
 edition = "2021"
 name = "pythagorean_triplet"

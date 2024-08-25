@@ -2,5 +2,3 @@
 edition = "2021"
 name = "scale_generator"
 version = "2.0.0"
-
-[dependencies]
