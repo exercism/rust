@@ -1,6 +1,4 @@
-#[macro_use]
-extern crate lazy_static;
-extern crate regex;
+use std::sync::LazyLock;
 
 use regex::Regex;
 
@@ -9,12 +7,13 @@ use regex::Regex;
 pub fn translate_word(word: &str) -> String {
     // Prevent creation and compilation at every call.
     // These are compiled exactly once
-    lazy_static! {
-        // Detects if it starts with a vowel
-        static ref VOWEL: Regex = Regex::new(r"^([aeiou]|y[^aeiou]|xr)[a-z]*").unwrap();
-        // Detects splits for initial consonants
-        static ref CONSONANTS: Regex = Regex::new(r"^([^aeiou]?qu|[^aeiou][^aeiouy]*)([a-z]*)").unwrap();
-    }
+
+    // Detects if it starts with a vowel
+    static VOWEL: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"^([aeiou]|y[^aeiou]|xr)[a-z]*").unwrap());
+    // Detects splits for initial consonants
+    static CONSONANTS: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"^([^aeiou]?qu|[^aeiou][^aeiouy]*)([a-z]*)").unwrap());
 
     if VOWEL.is_match(word) {
         String::from(word) + "ay"
