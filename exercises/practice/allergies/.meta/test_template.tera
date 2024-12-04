@@ -5,7 +5,7 @@ use allergies::*;
 #[test]
 #[ignore]
 {%- if test.property == "allergicTo" %}
-{# canonical data contains multiple cases named "allergic to everything" for different items #}
+{#- canonical data contains multiple cases named "allergic to everything" for different items #}
 fn {{ test.description | make_ident }}_{{ test.input.item }}() {
     let allergies = Allergies::new({{ test.input.score }});
 {%- if test.expected %}
