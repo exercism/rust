@@ -483,7 +483,7 @@ impl<'a> Files<'a> {
     }
 }
 
-impl<'a> Drop for Files<'a> {
+impl Drop for Files<'_> {
     fn drop(&mut self) {
         for file_name in self.file_names {
             std::fs::remove_file(file_name)

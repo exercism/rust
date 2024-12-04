@@ -9,7 +9,7 @@ struct Brackets {
     pairs: MatchingBrackets,
 }
 
-impl<'a> From<&'a str> for Brackets {
+impl From<&str> for Brackets {
     fn from(i: &str) -> Self {
         Brackets::new(i, None)
     }

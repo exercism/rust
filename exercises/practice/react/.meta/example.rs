@@ -249,7 +249,7 @@ impl<'a, T: Copy + PartialEq> Reactor<'a, T> {
     }
 }
 
-impl<'a, T: Copy + PartialEq> Default for Reactor<'a, T> {
+impl<T: Copy + PartialEq> Default for Reactor<'_, T> {
     fn default() -> Self {
         Self::new()
     }

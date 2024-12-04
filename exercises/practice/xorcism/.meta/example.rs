@@ -110,7 +110,7 @@ where
     }
 }
 
-impl<'a, W> Write for Writer<'a, W>
+impl<W> Write for Writer<'_, W>
 where
     W: Write,
 {
@@ -149,7 +149,7 @@ where
     }
 }
 
-impl<'a, R> Read for Reader<'a, R>
+impl<R> Read for Reader<'_, R>
 where
     R: Read,
 {
