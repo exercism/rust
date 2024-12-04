@@ -259,7 +259,7 @@ fn drop_no_double_frees() {
     use std::cell::Cell;
     struct DropCounter<'a>(&'a Cell<usize>);
 
-    impl<'a> Drop for DropCounter<'a> {
+    impl Drop for DropCounter<'_> {
         fn drop(&mut self) {
             let num = self.0.get();
             self.0.set(num + 1);

@@ -20,7 +20,7 @@ impl Luhn for String {
     }
 }
 
-impl<'a> Luhn for &'a str {
+impl Luhn for &str {
     fn valid_luhn(&self) -> bool {
         String::from(*self).valid_luhn()
     }

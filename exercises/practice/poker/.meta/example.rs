@@ -51,7 +51,7 @@ impl fmt::Display for Suit {
     }
 }
 
-impl<'a> TryFrom<&'a str> for Suit {
+impl TryFrom<&str> for Suit {
     type Error = &'static str;
 
     fn try_from(source: &str) -> Result<Self, Self::Error> {
@@ -115,7 +115,7 @@ impl PartialOrd for Rank {
     }
 }
 
-impl<'a> TryFrom<&'a str> for Rank {
+impl TryFrom<&str> for Rank {
     type Error = &'static str;
 
     fn try_from(source: &str) -> Result<Self, Self::Error> {
@@ -160,7 +160,7 @@ impl fmt::Display for Card {
     }
 }
 
-impl<'a> TryFrom<&'a str> for Card {
+impl TryFrom<&str> for Card {
     type Error = &'static str;
 
     fn try_from(source: &str) -> Result<Self, Self::Error> {
@@ -262,7 +262,7 @@ struct Hand<'a> {
     hand_type: PokerHand,
 }
 
-impl<'a> Hand<'a> {
+impl Hand<'_> {
     fn cmp_high_card(&self, other: &Hand, card: usize) -> Ordering {
         let mut ordering = self.cards[card]
             .rank
@@ -312,13 +312,13 @@ impl<'a> Hand<'a> {
     }
 }
 
-impl<'a> fmt::Display for Hand<'a> {
+impl fmt::Display for Hand<'_> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.source)
     }
 }
 
-impl<'a> PartialOrd for Hand<'a> {
+impl PartialOrd for Hand<'_> {
     fn partial_cmp(&self, other: &Hand) -> Option<Ordering> {
         Some(self.hand_type.cmp(&other.hand_type).then_with(|| {
             use crate::PokerHand::*;
