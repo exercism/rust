@@ -1,19 +1,30 @@
-/// `Palindrome` is a newtype which only exists when the contained value is a palindrome number in base ten.
-///
-/// A struct with a single field which is used to constrain behavior like this is called a "newtype", and its use is
-/// often referred to as the "newtype pattern". This is a fairly common pattern in Rust.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Ord, PartialOrd)]
-pub struct Palindrome(u64);
+use std::cmp::Ordering;
+use std::collections::HashSet;
+
+#[derive(Debug, Clone)]
+pub struct Palindrome {
+    value: u64,
+    factors: HashSet<(u64, u64)>,
+}
 
 impl Palindrome {
-    /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
-    pub fn new(value: u64) -> Option<Palindrome> {
-        is_palindrome(value).then_some(Palindrome(value))
+    pub fn new(value: u64, first_factors: (u64, u64)) -> Palindrome {
+        Self {
+            value,
+            factors: HashSet::from([first_factors]),
+        }
     }
 
-    /// Get the value of this palindrome.
-    pub fn into_inner(self) -> u64 {
-        self.0
+    pub fn add_factor(&mut self, factor: (u64, u64)) -> bool {
+        self.factors.insert(factor)
+    }
+
+    pub fn value(&self) -> u64 {
+        self.value
+    }
+
+    pub fn factors(&self) -> &HashSet<(u64, u64)> {
+        &self.factors
     }
 }
 
@@ -22,14 +33,28 @@ pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome
     let mut pmax: Option<Palindrome> = None;
     for i in min..=max {
         for j in i..=max {
-            if let Some(palindrome) = Palindrome::new(i * j) {
-                pmin = match pmin {
-                    None => Some(palindrome),
-                    Some(prev) => Some(prev.min(palindrome)),
+            let p = i * j;
+            if is_palindrome(p) {
+                pmin = match pmin.as_ref().map(|prev| prev.value.cmp(&p)) {
+                    Some(Ordering::Less) => pmin,
+                    Some(Ordering::Equal) => {
+                        if i <= j {
+                            pmin.as_mut().unwrap().add_factor((i, j));
+                        }
+                        pmin
+                    }
+                    Some(Ordering::Greater) | None => Some(Palindrome::new(p, (i, j))),
                 };
-                pmax = match pmax {
-                    None => Some(palindrome),
-                    Some(prev) => Some(prev.max(palindrome)),
+
+                pmax = match pmax.as_ref().map(|prev| prev.value.cmp(&p)) {
+                    Some(Ordering::Greater) => pmax,
+                    Some(Ordering::Equal) => {
+                        if i <= j {
+                            pmax.as_mut().unwrap().add_factor((i, j));
+                        }
+                        pmax
+                    }
+                    Some(Ordering::Less) | None => Some(Palindrome::new(p, (i, j))),
                 };
             }
         }

@@ -1,19 +1,15 @@
-/// `Palindrome` is a newtype which only exists when the contained value is a palindrome number in base ten.
-///
-/// A struct with a single field which is used to constrain behavior like this is called a "newtype", and its use is
-/// often referred to as the "newtype pattern". This is a fairly common pattern in Rust.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Palindrome(u64);
+use std::collections::HashSet;
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Palindrome;
 
 impl Palindrome {
-    /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
-    pub fn new(value: u64) -> Option<Palindrome> {
-        todo!("if the value {value} is a palindrome return Some, otherwise return None");
+    pub fn value(&self) -> u64 {
+        todo!("return the value of the palindrome")
     }
 
-    /// Get the value of this palindrome.
-    pub fn into_inner(self) -> u64 {
-        todo!("return inner value of a Palindrome");
+    pub fn factors(&self) -> &HashSet<(u64, u64)> {
+        todo!("return the set of factors of the palindrome")
     }
 }
 
