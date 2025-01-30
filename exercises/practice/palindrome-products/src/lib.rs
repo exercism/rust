@@ -8,7 +8,7 @@ impl Palindrome {
         todo!("return the value of the palindrome")
     }
 
-    pub fn factors(&self) -> &HashSet<(u64, u64)> {
+    pub fn into_factors(self) -> HashSet<(u64, u64)> {
         todo!("return the set of factors of the palindrome")
     }
 }

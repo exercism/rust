@@ -18,7 +18,7 @@ fn {{ test.description | make_ident }}() {
         let (_, pal) = output.unwrap();
       {%- endif%}
       assert_eq!(pal.value(), {{ test.expected.value }});
-      assert_eq!(pal.factors(), &HashSet::from([
+      assert_eq!(pal.into_factors(), HashSet::from([
         {{- test.expected.factors | join(sep=", ") | replace(from="[", to="(") | replace(from="]", to=")") -}}
       ]));
     {%- endif%}

@@ -8,7 +8,7 @@ fn find_the_smallest_palindrome_from_single_digit_factors() {
 
     let (pal, _) = output.unwrap();
     assert_eq!(pal.value(), 1);
-    assert_eq!(pal.factors(), &HashSet::from([(1, 1)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(1, 1)]));
 }
 
 #[test]
@@ -19,7 +19,7 @@ fn find_the_largest_palindrome_from_single_digit_factors() {
 
     let (_, pal) = output.unwrap();
     assert_eq!(pal.value(), 9);
-    assert_eq!(pal.factors(), &HashSet::from([(1, 9), (3, 3)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(1, 9), (3, 3)]));
 }
 
 #[test]
@@ -30,7 +30,7 @@ fn find_the_smallest_palindrome_from_double_digit_factors() {
 
     let (pal, _) = output.unwrap();
     assert_eq!(pal.value(), 121);
-    assert_eq!(pal.factors(), &HashSet::from([(11, 11)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(11, 11)]));
 }
 
 #[test]
@@ -41,7 +41,7 @@ fn find_the_largest_palindrome_from_double_digit_factors() {
 
     let (_, pal) = output.unwrap();
     assert_eq!(pal.value(), 9009);
-    assert_eq!(pal.factors(), &HashSet::from([(91, 99)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(91, 99)]));
 }
 
 #[test]
@@ -52,7 +52,7 @@ fn find_the_smallest_palindrome_from_triple_digit_factors() {
 
     let (pal, _) = output.unwrap();
     assert_eq!(pal.value(), 10201);
-    assert_eq!(pal.factors(), &HashSet::from([(101, 101)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(101, 101)]));
 }
 
 #[test]
@@ -63,7 +63,7 @@ fn find_the_largest_palindrome_from_triple_digit_factors() {
 
     let (_, pal) = output.unwrap();
     assert_eq!(pal.value(), 906609);
-    assert_eq!(pal.factors(), &HashSet::from([(913, 993)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(913, 993)]));
 }
 
 #[test]
@@ -74,7 +74,7 @@ fn find_the_smallest_palindrome_from_four_digit_factors() {
 
     let (pal, _) = output.unwrap();
     assert_eq!(pal.value(), 1002001);
-    assert_eq!(pal.factors(), &HashSet::from([(1001, 1001)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(1001, 1001)]));
 }
 
 #[test]
@@ -85,7 +85,7 @@ fn find_the_largest_palindrome_from_four_digit_factors() {
 
     let (_, pal) = output.unwrap();
     assert_eq!(pal.value(), 99000099);
-    assert_eq!(pal.factors(), &HashSet::from([(9901, 9999)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(9901, 9999)]));
 }
 
 #[test]
@@ -124,5 +124,5 @@ fn smallest_product_does_not_use_the_smallest_factor() {
 
     let (pal, _) = output.unwrap();
     assert_eq!(pal.value(), 10988901);
-    assert_eq!(pal.factors(), &HashSet::from([(3297, 3333)]));
+    assert_eq!(pal.into_factors(), HashSet::from([(3297, 3333)]));
 }

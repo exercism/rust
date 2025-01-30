@@ -23,8 +23,8 @@ impl Palindrome {
         self.value
     }
 
-    pub fn factors(&self) -> &HashSet<(u64, u64)> {
-        &self.factors
+    pub fn into_factors(self) -> HashSet<(u64, u64)> {
+        self.factors
     }
 }
 
