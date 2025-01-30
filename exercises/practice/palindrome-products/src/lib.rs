@@ -1,7 +1,9 @@
 use std::collections::HashSet;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Palindrome;
+pub struct Palindrome {
+    // TODO
+}
 
 impl Palindrome {
     pub fn value(&self) -> u64 {
