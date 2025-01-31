@@ -1,42 +1,26 @@
 use palindrome_products::*;
-
-{#
-    These first two custom test cases are for the object-oriented design of the exercise.
-    They don't fit the structure of the upstream tests, so they're implemented here.
-#}
-
-#[test]
-#[ignore]
-/// test `Palindrome::new` with valid input
-fn palindrome_new_return_some() {
-    for v in [1, 11, 121, 12321, 1234321, 123454321, 543212345] {
-        assert_eq!(Palindrome::new(v).expect("is a palindrome").into_inner(), v);
-    }
-}
-
-#[test]
-#[ignore]
-/// test `Palindrome::new` with invalid input
-fn palindrome_new_return_none() {
-    for v in [12, 2322, 23443, 1233211, 8932343] {
-        assert_eq!(Palindrome::new(v), None);
-    }
-}
+use std::collections::HashSet;
 
 {% for test in cases %}
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
-    {%- if test.property == "smallest" %}
-        let output = palindrome_products({{ test.input.min }}, {{ test.input.max }}).map(|(min, _)| min.into_inner());
-    {%- else %}
-        let output = palindrome_products({{ test.input.min }}, {{ test.input.max }}).map(|(_, max)| max.into_inner());
-    {%- endif%}
+    let output = palindrome_products({{ test.input.min }}, {{ test.input.max }});
+
     {%- if test.expected.error is defined or not test.expected.value %}
-        let expected = None;
+        assert!(output.is_none());
     {%- else %}
-        let expected = Some({{ test.expected.value }});
+      assert!(output.is_some());
+
+      {% if test.property == "smallest" %}
+        let (pal, _) = output.unwrap();
+      {%- else %}
+        let (_, pal) = output.unwrap();
+      {%- endif%}
+      assert_eq!(pal.value(), {{ test.expected.value }});
+      assert_eq!(pal.into_factors(), HashSet::from([
+        {{- test.expected.factors | join(sep=", ") | replace(from="[", to="(") | replace(from="]", to=")") -}}
+      ]));
     {%- endif%}
-    assert_eq!(output, expected);
 }
 {% endfor -%}
