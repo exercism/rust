@@ -50,7 +50,7 @@ fn find<U: AsRef<[T]>, T: Ord>(array: U, key: T) -> Option<usize> {
     let mid = array.len() / 2;
 
     match array[mid].cmp(&key) {
-        Ordering::Equal => Some(offset + mid),
+        Ordering::Equal => Some(mid),
         Ordering::Greater => find(&array[..mid], key),
         Ordering::Less => find(&array[mid + 1..], key).map(|p| p + mid + 1),
     }
