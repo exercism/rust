@@ -82,7 +82,8 @@ fn graph_with_one_edge_with_keywords() {
 fn graph_with_one_attribute() {
     let graph = Graph::new().with_attrs(&[("foo", "1")]);
 
-    let expected_attrs = HashMap::from([("foo".to_string(), "1".to_string())]);
+    #[allow(clippy::useless_conversion, reason = "allow String and &str")]
+    let expected_attrs = HashMap::from([("foo".into(), "1".into())]);
 
     assert!(graph.nodes.is_empty());
 
@@ -107,10 +108,11 @@ fn graph_with_attributes() {
 
     let attrs = vec![("foo", "1"), ("title", "Testing Attrs"), ("bar", "true")];
 
+    #[allow(clippy::useless_conversion, reason = "allow String and &str")]
     let expected_attrs = HashMap::from([
-        ("foo".to_string(), "1".to_string()),
-        ("title".to_string(), "Testing Attrs".to_string()),
-        ("bar".to_string(), "true".to_string()),
+        ("foo".into(), "1".into()),
+        ("title".into(), "Testing Attrs".into()),
+        ("bar".into(), "true".into()),
     ]);
 
     let graph = Graph::new()
