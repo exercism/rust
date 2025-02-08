@@ -5,10 +5,10 @@ use atbash_cipher::*;
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
-    let output = {{ test.property }}("{{ test.input.phrase }}");
-    let expected = "{{ test.expected }}";
-
-    assert_eq!(output, expected);
+    assert_eq!(
+      {{ test.property }}("{{ test.input.phrase }}"),
+      "{{ test.expected }}"
+    );
 }
 {% endfor -%}
 {% endfor -%}
