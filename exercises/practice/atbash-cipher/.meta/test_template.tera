@@ -1,0 +1,14 @@
+use atbash_cipher as cipher;
+
+{% for group in cases %}
+{% for test in group.cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    assert_eq!(
+      cipher::{{ test.property }}("{{ test.input.phrase }}"),
+      "{{ test.expected }}"
+    );
+}
+{% endfor -%}
+{% endfor -%}

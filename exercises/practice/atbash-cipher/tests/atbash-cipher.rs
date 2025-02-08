@@ -94,6 +94,6 @@ fn decode_with_too_many_spaces() {
 fn decode_with_no_spaces() {
     assert_eq!(
         cipher::decode("zmlyhgzxovrhlugvmzhgvkkrmthglmv"),
-        "anobstacleisoftenasteppingstone",
+        "anobstacleisoftenasteppingstone"
     );
 }
