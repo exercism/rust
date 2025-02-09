@@ -17,6 +17,6 @@ impl Palindrome {
 
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
     todo!(
-        "returns the minimum and maximum number of palindromes of the products of two factors in the range {min} to {max}"
+        "returns the minimum palindrome and maximum palindrome of the products of two factors in the range {min} to {max}"
     );
 }
