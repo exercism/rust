@@ -20,4 +20,4 @@ In "Luhn: Using the From Trait" you implemented a From trait, which also require
 
 Instead of creating a Struct just to perform the validation, what if you validated the primitives (i.e, String, u8, etc.) themselves?
 
-In this exercise you'll create and implement a custom [trait](https://doc.rust-lang.org/book/2018-edition/ch10-02-traits.html) that performs the validation.
+In this exercise you'll create and implement a custom [trait](https://doc.rust-lang.org/book/ch10-02-traits.html) that performs the validation.
