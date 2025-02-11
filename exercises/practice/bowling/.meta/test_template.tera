@@ -1,0 +1,91 @@
+use bowling::*;
+
+#[test]
+#[ignore]
+fn roll_returns_a_result() {
+    let mut game = BowlingGame::new();
+    assert!(game.roll(0).is_ok());
+}
+
+{% for test in cases %}
+
+{% set_global grouped_rolls = [] %}
+{% set_global grouped_counts = [] %}
+{% for roll in test.input.previousRolls %}
+  {% if grouped_rolls | length > 0 %}
+    {% set last_group = grouped_rolls | last %}
+    {% if last_group | length == 1 %}
+      {% set twin = last_group | first %}
+      {% set current_group = [twin, roll] %}
+      {% if grouped_rolls | length > 1 %}
+        {% set previous_group = grouped_rolls | nth(n=grouped_rolls | length - 2) %}
+        {% set_global grouped_rolls = grouped_rolls | slice(start=0, end=-1) %}
+        {% if current_group == previous_group %}
+          {% if grouped_counts | length > 0 %}
+            {% set prev_count = grouped_counts | last %}
+          {% else %}
+            {% set prev_count = 0 %}
+          {% endif %}
+          {% set_global grouped_counts = grouped_counts | slice(start=0, end=-1) %}
+          {% set_global grouped_counts = grouped_counts | concat(with=prev_count + 1) %}
+        {% else %}
+          {% set_global grouped_rolls = grouped_rolls | concat(with=[current_group]) %}
+          {% set_global grouped_counts = grouped_counts | concat(with=1) %}
+        {% endif %}
+      {% else %}
+        {% set_global grouped_rolls = grouped_rolls | slice(start=0, end=-1) %}
+        {% set_global grouped_rolls = grouped_rolls | concat(with=[current_group]) %}
+      {% endif %}
+    {% elif last_group | length == 2 %}
+      {% set this_roll = [roll] %}
+      {% set_global grouped_rolls = grouped_rolls | concat(with=[this_roll]) %}
+    {% endif %}
+  {% else %}
+    {% set this_roll = [roll] %}
+    {% set_global grouped_rolls = grouped_rolls | concat(with=[this_roll]) %}
+    {% set_global grouped_counts = grouped_counts | concat(with=1) %}
+  {% endif %}
+{%- endfor %}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let mut game = BowlingGame::new();
+
+    {% for group in grouped_rolls %}
+      {% if grouped_counts | length >= loop.index %}
+        {% set group_count = grouped_counts[loop.index0] %}
+      {% else %}
+        {% set group_count = 1 %}
+      {% endif %}
+
+      {% if group_count > 1 %}
+      for _ in 0..{{group_count}} {
+        {% for roll in group %}
+          let _ = game.roll({{roll}});
+        {%- endfor %}
+      }
+      {% else %}
+      {% for roll in group %}
+        let _ = game.roll({{roll}});
+      {%- endfor %}
+      {% endif %}
+    {% endfor %}
+
+    {% if test.input.roll is defined %}
+    let last_roll = game.roll({{ test.input.roll }});
+    {% endif %}
+
+    {% if test.expected.error is defined %}
+      {% if test.expected.error == "Score cannot be taken until the end of the game" %}
+      assert_eq!(game.score(), None);
+      {% elif test.expected.error == "Cannot roll after game is over" %}
+      assert_eq!(last_roll, Err(Error::GameComplete));
+      {% elif test.expected.error == "Pin count exceeds pins on the lane" %}
+      assert_eq!(last_roll, Err(Error::NotEnoughPinsLeft));
+      {% endif %}
+    {% else %}
+      assert_eq!(game.score(), Some({{ test.expected }}))
+    {% endif %}
+}
+{% endfor %}
