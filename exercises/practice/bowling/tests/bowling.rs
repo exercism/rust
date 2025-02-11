@@ -360,7 +360,7 @@ fn second_bonus_roll_after_a_strike_in_the_last_frame_cannot_score_more_than_10_
 
 #[test]
 #[ignore]
-fn if_the_last_frame_is_a_strike_you_cannot_score_before_the_extra_rolls_are_taken() {
+fn bonus_rolls_for_a_strike_in_the_last_frame_must_be_rolled_before_score_can_be_calculated() { 
     let mut game = BowlingGame::new();
 
     for _ in 0..18 {
@@ -370,13 +370,22 @@ fn if_the_last_frame_is_a_strike_you_cannot_score_before_the_extra_rolls_are_tak
     let _ = game.roll(10);
 
     assert_eq!(game.score(), None);
+}
+
+#[test]
+#[ignore]
+fn both_bonus_rolls_for_a_strike_in_the_last_frame_must_be_rolled_before_score_can_be_calculated() {
+    let mut game = BowlingGame::new();
+
+    for _ in 0..18 {
+        let _ = game.roll(0);
+    }
 
     let _ = game.roll(10);
-
+    let _ = game.roll(10);
     assert_eq!(game.score(), None);
 
     let _ = game.roll(10);
-
     assert!(game.score().is_some());
 }
 
