@@ -1,3 +1,22 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
+
+[78a7a9f9-4490-4a47-8ee9-5a38bb47d28f]
+description = "single letter"
+
+[60dbd000-451d-44c7-bdbb-97c73ac1f497]
+description = "single score with multiple letters"
+
+[f5c5de0c-301f-4fdd-a0e5-df97d4214f54]
+description = "multiple scores with multiple letters"
+
+[5db8ea89-ecb4-4dcd-902f-2b418cc87b9d]
+description = "multiple scores with differing numbers of letters"
