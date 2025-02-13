@@ -1,38 +1,38 @@
 use std::collections::BTreeMap;
 
 #[test]
-fn transform_one_value() {
-    let input = input_from(&[(1, vec!['A'])]);
+fn single_letter() {
+    let input = BTreeMap::from([(1, vec!['A'])]);
 
-    let expected = expected_from(&[('a', 1)]);
-
-    assert_eq!(expected, etl::transform(&input));
-}
-
-#[test]
-#[ignore]
-fn transform_more_values() {
-    let input = input_from(&[(1, vec!['A', 'E', 'I', 'O', 'U'])]);
-
-    let expected = expected_from(&[('a', 1), ('e', 1), ('i', 1), ('o', 1), ('u', 1)]);
+    let expected = BTreeMap::from([('a', 1)]);
 
     assert_eq!(expected, etl::transform(&input));
 }
 
 #[test]
 #[ignore]
-fn more_keys() {
-    let input = input_from(&[(1, vec!['A', 'E']), (2, vec!['D', 'G'])]);
+fn single_score_with_multiple_letters() {
+    let input = BTreeMap::from([(1, vec!['A', 'E', 'I', 'O', 'U'])]);
 
-    let expected = expected_from(&[('a', 1), ('e', 1), ('d', 2), ('g', 2)]);
+    let expected = BTreeMap::from([('a', 1), ('e', 1), ('i', 1), ('o', 1), ('u', 1)]);
 
     assert_eq!(expected, etl::transform(&input));
 }
 
 #[test]
 #[ignore]
-fn full_dataset() {
-    let input = input_from(&[
+fn multiple_scores_with_multiple_letters() {
+    let input = BTreeMap::from([(1, vec!['A', 'E']), (2, vec!['D', 'G'])]);
+
+    let expected = BTreeMap::from([('a', 1), ('d', 2), ('e', 1), ('g', 2)]);
+
+    assert_eq!(expected, etl::transform(&input));
+}
+
+#[test]
+#[ignore]
+fn multiple_scores_with_differing_numbers_of_letters() {
+    let input = BTreeMap::from([
         (1, vec!['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']),
         (2, vec!['D', 'G']),
         (3, vec!['B', 'C', 'M', 'P']),
@@ -42,7 +42,7 @@ fn full_dataset() {
         (10, vec!['Q', 'Z']),
     ]);
 
-    let expected = expected_from(&[
+    let expected = BTreeMap::from([
         ('a', 1),
         ('b', 3),
         ('c', 3),
@@ -72,12 +72,4 @@ fn full_dataset() {
     ]);
 
     assert_eq!(expected, etl::transform(&input));
-}
-
-fn input_from(v: &[(i32, Vec<char>)]) -> BTreeMap<i32, Vec<char>> {
-    v.iter().cloned().collect()
-}
-
-fn expected_from(v: &[(char, i32)]) -> BTreeMap<char, i32> {
-    v.iter().cloned().collect()
 }

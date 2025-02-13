@@ -1,0 +1,29 @@
+use std::collections::BTreeMap;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let input = BTreeMap::from(
+      [
+        {% for value, letters in test.input.legacy %}
+        ({{value}}, vec![
+            {% for letter in letters %}
+            '{{letter}}',
+            {% endfor %}
+        ]),
+        {% endfor %}
+      ]
+    );
+
+    let expected = BTreeMap::from(
+      [
+        {% for letter, value in test.expected %}
+        ('{{letter}}', {{ value }}),
+        {% endfor %}
+      ]
+    );
+
+    assert_eq!(expected, etl::transform(&input));
+}
+{% endfor %}
