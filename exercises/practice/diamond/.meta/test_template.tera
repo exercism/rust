@@ -1,0 +1,25 @@
+use diamond::*;
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    {# 
+      rustfmt will inline array literals under a minimum length
+      For us that means up to letter E
+      We also exclude A to keep it inlined
+    #}
+    {%- if test.input.letter is matching("[B-D]") %}
+    #[rustfmt::skip]
+    {%- endif %}
+    assert_eq!(
+        get_diamond('{{ test.input.letter }}'),
+        vec![
+            {%- for line in test.expected %}
+            "{{ line }}"{% if test.expected | length > 1 %},{% endif %}
+            {%- endfor %}
+        ]
+    );
+}
+{% endfor %}
+

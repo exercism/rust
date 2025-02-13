@@ -1,13 +1,13 @@
 use diamond::*;
 
 #[test]
-fn a() {
+fn degenerate_case_with_a_single_a_row() {
     assert_eq!(get_diamond('A'), vec!["A"]);
 }
 
 #[test]
 #[ignore]
-fn b() {
+fn degenerate_case_with_no_row_containing_3_distinct_groups_of_spaces() {
     #[rustfmt::skip]
     assert_eq!(
         get_diamond('B'),
@@ -21,7 +21,7 @@ fn b() {
 
 #[test]
 #[ignore]
-fn c() {
+fn smallest_non_degenerate_case_with_odd_diamond_side_length() {
     #[rustfmt::skip]
     assert_eq!(
         get_diamond('C'),
@@ -37,7 +37,7 @@ fn c() {
 
 #[test]
 #[ignore]
-fn d() {
+fn smallest_non_degenerate_case_with_even_diamond_side_length() {
     #[rustfmt::skip]
     assert_eq!(
         get_diamond('D'),
@@ -55,7 +55,7 @@ fn d() {
 
 #[test]
 #[ignore]
-fn e() {
+fn largest_possible_diamond() {
     assert_eq!(
         get_diamond('Z'),
         vec![
