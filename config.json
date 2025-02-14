@@ -333,7 +333,8 @@
         "topics": [
           "case",
           "vectors"
-        ]
+        ],
+        "status": "deprecated"
       },
       {
         "slug": "difference-of-squares",
@@ -495,7 +496,8 @@
         "difficulty": 1,
         "topics": [
           "math"
-        ]
+        ],
+        "status": "deprecated"
       },
       {
         "slug": "series",
@@ -1079,7 +1081,8 @@
           "generics",
           "higher_order_functions",
           "move_semantics"
-        ]
+        ],
+        "status": "deprecated"
       },
       {
         "slug": "affine-cipher",
