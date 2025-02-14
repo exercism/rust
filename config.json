@@ -324,10 +324,7 @@
         "slug": "beer-song",
         "name": "Beer Song",
         "uuid": "bb42bc3a-139d-4cab-8b3a-2eac2e1b77b6",
-        "practices": [
-          "loops",
-          "strings"
-        ],
+        "practices": [],
         "prerequisites": [],
         "difficulty": 1,
         "topics": [
