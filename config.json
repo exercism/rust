@@ -495,7 +495,8 @@
         "difficulty": 1,
         "topics": [
           "math"
-        ]
+        ],
+        "status": "deprecated"
       },
       {
         "slug": "series",
