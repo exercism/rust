@@ -1080,7 +1080,8 @@
           "generics",
           "higher_order_functions",
           "move_semantics"
-        ]
+        ],
+        "status": "deprecated"
       },
       {
         "slug": "affine-cipher",
