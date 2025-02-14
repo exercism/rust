@@ -324,14 +324,16 @@
         "slug": "beer-song",
         "name": "Beer Song",
         "uuid": "bb42bc3a-139d-4cab-8b3a-2eac2e1b77b6",
-        "practices": [],
+        "practices": [
+          "loops",
+          "strings"
+        ],
         "prerequisites": [],
         "difficulty": 1,
         "topics": [
           "case",
           "vectors"
-        ],
-        "status": "deprecated"
+        ]
       },
       {
         "slug": "difference-of-squares",
@@ -493,8 +495,7 @@
         "difficulty": 1,
         "topics": [
           "math"
-        ],
-        "status": "deprecated"
+        ]
       },
       {
         "slug": "series",
