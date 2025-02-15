@@ -1,9 +1,16 @@
 {
-  "authors": [],
+  "authors": ["ellnix"],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/list-ops.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
   },
   "blurb": "Implement basic list operations."
 }
