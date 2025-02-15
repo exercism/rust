@@ -41,6 +41,14 @@ mod addition {
         let mut f = Forth::new();
         assert_eq!(f.eval("1 +"), Err(Error::StackUnderflow));
     }
+
+    #[test]
+    #[ignore]
+    fn more_than_two_values_on_the_stack() {
+        let mut f = Forth::new();
+        assert!(f.eval("1 2 3 +").is_ok());
+        assert_eq!(f.stack(), [1, 5]);
+    }
 }
 
 mod subtraction {
@@ -67,6 +75,14 @@ mod subtraction {
         let mut f = Forth::new();
         assert_eq!(f.eval("1 -"), Err(Error::StackUnderflow));
     }
+
+    #[test]
+    #[ignore]
+    fn more_than_two_values_on_the_stack() {
+        let mut f = Forth::new();
+        assert!(f.eval("1 12 3 -").is_ok());
+        assert_eq!(f.stack(), [1, 9]);
+    }
 }
 
 mod multiplication {
@@ -92,6 +108,14 @@ mod multiplication {
     fn errors_if_there_is_only_one_value_on_the_stack() {
         let mut f = Forth::new();
         assert_eq!(f.eval("1 *"), Err(Error::StackUnderflow));
+    }
+
+    #[test]
+    #[ignore]
+    fn more_than_two_values_on_the_stack() {
+        let mut f = Forth::new();
+        assert!(f.eval("1 2 3 *").is_ok());
+        assert_eq!(f.stack(), [1, 6]);
     }
 }
 
@@ -134,6 +158,14 @@ mod division {
         let mut f = Forth::new();
         assert_eq!(f.eval("1 /"), Err(Error::StackUnderflow));
     }
+
+    #[test]
+    #[ignore]
+    fn more_than_two_values_on_the_stack() {
+        let mut f = Forth::new();
+        assert!(f.eval("1 12 3 /").is_ok());
+        assert_eq!(f.stack(), [1, 4]);
+    }
 }
 
 mod combined_arithmetic {
@@ -153,6 +185,22 @@ mod combined_arithmetic {
         let mut f = Forth::new();
         assert!(f.eval("2 4 * 3 /").is_ok());
         assert_eq!(f.stack(), [2]);
+    }
+
+    #[test]
+    #[ignore]
+    fn multiplication_and_addition() {
+        let mut f = Forth::new();
+        assert!(f.eval("1 3 4 * +").is_ok());
+        assert_eq!(f.stack(), [13]);
+    }
+
+    #[test]
+    #[ignore]
+    fn addition_and_multiplication() {
+        let mut f = Forth::new();
+        assert!(f.eval("1 3 4 + *").is_ok());
+        assert_eq!(f.stack(), [7]);
     }
 }
 

@@ -133,15 +133,6 @@ fn alternate_silence() {
 
 #[test]
 #[ignore]
-fn multiple_line_question() {
-    assert_eq!(
-        reply("\nDoes this cryogenic chamber make me look fat?\nNo."),
-        "Whatever."
-    );
-}
-
-#[test]
-#[ignore]
 fn starting_with_whitespace() {
     assert_eq!(reply("         hmmmmmmm..."), "Whatever.");
 }
@@ -164,5 +155,14 @@ fn non_question_ending_with_whitespace() {
     assert_eq!(
         reply("This is a statement ending with whitespace      "),
         "Whatever."
+    );
+}
+
+#[test]
+#[ignore]
+fn multiple_line_question() {
+    assert_eq!(
+        reply("\nDoes this cryogenic chamber make\n me look fat?"),
+        "Sure."
     );
 }
