@@ -1,0 +1,50 @@
+use list_ops::*;
+
+{% for group in cases %}
+{% for test in group.cases %}
+
+{% if test.property is starting_with("fold") %}
+    {% set empty_type = "f64" %}
+{% elif test.property == "concat" %}
+    {% set empty_type = "Vec<u32>" %}
+{% else %}
+    {% set empty_type = "u32" %}
+{% endif %}
+
+#[test]
+#[ignore]
+fn {{ test.property ~ "_" ~ test.description | make_ident }}() {
+{% filter replace(from="[", to="vec![") %}
+
+    {%- for arg, value in test.input -%}
+        {% if arg == "function" %}{% continue %}{% endif %}
+        {%- set is_empty = value is iterable and value | length == 0 -%}
+
+        let {{arg}}{%- if is_empty %}: Vec<{{ empty_type }}>{% endif -%} = 
+        {% if test.property is starting_with("fold") %}
+            {% if value is number %}
+                {{ test.input[arg] }}.0
+            {% else %}
+                {{ test.input[arg] | as_str | replace(from=",", to=".0,") | replace(from="]", to=".0]") | replace(from="[.0]", to="[]") }}
+            {% endif %}
+        {% else %}
+            {{ test.input[arg] }}
+        {% endif -%};
+    {%- endfor -%}
+
+    {%- if test.input.function is defined %}
+    let function = {{ test.input.function | replace(from="(", to="|") | replace(from=")", to="|") | replace(from=" ->", to="") | replace(from="modulo", to="%")}};
+    {% endif %}
+
+    let output = {{ test.property }}(
+      {% for arg, _ in test.input %}{{arg}},{% endfor %}
+    );
+
+    let expected = {{ test.expected }}{% if test.property is starting_with("fold") %}.0{% endif %};
+
+    assert_eq!(output, expected);
+
+{% endfilter %}
+}
+{% endfor -%}
+{% endfor -%}

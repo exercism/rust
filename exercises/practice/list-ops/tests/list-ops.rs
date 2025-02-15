@@ -1,0 +1,289 @@
+use list_ops::*;
+
+#[test]
+fn append_empty_lists() {
+    let list1: Vec<u32> = vec![];
+    let list2: Vec<u32> = vec![];
+
+    let output = append(list1, list2);
+
+    let expected = vec![];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn append_list_to_empty_list() {
+    let list1: Vec<u32> = vec![];
+    let list2 = vec![1, 2, 3, 4];
+
+    let output = append(list1, list2);
+
+    let expected = vec![1, 2, 3, 4];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn append_empty_list_to_list() {
+    let list1 = vec![1, 2, 3, 4];
+    let list2: Vec<u32> = vec![];
+
+    let output = append(list1, list2);
+
+    let expected = vec![1, 2, 3, 4];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn append_non_empty_lists() {
+    let list1 = vec![1, 2];
+    let list2 = vec![2, 3, 4, 5];
+
+    let output = append(list1, list2);
+
+    let expected = vec![1, 2, 2, 3, 4, 5];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn concat_empty_list() {
+    let lists: Vec<Vec<u32>> = vec![];
+
+    let output = concat(lists);
+
+    let expected = vec![];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn concat_list_of_lists() {
+    let lists = vec![vec![1, 2], vec![3], vec![], vec![4, 5, 6]];
+
+    let output = concat(lists);
+
+    let expected = vec![1, 2, 3, 4, 5, 6];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn concat_list_of_nested_lists() {
+    let lists = vec![
+        vec![vec![1], vec![2]],
+        vec![vec![3]],
+        vec![vec![]],
+        vec![vec![4, 5, 6]],
+    ];
+
+    let output = concat(lists);
+
+    let expected = vec![vec![1], vec![2], vec![3], vec![], vec![4, 5, 6]];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn filter_empty_list() {
+    let list: Vec<u32> = vec![];
+    let function = |x| x % 2 == 1;
+
+    let output = filter(list, function);
+
+    let expected = vec![];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn filter_non_empty_list() {
+    let list = vec![1, 2, 3, 5];
+    let function = |x| x % 2 == 1;
+
+    let output = filter(list, function);
+
+    let expected = vec![1, 3, 5];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn length_empty_list() {
+    let list: Vec<u32> = vec![];
+
+    let output = length(list);
+
+    let expected = 0;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn length_non_empty_list() {
+    let list = vec![1, 2, 3, 4];
+
+    let output = length(list);
+
+    let expected = 4;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn map_empty_list() {
+    let list: Vec<u32> = vec![];
+    let function = |x| x + 1;
+
+    let output = map(list, function);
+
+    let expected = vec![];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn map_non_empty_list() {
+    let list = vec![1, 3, 5, 7];
+    let function = |x| x + 1;
+
+    let output = map(list, function);
+
+    let expected = vec![2, 4, 6, 8];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn foldl_empty_list() {
+    let list: Vec<f64> = vec![];
+    let initial = 2.0;
+    let function = |acc, el| el * acc;
+
+    let output = foldl(list, initial, function);
+
+    let expected = 2.0;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn foldl_direction_independent_function_applied_to_non_empty_list() {
+    let list = vec![1.0, 2.0, 3.0, 4.0];
+    let initial = 5.0;
+    let function = |acc, el| el + acc;
+
+    let output = foldl(list, initial, function);
+
+    let expected = 15.0;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn foldl_direction_dependent_function_applied_to_non_empty_list() {
+    let list = vec![1.0, 2.0, 3.0, 4.0];
+    let initial = 24.0;
+    let function = |acc, el| el / acc;
+
+    let output = foldl(list, initial, function);
+
+    let expected = 64.0;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn foldr_empty_list() {
+    let list: Vec<f64> = vec![];
+    let initial = 2.0;
+    let function = |acc, el| el * acc;
+
+    let output = foldr(list, initial, function);
+
+    let expected = 2.0;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn foldr_direction_independent_function_applied_to_non_empty_list() {
+    let list = vec![1.0, 2.0, 3.0, 4.0];
+    let initial = 5.0;
+    let function = |acc, el| el + acc;
+
+    let output = foldr(list, initial, function);
+
+    let expected = 15.0;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn foldr_direction_dependent_function_applied_to_non_empty_list() {
+    let list = vec![1.0, 2.0, 3.0, 4.0];
+    let initial = 24.0;
+    let function = |acc, el| el / acc;
+
+    let output = foldr(list, initial, function);
+
+    let expected = 9.0;
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn reverse_empty_list() {
+    let list: Vec<u32> = vec![];
+
+    let output = reverse(list);
+
+    let expected = vec![];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn reverse_non_empty_list() {
+    let list = vec![1, 3, 5, 7];
+
+    let output = reverse(list);
+
+    let expected = vec![7, 5, 3, 1];
+
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn reverse_list_of_lists_is_not_flattened() {
+    let list = vec![vec![1, 2], vec![3], vec![], vec![4, 5, 6]];
+
+    let output = reverse(list);
+
+    let expected = vec![vec![4, 5, 6], vec![], vec![3], vec![1, 2]];
+
+    assert_eq!(output, expected);
+}
