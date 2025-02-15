@@ -21,11 +21,11 @@ pub fn map(list: Vec<i32>, _function: impl Fn(i32) -> i32) -> Vec<i32> {
 }
 
 pub fn foldl(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) -> f64 {
-    todo!("fold (reduce) each {list:?} item into the accumulator from the left")
+    todo!("starting with {initial}, fold (reduce) each {list:?} item into the accumulator from the left")
 }
 
 pub fn foldr(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) -> f64 {
-    todo!("fold (reduce) each {list:?} item into the accumulator from the right")
+    todo!("starting with {initial}, fold (reduce) each {list:?} item into the accumulator from the right")
 }
 
 pub fn reverse<T: Debug>(list: Vec<T>) -> Vec<T> {
