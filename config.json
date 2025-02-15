@@ -1557,9 +1557,7 @@
         "name": "List Ops",
         "uuid": "4b411941-d272-4b95-8c40-5816fecf27a2",
         "practices": [],
-        "prerequisites": [
-          "accumulate"
-        ],
+        "prerequisites": [],
         "difficulty": 4,
         "topics": []
       }
