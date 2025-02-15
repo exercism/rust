@@ -1,33 +1,33 @@
 use std::fmt::Debug;
 
 pub fn append(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
-    todo!("Append the elements in {b:?} to {a:?}");
+    todo!("add all items in {b:?} to the end of the {a:?}");
 }
 
 pub fn concat<T: Debug>(list: Vec<Vec<T>>) -> Vec<T> {
-    todo!("Create a list of the items inside each list in {list:?}")
+    todo!("combine all items in all lists inside {list:?} into one flattened list")
 }
 
-pub fn filter(list: Vec<i32>, _function: impl Fn(i32) -> bool) -> Vec<i32> {
-    todo!("Remove items that don't pass the filter function from {list:#?}")
+pub fn filter(list: Vec<i32>, _predicate: impl Fn(i32) -> bool) -> Vec<i32> {
+    todo!("return the list of all items in {list:?} for which `predicate(item)` is true")
 }
 
 pub fn length(list: Vec<i32>) -> usize {
-    todo!("Calculate the length of {list:?}")
+    todo!("return the total number of items within {list:?}")
 }
 
 pub fn map(list: Vec<i32>, _function: impl Fn(i32) -> i32) -> Vec<i32> {
-    todo!("Return the result of running the map function over items in {list:?}")
+    todo!("return the list of the results of applying `function(item)` on all {list:?} items")
 }
 
 pub fn foldl(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) -> f64 {
-    todo!("Build a value starting from {initial} and applying the function on each item in {list:?} left-to-right")
+    todo!("fold (reduce) each {list:?} item into the accumulator from the left")
 }
 
 pub fn foldr(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) -> f64 {
-    todo!("Build a value starting from {initial} and applying the function on each item in {list:?} right-to-left")
+    todo!("fold (reduce) each {list:?} item into the accumulator from the right")
 }
 
 pub fn reverse<T: Debug>(mut list: Vec<T>) -> Vec<T> {
-    todo!("Reverse {list:?}")
+    todo!("Return {list:?} with al the original items, but in reverse order")
 }
