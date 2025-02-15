@@ -28,6 +28,6 @@ pub fn foldr(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) 
     todo!("fold (reduce) each {list:?} item into the accumulator from the right")
 }
 
-pub fn reverse<T: Debug>(mut list: Vec<T>) -> Vec<T> {
+pub fn reverse<T: Debug>(list: Vec<T>) -> Vec<T> {
     todo!("Return {list:?} with al the original items, but in reverse order")
 }
