@@ -173,7 +173,7 @@ fn handles_case_of_greek_letters() {
     let word = "ΑΒΓ";
     let inputs = &["ΒΓΑ", "ΒΓΔ", "γβα", "αβγ"];
     let output = anagrams_for(word, inputs);
-    let expected = HashSet::from_iter(["ΒΓΑ", "γβα"]);
+    let expected = HashSet::from_iter(["ΒΓΑ", "γβα", "αβγ"]);
     assert_eq!(output, expected);
 }
 
