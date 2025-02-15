@@ -1559,7 +1559,11 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 4,
-        "topics": []
+        "topics": [
+          "generics",
+          "higher_order_functions",
+          "move_semantics"
+        ]
       }
     ],
     "foregone": [
