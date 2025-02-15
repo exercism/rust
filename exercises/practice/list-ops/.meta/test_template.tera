@@ -6,9 +6,9 @@ use list_ops::*;
 {% if test.property is starting_with("fold") %}
     {% set empty_type = "f64" %}
 {% elif test.property == "concat" %}
-    {% set empty_type = "Vec<u32>" %}
+    {% set empty_type = "Vec<i32>" %}
 {% else %}
-    {% set empty_type = "u32" %}
+    {% set empty_type = "i32" %}
 {% endif %}
 
 #[test]

@@ -1,6 +1,6 @@
 use std::fmt::Debug;
 
-pub fn append(a: Vec<u32>, b: Vec<u32>) -> Vec<u32> {
+pub fn append(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
     todo!("Append the elements in {b:?} to {a:?}");
 }
 
@@ -8,15 +8,15 @@ pub fn concat<T: Debug>(list: Vec<Vec<T>>) -> Vec<T> {
     todo!("Create a list of the items inside each list in {list:?}")
 }
 
-pub fn filter(list: Vec<u32>, _function: impl Fn(u32) -> bool) -> Vec<u32> {
+pub fn filter(list: Vec<i32>, _function: impl Fn(i32) -> bool) -> Vec<i32> {
     todo!("Remove items that don't pass the filter function from {list:#?}")
 }
 
-pub fn length(list: Vec<u32>) -> usize {
+pub fn length(list: Vec<i32>) -> usize {
     todo!("Calculate the length of {list:?}")
 }
 
-pub fn map(list: Vec<u32>, _function: impl Fn(u32) -> u32) -> Vec<u32> {
+pub fn map(list: Vec<i32>, _function: impl Fn(i32) -> i32) -> Vec<i32> {
     todo!("Return the result of running the map function over items in {list:?}")
 }
 

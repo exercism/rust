@@ -1,4 +1,4 @@
-pub fn append(a: Vec<u32>, b: Vec<u32>) -> Vec<u32> {
+pub fn append(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
     let mut output = vec![];
 
     for item in a {
@@ -24,7 +24,7 @@ pub fn concat<T>(list: Vec<Vec<T>>) -> Vec<T> {
     output
 }
 
-pub fn filter(list: Vec<u32>, function: impl Fn(u32) -> bool) -> Vec<u32> {
+pub fn filter(list: Vec<i32>, function: impl Fn(i32) -> bool) -> Vec<i32> {
     let mut output = vec![];
 
     for item in list {
@@ -36,7 +36,7 @@ pub fn filter(list: Vec<u32>, function: impl Fn(u32) -> bool) -> Vec<u32> {
     output
 }
 
-pub fn length(list: Vec<u32>) -> usize {
+pub fn length(list: Vec<i32>) -> usize {
     let mut count = 0;
 
     for _ in list {
@@ -46,7 +46,7 @@ pub fn length(list: Vec<u32>) -> usize {
     count
 }
 
-pub fn map(list: Vec<u32>, function: impl Fn(u32) -> u32) -> Vec<u32> {
+pub fn map(list: Vec<i32>, function: impl Fn(i32) -> i32) -> Vec<i32> {
     let mut output = vec![];
 
     for item in list {

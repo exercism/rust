@@ -2,8 +2,8 @@ use list_ops::*;
 
 #[test]
 fn append_empty_lists() {
-    let list1: Vec<u32> = vec![];
-    let list2: Vec<u32> = vec![];
+    let list1: Vec<i32> = vec![];
+    let list2: Vec<i32> = vec![];
 
     let output = append(list1, list2);
 
@@ -15,7 +15,7 @@ fn append_empty_lists() {
 #[test]
 #[ignore]
 fn append_list_to_empty_list() {
-    let list1: Vec<u32> = vec![];
+    let list1: Vec<i32> = vec![];
     let list2 = vec![1, 2, 3, 4];
 
     let output = append(list1, list2);
@@ -29,7 +29,7 @@ fn append_list_to_empty_list() {
 #[ignore]
 fn append_empty_list_to_list() {
     let list1 = vec![1, 2, 3, 4];
-    let list2: Vec<u32> = vec![];
+    let list2: Vec<i32> = vec![];
 
     let output = append(list1, list2);
 
@@ -54,7 +54,7 @@ fn append_non_empty_lists() {
 #[test]
 #[ignore]
 fn concat_empty_list() {
-    let lists: Vec<Vec<u32>> = vec![];
+    let lists: Vec<Vec<i32>> = vec![];
 
     let output = concat(lists);
 
@@ -95,7 +95,7 @@ fn concat_list_of_nested_lists() {
 #[test]
 #[ignore]
 fn filter_empty_list() {
-    let list: Vec<u32> = vec![];
+    let list: Vec<i32> = vec![];
     let function = |x| x % 2 == 1;
 
     let output = filter(list, function);
@@ -121,7 +121,7 @@ fn filter_non_empty_list() {
 #[test]
 #[ignore]
 fn length_empty_list() {
-    let list: Vec<u32> = vec![];
+    let list: Vec<i32> = vec![];
 
     let output = length(list);
 
@@ -145,7 +145,7 @@ fn length_non_empty_list() {
 #[test]
 #[ignore]
 fn map_empty_list() {
-    let list: Vec<u32> = vec![];
+    let list: Vec<i32> = vec![];
     let function = |x| x + 1;
 
     let output = map(list, function);
@@ -255,7 +255,7 @@ fn foldr_direction_dependent_function_applied_to_non_empty_list() {
 #[test]
 #[ignore]
 fn reverse_empty_list() {
-    let list: Vec<u32> = vec![];
+    let list: Vec<i32> = vec![];
 
     let output = reverse(list);
 
