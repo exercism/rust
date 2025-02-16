@@ -1,31 +1,70 @@
-pub fn append(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
-    todo!("add all items in {b:?} to the end of the {a:?}");
+/// Yields each item of a and then each item of b
+pub fn append<T, I>(_a: I, _b: I) -> impl Iterator<Item = T>
+where
+    I: Iterator<Item = T>,
+{
+    // this empty iterator silences a compiler complaint that
+    // () doesn't implement Iterator
+    std::iter::empty()
 }
 
-pub fn concat<T>(_list: Vec<Vec<T>>) -> Vec<T> {
-    todo!("combine all items in all lists inside into one flattened list")
+/// Combines all items in all nested iterators inside into one flattened iterator
+pub fn concat<I, NI, T>(_nested_iter: I) -> impl Iterator<Item = T>
+where
+    NI: Iterator<Item = T>,
+    I: Iterator<Item = NI>,
+{
+    // this empty iterator silences a compiler complaint that
+    // () doesn't implement Iterator
+    std::iter::empty()
 }
 
-pub fn filter(list: Vec<i32>, _predicate: impl Fn(i32) -> bool) -> Vec<i32> {
-    todo!("return the list of all items in {list:?} for which `predicate(item)` is true")
+/// Returns an iterator of all items in iter for which `predicate(item)` is true
+pub fn filter<I, T, F>(_iter: I, _predicate: F) -> impl Iterator<Item = T>
+where
+    I: Iterator<Item = T>,
+    F: Fn(T) -> bool,
+    T: Clone,
+{
+    // this empty iterator silences a compiler complaint that
+    // () doesn't implement Iterator
+    std::iter::empty()
 }
 
-pub fn length(list: Vec<i32>) -> usize {
-    todo!("return the total number of items within {list:?}")
+pub fn length<I: Iterator<Item = T>, T>(_iter: I) -> usize {
+    todo!("return the total number of items within iter")
 }
 
-pub fn map(list: Vec<i32>, _function: impl Fn(i32) -> i32) -> Vec<i32> {
-    todo!("return the list of the results of applying `function(item)` on all {list:?} items")
+/// Returns an iterator of the results of applying `function(item)` on all iter items
+pub fn map<I, F, T, U>(_iter: I, _function: F) -> impl Iterator<Item = U>
+where
+    I: Iterator<Item = T>,
+    F: Fn(T) -> U,
+{
+    // this empty iterator silences a compiler complaint that
+    // () doesn't implement Iterator
+    std::iter::empty()
 }
 
-pub fn foldl(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) -> f64 {
-    todo!("starting with {initial}, fold (reduce) each {list:?} item into the accumulator from the left")
+pub fn foldl<I, F, T, U>(mut _iter: I, _initial: U, _function: F) -> U
+where
+    I: Iterator<Item = T>,
+    F: Fn(U, T) -> U,
+{
+    todo!("starting with initial, fold (reduce) each iter item into the accumulator from the left")
 }
 
-pub fn foldr(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) -> f64 {
-    todo!("starting with {initial}, fold (reduce) each {list:?} item into the accumulator from the right")
+pub fn foldr<I, F, T, U>(mut _iter: I, _initial: U, _function: F) -> U
+where
+    I: DoubleEndedIterator<Item = T>,
+    F: Fn(U, T) -> U,
+{
+    todo!("starting with initial, fold (reduce) each iter item into the accumulator from the right")
 }
 
-pub fn reverse<T>(_list: Vec<T>) -> Vec<T> {
-    todo!("Return list with all the original items, but in reverse order")
+/// Returns an iterator with all the original items, but in reverse order
+pub fn reverse<I: DoubleEndedIterator<Item = T>, T>(_iter: I) -> impl Iterator<Item = T> {
+    // this empty iterator silences a compiler complaint that
+    // () doesn't implement Iterator
+    std::iter::empty()
 }

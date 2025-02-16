@@ -1,83 +1,161 @@
-pub fn append(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
-    let mut output = vec![];
-
-    for item in a {
-        output.push(item);
+pub fn append<T, I>(a: I, b: I) -> impl Iterator<Item = T>
+where
+    I: Iterator<Item = T>,
+{
+    struct Append<T, I: Iterator<Item = T>> {
+        a: I,
+        b: I,
     }
 
-    for item in b {
-        output.push(item);
-    }
+    impl<T, I: Iterator<Item = T>> Iterator for Append<T, I> {
+        type Item = T;
 
-    output
-}
-
-pub fn concat<T>(list: Vec<Vec<T>>) -> Vec<T> {
-    let mut output = vec![];
-
-    for sublist in list {
-        for item in sublist {
-            output.push(item);
+        fn next(&mut self) -> Option<Self::Item> {
+            self.a.next().or_else(|| self.b.next())
         }
     }
 
-    output
+    Append { a, b }
 }
 
-pub fn filter(list: Vec<i32>, function: impl Fn(i32) -> bool) -> Vec<i32> {
-    let mut output = vec![];
+pub fn concat<I, NI, T>(list: I) -> impl Iterator<Item = T>
+where
+    NI: Iterator<Item = T>,
+    I: Iterator<Item = NI>,
+{
+    struct Concat<I: Iterator<Item = NI>, NI: Iterator<Item = T>, T> {
+        nested_list: I,
+        cur: Option<NI>,
+    }
 
-    for item in list {
-        if function(item) {
-            output.push(item);
+    impl<I: Iterator<Item = NI>, NI: Iterator<Item = T>, T> Iterator for Concat<I, NI, T> {
+        type Item = T;
+
+        fn next(&mut self) -> Option<Self::Item> {
+            if let Some(nested_iterator) = self.cur.as_mut() {
+                if let Some(val) = nested_iterator.next() {
+                    return Some(val);
+                }
+            }
+
+            if let Some(next_nested) = self.nested_list.next() {
+                self.cur = Some(next_nested);
+                self.next()
+            } else {
+                None
+            }
         }
     }
 
-    output
+    Concat {
+        nested_list: list,
+        cur: None,
+    }
 }
 
-pub fn length(list: Vec<i32>) -> usize {
-    let mut count = 0;
+pub fn filter<I, T, F>(list: I, predicate: F) -> impl Iterator<Item = T>
+where
+    I: Iterator<Item = T>,
+    F: Fn(T) -> bool,
+    T: Clone,
+{
+    struct Filter<I: Iterator<Item = T>, T: Clone, F: Fn(T) -> bool> {
+        list: I,
+        predicate: F,
+    }
+
+    impl<I, T: Clone, F> Iterator for Filter<I, T, F>
+    where
+        I: Iterator<Item = T>,
+        F: Fn(T) -> bool,
+    {
+        type Item = T;
+
+        fn next(&mut self) -> Option<Self::Item> {
+            while let Some(val) = self.list.next() {
+                if (self.predicate)(val.clone()) {
+                    return Some(val);
+                }
+            }
+
+            None
+        }
+    }
+
+    Filter { list, predicate }
+}
+
+pub fn length<I: Iterator<Item = T>, T>(list: I) -> usize {
+    let mut len = 0;
 
     for _ in list {
-        count += 1;
+        len += 1;
     }
 
-    count
+    len
 }
 
-pub fn map(list: Vec<i32>, function: impl Fn(i32) -> i32) -> Vec<i32> {
-    let mut output = vec![];
-
-    for item in list {
-        output.push(function(item));
+pub fn map<I, F, T, U>(list: I, function: F) -> impl Iterator<Item = U>
+where
+    I: Iterator<Item = T>,
+    F: Fn(T) -> U,
+{
+    struct Map<I: Iterator<Item = T>, F: Fn(T) -> U, T, U> {
+        list: I,
+        function: F,
     }
 
-    output
-}
+    impl<I: Iterator<Item = T>, F: Fn(T) -> U, T, U> Iterator for Map<I, F, T, U> {
+        type Item = U;
 
-pub fn foldl(list: Vec<f64>, initial: f64, function: impl Fn(f64, f64) -> f64) -> f64 {
-    let mut acc = initial;
-
-    for item in list {
-        acc = function(acc, item);
+        fn next(&mut self) -> Option<Self::Item> {
+            self.list.next().map(&self.function)
+        }
     }
 
-    acc
+    Map { list, function }
 }
 
-pub fn foldr(list: Vec<f64>, initial: f64, function: impl Fn(f64, f64) -> f64) -> f64 {
-    let mut acc = initial;
+pub fn foldl<I, F, T, U>(mut list: I, initial: U, function: F) -> U
+where
+    I: Iterator<Item = T>,
+    F: Fn(U, T) -> U,
+{
+    let mut result = initial;
 
-    for item in reverse(list) {
-        acc = function(acc, item);
+    while let Some(item) = list.next() {
+        result = (function)(result, item)
     }
 
-    acc
+    result
 }
 
-pub fn reverse<T>(mut list: Vec<T>) -> Vec<T> {
-    list.reverse();
+pub fn foldr<I, F, T, U>(mut list: I, initial: U, function: F) -> U
+where
+    I: DoubleEndedIterator<Item = T>,
+    F: Fn(U, T) -> U,
+{
+    let mut result = initial;
 
-    list
+    while let Some(item) = list.next_back() {
+        result = (function)(result, item)
+    }
+
+    result
+}
+
+pub fn reverse<I: DoubleEndedIterator<Item = T>, T>(list: I) -> impl Iterator<Item = T> {
+    struct Reverse<I: DoubleEndedIterator<Item = T>, T> {
+        list: I,
+    }
+
+    impl<I: DoubleEndedIterator<Item = T>, T> Iterator for Reverse<I, T> {
+        type Item = T;
+
+        fn next(&mut self) -> Option<Self::Item> {
+            self.list.next_back()
+        }
+    }
+
+    Reverse { list }
 }

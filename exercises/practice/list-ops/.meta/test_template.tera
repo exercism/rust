@@ -3,12 +3,15 @@ use list_ops::*;
 {% for group in cases %}
 {% for test in group.cases %}
 
+{% set force_nesting = false %}
+
 {% if test.property is starting_with("fold") %}
-    {% set empty_type = "f64" %}
+    {% set empty_val = "0.0f64; 0" %}
 {% elif test.property == "concat" %}
-    {% set empty_type = "Vec<i32>" %}
+    {% set empty_val = "[0i32; 0]; 0" %}
+    {% set force_nesting = true %}
 {% else %}
-    {% set empty_type = "i32" %}
+    {% set empty_val = "0i32; 0" %}
 {% endif %}
 
 #[test]
@@ -20,8 +23,10 @@ fn {{ test.property ~ "_" ~ test.description | make_ident }}() {
         {% if arg == "function" %}{% continue %}{% endif %}
         {%- set is_empty = value is iterable and value | length == 0 -%}
 
-        let {{arg}}{%- if is_empty %}: Vec<{{ empty_type }}>{% endif -%} = 
-        {% if test.property is starting_with("fold") %}
+        let {{arg}} = 
+        {% if is_empty %}
+            [{{empty_val}}]
+        {% elif test.property is starting_with("fold") %}
             {% if value is number %}
                 {{ test.input[arg] }}.0
             {% else %}
@@ -29,7 +34,12 @@ fn {{ test.property ~ "_" ~ test.description | make_ident }}() {
             {% endif %}
         {% else %}
             {{ test.input[arg] }}
-        {% endif -%};
+        {% endif -%}
+            {% if value is iterable %}
+                .into_iter()
+                {% set idiocy = value | first %}
+                {% if force_nesting or idiocy is iterable %}.map(Vec::into_iter){% endif %}
+            {% endif %};
     {%- endfor -%}
 
     {%- if test.input.function is defined %}
@@ -42,7 +52,17 @@ fn {{ test.property ~ "_" ~ test.description | make_ident }}() {
 
     let expected = {{ test.expected }}{% if test.property is starting_with("fold") %}.0{% endif %};
 
-    assert_eq!(output, expected);
+    assert_eq!(
+        output
+        {% if test.expected is iterable %}
+        {% set idiocy = test.expected | first %}
+        {% if not force_nesting and idiocy is iterable %}
+        .map(|subiter| subiter.collect::<Vec<_>>())
+        {% endif %}
+        .collect::<Vec<_>>()
+        {% endif %}, 
+      expected
+    );
 
 {% endfilter %}
 }
