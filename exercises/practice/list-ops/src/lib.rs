@@ -1,11 +1,9 @@
-use std::fmt::Debug;
-
 pub fn append(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
     todo!("add all items in {b:?} to the end of the {a:?}");
 }
 
-pub fn concat<T: Debug>(list: Vec<Vec<T>>) -> Vec<T> {
-    todo!("combine all items in all lists inside {list:?} into one flattened list")
+pub fn concat<T>(_list: Vec<Vec<T>>) -> Vec<T> {
+    todo!("combine all items in all lists inside into one flattened list")
 }
 
 pub fn filter(list: Vec<i32>, _predicate: impl Fn(i32) -> bool) -> Vec<i32> {
@@ -28,6 +26,6 @@ pub fn foldr(list: Vec<f64>, initial: f64, _function: impl Fn(f64, f64) -> f64) 
     todo!("starting with {initial}, fold (reduce) each {list:?} item into the accumulator from the right")
 }
 
-pub fn reverse<T: Debug>(list: Vec<T>) -> Vec<T> {
-    todo!("Return {list:?} with al the original items, but in reverse order")
+pub fn reverse<T>(_list: Vec<T>) -> Vec<T> {
+    todo!("Return list with all the original items, but in reverse order")
 }
