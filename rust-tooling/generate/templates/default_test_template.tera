@@ -1,6 +1,7 @@
 use crate_name::*;
 
-{% for test in cases %}
+{%- for test in cases | recursive_flat_map(attribute="cases") %}
+
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
@@ -9,4 +10,4 @@ fn {{ test.description | make_ident }}() {
     let expected = {{ test.expected | json_encode() }};
     assert_eq!(output, expected);
 }
-{% endfor -%}
+{%- endfor -%}
