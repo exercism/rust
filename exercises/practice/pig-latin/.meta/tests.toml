@@ -39,6 +39,9 @@ description = "first letter and ay are moved to the end of words that start with
 [bce94a7a-a94e-4e2b-80f4-b2bb02e40f71]
 description = "first letter and ay are moved to the end of words that start with consonants -> word beginning with q without a following u"
 
+[e59dbbe8-ccee-4619-a8e9-ce017489bfc0]
+description = "first letter and ay are moved to the end of words that start with consonants -> word beginning with consonant and vowel containing qu"
+
 [c01e049a-e3e2-451c-bf8e-e2abb7e438b8]
 description = "some letter clusters are treated like a single consonant -> word beginning with ch"
 

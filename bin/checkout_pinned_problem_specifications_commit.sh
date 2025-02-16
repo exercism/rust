@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(git rev-parse --show-toplevel)"
 
-PINNED_COMMIT_HASH="685ec55d9388937bbb3cc836b52b3ce27f208f37"
+PINNED_COMMIT_HASH="47b3bb2a1c88bf93d540916477a3b71ff94e9964"
 
 dir="$(./bin/get_problem_specifications_dir.sh)"
 

@@ -91,6 +91,15 @@ fn word_beginning_with_q_without_a_following_u() {
 
 #[test]
 #[ignore]
+fn word_beginning_with_consonant_and_vowel_containing_qu() {
+    let input = "liquid";
+    let output = translate(input);
+    let expected = "iquidlay";
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn word_beginning_with_ch() {
     let input = "chair";
     let output = translate(input);
