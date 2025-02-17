@@ -1,0 +1,76 @@
+use list_ops::*;
+
+{% for group in cases %}
+
+{% set first_exercise = group.cases | first %}
+mod {{ first_exercise.property | make_ident }} {
+    use super::*;
+
+{% for test in group.cases %}
+
+{% set force_nesting = false %}
+
+{% if test.property is starting_with("fold") %}
+    {% set empty_val = "0.0f64; 0" %}
+{% elif test.property == "concat" %}
+    {% set empty_val = "[0i32; 0]; 0" %}
+    {% set force_nesting = true %}
+{% else %}
+    {% set empty_val = "0i32; 0" %}
+{% endif %}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+{% filter replace(from="[", to="vec![") %}
+
+    {%- for arg, value in test.input -%}
+        {% if arg == "function" %}{% continue %}{% endif %}
+        {%- set is_empty = value is iterable and value | length == 0 -%}
+
+        let {{arg}} = 
+        {% if is_empty %}
+            [{{empty_val}}]
+        {% elif test.property is starting_with("fold") %}
+            {% if value is number %}
+                {{ test.input[arg] }}.0
+            {% else %}
+                {{ test.input[arg] | as_str | replace(from=",", to=".0,") | replace(from="]", to=".0]") | replace(from="[.0]", to="[]") }}
+            {% endif %}
+        {% else %}
+            {{ test.input[arg] }}
+        {% endif -%}
+            {% if value is iterable %}
+                .into_iter()
+                {% set idiocy = value | first %}
+                {% if force_nesting or idiocy is iterable %}.map(Vec::into_iter){% endif %}
+            {% endif %};
+    {%- endfor -%}
+
+    {%- if test.input.function is defined %}
+    let function = {{ test.input.function | replace(from="(", to="|") | replace(from=")", to="|") | replace(from=" ->", to="") | replace(from="modulo", to="%")}};
+    {% endif %}
+
+    let output = {{ test.property }}(
+      {% for arg, _ in test.input %}{{arg}},{% endfor %}
+    );
+
+    let expected = {{ test.expected }}{% if test.property is starting_with("fold") %}.0{% endif %};
+
+    assert_eq!(
+        output
+        {% if test.expected is iterable %}
+        {% set idiocy = test.expected | first %}
+        {% if not force_nesting and idiocy is iterable %}
+        .map(|subiter| subiter.collect::<Vec<_>>())
+        {% endif %}
+        .collect::<Vec<_>>()
+        {% endif %}, 
+      expected
+    );
+
+{% endfilter %}
+    }
+{% endfor -%}
+}
+{% endfor -%}
