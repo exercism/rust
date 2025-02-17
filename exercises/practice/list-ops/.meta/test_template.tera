@@ -3,14 +3,14 @@ use list_ops::*;
 {% for group in cases %}
 
 {% set first_exercise = group.cases | first %}
+{% if first_exercise.property == "concat" %}
+#[allow(clippy::zero_repeat_side_effects)]
+{%- endif %}
 mod {{ first_exercise.property | make_ident }} {
     use super::*;
 
 {% for test in group.cases %}
 
-{% if test.property == "concat" %}
-#[allow(clippy::zero_repeat_side_effects)]
-{% endif %}
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {

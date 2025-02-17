@@ -51,10 +51,10 @@ mod append {
     }
 }
 
+#[allow(clippy::zero_repeat_side_effects)]
 mod concat {
     use super::*;
 
-    #[allow(clippy::zero_repeat_side_effects)]
     #[test]
     #[ignore]
     fn empty_list() {
@@ -66,7 +66,6 @@ mod concat {
         assert_eq!(output.collect::<Vec<_>>(), expected);
     }
 
-    #[allow(clippy::zero_repeat_side_effects)]
     #[test]
     #[ignore]
     fn list_of_lists() {
@@ -80,7 +79,6 @@ mod concat {
         assert_eq!(output.collect::<Vec<_>>(), expected);
     }
 
-    #[allow(clippy::zero_repeat_side_effects)]
     #[test]
     #[ignore]
     fn list_of_nested_lists() {
