@@ -23,8 +23,7 @@ where
 pub fn filter<I, T, F>(_iter: I, _predicate: F) -> impl Iterator<Item = T>
 where
     I: Iterator<Item = T>,
-    F: Fn(T) -> bool,
-    T: Clone,
+    F: Fn(&T) -> bool,
 {
     // this empty iterator silences a compiler complaint that
     // () doesn't implement Iterator

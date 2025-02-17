@@ -56,29 +56,22 @@ where
 pub fn filter<I, T, F>(list: I, predicate: F) -> impl Iterator<Item = T>
 where
     I: Iterator<Item = T>,
-    F: Fn(T) -> bool,
-    T: Clone,
+    F: Fn(&T) -> bool,
 {
-    struct Filter<I: Iterator<Item = T>, T: Clone, F: Fn(T) -> bool> {
+    struct Filter<I: Iterator<Item = T>, T, F: Fn(&T) -> bool> {
         list: I,
         predicate: F,
     }
 
-    impl<I, T: Clone, F> Iterator for Filter<I, T, F>
+    impl<I, T, F> Iterator for Filter<I, T, F>
     where
         I: Iterator<Item = T>,
-        F: Fn(T) -> bool,
+        F: Fn(&T) -> bool,
     {
         type Item = T;
 
         fn next(&mut self) -> Option<Self::Item> {
-            while let Some(val) = self.list.next() {
-                if (self.predicate)(val.clone()) {
-                    return Some(val);
-                }
-            }
-
-            None
+            self.list.find(|val| (self.predicate)(val))
         }
     }
 
@@ -116,14 +109,14 @@ where
     Map { list, function }
 }
 
-pub fn foldl<I, F, T, U>(mut list: I, initial: U, function: F) -> U
+pub fn foldl<I, F, T, U>(list: I, initial: U, function: F) -> U
 where
     I: Iterator<Item = T>,
     F: Fn(U, T) -> U,
 {
     let mut result = initial;
 
-    while let Some(item) = list.next() {
+    for item in list {
         result = (function)(result, item)
     }
 
