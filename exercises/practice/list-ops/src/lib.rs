@@ -5,7 +5,7 @@ where
 {
     // this empty iterator silences a compiler complaint that
     // () doesn't implement Iterator
-    std::iter::empty()
+    std::iter::from_fn(|| todo!())
 }
 
 /// Combines all items in all nested iterators inside into one flattened iterator
@@ -16,7 +16,7 @@ where
 {
     // this empty iterator silences a compiler complaint that
     // () doesn't implement Iterator
-    std::iter::empty()
+    std::iter::from_fn(|| todo!())
 }
 
 /// Returns an iterator of all items in iter for which `predicate(item)` is true
@@ -27,7 +27,7 @@ where
 {
     // this empty iterator silences a compiler complaint that
     // () doesn't implement Iterator
-    std::iter::empty()
+    std::iter::from_fn(|| todo!())
 }
 
 pub fn length<I: Iterator<Item = T>, T>(_iter: I) -> usize {
@@ -42,7 +42,7 @@ where
 {
     // this empty iterator silences a compiler complaint that
     // () doesn't implement Iterator
-    std::iter::empty()
+    std::iter::from_fn(|| todo!())
 }
 
 pub fn foldl<I, F, T, U>(mut _iter: I, _initial: U, _function: F) -> U
@@ -65,5 +65,5 @@ where
 pub fn reverse<I: DoubleEndedIterator<Item = T>, T>(_iter: I) -> impl Iterator<Item = T> {
     // this empty iterator silences a compiler complaint that
     // () doesn't implement Iterator
-    std::iter::empty()
+    std::iter::from_fn(|| todo!())
 }
