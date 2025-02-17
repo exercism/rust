@@ -1194,6 +1194,19 @@
         ]
       },
       {
+        "slug": "list-ops",
+        "name": "List Ops",
+        "uuid": "4b411941-d272-4b95-8c40-5816fecf27a2",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4,
+        "topics": [
+          "generics",
+          "iterators",
+          "traits"
+        ]
+      },
+      {
         "slug": "phone-number",
         "name": "Phone Number",
         "uuid": "6abac1d1-0d85-4b51-8001-97a07990630d",
@@ -1550,19 +1563,6 @@
           "generics",
           "lists",
           "unsafe"
-        ]
-      },
-      {
-        "slug": "list-ops",
-        "name": "List Ops",
-        "uuid": "4b411941-d272-4b95-8c40-5816fecf27a2",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 4,
-        "topics": [
-          "generics",
-          "higher_order_functions",
-          "move_semantics"
         ]
       }
     ],
