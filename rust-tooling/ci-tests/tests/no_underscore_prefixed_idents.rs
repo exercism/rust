@@ -47,6 +47,7 @@ use utils::fs::cd_into_repo_root;
 
 static EXCEPTIONS: &[&str] = &[
     "accumulate",         // has generics (not the stub, but the solution)
+    "list-ops",           // has generics
     "circular-buffer",    // has generics
     "custom-set",         // has generics
     "doubly-linked-list", // has generics

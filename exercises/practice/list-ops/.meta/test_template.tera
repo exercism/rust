@@ -1,0 +1,78 @@
+use list_ops::*;
+
+{% for group in cases %}
+
+{% set first_exercise = group.cases | first %}
+{% if first_exercise.property == "concat" %}
+#[allow(clippy::zero_repeat_side_effects)]
+{%- endif %}
+mod {{ first_exercise.property | make_ident }} {
+    use super::*;
+
+{% for test in group.cases %}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+{% filter replace(from="[", to="vec![") %}
+
+    {%- for arg, value in test.input -%}
+    {% if arg == "function" %}{% continue %}{% endif %}
+    {%- set is_empty = value is iterable and value | length == 0 -%}
+
+    let {{arg}} = 
+        {% if is_empty %}
+            {% if test.property is starting_with("fold") %}
+                [0.0f64; 0]
+            {% elif test.property == "concat" %}
+                [[0i32; 0]; 0]
+            {% else %}
+                [0i32; 0]
+            {% endif %}
+        {% elif test.property is starting_with("fold") %}
+            {% if value is number %}
+                {{ test.input[arg] }}.0
+            {% else %}
+                {{ test.input[arg] | as_str | replace(from=",", to=".0,") | replace(from="]", to=".0]") | replace(from="[.0]", to="[]") }}
+            {% endif %}
+        {% else %}
+            {{ test.input[arg] }}
+        {% endif -%}
+            {% if value is iterable %}
+                .into_iter()
+                {% set first_item = value | first %}
+                {% if test.property == "concat" or first_item is iterable %}
+                .map(Vec::into_iter)
+                {% endif %}
+            {% endif %};
+    {%- endfor -%}
+
+    let output = {{ test.property }}(
+        {% for arg, value in test.input %}
+        {% if arg == "function" %}
+            {{ value | replace(from="(", to="|") | replace(from=")", to="|") | replace(from=" ->", to="") | replace(from="modulo", to="%")}},
+        {% else %}
+            {{arg}},
+        {% endif %}
+        {% endfor %}
+    );
+
+    let expected = {{ test.expected }}{% if test.property is starting_with("fold") %}.0{% endif %};
+
+    assert_eq!(
+        output
+        {% if test.expected is iterable %}
+        {% set first_item = test.expected | first %}
+        {% if test.property != "concat" and first_item is iterable %}
+        .map(|subiter| subiter.collect::<Vec<_>>())
+        {% endif %}
+        .collect::<Vec<_>>()
+        {% endif %}, 
+      expected
+    );
+
+{% endfilter %}
+    }
+{% endfor -%}
+}
+{% endfor -%}
