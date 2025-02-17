@@ -8,14 +8,9 @@ mod {{ first_exercise.property | make_ident }} {
 
 {% for test in group.cases %}
 
-{% if test.property is starting_with("fold") %}
-    {% set empty_val = "0.0f64; 0" %}
-{% elif test.property == "concat" %}
-    {% set empty_val = "[0i32; 0]; 0" %}
-{% else %}
-    {% set empty_val = "0i32; 0" %}
+{% if test.property == "concat" %}
+#[allow(clippy::zero_repeat_side_effects)]
 {% endif %}
-
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
@@ -27,7 +22,13 @@ fn {{ test.description | make_ident }}() {
 
     let {{arg}} = 
         {% if is_empty %}
-            [{{empty_val}}]
+            {% if test.property is starting_with("fold") %}
+                [0.0f64; 0]
+            {% elif test.property == "concat" %}
+                [[0i32; 0]; 0]
+            {% else %}
+                [0i32; 0]
+            {% endif %}
         {% elif test.property is starting_with("fold") %}
             {% if value is number %}
                 {{ test.input[arg] }}.0
