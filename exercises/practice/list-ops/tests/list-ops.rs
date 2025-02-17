@@ -7,7 +7,6 @@ mod append {
     fn empty_lists() {
         let list1 = vec![0i32; 0].into_iter();
         let list2 = vec![0i32; 0].into_iter();
-
         let output = append(list1, list2);
 
         let expected = vec![];
@@ -20,7 +19,6 @@ mod append {
     fn list_to_empty_list() {
         let list1 = vec![0i32; 0].into_iter();
         let list2 = vec![1, 2, 3, 4].into_iter();
-
         let output = append(list1, list2);
 
         let expected = vec![1, 2, 3, 4];
@@ -33,7 +31,6 @@ mod append {
     fn empty_list_to_list() {
         let list1 = vec![1, 2, 3, 4].into_iter();
         let list2 = vec![0i32; 0].into_iter();
-
         let output = append(list1, list2);
 
         let expected = vec![1, 2, 3, 4];
@@ -46,7 +43,6 @@ mod append {
     fn non_empty_lists() {
         let list1 = vec![1, 2].into_iter();
         let list2 = vec![2, 3, 4, 5].into_iter();
-
         let output = append(list1, list2);
 
         let expected = vec![1, 2, 2, 3, 4, 5];
@@ -62,7 +58,6 @@ mod concat {
     #[ignore]
     fn empty_list() {
         let lists = vec![vec![0i32; 0]; 0].into_iter().map(Vec::into_iter);
-
         let output = concat(lists);
 
         let expected = vec![];
@@ -76,7 +71,6 @@ mod concat {
         let lists = vec![vec![1, 2], vec![3], vec![], vec![4, 5, 6]]
             .into_iter()
             .map(Vec::into_iter);
-
         let output = concat(lists);
 
         let expected = vec![1, 2, 3, 4, 5, 6];
@@ -95,7 +89,6 @@ mod concat {
         ]
         .into_iter()
         .map(Vec::into_iter);
-
         let output = concat(lists);
 
         let expected = vec![vec![1], vec![2], vec![3], vec![], vec![4, 5, 6]];
@@ -111,9 +104,7 @@ mod filter {
     #[ignore]
     fn empty_list() {
         let list = vec![0i32; 0].into_iter();
-        let function = |x| x % 2 == 1;
-
-        let output = filter(list, function);
+        let output = filter(list, |x| x % 2 == 1);
 
         let expected = vec![];
 
@@ -124,9 +115,7 @@ mod filter {
     #[ignore]
     fn non_empty_list() {
         let list = vec![1, 2, 3, 5].into_iter();
-        let function = |x| x % 2 == 1;
-
-        let output = filter(list, function);
+        let output = filter(list, |x| x % 2 == 1);
 
         let expected = vec![1, 3, 5];
 
@@ -141,7 +130,6 @@ mod length {
     #[ignore]
     fn empty_list() {
         let list = vec![0i32; 0].into_iter();
-
         let output = length(list);
 
         let expected = 0;
@@ -153,7 +141,6 @@ mod length {
     #[ignore]
     fn non_empty_list() {
         let list = vec![1, 2, 3, 4].into_iter();
-
         let output = length(list);
 
         let expected = 4;
@@ -169,9 +156,7 @@ mod map {
     #[ignore]
     fn empty_list() {
         let list = vec![0i32; 0].into_iter();
-        let function = |x| x + 1;
-
-        let output = map(list, function);
+        let output = map(list, |x| x + 1);
 
         let expected = vec![];
 
@@ -182,9 +167,7 @@ mod map {
     #[ignore]
     fn non_empty_list() {
         let list = vec![1, 3, 5, 7].into_iter();
-        let function = |x| x + 1;
-
-        let output = map(list, function);
+        let output = map(list, |x| x + 1);
 
         let expected = vec![2, 4, 6, 8];
 
@@ -200,9 +183,7 @@ mod foldl {
     fn empty_list() {
         let list = vec![0.0f64; 0].into_iter();
         let initial = 2.0;
-        let function = |acc, el| el * acc;
-
-        let output = foldl(list, initial, function);
+        let output = foldl(list, initial, |acc, el| el * acc);
 
         let expected = 2.0;
 
@@ -214,9 +195,7 @@ mod foldl {
     fn direction_independent_function_applied_to_non_empty_list() {
         let list = vec![1.0, 2.0, 3.0, 4.0].into_iter();
         let initial = 5.0;
-        let function = |acc, el| el + acc;
-
-        let output = foldl(list, initial, function);
+        let output = foldl(list, initial, |acc, el| el + acc);
 
         let expected = 15.0;
 
@@ -228,9 +207,7 @@ mod foldl {
     fn direction_dependent_function_applied_to_non_empty_list() {
         let list = vec![1.0, 2.0, 3.0, 4.0].into_iter();
         let initial = 24.0;
-        let function = |acc, el| el / acc;
-
-        let output = foldl(list, initial, function);
+        let output = foldl(list, initial, |acc, el| el / acc);
 
         let expected = 64.0;
 
@@ -246,9 +223,7 @@ mod foldr {
     fn empty_list() {
         let list = vec![0.0f64; 0].into_iter();
         let initial = 2.0;
-        let function = |acc, el| el * acc;
-
-        let output = foldr(list, initial, function);
+        let output = foldr(list, initial, |acc, el| el * acc);
 
         let expected = 2.0;
 
@@ -260,9 +235,7 @@ mod foldr {
     fn direction_independent_function_applied_to_non_empty_list() {
         let list = vec![1.0, 2.0, 3.0, 4.0].into_iter();
         let initial = 5.0;
-        let function = |acc, el| el + acc;
-
-        let output = foldr(list, initial, function);
+        let output = foldr(list, initial, |acc, el| el + acc);
 
         let expected = 15.0;
 
@@ -274,9 +247,7 @@ mod foldr {
     fn direction_dependent_function_applied_to_non_empty_list() {
         let list = vec![1.0, 2.0, 3.0, 4.0].into_iter();
         let initial = 24.0;
-        let function = |acc, el| el / acc;
-
-        let output = foldr(list, initial, function);
+        let output = foldr(list, initial, |acc, el| el / acc);
 
         let expected = 9.0;
 
@@ -291,7 +262,6 @@ mod reverse {
     #[ignore]
     fn empty_list() {
         let list = vec![0i32; 0].into_iter();
-
         let output = reverse(list);
 
         let expected = vec![];
@@ -303,7 +273,6 @@ mod reverse {
     #[ignore]
     fn non_empty_list() {
         let list = vec![1, 3, 5, 7].into_iter();
-
         let output = reverse(list);
 
         let expected = vec![7, 5, 3, 1];
@@ -317,7 +286,6 @@ mod reverse {
         let list = vec![vec![1, 2], vec![3], vec![], vec![4, 5, 6]]
             .into_iter()
             .map(Vec::into_iter);
-
         let output = reverse(list);
 
         let expected = vec![vec![4, 5, 6], vec![], vec![3], vec![1, 2]];

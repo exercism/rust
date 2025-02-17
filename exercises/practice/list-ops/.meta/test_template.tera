@@ -47,12 +47,14 @@ fn {{ test.description | make_ident }}() {
             {% endif %};
     {%- endfor -%}
 
-    {%- if test.input.function is defined %}
-    let function = {{ test.input.function | replace(from="(", to="|") | replace(from=")", to="|") | replace(from=" ->", to="") | replace(from="modulo", to="%")}};
-    {% endif %}
-
     let output = {{ test.property }}(
-      {% for arg, _ in test.input %}{{arg}},{% endfor %}
+        {% for arg, value in test.input %}
+        {% if arg == "function" %}
+            {{ value | replace(from="(", to="|") | replace(from=")", to="|") | replace(from=" ->", to="") | replace(from="modulo", to="%")}},
+        {% else %}
+            {{arg}},
+        {% endif %}
+        {% endfor %}
     );
 
     let expected = {{ test.expected }}{% if test.property is starting_with("fold") %}.0{% endif %};
