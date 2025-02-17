@@ -1,6 +1,11 @@
 use list_ops::*;
 
 {% for group in cases %}
+
+{% set first_exercise = group.cases | first %}
+mod {{ first_exercise.property | make_ident }} {
+    use super::*;
+
 {% for test in group.cases %}
 
 {% set force_nesting = false %}
@@ -16,7 +21,7 @@ use list_ops::*;
 
 #[test]
 #[ignore]
-fn {{ test.property ~ "_" ~ test.description | make_ident }}() {
+fn {{ test.description | make_ident }}() {
 {% filter replace(from="[", to="vec![") %}
 
     {%- for arg, value in test.input -%}
@@ -65,6 +70,7 @@ fn {{ test.property ~ "_" ~ test.description | make_ident }}() {
     );
 
 {% endfilter %}
-}
+    }
 {% endfor -%}
+}
 {% endfor -%}
