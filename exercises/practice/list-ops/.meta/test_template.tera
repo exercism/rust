@@ -8,13 +8,10 @@ mod {{ first_exercise.property | make_ident }} {
 
 {% for test in group.cases %}
 
-{% set force_nesting = false %}
-
 {% if test.property is starting_with("fold") %}
     {% set empty_val = "0.0f64; 0" %}
 {% elif test.property == "concat" %}
     {% set empty_val = "[0i32; 0]; 0" %}
-    {% set force_nesting = true %}
 {% else %}
     {% set empty_val = "0i32; 0" %}
 {% endif %}
@@ -25,10 +22,10 @@ fn {{ test.description | make_ident }}() {
 {% filter replace(from="[", to="vec![") %}
 
     {%- for arg, value in test.input -%}
-        {% if arg == "function" %}{% continue %}{% endif %}
-        {%- set is_empty = value is iterable and value | length == 0 -%}
+    {% if arg == "function" %}{% continue %}{% endif %}
+    {%- set is_empty = value is iterable and value | length == 0 -%}
 
-        let {{arg}} = 
+    let {{arg}} = 
         {% if is_empty %}
             [{{empty_val}}]
         {% elif test.property is starting_with("fold") %}
@@ -42,8 +39,10 @@ fn {{ test.description | make_ident }}() {
         {% endif -%}
             {% if value is iterable %}
                 .into_iter()
-                {% set idiocy = value | first %}
-                {% if force_nesting or idiocy is iterable %}.map(Vec::into_iter){% endif %}
+                {% set first_item = value | first %}
+                {% if test.property == "concat" or first_item is iterable %}
+                .map(Vec::into_iter)
+                {% endif %}
             {% endif %};
     {%- endfor -%}
 
@@ -62,8 +61,8 @@ fn {{ test.description | make_ident }}() {
     assert_eq!(
         output
         {% if test.expected is iterable %}
-        {% set idiocy = test.expected | first %}
-        {% if not force_nesting and idiocy is iterable %}
+        {% set first_item = test.expected | first %}
+        {% if test.property != "concat" and first_item is iterable %}
         .map(|subiter| subiter.collect::<Vec<_>>())
         {% endif %}
         .collect::<Vec<_>>()
