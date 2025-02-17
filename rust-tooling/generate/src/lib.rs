@@ -23,17 +23,22 @@ pub struct GeneratedExercise {
     pub tests: String,
 }
 
-pub fn new(slug: &str) -> Result<GeneratedExercise> {
+pub fn new(slug: &str) -> GeneratedExercise {
     let crate_name = slug.replace('-', "_");
 
-    Ok(GeneratedExercise {
+    let tests = generate_tests(slug).unwrap_or_else(|e| {
+        eprintln!("WARNING: Failed to generate tests:\n{e:?}");
+        FALLBACK_TESTS.into()
+    });
+
+    GeneratedExercise {
         gitignore: GITIGNORE.into(),
         manifest: generate_manifest(&crate_name),
         lib_rs: LIB_RS.into(),
         example: EXAMPLE_RS.into(),
         test_template: TEST_TEMPLATE.into(),
-        tests: generate_tests(slug)?,
-    })
+        tests,
+    }
 }
 
 static GITIGNORE: &str = "\
@@ -66,6 +71,13 @@ pub fn TODO(input: TODO) -> TODO {
 ";
 
 static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.tera");
+
+static FALLBACK_TESTS: &str = "\
+#[test]
+fn invalid_template() {
+    panic!(\"The exercise generator failed to produce valid tests from the template.\");
+}
+";
 
 fn remove_excluded_tests(cases: &mut Vec<TestCase>, excluded_tests: &[String]) {
     cases.retain(|case| match case {

@@ -79,7 +79,7 @@ fn make_configlet_generate_what_it_can(slug: &str) -> Result<()> {
 }
 
 fn generate_exercise_files(slug: &str, is_update: bool) -> Result<()> {
-    let exercise = generate::new(slug).context("failed to generate exercise")?;
+    let exercise = generate::new(slug);
 
     let exercise_path = PathBuf::from("exercises/practice").join(slug);
 
