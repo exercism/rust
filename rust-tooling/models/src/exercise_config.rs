@@ -31,13 +31,19 @@ pub struct ConceptFiles {
 #[serde(deny_unknown_fields)]
 pub struct PracticeExercise {
     pub authors: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub contributors: Option<Vec<String>>,
     pub files: PracticeFiles,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub icon: Option<String>,
     pub blurb: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub source: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub source_url: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub test_runner: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub custom: Option<Custom>,
 }
 

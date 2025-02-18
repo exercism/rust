@@ -3,7 +3,10 @@ use std::path::PathBuf;
 use anyhow::{Context, Result};
 use clap::Parser;
 use cli::{prompt_for_template_generation, AddArgs, FullAddArgs, UpdateArgs};
-use models::track_config::{self, TRACK_CONFIG};
+use models::{
+    exercise_config::PracticeExercise,
+    track_config::{self, TRACK_CONFIG},
+};
 
 mod cli;
 
@@ -75,6 +78,35 @@ fn make_configlet_generate_what_it_can(slug: &str) -> Result<()> {
     if !status.success() {
         anyhow::bail!("configlet sync failed");
     }
+
+    if let Err(e) = ensure_exercise_files_are_filled(slug) {
+        eprintln!("WARNING: failed to ensure exercise files are filled:\n{e:?}");
+    }
+
+    Ok(())
+}
+
+fn ensure_exercise_files_are_filled(slug: &str) -> Result<()> {
+    let config_path = format!("exercises/practice/{slug}/.meta/config.json");
+    let config = std::fs::read_to_string(&config_path).context("failed to read exercise config")?;
+    let mut config: PracticeExercise =
+        serde_json::from_str(&config).context("failed to deserialize exercise config")?;
+
+    let ensure_filled = |list: &mut Vec<String>, content: &str| {
+        if !list.iter().any(|s| s == content) {
+            list.push(content.into())
+        }
+    };
+    ensure_filled(&mut config.files.solution, "src/lib.rs");
+    ensure_filled(&mut config.files.solution, "Cargo.toml");
+    ensure_filled(&mut config.files.test, &format!("tests/{slug}.rs"));
+    ensure_filled(&mut config.files.example, ".meta/example.rs");
+
+    let mut config =
+        serde_json::to_string_pretty(&config).context("failed to deserialize config")?;
+    config.push('\n'); // trailing newline
+    std::fs::write(config_path, config).context("failed to write config")?;
+
     Ok(())
 }
 
