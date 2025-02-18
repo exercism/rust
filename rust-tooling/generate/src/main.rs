@@ -26,6 +26,7 @@ fn add_exercise(args: AddArgs) -> Result<()> {
         slug,
         name,
         difficulty,
+        author,
     } = args.unwrap_args_or_prompt()?;
 
     let config = track_config::PracticeExercise::new(slug.clone(), name, difficulty);
@@ -46,6 +47,11 @@ You can add practices, prerequisites and topics if you like."
 
     make_configlet_generate_what_it_can(&slug)?;
 
+    if let Err(e) = ensure_exercise_files_are_filled(&slug, (!author.is_empty()).then_some(&author))
+    {
+        eprintln!("WARNING: failed to ensure exercise files are filled:\n{e:?}");
+    }
+
     let is_update = false;
     generate_exercise_files(&slug, is_update)
 }
@@ -54,6 +60,11 @@ fn update_exercise(args: UpdateArgs) -> Result<()> {
     let slug = args.unwrap_slug_or_prompt()?;
 
     make_configlet_generate_what_it_can(&slug)?;
+
+    let author = None;
+    if let Err(e) = ensure_exercise_files_are_filled(&slug, author) {
+        eprintln!("WARNING: failed to ensure exercise files are filled:\n{e:?}");
+    }
 
     let is_update = true;
     generate_exercise_files(&slug, is_update)
@@ -79,14 +90,10 @@ fn make_configlet_generate_what_it_can(slug: &str) -> Result<()> {
         anyhow::bail!("configlet sync failed");
     }
 
-    if let Err(e) = ensure_exercise_files_are_filled(slug) {
-        eprintln!("WARNING: failed to ensure exercise files are filled:\n{e:?}");
-    }
-
     Ok(())
 }
 
-fn ensure_exercise_files_are_filled(slug: &str) -> Result<()> {
+fn ensure_exercise_files_are_filled(slug: &str, author: Option<&str>) -> Result<()> {
     let config_path = format!("exercises/practice/{slug}/.meta/config.json");
     let config = std::fs::read_to_string(&config_path).context("failed to read exercise config")?;
     let mut config: PracticeExercise =
@@ -101,6 +108,10 @@ fn ensure_exercise_files_are_filled(slug: &str) -> Result<()> {
     ensure_filled(&mut config.files.solution, "Cargo.toml");
     ensure_filled(&mut config.files.test, &format!("tests/{slug}.rs"));
     ensure_filled(&mut config.files.example, ".meta/example.rs");
+
+    if let Some(author) = author {
+        ensure_filled(&mut config.authors, author);
+    }
 
     let mut config =
         serde_json::to_string_pretty(&config).context("failed to deserialize config")?;
