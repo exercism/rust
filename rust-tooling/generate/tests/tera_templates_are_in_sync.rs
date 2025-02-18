@@ -14,7 +14,7 @@ fn tera_templates_are_in_sync() {
         let exercise_dir = path.parent().unwrap().parent().unwrap();
         let slug = exercise_dir.file_name().unwrap().to_string_lossy();
 
-        let generated = generate::new(&slug).unwrap();
+        let generated = generate::new(&slug);
 
         let test_path = exercise_dir.join("tests").join(format!("{slug}.rs"));
         let on_disk = std::fs::read_to_string(test_path).unwrap();
