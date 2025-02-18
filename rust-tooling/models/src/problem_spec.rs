@@ -13,6 +13,7 @@ pub struct CanonicalData {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 #[serde(untagged)]
+#[allow(clippy::large_enum_variant)]
 pub enum TestCase {
     Single {
         #[serde(flatten)]

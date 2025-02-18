@@ -38,7 +38,7 @@ pub fn new(slug: &str) -> Result<GeneratedExercise> {
 
 static GITIGNORE: &str = "\
 /target
-/Cargo.lock
+Cargo.lock
 ";
 
 fn generate_manifest(crate_name: &str) -> String {
