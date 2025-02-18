@@ -75,7 +75,7 @@ static TEST_TEMPLATE: &str = include_str!("../templates/default_test_template.te
 static FALLBACK_TESTS: &str = "\
 #[test]
 fn invalid_template() {
-    panic!(\"The exercise generator failed to produce valid tests from the template.\");
+    panic!(\"The exercise generator failed to produce valid tests from the template. Fix `.meta/test_template.tera`. To write tests manually you MUST delete the template.\");
 }
 ";
 
