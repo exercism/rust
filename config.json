@@ -334,6 +334,15 @@
         "status": "deprecated"
       },
       {
+        "slug": "bottle-song",
+        "name": "Bottle Song",
+        "uuid": "31e8185b-39d8-48c6-88a0-f302e2864f16",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": []
+      },
+      {
         "slug": "difference-of-squares",
         "name": "Difference of Squares",
         "uuid": "aee49878-f727-400b-8fb5-eaf83447cf87",
@@ -1563,15 +1572,6 @@
           "lists",
           "unsafe"
         ]
-      },
-      {
-        "slug": "bottle-song",
-        "name": "Bottle Song",
-        "uuid": "31e8185b-39d8-48c6-88a0-f302e2864f16",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": []
       }
     ],
     "foregone": [
