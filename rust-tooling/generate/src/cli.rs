@@ -164,9 +164,16 @@ pub fn prompt_for_exercise_name(slug: &str) -> Result<String> {
 }
 
 pub fn prompt_for_author_name() -> Result<String> {
-    let git_user = git2::Repository::open(".")?
-        .config()?
-        .get_string("user.name");
+    let git_user = std::process::Command::new("git")
+        .arg("config")
+        .arg("user.name")
+        .output()
+        .map(|output| {
+            String::from_utf8(output.stdout)
+                .unwrap_or_default()
+                .trim_end()
+                .to_string()
+        });
 
     Text::new("What is your Github username? (author credit)")
         .with_initial_value(&git_user.unwrap_or_default())
