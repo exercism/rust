@@ -1563,6 +1563,15 @@
           "lists",
           "unsafe"
         ]
+      },
+      {
+        "slug": "bottle-song",
+        "name": "Bottle Song",
+        "uuid": "31e8185b-39d8-48c6-88a0-f302e2864f16",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1,
+        "topics": []
       }
     ],
     "foregone": [
