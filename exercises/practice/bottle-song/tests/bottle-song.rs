@@ -4,7 +4,13 @@ use bottle_song::*;
 fn first_generic_verse() {
     assert_eq!(
         recite(10, 1),
-        "Ten green bottles hanging on the wall,\nTen green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be nine green bottles hanging on the wall.");
+        concat!(
+            "Ten green bottles hanging on the wall,\n",
+            "Ten green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be nine green bottles hanging on the wall.",
+        )
+    );
 }
 
 #[test]
@@ -12,7 +18,13 @@ fn first_generic_verse() {
 fn last_generic_verse() {
     assert_eq!(
         recite(3, 1),
-        "Three green bottles hanging on the wall,\nThree green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be two green bottles hanging on the wall.");
+        concat!(
+            "Three green bottles hanging on the wall,\n",
+            "Three green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be two green bottles hanging on the wall.",
+        )
+    );
 }
 
 #[test]
@@ -20,7 +32,13 @@ fn last_generic_verse() {
 fn verse_with_2_bottles() {
     assert_eq!(
         recite(2, 1),
-        "Two green bottles hanging on the wall,\nTwo green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be one green bottle hanging on the wall.");
+        concat!(
+            "Two green bottles hanging on the wall,\n",
+            "Two green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be one green bottle hanging on the wall.",
+        )
+    );
 }
 
 #[test]
@@ -28,7 +46,13 @@ fn verse_with_2_bottles() {
 fn verse_with_1_bottle() {
     assert_eq!(
         recite(1, 1),
-        "One green bottle hanging on the wall,\nOne green bottle hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be no green bottles hanging on the wall.");
+        concat!(
+            "One green bottle hanging on the wall,\n",
+            "One green bottle hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be no green bottles hanging on the wall.",
+        )
+    );
 }
 
 #[test]
@@ -36,7 +60,18 @@ fn verse_with_1_bottle() {
 fn first_two_verses() {
     assert_eq!(
         recite(10, 2),
-        "Ten green bottles hanging on the wall,\nTen green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be nine green bottles hanging on the wall.\n\nNine green bottles hanging on the wall,\nNine green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be eight green bottles hanging on the wall.");
+        concat!(
+            "Ten green bottles hanging on the wall,\n",
+            "Ten green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be nine green bottles hanging on the wall.\n",
+            "\n",
+            "Nine green bottles hanging on the wall,\n",
+            "Nine green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be eight green bottles hanging on the wall.",
+        )
+    );
 }
 
 #[test]
@@ -44,7 +79,23 @@ fn first_two_verses() {
 fn last_three_verses() {
     assert_eq!(
         recite(3, 3),
-        "Three green bottles hanging on the wall,\nThree green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be two green bottles hanging on the wall.\n\nTwo green bottles hanging on the wall,\nTwo green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be one green bottle hanging on the wall.\n\nOne green bottle hanging on the wall,\nOne green bottle hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be no green bottles hanging on the wall.");
+        concat!(
+            "Three green bottles hanging on the wall,\n",
+            "Three green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be two green bottles hanging on the wall.\n",
+            "\n",
+            "Two green bottles hanging on the wall,\n",
+            "Two green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be one green bottle hanging on the wall.\n",
+            "\n",
+            "One green bottle hanging on the wall,\n",
+            "One green bottle hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be no green bottles hanging on the wall.",
+        )
+    );
 }
 
 #[test]
@@ -52,5 +103,56 @@ fn last_three_verses() {
 fn all_verses() {
     assert_eq!(
         recite(10, 10),
-        "Ten green bottles hanging on the wall,\nTen green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be nine green bottles hanging on the wall.\n\nNine green bottles hanging on the wall,\nNine green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be eight green bottles hanging on the wall.\n\nEight green bottles hanging on the wall,\nEight green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be seven green bottles hanging on the wall.\n\nSeven green bottles hanging on the wall,\nSeven green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be six green bottles hanging on the wall.\n\nSix green bottles hanging on the wall,\nSix green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be five green bottles hanging on the wall.\n\nFive green bottles hanging on the wall,\nFive green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be four green bottles hanging on the wall.\n\nFour green bottles hanging on the wall,\nFour green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be three green bottles hanging on the wall.\n\nThree green bottles hanging on the wall,\nThree green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be two green bottles hanging on the wall.\n\nTwo green bottles hanging on the wall,\nTwo green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be one green bottle hanging on the wall.\n\nOne green bottle hanging on the wall,\nOne green bottle hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be no green bottles hanging on the wall.");
+        concat!(
+            "Ten green bottles hanging on the wall,\n",
+            "Ten green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be nine green bottles hanging on the wall.\n",
+            "\n",
+            "Nine green bottles hanging on the wall,\n",
+            "Nine green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be eight green bottles hanging on the wall.\n",
+            "\n",
+            "Eight green bottles hanging on the wall,\n",
+            "Eight green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be seven green bottles hanging on the wall.\n",
+            "\n",
+            "Seven green bottles hanging on the wall,\n",
+            "Seven green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be six green bottles hanging on the wall.\n",
+            "\n",
+            "Six green bottles hanging on the wall,\n",
+            "Six green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be five green bottles hanging on the wall.\n",
+            "\n",
+            "Five green bottles hanging on the wall,\n",
+            "Five green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be four green bottles hanging on the wall.\n",
+            "\n",
+            "Four green bottles hanging on the wall,\n",
+            "Four green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be three green bottles hanging on the wall.\n",
+            "\n",
+            "Three green bottles hanging on the wall,\n",
+            "Three green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be two green bottles hanging on the wall.\n",
+            "\n",
+            "Two green bottles hanging on the wall,\n",
+            "Two green bottles hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be one green bottle hanging on the wall.\n",
+            "\n",
+            "One green bottle hanging on the wall,\n",
+            "One green bottle hanging on the wall,\n",
+            "And if one green bottle should accidentally fall,\n",
+            "There'll be no green bottles hanging on the wall.",
+        )
+    );
 }

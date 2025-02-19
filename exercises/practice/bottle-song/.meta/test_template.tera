@@ -9,7 +9,12 @@ use bottle_song::*;
 fn {{ test.description | make_ident }}() {
     assert_eq!(
         recite({{ test.input.startBottles }}, {{ test.input.takeDown }}),
-        "{{ test.expected | join(sep='\n') }}");
+        concat!(
+            {% for line in test.expected %}
+            "{{line}}{% if not loop.last %}\n{% endif %}",
+            {% endfor %}
+        )
+    );
 }
 {% endfor -%}
 {% endfor -%}
