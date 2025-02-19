@@ -37,12 +37,16 @@ pub struct AddArgs {
 
     #[arg(short, long)]
     difficulty: Option<Difficulty>,
+
+    #[arg(short, long)]
+    author: Option<String>,
 }
 
 pub struct FullAddArgs {
     pub slug: String,
     pub name: String,
     pub difficulty: track_config::Difficulty,
+    pub author: String,
 }
 
 impl AddArgs {
@@ -60,10 +64,17 @@ impl AddArgs {
             None => prompt_for_difficulty()?,
         }
         .into();
+
+        let author = match self.author {
+            Some(author) => author,
+            None => prompt_for_author_name()?,
+        };
+
         Ok(FullAddArgs {
             slug,
             name,
             difficulty,
+            author,
         })
     }
 }
@@ -150,6 +161,12 @@ pub fn prompt_for_exercise_name(slug: &str) -> Result<String> {
         .with_initial_value(&slug.to_case(Case::Title))
         .prompt()
         .context("failed to prompt for exercise name")
+}
+
+pub fn prompt_for_author_name() -> Result<String> {
+    Text::new("What is your Github username? (author credit)")
+        .prompt()
+        .context("failed to prompt for author name")
 }
 
 /// Mostly a clone of the `Difficulty` enum from `models::track_config`.
