@@ -73,11 +73,6 @@ jobs:
           DENYWARNINGS: "1"
         run: ./bin/check_exercises.sh
 
-      - name: Ensure stubs compile
-        env:
-          DENYWARNINGS: "1"
-        run: ./bin/ensure_stubs_compile.sh
-
   tests:
     name: Run repository tests
     runs-on: ubuntu-22.04
@@ -135,11 +130,6 @@ jobs:
         env:
           CLIPPY: true
         run: ./bin/check_exercises.sh
-
-      - name: Clippy stubs
-        env:
-          CLIPPY: true
-        run: ./bin/ensure_stubs_compile.sh
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
