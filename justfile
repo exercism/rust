@@ -22,7 +22,7 @@ test:
     CLIPPY=true ./bin/check_exercises.sh
     ./bin/ensure_stubs_compile.sh
     cd rust-tooling && cargo test
-    # TODO format exercises
+    ./bin/format_exercises.sh ; git diff --exit-code
 
 add-exercise *args="":
     cd rust-tooling/generate; cargo run --quiet --release -- add {{ args }}
