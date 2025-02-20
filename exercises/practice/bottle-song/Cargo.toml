@@ -1,0 +1,4 @@
+[package]
+edition = "2021"
+name = "bottle_song"
+version = "1.0.0"

@@ -1,0 +1,21 @@
+use bottle_song::*;
+
+{% for group in cases %}
+{% for subgroup in group.cases %}
+{% for test in subgroup.cases %}
+
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    assert_eq!(
+        recite({{ test.input.startBottles }}, {{ test.input.takeDown }}).trim(),
+        concat!(
+            {% for line in test.expected %}
+            "{{line}}{% if not loop.last %}\n{% endif %}",
+            {% endfor %}
+        )
+    );
+}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
