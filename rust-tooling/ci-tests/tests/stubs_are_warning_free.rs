@@ -31,6 +31,7 @@ fn stubs_are_warning_free() {
             .args([
                 "clippy",
                 "--quiet",
+                "--tests",
                 "--manifest-path",
                 &manifest.display().to_string(),
                 "--target-dir",
