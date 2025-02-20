@@ -8,10 +8,10 @@ use bottle_song::*;
 #[ignore]
 fn {{ test.description | make_ident }}() {
     assert_eq!(
-        recite({{ test.input.startBottles }}, {{ test.input.takeDown }}),
+        recite({{ test.input.startBottles }}, {{ test.input.takeDown }}).trim(),
         concat!(
             {% for line in test.expected %}
-            "{{line}}\n",
+            "{{line}}{% if not loop.last %}\n{% endif %}",
             {% endfor %}
         )
     );

@@ -3,12 +3,12 @@ use bottle_song::*;
 #[test]
 fn first_generic_verse() {
     assert_eq!(
-        recite(10, 1),
+        recite(10, 1).trim(),
         concat!(
             "Ten green bottles hanging on the wall,\n",
             "Ten green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be nine green bottles hanging on the wall.\n",
+            "There'll be nine green bottles hanging on the wall.",
         )
     );
 }
@@ -17,12 +17,12 @@ fn first_generic_verse() {
 #[ignore]
 fn last_generic_verse() {
     assert_eq!(
-        recite(3, 1),
+        recite(3, 1).trim(),
         concat!(
             "Three green bottles hanging on the wall,\n",
             "Three green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be two green bottles hanging on the wall.\n",
+            "There'll be two green bottles hanging on the wall.",
         )
     );
 }
@@ -31,12 +31,12 @@ fn last_generic_verse() {
 #[ignore]
 fn verse_with_2_bottles() {
     assert_eq!(
-        recite(2, 1),
+        recite(2, 1).trim(),
         concat!(
             "Two green bottles hanging on the wall,\n",
             "Two green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be one green bottle hanging on the wall.\n",
+            "There'll be one green bottle hanging on the wall.",
         )
     );
 }
@@ -45,12 +45,12 @@ fn verse_with_2_bottles() {
 #[ignore]
 fn verse_with_1_bottle() {
     assert_eq!(
-        recite(1, 1),
+        recite(1, 1).trim(),
         concat!(
             "One green bottle hanging on the wall,\n",
             "One green bottle hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be no green bottles hanging on the wall.\n",
+            "There'll be no green bottles hanging on the wall.",
         )
     );
 }
@@ -59,7 +59,7 @@ fn verse_with_1_bottle() {
 #[ignore]
 fn first_two_verses() {
     assert_eq!(
-        recite(10, 2),
+        recite(10, 2).trim(),
         concat!(
             "Ten green bottles hanging on the wall,\n",
             "Ten green bottles hanging on the wall,\n",
@@ -69,7 +69,7 @@ fn first_two_verses() {
             "Nine green bottles hanging on the wall,\n",
             "Nine green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be eight green bottles hanging on the wall.\n",
+            "There'll be eight green bottles hanging on the wall.",
         )
     );
 }
@@ -78,7 +78,7 @@ fn first_two_verses() {
 #[ignore]
 fn last_three_verses() {
     assert_eq!(
-        recite(3, 3),
+        recite(3, 3).trim(),
         concat!(
             "Three green bottles hanging on the wall,\n",
             "Three green bottles hanging on the wall,\n",
@@ -93,7 +93,7 @@ fn last_three_verses() {
             "One green bottle hanging on the wall,\n",
             "One green bottle hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be no green bottles hanging on the wall.\n",
+            "There'll be no green bottles hanging on the wall.",
         )
     );
 }
@@ -102,7 +102,7 @@ fn last_three_verses() {
 #[ignore]
 fn all_verses() {
     assert_eq!(
-        recite(10, 10),
+        recite(10, 10).trim(),
         concat!(
             "Ten green bottles hanging on the wall,\n",
             "Ten green bottles hanging on the wall,\n",
@@ -152,7 +152,7 @@ fn all_verses() {
             "One green bottle hanging on the wall,\n",
             "One green bottle hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be no green bottles hanging on the wall.\n",
+            "There'll be no green bottles hanging on the wall.",
         )
     );
 }
