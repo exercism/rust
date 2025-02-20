@@ -19,7 +19,7 @@ fn drop_no_leaks() {
     drop(list);
 
     let allocated_after = ALLOCATED.load(SeqCst);
-    let leaked_bytes = allocated_before - allocated_after;
+    let leaked_bytes = allocated_after - allocated_before;
     assert!(leaked_bytes == 0);
 }
 
