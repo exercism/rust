@@ -11,7 +11,7 @@ fn {{ test.description | make_ident }}() {
         recite({{ test.input.startBottles }}, {{ test.input.takeDown }}),
         concat!(
             {% for line in test.expected %}
-            "{{line}}{% if not loop.last %}\n{% endif %}",
+            "{{line}}\n",
             {% endfor %}
         )
     );

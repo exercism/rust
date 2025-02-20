@@ -17,6 +17,7 @@ pub fn recite(start_bottles: u32, take_down: u32) -> String {
         })
         .collect::<Vec<String>>()
         .join("\n\n")
+        + "\n"
 }
 
 fn number_to_eng_word(digit: u32) -> String {

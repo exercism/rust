@@ -8,7 +8,7 @@ fn first_generic_verse() {
             "Ten green bottles hanging on the wall,\n",
             "Ten green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be nine green bottles hanging on the wall.",
+            "There'll be nine green bottles hanging on the wall.\n",
         )
     );
 }
@@ -22,7 +22,7 @@ fn last_generic_verse() {
             "Three green bottles hanging on the wall,\n",
             "Three green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be two green bottles hanging on the wall.",
+            "There'll be two green bottles hanging on the wall.\n",
         )
     );
 }
@@ -36,7 +36,7 @@ fn verse_with_2_bottles() {
             "Two green bottles hanging on the wall,\n",
             "Two green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be one green bottle hanging on the wall.",
+            "There'll be one green bottle hanging on the wall.\n",
         )
     );
 }
@@ -50,7 +50,7 @@ fn verse_with_1_bottle() {
             "One green bottle hanging on the wall,\n",
             "One green bottle hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be no green bottles hanging on the wall.",
+            "There'll be no green bottles hanging on the wall.\n",
         )
     );
 }
@@ -69,7 +69,7 @@ fn first_two_verses() {
             "Nine green bottles hanging on the wall,\n",
             "Nine green bottles hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be eight green bottles hanging on the wall.",
+            "There'll be eight green bottles hanging on the wall.\n",
         )
     );
 }
@@ -93,7 +93,7 @@ fn last_three_verses() {
             "One green bottle hanging on the wall,\n",
             "One green bottle hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be no green bottles hanging on the wall.",
+            "There'll be no green bottles hanging on the wall.\n",
         )
     );
 }
@@ -152,7 +152,7 @@ fn all_verses() {
             "One green bottle hanging on the wall,\n",
             "One green bottle hanging on the wall,\n",
             "And if one green bottle should accidentally fall,\n",
-            "There'll be no green bottles hanging on the wall.",
+            "There'll be no green bottles hanging on the wall.\n",
         )
     );
 }
