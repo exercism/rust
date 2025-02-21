@@ -24,7 +24,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/crypto-square.rs"
+      "tests/crypto_square.rs"
     ],
     "example": [
       ".meta/example.rs"

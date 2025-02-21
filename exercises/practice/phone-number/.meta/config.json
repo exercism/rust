@@ -33,7 +33,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/phone-number.rs"
+      "tests/phone_number.rs"
     ],
     "example": [
       ".meta/example.rs"

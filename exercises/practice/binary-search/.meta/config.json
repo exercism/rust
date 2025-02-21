@@ -22,7 +22,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/binary-search.rs"
+      "tests/binary_search.rs"
     ],
     "example": [
       ".meta/example.rs"

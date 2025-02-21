@@ -26,7 +26,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/roman-numerals.rs"
+      "tests/roman_numerals.rs"
     ],
     "example": [
       ".meta/example.rs"

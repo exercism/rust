@@ -27,7 +27,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/pythagorean-triplet.rs"
+      "tests/pythagorean_triplet.rs"
     ],
     "example": [
       ".meta/example.rs"

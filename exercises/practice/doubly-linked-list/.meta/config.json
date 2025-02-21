@@ -16,7 +16,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/doubly-linked-list.rs"
+      "tests/doubly_linked_list.rs"
     ],
     "example": [
       ".meta/example.rs"

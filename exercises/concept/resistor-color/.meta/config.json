@@ -11,7 +11,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/resistor-color.rs"
+      "tests/resistor_color.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

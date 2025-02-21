@@ -22,7 +22,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/collatz-conjecture.rs"
+      "tests/collatz_conjecture.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/health-statistics.rs"
+      "tests/health_statistics.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

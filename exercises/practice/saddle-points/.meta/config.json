@@ -28,7 +28,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/saddle-points.rs"
+      "tests/saddle_points.rs"
     ],
     "example": [
       ".meta/example.rs"

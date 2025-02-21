@@ -25,7 +25,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/luhn-trait.rs"
+      "tests/luhn_trait.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -30,7 +30,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/hello-world.rs"
+      "tests/hello_world.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -26,7 +26,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/all-your-base.rs"
+      "tests/all_your_base.rs"
     ],
     "example": [
       ".meta/example.rs"

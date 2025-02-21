@@ -18,7 +18,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/scale-generator.rs"
+      "tests/scale_generator.rs"
     ],
     "example": [
       ".meta/example.rs"

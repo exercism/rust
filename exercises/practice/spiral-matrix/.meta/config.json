@@ -20,7 +20,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/spiral-matrix.rs"
+      "tests/spiral_matrix.rs"
     ],
     "example": [
       ".meta/example.rs"

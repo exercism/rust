@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/magazine-cutout.rs"
+      "tests/magazine_cutout.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

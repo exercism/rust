@@ -9,7 +9,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/lucians-luscious-lasagna.rs"
+      "tests/lucians_luscious_lasagna.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

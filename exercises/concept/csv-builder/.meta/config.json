@@ -10,7 +10,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/csv-builder.rs"
+      "tests/csv_builder.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

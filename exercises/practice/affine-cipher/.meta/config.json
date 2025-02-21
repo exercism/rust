@@ -16,7 +16,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/affine-cipher.rs"
+      "tests/affine_cipher.rs"
     ],
     "example": [
       ".meta/example.rs"

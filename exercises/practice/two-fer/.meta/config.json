@@ -24,7 +24,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/two-fer.rs"
+      "tests/two_fer.rs"
     ],
     "example": [
       ".meta/example.rs"

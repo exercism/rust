@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/bottle-song.rs"
+      "tests/bottle_song.rs"
     ],
     "example": [
       ".meta/example.rs"

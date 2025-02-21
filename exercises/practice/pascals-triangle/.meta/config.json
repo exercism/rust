@@ -23,7 +23,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/pascals-triangle.rs"
+      "tests/pascals_triangle.rs"
     ],
     "example": [
       ".meta/example.rs"

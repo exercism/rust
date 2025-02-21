@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/semi-structured-logs.rs"
+      "tests/semi_structured_logs.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

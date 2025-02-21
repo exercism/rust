@@ -28,7 +28,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/nucleotide-codons.rs"
+      "tests/nucleotide_codons.rs"
     ],
     "example": [
       ".meta/example.rs"

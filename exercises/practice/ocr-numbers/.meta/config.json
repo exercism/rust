@@ -25,7 +25,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/ocr-numbers.rs"
+      "tests/ocr_numbers.rs"
     ],
     "example": [
       ".meta/example.rs"

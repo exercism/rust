@@ -31,7 +31,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/grade-school.rs"
+      "tests/grade_school.rs"
     ],
     "example": [
       ".meta/example.rs"

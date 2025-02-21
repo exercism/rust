@@ -26,7 +26,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/protein-translation.rs"
+      "tests/protein_translation.rs"
     ],
     "example": [
       ".meta/example.rs"

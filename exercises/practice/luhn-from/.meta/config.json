@@ -23,7 +23,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/luhn-from.rs"
+      "tests/luhn_from.rs"
     ],
     "example": [
       ".meta/example.rs"

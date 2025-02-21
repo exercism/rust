@@ -23,7 +23,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/robot-simulator.rs"
+      "tests/robot_simulator.rs"
     ],
     "example": [
       ".meta/example.rs"

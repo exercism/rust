@@ -34,7 +34,7 @@
     ],
     "test": [
       "tests/forth.rs",
-      "tests/alloc-attack.rs"
+      "tests/alloc_attack.rs"
     ],
     "example": [
       ".meta/example.rs"

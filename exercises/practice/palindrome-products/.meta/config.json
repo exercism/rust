@@ -22,7 +22,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/palindrome-products.rs"
+      "tests/palindrome_products.rs"
     ],
     "example": [
       ".meta/example.rs"

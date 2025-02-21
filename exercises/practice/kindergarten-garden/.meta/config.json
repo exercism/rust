@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/kindergarten-garden.rs"
+      "tests/kindergarten_garden.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/rpn-calculator.rs"
+      "tests/rpn_calculator.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"
