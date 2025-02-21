@@ -16,7 +16,8 @@ fn tera_templates_are_in_sync() {
 
         let generated = generate::new(&slug);
 
-        let test_path = exercise_dir.join("tests").join(format!("{slug}.rs"));
+        let snake_slug = slug.replace('-', "_");
+        let test_path = exercise_dir.join("tests").join(format!("{snake_slug}.rs"));
         let on_disk = std::fs::read_to_string(test_path).unwrap();
 
         if generated.tests != on_disk {
