@@ -62,8 +62,10 @@ impl<T> Node<T> {
 
     // `left` and `right` must point to adjacent nodes
     unsafe fn link(mut left: NodePtr<T>, mut right: NodePtr<T>) {
-        left.as_mut().next = Some(right);
-        right.as_mut().prev = Some(left);
+        unsafe {
+            left.as_mut().next = Some(right);
+            right.as_mut().prev = Some(left);
+        }
     }
 }
 
@@ -164,11 +166,13 @@ impl<T> Cursor<'_, T> {
     // a mutable reference to its element.
     // `get_next` must return None or a pointer owned by the linked list
     unsafe fn _step(&mut self, get_next: impl Fn(&Node<T>) -> OptNodePtr<T>) -> Option<&mut T> {
-        // safe due to L1: All NodePtrs are valid
-        let new_pos = get_next(self.node?.as_ref())?;
-        self.node = Some(new_pos);
-        // returning a mutable reference is safe for the same reason peek_mut() is safe
-        Some(&mut (*new_pos.as_ptr()).element)
+        unsafe {
+            // safe due to L1: All NodePtrs are valid
+            let new_pos = get_next(self.node?.as_ref())?;
+            self.node = Some(new_pos);
+            // returning a mutable reference is safe for the same reason peek_mut() is safe
+            Some(&mut (*new_pos.as_ptr()).element)
+        }
     }
 
     pub fn take(&mut self) -> Option<T> {
