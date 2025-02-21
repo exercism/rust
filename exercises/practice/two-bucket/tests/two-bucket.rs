@@ -61,8 +61,8 @@ fn measure_one_step_using_bucket_one_of_size_1_and_bucket_two_of_size_3_start_wi
 
 #[test]
 #[ignore]
-fn measure_using_bucket_one_of_size_2_and_bucket_two_of_size_3_start_with_bucket_one_and_end_with_bucket_two(
-) {
+fn measure_using_bucket_one_of_size_2_and_bucket_two_of_size_3_start_with_bucket_one_and_end_with_bucket_two()
+ {
     let output = solve(2, 3, 3, &Bucket::One);
     let expected = Some(BucketStats {
         moves: 2,

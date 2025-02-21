@@ -153,8 +153,8 @@ fn both_hands_have_three_of_a_kind_tie_goes_to_highest_ranked_triplet() {
 
 #[test]
 #[ignore]
-fn with_multiple_decks_two_players_can_have_same_three_of_a_kind_ties_go_to_highest_remaining_cards(
-) {
+fn with_multiple_decks_two_players_can_have_same_three_of_a_kind_ties_go_to_highest_remaining_cards()
+ {
     let input = &["5S AH AS 7C AD", "4S AH AS 8C AD"];
     let output = winning_hands(input).into_iter().collect::<HashSet<_>>();
     let expected = ["4S AH AS 8C AD"].into_iter().collect::<HashSet<_>>();

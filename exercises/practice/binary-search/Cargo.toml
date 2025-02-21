@@ -1,7 +1,12 @@
 [package]
-edition = "2021"
-name = "binary-search"
-version = "1.3.0"
+name = "binary_search"
+version = "0.1.0"
+edition = "2024"
+
+# Not all libraries from crates.io are available in Exercism's test runner.
+# The full list of available libraries is here:
+# https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
+[dependencies]
 
 [features]
 generic = []

@@ -136,8 +136,8 @@ fn four_groups_of_four_are_cheaper_than_two_groups_each_of_five_and_three() {
 
 #[test]
 #[ignore]
-fn check_that_groups_of_four_are_created_properly_even_when_there_are_more_groups_of_three_than_groups_of_five(
-) {
+fn check_that_groups_of_four_are_created_properly_even_when_there_are_more_groups_of_three_than_groups_of_five()
+ {
     let input = &[
         1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5,
     ];

@@ -22,6 +22,8 @@ impl Allergies {
     }
 
     pub fn allergies(&self) -> Vec<Allergen> {
-        todo!("Return the list of allergens contained within the score with which the Allergies struct was made.");
+        todo!(
+            "Return the list of allergens contained within the score with which the Allergies struct was made."
+        );
     }
 }

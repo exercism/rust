@@ -39,7 +39,7 @@ where
     }
 
     pub fn apply_to(&self, item: T) -> String {
-        let Fizzy(ref matchers) = self;
+        let Fizzy(matchers) = self;
         let mut out = String::new();
         for matcher in matchers {
             if (matcher.matcher)(item) {
