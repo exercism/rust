@@ -23,7 +23,10 @@ impl<'a> CodonsInfo<'a> {
     }
 
     pub fn of_rna(&self, rna: &str) -> Result<Vec<&'a str>, Error> {
-        todo!("Return a list of protein names that correspond to the '{}' RNA string or Err if the RNA string is invalid", rna);
+        todo!(
+            "Return a list of protein names that correspond to the '{}' RNA string or Err if the RNA string is invalid",
+            rna
+        );
     }
 }
 

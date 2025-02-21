@@ -48,13 +48,17 @@ Cargo.lock
 
 fn generate_manifest(crate_name: &str) -> String {
     format!(
-        concat!(
-            "[package]\n",
-            "edition = \"2021\"\n",
-            "name = \"{crate_name}\"\n",
-            "version = \"1.0.0\"\n",
-        ),
-        crate_name = crate_name
+        "\
+[package]
+name = \"{crate_name}\"
+version = \"0.1.0\"
+edition = \"2024\"
+
+# Not all libraries from crates.io are available in Exercism's test runner.
+# The full list of available libraries is here:
+# https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
+[dependencies]
+"
     )
 }
 

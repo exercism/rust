@@ -76,11 +76,11 @@ struct TrackingAllocator<A: GlobalAlloc>(A, AtomicU64);
 unsafe impl<A: GlobalAlloc> GlobalAlloc for TrackingAllocator<A> {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
         self.1.fetch_add(layout.size() as u64, Ordering::SeqCst);
-        self.0.alloc(layout)
+        unsafe { self.0.alloc(layout) }
     }
 
     unsafe fn dealloc(&self, ptr: *mut u8, layout: Layout) {
-        self.0.dealloc(ptr, layout);
+        unsafe { self.0.dealloc(ptr, layout) };
         self.1.fetch_sub(layout.size() as u64, Ordering::SeqCst);
     }
 }

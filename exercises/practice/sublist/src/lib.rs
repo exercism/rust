@@ -7,5 +7,7 @@ pub enum Comparison {
 }
 
 pub fn sublist(first_list: &[i32], second_list: &[i32]) -> Comparison {
-    todo!("Determine if the {first_list:?} is equal to, sublist of, superlist of or unequal to {second_list:?}.");
+    todo!(
+        "Determine if the {first_list:?} is equal to, sublist of, superlist of or unequal to {second_list:?}."
+    );
 }

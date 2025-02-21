@@ -1,4 +1,4 @@
-use semi_structured_logs::{error, info, log, warn, LogLevel};
+use semi_structured_logs::{LogLevel, error, info, log, warn};
 
 #[test]
 fn emits_info() {
