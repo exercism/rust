@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use clap::Parser;
-use cli::{prompt_for_template_generation, AddArgs, FullAddArgs, UpdateArgs};
+use cli::{AddArgs, FullAddArgs, UpdateArgs, prompt_for_template_generation};
 use models::{
     exercise_config::PracticeExercise,
     track_config::{self, TRACK_CONFIG},
