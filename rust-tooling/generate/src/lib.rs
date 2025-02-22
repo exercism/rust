@@ -117,6 +117,7 @@ fn generate_tests(slug: &str) -> Result<String> {
     remove_excluded_tests(&mut cases, &excluded_tests);
 
     let mut context = tera::Context::new();
+    dbg!(&cases);
     context.insert("cases", &cases);
 
     let rendered = template

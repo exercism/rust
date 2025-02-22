@@ -21,7 +21,7 @@ fn tera_templates_are_in_sync() {
         let on_disk = std::fs::read_to_string(test_path).unwrap();
 
         if generated.tests != on_disk {
-            let diff = difference::Changeset::new(&on_disk, &generated.tests, "");
+            let diff = difference::Changeset::new(&on_disk, &generated.tests, "\n");
             println!("DIFF: ===\n{diff}");
             println!("GENERATED (sanity): ===\n{}", generated.tests);
 
