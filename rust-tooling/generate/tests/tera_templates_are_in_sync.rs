@@ -22,7 +22,9 @@ fn tera_templates_are_in_sync() {
 
         if generated.tests != on_disk {
             let diff = difference::Changeset::new(&on_disk, &generated.tests, "");
-            println!("{diff}");
+            println!("DIFF: ===\n{diff}");
+            println!("GENERATED (sanity): ===\n{}", generated.tests);
+
             panic!(
                 "
     The Tera template for exercise '{slug}' is not in sync.
