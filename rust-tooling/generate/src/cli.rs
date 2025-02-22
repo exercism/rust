@@ -2,7 +2,7 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use convert_case::{Case, Casing};
 use glob::glob;
-use inquire::{validator::Validation, Select, Text};
+use inquire::{Select, Text, validator::Validation};
 use models::track_config;
 
 #[derive(Parser)]

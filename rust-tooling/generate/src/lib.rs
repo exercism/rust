@@ -9,7 +9,7 @@ use tera::Tera;
 use custom_filters::CUSTOM_FILTERS;
 use models::{
     exercise_config::get_excluded_tests,
-    problem_spec::{get_additional_test_cases, get_canonical_data, TestCase},
+    problem_spec::{TestCase, get_additional_test_cases, get_canonical_data},
 };
 
 mod custom_filters;
