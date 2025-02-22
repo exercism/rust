@@ -21,6 +21,8 @@ fn tera_templates_are_in_sync() {
         let on_disk = std::fs::read_to_string(test_path).unwrap();
 
         if generated.tests != on_disk {
+            let diff = difference::Changeset::new(&on_disk, &generated.tests, "");
+            println!("{diff}");
             panic!(
                 "
     The Tera template for exercise '{slug}' is not in sync.
