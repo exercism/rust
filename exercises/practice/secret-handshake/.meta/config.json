@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/secret-handshake.rs"
+      "tests/secret_handshake.rs"
     ],
     "example": [
       ".meta/example.rs"

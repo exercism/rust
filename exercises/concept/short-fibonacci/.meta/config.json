@@ -9,7 +9,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/short-fibonacci.rs"
+      "tests/short_fibonacci.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

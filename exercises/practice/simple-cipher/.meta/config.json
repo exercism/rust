@@ -23,7 +23,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/simple-cipher.rs"
+      "tests/simple_cipher.rs"
     ],
     "example": [
       ".meta/example.rs"

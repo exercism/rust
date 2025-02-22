@@ -26,7 +26,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/reverse-string.rs"
+      "tests/reverse_string.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -12,7 +12,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/role-playing-game.rs"
+      "tests/role_playing_game.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

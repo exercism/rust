@@ -25,7 +25,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/queen-attack.rs"
+      "tests/queen_attack.rs"
     ],
     "example": [
       ".meta/example.rs"

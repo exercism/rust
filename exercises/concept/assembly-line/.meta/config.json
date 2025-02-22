@@ -9,7 +9,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/assembly-line.rs"
+      "tests/assembly_line.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

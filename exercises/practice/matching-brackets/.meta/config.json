@@ -27,7 +27,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/matching-brackets.rs"
+      "tests/matching_brackets.rs"
     ],
     "example": [
       ".meta/example.rs"

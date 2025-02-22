@@ -6,7 +6,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/list-ops.rs"
+      "tests/list_ops.rs"
     ],
     "example": [
       ".meta/example.rs"

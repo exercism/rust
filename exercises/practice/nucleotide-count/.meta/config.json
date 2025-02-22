@@ -30,7 +30,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/nucleotide-count.rs"
+      "tests/nucleotide_count.rs"
     ],
     "example": [
       ".meta/example.rs"

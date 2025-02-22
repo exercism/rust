@@ -8,7 +8,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/low-power-embedded-game.rs"
+      "tests/low_power_embedded_game.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"

@@ -27,7 +27,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/sum-of-multiples.rs"
+      "tests/sum_of_multiples.rs"
     ],
     "example": [
       ".meta/example.rs"

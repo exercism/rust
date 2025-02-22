@@ -24,7 +24,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/%{kebab_slug}.rs"
+      "tests/%{snake_slug}.rs"
     ],
     "example": [
       ".meta/example.rs"

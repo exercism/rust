@@ -28,7 +28,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/custom-set.rs"
+      "tests/custom_set.rs"
     ],
     "example": [
       ".meta/example.rs"

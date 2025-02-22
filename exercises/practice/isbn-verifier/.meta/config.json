@@ -24,7 +24,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/isbn-verifier.rs"
+      "tests/isbn_verifier.rs"
     ],
     "example": [
       ".meta/example.rs"

@@ -99,6 +99,8 @@ fn ensure_exercise_files_are_filled(slug: &str, author: Option<&str>) -> Result<
     let mut config: PracticeExercise =
         serde_json::from_str(&config).context("failed to deserialize exercise config")?;
 
+    let snake_slug = slug.replace('-', "_");
+
     let ensure_filled = |list: &mut Vec<String>, content: &str| {
         if !list.iter().any(|s| s == content) {
             list.push(content.into())
@@ -106,7 +108,7 @@ fn ensure_exercise_files_are_filled(slug: &str, author: Option<&str>) -> Result<
     };
     ensure_filled(&mut config.files.solution, "src/lib.rs");
     ensure_filled(&mut config.files.solution, "Cargo.toml");
-    ensure_filled(&mut config.files.test, &format!("tests/{slug}.rs"));
+    ensure_filled(&mut config.files.test, &format!("tests/{snake_slug}.rs"));
     ensure_filled(&mut config.files.example, ".meta/example.rs");
 
     if let Some(author) = author {
@@ -142,10 +144,12 @@ fn generate_exercise_files(slug: &str, is_update: bool) -> Result<()> {
         std::fs::write(&template_path, exercise.test_template)?;
     }
 
+    let snake_slug = slug.replace('-', "_");
+
     std::fs::create_dir(exercise_path.join("tests")).ok();
     if template_path.exists() {
         std::fs::write(
-            exercise_path.join(format!("tests/{slug}.rs")),
+            exercise_path.join(format!("tests/{snake_slug}.rs")),
             exercise.tests,
         )?;
     }

@@ -28,7 +28,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/space-age.rs"
+      "tests/space_age.rs"
     ],
     "example": [
       ".meta/example.rs"

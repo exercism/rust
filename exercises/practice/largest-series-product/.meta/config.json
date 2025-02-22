@@ -23,7 +23,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/largest-series-product.rs"
+      "tests/largest_series_product.rs"
     ],
     "example": [
       ".meta/example.rs"

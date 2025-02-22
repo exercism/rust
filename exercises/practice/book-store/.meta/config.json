@@ -20,7 +20,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/book-store.rs"
+      "tests/book_store.rs"
     ],
     "example": [
       ".meta/example.rs"

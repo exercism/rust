@@ -35,7 +35,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/rna-transcription.rs"
+      "tests/rna_transcription.rs"
     ],
     "example": [
       ".meta/example.rs"

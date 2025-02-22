@@ -20,7 +20,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/dot-dsl.rs"
+      "tests/dot_dsl.rs"
     ],
     "example": [
       ".meta/example.rs"

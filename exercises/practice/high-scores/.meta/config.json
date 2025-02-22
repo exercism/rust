@@ -14,7 +14,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/high-scores.rs"
+      "tests/high_scores.rs"
     ],
     "example": [
       ".meta/example.rs"

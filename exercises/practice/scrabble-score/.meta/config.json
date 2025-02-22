@@ -28,7 +28,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/scrabble-score.rs"
+      "tests/scrabble_score.rs"
     ],
     "example": [
       ".meta/example.rs"

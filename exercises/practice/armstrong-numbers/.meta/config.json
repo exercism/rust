@@ -24,7 +24,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/armstrong-numbers.rs"
+      "tests/armstrong_numbers.rs"
     ],
     "example": [
       ".meta/example.rs"

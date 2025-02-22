@@ -17,7 +17,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/rail-fence-cipher.rs"
+      "tests/rail_fence_cipher.rs"
     ],
     "example": [
       ".meta/example.rs"

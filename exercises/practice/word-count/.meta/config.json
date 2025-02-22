@@ -34,7 +34,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/word-count.rs"
+      "tests/word_count.rs"
     ],
     "example": [
       ".meta/example.rs"

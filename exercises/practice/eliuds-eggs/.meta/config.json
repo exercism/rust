@@ -6,7 +6,7 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/eliuds-eggs.rs"
+      "tests/eliuds_eggs.rs"
     ],
     "example": [
       ".meta/example.rs"
