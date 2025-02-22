@@ -86,6 +86,9 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Fetch configlet
+        run: ./bin/fetch-configlet
+
       - name: Checkout problem-specifications
         run: ./bin/symlink_problem_specifications.sh
 
