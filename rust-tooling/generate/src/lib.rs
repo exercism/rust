@@ -131,7 +131,7 @@ fn generate_tests(slug: &str) -> Result<String> {
     let rendered = rendered.replacen("#[ignore]\n", "", 1);
 
     let mut child = Command::new("rustfmt")
-        .args(["--color=always"])
+        .args(["--color=always", "--edition=2024"])
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
