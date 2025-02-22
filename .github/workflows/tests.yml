@@ -87,7 +87,7 @@ jobs:
           toolchain: stable
 
       - name: Run tests
-        run: cd rust-tooling/ci-tests && cargo test
+        run: cd rust-tooling && cargo test
 
   rustformat:
     name: Check Rust Formatting
