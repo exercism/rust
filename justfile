@@ -17,7 +17,7 @@ uuid:
 test:
     just configlet lint
     ./bin/lint_markdown.sh
-    # TODO shellcheck
+    shellcheck bin/*.sh
     ./bin/check_exercises.sh
     CLIPPY=true ./bin/check_exercises.sh
     cd rust-tooling && cargo test
