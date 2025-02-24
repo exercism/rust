@@ -22,7 +22,7 @@
       ".meta/example.rs"
     ]
   },
-  "blurb": "linked-list",
+  "blurb": "Write a more advanced doubly linked list implementation with cursors and iteration.",
   "custom": {
     "allowed-to-not-compile": "Stub allowed to not compile because pre_implemented module cannot be resolved by rustfmt in exercism v3 track structure"
   }
