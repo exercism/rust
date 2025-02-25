@@ -117,61 +117,61 @@ fn type_override() {
 #[test]
 #[ignore]
 fn compile_fails_comma_sep() {
-    simple_trybuild::compile_fail("comma-sep.rs");
+    simple_trybuild::compile_fail("comma_sep.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_double_commas() {
-    simple_trybuild::compile_fail("double-commas.rs");
+    simple_trybuild::compile_fail("double_commas.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_only_comma() {
-    simple_trybuild::compile_fail("only-comma.rs");
+    simple_trybuild::compile_fail("only_comma.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_single_argument() {
-    simple_trybuild::compile_fail("single-argument.rs");
+    simple_trybuild::compile_fail("single_argument.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_triple_arguments() {
-    simple_trybuild::compile_fail("triple-arguments.rs");
+    simple_trybuild::compile_fail("triple_arguments.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_only_arrow() {
-    simple_trybuild::compile_fail("only-arrow.rs");
+    simple_trybuild::compile_fail("only_arrow.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_two_arrows() {
-    simple_trybuild::compile_fail("two-arrows.rs");
+    simple_trybuild::compile_fail("two_arrows.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_leading_comma() {
-    simple_trybuild::compile_fail("leading-comma.rs");
+    simple_trybuild::compile_fail("leading_comma.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_no_comma() {
-    simple_trybuild::compile_fail("no-comma.rs");
+    simple_trybuild::compile_fail("no_comma.rs");
 }
 
 #[test]
 #[ignore]
 fn compile_fails_missing_argument() {
-    simple_trybuild::compile_fail("missing-argument.rs");
+    simple_trybuild::compile_fail("missing_argument.rs");
 }
 
 mod simple_trybuild {
@@ -189,7 +189,6 @@ mod simple_trybuild {
             file_path.into_os_string()
         );
 
-        let test_name = file_name.replace('.', "-");
         let macros_dir = ["..", "..", "target", "tests", "macros"]
             .iter()
             .collect::<PathBuf>();
@@ -201,7 +200,7 @@ mod simple_trybuild {
             .arg("--target-dir")
             .arg(macros_dir)
             .arg("--bin")
-            .arg(test_name)
+            .arg(file_name)
             .output();
 
         if let Ok(result) = result {
