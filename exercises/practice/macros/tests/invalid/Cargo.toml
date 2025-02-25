@@ -15,41 +15,41 @@ path = "../../"
 default-features = false
 
 [[bin]]
-name = "comma-sep-rs"
-path = "comma-sep.rs"
+name = "comma_sep"
+path = "comma_sep.rs"
 
 [[bin]]
-name = "double-commas-rs"
-path = "double-commas.rs"
+name = "double_commas"
+path = "double_commas.rs"
 
 [[bin]]
-name = "only-arrow-rs"
-path = "only-arrow.rs"
+name = "only_arrow"
+path = "only_arrow.rs"
 
 [[bin]]
-name = "only-comma-rs"
-path = "only-comma.rs"
+name = "only_comma"
+path = "only_comma.rs"
 
 [[bin]]
-name = "single-argument-rs"
-path = "single-argument.rs"
+name = "single_argument"
+path = "single_argument.rs"
 
 [[bin]]
-name = "triple-arguments-rs"
-path = "triple-arguments.rs"
+name = "triple_arguments"
+path = "triple_arguments.rs"
 
 [[bin]]
-name = "two-arrows-rs"
-path = "two-arrows.rs"
+name = "two_arrows"
+path = "two_arrows.rs"
 
 [[bin]]
-name = "leading-comma-rs"
-path = "leading-comma.rs"
+name = "leading_comma"
+path = "leading_comma.rs"
 
 [[bin]]
-name = "no-comma-rs"
-path = "no-comma.rs"
+name = "no_comma"
+path = "no_comma.rs"
 
 [[bin]]
-name = "missing-argument-rs"
-path = "missing-argument.rs"
+name = "missing_argument"
+path = "missing_argument.rs"
