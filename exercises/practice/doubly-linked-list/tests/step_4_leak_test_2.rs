@@ -19,8 +19,7 @@ fn drop_no_leaks() {
     drop(list);
 
     let allocated_after = ALLOCATED.load(SeqCst);
-    let leaked_bytes = allocated_before - allocated_after;
-    assert!(leaked_bytes == 0);
+    assert_eq!(allocated_before, allocated_after);
 }
 
 // Defines a wrapper around the global allocator that counts allocations
