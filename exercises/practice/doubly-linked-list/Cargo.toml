@@ -11,3 +11,7 @@ edition = "2024"
 [features]
 # check correct covariance and Send, Sync
 advanced = []
+
+[lints.clippy]
+drop_non_drop = "allow" # tests call drop before students have implemented it
+new_without_default = "allow"
