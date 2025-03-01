@@ -1,0 +1,26 @@
+use difference_of_squares as squares;
+
+{% for group in cases %}
+{% for test in group.cases %}
+
+{% if test.property == "squareOfSum" %}
+    {% set function = "square_of_sum" %}
+{% elif test.property == "sumOfSquares" %}
+    {% set function = "sum_of_squares" %}
+{% elif test.property == "differenceOfSquares" %}
+    {% set function = "difference" %}
+{% endif %}
+
+{% filter replace(from="difference_of_squares", to="difference") %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    assert_eq!(
+        {{ test.expected | fmt_num }}, 
+        squares::{{ function }}({{ test.input.number }})
+    );
+}
+{% endfilter %}
+
+{% endfor -%}
+{% endfor -%}
