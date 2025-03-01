@@ -79,6 +79,12 @@ fn paired_and_wrong_nested_brackets() {
 
 #[test]
 #[ignore]
+fn paired_and_wrong_nested_brackets_but_innermost_are_correct() {
+    assert!(!brackets_are_balanced("[({}])"));
+}
+
+#[test]
+#[ignore]
 fn paired_and_incomplete_brackets() {
     assert!(!brackets_are_balanced("{}["));
 }
@@ -91,7 +97,7 @@ fn too_many_closing_brackets() {
 
 #[test]
 #[ignore]
-fn early_incomplete_brackets() {
+fn early_unexpected_brackets() {
     assert!(!brackets_are_balanced(")()"));
 }
 
@@ -110,7 +116,7 @@ fn math_expression() {
 #[test]
 #[ignore]
 fn complex_latex_expression() {
-    let input = "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \
-                 \\end{array}\\right)";
-    assert!(brackets_are_balanced(input));
+    assert!(brackets_are_balanced(
+        "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \\end{array}\\right)"
+    ));
 }
