@@ -1,0 +1,80 @@
+use high_scores::HighScores;
+
+{% for test_or_group in cases %}
+
+{# canonical_data for this exercise is cursed #}
+{% if test_or_group.cases is defined %}
+    {% set group = test_or_group.cases %}
+{% else %}
+    {% set group = [test_or_group] %}
+{% endif %}
+
+{% for test in group %}
+
+{% set test_name = test.description | make_ident %}
+
+{# cryptic test names #}
+{% if test.scenarios is iterable and "immutable" in test.scenarios %}
+    {% set test_name = test_name | replace(from="_after", to="_unchanged_after") %}
+{% endif %}
+
+#[test]
+#[ignore]
+fn {{ test_name }}() {
+    {% if test.property is starting_with("score") %}
+        let expected = {{ test.input.scores }};
+        let high_scores = HighScores::new(&expected);
+    {% else %}
+        let high_scores = HighScores::new(&{{ test.input.scores }});
+    {% endif %}
+
+    {% if test.property is ending_with("AfterTopThree") %}
+        let _ = high_scores.personal_top_three();
+    {% elif test.property is ending_with("AfterBest") %}
+        let _ = high_scores.personal_best();
+    {% endif %}
+
+
+    {% if test.property is starting_with("score") %}
+        assert_eq!(high_scores.scores(), &expected);
+    {% elif test.property is starting_with("latest") %}
+        assert_eq!(high_scores.latest(), Some({{ test.expected }}));
+    {% elif test.property == "personalBest" %}
+        assert_eq!(high_scores.personal_best(), Some({{ test.expected }}));
+    {% elif test.property == "personalTopThree" %}
+        assert_eq!(high_scores.personal_top_three(), vec!{{ test.expected }});
+    {% else %}
+        // Causing a compiler error to bring test to attention
+        Unexpected property in high-scores test
+    {% endif %}
+}
+{% endfor %}
+{% endfor %}
+
+{# 
+    Unique rust tests using None and is_empty.
+    Don't make sense to have additional tests json file 
+    since each of these would be an exception in the template 
+    and it would be no simpler
+#}
+
+#[test]
+#[ignore]
+fn latest_score_empty() {
+    let high_scores = HighScores::new(&[]);
+    assert_eq!(high_scores.latest(), None);
+}
+
+#[test]
+#[ignore]
+fn personal_best_empty() {
+    let high_scores = HighScores::new(&[]);
+    assert_eq!(high_scores.personal_best(), None);
+}
+
+#[test]
+#[ignore]
+fn personal_top_three_empty() {
+    let high_scores = HighScores::new(&[]);
+    assert!(high_scores.personal_top_three().is_empty());
+}
