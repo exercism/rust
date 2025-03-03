@@ -70,6 +70,18 @@ fn a_span_is_longer_than_number_is_an_error() {
 
 #[test]
 #[ignore]
+fn empty_string_and_zero_span_is_one() {
+    assert_eq!(Ok(1), lsp("", 0));
+}
+
+#[test]
+#[ignore]
+fn zero_span_is_one() {
+    assert_eq!(Ok(1), lsp("123", 0));
+}
+
+#[test]
+#[ignore]
 fn empty_string_and_non_zero_span_is_an_error() {
     assert_eq!(Err(Error::SpanTooLong), lsp("", 1));
 }
