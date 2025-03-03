@@ -1,6 +1,13 @@
-# This is an auto-generated file. Regular comments will be removed when this
-# file is regenerated. Regenerating will not touch any manually added keys,
-# so comments can be added in a "comment" key.
+# This is an auto-generated file.
+#
+# Regenerating this file via `configlet sync` will:
+# - Recreate every `description` key/value pair
+# - Recreate every `reimplements` key/value pair, where they exist in problem-specifications
+# - Remove any `include = true` key/value pair (an omitted `include` key implies inclusion)
+# - Preserve any other key/value pair
+#
+# As user-added comments (using the # character) will be removed when this file
+# is regenerated, comments can be added via a `comment` key.
 
 [5ee54e1a-b554-4bf3-a056-9a7976c3f7e8]
 description = "Recognizes 0"
@@ -8,8 +15,20 @@ description = "Recognizes 0"
 [027ada25-17fd-4d78-aee6-35a19623639d]
 description = "Recognizes 1"
 
+[3cce2dbd-01d9-4f94-8fae-419a822e89bb]
+description = "Unreadable but correctly sized inputs return ?"
+
+[cb19b733-4e36-4cf9-a4a1-6e6aac808b9a]
+description = "Input with a number of lines that is not a multiple of four raises an error"
+
+[235f7bd1-991b-4587-98d4-84206eec4cc6]
+description = "Input with a number of columns that is not a multiple of three raises an error"
+
 [4a841794-73c9-4da9-a779-1f9837faff66]
 description = "Recognizes 110101100"
+
+[70c338f9-85b1-4296-a3a8-122901cdfde8]
+description = "Garbled numbers in a string are replaced with ?"
 
 [ea494ff4-3610-44d7-ab7e-72fdef0e0802]
 description = "Recognizes 2"
@@ -37,3 +56,6 @@ description = "Recognizes 9"
 
 [f60cb04a-42be-494e-a535-3451c8e097a4]
 description = "Recognizes string of decimal numbers"
+
+[b73ecf8b-4423-4b36-860d-3710bdb8a491]
+description = "Numbers separated by empty lines are recognized. Lines are joined by commas."
