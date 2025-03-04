@@ -45,10 +45,39 @@ fn no_texts() {
 
 #[test]
 #[ignore]
-fn one_letter() {
+fn one_text_one_letter() {
     let mut hm = HashMap::new();
     hm.insert('a', 1);
     assert_eq!(frequency::frequency(&["a"], 4), hm);
+}
+
+#[test]
+#[ignore]
+fn one_text_multiple_letters() {
+    let mut hm = HashMap::new();
+    hm.insert('b', 2);
+    hm.insert('c', 3);
+    hm.insert('d', 1);
+    assert_eq!(frequency::frequency(&["bbcccd"], 4), hm);
+}
+
+#[test]
+#[ignore]
+fn two_texts_with_one_letter() {
+    let mut hm = HashMap::new();
+    hm.insert('e', 1);
+    hm.insert('f', 1);
+    assert_eq!(frequency::frequency(&["e", "f"], 4), hm);
+}
+
+#[test]
+#[ignore]
+fn two_texts_with_multiple_letters() {
+    let mut hm = HashMap::new();
+    hm.insert('g', 2);
+    hm.insert('h', 3);
+    hm.insert('h', 1);
+    assert_eq!(frequency::frequency(&["ggh", "hhi"], 4), hm);
 }
 
 #[test]
