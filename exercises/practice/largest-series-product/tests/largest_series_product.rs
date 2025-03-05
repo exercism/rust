@@ -7,43 +7,43 @@ fn return_is_a_result() {
 
 #[test]
 #[ignore]
-fn find_the_largest_product_when_span_equals_length() {
+fn finds_the_largest_product_if_span_equals_length() {
     assert_eq!(Ok(18), lsp("29", 2));
 }
 
 #[test]
 #[ignore]
-fn find_the_largest_product_of_two_with_numbers_in_order() {
+fn can_find_the_largest_product_of_2_with_numbers_in_order() {
     assert_eq!(Ok(72), lsp("0123456789", 2));
 }
 
 #[test]
 #[ignore]
-fn find_the_largest_product_of_two_with_numbers_not_in_order() {
+fn can_find_the_largest_product_of_2() {
     assert_eq!(Ok(48), lsp("576802143", 2));
 }
 
 #[test]
 #[ignore]
-fn find_the_largest_product_of_three_with_numbers_in_order() {
+fn can_find_the_largest_product_of_3_with_numbers_in_order() {
     assert_eq!(Ok(504), lsp("0123456789", 3));
 }
 
 #[test]
 #[ignore]
-fn find_the_largest_product_of_three_with_numbers_not_in_order() {
+fn can_find_the_largest_product_of_3() {
     assert_eq!(Ok(270), lsp("1027839564", 3));
 }
 
 #[test]
 #[ignore]
-fn find_the_largest_product_of_five_with_numbers_in_order() {
+fn can_find_the_largest_product_of_5_with_numbers_in_order() {
     assert_eq!(Ok(15_120), lsp("0123456789", 5));
 }
 
 #[test]
 #[ignore]
-fn span_of_six_in_a_large_number() {
+fn can_get_the_largest_product_of_a_big_number() {
     assert_eq!(
         Ok(23_520),
         lsp("73167176531330624919225119674426574742355349194934", 6)
@@ -52,42 +52,42 @@ fn span_of_six_in_a_large_number() {
 
 #[test]
 #[ignore]
-fn returns_zero_if_number_is_zeros() {
+fn reports_zero_if_the_only_digits_are_zero() {
     assert_eq!(Ok(0), lsp("0000", 2));
 }
 
 #[test]
 #[ignore]
-fn returns_zero_if_all_products_are_zero() {
+fn reports_zero_if_all_spans_include_zero() {
     assert_eq!(Ok(0), lsp("99099", 3));
 }
 
 #[test]
 #[ignore]
-fn a_span_is_longer_than_number_is_an_error() {
+fn rejects_span_longer_than_string_length() {
     assert_eq!(Err(Error::SpanTooLong), lsp("123", 4));
 }
 
 #[test]
 #[ignore]
-fn empty_string_and_zero_span_is_one() {
+fn reports_1_for_empty_string_and_empty_product_0_span() {
     assert_eq!(Ok(1), lsp("", 0));
 }
 
 #[test]
 #[ignore]
-fn zero_span_is_one() {
+fn reports_1_for_nonempty_string_and_empty_product_0_span() {
     assert_eq!(Ok(1), lsp("123", 0));
 }
 
 #[test]
 #[ignore]
-fn empty_string_and_non_zero_span_is_an_error() {
+fn rejects_empty_string_and_nonzero_span() {
     assert_eq!(Err(Error::SpanTooLong), lsp("", 1));
 }
 
 #[test]
 #[ignore]
-fn a_string_with_non_digits_is_an_error() {
+fn rejects_invalid_character_in_digits() {
     assert_eq!(Err(Error::InvalidDigit('a')), lsp("1234a5", 2));
 }
