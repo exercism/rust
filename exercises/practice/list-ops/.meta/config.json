@@ -1,5 +1,9 @@
 {
-  "authors": ["ellnix"],
+  "authors": [
+    "ellnix",
+    "senekor",
+    "Morgane55440"
+  ],
   "files": {
     "solution": [
       "src/lib.rs",
