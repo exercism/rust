@@ -1,0 +1,26 @@
+use largest_series_product::*;
+
+#[test]
+#[ignore]
+fn return_is_a_result() {
+    assert!(lsp("29", 2).is_ok());
+}
+
+{% for test in cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    {% if test.expected.error is defined %}
+        {% if test.expected.error == "span must be smaller than string length" %}
+            {% set error_type = "SpanTooLong" %} 
+        {% elif test.expected.error == "digits input must only contain digits" %}
+            {% set invalid_char = test.input.digits | split(pat="") | sort | last %}
+            {% set error_type = "InvalidDigit('" ~ invalid_char ~ "')" %} 
+        {% endif %}
+
+        assert_eq!(Err(Error::{{error_type}}), lsp("{{test.input.digits}}", {{test.input.span}}));
+    {% else %}
+        assert_eq!(Ok({{test.expected | fmt_num}}), lsp("{{test.input.digits}}", {{test.input.span}}));
+    {% endif %}
+}
+{% endfor -%}
