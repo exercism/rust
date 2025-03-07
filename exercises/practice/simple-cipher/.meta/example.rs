@@ -1,10 +1,10 @@
 use rand::Rng;
 
 pub fn encode_random(s: &str) -> (String, String) {
-    let mut r = rand::thread_rng();
+    let mut r = rand::rng();
     let mut key = String::new();
     for _ in 0..100 {
-        key.push(char::from(b'a' + r.gen_range(0..26)));
+        key.push(char::from(b'a' + r.random_range(0..26)));
     }
     let encoded = encode(&key, s);
     (key, encoded.unwrap())

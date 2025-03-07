@@ -7,4 +7,4 @@ edition = "2024"
 # The full list of available libraries is here:
 # https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
 [dependencies]
-rand = "0.8"
+rand = "0.9"
