@@ -22,7 +22,11 @@ fn apply_op<'a, 'b>(num1: i32, words: &'a [Token<'b>]) -> Option<(i32, &'a [Toke
         [Token::NonNumber("minus")] => Some(num1 - num2),
         [Token::NonNumber("multiplied"), Token::NonNumber("by")] => Some(num1 * num2),
         [Token::NonNumber("divided"), Token::NonNumber("by")] => Some(num1 / num2),
-        [Token::NonNumber("raised"), Token::NonNumber("to"), Token::NonNumber("the")] => {
+        [
+            Token::NonNumber("raised"),
+            Token::NonNumber("to"),
+            Token::NonNumber("the"),
+        ] => {
             if Some(&Token::NonNumber("power")) == remainder.first() {
                 remainder = remainder.get(1..)?;
                 Some(num1.pow(num2 as u32))
@@ -56,7 +60,11 @@ pub fn answer(c: &str) -> Option<i32> {
         return None;
     }
     let mut result: i32 = match words[0..3] {
-        [Token::NonNumber("What"), Token::NonNumber("is"), Token::Number(i)] => i,
+        [
+            Token::NonNumber("What"),
+            Token::NonNumber("is"),
+            Token::Number(i),
+        ] => i,
         _ => return None,
     };
     let mut words = words.split_at(3).1;

@@ -19,7 +19,7 @@ format_one_exercise() {
     cargo fmt
     file_name=".meta/$source_file_name.rs"
     if [ -f "$file_name" ]; then
-        rustfmt "$file_name"
+        rustfmt --edition 2024 "$file_name"
     fi
 }
 
