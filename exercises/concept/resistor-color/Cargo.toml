@@ -7,5 +7,5 @@ edition = "2024"
 # The full list of available libraries is here:
 # https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
 [dependencies]
-int-enum = "0.5.0"
-enum-iterator = "1.2.0"
+enum-iterator = "2.0"
+int-enum = "1.0"

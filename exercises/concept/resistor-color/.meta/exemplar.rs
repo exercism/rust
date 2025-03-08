@@ -17,11 +17,11 @@ pub enum ResistorColor {
 }
 
 pub fn color_to_value(color: ResistorColor) -> usize {
-    color.int_value()
+    color.into()
 }
 
 pub fn value_to_color_string(value: usize) -> String {
-    ResistorColor::from_int(value)
+    ResistorColor::try_from(value)
         .map(|color| format!("{color:?}"))
         .unwrap_or_else(|_| "value out of range".into())
 }
