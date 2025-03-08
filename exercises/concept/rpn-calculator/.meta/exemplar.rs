@@ -39,9 +39,5 @@ pub fn evaluate(inputs: &[CalculatorInput]) -> Option<i32> {
     }
 
     let output = stack.pop();
-    if stack.is_empty() {
-        output
-    } else {
-        None
-    }
+    if stack.is_empty() { output } else { None }
 }

@@ -1,4 +1,4 @@
-use enum_iterator::{all, Sequence};
+use enum_iterator::{Sequence, all};
 use int_enum::IntEnum;
 
 #[repr(usize)]

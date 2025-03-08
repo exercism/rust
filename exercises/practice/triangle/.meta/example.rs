@@ -25,11 +25,7 @@ where
     pub fn build(sides: [T; 3]) -> Option<Triangle<T>> {
         let t = Triangle { sides };
 
-        if t.valid_sides() {
-            Some(t)
-        } else {
-            None
-        }
+        if t.valid_sides() { Some(t) } else { None }
     }
 
     pub fn is_equilateral(&self) -> bool {

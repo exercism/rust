@@ -3,7 +3,7 @@ use std::{
     sync::{LazyLock, Mutex},
 };
 
-use rand::{thread_rng, Rng};
+use rand::{Rng, thread_rng};
 
 static NAMES: LazyLock<Mutex<HashSet<String>>> = LazyLock::new(|| Mutex::new(HashSet::new()));
 

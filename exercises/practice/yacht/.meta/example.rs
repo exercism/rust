@@ -71,11 +71,7 @@ fn get_straight(dice: Dice, straight_type: char) -> u8 {
     }
     let index: usize = if straight_type == 'l' { 5 } else { 0 };
 
-    if scores[index] == 0 {
-        30
-    } else {
-        0
-    }
+    if scores[index] == 0 { 30 } else { 0 }
 }
 
 fn get_yacht(dice: Dice) -> u8 {
