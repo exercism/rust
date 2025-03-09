@@ -76,7 +76,7 @@ fn two_texts_with_multiple_letters() {
     let mut hm = HashMap::new();
     hm.insert('g', 2);
     hm.insert('h', 3);
-    hm.insert('h', 1);
+    hm.insert('i', 1);
     assert_eq!(frequency::frequency(&["ggh", "hhi"], 4), hm);
 }
 
