@@ -98,7 +98,7 @@ fn many_empty_lines() {
 #[test]
 #[ignore]
 fn ignore_whitespace() {
-    let v = vec!["   ", "\t", "\r\n"];
+    let v = ["   ", "\t", "\r\n"];
     assert_eq!(frequency::frequency(&v[..], 4), HashMap::new());
 }
 
