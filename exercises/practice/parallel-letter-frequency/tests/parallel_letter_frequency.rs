@@ -321,7 +321,7 @@ const DOSTOEVSKY: [&str; 4] = [
     if only from the one consideration, that, if man is stupid, then who is wise?) But if he is not stupid, he is monstrously ungrateful!
     Phenomenally ungrateful. In fact, I believe that the best definition of man is the ungrateful biped. But that is not all, that is not his worst defect;
     his worst defect is his perpetual moral obliquity, perpetual - from the days of the Flood to the Schleswig-Holstein period.
-    "#
+    "#,
 ];
 
 #[test]
@@ -352,8 +352,10 @@ fn large_texts() {
         ('v', 111),
         ('w', 223),
         ('x', 7),
-        ('y', 251)
-    ].into_iter().collect();
+        ('y', 251),
+    ]
+    .into_iter()
+    .collect();
 
     assert_eq!(frequency::frequency(&DOSTOEVSKY, 4), expected);
 }
