@@ -45,7 +45,7 @@ fn no_texts() {
 
 #[test]
 #[ignore]
-fn one_text_one_letter() {
+fn one_text_with_one_letter() {
     let mut hm = HashMap::new();
     hm.insert('a', 1);
     assert_eq!(frequency::frequency(&["a"], 4), hm);
@@ -53,7 +53,7 @@ fn one_text_one_letter() {
 
 #[test]
 #[ignore]
-fn one_text_multiple_letters() {
+fn one_text_with_multiple_letters() {
     let mut hm = HashMap::new();
     hm.insert('b', 2);
     hm.insert('c', 3);
