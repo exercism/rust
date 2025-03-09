@@ -2,42 +2,6 @@ use std::collections::HashMap;
 
 use parallel_letter_frequency as frequency;
 
-// Poem by Friedrich Schiller. The corresponding music is the European Anthem.
-const ODE_AN_DIE_FREUDE: [&str; 8] = [
-    "Freude schöner Götterfunken",
-    "Tochter aus Elysium,",
-    "Wir betreten feuertrunken,",
-    "Himmlische, dein Heiligtum!",
-    "Deine Zauber binden wieder",
-    "Was die Mode streng geteilt;",
-    "Alle Menschen werden Brüder,",
-    "Wo dein sanfter Flügel weilt.",
-];
-
-// Dutch national anthem
-const WILHELMUS: [&str; 8] = [
-    "Wilhelmus van Nassouwe",
-    "ben ik, van Duitsen bloed,",
-    "den vaderland getrouwe",
-    "blijf ik tot in den dood.",
-    "Een Prinse van Oranje",
-    "ben ik, vrij, onverveerd,",
-    "den Koning van Hispanje",
-    "heb ik altijd geëerd.",
-];
-
-// American national anthem
-const STAR_SPANGLED_BANNER: [&str; 8] = [
-    "O say can you see by the dawn's early light,",
-    "What so proudly we hailed at the twilight's last gleaming,",
-    "Whose broad stripes and bright stars through the perilous fight,",
-    "O'er the ramparts we watched, were so gallantly streaming?",
-    "And the rockets' red glare, the bombs bursting in air,",
-    "Gave proof through the night that our flag was still there;",
-    "O say does that star-spangled banner yet wave,",
-    "O'er the land of the free and the home of the brave?",
-];
-
 #[test]
 fn no_texts() {
     assert_eq!(frequency::frequency(&[], 4), HashMap::new());
@@ -141,6 +105,7 @@ fn unicode_letters() {
 #[ignore]
 fn all_three_anthems_1_worker() {
     let mut v = Vec::new();
+    // These constants can be found under the last test if you wish to see them
     for anthem in [ODE_AN_DIE_FREUDE, WILHELMUS, STAR_SPANGLED_BANNER].iter() {
         for line in anthem.iter() {
             v.push(*line);
@@ -177,6 +142,78 @@ fn non_integer_multiple_of_threads() {
     hm.insert('c', 999);
     assert_eq!(frequency::frequency(&v[..], 4), hm);
 }
+
+#[test]
+#[ignore]
+fn large_texts() {
+    let expected: HashMap<char, usize> = [
+        ('a', 845),
+        ('b', 155),
+        ('c', 278),
+        ('d', 359),
+        ('e', 1143),
+        ('f', 222),
+        ('g', 187),
+        ('h', 507),
+        ('i', 791),
+        ('j', 12),
+        ('k', 67),
+        ('l', 423),
+        ('m', 288),
+        ('n', 833),
+        ('o', 791),
+        ('p', 197),
+        ('q', 8),
+        ('r', 432),
+        ('s', 700),
+        ('t', 1043),
+        ('u', 325),
+        ('v', 111),
+        ('w', 223),
+        ('x', 7),
+        ('y', 251),
+    ]
+    .into_iter()
+    .collect();
+
+    assert_eq!(frequency::frequency(&DOSTOEVSKY, 4), expected);
+}
+
+// Poem by Friedrich Schiller. The corresponding music is the European Anthem.
+const ODE_AN_DIE_FREUDE: [&str; 8] = [
+    "Freude schöner Götterfunken",
+    "Tochter aus Elysium,",
+    "Wir betreten feuertrunken,",
+    "Himmlische, dein Heiligtum!",
+    "Deine Zauber binden wieder",
+    "Was die Mode streng geteilt;",
+    "Alle Menschen werden Brüder,",
+    "Wo dein sanfter Flügel weilt.",
+];
+
+// Dutch national anthem
+const WILHELMUS: [&str; 8] = [
+    "Wilhelmus van Nassouwe",
+    "ben ik, van Duitsen bloed,",
+    "den vaderland getrouwe",
+    "blijf ik tot in den dood.",
+    "Een Prinse van Oranje",
+    "ben ik, vrij, onverveerd,",
+    "den Koning van Hispanje",
+    "heb ik altijd geëerd.",
+];
+
+// American national anthem
+const STAR_SPANGLED_BANNER: [&str; 8] = [
+    "O say can you see by the dawn's early light,",
+    "What so proudly we hailed at the twilight's last gleaming,",
+    "Whose broad stripes and bright stars through the perilous fight,",
+    "O'er the ramparts we watched, were so gallantly streaming?",
+    "And the rockets' red glare, the bombs bursting in air,",
+    "Gave proof through the night that our flag was still there;",
+    "O say does that star-spangled banner yet wave,",
+    "O'er the land of the free and the home of the brave?",
+];
 
 const DOSTOEVSKY: [&str; 4] = [
     r#"
@@ -323,39 +360,3 @@ const DOSTOEVSKY: [&str; 4] = [
     his worst defect is his perpetual moral obliquity, perpetual - from the days of the Flood to the Schleswig-Holstein period.
     "#,
 ];
-
-#[test]
-#[ignore]
-fn large_texts() {
-    let expected: HashMap<char, usize> = [
-        ('a', 845),
-        ('b', 155),
-        ('c', 278),
-        ('d', 359),
-        ('e', 1143),
-        ('f', 222),
-        ('g', 187),
-        ('h', 507),
-        ('i', 791),
-        ('j', 12),
-        ('k', 67),
-        ('l', 423),
-        ('m', 288),
-        ('n', 833),
-        ('o', 791),
-        ('p', 197),
-        ('q', 8),
-        ('r', 432),
-        ('s', 700),
-        ('t', 1043),
-        ('u', 325),
-        ('v', 111),
-        ('w', 223),
-        ('x', 7),
-        ('y', 251),
-    ]
-    .into_iter()
-    .collect();
-
-    assert_eq!(frequency::frequency(&DOSTOEVSKY, 4), expected);
-}
