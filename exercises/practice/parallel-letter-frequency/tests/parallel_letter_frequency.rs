@@ -127,6 +127,18 @@ fn numbers_dont_count() {
 
 #[test]
 #[ignore]
+fn unicode_letters() {
+    let mut hm = HashMap::new();
+    hm.insert('本', 1);
+    hm.insert('φ', 1);
+    hm.insert('ほ', 1);
+    hm.insert('ø', 1);
+    let v = ["本", "φ", "ほ", "ø"];
+    assert_eq!(frequency::frequency(&v, 4), hm);
+}
+
+#[test]
+#[ignore]
 fn all_three_anthems_1_worker() {
     let mut v = Vec::new();
     for anthem in [ODE_AN_DIE_FREUDE, WILHELMUS, STAR_SPANGLED_BANNER].iter() {

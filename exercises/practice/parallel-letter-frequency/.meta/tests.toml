@@ -41,7 +41,6 @@ rust_fn = "numbers_dont_count"
 
 [aa9f97ac-3961-4af1-88e7-6efed1bfddfd]
 description = "Unicode letters"
-rust_fn = "all_three_anthems_1_worker"
 
 [7b1da046-701b-41fc-813e-dcfb5ee51813]
 description = "combination of lower- and uppercase letters, punctuation and white space"
