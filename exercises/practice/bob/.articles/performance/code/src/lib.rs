@@ -42,7 +42,7 @@ pub fn reply_if_chain(msg: &str) -> &str {
 }
 
 // Reply using array
-const ANSWERS: &'static [&'static str] = &[
+const ANSWERS: &[&str] = &[
     "Whatever.",
     "Sure.",
     "Whoa, chill out!",
@@ -67,6 +67,7 @@ pub fn reply_array(msg: &str) -> &str {
 }
 
 // Reply using state machine
+#[derive(Hash, Eq, PartialEq, Debug)]
 enum State {
     Initial,
     HasQuestionMark,
@@ -74,6 +75,69 @@ enum State {
     NoQuestionMarkUndefined,
     QuestionMarkUpperCase,
     QuestionMarkUndefined,
+}
+enum NextStateResult {
+    NextState(State),
+    FinalResult(&'static str),
+}
+impl State {
+    fn next_state(self, c: char) -> NextStateResult {
+        match self {
+            State::Initial => {
+                if c == '?' {
+                    return NextStateResult::NextState(State::HasQuestionMark);
+                }
+
+                if c.is_lowercase() {
+                    return NextStateResult::FinalResult(WHATEVER);
+                }
+                if c.is_uppercase() {
+                    return NextStateResult::NextState(State::NoQuestionMarkUpperCase);
+                }
+                NextStateResult::NextState(State::NoQuestionMarkUndefined)
+            }
+            State::HasQuestionMark => {
+                if c.is_uppercase() {
+                    return NextStateResult::NextState(State::QuestionMarkUpperCase);
+                }
+                if c.is_lowercase() {
+                    return NextStateResult::FinalResult(SURE);
+                }
+                NextStateResult::NextState(State::QuestionMarkUndefined)
+            }
+            // optimize
+            State::NoQuestionMarkUpperCase => {
+                if c.is_lowercase() {
+                    return NextStateResult::FinalResult(WHATEVER);
+                }
+                NextStateResult::NextState(self)
+            }
+            State::NoQuestionMarkUndefined => {
+                if c.is_lowercase() {
+                    return NextStateResult::FinalResult(WHATEVER);
+                }
+                if c.is_uppercase() {
+                    return NextStateResult::NextState(State::NoQuestionMarkUpperCase);
+                }
+                NextStateResult::NextState(self)
+            }
+            State::QuestionMarkUpperCase => {
+                if c.is_lowercase() {
+                    return NextStateResult::FinalResult(SURE);
+                }
+                NextStateResult::NextState(self)
+            }
+            State::QuestionMarkUndefined => {
+                if c.is_lowercase() {
+                    return NextStateResult::FinalResult(SURE);
+                }
+                if c.is_uppercase() {
+                    return NextStateResult::NextState(State::QuestionMarkUpperCase);
+                }
+                NextStateResult::NextState(self)
+            }
+        }
+    }
 }
 
 const FINE_BE_THAT_WAY: &str = "Fine. Be that way!";
@@ -83,59 +147,47 @@ const CHILL_OUT: &str = "Whoa, chill out!";
 const CALM_DOWN: &str = "Calm down, I know what I'm doing!";
 
 pub fn reply_state_machine(message: &str) -> &str {
-    let message = message.trim();
+    let message = message.trim_end();
     if message.is_empty() {
         return FINE_BE_THAT_WAY;
     }
     let mut state = State::Initial;
     for c in message.chars().rev() {
-        match state {
-            State::Initial => {
-                state = if c == '?' {
-                    State::HasQuestionMark
-                } else {
-                    if c.is_lowercase() {
-                        return WHATEVER;
-                    }
-                    if c.is_uppercase() {
-                        State::NoQuestionMarkUpperCase
-                    } else {
-                        State::NoQuestionMarkUndefined
-                    }
-                };
+        match state.next_state(c) {
+            NextStateResult::NextState(s) => state = s,
+            NextStateResult::FinalResult(r) => return r,
+        }
+    }
+    match state {
+        State::HasQuestionMark | State::QuestionMarkUndefined => SURE,
+        State::NoQuestionMarkUpperCase => CHILL_OUT,
+        State::NoQuestionMarkUndefined => WHATEVER,
+        State::QuestionMarkUpperCase => CALM_DOWN,
+        _ => panic!("Unexpected final state"),
+    }
+}
+
+pub fn reply_state_machine_ascii_optimized(message: &str) -> &str {
+    let message = message.trim_end();
+    if message.is_empty() {
+        return FINE_BE_THAT_WAY;
+    }
+    let mut state = State::Initial;
+    // May be even more optimized:
+    // Initiate supposing the input is ascii: while c.is_ascii()...
+    // When the first non-ascii is found, change the approach
+    if message.is_ascii() {
+        for &c in message.as_bytes().iter().rev() {
+            match state.next_state(char::from(c)) {
+                NextStateResult::NextState(s) => state = s,
+                NextStateResult::FinalResult(r) => return r,
             }
-            State::HasQuestionMark => {
-                state = if c.is_uppercase() {
-                    State::QuestionMarkUpperCase
-                } else {
-                    State::QuestionMarkUndefined
-                };
-            }
-            State::NoQuestionMarkUpperCase => {
-                if c.is_lowercase() {
-                    return WHATEVER;
-                }
-            }
-            State::NoQuestionMarkUndefined => {
-                if c.is_lowercase() {
-                    return WHATEVER;
-                }
-                if c.is_uppercase() {
-                    state = State::NoQuestionMarkUpperCase;
-                }
-            }
-            State::QuestionMarkUpperCase => {
-                if c.is_lowercase() {
-                    return SURE;
-                }
-            }
-            State::QuestionMarkUndefined => {
-                if c.is_lowercase() {
-                    return SURE;
-                }
-                if c.is_uppercase() {
-                    state = State::QuestionMarkUpperCase;
-                }
+        }
+    } else {
+        for c in message.chars().rev() {
+            match state.next_state(c) {
+                NextStateResult::NextState(s) => state = s,
+                NextStateResult::FinalResult(r) => return r,
             }
         }
     }
@@ -311,6 +363,10 @@ mod tests {
         (reply_match, reply_match_test),
         (reply_if_chain, reply_if_chain_test),
         (reply_array, reply_array_test),
-        (reply_state_machine, reply_state_machine_test)
+        (reply_state_machine, reply_state_machine_test),
+        (
+            reply_state_machine_ascii_optimized,
+            reply_state_machine_ascii_optimized_test
+        )
     );
 }
