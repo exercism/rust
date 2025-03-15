@@ -1,7 +1,4 @@
-use bob_reply::{
-    reply_array, reply_if_chain, reply_match, reply_state_machine,
-    reply_state_machine_ascii_optimized,
-};
+use bob_reply::{reply_array, reply_if_chain, reply_match, reply_state_machine};
 
 const BASIC_LOREM_IPSUM_100: &str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In arcu justo, facilisis vel leo et sapien";
 const BASIC_LOREM_IPSUM_1000: &str = include_str!("./1000_lorem_ipsum.txt");
@@ -30,10 +27,6 @@ fn test_normal_question() {
         assert_eq!(reply_if_chain(input.as_str()), expected);
         assert_eq!(reply_match(input.as_str()), expected);
         assert_eq!(reply_state_machine(input.as_str()), expected);
-        assert_eq!(
-            reply_state_machine_ascii_optimized(input.as_str()),
-            expected
-        );
     }
 }
 
@@ -55,10 +48,6 @@ fn test_yell() {
         assert_eq!(reply_if_chain(input.as_str()), expected);
         assert_eq!(reply_match(input.as_str()), expected);
         assert_eq!(reply_state_machine(input.as_str()), expected);
-        assert_eq!(
-            reply_state_machine_ascii_optimized(input.as_str()),
-            expected
-        );
     }
 }
 
@@ -80,10 +69,6 @@ fn test_yell_question() {
         assert_eq!(reply_if_chain(input.as_str()), expected);
         assert_eq!(reply_match(input.as_str()), expected);
         assert_eq!(reply_state_machine(input.as_str()), expected);
-        assert_eq!(
-            reply_state_machine_ascii_optimized(input.as_str()),
-            expected
-        );
     }
 }
 
@@ -105,9 +90,5 @@ fn test_whatever() {
         assert_eq!(reply_if_chain(input.as_str()), expected);
         assert_eq!(reply_match(input.as_str()), expected);
         assert_eq!(reply_state_machine(input.as_str()), expected);
-        assert_eq!(
-            reply_state_machine_ascii_optimized(input.as_str()),
-            expected
-        );
     }
 }

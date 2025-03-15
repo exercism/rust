@@ -167,39 +167,6 @@ pub fn reply_state_machine(message: &str) -> &str {
     }
 }
 
-pub fn reply_state_machine_ascii_optimized(message: &str) -> &str {
-    let message = message.trim_end();
-    if message.is_empty() {
-        return FINE_BE_THAT_WAY;
-    }
-    let mut state = State::Initial;
-    // May be even more optimized:
-    // Initiate supposing the input is ascii: while c.is_ascii()...
-    // When the first non-ascii is found, change the approach
-    if message.is_ascii() {
-        for &c in message.as_bytes().iter().rev() {
-            match state.next_state(char::from(c)) {
-                NextStateResult::NextState(s) => state = s,
-                NextStateResult::FinalResult(r) => return r,
-            }
-        }
-    } else {
-        for c in message.chars().rev() {
-            match state.next_state(c) {
-                NextStateResult::NextState(s) => state = s,
-                NextStateResult::FinalResult(r) => return r,
-            }
-        }
-    }
-    match state {
-        State::HasQuestionMark | State::QuestionMarkUndefined => SURE,
-        State::NoQuestionMarkUpperCase => CHILL_OUT,
-        State::NoQuestionMarkUndefined => WHATEVER,
-        State::QuestionMarkUpperCase => CALM_DOWN,
-        _ => panic!("Unexpected final state"),
-    }
-}
-
 macro_rules! test_reply {
     ( $( ($function_name:ident, $module_name:ident)),* ) => {
 
@@ -363,10 +330,6 @@ mod tests {
         (reply_match, reply_match_test),
         (reply_if_chain, reply_if_chain_test),
         (reply_array, reply_array_test),
-        (reply_state_machine, reply_state_machine_test),
-        (
-            reply_state_machine_ascii_optimized,
-            reply_state_machine_ascii_optimized_test
-        )
+        (reply_state_machine, reply_state_machine_test)
     );
 }

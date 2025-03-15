@@ -5,7 +5,7 @@ const BASIC_LOREM_IPSUM_100: &str = "Lorem ipsum dolor sit amet, consectetur adi
 const BASIC_LOREM_IPSUM_1000: &str = include_str!("./1000_lorem_ipsum.txt");
 const BASIC_LOREM_IPSUM_10000: &str = include_str!("./10000_lorem_ipsum.txt");
 
-const BASIC_LOREM_IPSUM_NON_ASCII_100: &str = "Lorem ipsum dolor sit amet, consectetur adipiscing èlit. În arcu justo, facilisis vel leo et sapien";
+const BASIC_LOREM_IPSUM_NON_ASCII_100: &str = "O Lorem Ipsum é um tipo de texto de espaço reservado normalmente utilizado nas indústrias de design e";
 const BASIC_LOREM_IPSUM_NON_ASCII_1000: &str = include_str!("./1000_lorem_ipsum_non_ascii.txt");
 const BASIC_LOREM_IPSUM_NON_ASCII_10000: &str = include_str!("./10000_lorem_ipsum_non_ascii.txt");
 
@@ -32,11 +32,6 @@ pub fn reply_for_normal_question(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
@@ -63,11 +58,6 @@ pub fn reply_for_normal_question_non_ascii(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
@@ -93,11 +83,6 @@ pub fn reply_for_yell(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
@@ -132,11 +117,6 @@ pub fn reply_for_yell_non_ascii(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
@@ -166,11 +146,6 @@ pub fn reply_for_yell_question(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
@@ -207,11 +182,6 @@ pub fn reply_for_yell_question_non_ascii(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
@@ -238,11 +208,6 @@ pub fn reply_for_silence(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i.len()), &i, |b, i| {
             b.iter(|| reply_state_machine(i))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt)", i.len()),
-            &i,
-            |b, i| b.iter(|| reply_state_machine_ascii_optimized(i)),
-        );
     }
 }
 
@@ -268,11 +233,6 @@ pub fn reply_for_whatever(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
@@ -298,11 +258,6 @@ pub fn reply_for_whatever_non_ascii(c: &mut Criterion) {
         group.bench_with_input(BenchmarkId::new("State Machine", i), &input, |b, input| {
             b.iter(|| reply_state_machine(input))
         });
-        group.bench_with_input(
-            BenchmarkId::new("State Machine (ascii opt.)", i),
-            &input,
-            |b, input| b.iter(|| reply_state_machine_ascii_optimized(input)),
-        );
     }
 }
 
