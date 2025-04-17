@@ -8,8 +8,6 @@ errors for out of range, we are using Rust's strong type system to limit
 input.  It is much easier to make a function deal with all valid inputs,
 rather than requiring the user of your module to handle errors.
 
-Adding 'and' into number text has not been implemented in test cases.
-
 ### Extension
 
 Add capability of converting up to the max value for u64: `18_446_744_073_709_551_615`.
