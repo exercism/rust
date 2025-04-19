@@ -679,7 +679,7 @@
         "uuid": "0c8eeef7-4bab-4cf9-9047-c208b5618312",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 4,
+        "difficulty": 1,
         "topics": [
           "btree"
         ]
