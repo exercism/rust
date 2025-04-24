@@ -11,7 +11,7 @@ fn assert_in_delta(expected: f64, actual: f64) {
 #[test]
 fn age_on_earth() {
     let seconds = 1_000_000_000;
-    let duration = Duration::from(seconds);
+    let duration: Duration = Duration::from(seconds);
     let output = Earth::years_during(&duration);
     let expected = 31.69;
     assert_in_delta(expected, output);

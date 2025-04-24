@@ -7,3 +7,5 @@ edition = "2024"
 # The full list of available libraries is here:
 # https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
 [dependencies]
+strum = "0.27"
+strum_macros = "0.27"

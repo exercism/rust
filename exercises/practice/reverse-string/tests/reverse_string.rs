@@ -9,7 +9,6 @@ fn an_empty_string() {
 }
 
 #[test]
-#[ignore]
 fn a_word() {
     let input = "robot";
     let output = reverse(input);
@@ -18,7 +17,6 @@ fn a_word() {
 }
 
 #[test]
-#[ignore]
 fn a_capitalized_word() {
     let input = "Ramen";
     let output = reverse(input);
@@ -27,7 +25,6 @@ fn a_capitalized_word() {
 }
 
 #[test]
-#[ignore]
 fn a_sentence_with_punctuation() {
     let input = "I'm hungry!";
     let output = reverse(input);
@@ -36,7 +33,6 @@ fn a_sentence_with_punctuation() {
 }
 
 #[test]
-#[ignore]
 fn a_palindrome() {
     let input = "racecar";
     let output = reverse(input);
@@ -45,7 +41,6 @@ fn a_palindrome() {
 }
 
 #[test]
-#[ignore]
 fn an_even_sized_word() {
     let input = "drawer";
     let output = reverse(input);
@@ -54,7 +49,6 @@ fn an_even_sized_word() {
 }
 
 #[test]
-#[ignore]
 fn wide_characters() {
     let input = "子猫";
     let output = reverse(input);
@@ -63,7 +57,6 @@ fn wide_characters() {
 }
 
 #[test]
-#[ignore]
 #[cfg(feature = "grapheme")]
 fn grapheme_cluster_with_pre_combined_form() {
     let input = "Würstchenstand";
@@ -73,7 +66,6 @@ fn grapheme_cluster_with_pre_combined_form() {
 }
 
 #[test]
-#[ignore]
 #[cfg(feature = "grapheme")]
 fn grapheme_clusters() {
     let input = "ผู้เขียนโปรแกรม";

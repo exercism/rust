@@ -1,29 +1,36 @@
-pub struct Allergies;
+use strum::IntoEnumIterator;
+use strum_macros::EnumIter;
 
-#[derive(Debug, PartialEq, Eq)]
+pub struct Allergies {
+    score: u32
+}
+
+#[derive(EnumIter, Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Allergen {
-    Eggs,
-    Peanuts,
-    Shellfish,
-    Strawberries,
-    Tomatoes,
-    Chocolate,
-    Pollen,
-    Cats,
+    Eggs = 0b00000001,
+    Peanuts = 0b00000010,
+    Shellfish = 0b00000100,
+    Strawberries = 0b00001000,
+    Tomatoes = 0b00010000,
+    Chocolate = 0b00100000,
+    Pollen = 0b01000000,
+    Cats = 0b10000000,
 }
 
 impl Allergies {
     pub fn new(score: u32) -> Self {
-        todo!("Given the '{score}' score, construct a new Allergies struct.");
+        Self {
+            score
+        }
     }
 
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
-        todo!("Determine if the patient is allergic to the '{allergen:?}' allergen.");
+        self.score & *allergen as u32 != 0
     }
 
     pub fn allergies(&self) -> Vec<Allergen> {
-        todo!(
-            "Return the list of allergens contained within the score with which the Allergies struct was made."
-        );
+        Allergen::iter()
+        .filter(|a| self.is_allergic_to(a))
+        .collect()
     }
 }

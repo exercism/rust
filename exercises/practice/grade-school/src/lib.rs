@@ -1,16 +1,25 @@
-pub struct School {}
+use std::collections::{BTreeMap, BTreeSet};
+
+#[derive(Default)]
+pub struct School {
+    roster: BTreeMap<String, u32>
+}
 
 impl School {
     pub fn new() -> School {
-        todo!()
+        School{
+            ..Default::default()
+        }
     }
 
     pub fn add(&mut self, grade: u32, student: &str) {
-        todo!("Add {student} to the roster for {grade}")
+        self.roster.entry(student.to_string()).or_insert(grade); 
     }
 
     pub fn grades(&self) -> Vec<u32> {
-        todo!()
+        let mut res:Vec<u32> = self.roster.values().cloned().collect::<BTreeSet<_>>().into_iter().collect();
+        res.sort();
+        res
     }
 
     // If `grade` returned a reference, `School` would be forced to keep a `Vec<String>`
@@ -18,6 +27,13 @@ impl School {
     // the internal structure can be completely arbitrary. The tradeoff is that some data
     // must be copied each time `grade` is called.
     pub fn grade(&self, grade: u32) -> Vec<String> {
-        todo!("Return the list of students in {grade}")
+        self.roster.iter().filter_map(|(n, &g)| {
+            if g == grade {
+                Some(n.clone())
+            }
+            else {
+                None
+            }
+        }).collect()
     }
 }
