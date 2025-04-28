@@ -45,7 +45,7 @@ criterion_group!(
 
 ### Results
 
-The results are detailed in [this report][benchmark-report].
+The detailed results will be in the `report` folder generated after running the benchmark.
 
 Generally speaking, the results were:
     - **For YELL and YELL QUESTION**: one of the state machine's worst case because it needs to loop through all the string to find the answer. Thus, it **performed worse than the other approaches for lore ipsum with only ascii chars** but, surprisingly, **performed better for lore ipsum with ascii and non-ascii chars**. The explanation is that the other approaches could not take advantage of this [ascii optimization][ascii-optimization]. 
@@ -65,6 +65,5 @@ To reproduce the results, run the command `cargo bench` from the [benchmark appl
 [approach-match]: https://exercism.org/tracks/rust/exercises/bob/approaches/match-on-tuple
 [ascii-optimization]: https://github.com/rust-lang/rust/blob/7d65abfe80f9eee93296d1ce08f845c9bf7039f8/library/alloc/src/str.rs#L471
 [benchmark-application]: https://github.com/exercism/rust/blob/main/exercises/practice/bob/.articles/performance/code/
-[benchmark-report]: https://github.com/exercism/rust/blob/main/exercises/practice/bob/.articles/performance/code/results/criterion/report/index.html
 [criterion-crate]: https://docs.rs/criterion/latest/criterion/
 [lorem-ipsum]: https://en.wikipedia.org/wiki/Lorem_ipsum
