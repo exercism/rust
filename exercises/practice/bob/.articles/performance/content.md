@@ -55,6 +55,10 @@ Generally speaking, the results were:
 
 Excluding the state machine approach, the other three approaches are close in performance, but the `if` statements and `match` approaches may be considered to be more idiomatic.
 
+### Reproducing the results
+
+To reproduce the results, run the command `cargo bench` from the [benchmark application][benchmark-application] directory. Be aware that it may take a long time. After finishing the execution, the results can be found on `results/criterion/report/index.html`.
+
 [approaches]: https://exercism.org/tracks/rust/exercises/bob/approaches
 [approach-answer-array]: https://exercism.org/tracks/rust/exercises/bob/approaches/answer-array
 [approach-if]: https://exercism.org/tracks/rust/exercises/bob/approaches/if-statements
