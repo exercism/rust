@@ -42,7 +42,7 @@ pub fn row_max_locations(matrix: &[Vec<u64>]) -> Vec<(usize, usize)> {
     matrix
         .iter()
         .enumerate()
-        .map(|(i, row)| {
+        .flat_map(|(i, row)| {
             if let Some(row_max) = row.iter().copied().max() {
                 row
                 .iter()
@@ -61,7 +61,7 @@ pub fn row_max_locations(matrix: &[Vec<u64>]) -> Vec<(usize, usize)> {
                 vec![]
             }
         }) 
-        .flatten()
+        // .flatten()
         .collect()
 }
 
