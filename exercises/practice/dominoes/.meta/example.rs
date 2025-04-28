@@ -1,5 +1,3 @@
-use std::iter;
-
 pub type Domino = (u8, u8);
 
 /// A table keeping track of available dominoes.
@@ -14,7 +12,7 @@ struct AvailabilityTable {
 impl AvailabilityTable {
     fn new() -> AvailabilityTable {
         AvailabilityTable {
-            m: iter::repeat(0).take(6 * 6).collect(),
+            m: std::iter::repeat_n(0, 6 * 6).collect(),
         }
     }
 

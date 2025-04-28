@@ -36,7 +36,7 @@ pub enum Error {
 /// Notes:
 ///  * The empty slice ( "[]" ) is equal to the number 0.
 ///  * Never output leading 0 digits. However, your function must be able to
-///     process input with leading 0 digits.
+///    process input with leading 0 digits.
 ///
 pub fn convert<P: AsRef<[Digit]>>(
     digits: P,
