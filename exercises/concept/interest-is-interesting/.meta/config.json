@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "devkabiir"
+  ],
+  "forked_from": [
+    "csharp/interest-is-interesting"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/interest-is-interesting.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  },
+  "blurb": "Learn about floating point numbers by adding interest to savings accounts."
+}
