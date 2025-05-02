@@ -1,6 +1,6 @@
 use std::iter::successors;
 
-const UP_TO_NINETEEN: [&'static str; 20] = [
+const UP_TO_NINETEEN: [&str; 20] = [
     "zero", 
     "one", 
     "two",
@@ -22,7 +22,7 @@ const UP_TO_NINETEEN: [&'static str; 20] = [
     "eighteen",
     "nineteen"];
 
-const TENS: [&'static str; 10] = [
+const TENS: [&str; 10] = [
     "zero", // for indexing, never accessed
     "ten",
     "twenty",
@@ -35,7 +35,7 @@ const TENS: [&'static str; 10] = [
     "ninety"
 ];
 
-const THOUSANDS: [&'static str; 7] = [
+const THOUSANDS: [&str; 7] = [
     "zero", // for indexing, never accessed
     "thousand",
     "million",
@@ -67,15 +67,15 @@ pub fn encode(n: u64) -> String {
             .find(|&i| i > n / 1000)
             .unwrap();
             println!("{} {}", order, order / 1000);
-            format_num(n, order, THOUSANDS[((order as f64).log10() / (1000 as f64).log10()) as usize])
+            format_num(n, order, THOUSANDS[((order as f64).log10() / 1000_f64.log10()) as usize])
         }
     }
 }
 
 fn format_num(n: u64, div: u64, div_desc: &str) -> String {
     match (n / div, n % div) {
-        (nb_div, 0) => format!("{} {}", UP_TO_NINETEEN[nb_div as usize].to_string(), div_desc.to_string() ),
-        (nb_div, remainder) => format!("{} {} {}", encode(nb_div), div_desc.to_string(), encode(remainder))
+        (nb_div, 0) => format!("{} {}", UP_TO_NINETEEN[nb_div as usize], div_desc),
+        (nb_div, remainder) => format!("{} {} {}", encode(nb_div), div_desc, encode(remainder))
     }
 }
 
@@ -85,4 +85,3 @@ fn format_num(n: u64, div: u64, div_desc: &str) -> String {
 // Tried ().by_step().find() but exponential growth not possible with equivalent of by_step()
 // Turns out the .zip() choice is not that complicated since to find related 
 // element in THOUSANDS, we have the compute the log in base 1000 (which does not exist for (unsigned) int)
- 
