@@ -1,12 +1,32 @@
-pub struct SimpleLinkedList<T> {
-    // Delete this field
-    // dummy is needed to avoid unused parameter error during compilation
-    dummy: ::std::marker::PhantomData<T>,
+use std::iter::successors;
+
+struct Node<T> where T: Clone{
+    value: T,
+    next: Option<Box<Node<T>>>
 }
 
-impl<T> SimpleLinkedList<T> {
+impl <T: Clone> Clone for Node<T> {
+    fn clone(&self) -> Node<T> {
+        Self {
+            value: self.value.clone(),
+            next: self.next.as_ref().map(|next_node| Box::new((**next_node).clone()))
+        }
+    }
+}
+
+pub struct SimpleLinkedList<T: std::clone::Clone> {
+    // Delete this field
+    // dummy is needed to avoid unused parameter error during compilation
+    head: Option<Box<Node<T>>>,
+    len: usize
+}
+
+impl<T: std::clone::Clone> SimpleLinkedList<T> {
     pub fn new() -> Self {
-        todo!()
+        Self {
+            len: 0, 
+            head: None
+        }
     }
 
     // You may be wondering why it's necessary to have is_empty()
@@ -15,34 +35,64 @@ impl<T> SimpleLinkedList<T> {
     // whereas is_empty() is almost always cheap.
     // (Also ask yourself whether len() is expensive for SimpleLinkedList)
     pub fn is_empty(&self) -> bool {
-        todo!()
+        self.head.is_none()
     }
 
     pub fn len(&self) -> usize {
-        todo!()
+        self.len
     }
 
     pub fn push(&mut self, _element: T) {
-        todo!()
+        let node = Node::<T>{
+            value: _element,
+            next: self.head.take()
+        };
+        self.head = Some(Box::new(node));
+        self.len+=1;
     }
 
     pub fn pop(&mut self) -> Option<T> {
-        todo!()
+        if let Some(ret) = self.head.take() {
+            self.head = ret.next;
+            self.len -= 1;
+            Some(ret.value)
+        }
+        else {
+            None
+        }
     }
 
     pub fn peek(&self) -> Option<&T> {
-        todo!()
+        if let Some(ret) = &self.head {
+            Some(&ret.value)
+        }
+        else {
+            None
+        }
     }
 
     #[must_use]
     pub fn rev(self) -> SimpleLinkedList<T> {
-        todo!()
+        let mut ret = Self::new();
+
+        successors(self.head, |node| node.next.clone())
+        .for_each(|node| {
+            ret.push(node.value);
+        });
+
+        ret     
     }
 }
 
-impl<T> FromIterator<T> for SimpleLinkedList<T> {
+impl<T: std::clone::Clone> FromIterator<T> for SimpleLinkedList<T> {
     fn from_iter<I: IntoIterator<Item = T>>(_iter: I) -> Self {
-        todo!()
+        let mut ret: Self = Self::new();
+
+        _iter.into_iter().for_each(|el| {
+            ret.push(el);
+        });
+
+        ret
     }
 }
 
@@ -57,8 +107,15 @@ impl<T> FromIterator<T> for SimpleLinkedList<T> {
 // Please note that the "front" of the linked list should correspond to the "back"
 // of the vector as far as the tests are concerned.
 
-impl<T> From<SimpleLinkedList<T>> for Vec<T> {
+impl<T: std::clone::Clone> From<SimpleLinkedList<T>> for Vec<T> {
     fn from(mut _linked_list: SimpleLinkedList<T>) -> Vec<T> {
-        todo!()
+        let mut ret:Vec<T> = Vec::new();
+
+        while let Some(val) = _linked_list.pop() {
+            ret.push(val);
+        }
+
+        ret.reverse();
+        ret
     }
 }
