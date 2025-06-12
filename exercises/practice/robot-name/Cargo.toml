@@ -7,6 +7,8 @@ edition = "2024"
 # The full list of available libraries is here:
 # https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
 [dependencies]
+once_cell = "1.18"
+rand = "0.8"
 
 [lints.clippy]
 new_without_default = "allow"
