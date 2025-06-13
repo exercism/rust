@@ -1,15 +1,17 @@
 use regex::Regex;
 
 pub fn answer(command: &str) -> Option<i32> {
-    let mut command = command;
+    // let mut command = command;
 
     // Check it starts correctly
-    if command.starts_with("What is") {
-        command = command["What is".len()..].trim_start();
-    }
-    else {
-        return None;
-    }
+    // if command.starts_with("What is") {
+    //     command = command["What is".len()..].trim_start();
+    // }
+    // else {
+    //     return None;
+    // }
+
+    let command = command.strip_prefix("What is ")?.trim_start();
 
     // Capture the first number
     let re_first_number = Regex::new(r"^(-?\d+)").ok()?;
@@ -17,52 +19,44 @@ pub fn answer(command: &str) -> Option<i32> {
     let first_str = caps.get(1)?.as_str();
     let mut first: i32 = first_str.parse().ok()?;
 
-    println!("{first}");
-    println!("{command}");
-    command = command[first_str.len()..].trim_start();
-    println!("{command}");
+    // Update command so only the remaining task is left
+    let mut command = command[first_str.len()..].trim_start();
 
-    // Match operations
-    let re_op = Regex::new(r"^(plus|minus|multiplied by|divided by)\s+(-?\d+)").ok()?;
+    // Match operations : exponential is treated separately
+    let re_op = Regex::new(r"(?x)
+        ^
+        (?P<op1>plus|minus|multiplied\sby|divided\sby)\s+(?P<rhs1>-?\d+)
+        |
+        raised\sto\sthe\s+(?P<rhs2>-?\d+)(st|nd|rd|th)\s+power
+    ").ok()?;
 
+    // Handle the rest of the operations
     while let Some(op_caps) = re_op.captures(command) {
-        println!("BLLLLLLLLLLLLLA");
-        println!("{:?}", op_caps); 
-        let bla = op_caps.get(0);
-        println!("bla {:?}", bla);
-        let bla = op_caps.get(1);
-        println!("bla {:?}", bla);
-        let second: i32 = op_caps.get(2)?.as_str().parse().ok()?;
-        println!("second {second}");
-        match op_caps.get(1)?.as_str() {
-            "plus" => {
-                println!("In plus arm");
-                first += second;
-            },
-            "minus" => {
-                println!("In minus arm");
-                first -= second;
-            },
-            "multiplied by" => {
-                first *= second;
-            },
-            "divided by" => {
-                first /= second;
-            },
-            _ => {
-                println!("In otherwise arm");
-                return None;
+        if let Some(op) = op_caps.name("op1") {
+            let rhs: i32 = op_caps.name("rhs1")?.as_str().parse().ok()?;
+            match op.as_str() {
+                "plus" => first += rhs,
+                "minus" => first -= rhs,
+                "multiplied by" => first *= rhs,
+                "divided by" => first /= rhs,
+                _ => {
+                    return None;
+                }
             }
         }
-        println!("Before update {command}");
+        else if let Some(rh2) = op_caps.name("rhs2") {
+            let exp: u32 = rh2.as_str().parse().ok()?;
+            first = first.pow(exp);
+        }
+
+        // Update command so only the remaining task is left
         command = command[op_caps.get(0)?.as_str().len()..].trim_start();
-        println!("After update {command}");
     }
 
-    println!("Before returning: {command}");
-    
+    // Make sure the whole thing have been dealt correctly, which means only '?' is left 
     if command != "?" {
         return None;
-    
+    }
+
     Some(first)
 }
