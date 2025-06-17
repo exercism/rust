@@ -27,17 +27,11 @@ fn generate_robot_name() -> String {
 
 impl Robot {
     pub fn new() -> Self {
-        let mut names = ROBOT_NAMES.lock().unwrap();
-        let mut name = generate_robot_name();
-        
-        while names.contains(&name)  {
-            name = generate_robot_name();
-        }
-
-        names.insert(name.clone());
-
-        Self { 
-            name 
+        loop {
+            let name = generate_robot_name();
+            if ROBOT_NAMES.lock().unwrap().insert(name.clone()) {
+                return Self {name}
+            }
         }
     }
 
@@ -46,15 +40,17 @@ impl Robot {
     }
 
     pub fn reset_name(&mut self) {
+        // The generation of the new name, the removing of the old name and the 
+        // affectation of the new one are perform during the lock 
         let mut names = ROBOT_NAMES.lock().unwrap();
-        let mut name = generate_robot_name();
 
-        while names.contains(&name) {
-            name = generate_robot_name();
+        loop {
+            let name = generate_robot_name();
+            if names.insert(name.clone()) {
+                names.remove(self.name());
+                self.name = name;
+                break;
+            }
         }
-
-        names.remove(&name);
-
-        self.name = name;
     }
 }
