@@ -23,8 +23,11 @@ test:
     cd rust-tooling && cargo test
     ./bin/format_exercises.sh ; git diff --exit-code
 
-add-exercise *args="":
+symlink-problem-specifications:
+    @ [ -L problem-specifications ] || ./bin/symlink_problem_specifications.sh
+
+add-exercise *args="": symlink-problem-specifications
     cd rust-tooling/generate; cargo run --quiet --release -- add {{ args }}
 
-update-exercise *args="":
+update-exercise *args="": symlink-problem-specifications
     cd rust-tooling/generate; cargo run --quiet --release -- update {{ args }}
