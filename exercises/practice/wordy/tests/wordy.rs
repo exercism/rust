@@ -10,10 +10,46 @@ fn just_a_number() {
 
 #[test]
 #[ignore]
+fn just_a_zero() {
+    let input = "What is 0?";
+    let output = answer(input);
+    let expected = Some(0);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn just_a_negative_number() {
+    let input = "What is -123?";
+    let output = answer(input);
+    let expected = Some(-123);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn addition() {
     let input = "What is 1 plus 1?";
     let output = answer(input);
     let expected = Some(2);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn addition_with_a_left_hand_zero() {
+    let input = "What is 0 plus 2?";
+    let output = answer(input);
+    let expected = Some(2);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn addition_with_a_right_hand_zero() {
+    let input = "What is 3 plus 0?";
+    let output = answer(input);
+    let expected = Some(3);
     assert_eq!(output, expected);
 }
 
