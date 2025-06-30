@@ -7,8 +7,33 @@ pub trait Luhn {
 /// by hand for every other type presented in the test suite,
 /// but your solution will fail if a new type is presented.
 /// Perhaps there exists a better solution for this problem?
-impl Luhn for &str {
+impl<T: ToString> Luhn for T {
     fn valid_luhn(&self) -> bool {
-        todo!("Determine if '{self}' is a valid credit card number.");
+        self
+        .to_string()
+        .chars()
+        .filter(|c| !c.is_whitespace())
+        .rev()
+        .try_fold((0, 0), |(i, checksum), c| {
+            c.to_digit(10)
+            .map(|d| {
+                if i % 2 == 1 {
+                    d << 1
+                }
+                else {
+                    d
+                }
+            })
+            .map(|d| {
+                if d > 9 {
+                    d - 9
+                }
+                else {
+                    d
+                }
+            })
+            .map(|d| (i+1, checksum+d))
+        })
+        .is_some_and(|(len, checksum)| len > 1 && checksum % 10 == 0)
     }
 }
