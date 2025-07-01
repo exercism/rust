@@ -88,7 +88,7 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                     }
 
                     if is_multiple_file_search {
-                        result.insert_str(0, &format!("{}:", file_name))
+                        result.insert_str(0, &format!("{file_name}:"))
                     }
 
                     if flags.print_file_name {
