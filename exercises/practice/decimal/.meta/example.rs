@@ -159,12 +159,12 @@ impl fmt::Display for Decimal {
         // left-padded with zeroes
         let digits = format!("{:0>width$}", self.digits, width = self.decimal_index);
         if self.decimal_index == digits.len() {
-            write!(f, "0.{}", digits)
+            write!(f, "0.{digits}")
         } else if self.decimal_index == 0 {
-            write!(f, "{}", digits)
+            write!(f, "{digits}")
         } else {
             let (before_index, after_index) = digits.split_at(digits.len() - self.decimal_index);
-            write!(f, "{}.{}", before_index, after_index)
+            write!(f, "{before_index}.{after_index}")
         }
     }
 }
