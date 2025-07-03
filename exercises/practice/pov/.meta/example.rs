@@ -1,12 +1,13 @@
+use std::fmt::Debug;
 use std::ops::{Deref, DerefMut};
 
-#[derive(Clone, PartialEq)]
-pub struct Tree<T: Clone + PartialEq> {
+#[derive(Clone, Debug, PartialEq)]
+pub struct Tree<T: Clone + Debug + PartialEq> {
     label: T,
     children: Vec<Box<Tree<T>>>,
 }
 
-impl<T: Clone + PartialEq> Tree<T> {
+impl<T: Clone + Debug + PartialEq> Tree<T> {
     #[must_use]
     pub fn new(label: T) -> Self {
         Self {

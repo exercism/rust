@@ -1,6 +1,7 @@
 /// Reroot a tree so that its root is the specified node.
 mod frompov {
     use pov::*;
+    use pretty_assertions::assert_eq;
 
     #[test]
     fn results_in_the_same_tree_if_the_input_tree_is_a_singleton() {
@@ -237,6 +238,7 @@ mod frompov {
 /// Given two nodes, find the path between them
 mod pathto {
     use pov::*;
+    use pretty_assertions::assert_eq;
 
     #[test]
     #[ignore]
@@ -411,6 +413,9 @@ mod test_util {
     pub fn tree_to_sorted<T: Ord + Clone + std::fmt::Debug>(tree: &Tree<T>) -> Tree<T> {
         let mut children = tree.get_children();
         children.sort_unstable_by_key(|child| child.get_label());
-        Tree::with_children(tree.get_label(), children.into_iter().cloned().collect())
+        Tree::with_children(
+            tree.get_label(),
+            children.iter().map(|c| tree_to_sorted(c)).collect(),
+        )
     }
 }

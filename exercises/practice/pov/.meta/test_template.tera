@@ -25,6 +25,7 @@ vec![
 /// {{ test_group.description }}
 mod {{ test_group.cases[0].property | make_ident }} {
     use pov::*;
+    use pretty_assertions::assert_eq;
 
 {% for test in test_group.cases %}
 #[test]
@@ -56,11 +57,12 @@ fn {{ test.description | make_ident }}() {
 {% endfor %}
 }
 {% endfor %}
+
 mod test_util {
     use pov::*;
     pub fn tree_to_sorted<T: Ord + Clone + std::fmt::Debug>(tree: &Tree<T>) -> Tree<T> {
         let mut children = tree.get_children();
         children.sort_unstable_by_key(|child| child.get_label());
-        Tree::with_children(tree.get_label(), children.into_iter().cloned().collect())
+        Tree::with_children(tree.get_label(), children.iter().map(|c| tree_to_sorted(c)).collect())
     }
 }
