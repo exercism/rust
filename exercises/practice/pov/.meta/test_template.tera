@@ -1,0 +1,94 @@
+{%- macro render_tree(tree) -%}
+{%- if tree.children -%}
+    Tree::with_children(
+        "{{ tree.label }}".to_string(),
+        vec![
+            {%- for child in tree.children -%}
+                {{ self::render_tree(tree=child) }},
+            {%- endfor -%}
+        ],
+    )
+{%- else -%}
+    Tree::new("{{ tree.label }}".to_string())
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro render_vec(values) -%}
+vec![
+    {%- for value in values -%}
+        "{{ value }}".to_string(),
+    {%- endfor -%}
+]
+{%- endmacro -%}
+
+{% for test_group in cases %}
+/// {{ test_group.cases[0].property | camel_to_snake }}() tests
+/// {{ test_group.description }}
+{%- for comment in test_group.comments %}
+/// {{ comment }}
+{%- endfor %}
+mod {{ test_group.description | make_ident }} {
+    use pov::*;
+
+{% for test in test_group.cases %}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let input = {{ self::render_tree(tree=test.input.tree) }};
+    let from = "{{ test.input.from }}".to_string();
+    {%- if test.property == "fromPov" -%}
+        let result = input.pov_from(&from);
+        {%- if not test.expected -%}
+            let expected: Option<Tree<String>> = None;
+        {%- else -%}
+            let expected = Some({{ self::render_tree(tree=test.expected) }});
+        {%- endif -%}
+        assert!(crate::test_util::tree_option_eq(result, expected));
+    {%- elif test.property == "pathTo" -%}
+        let to = "{{ test.input.to }}".to_string();
+        let result = input.path_to(&from, &to);
+        {%- if not test.expected -%}
+            let expected: Option<Vec<String>> = None;
+        {%- else -%}
+            let expected = Some({{ self::render_vec(values=test.expected) }});
+        {%- endif -%}
+        assert_eq!(result, expected);
+    {%- else -%}
+        Invalid property: {{ test.property }}
+    {%- endif -%}
+}
+{% endfor %}
+}
+{% endfor %}
+mod test_util {
+    use pov::*;
+
+    pub fn tree_option_eq(lhs: Option<Tree<String>>, rhs: Option<Tree<String>>) -> bool {
+        match (lhs, rhs) {
+            (None, None) => true,
+            (Some(l_inner), Some(r_inner)) => tree_eq(&l_inner, &r_inner),
+            _ => false,
+        }
+    }
+
+    pub fn tree_eq(lhs: &Tree<String>, rhs: &Tree<String>) -> bool {
+        let (l_label, r_label) = (lhs.get_label(), rhs.get_label());
+        let (mut l_children, mut r_children) = (
+            lhs.get_children(),
+            rhs.get_children(),
+        );
+        if l_label == r_label && l_children.len() == r_children.len() {
+            if l_children.len() == 0 {
+                return true;
+            }
+            let key_fn = |child: &&Tree<String>| child.get_label();
+            l_children.sort_unstable_by_key(key_fn);
+            r_children.sort_unstable_by_key(key_fn);
+            return l_children
+                .iter()
+                .zip(r_children.iter())
+                .all(|(&lc, &rc)| tree_eq(lc, rc));
+        }
+        false
+    }
+}

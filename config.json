@@ -1572,6 +1572,15 @@
           "lists",
           "unsafe"
         ]
+      },
+      {
+        "slug": "pov",
+        "name": "POV",
+        "uuid": "bf7b7309-3d34-4893-a584-f7742502e012",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": []
       }
     ],
     "foregone": [
