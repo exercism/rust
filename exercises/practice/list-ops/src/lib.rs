@@ -4,9 +4,11 @@ where
     I: Iterator,
     J: Iterator<Item = I::Item>,
 {
-    // this empty iterator silences a compiler complaint that
-    // () doesn't implement Iterator
-    std::iter::from_fn(|| todo!())
+    let mut res: Vec<I::Item> = _a.collect();
+    for el in _b {
+        res.push(el);
+    }
+    res.into_iter()
 }
 
 /// Combines all items in all nested iterators inside into one flattened iterator
@@ -15,9 +17,14 @@ where
     I: Iterator,
     I::Item: Iterator,
 {
-    // this empty iterator silences a compiler complaint that
-    // () doesn't implement Iterator
-    std::iter::from_fn(|| todo!())
+    let mut res: Vec<<I::Item as Iterator>::Item> = Vec::new();
+    for it_el in _nested_iter {
+        for el in it_el {
+            res.push(el);
+        }
+    }
+
+    res.into_iter()
 }
 
 /// Returns an iterator of all items in iter for which `predicate(item)` is true
@@ -26,13 +33,25 @@ where
     I: Iterator,
     F: Fn(&I::Item) -> bool,
 {
-    // this empty iterator silences a compiler complaint that
-    // () doesn't implement Iterator
-    std::iter::from_fn(|| todo!())
+    let mut res: Vec<I::Item> = Vec::new();
+
+    for el in _iter {
+        if _predicate(&el) {
+            res.push(el);
+        }
+    }
+
+    res.into_iter()
 }
 
 pub fn length<I: Iterator>(_iter: I) -> usize {
-    todo!("return the total number of items within iter")
+    let mut res: usize = 0;
+
+    for _ in _iter {
+        res += 1;
+    }
+
+    res
 }
 
 /// Returns an iterator of the results of applying `function(item)` on all iter items
@@ -41,9 +60,13 @@ where
     I: Iterator,
     F: Fn(I::Item) -> U,
 {
-    // this empty iterator silences a compiler complaint that
-    // () doesn't implement Iterator
-    std::iter::from_fn(|| todo!())
+    let mut res: Vec<U> = Vec::new();
+
+    for el in _iter {
+        res.push(_function(el));
+    }
+
+    res.into_iter()
 }
 
 pub fn foldl<I, F, U>(mut _iter: I, _initial: U, _function: F) -> U
@@ -51,7 +74,13 @@ where
     I: Iterator,
     F: Fn(U, I::Item) -> U,
 {
-    todo!("starting with initial, fold (reduce) each iter item into the accumulator from the left")
+    let mut res: U = _initial;
+
+    for el in _iter {
+        res = _function(res, el);
+    }
+
+    res
 }
 
 pub fn foldr<I, F, U>(mut _iter: I, _initial: U, _function: F) -> U
@@ -59,12 +88,26 @@ where
     I: DoubleEndedIterator,
     F: Fn(U, I::Item) -> U,
 {
-    todo!("starting with initial, fold (reduce) each iter item into the accumulator from the right")
+    let mut res: U = _initial;
+
+    while let Some(el) = _iter.next_back() {
+        res = _function(res, el);
+    }
+
+    res
 }
 
 /// Returns an iterator with all the original items, but in reverse order
 pub fn reverse<I: DoubleEndedIterator>(_iter: I) -> impl Iterator<Item = I::Item> {
     // this empty iterator silences a compiler complaint that
     // () doesn't implement Iterator
-    std::iter::from_fn(|| todo!())
+    // let mut res: Vec<I::Item> = Vec::new();
+    let mut res: Vec<I::Item> = Vec::new();
+    let mut _iter =_iter;
+
+    while let Some(el) = _iter.next_back() {
+        res.push(el); 
+    }
+
+    res.into_iter()
 }
