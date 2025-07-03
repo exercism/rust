@@ -6,7 +6,7 @@ pub fn number(user_number: &str) -> Option<String> {
     .collect();
 
     // Handle potential country code
-    if digits.get(0) == Some(&1) {
+    if digits.first() == Some(&1) {
         digits.remove(0); 
     }
 
@@ -16,7 +16,7 @@ pub fn number(user_number: &str) -> Option<String> {
     }
 
     // Check N for area code
-    match digits.get(0) {
+    match digits.first() {
         Some(2..=9) => (),
         _ => {
             return None;
