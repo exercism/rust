@@ -8,7 +8,6 @@ pub static CUSTOM_FILTERS: &[(&str, Filter)] = &[
     ("to_hex", to_hex),
     ("make_ident", make_ident),
     ("fmt_num", fmt_num),
-    ("camel_to_snake", camel_to_snake),
 ];
 
 pub fn to_hex(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
@@ -56,25 +55,4 @@ pub fn fmt_num(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
     pretty_digits.reverse();
     let pretty_num = String::from_utf8(pretty_digits).unwrap_or_default();
     Ok(Value::String(pretty_num))
-}
-
-pub fn camel_to_snake(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
-    let Some(input) = value.as_str() else {
-        return Err(tera::Error::call_filter(
-            "camel_to_snake filter expects a string",
-            "serde_json::value::Value::as_str",
-        ));
-    };
-    let mut result = String::with_capacity(input.len() << 1);
-    let mut peek_iter = input.chars().peekable();
-    while let Some(ch) = peek_iter.next() {
-        result.push(ch);
-        if let Some(&next_ch) = peek_iter.peek() {
-            if ch.is_lowercase() && next_ch.is_uppercase() {
-                result.push('_');
-            }
-        }
-    }
-    result.shrink_to_fit();
-    Ok(Value::String(result.to_lowercase()))
 }

@@ -1,38 +1,34 @@
-#[derive(Clone, PartialEq)]
-pub struct Tree<T: Clone + PartialEq> {
+use std::fmt::Debug;
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct Tree<T: Clone + Debug + PartialEq> {
     _remove_this: std::marker::PhantomData<T>,
 }
 
-impl<T: Clone + PartialEq> Tree<T> {
-    #[must_use]
-    pub fn new(_label: T) -> Self {
-        todo!("Implement a function that creates a new Tree with given label");
+impl<T: Clone + Debug + PartialEq> Tree<T> {
+    pub fn new(label: T) -> Self {
+        todo!("Implement a function that creates a new Tree with given {label:?}");
     }
 
-    #[must_use]
-    pub fn with_children(_label: T, _children: Vec<Self>) -> Self {
-        todo!("Implement a function that creates a new Tree with given label and Children");
+    pub fn with_children(label: T, children: Vec<Self>) -> Self {
+        todo!("Implement a function that creates a new Tree with given {label:?} and {children:?}");
     }
 
-    #[must_use]
     pub fn get_label(&self) -> T {
         todo!("Implement getter for label.");
     }
 
-    #[must_use]
     pub fn get_children(&self) -> Vec<&Self> {
         todo!("Implement getter for children.");
     }
 
-    #[must_use]
-    pub fn pov_from(&self, _from: &T) -> Option<Self> {
-        todo!("Implement a function that reparents Tree with 'from' as root.");
+    pub fn pov_from(&self, from: &T) -> Option<Self> {
+        todo!("Implement a function that reparents Tree with {from:?} as root.");
     }
 
-    #[must_use]
-    pub fn path_to(&self, _from: &T, _to: &T) -> Option<Vec<T>> {
+    pub fn path_to(&self, from: &T, to: &T) -> Option<Vec<T>> {
         todo!(
-            "Implement a function that returns the list of labels in the shortest path from 'from' to 'to'"
+            "Implement a function that returns the list of labels in the shortest path from {from:?} to {to:?}"
         );
     }
 }
