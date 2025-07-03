@@ -21,7 +21,7 @@
 //!
 //! ```rust
 //! pub fn fn_to_implement(parameter: i32) -> i32 {
-//!    todo!("use {parameter} to solve the exercise")
+//!    todo!("use {parameter:?} to solve the exercise")
 //! }
 //! ```
 //!
@@ -34,7 +34,7 @@
 //!
 //! The second approach does have a disadvantage: it requires the parameter
 //! to be `Debug`. This is usually not a problem, most of our test inputs are
-//! indedd `Debug`, but it becomes a problem with generics. If a parameter is
+//! indeed `Debug`, but it becomes a problem with generics. If a parameter is
 //! generic, there must be a `Debug` bound on it. That would usually be
 //! fulfilled, but it could be confusing to the students why the bound exists.
 //! In that case, the first approach may be used as a fallback.
@@ -46,7 +46,6 @@ use glob::glob;
 use utils::fs::cd_into_repo_root;
 
 static EXCEPTIONS: &[&str] = &[
-    "accumulate",         // has generics (not the stub, but the solution)
     "list-ops",           // has generics
     "circular-buffer",    // has generics
     "custom-set",         // has generics
@@ -57,7 +56,6 @@ static EXCEPTIONS: &[&str] = &[
     "roman-numerals",     // std::fmt::Formatter is not Debug
     "simple-linked-list", // has generics
     "sublist",            // has generics
-    "xorcism",            // has PhantomData
 ];
 
 fn line_is_not_a_comment(line: &&str) -> bool {

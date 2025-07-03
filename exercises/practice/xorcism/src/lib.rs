@@ -3,7 +3,7 @@
 pub struct Xorcism<'a> {
     // This field is just to suppress compiler complaints;
     // feel free to delete it at any point.
-    _phantom: std::marker::PhantomData<&'a u8>,
+    phantom: std::marker::PhantomData<&'a u8>,
 }
 
 impl<'a> Xorcism<'a> {
