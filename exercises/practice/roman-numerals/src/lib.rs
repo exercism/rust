@@ -28,7 +28,7 @@ impl Display for Roman {
             }
         }
 
-        write!(_f, "{}", res)
+        write!(_f, "{res}")
 
     }
 }
