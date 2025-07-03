@@ -3,6 +3,7 @@ mod from_pov {
     use super::test_util::tree_to_sorted;
     use pov::*;
     use pretty_assertions::assert_eq;
+
     #[test]
     fn results_in_the_same_tree_if_the_input_tree_is_a_singleton() {
         let input = Tree::new("x".to_string());
@@ -215,6 +216,7 @@ mod from_pov {
 mod path_to {
     use pov::*;
     use pretty_assertions::assert_eq;
+
     #[test]
     #[ignore]
     fn can_find_path_to_parent() {

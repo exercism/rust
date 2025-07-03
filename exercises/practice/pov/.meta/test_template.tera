@@ -28,7 +28,7 @@ mod {{ test_group.cases[0].property | make_ident }} {
     use pretty_assertions::assert_eq;
 {%- if test_group.cases[0].property == "fromPov" -%}
     use super::test_util::tree_to_sorted;
-{%- endif -%}
+{%- endif %}
 
 {% for test in test_group.cases %}
 #[test]
