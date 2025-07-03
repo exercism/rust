@@ -1,18 +1,15 @@
 /// Reroot a tree so that its root is the specified node.
-mod frompov {
+mod from_pov {
+    use super::test_util::tree_to_sorted;
     use pov::*;
     use pretty_assertions::assert_eq;
-
     #[test]
     fn results_in_the_same_tree_if_the_input_tree_is_a_singleton() {
         let input = Tree::new("x".to_string());
         let from = "x".to_string();
         let result = input.pov_from(&from);
         let expected = Some(Tree::new("x".to_string()));
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 
     #[test]
@@ -31,10 +28,7 @@ mod frompov {
                 vec![Tree::new("sibling".to_string())],
             )],
         ));
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 
     #[test]
@@ -62,10 +56,7 @@ mod frompov {
                 ],
             )],
         ));
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 
     #[test]
@@ -99,10 +90,7 @@ mod frompov {
                 )],
             )],
         ));
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 
     #[test]
@@ -128,10 +116,7 @@ mod frompov {
                 Tree::new("parent".to_string()),
             ],
         ));
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 
     #[test]
@@ -189,10 +174,7 @@ mod frompov {
                 ),
             ],
         ));
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 
     #[test]
@@ -202,10 +184,7 @@ mod frompov {
         let from = "nonexistent".to_string();
         let result = input.pov_from(&from);
         let expected: Option<Tree<String>> = None;
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 
     #[test]
@@ -228,18 +207,14 @@ mod frompov {
         let from = "nonexistent".to_string();
         let result = input.pov_from(&from);
         let expected: Option<Tree<String>> = None;
-        assert_eq!(
-            result.map(|t| crate::test_util::tree_to_sorted(&t)),
-            expected.map(|t| crate::test_util::tree_to_sorted(&t))
-        );
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     }
 }
 
 /// Given two nodes, find the path between them
-mod pathto {
+mod path_to {
     use pov::*;
     use pretty_assertions::assert_eq;
-
     #[test]
     #[ignore]
     fn can_find_path_to_parent() {
@@ -410,12 +385,18 @@ mod pathto {
 
 mod test_util {
     use pov::*;
-    pub fn tree_to_sorted<T: Ord + Clone + std::fmt::Debug>(tree: &Tree<T>) -> Tree<T> {
-        let mut children = tree.get_children();
-        children.sort_unstable_by_key(|child| child.get_label());
+    use std::fmt::Debug;
+
+    pub fn tree_to_sorted<T: Ord + Clone + Debug>(tree_opt: Option<Tree<T>>) -> Option<Tree<T>> {
+        tree_opt.map(sorter)
+    }
+
+    fn sorter<T: Ord + Clone + Debug>(tree: Tree<T>) -> Tree<T> {
+        let mut children = tree.children();
+        children.sort_unstable_by_key(|child| child.label());
         Tree::with_children(
-            tree.get_label(),
-            children.iter().map(|c| tree_to_sorted(c)).collect(),
+            tree.label(),
+            children.into_iter().cloned().map(|c| sorter(c)).collect(),
         )
     }
 }

@@ -26,6 +26,9 @@ vec![
 mod {{ test_group.cases[0].property | make_ident }} {
     use pov::*;
     use pretty_assertions::assert_eq;
+{%- if test_group.cases[0].property == "fromPov" -%}
+    use super::test_util::tree_to_sorted;
+{%- endif -%}
 
 {% for test in test_group.cases %}
 #[test]
@@ -40,7 +43,7 @@ fn {{ test.description | make_ident }}() {
         {%- else -%}
             let expected = Some({{ self::render_tree(tree=test.expected) }});
         {%- endif -%}
-        assert_eq!(result.map(|t| crate::test_util::tree_to_sorted(&t)), expected.map(|t| crate::test_util::tree_to_sorted(&t)));
+        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     {%- elif test.property == "pathTo" -%}
         let to = "{{ test.input.to }}".to_string();
         let result = input.path_to(&from, &to);
@@ -60,9 +63,20 @@ fn {{ test.description | make_ident }}() {
 
 mod test_util {
     use pov::*;
-    pub fn tree_to_sorted<T: Ord + Clone + std::fmt::Debug>(tree: &Tree<T>) -> Tree<T> {
-        let mut children = tree.get_children();
-        children.sort_unstable_by_key(|child| child.get_label());
-        Tree::with_children(tree.get_label(), children.iter().map(|c| tree_to_sorted(c)).collect())
+    use std::fmt::Debug;
+
+    pub fn tree_to_sorted<T: Ord + Clone + Debug>(
+        tree_opt: Option<Tree<T>>,
+    ) -> Option<Tree<T>> {
+        tree_opt.map(sorter)
+    }
+
+    fn sorter<T: Ord + Clone + Debug>(tree: Tree<T>) -> Tree<T> {
+        let mut children = tree.children();
+        children.sort_unstable_by_key(|child| child.label());
+        Tree::with_children(
+            tree.label(),
+            children.into_iter().cloned().map(|c| sorter(c)).collect(),
+        )
     }
 }

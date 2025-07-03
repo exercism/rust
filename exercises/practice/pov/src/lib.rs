@@ -14,11 +14,11 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
         todo!("Implement a function that creates a new Tree with given {label:?} and {children:?}");
     }
 
-    pub fn get_label(&self) -> T {
+    pub fn label(&self) -> T {
         todo!("Implement getter for label.");
     }
 
-    pub fn get_children(&self) -> Vec<&Self> {
+    pub fn children(&self) -> Vec<&Self> {
         todo!("Implement getter for children.");
     }
 

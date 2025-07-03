@@ -8,7 +8,6 @@ pub struct Tree<T: Clone + Debug + PartialEq> {
 }
 
 impl<T: Clone + Debug + PartialEq> Tree<T> {
-    #[must_use]
     pub fn new(label: T) -> Self {
         Self {
             label,
@@ -16,7 +15,6 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
         }
     }
 
-    #[must_use]
     pub fn with_children(label: T, children: Vec<Self>) -> Self {
         Self {
             label,
@@ -24,17 +22,14 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
         }
     }
 
-    #[must_use]
-    pub fn get_label(&self) -> T {
+    pub fn label(&self) -> T {
         self.label.clone()
     }
 
-    #[must_use]
-    pub fn get_children(&self) -> Vec<&Self> {
+    pub fn children(&self) -> Vec<&Self> {
         self.children.iter().map(Box::deref).collect()
     }
 
-    #[must_use]
     pub fn pov_from(&self, from: &T) -> Option<Self> {
         // list of (child, parent, child's index in parent.children)
         let mut lookup = vec![(self, None, None)];
@@ -57,7 +52,6 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
     }
 
     // lookup is list of (child, parent, child's index in parent.children)
-    #[must_use]
     fn reparent(&self, parent: &Self, lookup: &[(&Self, Option<&Self>, Option<usize>)]) -> Self {
         let mut new_root = parent.clone();
         let mut current = parent;
@@ -77,7 +71,6 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
         new_root
     }
 
-    #[must_use]
     pub fn path_to(&self, from: &T, to: &T) -> Option<Vec<T>> {
         if from != &self.label {
             return self.pov_from(from).and_then(|pov| pov.path_to(from, to));
