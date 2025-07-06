@@ -6,6 +6,7 @@ tmp
 /bin/configlet
 exercises/*/*/Cargo.lock
 clippy.log
+.idea
 .vscode
 .prob-spec
 problem-specifications
