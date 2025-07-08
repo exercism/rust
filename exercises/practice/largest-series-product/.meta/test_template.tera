@@ -11,11 +11,13 @@ fn return_is_a_result() {
 #[ignore]
 fn {{ test.description | make_ident }}() {
     {% if test.expected.error is defined %}
-        {% if test.expected.error == "span must be smaller than string length" %}
+        {% if test.expected.error == "span must not exceed string length" %}
             {% set error_type = "SpanTooLong" %} 
         {% elif test.expected.error == "digits input must only contain digits" %}
             {% set invalid_char = test.input.digits | split(pat="") | sort | last %}
             {% set error_type = "InvalidDigit('" ~ invalid_char ~ "')" %} 
+        {% else %}
+            {{ throw(message="unknown error: " ~ test.expected.error) }}
         {% endif %}
 
         assert_eq!(Err(Error::{{error_type}}), lsp("{{test.input.digits}}", {{test.input.span}}));

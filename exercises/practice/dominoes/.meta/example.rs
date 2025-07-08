@@ -50,7 +50,7 @@ impl AvailabilityTable {
             }
         } else {
             // For this toy code hard explicit fail is best
-            panic!("remove for 0 stones: ({:?}, {:?})", x, y)
+            panic!("remove for 0 stones: ({x:?}, {y:?})")
         }
     }
 

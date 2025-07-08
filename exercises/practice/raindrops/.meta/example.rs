@@ -13,7 +13,7 @@ pub fn raindrops(n: u32) -> String {
         drops.push_str("Plong");
     }
     if drops.is_empty() {
-        let s = format!("{}", n);
+        let s = format!("{n}");
         drops.push_str(&s);
     }
     drops

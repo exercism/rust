@@ -36,7 +36,7 @@ impl fmt::Display for Roman {
                 start -= numeric;
             }
         }
-        write!(f, "{}", result)
+        write!(f, "{result}")
     }
 }
 
