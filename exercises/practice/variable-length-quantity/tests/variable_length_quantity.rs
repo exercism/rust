@@ -19,6 +19,15 @@ fn arbitrary_single_byte() {
 
 #[test]
 #[ignore]
+fn asymmetric_single_byte() {
+    let input = &[83];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x53];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn largest_single_byte() {
     let input = &[127];
     let output = vlq::to_bytes(input);
@@ -41,6 +50,15 @@ fn arbitrary_double_byte() {
     let input = &[8_192];
     let output = vlq::to_bytes(input);
     let expected = vec![0xc0, 0x0];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn asymmetric_double_byte() {
+    let input = &[173];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x81, 0x2d];
     assert_eq!(output, expected);
 }
 
@@ -73,6 +91,15 @@ fn arbitrary_triple_byte() {
 
 #[test]
 #[ignore]
+fn asymmetric_triple_byte() {
+    let input = &[120_220];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x87, 0xab, 0x1c];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn largest_triple_byte() {
     let input = &[2_097_151];
     let output = vlq::to_bytes(input);
@@ -100,6 +127,15 @@ fn arbitrary_quadruple_byte() {
 
 #[test]
 #[ignore]
+fn asymmetric_quadruple_byte() {
+    let input = &[3_503_876];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x81, 0xd5, 0xee, 0x4];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn largest_quadruple_byte() {
     let input = &[268_435_455];
     let output = vlq::to_bytes(input);
@@ -122,6 +158,15 @@ fn arbitrary_quintuple_byte() {
     let input = &[4_278_190_080];
     let output = vlq::to_bytes(input);
     let expected = vec![0x8f, 0xf8, 0x80, 0x80, 0x0];
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn asymmetric_quintuple_byte() {
+    let input = &[2_254_790_917];
+    let output = vlq::to_bytes(input);
+    let expected = vec![0x88, 0xb3, 0x95, 0xc2, 0x5];
     assert_eq!(output, expected);
 }
 
