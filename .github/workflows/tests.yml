@@ -14,7 +14,7 @@ on:
 jobs:
   configlet:
     name: configlet lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
@@ -28,7 +28,7 @@ jobs:
 
   markdownlint:
     name: markdown lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
@@ -40,7 +40,7 @@ jobs:
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
     name: Run shellcheck on scripts
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -50,7 +50,7 @@ jobs:
 
   compilation:
     name: Check compilation
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     strategy:
       matrix:
@@ -75,7 +75,7 @@ jobs:
 
   tests:
     name: Run repository tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
@@ -97,7 +97,7 @@ jobs:
 
   rustformat:
     name: Check Rust Formatting
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
@@ -120,7 +120,7 @@ jobs:
 
   clippy:
     name: Clippy
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
@@ -139,7 +139,7 @@ jobs:
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     continue-on-error: true # It's okay if the nightly job fails
 
     steps:
