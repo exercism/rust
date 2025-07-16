@@ -15,6 +15,9 @@ description = "Encode a series of integers, producing a series of bytes. -> zero
 [be44d299-a151-4604-a10e-d4b867f41540]
 description = "Encode a series of integers, producing a series of bytes. -> arbitrary single byte"
 
+[890bc344-cb80-45af-b316-6806a6971e81]
+description = "Encode a series of integers, producing a series of bytes. -> asymmetric single byte"
+
 [ea399615-d274-4af6-bbef-a1c23c9e1346]
 description = "Encode a series of integers, producing a series of bytes. -> largest single byte"
 
@@ -23,6 +26,9 @@ description = "Encode a series of integers, producing a series of bytes. -> smal
 
 [63955a49-2690-4e22-a556-0040648d6b2d]
 description = "Encode a series of integers, producing a series of bytes. -> arbitrary double byte"
+
+[4977d113-251b-4d10-a3ad-2f5a7756bb58]
+description = "Encode a series of integers, producing a series of bytes. -> asymmetric double byte"
 
 [29da7031-0067-43d3-83a7-4f14b29ed97a]
 description = "Encode a series of integers, producing a series of bytes. -> largest double byte"
@@ -33,6 +39,9 @@ description = "Encode a series of integers, producing a series of bytes. -> smal
 [5df0bc2d-2a57-4300-a653-a75ee4bd0bee]
 description = "Encode a series of integers, producing a series of bytes. -> arbitrary triple byte"
 
+[6731045f-1e00-4192-b5ae-98b22e17e9f7]
+description = "Encode a series of integers, producing a series of bytes. -> asymmetric triple byte"
+
 [f51d8539-312d-4db1-945c-250222c6aa22]
 description = "Encode a series of integers, producing a series of bytes. -> largest triple byte"
 
@@ -42,6 +51,9 @@ description = "Encode a series of integers, producing a series of bytes. -> smal
 [11ed3469-a933-46f1-996f-2231e05d7bb6]
 description = "Encode a series of integers, producing a series of bytes. -> arbitrary quadruple byte"
 
+[b45ef770-cbba-48c2-bd3c-c6362679516e]
+description = "Encode a series of integers, producing a series of bytes. -> asymmetric quadruple byte"
+
 [d5f3f3c3-e0f1-4e7f-aad0-18a44f223d1c]
 description = "Encode a series of integers, producing a series of bytes. -> largest quadruple byte"
 
@@ -50,6 +62,9 @@ description = "Encode a series of integers, producing a series of bytes. -> smal
 
 [5f34ff12-2952-4669-95fe-2d11b693d331]
 description = "Encode a series of integers, producing a series of bytes. -> arbitrary quintuple byte"
+
+[9be46731-7cd5-415c-b960-48061cbc1154]
+description = "Encode a series of integers, producing a series of bytes. -> asymmetric quintuple byte"
 
 [7489694b-88c3-4078-9864-6fe802411009]
 description = "Encode a series of integers, producing a series of bytes. -> maximum 32-bit integer input"
