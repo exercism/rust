@@ -1,13 +1,10 @@
 _default:
     just --list --unsorted
 
-# configlet wrapper, uses pinned problem-specifications commit
+# configlet (downloads if necessary)
 @configlet *args="":
-    ./bin/configlet_wrapper.sh {{ args }}
-
-# update the pinned commit hash
-update-problem-specs:
-    ./bin/update_problem_specifications.sh
+    [ -f ./bin/configlet ] || ./bin/fetch-configlet
+    ./bin/configlet {{ args }}
 
 # generate a new uuid straight to your clipboard
 uuid:
