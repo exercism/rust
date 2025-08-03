@@ -11,7 +11,10 @@ Generally you should submit all files in which you implemented your solution (`s
 
 ## Feedback, Issues, Pull Requests
 
-The GitHub [track repository][github] is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the rust track team are happy to help!
+Head to [the forum](https://forum.exercism.org/c/programming/rust/) and create a post to provide feedback about an exercise or if you want to help implement new exercises.
+Members of the rust track team are happy to help!
+
+The GitHub [track repository][github] is the home for all of the Rust exercises.
 
 If you want to know more about Exercism, take a look at the [contribution guide].
 
