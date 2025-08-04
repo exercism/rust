@@ -1,6 +1,6 @@
 # Instructions
 
-Given a number from 0 to 999,999,999,999, spell out that number in English.
+Given a positive integer from 0 to u64::MAX, spell out that number in English.
 
 ## Step 1
 
@@ -16,7 +16,6 @@ Some good test cases for this program are:
 - 14
 - 50
 - 98
-- -1
 - 100
 
 ### Extension
