@@ -1,6 +1,7 @@
 # Instructions
 
-Given a positive integer from 0 to u64::MAX, spell out that number in English.
+Given a positive integer from 0 to u64::MAX (a bit more than 18 quintillion),
+spell out that number in English.
 
 ## Step 1
 
