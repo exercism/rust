@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-
+use regex::Regex;
 use tera::{Result, Value};
 
 type Filter = fn(&Value, &HashMap<String, Value>) -> Result<Value>;
@@ -27,12 +27,21 @@ pub fn make_ident(value: &Value, _args: &HashMap<String, Value>) -> Result<Value
             "serde_json::value::Value::as_str",
         ));
     };
+    let value = underscore_camel_case(value);
     let value = slug::slugify(value).replace('-', "_");
     if !value.chars().next().unwrap_or_default().is_alphabetic() {
         // identifiers cannot start with digits etc.
         return Ok(Value::String(format!("test_{value}")));
     }
     Ok(Value::String(value))
+}
+
+fn underscore_camel_case(value: &str) -> String {
+    let re = Regex::new(r"([a-z0-9])([A-Z])").unwrap();
+    let value = re.replace_all(value, "${1}_${2}");
+    let re2 = Regex::new(r"([A-Z])([A-Z][a-z])").unwrap();
+    let value = re2.replace_all(&value, "${1}_${2}");
+    String::from(value)
 }
 
 pub fn fmt_num(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
