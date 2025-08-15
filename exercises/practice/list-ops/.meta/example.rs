@@ -32,10 +32,10 @@ where
         type Item = T;
 
         fn next(&mut self) -> Option<Self::Item> {
-            if let Some(nested_iterator) = self.cur.as_mut() {
-                if let Some(val) = nested_iterator.next() {
-                    return Some(val);
-                }
+            if let Some(nested_iterator) = self.cur.as_mut()
+                && let Some(val) = nested_iterator.next()
+            {
+                return Some(val);
             }
 
             if let Some(next_nested) = self.nested_list.next() {

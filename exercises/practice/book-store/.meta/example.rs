@@ -124,40 +124,40 @@ impl Iterator for DecomposeGroups {
         //    then move the last item from the most populous group into a new group, alone,
         //    and return
         let return_value = self.next.clone();
-        if let Some(groups) = self.next.take() {
-            if !(groups.is_empty() || groups.iter().all(|g| g.0.borrow().len() == 1)) {
-                let mut hypothetical;
-                for mpg_book in groups[0].0.borrow().iter() {
-                    for (idx, other_group) in groups[1..].iter().enumerate() {
-                        if !other_group.0.borrow().contains(mpg_book) {
-                            hypothetical = groups.clone();
-                            hypothetical[0].0.borrow_mut().remove(mpg_book);
-                            hypothetical[1 + idx].0.borrow_mut().insert(*mpg_book);
-                            hypothetical.sort();
-                            let hypothetical_hash = hash_of(&hypothetical);
-                            if !self.prev_states.contains(&hypothetical_hash) {
-                                self.prev_states.insert(hypothetical_hash);
-                                self.next = Some(hypothetical);
-                                return return_value;
-                            }
+        if let Some(groups) = self.next.take()
+            && !(groups.is_empty() || groups.iter().all(|g| g.0.borrow().len() == 1))
+        {
+            let mut hypothetical;
+            for mpg_book in groups[0].0.borrow().iter() {
+                for (idx, other_group) in groups[1..].iter().enumerate() {
+                    if !other_group.0.borrow().contains(mpg_book) {
+                        hypothetical = groups.clone();
+                        hypothetical[0].0.borrow_mut().remove(mpg_book);
+                        hypothetical[1 + idx].0.borrow_mut().insert(*mpg_book);
+                        hypothetical.sort();
+                        let hypothetical_hash = hash_of(&hypothetical);
+                        if !self.prev_states.contains(&hypothetical_hash) {
+                            self.prev_states.insert(hypothetical_hash);
+                            self.next = Some(hypothetical);
+                            return return_value;
                         }
                     }
                 }
-                // we've gone through all the items of the most populous group,
-                // and none of them can be added to any other existing group.
-                // We need to create a new group;
-                let book = {
-                    let backing_bt = groups[0].0.borrow();
-                    let mut book_iter = backing_bt.iter();
-                    *book_iter.next().unwrap()
-                };
-                hypothetical = groups;
-                hypothetical[0].0.borrow_mut().remove(&book);
-                hypothetical.push(Group::new_containing(book));
-                hypothetical.sort();
-                self.prev_states.insert(hash_of(&hypothetical));
-                self.next = Some(hypothetical);
             }
+            // we've gone through all the items of the most populous group,
+            // and none of them can be added to any other existing group.
+            // We need to create a new group;
+            let book = {
+                let backing_bt = groups[0].0.borrow();
+                let mut book_iter = backing_bt.iter();
+                *book_iter.next().unwrap()
+            };
+            hypothetical = groups;
+            hypothetical[0].0.borrow_mut().remove(&book);
+            hypothetical.push(Group::new_containing(book));
+            hypothetical.sort();
+            self.prev_states.insert(hash_of(&hypothetical));
+            self.next = Some(hypothetical);
         }
         return_value
     }
