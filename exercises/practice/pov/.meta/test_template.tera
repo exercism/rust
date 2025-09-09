@@ -13,6 +13,20 @@ mod no_clone {
     }
 }
 
+/// Equality on trees must be independent of the order of children.
+mod equality {
+    use pov::*;
+    use pretty_assertions::assert_eq;
+
+    #[test]
+    #[ignore]
+    fn equality_is_order_independent() {
+        let a = Tree::new("root").with_child(Tree::new("left")).with_child(Tree::new("right"));
+        let b = Tree::new("root").with_child(Tree::new("right")).with_child(Tree::new("left"));
+        assert_eq!(a, b);
+    }
+}
+
 {% macro render_tree(tree) -%}
     Tree::new("{{ tree.label }}")
     {%- if tree.children -%}{%- for child in tree.children -%}

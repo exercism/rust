@@ -12,6 +12,24 @@ mod no_clone {
     }
 }
 
+/// Equality on trees must be independent of the order of children.
+mod equality {
+    use pov::*;
+    use pretty_assertions::assert_eq;
+
+    #[test]
+    #[ignore]
+    fn equality_is_order_independent() {
+        let a = Tree::new("root")
+            .with_child(Tree::new("left"))
+            .with_child(Tree::new("right"));
+        let b = Tree::new("root")
+            .with_child(Tree::new("right"))
+            .with_child(Tree::new("left"));
+        assert_eq!(a, b);
+    }
+}
+
 /// Reroot a tree so that its root is the specified node.
 mod from_pov {
     use pov::*;
