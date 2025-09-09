@@ -1,5 +1,5 @@
 {%- macro render_tree(tree) -%}
-    Tree::new("{{ tree.label }}".to_string())
+    Tree::new("{{ tree.label }}")
     {%- if tree.children -%}{%- for child in tree.children -%}
             .with_child({{ self::render_tree(tree=child) }})
     {%- endfor -%}{%- endif -%}
@@ -8,7 +8,7 @@
 {%- macro render_vec(values) -%}
 vec![
     {%- for value in values -%}
-        "{{ value }}".to_string(),
+        &"{{ value }}",
     {%- endfor -%}
 ]
 {%- endmacro -%}
@@ -18,29 +18,26 @@ vec![
 mod {{ test_group.cases[0].property | make_ident }} {
     use pov::*;
     use pretty_assertions::assert_eq;
-{%- if test_group.cases[0].property == "fromPov" -%}
-    use super::test_util::tree_to_sorted;
-{%- endif %}
 
 {% for test in test_group.cases %}
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
-    let input = {{ self::render_tree(tree=test.input.tree) }};
-    let from = "{{ test.input.from }}".to_string();
+    let mut tree = {{ self::render_tree(tree=test.input.tree) }};
+    let from = "{{ test.input.from }}";
     {%- if test.property == "fromPov" -%}
-        let result = input.pov_from(&from);
         {%- if not test.expected -%}
-            let expected: Option<Tree<String>> = None;
+            assert!(!tree.pov_from(&from));
         {%- else -%}
-            let expected = Some({{ self::render_tree(tree=test.expected) }});
+            assert!(tree.pov_from(&from));
+            let expected = {{ self::render_tree(tree=test.expected) }};
+            assert_eq!(tree, expected);
         {%- endif -%}
-        assert_eq!(tree_to_sorted(result), tree_to_sorted(expected));
     {%- elif test.property == "pathTo" -%}
-        let to = "{{ test.input.to }}".to_string();
-        let result = input.path_to(&from, &to);
+        let to = "{{ test.input.to }}";
+        let result = tree.path_to(&from, &to);
         {%- if not test.expected -%}
-            let expected: Option<Vec<String>> = None;
+            let expected: Option<Vec<_>> = None;
         {%- else -%}
             let expected = Some({{ self::render_vec(values=test.expected) }});
         {%- endif -%}
@@ -52,24 +49,3 @@ fn {{ test.description | make_ident }}() {
 {% endfor %}
 }
 {% endfor %}
-
-mod test_util {
-    use pov::*;
-    use std::fmt::Debug;
-
-    pub fn tree_to_sorted<T: Ord + Clone + Debug>(
-        tree_opt: Option<Tree<T>>,
-    ) -> Option<Tree<T>> {
-        tree_opt.map(sorter)
-    }
-
-    fn sorter<T: Ord + Clone + Debug>(tree: Tree<T>) -> Tree<T> {
-        let mut children = tree.children().collect::<Vec<_>>();
-        children.sort_unstable_by_key(|child| child.label());
-        let mut tree = Tree::new(tree.label());
-        for child in children {
-            tree = tree.with_child(sorter(child.clone()));
-        }
-        tree
-    }
-}

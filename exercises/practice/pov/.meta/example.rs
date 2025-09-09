@@ -1,13 +1,12 @@
 use std::fmt::Debug;
-use std::ops::{Deref, DerefMut};
 
-#[derive(Clone, Debug, PartialEq)]
-pub struct Tree<T: Clone + Debug + PartialEq> {
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct Tree<T: Debug + Ord> {
     label: T,
     children: Vec<Box<Tree<T>>>,
 }
 
-impl<T: Clone + Debug + PartialEq> Tree<T> {
+impl<T: Debug + Ord> Tree<T> {
     pub fn new(label: T) -> Self {
         Self {
             label,
@@ -16,72 +15,70 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
     }
 
     pub fn with_child(mut self, child: Self) -> Self {
-        self.children.push(Box::new(child));
+        self.children.insert(
+            self.children
+                .binary_search_by(|c| c.label.cmp(&child.label))
+                .unwrap_err(),
+            Box::new(child),
+        );
         self
     }
 
-    pub fn label(&self) -> T {
-        self.label.clone()
+    pub fn pov_from(&mut self, from: &T) -> bool {
+        self.pov_from_rec(from).is_some()
     }
 
-    pub fn children(&self) -> impl Iterator<Item = &Self> {
-        self.children.iter().map(Box::deref)
+    fn pov_from_rec(&mut self, from: &T) -> Option<Vec<usize>> {
+        if &self.label == from {
+            return Some(Vec::new());
+        }
+
+        // Run `pov_from_rec` over all children, until finding the one where it
+        // worked. That also returns the list of indexes to traverse to find the
+        // insertion point for the old POV.
+        let (pos, mut index_list) = self
+            .children
+            .iter_mut()
+            .enumerate()
+            .find_map(|(i, child)| child.pov_from_rec(from).map(|index_list| (i, index_list)))?;
+
+        // swap old and new POV
+        let mut old_pov = self.children.remove(pos);
+        std::mem::swap(self, &mut old_pov);
+
+        // find parent of old POV
+        let mut parent_of_old_pov = self;
+        for i in index_list.iter().rev() {
+            parent_of_old_pov = &mut parent_of_old_pov.children[*i];
+        }
+
+        // put old POV into its new place
+        let new_idx = parent_of_old_pov
+            .children
+            .binary_search_by(|c| c.label.cmp(&old_pov.label))
+            .unwrap_err();
+        parent_of_old_pov.children.insert(new_idx, old_pov);
+
+        // Record index of old POV such that other recursive calls can insert
+        // their old POV as the child of ours.
+        index_list.push(new_idx);
+
+        Some(index_list)
     }
 
-    pub fn pov_from(&self, from: &T) -> Option<Self> {
-        // list of (child, parent, child's index in parent.children)
-        let mut lookup = vec![(self, None, None)];
-        let mut stack = vec![self];
-        while let Some(parent) = stack.pop() {
-            if &parent.label == from {
-                return self.reparent(parent, lookup.as_slice()).into();
-            }
-            lookup.extend(
-                parent
-                    .children
-                    .iter()
-                    .map(Box::deref)
-                    .enumerate()
-                    .map(|(i, child)| (child, Some(parent), Some(i))),
-            );
-            stack.extend(parent.children.iter().map(Box::deref));
+    pub fn path_to<'a>(&'a mut self, from: &'a T, to: &'a T) -> Option<Vec<&'a T>> {
+        if !self.pov_from(to) {
+            return None;
         }
-        None
+        self.path_from(from)
     }
 
-    // lookup is list of (child, parent, child's index in parent.children)
-    fn reparent(&self, parent: &Self, lookup: &[(&Self, Option<&Self>, Option<usize>)]) -> Self {
-        let mut new_root = parent.clone();
-        let mut current = parent;
-        let mut clone_mut = &mut new_root;
-        let find_parent = |child| lookup.iter().find(|(c, _p, _i)| *c == child);
-        while let Some(&(_, Some(parent), Some(index))) = find_parent(current) {
-            let mut parent_clone = parent.clone();
-            parent_clone.children.swap_remove(index);
-            clone_mut.children.push(Box::new(parent_clone));
-            current = parent;
-            let new_box = clone_mut
-                .children
-                .last_mut()
-                .expect("We just inserted node, this is not empty");
-            clone_mut = new_box.deref_mut();
+    fn path_from<'a>(&'a self, from: &'a T) -> Option<Vec<&'a T>> {
+        if &self.label == from {
+            return Some(vec![from]);
         }
-        new_root
-    }
-
-    pub fn path_to(&self, from: &T, to: &T) -> Option<Vec<T>> {
-        if from != &self.label {
-            return self.pov_from(from).and_then(|pov| pov.path_to(from, to));
-        }
-        if to == &self.label {
-            return Some(vec![self.label.clone()]);
-        }
-        for child in self.children.iter() {
-            if let Some(mut path) = child.path_to(&child.label, to) {
-                path.insert(0, self.label.clone());
-                return Some(path);
-            }
-        }
-        None
+        let mut path = self.children.iter().find_map(|c| c.path_from(from))?;
+        path.push(&self.label);
+        Some(path)
     }
 }

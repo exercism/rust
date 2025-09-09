@@ -1,11 +1,11 @@
 use std::fmt::Debug;
 
-#[derive(Clone, Debug, PartialEq)]
-pub struct Tree<T: Clone + Debug + PartialEq> {
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct Tree<T: Debug + Ord> {
     remove_this: std::marker::PhantomData<T>,
 }
 
-impl<T: Clone + Debug + PartialEq> Tree<T> {
+impl<T: Debug + Ord> Tree<T> {
     pub fn new(label: T) -> Self {
         todo!("Create a new tree with the given {label:?}");
     }
@@ -15,19 +15,11 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
         todo!("Add {child:?} to the tree and return the tree");
     }
 
-    pub fn label(&self) -> T {
-        todo!("Return the tree's label");
-    }
-
-    pub fn children(&self) -> impl Iterator<Item = &Self> {
-        std::iter::from_fn(|| todo!("Return the tree's children"))
-    }
-
-    pub fn pov_from(&self, from: &T) -> Option<Self> {
+    pub fn pov_from(&mut self, from: &T) -> bool {
         todo!("Reparent the tree with the label {from:?} as root");
     }
 
-    pub fn path_to(&self, from: &T, to: &T) -> Option<Vec<T>> {
+    pub fn path_to<'a>(&'a mut self, from: &'a T, to: &'a T) -> Option<Vec<&'a T>> {
         todo!("Return the shortest path between {from:?} and {to:?}");
     }
 }
