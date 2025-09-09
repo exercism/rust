@@ -86,6 +86,11 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Setup compilation cache
+        uses: Swatinem/rust-cache@98c8021b550208e191a6a3145459bfc9fb29c4c0 # v2.8.0
+        with:
+          workspaces: "rust-tooling -> rust-tooling/target"
+
       - name: Fetch configlet
         run: ./bin/fetch-configlet
 
