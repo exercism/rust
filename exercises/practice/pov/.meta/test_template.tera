@@ -1,4 +1,19 @@
-{%- macro render_tree(tree) -%}
+/// Forbid implementations that rely on Clone.
+mod no_clone {
+    use pov::*;
+
+    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+    struct NotClone;
+
+    #[test]
+    #[ignore]
+    fn doesnt_rely_on_clone() {
+        let mut tree = Tree::new(NotClone);
+        assert!(tree.pov_from(&NotClone));
+    }
+}
+
+{% macro render_tree(tree) -%}
     Tree::new("{{ tree.label }}")
     {%- if tree.children -%}{%- for child in tree.children -%}
             .with_child({{ self::render_tree(tree=child) }})

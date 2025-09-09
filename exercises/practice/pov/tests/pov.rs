@@ -1,9 +1,24 @@
+/// Forbid implementations that rely on Clone.
+mod no_clone {
+    use pov::*;
+
+    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+    struct NotClone;
+
+    #[test]
+    fn doesnt_rely_on_clone() {
+        let mut tree = Tree::new(NotClone);
+        assert!(tree.pov_from(&NotClone));
+    }
+}
+
 /// Reroot a tree so that its root is the specified node.
 mod from_pov {
     use pov::*;
     use pretty_assertions::assert_eq;
 
     #[test]
+    #[ignore]
     fn results_in_the_same_tree_if_the_input_tree_is_a_singleton() {
         let mut tree = Tree::new("x");
         let from = "x";
