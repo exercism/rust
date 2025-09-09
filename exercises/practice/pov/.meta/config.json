@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "devcyjung",
+    "senekor"
+  ],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/pov.rs"
+    ],
+    "example": [
+      ".meta/example.rs"
+    ]
+  },
+  "blurb": "Reparent a graph on a selected node.",
+  "source": "Adaptation of exercise from 4clojure",
+  "source_url": "https://github.com/oxalorg/4ever-clojure"
+}

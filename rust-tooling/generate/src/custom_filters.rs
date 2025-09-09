@@ -27,12 +27,29 @@ pub fn make_ident(value: &Value, _args: &HashMap<String, Value>) -> Result<Value
             "serde_json::value::Value::as_str",
         ));
     };
+    let value = camel_to_snake_case(value);
     let value = slug::slugify(value).replace('-', "_");
     if !value.chars().next().unwrap_or_default().is_alphabetic() {
         // identifiers cannot start with digits etc.
         return Ok(Value::String(format!("test_{value}")));
     }
     Ok(Value::String(value))
+}
+
+fn camel_to_snake_case(input: &str) -> String {
+    let mut chars: Vec<_> = input.chars().collect();
+    let mut i = 0;
+    while i + 1 < chars.len() {
+        let (left, right) = (chars[i], chars[i + 1]);
+        if right.is_ascii_uppercase() {
+            chars[i + 1] = right.to_ascii_lowercase();
+            if left.is_ascii_alphabetic() {
+                chars.insert(i + 1, '_');
+            }
+        }
+        i += 1;
+    }
+    chars.into_iter().collect()
 }
 
 pub fn fmt_num(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
