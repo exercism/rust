@@ -7,28 +7,26 @@ pub struct Tree<T: Clone + Debug + PartialEq> {
 
 impl<T: Clone + Debug + PartialEq> Tree<T> {
     pub fn new(label: T) -> Self {
-        todo!("Implement a function that creates a new Tree with given {label:?}");
+        todo!("Create a new tree with the given {label:?}");
     }
 
     pub fn with_children(label: T, children: Vec<Self>) -> Self {
-        todo!("Implement a function that creates a new Tree with given {label:?} and {children:?}");
+        todo!("Creaet a new tree with the given {label:?} and {children:?}");
     }
 
     pub fn label(&self) -> T {
-        todo!("Implement getter for label.");
+        todo!("Return the tree's label");
     }
 
     pub fn children(&self) -> Vec<&Self> {
-        todo!("Implement getter for children.");
+        todo!("Return the tree's children");
     }
 
     pub fn pov_from(&self, from: &T) -> Option<Self> {
-        todo!("Implement a function that reparents Tree with {from:?} as root.");
+        todo!("Reparent the tree with the label {from:?} as root");
     }
 
     pub fn path_to(&self, from: &T, to: &T) -> Option<Vec<T>> {
-        todo!(
-            "Implement a function that returns the list of labels in the shortest path from {from:?} to {to:?}"
-        );
+        todo!("Return the shortest path between {from:?} and {to:?}");
     }
 }
