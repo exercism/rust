@@ -39,18 +39,16 @@ mod {{ test_group.cases[0].property | make_ident }} {
 #[ignore]
 fn {{ test.description | make_ident }}() {
     let mut tree = {{ self::render_tree(tree=test.input.tree) }};
-    let from = "{{ test.input.from }}";
     {%- if test.property == "fromPov" -%}
         {%- if not test.expected -%}
-            assert!(!tree.pov_from(&from));
+            assert!(!tree.pov_from(&"{{ test.input.from }}"));
         {%- else -%}
-            assert!(tree.pov_from(&from));
+            assert!(tree.pov_from(&"{{ test.input.from }}"));
             let expected = {{ self::render_tree(tree=test.expected) }};
             assert_eq!(tree, expected);
         {%- endif -%}
     {%- elif test.property == "pathTo" -%}
-        let to = "{{ test.input.to }}";
-        let result = tree.path_to(&from, &to);
+        let result = tree.path_to(&"{{ test.input.from }}", &"{{ test.input.to }}");
         {%- if not test.expected -%}
             let expected: Option<Vec<_>> = None;
         {%- else -%}
