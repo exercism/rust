@@ -1,16 +1,8 @@
 {%- macro render_tree(tree) -%}
-{%- if tree.children -%}
-    Tree::with_children(
-        "{{ tree.label }}".to_string(),
-        vec![
-            {%- for child in tree.children -%}
-                {{ self::render_tree(tree=child) }},
-            {%- endfor -%}
-        ],
-    )
-{%- else -%}
     Tree::new("{{ tree.label }}".to_string())
-{%- endif -%}
+    {%- if tree.children -%}{%- for child in tree.children -%}
+            .with_child({{ self::render_tree(tree=child) }})
+    {%- endfor -%}{%- endif -%}
 {%- endmacro -%}
 
 {%- macro render_vec(values) -%}
@@ -72,11 +64,12 @@ mod test_util {
     }
 
     fn sorter<T: Ord + Clone + Debug>(tree: Tree<T>) -> Tree<T> {
-        let mut children = tree.children();
+        let mut children = tree.children().collect::<Vec<_>>();
         children.sort_unstable_by_key(|child| child.label());
-        Tree::with_children(
-            tree.label(),
-            children.into_iter().cloned().map(|c| sorter(c)).collect(),
-        )
+        let mut tree = Tree::new(tree.label());
+        for child in children {
+            tree = tree.with_child(sorter(child.clone()));
+        }
+        tree
     }
 }

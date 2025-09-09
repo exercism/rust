@@ -10,16 +10,17 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
         todo!("Create a new tree with the given {label:?}");
     }
 
-    pub fn with_children(label: T, children: Vec<Self>) -> Self {
-        todo!("Creaet a new tree with the given {label:?} and {children:?}");
+    /// Builder-method for constructing a tree with children
+    pub fn with_child(self, child: Self) -> Self {
+        todo!("Add {child:?} to the tree and return the tree");
     }
 
     pub fn label(&self) -> T {
         todo!("Return the tree's label");
     }
 
-    pub fn children(&self) -> Vec<&Self> {
-        todo!("Return the tree's children");
+    pub fn children(&self) -> impl Iterator<Item = &Self> {
+        std::iter::from_fn(|| todo!("Return the tree's children"))
     }
 
     pub fn pov_from(&self, from: &T) -> Option<Self> {

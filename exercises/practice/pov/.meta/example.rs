@@ -15,19 +15,17 @@ impl<T: Clone + Debug + PartialEq> Tree<T> {
         }
     }
 
-    pub fn with_children(label: T, children: Vec<Self>) -> Self {
-        Self {
-            label,
-            children: children.into_iter().map(Box::new).collect(),
-        }
+    pub fn with_child(mut self, child: Self) -> Self {
+        self.children.push(Box::new(child));
+        self
     }
 
     pub fn label(&self) -> T {
         self.label.clone()
     }
 
-    pub fn children(&self) -> Vec<&Self> {
-        self.children.iter().map(Box::deref).collect()
+    pub fn children(&self) -> impl Iterator<Item = &Self> {
+        self.children.iter().map(Box::deref)
     }
 
     pub fn pov_from(&self, from: &T) -> Option<Self> {
