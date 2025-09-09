@@ -2,7 +2,7 @@ use std::fmt::Debug;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Tree<T: Clone + Debug + PartialEq> {
-    _remove_this: std::marker::PhantomData<T>,
+    remove_this: std::marker::PhantomData<T>,
 }
 
 impl<T: Clone + Debug + PartialEq> Tree<T> {
