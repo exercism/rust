@@ -1405,6 +1405,15 @@
         ]
       },
       {
+        "slug": "pov",
+        "name": "POV",
+        "uuid": "bf7b7309-3d34-4893-a584-f7742502e012",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10,
+        "topics": []
+      },
+      {
         "slug": "poker",
         "name": "Poker",
         "uuid": "0a33f3ac-cedd-4a40-a132-9d044b0e9977",
@@ -1584,15 +1593,6 @@
           "lists",
           "unsafe"
         ]
-      },
-      {
-        "slug": "pov",
-        "name": "POV",
-        "uuid": "bf7b7309-3d34-4893-a584-f7742502e012",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 10,
-        "topics": []
       }
     ],
     "foregone": [
