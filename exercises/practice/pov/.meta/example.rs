@@ -66,7 +66,7 @@ impl<T: Debug + Ord> Tree<T> {
         Some(index_list)
     }
 
-    pub fn path_to<'a>(&'a mut self, from: &'a T, to: &'a T) -> Option<Vec<&'a T>> {
+    pub fn path_between<'a>(&'a mut self, from: &'a T, to: &'a T) -> Option<Vec<&'a T>> {
         if !self.pov_from(to) {
             return None;
         }

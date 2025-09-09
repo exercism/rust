@@ -174,7 +174,7 @@ mod path_to {
         let mut tree = Tree::new("parent")
             .with_child(Tree::new("x"))
             .with_child(Tree::new("sibling"));
-        let result = tree.path_to(&"x", &"parent");
+        let result = tree.path_between(&"x", &"parent");
         let expected = Some(vec![&"x", &"parent"]);
         assert_eq!(result, expected);
     }
@@ -187,7 +187,7 @@ mod path_to {
             .with_child(Tree::new("x"))
             .with_child(Tree::new("b"))
             .with_child(Tree::new("c"));
-        let result = tree.path_to(&"x", &"b");
+        let result = tree.path_between(&"x", &"b");
         let expected = Some(vec![&"x", &"parent", &"b"]);
         assert_eq!(result, expected);
     }
@@ -211,7 +211,7 @@ mod path_to {
                     .with_child(Tree::new("cousin-0"))
                     .with_child(Tree::new("cousin-1")),
             );
-        let result = tree.path_to(&"x", &"cousin-1");
+        let result = tree.path_between(&"x", &"cousin-1");
         let expected = Some(vec![&"x", &"parent", &"grandparent", &"uncle", &"cousin-1"]);
         assert_eq!(result, expected);
     }
@@ -225,7 +225,7 @@ mod path_to {
                 .with_child(Tree::new("sibling-0"))
                 .with_child(Tree::new("sibling-1")),
         );
-        let result = tree.path_to(&"x", &"sibling-1");
+        let result = tree.path_between(&"x", &"sibling-1");
         let expected = Some(vec![&"x", &"parent", &"sibling-1"]);
         assert_eq!(result, expected);
     }
@@ -238,7 +238,7 @@ mod path_to {
             .with_child(Tree::new("x"))
             .with_child(Tree::new("b"))
             .with_child(Tree::new("c"));
-        let result = tree.path_to(&"a", &"c");
+        let result = tree.path_between(&"a", &"c");
         let expected = Some(vec![&"a", &"parent", &"c"]);
         assert_eq!(result, expected);
     }
@@ -254,7 +254,7 @@ mod path_to {
             )
             .with_child(Tree::new("sibling-0"))
             .with_child(Tree::new("sibling-1"));
-        let result = tree.path_to(&"x", &"nonexistent");
+        let result = tree.path_between(&"x", &"nonexistent");
         let expected: Option<Vec<_>> = None;
         assert_eq!(result, expected);
     }
@@ -270,7 +270,7 @@ mod path_to {
             )
             .with_child(Tree::new("sibling-0"))
             .with_child(Tree::new("sibling-1"));
-        let result = tree.path_to(&"nonexistent", &"x");
+        let result = tree.path_between(&"nonexistent", &"x");
         let expected: Option<Vec<_>> = None;
         assert_eq!(result, expected);
     }

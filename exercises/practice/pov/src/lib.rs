@@ -19,7 +19,7 @@ impl<T: Debug + Ord> Tree<T> {
         todo!("Reparent the tree with the label {from:?} as root");
     }
 
-    pub fn path_to<'a>(&'a mut self, from: &'a T, to: &'a T) -> Option<Vec<&'a T>> {
+    pub fn path_between<'a>(&'a mut self, from: &'a T, to: &'a T) -> Option<Vec<&'a T>> {
         todo!("Return the shortest path between {from:?} and {to:?}");
     }
 }

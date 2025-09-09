@@ -62,7 +62,7 @@ fn {{ test.description | make_ident }}() {
             assert_eq!(tree, expected);
         {%- endif -%}
     {%- elif test.property == "pathTo" -%}
-        let result = tree.path_to(&"{{ test.input.from }}", &"{{ test.input.to }}");
+        let result = tree.path_between(&"{{ test.input.from }}", &"{{ test.input.to }}");
         {%- if not test.expected -%}
             let expected: Option<Vec<_>> = None;
         {%- else -%}
