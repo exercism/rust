@@ -74,6 +74,30 @@ fn measure_using_bucket_one_of_size_2_and_bucket_two_of_size_3_start_with_bucket
 
 #[test]
 #[ignore]
+fn measure_using_bucket_one_much_bigger_than_bucket_two() {
+    let output = solve(5, 1, 2, &Bucket::One);
+    let expected = Some(BucketStats {
+        moves: 6,
+        goal_bucket: Bucket::One,
+        other_bucket: 1,
+    });
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
+fn measure_using_bucket_one_much_smaller_than_bucket_two() {
+    let output = solve(3, 15, 9, &Bucket::One);
+    let expected = Some(BucketStats {
+        moves: 6,
+        goal_bucket: Bucket::Two,
+        other_bucket: 0,
+    });
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn not_possible_to_reach_the_goal() {
     let output = solve(6, 15, 5, &Bucket::One);
     let expected = None;
