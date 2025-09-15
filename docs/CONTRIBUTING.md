@@ -17,11 +17,11 @@ Some tooling is present as bash scripts in `bin/`.
 A lot more is present in `rust-tooling/`,
 which should be preferred for anything non-trivial.
 
-There is also a [`justfile`](https://github.com/casey/just)
+There is also a [`mise`](https://mise.jdx.dev/) configuration
 with a couple useful commands to interact with the repo.
 Feel free to extend it.
 
-If you want to run CI tests locally, `just test` will get you quite far.
+If you want to run CI tests locally, `mise run test` will get you quite far.
 
 ## Excluding tests and adding custom ones
 
@@ -41,7 +41,7 @@ Please familiarize yourself with the [Exercism documentation about practice exer
 
 [Exercism documentation about practice exercises]: https://exercism.org/docs/building/tracks/practice-exercises
 
-Run `just add-exercise` and you'll be prompted for the minimal
+Run `mise run add-exercise` and you'll be prompted for the minimal
 information required to generate the exercise stub for you.
 After that, jump in the generated exercise and fill in any placeholders you find.
 This includes most notably:
@@ -88,7 +88,7 @@ This includes their test suite and user-facing documentation.
 Before proposing changes here,
 check if they should be made in `problem-specifications` instead.
 
-Run `just update-exercise` to update an exercise.
+Run `mise run update-exercise` to update an exercise.
 This outsources most work to `configlet sync --update`
 and runs the test generator again.
 
