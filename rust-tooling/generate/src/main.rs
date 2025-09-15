@@ -71,8 +71,9 @@ fn update_exercise(args: UpdateArgs) -> Result<()> {
 }
 
 fn make_configlet_generate_what_it_can(slug: &str) -> Result<()> {
-    let status = std::process::Command::new("just")
+    let status = std::process::Command::new("mise")
         .args([
+            "run",
             "configlet",
             "sync",
             "--update",

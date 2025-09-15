@@ -1,0 +1,34 @@
+[tasks.test]
+description = "simulate CI locally (WIP)"
+run = [
+  "mise run configlet lint",
+  "bin/lint_markdown.sh",
+  "shellcheck bin/*.sh",
+  "bin/check_exercises.sh",
+  "CLIPPY=true bin/check_exercises.sh",
+  "cd rust-tooling && cargo test",
+  "bin/format_exercises.sh ; git diff --exit-code",
+]
+
+[tasks.add-exercise]
+depends = "symlink-problem-specifications"
+run = "cd rust-tooling/generate; cargo run --quiet --release -- add"
+
+[tasks.update-exercise]
+depends = "symlink-problem-specifications"
+run = "cd rust-tooling/generate; cargo run --quiet --release -- update"
+
+[tasks.configlet]
+depends = "fetch-configlet"
+quiet = true
+run = "bin/configlet"
+
+[tasks.fetch-configlet]
+hide = true
+silent = true
+run = "[ -f bin/configlet ] || bin/fetch-configlet"
+
+[tasks.symlink-problem-specifications]
+hide = true
+silent = true
+run = "[ -L problem-specifications ] || bin/symlink_problem_specifications.sh"
