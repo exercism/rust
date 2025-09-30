@@ -136,7 +136,22 @@ mod write_string {
     fn sink_buffered_windowed() {
         let data = INPUT;
         let size = data.len();
-        let mut writer = BufWriter::new(WriteStats::new(io::sink()));
+
+        // We store the inner writer in a separate variable so its destructor
+        // is called correctly. We then wrap a mutable reference to it in a
+        // buffered writer. The destructor of the buffered writer is suppressed,
+        // because it tries to flush the inner writer. (It doesn't do anything
+        // else, so it's fine to skip it.) This would cause a non-unwinding
+        // panic if the inner writer hasn't implemented `write` yet. The
+        // standard library implementation of `BufWriter` does try to keep track
+        // of a panic by the inner writer, but it's not perfect. We access the
+        // inner writer later with `.get_ref()`. If there is a panic in that
+        // situation, the buffered writer cannot observe and track it.
+        //
+        // Related forum discussion:
+        // https://forum.exercism.org/t/test-runner-fail-on-paas/19426
+        let mut inner_writer = WriteStats::new(io::sink());
+        let mut writer = std::mem::ManuallyDrop::new(BufWriter::new(&mut inner_writer));
 
         for chunk in data.chunks(CHUNK_SIZE) {
             let written = writer.write(chunk);
@@ -286,7 +301,22 @@ mod write_byte_literal {
     fn sink_buffered_windowed() {
         let data = INPUT;
         let size = data.len();
-        let mut writer = BufWriter::new(WriteStats::new(io::sink()));
+
+        // We store the inner writer in a separate variable so its destructor
+        // is called correctly. We then wrap a mutable reference to it in a
+        // buffered writer. The destructor of the buffered writer is suppressed,
+        // because it tries to flush the inner writer. (It doesn't do anything
+        // else, so it's fine to skip it.) This would cause a non-unwinding
+        // panic if the inner writer hasn't implemented `write` yet. The
+        // standard library implementation of `BufWriter` does try to keep track
+        // of a panic by the inner writer, but it's not perfect. We access the
+        // inner writer later with `.get_ref()`. If there is a panic in that
+        // situation, the buffered writer cannot observe and track it.
+        //
+        // Related forum discussion:
+        // https://forum.exercism.org/t/test-runner-fail-on-paas/19426
+        let mut inner_writer = WriteStats::new(io::sink());
+        let mut writer = std::mem::ManuallyDrop::new(BufWriter::new(&mut inner_writer));
 
         for chunk in data.chunks(CHUNK_SIZE) {
             let written = writer.write(chunk);
