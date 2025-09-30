@@ -73,12 +73,5 @@ fn stubs_are_warning_free() {
     if !log.is_empty() {
         std::fs::write("clippy.log", &log).expect("should write clippy.log");
     }
-    assert!(
-        log.is_empty(),
-        "
-    ╔═════════════════════════════════════════╗
-    ║ clippy found warnings, check clippy.log ║
-    ╚═════════════════════════════════════════╝
-    "
-    );
+    assert!(log.is_empty(), "{log}");
 }
