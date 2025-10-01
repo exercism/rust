@@ -1,4 +1,3 @@
 pub fn is_leap_year(year: u64) -> bool {
-    let has_factor = |n| year % n == 0;
-    has_factor(4) && (!has_factor(100) || has_factor(400))
+    year.is_multiple_of(4) && (!year.is_multiple_of(100) || year.is_multiple_of(400))
 }
