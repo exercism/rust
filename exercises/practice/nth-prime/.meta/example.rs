@@ -1,7 +1,7 @@
 fn is_prime(n: u32) -> bool {
     let mut i = 3;
     while (i * i) < (n + 1) {
-        if n % i == 0 {
+        if n.is_multiple_of(i) {
             return false;
         }
         i += 1;

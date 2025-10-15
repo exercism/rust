@@ -8,12 +8,12 @@ pub enum Error {
 
 pub fn convert(input: &str) -> Result<String, Error> {
     let line_count = input.lines().count();
-    if line_count % 4 != 0 {
+    if !line_count.is_multiple_of(4) {
         return Err(Error::InvalidRowCount(line_count));
     }
     for line in input.lines() {
         let char_count = line.chars().count();
-        if char_count % 3 != 0 {
+        if !char_count.is_multiple_of(3) {
             return Err(Error::InvalidColumnCount(char_count));
         }
     }
