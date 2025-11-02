@@ -186,3 +186,12 @@ fn different_characters_may_have_the_same_bytes() {
     let expected = HashSet::from_iter([]);
     assert_eq!(output, expected);
 }
+
+#[test]
+fn equivalent_code_points_on_different_letters() {
+    let word = "āae";
+    let inputs = &["aeā", "aāe", "ēaa"];
+    let output = anagrams_for(word, inputs);
+    let expected = HashSet::from_iter(["aeā", "aāe"]);
+    assert_eq!(output, expected);
+}
