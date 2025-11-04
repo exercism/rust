@@ -1,0 +1,19 @@
+{
+  "blurb": "Learn about numbers by analyzing the production of an assembly line.",
+  "authors": [
+    "devkabiir"
+  ],
+  "contributors": [],
+  "files": {
+    "solution": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "test": [
+      "tests/cars-assemble.rs"
+    ],
+    "exemplar": [
+      ".meta/exemplar.rs"
+    ]
+  }
+}
