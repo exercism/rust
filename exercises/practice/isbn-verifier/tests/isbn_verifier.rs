@@ -43,6 +43,18 @@ fn x_is_only_valid_as_a_check_digit() {
 
 #[test]
 #[ignore]
+fn only_one_check_digit_is_allowed() {
+    assert!(!is_valid_isbn("3-598-21508-96"));
+}
+
+#[test]
+#[ignore]
+fn x_is_not_substituted_by_the_value_10() {
+    assert!(!is_valid_isbn("3-598-2X507-5"));
+}
+
+#[test]
+#[ignore]
 fn valid_isbn_without_separating_dashes() {
     assert!(is_valid_isbn("3598215088"));
 }
