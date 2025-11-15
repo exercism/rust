@@ -188,3 +188,12 @@ fn large_garden() {
     let actual = annotate(input);
     assert_eq!(actual, expected);
 }
+
+#[test]
+#[ignore]
+fn multiple_adjacent_flowers() {
+    let input = &[" ** "];
+    let expected = &["1**1"];
+    let actual = annotate(input);
+    assert_eq!(actual, expected);
+}
