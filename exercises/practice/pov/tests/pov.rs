@@ -161,6 +161,44 @@ mod from_pov {
             .with_child(Tree::new("sibling-1"));
         assert!(!tree.pov_from(&"nonexistent"));
     }
+
+    #[test]
+    #[ignore]
+    fn example_from_instructions() {
+        let mut tree = Tree::new(0)
+            .with_child(
+                Tree::new(1)
+                    .with_child(Tree::new(4))
+                    .with_child(Tree::new(5)),
+            )
+            .with_child(
+                Tree::new(2)
+                    .with_child(Tree::new(6))
+                    .with_child(Tree::new(7)),
+            )
+            .with_child(
+                Tree::new(3)
+                    .with_child(Tree::new(8))
+                    .with_child(Tree::new(9)),
+            );
+        assert!(tree.pov_from(&6));
+        let expected = Tree::new(6).with_child(
+            Tree::new(2).with_child(Tree::new(7)).with_child(
+                Tree::new(0)
+                    .with_child(
+                        Tree::new(1)
+                            .with_child(Tree::new(4))
+                            .with_child(Tree::new(5)),
+                    )
+                    .with_child(
+                        Tree::new(3)
+                            .with_child(Tree::new(8))
+                            .with_child(Tree::new(9)),
+                    ),
+            ),
+        );
+        assert_eq!(tree, expected);
+    }
 }
 
 /// Given two nodes, find the path between them
