@@ -7,6 +7,9 @@ edition = "2024"
 # The full list of available libraries is here:
 # https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
 [dependencies]
+# We use a wild-card specifier to minimize the risk of breaking existing
+# solutions in case the version in the test runner is updated.
+rand = "*"
 
 [lints.clippy]
 new_without_default = "allow"

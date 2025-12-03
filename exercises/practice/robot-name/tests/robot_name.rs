@@ -1,4 +1,12 @@
-use robot_name as robot;
+use std::collections::HashSet;
+
+use rand::SeedableRng as _;
+use rand::rngs::SmallRng;
+use robot_name::*;
+
+fn deterministic_rng() -> SmallRng {
+    SmallRng::seed_from_u64(0)
+}
 
 fn assert_name_matches_pattern(n: &str) {
     assert!(n.len() == 5, "name is exactly 5 characters long");
@@ -14,46 +22,86 @@ fn assert_name_matches_pattern(n: &str) {
 
 #[test]
 fn name_should_match_expected_pattern() {
-    let r = robot::Robot::new();
-    assert_name_matches_pattern(r.name());
+    let mut rng = deterministic_rng();
+    let mut factory = RobotFactory::new();
+    let robot = factory.new_robot(&mut rng);
+    assert_name_matches_pattern(robot.name());
 }
 
 #[test]
 #[ignore]
-fn different_robots_have_different_names() {
-    let r1 = robot::Robot::new();
-    let r2 = robot::Robot::new();
-    assert_ne!(r1.name(), r2.name(), "Robot names should be different");
+fn factory_prevents_name_collisions() {
+    let mut factory = RobotFactory::new();
+    let robot_1 = factory.new_robot(&mut deterministic_rng());
+    let robot_2 = factory.new_robot(&mut deterministic_rng());
+    assert_ne!(robot_1.name(), robot_2.name());
+}
+
+#[test]
+#[ignore]
+fn robot_name_depends_on_rng() {
+    let mut rng = deterministic_rng();
+    let robot_1 = RobotFactory::new().new_robot(&mut rng);
+    let robot_2 = RobotFactory::new().new_robot(&mut rng);
+    assert_ne!(robot_1.name(), robot_2.name());
+}
+
+#[test]
+#[ignore]
+fn robot_name_only_depends_on_rng() {
+    let robot_1 = RobotFactory::new().new_robot(&mut deterministic_rng());
+    let robot_2 = RobotFactory::new().new_robot(&mut deterministic_rng());
+    assert_eq!(robot_1.name(), robot_2.name());
 }
 
 #[test]
 #[ignore]
 fn many_different_robots_have_different_names() {
-    use std::collections::HashSet;
-
     // In 3,529 random robot names, there is ~99.99% chance of a name collision
-    let vec: Vec<_> = (0..3529).map(|_| robot::Robot::new()).collect();
-    let set: HashSet<_> = vec.iter().map(|robot| robot.name()).collect();
-
-    let number_of_collisions = vec.len() - set.len();
-    assert_eq!(number_of_collisions, 0);
+    let mut rng = deterministic_rng();
+    let mut factory = RobotFactory::new();
+    let robots: Vec<_> = (0..3529).map(|_| factory.new_robot(&mut rng)).collect();
+    let mut set = HashSet::new();
+    assert!(robots.iter().all(|robot| set.insert(robot.name())));
 }
 
 #[test]
 #[ignore]
 fn new_name_should_match_expected_pattern() {
-    let mut r = robot::Robot::new();
-    assert_name_matches_pattern(r.name());
-    r.reset_name();
-    assert_name_matches_pattern(r.name());
+    let mut rng = deterministic_rng();
+    let mut factory = RobotFactory::new();
+    let mut robot = factory.new_robot(&mut rng);
+    assert_name_matches_pattern(robot.name());
+    robot.reset(&mut rng);
+    assert_name_matches_pattern(robot.name());
 }
 
 #[test]
 #[ignore]
 fn new_name_is_different_from_old_name() {
-    let mut r = robot::Robot::new();
-    let n1 = r.name().to_string();
-    r.reset_name();
-    let n2 = r.name().to_string();
-    assert_ne!(n1, n2, "Robot name should change when reset");
+    let mut rng = deterministic_rng();
+    let mut factory = RobotFactory::new();
+    let mut robot = factory.new_robot(&mut rng);
+    let name_1 = robot.name().to_string();
+    robot.reset(&mut rng);
+    let name_2 = robot.name().to_string();
+    assert_ne!(name_1, name_2, "Robot name should change when reset");
+}
+
+#[test]
+#[ignore]
+fn factory_prevents_name_collision_despite_reset() {
+    // To keep the same probablity as the first test with many robots, we
+    // generate 3,529 robots and reset their names, then generate another 3,529
+    // robots and check if there are collisions across these two groups.
+    let mut rng = deterministic_rng();
+    let mut factory = RobotFactory::new();
+    let mut reset_robots: Vec<_> = (0..3529).map(|_| factory.new_robot(&mut rng)).collect();
+    for robot in &mut reset_robots {
+        robot.reset(&mut rng);
+    }
+    let mut set = HashSet::new();
+    assert!(reset_robots.iter().all(|robot| set.insert(robot.name())));
+
+    assert!((0..3529).all(|_| !set.contains(factory.new_robot(&mut rng).name())));
 }
