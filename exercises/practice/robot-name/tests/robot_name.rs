@@ -105,3 +105,16 @@ fn factory_prevents_name_collision_despite_reset() {
 
     assert!((0..3529).all(|_| !set.contains(factory.new_robot(&mut rng).name())));
 }
+
+#[test]
+#[ignore]
+fn old_name_becomes_available_after_reset() {
+    let mut rng = deterministic_rng();
+    let mut factory = RobotFactory::new();
+    let mut robot = factory.new_robot(&mut rng);
+    let first_name = robot.name().to_string();
+    robot.reset(&mut rng); // cause first name to become available again
+    let mut rng = deterministic_rng(); // reset rng
+    let second_robot = factory.new_robot(&mut rng);
+    assert_eq!(second_robot.name(), first_name);
+}

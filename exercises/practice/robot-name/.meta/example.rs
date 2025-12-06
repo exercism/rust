@@ -57,6 +57,8 @@ impl Robot {
     // name conflicts with other robots from the same factory.
     pub fn reset<R: Rng>(&mut self, rng: &mut R) {
         let mut used_names = self.used_names.lock().unwrap();
-        self.name = generate_name(rng, &mut used_names);
+        let new_name = generate_name(rng, &mut used_names);
+        used_names.remove(&self.name);
+        self.name = new_name
     }
 }
