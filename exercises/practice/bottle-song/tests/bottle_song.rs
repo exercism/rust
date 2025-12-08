@@ -1,4 +1,5 @@
 use bottle_song::*;
+use pretty_assertions::assert_eq;
 
 #[test]
 fn first_generic_verse() {
