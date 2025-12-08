@@ -56,6 +56,7 @@ static EXCEPTIONS: &[&str] = &[
     "roman-numerals",     // std::fmt::Formatter is not Debug
     "simple-linked-list", // has generics
     "sublist",            // has generics
+    "robot-name",         // has generics
 ];
 
 fn line_is_not_a_comment(line: &&str) -> bool {
