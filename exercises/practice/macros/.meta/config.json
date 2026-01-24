@@ -25,7 +25,8 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/macros.rs"
+      "tests/macros.rs",
+      "src/compile_fail_tests.rs"
     ],
     "example": [
       ".meta/example.rs"
