@@ -1,4 +1,4 @@
-use rand::Rng;
+use rand::RngExt as _;
 
 pub fn encode_random(s: &str) -> (String, String) {
     let mut r = rand::rng();
