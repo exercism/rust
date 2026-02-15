@@ -35,12 +35,12 @@ fn {{ test.description | make_ident }}() {
         {% else -%}
             vec!{{ test.expected | json_encode() }}
         {% endif -%}
-    )
+    );
     {% elif test.property == "grades" -%}
     assert_eq!(
         s.grades(),
         vec!{{ test.expected | json_encode() }}
-    )
+    );
     {% endif -%}
 }
 {% endfor -%}
