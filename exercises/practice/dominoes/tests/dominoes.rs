@@ -111,6 +111,7 @@ fn separate_three_domino_loops() {
     let input = &[(1, 2), (2, 3), (3, 1), (4, 5), (5, 6), (6, 4)];
     assert!(dominoes::chain(input).is_none());
 }
+
 type Domino = (u8, u8);
 
 fn assert_correct(input: &[Domino], output: Vec<Domino>) {
@@ -147,9 +148,6 @@ fn assert_correct(input: &[Domino], output: Vec<Domino>) {
     }
 }
 
-fn normalize(d: Domino) -> Domino {
-    match d {
-        (m, n) if m > n => (n, m),
-        (m, n) => (m, n),
-    }
+fn normalize((a, b): Domino) -> Domino {
+    (a.min(b), a.max(b))
 }

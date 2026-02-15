@@ -15,7 +15,7 @@ fn {{ test.description | make_ident }}() {
         assert!(dominoes::chain(input).is_none());
     {%- endif %}
 }
-{% endfor -%}
+{% endfor %}
 
 type Domino = (u8, u8);
 
@@ -53,9 +53,6 @@ fn assert_correct(input: &[Domino], output: Vec<Domino>) {
     }
 }
 
-fn normalize(d: Domino) -> Domino {
-    match d {
-        (m, n) if m > n => (n, m),
-        (m, n) => (m, n),
-    }
+fn normalize((a, b): Domino) -> Domino {
+    (a.min(b), a.max(b))
 }
