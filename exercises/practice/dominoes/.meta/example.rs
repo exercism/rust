@@ -1,125 +1,83 @@
-pub type Domino = (u8, u8);
+//! This exercise is about finding a [Eulerian path]. The "dots" are the
+//! vertices of the graph, while the dominoes are the edges.
+//!
+//! [Eulerian path]: https://en.wikipedia.org/wiki/Eulerian_path
 
-/// A table keeping track of available dominoes.
-///
-/// Effectively a 6x6 matrix. Each position denotes whether a domino is available with that column
-/// dots and row dots. Positions are mirrored ((3,4) == (4,3)), except for positions with equal row
-/// and column numbers.
-struct AvailabilityTable {
-    m: Vec<u8>,
-}
+type Domino = (u8, u8);
 
-impl AvailabilityTable {
-    fn new() -> AvailabilityTable {
-        AvailabilityTable {
-            m: std::iter::repeat_n(0, 6 * 6).collect(),
-        }
+pub fn chain(input: &[Domino]) -> Option<Vec<Domino>> {
+    let mut bag = DominoBag::default();
+    for domino in input.iter().copied() {
+        bag.insert(domino);
     }
 
-    fn get(&self, x: u8, y: u8) -> u8 {
-        self.m[((x - 1) * 6 + (y - 1)) as usize]
-    }
+    let mut chain = Vec::with_capacity(input.len());
+    let mut tail = vec![]; // used for temporary storage
 
-    fn set(&mut self, x: u8, y: u8, v: u8) {
-        let m = &mut self.m[..];
-        m[((x - 1) * 6 + (y - 1)) as usize] = v;
-    }
+    // start with any domino. (default will cause empty chain to be returned)
+    let (mut first_dots, mut current_dots) = (0..7)
+        .find_map(|i| bag.take_neighbor(i))
+        .inspect(|&d| chain.push(d))
+        .unwrap_or_default();
 
-    fn add(&mut self, x: u8, y: u8) {
-        if x == y {
-            let n = self.get(x, y);
-            self.set(x, y, n + 1) // Along the diagonal
-        } else {
-            let m = self.get(x, y);
-            self.set(x, y, m + 1);
-            let n = self.get(y, x);
-            self.set(y, x, n + 1);
+    loop {
+        while let Some(next_domoino) = bag.take_neighbor(current_dots) {
+            chain.push(next_domoino);
+            current_dots = next_domoino.1;
         }
-    }
-
-    fn remove(&mut self, x: u8, y: u8) {
-        if self.get(x, y) > 0 {
-            if x == y {
-                let n = self.get(x, y);
-                self.set(x, y, n - 1) // Along the diagonal
-            } else {
-                let m = self.get(x, y);
-                self.set(x, y, m - 1);
-                let n = self.get(y, x);
-                self.set(y, x, n - 1);
-            }
-        } else {
-            // For this toy code hard explicit fail is best
-            panic!("remove for 0 stones: ({x:?}, {y:?})")
+        if current_dots != first_dots {
+            return None; // unbalanced
         }
-    }
+        // reintegrate second chain half from previous loop iteration
+        chain.append(&mut tail);
 
-    fn pop_first(&mut self, x: u8) -> Option<u8> {
-        if self.get(x, x) > 0 {
-            self.remove(x, x);
-            return Some(x);
+        if bag.is_empty() {
+            return Some(chain);
         }
+        // We have found a path that ends where it started, but not all dominoes
+        // are used up. We must find a location in the current chain where we
+        // could've taken a different path.
+        let (fork_point, next_domino) = chain
+            .iter()
+            .enumerate()
+            .find_map(|(i, &(x, _))| bag.take_neighbor(x).map(|d| (i, d)))?;
 
-        for y in 1..7 {
-            if self.get(x, y) > 0 {
-                self.remove(x, y);
-                return Some(y);
-            }
-        }
-        None
+        // put aside second half of first chain
+        tail.extend(chain.drain(fork_point..));
+
+        chain.push(next_domino);
+        // Treat the domino after the fork point as the first domino, to search
+        // for a path that ends up back at the fork point.
+        (first_dots, current_dots) = next_domino;
     }
 }
 
-pub fn chain(dominoes: &[Domino]) -> Option<Vec<Domino>> {
-    match dominoes.len() {
-        0 => Some(vec![]),
-        1 => {
-            if dominoes[0].0 == dominoes[0].1 {
-                Some(vec![dominoes[0]])
-            } else {
-                None
-            }
-        }
-        _ => {
-            // First check if the total number of each amount of dots is even, if not it's not
-            // possible to complete a cycle. This follows from that it's an Eulerian path.
-            let mut v: Vec<u8> = vec![0, 0, 0, 0, 0, 0];
-            // Keep the mutable borrow in a small scope here to allow v.iter().
-            {
-                let vs = &mut v[..];
-                for dom in dominoes.iter() {
-                    vs[dom.0 as usize - 1] += 1;
-                    vs[dom.1 as usize - 1] += 1;
-                }
-            }
-            for n in v.iter() {
-                if n % 2 != 0 {
-                    return None;
-                }
-            }
-            let chain = chain_worker(dominoes);
-            if chain.len() == dominoes.len() {
-                Some(chain)
-            } else {
-                None
-            }
-        }
-    }
-}
+/// The domino bag stores all "untraversed edges" of the graph, using an
+/// adjacency matrix.
+#[derive(Default)]
+struct DominoBag([[u8; 7]; 7]);
 
-fn chain_worker(dominoes: &[Domino]) -> Vec<Domino> {
-    let mut doms = dominoes.to_vec();
-    let first = doms.pop().unwrap();
-    let mut t = AvailabilityTable::new();
-    for dom in doms.iter() {
-        t.add(dom.0, dom.1)
+impl DominoBag {
+    fn is_empty(&self) -> bool {
+        self.0.iter().flatten().all(|d| *d == 0)
     }
-    let mut v: Vec<Domino> = Vec::new();
-    v.push(first);
-    let mut n = first.1; // Number to connect to
-    while let Some(m) = t.pop_first(n) {
-        v.push((n, m));
-        n = m;
+
+    fn insert(&mut self, d: Domino) {
+        let (i, j) = (d.0 as usize, d.1 as usize);
+        self.0[i][j] += 1;
+        self.0[j][i] += 1;
     }
-    v
+
+    /// Takes a domino connecting `i` to any neighbor.
+    fn take_neighbor(&mut self, i: u8) -> Option<Domino> {
+        (0..7).map(|j| (i, j)).find(|d| {
+            let (i, j) = (d.0 as usize, d.1 as usize);
+            if self.0[i][j] == 0 {
+                return false;
+            };
+            self.0[i][j] -= 1;
+            self.0[j][i] -= 1;
+            true
+        })
+    }
 }
