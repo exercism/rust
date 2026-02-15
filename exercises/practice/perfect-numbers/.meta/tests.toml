@@ -27,6 +27,9 @@ description = "Abundant numbers -> Medium abundant number is classified correctl
 [ec7792e6-8786-449c-b005-ce6dd89a772b]
 description = "Abundant numbers -> Large abundant number is classified correctly"
 
+[05f15b93-849c-45e9-9c7d-1ea131ef7d10]
+description = "Abundant numbers -> Perfect square abundant number is classified correctly"
+
 [e610fdc7-2b6e-43c3-a51c-b70fb37413ba]
 description = "Deficient numbers -> Smallest prime deficient number is classified correctly"
 

@@ -55,6 +55,15 @@ fn large_abundant_number_is_classified_correctly() {
 
 #[test]
 #[ignore]
+fn perfect_square_abundant_number_is_classified_correctly() {
+    let input = 196;
+    let output = classify(input);
+    let expected = Some(Classification::Abundant);
+    assert_eq!(output, expected);
+}
+
+#[test]
+#[ignore]
 fn smallest_prime_deficient_number_is_classified_correctly() {
     let input = 2;
     let output = classify(input);
