@@ -3,7 +3,7 @@ use std::{
     sync::{Arc, Mutex},
 };
 
-use rand::Rng;
+use rand::{Rng, RngExt as _};
 
 fn generate_name<R: Rng>(rng: &mut R, used_names: &mut HashSet<String>) -> String {
     loop {
