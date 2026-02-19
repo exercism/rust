@@ -34,16 +34,16 @@ fn ne() {
 #[test]
 #[ignore]
 fn gt() {
-    for slice_2 in BIGS.windows(2) {
-        assert!(decimal(slice_2[1]) > decimal(slice_2[0]));
+    for &[left, right] in BIGS.array_windows() {
+        assert!(decimal(right) > decimal(left));
     }
 }
 
 #[test]
 #[ignore]
 fn lt() {
-    for slice_2 in BIGS.windows(2) {
-        assert!(decimal(slice_2[0]) < decimal(slice_2[1]));
+    for &[left, right] in BIGS.array_windows() {
+        assert!(decimal(left) < decimal(right));
     }
 }
 
