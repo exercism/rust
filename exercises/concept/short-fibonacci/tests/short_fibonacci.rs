@@ -22,7 +22,7 @@ fn first_five_elements() {
     assert_eq!(fibb.len(), 5);
     assert_eq!(fibb[0], 1);
     assert_eq!(fibb[1], 1);
-    for window in fibb.windows(3) {
+    for window in fibb.array_windows::<3>() {
         assert_eq!(window[0] + window[1], window[2]);
     }
 }

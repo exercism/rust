@@ -34,7 +34,7 @@ fn ne() {
 #[test]
 #[ignore]
 fn gt() {
-    for slice_2 in BIGS.windows(2) {
+    for slice_2 in BIGS.array_windows::<2>() {
         assert!(decimal(slice_2[1]) > decimal(slice_2[0]));
     }
 }
@@ -42,7 +42,7 @@ fn gt() {
 #[test]
 #[ignore]
 fn lt() {
-    for slice_2 in BIGS.windows(2) {
+    for slice_2 in BIGS.array_windows::<2>() {
         assert!(decimal(slice_2[0]) < decimal(slice_2[1]));
     }
 }
