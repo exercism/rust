@@ -27,7 +27,8 @@
       "tests/pig_latin.rs"
     ],
     "example": [
-      ".meta/example.rs"
+      ".meta/example.rs",
+      ".meta/Cargo-example.toml"
     ]
   },
   "blurb": "Implement a program that translates from English to Pig Latin.",

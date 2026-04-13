@@ -27,6 +27,9 @@ copy_example_or_examplar_to_solution() {
     | while read -r src_and_dst; do
         cp "$(jq -r '.src' <<< "${src_and_dst}")" "$(jq -r '.dst' <<< "${src_and_dst}")"
     done
+    if test -f Cargo-example.toml ; then
+        mv Cargo-example.toml Cargo.toml
+    fi
 }
 
 pull_docker_image() {

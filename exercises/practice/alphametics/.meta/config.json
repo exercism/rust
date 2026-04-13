@@ -32,7 +32,8 @@
       "tests/alphametics.rs"
     ],
     "example": [
-      ".meta/example.rs"
+      ".meta/example.rs",
+      ".meta/Cargo-example.toml"
     ]
   },
   "blurb": "Given an alphametics puzzle, find the correct solution.",
