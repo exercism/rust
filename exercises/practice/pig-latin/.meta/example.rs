@@ -1,6 +1,6 @@
 use std::sync::LazyLock;
 
-use regex::Regex;
+use regex_lite::Regex;
 
 // Regular expressions from Python version of exercism
 

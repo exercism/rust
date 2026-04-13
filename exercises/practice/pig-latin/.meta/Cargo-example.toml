@@ -7,4 +7,4 @@ edition = "2024"
 # The full list of available libraries is here:
 # https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
 [dependencies]
-regex = "0.2"
+regex-lite = "0.1"
