@@ -63,6 +63,8 @@ verify_exercise() {
         trap 'rm -rf "$tmp_dir"' EXIT    # remove tempdir when subshell ends
         cp -r "${dir}/." "${tmp_dir}"
         cd "${tmp_dir}"
+        # avoid version mismatch between lockfile and test runner
+        rm Cargo.lock 2> /dev/null || true
 
         copy_example_or_examplar_to_solution
         run_tests "${slug}" || { cat "${PWD}/results.json"; exit 1; }
