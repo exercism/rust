@@ -20,7 +20,20 @@ required_tool() {
         die "${1} is required but not installed. Please install it and make sure it's in your PATH."
 }
 
-required_tool docker
+# prefer podman over docker if it's installed
+if which podman &> /dev/null ; then
+    docker() {
+        podman "$@"
+    }
+    # for SELinux systems, permit container access to mounted directories
+    podman_mount_opt=",Z"
+    # use same user ID for container, avoids file ownership problems
+    podman_run_opt="--userns=keep-id"
+else
+    required_tool docker
+    podman_mount_opt=""
+    podman_run_opt=""
+fi
 
 copy_example_or_examplar_to_solution() {
     jq -c '[.files.solution, .files.exemplar // .files.example] | transpose | map(select(.[0] and .[1]) | {src: .[1], dst: .[0]}) | .[]' .meta/config.json \
@@ -45,9 +58,10 @@ run_tests() {
         -u "$(id -u):$(id -g)" \
         --rm \
         --network none \
-        --mount type=bind,src="${PWD}",dst=/solution \
-        --mount type=bind,src="${PWD}",dst=/output \
+        --mount type=bind,src="${PWD}",dst=/solution${podman_mount_opt} \
+        --mount type=bind,src="${PWD}",dst=/output${podman_mount_opt} \
         --mount type=tmpfs,dst=/tmp \
+        ${podman_run_opt} \
         "${image}" "${slug}" /solution /output
     jq -e '.status == "pass"' "${PWD}/results.json" >/dev/null 2>&1
 }
@@ -99,7 +113,7 @@ done
 shift "$((OPTIND - 1))"
 
 if [[ -z "${image}" ]]; then
-    image="exercism/rust-test-runner"
+    image="docker.io/exercism/rust-test-runner"
     pull_docker_image
 fi
 
