@@ -26,7 +26,8 @@
       "tests/diffie_hellman.rs"
     ],
     "example": [
-      ".meta/example.rs"
+      ".meta/example.rs",
+      ".meta/Cargo-example.toml"
     ]
   },
   "blurb": "Diffie-Hellman key exchange.",

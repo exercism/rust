@@ -23,7 +23,8 @@
       "tests/grep.rs"
     ],
     "example": [
-      ".meta/example.rs"
+      ".meta/example.rs",
+      ".meta/Cargo-example.toml"
     ]
   },
   "blurb": "Search a file for lines matching a regular expression pattern. Return the line number and contents of each matching line.",

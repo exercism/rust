@@ -27,7 +27,8 @@
       "tests/poker.rs"
     ],
     "example": [
-      ".meta/example.rs"
+      ".meta/example.rs",
+      ".meta/Cargo-example.toml"
     ]
   },
   "blurb": "Pick the best hand(s) from a list of poker hands.",
