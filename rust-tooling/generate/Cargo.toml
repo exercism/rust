@@ -14,9 +14,9 @@ panic = "warn"
 [dependencies]
 anyhow = "1.0.81"
 clap = { version = "4.4.8", features = ["derive"] }
-convert_case = "0.6.0"
+convert_case = "0.11.0"
 glob = "0.3.1"
-inquire = "0.6.2"
+inquire = "0.9.0"
 models = { version = "0.1.0", path = "../models" }
 serde_json = { version = "1.0.105", features = ["arbitrary_precision", "preserve_order"] }
 slug = "0.1.5"
