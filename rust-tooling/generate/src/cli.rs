@@ -135,7 +135,7 @@ pub fn prompt_for_add_slug() -> Result<String> {
         .with_validator(|input: &str| {
             if input.is_empty() {
                 Ok(Validation::Invalid("The slug must not be empty.".into()))
-            } else if !input.is_case(Case::Kebab) {
+            } else if input.to_case(Case::Kebab) != input {
                 Ok(Validation::Invalid(
                     "The slug must be in kebab-case.".into(),
                 ))

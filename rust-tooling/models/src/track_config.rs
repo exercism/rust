@@ -7,12 +7,12 @@
 //! (e.g. replace `String` with an enum of possible values)
 
 use std::collections::HashMap;
+use std::sync::LazyLock;
 
-use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
-pub static TRACK_CONFIG: Lazy<TrackConfig> = Lazy::new(|| {
+pub static TRACK_CONFIG: LazyLock<TrackConfig> = LazyLock::new(|| {
     let config = include_str!("../../../config.json");
     serde_json::from_str(config).expect("should deserialize the track config")
 });
