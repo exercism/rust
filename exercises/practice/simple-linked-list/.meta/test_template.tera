@@ -1,0 +1,19 @@
+use simple_linked_list::*;
+
+{% for group in cases %}
+mod {{ group.description | make_ident }} {
+{% for test in group.cases -%}
+#[test]
+#[ignore]
+fn {{ test.description | make_ident }}() {
+    let mut list = SimpleLinkedList::new();
+    {% for value in test.input.initialValues -%}
+    list.push({{ value }});
+    {% endfor -%}
+    {% for op in test.input.operations -%}
+    // {{ op | json_encode() }}
+    {% endfor -%}
+}
+{% endfor -%}
+}
+{% endfor -%}

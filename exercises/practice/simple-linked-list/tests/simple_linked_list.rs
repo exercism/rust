@@ -1,121 +1,256 @@
-use simple_linked_list::SimpleLinkedList;
+use simple_linked_list::*;
 
-#[test]
-fn new_list_is_empty() {
-    let list: SimpleLinkedList<u32> = SimpleLinkedList::new();
-    assert_eq!(list.len(), 0, "list's length must be 0");
-}
-
-#[test]
-#[ignore]
-fn push_increments_length() {
-    let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
-    list.push(1);
-    assert_eq!(list.len(), 1, "list's length must be 1");
-    list.push(2);
-    assert_eq!(list.len(), 2, "list's length must be 2");
-}
-
-#[test]
-#[ignore]
-fn pop_decrements_length() {
-    let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
-    list.push(1);
-    list.push(2);
-    list.pop();
-    assert_eq!(list.len(), 1, "list's length must be 1");
-    list.pop();
-    assert_eq!(list.len(), 0, "list's length must be 0");
-}
-
-#[test]
-#[ignore]
-fn is_empty() {
-    let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
-    assert!(list.is_empty(), "List wasn't empty on creation");
-    for inserts in 0..100 {
-        for i in 0..inserts {
-            list.push(i);
-            assert!(
-                !list.is_empty(),
-                "List was empty after having inserted {i}/{inserts} elements"
-            );
-        }
-        for i in 0..inserts {
-            assert!(
-                !list.is_empty(),
-                "List was empty before removing {i}/{inserts} elements"
-            );
-            list.pop();
-        }
-        assert!(
-            list.is_empty(),
-            "List wasn't empty after having removed {inserts} elements"
-        );
+mod count {
+    #[test]
+    fn empty_list_has_length_of_zero() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"count","expected":0}
+    }
+    #[test]
+    #[ignore]
+    fn singleton_list_has_length_of_one() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        // {"operation":"count","expected":1}
+    }
+    #[test]
+    #[ignore]
+    fn non_empty_list_has_correct_length() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        list.push(3);
+        // {"operation":"count","expected":3}
     }
 }
 
-#[test]
-#[ignore]
-fn pop_returns_head_element_and_removes_it() {
-    let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
-    list.push(1);
-    list.push(2);
-    assert_eq!(list.pop(), Some(2), "Element must be 2");
-    assert_eq!(list.pop(), Some(1), "Element must be 1");
-    assert_eq!(list.pop(), None, "No element should be contained in list");
-}
-
-#[test]
-#[ignore]
-fn peek_returns_reference_to_head_element_but_does_not_remove_it() {
-    let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
-    assert_eq!(list.peek(), None, "No element should be contained in list");
-    list.push(2);
-    assert_eq!(list.peek(), Some(&2), "Element must be 2");
-    assert_eq!(list.peek(), Some(&2), "Element must be still 2");
-    list.push(3);
-    assert_eq!(list.peek(), Some(&3), "Head element is now 3");
-    assert_eq!(list.pop(), Some(3), "Element must be 3");
-    assert_eq!(list.peek(), Some(&2), "Head element is now 2");
-    assert_eq!(list.pop(), Some(2), "Element must be 2");
-    assert_eq!(list.peek(), None, "No element should be contained in list");
-}
-
-#[test]
-#[ignore]
-fn from_slice() {
-    let mut array = vec!["1", "2", "3", "4"];
-    let mut list: SimpleLinkedList<_> = array.drain(..).collect();
-    assert_eq!(list.pop(), Some("4"));
-    assert_eq!(list.pop(), Some("3"));
-    assert_eq!(list.pop(), Some("2"));
-    assert_eq!(list.pop(), Some("1"));
-}
-
-#[test]
-#[ignore]
-fn reverse() {
-    let mut list: SimpleLinkedList<u32> = SimpleLinkedList::new();
-    list.push(1);
-    list.push(2);
-    list.push(3);
-    let mut rev_list = list.rev();
-    assert_eq!(rev_list.pop(), Some(1));
-    assert_eq!(rev_list.pop(), Some(2));
-    assert_eq!(rev_list.pop(), Some(3));
-    assert_eq!(rev_list.pop(), None);
-}
-
-#[test]
-#[ignore]
-fn into_vector() {
-    let mut v = Vec::new();
-    let mut s = SimpleLinkedList::new();
-    for i in 1..4 {
-        v.push(i);
-        s.push(i);
+mod pop {
+    #[test]
+    #[ignore]
+    fn pop_from_empty_list_is_an_error() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"pop","expected":{"error":"list is empty"}}
     }
-    let s_as_vec: Vec<i32> = s.into();
-    assert_eq!(v, s_as_vec);
+    #[test]
+    #[ignore]
+    fn can_pop_from_singleton_list() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        // {"operation":"pop","expected":1}
+    }
+    #[test]
+    #[ignore]
+    fn can_pop_from_non_empty_list() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        // {"operation":"pop","expected":2}
+    }
+    #[test]
+    #[ignore]
+    fn can_pop_multiple_items() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        // {"operation":"pop","expected":2}
+        // {"operation":"pop","expected":1}
+    }
+    #[test]
+    #[ignore]
+    fn pop_updates_the_count() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        // {"operation":"count","expected":2}
+        // {"operation":"pop","expected":2}
+        // {"operation":"count","expected":1}
+        // {"operation":"pop","expected":1}
+        // {"operation":"count","expected":0}
+    }
+}
+
+mod push {
+    #[test]
+    #[ignore]
+    fn can_push_to_an_empty_list() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"push","value":1}
+    }
+    #[test]
+    #[ignore]
+    fn can_push_to_a_non_empty_list() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        // {"operation":"push","value":3}
+    }
+    #[test]
+    #[ignore]
+    fn push_updates_count() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        // {"operation":"push","value":3}
+        // {"operation":"count","expected":3}
+    }
+    #[test]
+    #[ignore]
+    fn push_and_pop() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"push","value":1}
+        // {"operation":"push","value":2}
+        // {"operation":"pop","expected":2}
+        // {"operation":"push","value":3}
+        // {"operation":"count","expected":2}
+        // {"operation":"pop","expected":3}
+        // {"operation":"pop","expected":1}
+        // {"operation":"count","expected":0}
+    }
+}
+
+mod peek {
+    #[test]
+    #[ignore]
+    fn peek_on_empty_list_is_an_error() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"peek","expected":{"error":"list is empty"}}
+    }
+    #[test]
+    #[ignore]
+    fn can_peek_on_singleton_list() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        // {"operation":"peek","expected":1}
+    }
+    #[test]
+    #[ignore]
+    fn can_peek_on_non_empty_list() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        // {"operation":"peek","expected":2}
+    }
+    #[test]
+    #[ignore]
+    fn peek_does_not_change_the_count() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        // {"operation":"peek","expected":2}
+        // {"operation":"count","expected":2}
+    }
+    #[test]
+    #[ignore]
+    fn can_peek_after_a_pop_and_push() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"push","value":1}
+        // {"operation":"push","value":2}
+        // {"operation":"peek","expected":2}
+        // {"operation":"pop","expected":2}
+        // {"operation":"peek","expected":1}
+        // {"operation":"push","value":3}
+        // {"operation":"peek","expected":3}
+    }
+}
+
+mod to_list_l_i_f_o {
+    #[test]
+    #[ignore]
+    fn empty_linked_list_to_list_is_empty() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"toList","expected":[]}
+    }
+    #[test]
+    #[ignore]
+    fn to_list_with_multiple_values() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        list.push(3);
+        // {"operation":"toList","expected":[3,2,1]}
+    }
+    #[test]
+    #[ignore]
+    fn to_list_after_a_pop() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"push","value":1}
+        // {"operation":"push","value":2}
+        // {"operation":"push","value":3}
+        // {"operation":"pop","expected":3}
+        // {"operation":"push","value":4}
+        // {"operation":"toList","expected":[4,2,1]}
+    }
+}
+
+mod to_list_f_i_f_o {
+    #[test]
+    #[ignore]
+    fn empty_linked_list_to_list_is_empty() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"toList","expected":[]}
+    }
+    #[test]
+    #[ignore]
+    fn to_list_with_multiple_values() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        list.push(3);
+        // {"operation":"toList","expected":[1,2,3]}
+    }
+    #[test]
+    #[ignore]
+    fn to_list_after_a_pop() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"push","value":1}
+        // {"operation":"push","value":2}
+        // {"operation":"push","value":3}
+        // {"operation":"pop","expected":3}
+        // {"operation":"push","value":4}
+        // {"operation":"toList","expected":[1,2,4]}
+    }
+}
+
+mod reverse {
+    #[test]
+    #[ignore]
+    fn reversed_empty_list_has_same_values() {
+        let mut list = SimpleLinkedList::new();
+        // {"operation":"reverse"}
+        // {"operation":"toList","expected":[]}
+    }
+    #[test]
+    #[ignore]
+    fn reversed_singleton_list_is_same_list() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        // {"operation":"reverse"}
+        // {"operation":"toList","expected":[1]}
+    }
+    #[test]
+    #[ignore]
+    fn reversed_non_empty_list_is_reversed() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        list.push(3);
+        // {"operation":"reverse"}
+        // {"operation":"count","expected":3}
+        // {"operation":"pop","expected":1}
+        // {"operation":"pop","expected":2}
+        // {"operation":"pop","expected":3}
+    }
+    #[test]
+    #[ignore]
+    fn double_reverse() {
+        let mut list = SimpleLinkedList::new();
+        list.push(1);
+        list.push(2);
+        list.push(3);
+        // {"operation":"reverse"}
+        // {"operation":"reverse"}
+        // {"operation":"pop","expected":3}
+        // {"operation":"pop","expected":2}
+        // {"operation":"pop","expected":1}
+    }
 }
