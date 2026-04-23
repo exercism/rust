@@ -110,6 +110,6 @@ fn make_pairs() -> Vec<(&'static str, &'static str)> {
             pairs.push((codon, name));
         }
     }
-    pairs.sort_by(|&(_, a), &(_, b)| a.cmp(b));
+    pairs.sort_by_key(|&(_, name)| name);
     pairs
 }
