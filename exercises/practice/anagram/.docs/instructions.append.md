@@ -1,6 +1,6 @@
 # Instructions append
 
-## Implementation
+## Unicode and lifetimes
 
 The Rust track extends the possible letters to be any unicode character, not just ASCII alphabetic ones.
 

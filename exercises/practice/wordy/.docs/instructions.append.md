@@ -1,6 +1,6 @@
 # Instructions append
 
-## Implementation
+## Bonus tests
 
 To get the bonus tests to run, execute the tests with:
 
