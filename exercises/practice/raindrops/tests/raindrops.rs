@@ -82,7 +82,7 @@ fn the_sound_for_14_is_plong_as_it_has_a_factor_of_7() {
 
 #[test]
 #[ignore]
-fn the_sound_for_15_is_plingplang_as_it_has_factors_3_and_5() {
+fn the_sound_for_15_is_pling_plang_as_it_has_factors_3_and_5() {
     let input = 15;
     let output = raindrops(input);
     let expected = "PlingPlang";
@@ -91,7 +91,7 @@ fn the_sound_for_15_is_plingplang_as_it_has_factors_3_and_5() {
 
 #[test]
 #[ignore]
-fn the_sound_for_21_is_plingplong_as_it_has_factors_3_and_7() {
+fn the_sound_for_21_is_pling_plong_as_it_has_factors_3_and_7() {
     let input = 21;
     let output = raindrops(input);
     let expected = "PlingPlong";
@@ -118,7 +118,7 @@ fn the_sound_for_27_is_pling_as_it_has_a_factor_3() {
 
 #[test]
 #[ignore]
-fn the_sound_for_35_is_plangplong_as_it_has_factors_5_and_7() {
+fn the_sound_for_35_is_plang_plong_as_it_has_factors_5_and_7() {
     let input = 35;
     let output = raindrops(input);
     let expected = "PlangPlong";
@@ -145,7 +145,7 @@ fn the_sound_for_52_is_52() {
 
 #[test]
 #[ignore]
-fn the_sound_for_105_is_plingplangplong_as_it_has_factors_3_5_and_7() {
+fn the_sound_for_105_is_pling_plang_plong_as_it_has_factors_3_5_and_7() {
     let input = 105;
     let output = raindrops(input);
     let expected = "PlingPlangPlong";
