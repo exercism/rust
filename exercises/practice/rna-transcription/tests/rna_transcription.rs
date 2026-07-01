@@ -1,6 +1,14 @@
 use rna_transcription::{Dna, Rna};
 
 #[test]
+fn different_rna_are_different() {
+    let a = Rna::new("G").unwrap();
+    let b = Rna::new("UGCACCAGAAUU").unwrap();
+    assert_ne!(a, b);
+}
+
+#[test]
+#[ignore]
 fn empty_rna_sequence() {
     let input = "";
     let output = Dna::new(input).unwrap().into_rna();
