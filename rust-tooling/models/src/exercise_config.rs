@@ -58,9 +58,15 @@ pub struct PracticeFiles {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Custom {
-    #[serde(rename = "allowed-to-not-compile")]
+    #[serde(
+        rename = "allowed-to-not-compile",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub allowed_to_not_compile: Option<String>,
-    #[serde(rename = "test-in-release-mode")]
+    #[serde(
+        rename = "test-in-release-mode",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub test_in_release_mode: Option<bool>,
 }
 
