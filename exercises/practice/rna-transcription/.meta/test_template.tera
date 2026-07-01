@@ -1,4 +1,21 @@
 use rna_transcription::{Dna, Rna};
+
+{#-
+    We usually do not add additional tests directly in the template.
+    In this case however, the structure of the tests is different from the
+    regular ones. Accommodating that in the template would be complicated
+    and unnecessary. We also want to test this early, so that users don't
+    make it through basically all tests without doing anything.
+#}
+
+#[test]
+#[ignore]
+fn different_rna_are_different() {
+    let a = Rna::new("G").unwrap();
+    let b = Rna::new("UGCACCAGAAUU").unwrap();
+    assert_ne!(a, b);
+}
+
 {% for test in cases %}
 #[test]
 #[ignore]
