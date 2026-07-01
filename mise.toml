@@ -18,6 +18,16 @@ run = "cd rust-tooling/generate; cargo run --quiet --release -- add"
 depends = "symlink-problem-specifications"
 run = "cd rust-tooling/generate; cargo run --quiet --release -- update"
 
+[tasks.update-all-templated-exercise]
+depends = "symlink-problem-specifications"
+run = """
+for p in ./exercises/practice/*/.meta/test_template.tera ; do
+  slug="$(basename $(dirname $(dirname $p)))"
+  mise run update-exercise --slug $slug &
+done
+wait
+"""
+
 [tasks.configlet]
 depends = "fetch-configlet"
 quiet = true
