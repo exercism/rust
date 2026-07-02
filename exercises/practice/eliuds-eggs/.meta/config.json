@@ -1,5 +1,7 @@
 {
-  "authors": ["senekor"],
+  "authors": [
+    "senekor"
+  ],
   "files": {
     "solution": [
       "src/lib.rs",
