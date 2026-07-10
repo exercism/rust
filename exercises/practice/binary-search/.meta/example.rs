@@ -10,19 +10,16 @@ where
 
     loop {
         let (head, tail) = slice.split_at(slice.len() >> 1);
-        if let Some(middle_element) = tail.first() {
-            match middle_element.cmp(&needle) {
-                Ordering::Less => {
-                    base += head.len() + 1;
-                    slice = &tail[1..];
-                }
-                Ordering::Greater => slice = head,
-                Ordering::Equal => {
-                    return Some(base + head.len());
-                }
+        let middle_element = tail.first()?;
+        match middle_element.cmp(&needle) {
+            Ordering::Less => {
+                base += head.len() + 1;
+                slice = &tail[1..];
             }
-        } else {
-            return None;
+            Ordering::Greater => slice = head,
+            Ordering::Equal => {
+                return Some(base + head.len());
+            }
         }
     }
 }
