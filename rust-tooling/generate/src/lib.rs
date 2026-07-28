@@ -6,11 +6,13 @@ use std::{
 use anyhow::{Context, Result};
 use tera::Tera;
 
-use custom_filters::CUSTOM_FILTERS;
 use models::{
     exercise_config::get_excluded_tests,
     problem_spec::{TestCase, get_additional_test_cases, get_canonical_data},
 };
+use tera_contrib::json::json_encode;
+
+use crate::custom_filters::{fmt_num, make_ident, to_hex};
 
 mod custom_filters;
 
@@ -104,14 +106,22 @@ fn generate_tests(slug: &str) -> Result<String> {
         cases
     };
     let excluded_tests = get_excluded_tests(slug);
-    let mut template = get_test_template(slug).context("failed to get test template")?;
+    let mut template = Tera::new();
+
+    // register custom filters (before adding template file)
+    template.register_filter("json_encode", json_encode);
+    template.register_filter("to_hex", to_hex);
+    template.register_filter("make_ident", make_ident);
+    template.register_filter("fmt_num", fmt_num);
+
+    template.add_template_file(
+        format!("exercises/practice/{slug}/.meta/test_template.tera").as_str(),
+        Some("test_template.tera"),
+    )?;
     if template.get_template_names().next().is_none() {
         template
             .add_raw_template("test_template.tera", TEST_TEMPLATE)
             .context("failed to add default template")?;
-    }
-    for (name, filter) in CUSTOM_FILTERS {
-        template.register_filter(name, filter);
     }
 
     remove_excluded_tests(&mut cases, &excluded_tests);
@@ -165,8 +175,4 @@ It probably generates invalid Rust code."
         return Ok(rendered);
     }
     Ok(String::from_utf8_lossy(&rustfmt_out.stdout).into_owned())
-}
-
-pub fn get_test_template(slug: &str) -> Result<Tera> {
-    Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).map_err(Into::into)
 }
