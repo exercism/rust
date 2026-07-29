@@ -38,7 +38,7 @@ fn snake_case_name() {
         let file_name = file_name.trim_end_matches(".sh");
 
         assert!(
-            file_name.is_case(Case::Snake),
+            file_name.to_case(Case::Snake) == file_name,
             "name of '{file_name}' should be snake_case"
         );
     })
