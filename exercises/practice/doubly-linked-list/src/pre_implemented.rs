@@ -65,7 +65,7 @@ impl<T> Cursor<'_, T> {
 /// trait AssertSend: Send {}
 /// impl<T> AssertSend for LinkedList<T> {}
 /// ```
-pub struct IllegalSend;
+const _ILLEGAL_SEND: () = ();
 
 #[allow(unused)]
 #[cfg(feature = "advanced")]
@@ -74,4 +74,4 @@ pub struct IllegalSend;
 /// trait AssertSync: Sync {}
 /// impl<T> AssertSync for LinkedList<T> {}
 /// ```
-pub struct IllegalSync;
+const _ILLEGAL_SYNC: () = ();
