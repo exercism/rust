@@ -61,7 +61,7 @@ pub fn fmt_num(value: &Value, _args: &HashMap<String, Value>) -> Result<Value> {
 
     let mut pretty_digits = num
         .chunks(3)
-        .flat_map(|digits| digits.iter().copied().chain([b'_']))
+        .flat_map(|digits| digits.iter().copied().chain(*b"_"))
         .collect::<Vec<_>>();
     if pretty_digits.last() == Some(&b'_') {
         pretty_digits.pop();
