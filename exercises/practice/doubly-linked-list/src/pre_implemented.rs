@@ -61,7 +61,7 @@ impl<T> Cursor<'_, T> {
 #[allow(unused)]
 #[cfg(feature = "advanced")]
 /// ```compile_fail
-/// use doubly_linked_list::LinkedList;
+/// # use doubly_linked_list::LinkedList;
 /// trait AssertSend: Send {}
 /// impl<T> AssertSend for LinkedList<T> {}
 /// ```
@@ -70,7 +70,7 @@ const _ILLEGAL_SEND: () = ();
 #[allow(unused)]
 #[cfg(feature = "advanced")]
 /// ```compile_fail
-/// use doubly_linked_list::LinkedList;
+/// # use doubly_linked_list::LinkedList;
 /// trait AssertSync: Sync {}
 /// impl<T> AssertSync for LinkedList<T> {}
 /// ```
