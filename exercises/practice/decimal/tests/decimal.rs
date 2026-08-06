@@ -4,7 +4,7 @@ use decimal::Decimal;
 ///
 /// Use only when you _know_ that your value is valid.
 fn decimal(input: &str) -> Decimal {
-    Decimal::try_from(input).expect("That was supposed to be a valid value")
+    input.parse().expect("That was supposed to be a valid value")
 }
 
 /// Some big and precise values we can use for testing. [0] + [1] == [2]
@@ -185,7 +185,7 @@ fn gt_varying_negative_precisions() {
 #[test]
 #[ignore]
 fn negatives() {
-    assert!(Decimal::try_from("-1").is_some());
+    assert!("-1".parse::<Decimal>().is_ok());
     assert_eq!(decimal("0") - decimal("1"), decimal("-1"));
     assert_eq!(decimal("5.5") + decimal("-6.5"), decimal("-1"));
 }

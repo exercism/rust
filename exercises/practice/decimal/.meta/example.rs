@@ -1,6 +1,7 @@
 use std::cmp::Ordering;
 use std::fmt;
 use std::ops::{Add, Mul, Sub};
+use std::str::FromStr;
 
 extern crate num_bigint;
 use num_bigint::BigInt;
@@ -22,39 +23,6 @@ impl Decimal {
         };
         value.reduce();
         value
-    }
-
-    pub fn try_from(mut input: &str) -> Option<Decimal> {
-        // clear extraneous whitespace
-        input = input.trim();
-
-        // don't bother to trim extraneous zeroes
-        // leave it to users to manage their own memory
-
-        // now build a representation of the number to parse
-        let mut digits = String::with_capacity(input.len());
-        let mut decimal_index = None;
-        for ch in input.chars() {
-            match ch {
-                '0'..='9' | '-' | '+' => {
-                    digits.push(ch);
-                    if let Some(idx) = decimal_index.as_mut() {
-                        *idx += 1;
-                    }
-                }
-                '.' => {
-                    if decimal_index.is_some() {
-                        return None;
-                    }
-                    decimal_index = Some(0)
-                }
-                _ => return None,
-            }
-        }
-        Some(Decimal::new(
-            digits.parse().ok()?,
-            decimal_index.unwrap_or_default(),
-        ))
     }
 
     /// Add precision to the less-precise value until precisions match
@@ -91,6 +59,47 @@ impl Decimal {
             .count();
         self.digits = &self.digits / pow(BigInt::from(10_usize), extra_zeroes);
         self.decimal_index -= extra_zeroes;
+    }
+}
+
+/// Indicates that a string could not be parsed as a `Decimal`
+#[derive(Debug, PartialEq, Eq)]
+pub struct ParseDecimalError;
+
+impl FromStr for Decimal {
+    type Err = ParseDecimalError;
+
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        // clear extraneous whitespace
+        let input = input.trim();
+
+        // don't bother to trim extraneous zeroes
+        // leave it to users to manage their own memory
+
+        // now build a representation of the number to parse
+        let mut digits = String::with_capacity(input.len());
+        let mut decimal_index = None;
+        for ch in input.chars() {
+            match ch {
+                '0'..='9' | '-' | '+' => {
+                    digits.push(ch);
+                    if let Some(idx) = decimal_index.as_mut() {
+                        *idx += 1;
+                    }
+                }
+                '.' => {
+                    if decimal_index.is_some() {
+                        return Err(ParseDecimalError);
+                    }
+                    decimal_index = Some(0)
+                }
+                _ => return Err(ParseDecimalError),
+            }
+        }
+        Ok(Decimal::new(
+            digits.parse().map_err(|_| ParseDecimalError)?,
+            decimal_index.unwrap_or_default(),
+        ))
     }
 }
 
@@ -179,11 +188,14 @@ mod tests {
             println!(
                 "Decimal representation of \"{}\": {}",
                 test_str,
-                Decimal::try_from(test_str).expect("This should always become a decimal")
+                test_str
+                    .parse::<Decimal>()
+                    .expect("This should always become a decimal")
             );
             assert_eq!(
                 test_str,
-                Decimal::try_from(test_str)
+                test_str
+                    .parse::<Decimal>()
                     .expect("This should always become a decimal")
                     .to_string()
             )
