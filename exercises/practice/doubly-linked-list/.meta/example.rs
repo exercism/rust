@@ -50,14 +50,11 @@ struct Node<T> {
 
 impl<T> Node<T> {
     fn new_linkless(element: T) -> NodePtr<T> {
-        unsafe {
-            // new_unchecked() is trivially safe as we have just allocated a new Box
-            NonNull::new_unchecked(Box::into_raw(Box::new(Self {
-                element,
-                prev: None,
-                next: None,
-            })))
-        }
+        Box::into_non_null(Box::new(Self {
+            element,
+            prev: None,
+            next: None,
+        }))
     }
 
     // `left` and `right` must point to adjacent nodes
