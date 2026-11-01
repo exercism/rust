@@ -49,10 +49,10 @@ fn datetime(
     hour: u8,
     minute: u8,
     second: u8,
-) -> time::PrimitiveDateTime {
-    use time::{Date, PrimitiveDateTime, Time};
+) -> time::PlainDateTime {
+    use time::{Date, PlainDateTime, Time};
 
-    PrimitiveDateTime::new(
+    PlainDateTime::new(
         Date::from_calendar_date(year, month.try_into().unwrap(), day).unwrap(),
         Time::from_hms(hour, minute, second).unwrap(),
     )
