@@ -1,0 +1,12 @@
+fn most_common_word(text: &str) -> String {
+    let mut counts = HashMap::new();
+    let mut best = "";
+    let text = text.to_lowercase();
+    for word in text.split(' ') {
+        *counts.entry(word).or_insert(0) += 1;
+        if counts[word] > *counts.get(best).unwrap_or(&0) {
+            best = word;
+        }
+    }
+    format!("\"{best}\" appears {} times", counts[best])
+}
