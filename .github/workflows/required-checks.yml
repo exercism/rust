@@ -1,0 +1,141 @@
+# Checks that all the checks listed in .github/required-checks.yml exist.
+# Also fails if a PR removes a job that's still listed in main's copy of the file.
+#
+# It runs on every PR, so it can be listed as a required check itself. On a PR
+# that changes neither the file nor a workflow, it passes straight away.
+
+name: Required checks
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  validate:
+    name: Validate required checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      checks: read
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check that every required check ran
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          OWN_CHECK_NAME: Validate required checks
+        shell: ruby {0}
+        run: |
+          require "json"
+          require "open3"
+          require "yaml"
+
+          GITHUB_ACTIONS_APP_ID = 15368
+          REPO = ENV.fetch("REPO")
+          HEAD_SHA = ENV.fetch("HEAD_SHA")
+          OWN_CHECK_NAME = ENV.fetch("OWN_CHECK_NAME")
+
+          def gh(*args)
+            output, error, status = Open3.capture3("gh", "api", *args)
+            [output, error, status]
+          end
+
+          # Returns the file at a commit, or nil if the commit doesn't have one
+          def read_file(sha)
+            output, error, status = gh("repos/#{REPO}/contents/.github/required-checks.yml?ref=#{sha}",
+              "-H", "Accept: application/vnd.github.raw")
+            return nil if !status.success? && error.include?("HTTP 404")
+            abort "Reading .github/required-checks.yml at #{sha} failed: #{error}" unless status.success?
+
+            output
+          end
+
+          # Uses the same rules as scripts/sync-repo-settings in exercism/maintainers-admin-tools
+          def parse(yaml, where)
+            data = YAML.safe_load(yaml)
+            abort "#{where}: the file must have a `checks` list" unless data.is_a?(Hash) && data["checks"].is_a?(Array)
+
+            data["checks"].map do |check|
+              check = { "name" => check } if check.is_a?(String)
+              abort "#{where}: each check must be a name or have a `name`: #{check.inspect}" unless check.is_a?(Hash)
+
+              name = check["name"]
+              app = check.fetch("app", GITHUB_ACTIONS_APP_ID)
+              unless name.is_a?(String) && name.strip == name && !name.empty? && name.length <= 255 && !name.match?(/[[:cntrl:]]/)
+                abort "#{where}: not a valid check name: #{name.inspect}"
+              end
+              abort "#{where}: `app` must be a GitHub App id: #{app.inspect}" unless app.is_a?(Integer) && app.positive?
+
+              [name, app]
+            end.uniq
+          rescue Psych::Exception => e
+            abort "#{where}: the file isn't valid YAML: #{e.message}"
+          end
+
+          output, error, status = gh("--paginate", "repos/#{REPO}/pulls/#{ENV.fetch('PR_NUMBER')}/files", "--jq", ".[].filename")
+          abort "Reading this PR's changed files failed: #{error}" unless status.success?
+
+          changed_files = output.lines(chomp: true)
+          unless changed_files.any? { |file| file == ".github/required-checks.yml" || file.start_with?(".github/workflows/") }
+            puts "This PR doesn't change .github/required-checks.yml or a workflow, so there's nothing to check."
+            exit
+          end
+
+          head_yaml = read_file(HEAD_SHA)
+          base_yaml = read_file(ENV.fetch("BASE_SHA"))
+          wanted = head_yaml ? parse(head_yaml, "This PR's .github/required-checks.yml") : []
+          on_main = base_yaml ? parse(base_yaml, "main's .github/required-checks.yml") : []
+
+          if wanted.empty? && on_main.empty?
+            puts "Neither this PR nor main lists any required checks."
+            exit
+          end
+
+          # Wait for the PR's other checks to finish. Some checks start a little
+          # after this one, so wait at least 30 seconds, then check every 5 seconds.
+          # Stop only when two checks in a row find nothing running.
+          started = Time.now
+          quiet_polls = 0
+          runs = []
+          loop do
+            output, error, status = gh("--paginate", "--slurp", "repos/#{REPO}/commits/#{HEAD_SHA}/check-runs?per_page=100")
+            abort "Reading this PR's checks failed: #{error}" unless status.success?
+
+            runs = JSON.parse(output).flat_map { |page| page["check_runs"] }.reject { |run| run["name"] == OWN_CHECK_NAME }
+            running = runs.reject { |run| run["status"] == "completed" }
+            quiet_polls = running.empty? ? quiet_polls + 1 : 0
+            break if quiet_polls >= 2 && Time.now - started >= 30
+
+            puts "Waiting for: #{running.map { |run| run["name"] }.uniq.join(', ')}" unless running.empty?
+            sleep 5
+          end
+
+          ran = runs.map { |run| [run["name"], run.dig("app", "id")] }.uniq
+          problems = []
+
+          (wanted | on_main).each do |name, app|
+            # This check is running now, so it doesn't need to be found among the others
+            next if name == OWN_CHECK_NAME
+            next if ran.include?([name, app])
+
+            if on_main.include?([name, app])
+              problems << "`#{name}` is still listed in main's .github/required-checks.yml, but it didn't run on this PR. " \
+                          "Remove it from the file in its own PR and merge that first. Then remove or rename the job."
+            else
+              problems << "`#{name}` is listed in .github/required-checks.yml, but it didn't run on this PR. " \
+                          "Make sure the name matches the check exactly, and that its workflow runs on every PR to main."
+            end
+          end
+
+          if problems.any?
+            problems.each { |problem| puts "::error::#{problem}" }
+            exit 1
+          end
+
+          puts "All #{wanted.size} required checks ran on this PR."
