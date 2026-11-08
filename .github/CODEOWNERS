@@ -1,6 +1,10 @@
 # Code owners
 .github/CODEOWNERS      @exercism/maintainers-admin
 
+# The checks that must pass before a PR can merge, and the workflow that validates them
+.github/required-checks.yml                 @exercism/maintainers-admin
+.github/workflows/required-checks.yml       @exercism/maintainers-admin
+
 # The code sample shown in the code check when people sign up to Exercism
 docs/SIGN_UP_SNIPPET.txt    @exercism/maintainers-admin
 

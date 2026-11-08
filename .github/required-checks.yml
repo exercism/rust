@@ -1,0 +1,17 @@
+# These checks must pass before a PR can merge into main.
+# Changes here will be automatically synced to the repo's ruleset.
+#
+# To remove or rename a check, first take it out of this file in its own PR and
+# let that merge. Then remove or rename the job. If both happen in one PR, the PR
+# will wait forever for a check that no longer runs.
+checks:
+  - Check Rust Formatting
+  - Check compilation (stable)
+  - Clippy
+  - Run repository tests
+  - Run shellcheck on scripts
+  - configlet / configlet
+  - configlet lint
+  - i18n / completeness
+  - markdown lint
+  - Validate required checks
