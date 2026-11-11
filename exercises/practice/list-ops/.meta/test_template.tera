@@ -56,9 +56,7 @@ fn {{ test.description | make_ident }}() {
         {% endif %}
         {% endfor %}
     );
-
     let expected = {{ test.expected }}{% if test.property is starting_with("fold") %}.0{% endif %};
-
     assert_eq!(
         output
         {% if test.expected is iterable %}
