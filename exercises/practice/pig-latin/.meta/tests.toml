@@ -77,3 +77,13 @@ description = "position of y in a word determines if it is a consonant or a vowe
 
 [44616581-5ce3-4a81-82d0-40c7ab13d2cf]
 description = "phrases are translated -> a whole phrase"
+include = false
+
+[44616581-5ce3-4a81-82d0-40c7ab13d2d0]
+description = "phrases are translated -> a whole phrase"
+include = false
+reimplements = "44616581-5ce3-4a81-82d0-40c7ab13d2cf"
+
+[44616581-5ce3-4a81-82d0-40c7ab13d2d1]
+description = "phrases are translated -> a whole phrase"
+reimplements = "44616581-5ce3-4a81-82d0-40c7ab13d2d0"

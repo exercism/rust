@@ -200,8 +200,8 @@ fn y_as_second_letter_in_two_letter_word() {
 #[test]
 #[ignore]
 fn a_whole_phrase() {
-    let input = "quick fast run";
+    let input = "why do squids enjoy xrays";
     let output = translate(input);
-    let expected = "ickquay astfay unray";
+    let expected = "ywhay oday idssquay enjoyay xraysay";
     assert_eq!(output, expected);
 }
