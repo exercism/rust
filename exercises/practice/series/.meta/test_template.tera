@@ -7,7 +7,7 @@ fn {{ test.description | make_ident }}() {
     let input = {{ test.input.series | json_encode() }};
     let length = {{ test.input.sliceLength | json_encode() }};
     let output = series(input, length);
-{%- if test.expected is object -%}
+{%- if test.expected is map -%}
     {#
         The author of the exercise chose to define the semantics such that
         "invalid" series return empty vectors. Adding error handling to the

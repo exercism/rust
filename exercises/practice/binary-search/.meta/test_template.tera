@@ -4,7 +4,7 @@ use binary_search::*;
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
-    assert_eq!(find(&{{ test.input.array | json_encode() }}, {{ test.input.value }}), {% if test.expected is object -%}
+    assert_eq!(find(&{{ test.input.array | json_encode() }}, {{ test.input.value }}), {% if test.expected is map -%}
         None
     {%- else -%}
         Some({{ test.expected }})

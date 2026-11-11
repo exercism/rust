@@ -4,7 +4,7 @@
 fn {{ test.description | make_ident }}() {
     let input = &[
         {% for domino in test.input.dominoes %}
-            ({{ domino.0 }}, {{domino.1 }}),
+            ({{ domino[0] }}, {{ domino[1] }}),
         {% endfor %}
     ];
     {%- if test.expected %}

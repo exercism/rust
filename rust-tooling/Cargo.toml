@@ -1,3 +1,11 @@
 [workspace]
 members = ["generate", "ci-tests", "utils", "models"]
 resolver = "2"
+
+[patch.crates-io]
+# contains a fix we need as of tera v2.4.0 (support for serde_json with feature
+# arbitrary-precision), see: https://github.com/Keats/tera/pull/1060
+tera = {
+  git = "https://github.com/Keats/tera",
+  rev = "30628308ab08453264769b6652e45b33c2fab5a4",
+}

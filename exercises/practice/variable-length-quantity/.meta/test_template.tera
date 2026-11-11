@@ -22,7 +22,7 @@ fn {{ test.description | make_ident }}() {
         {%- endfor -%}
     ];
     let output = vlq::from_bytes(input);
-    let expected = {% if test.expected is object -%}
+    let expected = {% if test.expected is map -%}
         Err(vlq::Error::IncompleteNumber)
     {%- else -%}
         Ok(vec![{% for integer in test.expected -%}
