@@ -21,23 +21,23 @@ use high_scores::HighScores;
 #[test]
 #[ignore]
 fn {{ test_name }}() {
-    {% if test.property is starting_with("score") %}
+    {% if test.property is starting_with(pat="score") %}
         let expected = {{ test.input.scores }};
         let high_scores = HighScores::new(&expected);
     {% else %}
         let high_scores = HighScores::new(&{{ test.input.scores }});
     {% endif %}
 
-    {% if test.property is ending_with("AfterTopThree") %}
+    {% if test.property is ending_with(pat="AfterTopThree") %}
         let _ = high_scores.personal_top_three();
-    {% elif test.property is ending_with("AfterBest") %}
+    {% elif test.property is ending_with(pat="AfterBest") %}
         let _ = high_scores.personal_best();
     {% endif %}
 
 
-    {% if test.property is starting_with("score") %}
+    {% if test.property is starting_with(pat="score") %}
         assert_eq!(high_scores.scores(), &expected);
-    {% elif test.property is starting_with("latest") %}
+    {% elif test.property is starting_with(pat="latest") %}
         assert_eq!(high_scores.latest(), Some({{ test.expected }}));
     {% elif test.property == "personalBest" %}
         assert_eq!(high_scores.personal_best(), Some({{ test.expected }}));

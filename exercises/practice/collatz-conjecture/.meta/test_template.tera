@@ -5,7 +5,7 @@ use collatz_conjecture::*;
 #[ignore]
 fn {{ test.description | make_ident }}() {
     let output = collatz({{ test.input.number | fmt_num }});
-    let expected = {% if test.expected is object %}
+    let expected = {% if test.expected is map %}
         None
     {% else %}
         Some({{ test.expected | json_encode() }})

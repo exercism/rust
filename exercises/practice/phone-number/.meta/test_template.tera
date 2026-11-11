@@ -6,7 +6,7 @@ use phone_number::*;
 fn {{ test.description | make_ident }}() {
     let input = {{ test.input.phrase | json_encode() }};
     let output = number(input);
-{%- if test.expected is object %}
+{%- if test.expected is map %}
     assert!(output.is_none());
 {% else %}
     let expected = Some({{ test.expected | json_encode() }}.into());

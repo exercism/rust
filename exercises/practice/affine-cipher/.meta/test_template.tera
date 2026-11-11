@@ -10,7 +10,7 @@ fn {{ test.description | make_ident }}() {
     let phrase = {{ test.input.phrase | json_encode() }};
     let (a, b) = ({{ test.input.key.a }}, {{ test.input.key.b }});
     let output = {{ test.property }}(phrase, a, b);
-    let expected = {% if test.expected is object -%}
+    let expected = {% if test.expected is map -%}
         Err(NotCoprime({{ test.input.key.a }}))
     {%- else -%}
         Ok({{ test.expected | json_encode() }}.into())

@@ -6,7 +6,7 @@ use protein_translation::*;
 fn {{ test.description | make_ident }}() {
     assert_eq!(
         translate({{ test.input.strand | json_encode() }}),
-        {% if test.expected is object %}
+        {% if test.expected is map %}
             None
         {% else %}
             Some(vec![

@@ -22,18 +22,18 @@ fn {{ test.description | make_ident }}() {
 
     let {{arg}} = 
         {% if is_empty %}
-            {% if test.property is starting_with("fold") %}
+            {% if test.property is starting_with(pat="fold") %}
                 [0.0f64; 0]
             {% elif test.property == "concat" %}
                 [[0i32; 0]; 0]
             {% else %}
                 [0i32; 0]
             {% endif %}
-        {% elif test.property is starting_with("fold") %}
+        {% elif test.property is starting_with(pat="fold") %}
             {% if value is number %}
                 {{ test.input[arg] }}.0
             {% else %}
-                {{ test.input[arg] | as_str | replace(from=",", to=".0,") | replace(from="]", to=".0]") | replace(from="[.0]", to="[]") }}
+                {{ test.input[arg] | str | replace(from=",", to=".0,") | replace(from="]", to=".0]") | replace(from="[.0]", to="[]") }}
             {% endif %}
         {% else %}
             {{ test.input[arg] }}
@@ -56,7 +56,7 @@ fn {{ test.description | make_ident }}() {
         {% endif %}
         {% endfor %}
     );
-    let expected = {{ test.expected }}{% if test.property is starting_with("fold") %}.0{% endif %};
+    let expected = {{ test.expected }}{% if test.property is starting_with(pat="fold") %}.0{% endif %};
     assert_eq!(
         output
         {% if test.expected is iterable %}
