@@ -5,7 +5,7 @@ use alphametics::*;
 #[ignore]
 fn {{ test.description | make_ident }}() {
     let answer = solve({{ test.input.puzzle | json_encode() }});
-    {%- if test.expected is object %}
+    {%- if test.expected is map %}
         let expected = [
             {%- for key, val in test.expected %}
                 ('{{ key }}', {{val}}),

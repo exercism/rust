@@ -3,7 +3,7 @@ use reverse_string::*;
 {% for test in cases %}
 #[test]
 #[ignore]
-{% if test.description is starting_with("grapheme cluster") -%}
+{% if test.description is starting_with(pat="grapheme cluster") -%}
 #[cfg(feature = "grapheme")]
 {% endif -%}
 fn {{ test.description | make_ident }}() {

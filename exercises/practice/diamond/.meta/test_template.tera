@@ -9,7 +9,7 @@ fn {{ test.description | make_ident }}() {
       For us that means up to letter E
       We also exclude A to keep it inlined
     #}
-    {%- if test.input.letter is matching("[B-D]") %}
+    {%- if test.input.letter is matching(pat="[B-D]") %}
     #[rustfmt::skip]
     {%- endif %}
     assert_eq!(

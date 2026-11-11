@@ -42,7 +42,7 @@ fn {{ test.description | make_ident }}() {
     ]);
     let actual = grep(pattern, &flags, files.as_ref()).unwrap();
     let expected: &[&str] = &[
-        {% if test.input.files | length > 1 or test.input.flags is containing("-l") %}
+        {% if test.input.files | length > 1 or test.input.flags is containing(pat="-l") %}
             {% for line in test.expected %}
                 "{{ prefix }}-{{ line }}",
             {% endfor %}
