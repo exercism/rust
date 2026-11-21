@@ -25,7 +25,7 @@ fn {{ test.description | make_ident }}() {
         mut
     {% endif %} s = School::new();
     {% for student in test.input.students -%}
-        s.add({{ student.1 }}, {{ student.0 | json_encode() }});
+        s.add({{ student[1] }}, {{ student[0] | json_encode() }});
     {% endfor -%}
     {% if test.property == "grade" -%}
     assert_eq!(

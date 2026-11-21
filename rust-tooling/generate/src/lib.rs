@@ -6,11 +6,13 @@ use std::{
 use anyhow::{Context, Result};
 use tera::Tera;
 
-use custom_filters::CUSTOM_FILTERS;
 use models::{
     exercise_config::get_excluded_tests,
     problem_spec::{TestCase, get_additional_test_cases, get_canonical_data},
 };
+use tera_contrib::{json::json_encode, regex::Matching};
+
+use crate::custom_filters::{fmt_num, make_ident, to_hex};
 
 mod custom_filters;
 
@@ -104,20 +106,30 @@ fn generate_tests(slug: &str) -> Result<String> {
         cases
     };
     let excluded_tests = get_excluded_tests(slug);
-    let mut template = get_test_template(slug).context("failed to get test template")?;
+    let mut template = Tera::new();
+
+    // register custom filters (before adding template file)
+    template.register_filter("json_encode", json_encode);
+    template.register_test("matching", Matching::default());
+    template.register_filter("to_hex", to_hex);
+    template.register_filter("make_ident", make_ident);
+    template.register_filter("fmt_num", fmt_num);
+
+    template.add_template_file(
+        format!("exercises/practice/{slug}/.meta/test_template.tera").as_str(),
+        Some("test_template.tera"),
+    )?;
     if template.get_template_names().next().is_none() {
         template
             .add_raw_template("test_template.tera", TEST_TEMPLATE)
             .context("failed to add default template")?;
     }
-    for (name, filter) in CUSTOM_FILTERS {
-        template.register_filter(name, filter);
-    }
 
     remove_excluded_tests(&mut cases, &excluded_tests);
 
+    let cases = serde_json::to_value(&cases).context("failed to convert test cases to JSON")?;
     let mut context = tera::Context::new();
-    context.insert("cases", &cases);
+    context.insert_value("cases", json_to_tera(cases)?);
 
     let rendered = template
         .render("test_template.tera", &context)
@@ -167,6 +179,47 @@ It probably generates invalid Rust code."
     Ok(String::from_utf8_lossy(&rustfmt_out.stdout).into_owned())
 }
 
-pub fn get_test_template(slug: &str) -> Result<Tera> {
-    Tera::new(format!("exercises/practice/{slug}/.meta/*.tera").as_str()).map_err(Into::into)
+/// Converts a `serde_json::Value` into a `tera::Value`.
+///
+/// We cannot simply pass our data to `tera::Context::insert`, because
+/// that goes through tera's own serde serializer. serde_json's feature
+/// `arbitrary_precision` serializes numbers as a struct, which tera turns into
+/// a map like `{"$serde_json::private::Number": "42"}`.
+///
+/// This used to just work with tera v1, because it used `serde_json::Value`
+/// internally. But upstream doesn't want to support it in v2 anymore:
+/// <https://github.com/Keats/tera/pull/1060>
+fn json_to_tera(value: serde_json::Value) -> Result<tera::Value> {
+    use serde_json::Value as Json;
+
+    Ok(match value {
+        Json::Null => tera::Value::none(),
+        Json::Bool(b) => b.into(),
+        Json::Number(n) => {
+            if let Some(n) = n.as_u64() {
+                n.into()
+            } else if let Some(n) = n.as_i64() {
+                n.into()
+            } else if let Some(n) = n.as_u128() {
+                n.into()
+            } else if let Some(n) = n.as_i128() {
+                n.into()
+            } else if let Some(n) = n.as_f64() {
+                n.into()
+            } else {
+                anyhow::bail!("number does not fit into f64: {n}");
+            }
+        }
+        Json::String(s) => s.into(),
+        Json::Array(array) => array
+            .into_iter()
+            .map(json_to_tera)
+            .collect::<Result<Vec<_>>>()?
+            .into(),
+        Json::Object(object) => object
+            .into_iter()
+            .map(|(k, v)| Ok((tera::value::Key::from(k), json_to_tera(v)?)))
+            .collect::<Result<tera::Map>>()?
+            .into(),
+    })
 }

@@ -6,7 +6,7 @@ use matching_brackets::brackets_are_balanced;
 fn {{ test.description | make_ident }}() {
     assert!(
       {% if test.expected == false %}!{% endif %}
-      brackets_are_balanced("{{ test.input.value | replace(from="\", to="\\") }}")
+      brackets_are_balanced("{{ test.input.value | replace(from="\\", to="\\\\") }}")
     );
 }
 {% endfor -%}

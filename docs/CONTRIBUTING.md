@@ -55,7 +55,7 @@ The input of the template is the canonical data from [`problem-specifications`].
 
 Find some tips about writing tera templates [here](#tera-templates).
 
-[Tera]: https://keats.github.io/tera/docs/
+[Tera]: https://keats.github.io/tera/
 [`problem-specifications`]: https://github.com/exercism/problem-specifications/
 
 Many aspects of a correctly implemented exercises are checked in CI.
@@ -125,7 +125,7 @@ You can use an if-else to render something different,
 depending on the structure of the data:
 
 ```txt
-let expected = {% if test.expected is object -%}
+let expected = {% if test.expected is map -%}
     None
 {%- else -%}
     Some({{ test.expected }})
@@ -157,7 +157,7 @@ For a rather complicated example, check out the test template of `triangle`.
 It organizes the test cases in modules and dynamically detects which tests to put behind feature gates.
 That exercise also reimplements some test cases from upstream in `additional-tests.json`, in order to add more information to them necessary for generating good tests.
 
-[tera-docs]: https://keats.github.io/tera/docs/#templates
+[tera-docs]: https://keats.github.io/tera/#template
 
 ## Syllabus
 

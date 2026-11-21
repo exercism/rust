@@ -7,7 +7,7 @@ use perfect_numbers::*;
 fn {{ test.description | make_ident }}() {
     let input = {{ test.input.number | fmt_num }};
     let output = classify(input);
-{%- if test.expected is object %}
+{%- if test.expected is map %}
     assert!(output.is_none());
 {% else %}
     let expected = Some(Classification::{{ test.expected | title }});

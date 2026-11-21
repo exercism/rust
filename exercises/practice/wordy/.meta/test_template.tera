@@ -9,7 +9,7 @@ use wordy::*;
 fn {{ test.description | make_ident }}() {
     let input = {{ test.input.question | json_encode() }};
     let output = answer(input);
-    let expected = {% if test.expected is object -%}
+    let expected = {% if test.expected is map -%}
         None
     {%- else -%}
         Some({{ test.expected }})

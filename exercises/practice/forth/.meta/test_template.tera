@@ -21,7 +21,7 @@ fn {{ test.description | make_ident }}() {
         {% continue %}
     {% endif -%}
 
-    {% if test.expected is object -%}
+    {% if test.expected is map -%}
         {% if test.expected.error == "empty stack" or test.expected.error == "only one value on the stack" -%}
             assert_eq!(f.eval("{{ test.input.instructions[0] }}"), Err(Error::StackUnderflow));
         {% elif test.expected.error == "divide by zero" -%}

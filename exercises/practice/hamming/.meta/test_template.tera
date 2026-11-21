@@ -6,7 +6,7 @@ use hamming::*;
 fn {{ test.description | make_ident }}() {
     assert_eq!(
         hamming_distance({{ test.input.strand1 | json_encode() }}, {{ test.input.strand2 | json_encode() }}),
-        {% if test.expected is object -%}
+        {% if test.expected is map -%}
             None
         {% else -%}
             Some({{ test.expected }})

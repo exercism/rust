@@ -7,12 +7,12 @@ fn {{ test.description | make_ident }}() {
     let input_base = {{ test.input.inputBase }};
     let input_digits = &{{ test.input.digits | json_encode() }};
     let output_base = {{ test.input.outputBase }};
-    {%- if not test.expected is object %}
+    {%- if not test.expected is map %}
         let output_digits = vec!{{ test.expected | json_encode() }};
     {%- endif %}
     assert_eq!(
         ayb::convert(input_digits, input_base, output_base),
-        {%- if not test.expected is object %}
+        {%- if not test.expected is map %}
             Ok(output_digits)
         {%- elif test.expected.error == "input base must be >= 2" %}
             Err(ayb::Error::InvalidInputBase)

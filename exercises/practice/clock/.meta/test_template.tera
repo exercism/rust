@@ -4,7 +4,7 @@ use clock::*;
 // Clock Creation
 //
 
-{% for test in cases.0.cases %}
+{% for test in cases[0].cases %}
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
@@ -16,7 +16,7 @@ fn {{ test.description | make_ident }}() {
 // Clock Math
 //
 
-{% for test in cases.1.cases %}
+{% for test in cases[1].cases %}
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
@@ -25,7 +25,7 @@ fn {{ test.description | make_ident }}() {
 }
 {% endfor %}
 
-{% for test in cases.2.cases %}
+{% for test in cases[2].cases %}
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
@@ -38,7 +38,7 @@ fn {{ test.description | make_ident }}() {
 // Test Equality
 //
 
-{% for test in cases.3.cases %}
+{% for test in cases[3].cases %}
 #[test]
 #[ignore]
 fn {{ test.description | make_ident }}() {
